@@ -44,7 +44,7 @@ passport.use(new FBStrategy({
     //       let email = body.email;  // body.email contains your email
     //       console.log(body); 
     // });
-    
+
     return cb(null, profile);
   }));
 passport.use(new GoogleStrategy({
@@ -123,12 +123,14 @@ app.get('/login/facebook',
   ,{ scope: ['email'] }
   
   ));
-app.get('/login/facebook/profile', function(req, res) {
-  passport.authenticate('facebook',{failureRedirect:'/login'})
-  ,function(req, res) {
-    res.redirect('/profile');
-  }
-})
+app.get('/login/facebook/profile', 
+  //function(req, res) {
+  passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/login'})
+  // ,function(req, res) {
+  //   res.redirect('/profile');
+  // }
+  // }
+)
 app.get('/login/google',
   passport.authenticate('google'
     ,{scope:['profile']}
