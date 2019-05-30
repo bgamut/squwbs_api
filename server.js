@@ -27,9 +27,11 @@ function(accessToken, refreshToken, profile, cb) {
   return cb(null, profile);
 }));
 passport.use(new FBStrategy({
-    clientID: NODE_ENV.FACEBOOK_CLIENT_ID,
-    clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET,
-    callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
+    clientID: NODE_ENV.FACEBOOK_CLIENT_ID
+    ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
+    ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
+    ,passReqToCallback : true
+    ,profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
@@ -107,7 +109,8 @@ app.get('/login',
 
 app.get('/login/facebook',
   passport.authenticate('facebook'
-  ,{ scope: ['read_stream'] }
+  ,{ scope: ['email'] }
+  
   ));
 app.get('/login/facebook/profile', function(req, res) {
   passport.authenticate('facebook',{failureRedirect:'/login'})
