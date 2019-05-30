@@ -195,7 +195,7 @@ app.get('/profile',
       id:req.user.id,
       displayName:req.user.displayName,
       //email:req.user.email
-      email:req.user.emails[0].value,
+      //email:req.user.emails[0].value,
       //picture:req.user.photos[0].value
     });
   }
