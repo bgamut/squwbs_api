@@ -31,10 +31,19 @@ passport.use(new FBStrategy({
     ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
     ,passReqToCallback : true
-    ,profileFields: ['id', 'name', 'emails']
+    ,profileFields: ['id', 'emails', 'name']
     //,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
+    let url = "https://graph.facebook.com/v3.2/me?" +
+                  "fields=id,name,email,first_name,last_name&access_token=" + refreshToken;
+    request({
+      url: url,
+      json: true
+    }, function (err, response, body) {
+          let email = body.email;  // body.email contains your email
+          console.log(body); 
+    });
     return cb(null, profile);
   }));
 passport.use(new GoogleStrategy({
