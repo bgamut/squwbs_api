@@ -166,8 +166,8 @@ app.get('/profile',
   // if(req.user==undefined){
   //   res.redirect('/login')
   // }
-    
-    
+  console.log(res.query)  
+  console.log(req)  
   // else{
     // console.log(req.user)
     res.send(req)
