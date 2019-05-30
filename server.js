@@ -30,20 +30,21 @@ passport.use(new FBStrategy({
     clientID: NODE_ENV.FACEBOOK_CLIENT_ID
     ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
-    ,passReqToCallback : true
-    ,profileFields: ['id', 'emails', 'name']
-    ,enableProof: true
+    //,passReqToCallback : true
+    ,profileFields: ['id', 'email', 'gender', 'link','locale','name','timezone','updated_time','verified','displayName']
+    //,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
-    let url = "https://graph.facebook.com/v3.2/me?" +
-                  "fields=id,name,email,first_name,last_name&access_token=" + refreshToken;
-    request({
-      url: url,
-      json: true
-    }, function (err, response, body) {
-          let email = body.email;  // body.email contains your email
-          console.log(body); 
-    });
+    // let url = "https://graph.facebook.com/v3.2/me?" +
+    //               "fields=id,name,email,first_name,last_name&access_token=" + refreshToken;
+    // request({
+    //   url: url,
+    //   json: true
+    // }, function (err, response, body) {
+    //       let email = body.email;  // body.email contains your email
+    //       console.log(body); 
+    // });
+    
     return cb(null, profile);
   }));
 passport.use(new GoogleStrategy({
