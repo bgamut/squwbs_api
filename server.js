@@ -32,7 +32,7 @@ passport.use(new FBStrategy({
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
     ,passReqToCallback : true
     ,profileFields: ['id', 'emails', 'name']
-    //,enableProof: true
+    ,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
     let url = "https://graph.facebook.com/v3.2/me?" +
