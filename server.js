@@ -106,18 +106,19 @@ app.get('/login',
   });
 
 app.get('/login/facebook',
-  passport.authenticate('facebook',{ scope: 'read_stream' }));
+  passport.authenticate('facebook'
+  ,{ scope: ['read_stream','profile'] }
+  ));
 app.get('/login/facebook/profile', function(req, res) {
-  passport.authenticate('facebook',{successRedirect: '/profile',failureRedirect:'/login'})
-  // ,function(req, res) {
-  //   res.redirect('/profile');
-  // }
+  passport.authenticate('facebook',{failureRedirect:'/login'})
+  ,function(req, res) {
+    res.redirect('/profile');
+  }
 })
 app.get('/login/google',
-  passport.authenticate('google',
-    {scope:['profile']}
-  )
-);
+  passport.authenticate('google'
+    ,{scope:['profile']}
+  ));
 // app.get('/login/google/profile',
 //   passport.authenticate('google',{failureRedirect:'/login'}),
 //   function(req,res){
