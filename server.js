@@ -170,7 +170,7 @@ app.get('/profile',
     
   else{
     // console.log(req.user)
-    res.send(req.user)
+    res.send(req)
     // res.render('profile', { 
     //   provider:req.user.provider,
     //   id:req.user.id,
