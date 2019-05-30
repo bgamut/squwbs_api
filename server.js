@@ -160,15 +160,15 @@ app.get('/login/twitter/profile',
 
 app.get('/profile',
   //passport.authenticate('google'),
-  require('connect-ensure-login').ensureLoggedIn('/'),
+  //require('connect-ensure-login').ensureLoggedIn('/'),
   
   function(req, res){
-  if(req.user==undefined){
-    res.redirect('/login')
-  }
+  // if(req.user==undefined){
+  //   res.redirect('/login')
+  // }
     
     
-  else{
+  // else{
     // console.log(req.user)
     res.send(req)
     // res.render('profile', { 
@@ -178,7 +178,7 @@ app.get('/profile',
     //   //email:req.user.emails[0].value,
     //   picture:req.user.photos[0].value
     // });
-  }
+  // }
 
      
 });
