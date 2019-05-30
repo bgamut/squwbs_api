@@ -188,12 +188,13 @@ app.get('/profile',
   // console.log(req)  
   else{
     //res.send(req)
+    console.log(req.user)
     res.render('profile', { 
       provider:req.user.provider,
       id:req.user.id,
       displayName:req.user.displayName,
       //email:req.user.emails[0].value,
-      picture:req.user.photos[0].value
+      //picture:req.user.photos[0].value
     });
   }
 
