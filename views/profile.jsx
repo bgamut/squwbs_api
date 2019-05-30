@@ -45,6 +45,7 @@ class profile extends Component {
                 provider:{this.props.provider}<br/>
                 ID: {this.props.id}<br/>
                 Username: {this.props.displayName} <br/>
+                Email:{this.props.email} <br/>
                 </p>
 
             </div>
