@@ -110,7 +110,7 @@ app.get('/login',
 
 app.get('/login/facebook',
   passport.authenticate('facebook'
-  ,{ scope: ['profile','email'] }
+  ,{ scope: ['email'] }
   
   ));
 app.get('/login/facebook/profile', function(req, res) {
