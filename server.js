@@ -108,11 +108,11 @@ app.get('/login',
 app.get('/login/facebook',
   passport.authenticate('facebook'));
 app.get('/login/facebook/profile', function(req, res) {
-  //passport.authorize('facebook')
-  req.session.save(()=>{
+  passport.authenticate('facebook',{failureRedirect:'/login'}),
+  function(req, res) {
     res.redirect('/profile');
-  })
-});
+  }
+})
 app.get('/login/google',
   passport.authenticate('google',
     {scope:['profile']}
