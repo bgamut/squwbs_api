@@ -106,12 +106,12 @@ app.get('/login',
   });
 
 app.get('/login/facebook',
-  passport.authenticate('facebook'));
+  passport.authenticate('facebook',{ scope: 'read_stream' }));
 app.get('/login/facebook/profile', function(req, res) {
-  passport.authenticate('facebook',{failureRedirect:'/login'}),
-  function(req, res) {
-    res.redirect('/profile');
-  }
+  passport.authenticate('facebook',{successRedirect: '/profile',failureRedirect:'/login'})
+  // ,function(req, res) {
+  //   res.redirect('/profile');
+  // }
 })
 app.get('/login/google',
   passport.authenticate('google',
