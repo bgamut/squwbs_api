@@ -30,9 +30,9 @@ passport.use(new FBStrategy({
     clientID: NODE_ENV.FACEBOOK_CLIENT_ID
     ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
-    ,passReqToCallback : true
+    //,passReqToCallback : true
     ,profileFields: ['id', 'displayName', 'name', 'photos','emails']
-    ,enableProof: true
+    //,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
