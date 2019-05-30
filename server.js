@@ -164,8 +164,12 @@ app.get('/profile',
   
   function(req, res){
   if(req.user==undefined){
-    console.log(req)
-    res.redirect('/login')
+    console.log(req.body)
+    es.redirect(url.format({
+      pathname:"/",
+      query: req.body
+  })) 
+    //res.redirect('/login')
   }
   // console.log(res.query)  
   // console.log(req)  
