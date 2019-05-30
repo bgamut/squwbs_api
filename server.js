@@ -163,22 +163,22 @@ app.get('/profile',
   //require('connect-ensure-login').ensureLoggedIn('/'),
   
   function(req, res){
-  // if(req.user==undefined){
-  //   res.redirect('/login')
-  // }
-  console.log(res.query)  
-  console.log(req)  
-  // else{
-    // console.log(req.user)
-    res.send(req)
-    // res.render('profile', { 
-    //   provider:req.user.provider,
-    //   id:req.user.id,
-    //   displayName:req.user.displayName,
-    //   //email:req.user.emails[0].value,
-    //   picture:req.user.photos[0].value
-    // });
-  // }
+  if(req.user==undefined){
+    console.log(req)
+    res.redirect('/login')
+  }
+  // console.log(res.query)  
+  // console.log(req)  
+  else{
+    //res.send(req)
+    res.render('profile', { 
+      provider:req.user.provider,
+      id:req.user.id,
+      displayName:req.user.displayName,
+      //email:req.user.emails[0].value,
+      picture:req.user.photos[0].value
+    });
+  }
 
      
 });
