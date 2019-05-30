@@ -32,6 +32,7 @@ passport.use(new FBStrategy({
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
     ,passReqToCallback : true
     ,profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
+    ,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
@@ -109,7 +110,7 @@ app.get('/login',
 
 app.get('/login/facebook',
   passport.authenticate('facebook'
-  ,{ scope: ['email'] }
+  ,{ scope: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'] }
   
   ));
 app.get('/login/facebook/profile', function(req, res) {
@@ -164,10 +165,10 @@ app.get('/profile',
   
   function(req, res){
   if(req.user==undefined){
-    console.log(req.body)
+    console.log(req.profile)
     es.redirect(url.format({
       pathname:"/",
-      query: req.body
+      query: req.profile
   })) 
     //res.redirect('/login')
   }
