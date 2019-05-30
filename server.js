@@ -189,6 +189,7 @@ app.get('/profile',
   else{
     //res.send(req)
     console.log(req.user)
+    //todo: need to check provider and stick in a data structure for firebase and the view
     res.render('profile', { 
       provider:req.user.provider,
       id:req.user.id,
