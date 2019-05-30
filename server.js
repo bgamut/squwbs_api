@@ -107,7 +107,7 @@ app.get('/login',
 
 app.get('/login/facebook',
   passport.authenticate('facebook'
-  ,{ scope: ['read_stream','profile'] }
+  ,{ scope: ['read_stream'] }
   ));
 app.get('/login/facebook/profile', function(req, res) {
   passport.authenticate('facebook',{failureRedirect:'/login'})
