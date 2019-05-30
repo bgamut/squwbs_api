@@ -1,1 +1,1 @@
-# squwbs_api github repo
+https://squwbs.herokuapp.com/
