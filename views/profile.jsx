@@ -41,7 +41,7 @@ class profile extends Component {
                 <p>
                 <a href="/">home</a><br/>
                 <a href="/logout">log out</a><br/>
-                <img src={this.props.picture}/><br/>
+                
                 provider:{this.props.provider}<br/>
                 ID: {this.props.id}<br/>
                 Username: {this.props.displayName} <br/>
