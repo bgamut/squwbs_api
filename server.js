@@ -170,14 +170,14 @@ app.get('/profile',
     
   else{
     // console.log(req.user)
-    // res.send(req.user)
-    res.render('profile', { 
-      provider:req.user.provider,
-      id:req.user.id,
-      displayName:req.user.displayName,
-      //email:req.user.emails[0].value,
-      picture:req.user.photos[0].value
-    });
+    res.send(req.user)
+    // res.render('profile', { 
+    //   provider:req.user.provider,
+    //   id:req.user.id,
+    //   displayName:req.user.displayName,
+    //   //email:req.user.emails[0].value,
+    //   picture:req.user.photos[0].value
+    // });
   }
 
      
