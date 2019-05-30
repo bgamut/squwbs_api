@@ -31,7 +31,7 @@ passport.use(new FBStrategy({
     ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
     ,passReqToCallback : true
-    ,profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
+    ,profileFields: ['emails']
     ,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -110,7 +110,7 @@ app.get('/login',
 
 app.get('/login/facebook',
   passport.authenticate('facebook'
-  ,{ scope: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'] }
+  ,{ scope: ['email'] }
   
   ));
 app.get('/login/facebook/profile', function(req, res) {
