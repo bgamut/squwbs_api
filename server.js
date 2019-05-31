@@ -236,12 +236,12 @@ app.get('/ebay',cors(),(req,res)=>{
     // }, function(error){
     //   console.log(error.message)
     // })
-    //console.log(req.query)
+    console.log(req.query)
     fetch('https://squwbs.herokuapp.com/api'
     ,req.query
     )
     .then(resulst=>{resulst.json()
-     // console.log(resulst)
+     console.log(resulst)
     })
     .then((json)=>{
       //console.log(json)
