@@ -217,40 +217,44 @@ app.post('/api',cors(),(req,res)=>{
 })
 app.get('/ebay',cors(),(req,res)=>{
     //data={name:'ck'}
-    // const params = new URLSearchParams()
-    // params.append('a','1')
-    // fetch("https://squwbs.herokuapp.com/api",{
-    // method: "POST",
-    // body: params,
-    // headers: {
-    //   "Content-Type": "application/json"
-    // },
-    // credentials: "same-origin"})
-    // .then(function(response){
-    // // response.status     //=> number 100–599
-    // // response.statusText //=> String
-    // // response.headers    //=> Headers
-    // // response.url        //=> String
-    // //return response.url()
-    // return response.text() 
-    // }, function(error){
-    //   console.log(error.message)
-    // })
+    data=req.query
+    const params = new URLSearchParams()
+    params.append('a','1')
+    fetch("https://squwbs.herokuapp.com/api",{
+    method: "POST",
+    body: params,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "same-origin"})
+    .then(function(response){
+    console.log(response)
+    // response.status     //=> number 100–599
+    // response.statusText //=> String
+    // response.headers    //=> Headers
+    // response.url        //=> String
+    //return response.url()
+    return response.text() 
+    }, function(error){
+      console.log(error.message)
+    })
+
     //console.log(req.query)
-    fetch(withQuery('https://squwbs.herokuapp.com/api'
-    ,req.query
-    ))
-    .then(resulst=>{resulst.json()
-     //console.log(resulst)
-    })
-    .then((json)=>{
-      console.log(json)
-      //return(json)
-      res.send(json)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    // fetch(withQuery('https://squwbs.herokuapp.com/api'
+    // ,req.query
+    // ))
+    // .then(resulst=>{resulst.json()
+    //  //console.log(resulst)
+    // })
+    // .then((json)=>{
+    //   console.log(json)
+    //   //return(json)
+    //   res.send(json)
+    // })
+    // .catch((err)=>{
+    //   console.log(err)
+    // })
+
 })
   // function(req,res){
   //   console.log(req.headers.cookie)
