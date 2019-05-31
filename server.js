@@ -11,6 +11,7 @@ const cors = require('cors')
 const url = require('url'); 
 const { URLSearchParams } = require('url'); 
 const fetch = require('node-fetch')
+const withQuery = require('with-query')
 var trustProxy = false;
 console.log(NODE_ENV)
 if (process.env.DYNO) {
@@ -186,7 +187,7 @@ app.get('/profile',
   // console.log(req)  
   else{
     //res.send(req)
-    console.log(req.user)
+    //console.log(req.user)
     //todo: need to check provider and stick in a data structure for firebase and the view
     res.render('profile', { 
       provider:req.user.provider,
@@ -222,25 +223,36 @@ app.post('/api',cors(),(req,res)=>{
   
 })
 app.get('/ebay',cors(),(req,res)=>{
-    data={name:'ck'}
-    const params = new URLSearchParams()
-    params.append('a','1')
-    fetch("https://squwbs.herokuapp.com/api",{
-    method: "POST",
-    body: params,
-    headers: {
-      "Content-Type": "application/json"
-    },
-    credentials: "same-origin"})
-    .then(function(response){
-    // response.status     //=> number 100–599
-    // response.statusText //=> String
-    // response.headers    //=> Headers
-    // response.url        //=> String
-    //return response.url()
-    return response.text() 
-    }, function(error){
-      console.log(error.message)
+    //data={name:'ck'}
+    // const params = new URLSearchParams()
+    // params.append('a','1')
+    // fetch("https://squwbs.herokuapp.com/api",{
+    // method: "POST",
+    // body: params,
+    // headers: {
+    //   "Content-Type": "application/json"
+    // },
+    // credentials: "same-origin"})
+    // .then(function(response){
+    // // response.status     //=> number 100–599
+    // // response.statusText //=> String
+    // // response.headers    //=> Headers
+    // // response.url        //=> String
+    // //return response.url()
+    // return response.text() 
+    // }, function(error){
+    //   console.log(error.message)
+    // })
+    fetch(withQuery('https://squwbs.herokuapp.com/api'
+    ,res.query
+    ))
+    .then(res=>res.json())
+    .then((json)=>{
+      //return(json)
+      res.send(json)
+    })
+    .catch((err)=>{
+      console.log(err)
     })
 })
   // function(req,res){
