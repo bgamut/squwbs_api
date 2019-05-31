@@ -240,8 +240,8 @@ app.get('/ebay',cors(),(req,res)=>{
     fetch('https://squwbs.herokuapp.com/api'
     ,res.query
     )
-    .then(res=>{res.json()
-      console.log(res)
+    .then(resulst=>{resulst.json()
+      console.log(resulst)
     })
     .then((json)=>{
       console.log(json)
