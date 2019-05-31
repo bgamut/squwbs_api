@@ -11,7 +11,7 @@ const cors = require('cors')
 const url = require('url'); 
 const { URLSearchParams } = require('url'); 
 const fetch = require('node-fetch')
-const withQuery = require('with-query')
+const withQuery = require('with-query').default
 var trustProxy = false;
 console.log(NODE_ENV)
 if (process.env.DYNO) {
@@ -206,20 +206,13 @@ app.get('/logout',function(req,res){
   res.redirect('/')
 })
 app.get('/api',cors(),(req,res)=>{
-    
 
-  res.redirect(url.format({
-      pathname:"/",
-      query: req.query
-  })) 
+  res.send(req.query)
+
 })
 app.post('/api',cors(),(req,res)=>{
 
-
-  res.redirect(url.format({
-      pathname:"/",
-      query: req.body
-  })) 
+  res.send(req.body)
   
 })
 app.get('/ebay',cors(),(req,res)=>{
@@ -243,7 +236,7 @@ app.get('/ebay',cors(),(req,res)=>{
     // }, function(error){
     //   console.log(error.message)
     // })
-    fetch(withQuery('https://squwbs.herokuapp.com/api'
+    fetch(('https://squwbs.herokuapp.com/api'
     ,res.query
     ))
     .then(res=>res.json())
