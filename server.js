@@ -237,9 +237,9 @@ app.get('/ebay',cors(),(req,res)=>{
     //   console.log(error.message)
     // })
     console.log(req.query)
-    fetch('https://squwbs.herokuapp.com/api'
+    fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
-    )
+    ))
     .then(resulst=>{resulst.json()
      console.log(resulst)
     })
