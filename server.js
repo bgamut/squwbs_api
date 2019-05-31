@@ -236,9 +236,9 @@ app.get('/ebay',cors(),(req,res)=>{
     // }, function(error){
     //   console.log(error.message)
     // })
-    fetch(('https://squwbs.herokuapp.com/api'
+    fetch('https://squwbs.herokuapp.com/api'
     ,res.query
-    ))
+    )
     .then(res=>res.json())
     .then((json)=>{
       //return(json)
