@@ -218,11 +218,11 @@ app.post('/api',cors(),(req,res)=>{
 app.get('/ebay',cors(),(req,res)=>{
     //data={name:'ck'}
     data=req.query
-    const params = new URLSearchParams()
-    params.append('a','1')
+    // const params = new URLSearchParams()
+    // params.append('a','1')
     fetch("https://squwbs.herokuapp.com/api",{
     method: "POST",
-    body: params,
+    body: data,
     headers: {
       "Content-Type": "application/json"
     },
