@@ -21,6 +21,7 @@
     "electron": "electron ./electron-starter.js",
     "start": "node server.js"
   },
+  "main": "./electron-starter.js",
   "dependencies": {
     "babel": "^6.23.0",
     "body-parser": "^1.13.2",
