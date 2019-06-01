@@ -11,7 +11,7 @@ const { URLSearchParams } = require('url');
 const fetch = require('node-fetch')
 const withQuery = require('with-query').default
 var trustProxy = false;
-module.exports = function (){
+module.exports = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
 }
@@ -185,7 +185,7 @@ app.get('/ebay',cors(),(req,res)=>{
 })
 
   
-
-app.listen(process.env['PORT'] || 8080);
+console.log('server started in port number : '+String(portnumber))
+app.listen(process.env['PORT'] || portnumber);
 }
 

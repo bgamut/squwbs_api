@@ -1,4 +1,5 @@
 const electron = require('electron');
+var pf = require('portfinder')
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
@@ -13,31 +14,42 @@ let mainWindow;
 
 function createWindow() {
     //start express app
-    expressApp();
-    // Create the browser window.
-    mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
+    var freeport=null
+    pf.getPortPromise()
+    .then((port)=>{
+        freeport=port
+        expressApp(freeport);
+        // Create the browser window.
+        mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
 
-    // and load the index.html of the app.
-    mainWindow.loadURL('http://localhost:8080');
-    mainWindow.focus()
-    
-    // const startUrl = process.env.ELECTRON_START_URL || url.format({
-    //     pathname: path.join(__dirname, '/../build/index.html'),
-    //     protocol: 'file:',
-    //     slashes: true
-    // });
-    // mainWindow.loadURL(startUrl);
-    
-    // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+        // and load the index.html of the app.
+        mainWindow.loadURL('http://localhost:'+String(freeport));
+        mainWindow.focus()
+        
+        // const startUrl = process.env.ELECTRON_START_URL || url.format({
+        //     pathname: path.join(__dirname, '/../build/index.html'),
+        //     protocol: 'file:',
+        //     slashes: true
+        // });
+        // mainWindow.loadURL(startUrl);
+        
+        // Open the DevTools.
+        //mainWindow.webContents.openDevTools();
 
-    // Emitted when the window is closed.
-    mainWindow.on('closed', function () {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        mainWindow = null
+        // Emitted when the window is closed.
+        mainWindow.on('closed', function () {
+            // Dereference the window object, usually you would store windows
+            // in an array if your app supports multi windows, this is the time
+            // when you should delete the corresponding element.
+            mainWindow = null
+        })
     })
+    .catch((err)=>{
+
+    })
+ 
+    
+    
 }
 
 // This method will be called when Electron has finished
