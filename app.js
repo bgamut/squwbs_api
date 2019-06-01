@@ -1,11 +1,9 @@
-//require('dotenv').config();
 var NODE_ENV = require('./config');
 var express = require('express');
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FBStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy
-//var GooglePlusTokenStrategy = require('passport-google-plus-token')
 const cookieSession = require('cookie-session')
 const cors = require('cors')
 const url = require('url'); 
@@ -13,10 +11,8 @@ const { URLSearchParams } = require('url');
 const fetch = require('node-fetch')
 const withQuery = require('with-query').default
 var trustProxy = false;
-//console.log(NODE_ENV)
 module.exports = function (){
 if (process.env.DYNO) {
-  // Apps on heroku are behind a trusted proxy
   trustProxy = true;
 }
 var user=[]
@@ -32,20 +28,9 @@ passport.use(new FBStrategy({
     clientID: NODE_ENV.FACEBOOK_CLIENT_ID
     ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
-    //,passReqToCallback : true
     ,profileFields: ['id', 'email', 'gender', 'link','locale','name','timezone','updated_time','verified','displayName']
-    //,enableProof: true
   },
   function(accessToken, refreshToken, profile, cb) {
-    // let url = "https://graph.facebook.com/v3.2/me?" +
-    //               "fields=id,name,email,first_name,last_name&access_token=" + refreshToken;
-    // request({
-    //   url: url,
-    //   json: true
-    // }, function (err, response, body) {
-    //       let email = body.email;  // body.email contains your email
-    //       console.log(body); 
-    // });
 
     return cb(null, profile);
   }));
@@ -72,27 +57,17 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 
-// Create a new Express application.
 var app = express();
 
-// Configure view engine to render EJS templates.
 app.set('views', __dirname + '/views');
-//app.set('view engine', 'ejs');
 app.set('view engine','jsx')
 app.engine('jsx',require('express-react-views').createEngine())
 
-// Use application-level middleware for common functionality, including
-// logging, parsing, and session handling.
-//app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
 app.use(require('express-session')({ secret: 'keyboard cat',resave:true,saveUninitialized:true }));
-//app.use(cookieSession({maxAge:24*60*60*1000,keys:['encripteddetpircne']}))
 
-
-// Initialize Passport and restore authentication state, if any, from the
-// session.
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -111,7 +86,7 @@ app.get('/',
 
 app.get('/login',
   function(req, res){
-    // console.log(req.user)
+
     if(req.user==undefined){
       res.render('login');
     }
@@ -126,31 +101,15 @@ app.get('/login/facebook',
   
   ));
 app.get('/login/facebook/profile', 
-  //function(req, res) {
+
   passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/login'})
-  // ,function(req, res) {
-  //   res.redirect('/profile');
-  // }
-  // }
+
 )
 app.get('/login/google',
   passport.authenticate('google'
     ,{scope:['profile']}
   ));
-// app.get('/login/google/profile',
-//   passport.authenticate('google',{failureRedirect:'/login'}),
-//   function(req,res){
-//   // req.session.save(()=>{
-//   //   res.redirect('/profile')
-//   // })
 
-//   // req.session.save(()=>{
-//   //   console.log(req.user)
-//   //   res.redirect('/profile')
-//   // })  
-
-//   res.redirect('/profile')
-// });
 app.get('/login/google/profile',  
   passport.authenticate('google',{failureRedirect:'/login'}),
   function(req, res) {
@@ -160,12 +119,10 @@ app.get('/login/twitter',
   passport.authenticate('twitter')
 );
 app.get('/login/twitter/profile', 
-  //passport.authorize('twitter')
+
   passport.authenticate('twitter',{failureRedirect:'/login'}),
   function(req, res) {
-  // req.session.save(()=>{
-  //   res.redirect('/profile');
-  // })
+
   res.redirect('/profile');
 });
 
@@ -174,29 +131,22 @@ app.get('/login/twitter/profile',
 
 
 app.get('/profile',
-  //passport.authenticate('google'),
-  //require('connect-ensure-login').ensureLoggedIn('/'),
-  
+
   function(req, res){
   if(req.user==undefined){
     es.redirect(url.format({
       pathname:"/"
   })) 
-    //res.redirect('/login')
+
   }
-  // console.log(res.query)  
-  // console.log(req)  
+
   else{
-    //res.send(req)
-    //console.log(req.user)
-    //todo: need to check provider and stick in a data structure for firebase and the view
+
     res.render('profile', { 
       provider:req.user.provider,
       id:req.user.id,
       displayName:req.user.displayName,
-      //email:req.user.email
-      //email:req.user.emails[0].value,
-      //picture:req.user.photos[0].value
+
     });
   }
 
@@ -217,30 +167,7 @@ app.post('/api',cors(),(req,res)=>{
   
 })
 app.get('/ebay',cors(),(req,res)=>{
-    // //data={name:'ck'}
-    // data=req.query
-    // // const params = new URLSearchParams()
-    // // params.append('a','1')
-    // fetch("https://squwbs.herokuapp.com/api",{
-    // method: "POST",
-    // body: data,
-    // headers: {
-    //   "Content-Type": "application/json"
-    // },
-    // credentials: "same-origin"})
-    // .then(function(response){
-    // console.log(response)
-    // // response.status     //=> number 100–599
-    // // response.statusText //=> String
-    // // response.headers    //=> Headers
-    // // response.url        //=> String
-    // //return response.url()
-    // return response.text() 
-    // }, function(error){
-    //   console.log(error.message)
-    // })
 
-    //console.log(req.query)
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
     ))
@@ -248,18 +175,15 @@ app.get('/ebay',cors(),(req,res)=>{
       return resulst.json()
     })
     .then((json)=>{
-      //console.log(json)
-      //return(json)
+
       res.send(json)
     })
     .catch((err)=>{
-      //console.log(err)
+
     })
 
 })
-  // function(req,res){
-  //   console.log(req.headers.cookie)
-  // })
+
   
 
 app.listen(process.env['PORT'] || 8080);
