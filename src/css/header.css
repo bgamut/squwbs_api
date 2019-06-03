@@ -1,0 +1,30 @@
+@font-face{
+    font-family: "Montserrat";
+    src: url("./../fonts/Montserrat/Montserrat-Medium.ttf");
+}
+#titleBar{
+            
+    font-family: "Montserrat";
+    background-color:#333333;
+    width:100vw;
+    height:22px;
+    -webkit-app-region:drag;
+    text-align: center;
+}
+#title{
+    
+    font-family: "Montserrat";
+    
+    font-size:13px;
+    text-align: center;
+    color:rgb(256, 256, 256);
+    width:100vw;
+    height:18px;
+    transform:translateY(2px);
+    -webkit-app-region:drag;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

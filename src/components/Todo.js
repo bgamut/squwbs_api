@@ -35,17 +35,19 @@ var i=1
         )
       }
   }
-  /*
+  
    return(
     <div className='todo'>
       <Form onAdd = {handleOnAdd}/>
       <List items = {items} onDelete={handleOnDelete}/>
     </div>
    )
-   */
+   
+  /*
   return(
     <div className='todo'>
       <Header/>
     </div>
    )
+   */
  }

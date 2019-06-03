@@ -11,7 +11,9 @@ const { URLSearchParams } = require('url');
 const fetch = require('node-fetch')
 const withQuery = require('with-query').default
 var trustProxy = false;
-module.exports = function (portnumber){
+require('module-alias/register')
+const path = require('path');
+module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
 }
@@ -67,13 +69,14 @@ app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
 app.use(require('express-session')({ secret: 'keyboard cat',resave:true,saveUninitialized:true }));
+app.use(express.static(path.join(__dirname, '../../build')));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 // Define routes.
-app.get('/',
+app.get('/home',
   function(req, res) {
     if(req.user==undefined){
       res.render('home', { user: undefined });
@@ -126,7 +129,9 @@ app.get('/login/twitter/profile',
   res.redirect('/profile');
 });
 
-
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 
@@ -134,7 +139,7 @@ app.get('/profile',
 
   function(req, res){
   if(req.user==undefined){
-    es.redirect(url.format({
+    res.redirect(url.format({
       pathname:"/"
   })) 
 
@@ -187,5 +192,6 @@ app.get('/ebay',cors(),(req,res)=>{
   
 console.log('server started in port number : '+String(portnumber))
 app.listen(process.env['PORT'] || portnumber);
-}
 
+
+}
