@@ -1,9 +1,9 @@
 import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
-import '../css/header.css'
+import {SafeAreaView, View, Text, StyleSheet} from 'react';
+//import '../../css/header.css'
 
 const Header = ({ onBack, title }) => (
-    <div id='titleBar'>        
+    <div id='titleBar' styles={styles}>        
         <Text accessibilityRole="heading" id='title'>{title}</Text>
     </div>
 );

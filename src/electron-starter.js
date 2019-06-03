@@ -17,6 +17,8 @@ function setupWindow(freeport){
     mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
 
     // and load the index.html of the app.
+    //var pathname= path.join(__dirname, '/../build/index.html')
+    //mainWindow.loadURL(`file://${pathname}`);
     mainWindow.loadURL('http://localhost:'+String(freeport));
     mainWindow.focus()
     
@@ -69,12 +71,24 @@ function createWindow() {
         checkNConnect(freeport);
     })
     .catch((err)=>{
-
     })
- 
-    
-    
 }
+
+// function createWindow() {
+//     //start express app
+//     //var freeport=null
+//     var freeport=8080
+//     // pf.getPortPromise()
+//     // .then((port)=>{
+//     //     freeport=port
+    
+//         expressServer(freeport);
+//         setupWindow(freeport);
+//         //checkNConnect(freeport);
+//     // })
+//     // .catch((err)=>{
+//     // })
+// }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

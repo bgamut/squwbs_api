@@ -42,6 +42,7 @@ class home extends Component {
         if(this.props.user!==undefined){
             return(
                 <div>
+                   
                     <p>Hello, {this.props.user}. View your <a href="/login">profile</a>.</p>
                     <a href="/logout">log out</a>
                 </div>
@@ -51,7 +52,10 @@ class home extends Component {
         }
         else{
             return (
-                <p>Welcome! Please <a href="/login">log in</a>.</p>
+                <div>
+                   
+                    <p>Welcome! Please <a href="/login">log in</a>.</p>
+                </div>
             );
         }
     }

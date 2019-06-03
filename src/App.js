@@ -4,6 +4,7 @@
  import './App.css'
  import Header from './components/Header';
  import { BrowserRouter,HashRouter, Route, Link,Router,Switch } from "react-router-dom";
+ //import{IndexRedirect} from "react-router"
  import Home from './components/Home'
  import NoMatch from './components/NoMatch'
  import NavBar from './components/NavBar'
@@ -25,7 +26,9 @@
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/todo" render={()=><Todo itemsChanged={handleItems} items={state.items}/>}/>
+          <Route exact path="/todo" render={()=><Todo itemsChanged={handleItems} items={state.items}/>}>
+            
+          </Route>
           <Route component={NoMatch} />
         </Switch>
         <NavBar />

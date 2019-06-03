@@ -27,6 +27,7 @@
     "react-dom": "^16.8.6",
     "react-file-reader": "^1.1.4",
     "react-hot-loader": "^4.8.5",
+    "react-native": "^0.59.8",
     "react-native-cli": "^2.0.1",
     "react-native-gesture-handler": "^1.2.1",
     "react-native-web": "^0.11.2",
@@ -62,6 +63,7 @@
     "react-build": "react-scripts build",
     "preelectron-pack": "npm run build",
     "electron-packager": "npm run preelectron-pack & electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
+    "electron-repackage": "electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
     "postinstall": "echo finised"
   },
   "eslintConfig": {

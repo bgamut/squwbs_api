@@ -70,7 +70,7 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
 app.use(require('express-session')({ secret: 'keyboard cat',resave:true,saveUninitialized:true }));
 app.use(express.static(path.join(__dirname, '../../build')));
-
+app.use(express.static(path.join(__dirname, 'html/*/*')));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -133,6 +133,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+app.get('/todo', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+});
 
 
 app.get('/profile',
