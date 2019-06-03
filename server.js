@@ -169,7 +169,9 @@ app.get('/login/twitter/profile',
 });
 
 
-
+app.get('/todo',(req,res)=>{
+  res.render('Todo')
+})
 
 
 app.get('/profile',
