@@ -42,7 +42,7 @@
   },
   "scripts": {
     "first": "npm install && sleep 50 && npm run electron-packager && open ./template-darwin-x64/template.app",
-    "start": "node -e 'require('./src/expressServer/server').expressServer(8080)'",
+    "start": "node test",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
