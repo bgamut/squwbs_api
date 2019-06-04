@@ -10,7 +10,9 @@ import {StaticMap} from 'react-map-gl'
 //const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN
 //const MAPBOX_ACCESS_TOKEN = "MAPBOX_ACCESS_TOKEN_STRING"
 let MAPBOX_ACCESS_TOKEN=""
-fetch('https://squwbs.herokuapp.com/mapboxtoken')
+fetch('https://squwbs.herokuapp.com/mapboxtoken', {
+    credentials: "include"
+  })
 .then(resulst=>{
   return resulst.json()
 })
