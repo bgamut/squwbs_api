@@ -18,17 +18,17 @@ module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
 }
-var whitelist = ['https://squwbs.herokuapp.com/','https://squwbs.herokuapp.com/map'];
-const corsOptions={
-  origin:function(origin,cb){
-    if(whitelist.indexOf(origin)!==-1){
-      cb(null,true)
-    } else {
-      cb(new Error('Not allowed by CORS'))
-    }
+// var whitelist = ['https://squwbs.herokuapp.com/','https://squwbs.herokuapp.com/map'];
+// const corsOptions={
+//   origin:function(origin,cb){
+//     if(whitelist.indexOf(origin)!==-1){
+//       cb(null,true)
+//     } else {
+//       cb(new Error('Not allowed by CORS'))
+//     }
 
-  }
-}
+//   }
+// }
 var user=[]
 passport.use(new TwitterStrategy({
   consumerKey: NODE_ENV.TWITTER_CONSUMER_KEY,
@@ -85,7 +85,21 @@ app.use(express.static(path.join(__dirname, '../../build')));
 app.use(express.static(path.join(__dirname, 'html/*/*')));
 app.use(passport.initialize());
 app.use(passport.session());
-
+var allowedOrigins = [
+                      'http://squwbs.herokuapp.com',
+                      'https://squwbs.herokuapp.com/'
+                    ];
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin 
+    // (like mobile apps or curl requests)
+      if(allowedOrigins.indexOf(origin)!==-1){
+        callback(null,true)
+      } else {
+        callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'),false)
+      }
+    }
+}));
 
 // Define routes.
 app.get('/home',
