@@ -89,38 +89,38 @@ var allowedOrigins = [
                       'http://squwbs.herokuapp.com',
                       'https://squwbs.herokuapp.com/'
                     ];
-var conf={
-  originUndefined: function (req, res, next) {
+// var conf={
+//   originUndefined: function (req, res, next) {
  
-    if (!req.headers.origin) {
+//     if (!req.headers.origin) {
 
-        res.json({
+//         res.json({
 
-            mess: 'Hi you are visiting the service locally. If this was a CORS the origin header should not be undefined'
+//             mess: 'Hi you are visiting the service locally. If this was a CORS the origin header should not be undefined'
 
-        });
+//         });
 
-    } else {
+//     } else {
 
-        next();
+//         next();
 
-    }
+//     }
 
-  },
-  cors:{
-    origin: function(origin, callback){
-      // allow requests with no origin 
-      // (like mobile apps or curl requests)
-        if(allowedOrigins.indexOf(origin)!==-1){
-          callback(null,true)
-        } else {
-          callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'),false)
-        }
-      },
-    optionsSuccessStatus: 200
-    }
-};
-app.use(cors(conf.cors))
+//   },
+//   cors:{
+//     origin: function(origin, callback){
+//       // allow requests with no origin 
+//       // (like mobile apps or curl requests)
+//         if(allowedOrigins.indexOf(origin)!==-1){
+//           callback(null,true)
+//         } else {
+//           callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'),false)
+//         }
+//       },
+//     optionsSuccessStatus: 200
+//     }
+// };
+// app.use(cors(conf.cors))
 // Define routes.
 app.get('/home',
   function(req, res) {
@@ -223,22 +223,22 @@ app.get('/logout',function(req,res){
 
 //app.options('*', cors())
 var corsOptions = {origin:'https://squwbs.herokuapp.com/'}
-app.get('/mapboxtoken',(req,res)=>{
+app.get('/mapboxtoken',cors(corsOptions),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',(req,res)=>{
+app.get('/api',cors(corsOptions),(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',(req,res)=>{
+app.post('/api',cors(corsOptions),(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',(req,res)=>{
+app.get('/ebay',cors(corsOptions),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
