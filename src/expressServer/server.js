@@ -221,23 +221,23 @@ app.get('/logout',function(req,res){
 })
 
 //app.options('*', cors())
-
-app.get('/mapboxtoken',cors(),(req,res)=>{
+var corsOptions = {origin:'https://squwbs.herokuapp.com/'}
+app.get('/mapboxtoken',cors(corsOptions),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',cors(),(req,res)=>{
+app.get('/api',cors(corsOptions),(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',cors(),(req,res)=>{
+app.post('/api',cors(corsOptions),(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',cors(),(req,res)=>{
+app.get('/ebay',cors(corsOptions),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
