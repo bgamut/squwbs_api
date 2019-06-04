@@ -178,22 +178,22 @@ app.get('/logout',function(req,res){
 
 
 
-app.get('/mapboxtoken',cors({credentials: true, origin: whitelist }),(req,res)=>{
+app.get('/mapboxtoken',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',cors({credentials: true, origin: whitelist }),(req,res)=>{
+app.get('/api',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',cors({credentials: true, origin: whitelist }),(req,res)=>{
+app.post('/api',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',cors({credentials: true, origin: whitelist }),(req,res)=>{
+app.get('/ebay',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
