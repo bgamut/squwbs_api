@@ -120,7 +120,7 @@ var conf={
     optionsSuccessStatus: 200
     }
 };
-//app.use(conf.Undefined,cors(conf.cors))
+app.use(conf.Undefined,cors(conf.cors))
 // Define routes.
 app.get('/home',
   function(req, res) {
@@ -222,22 +222,22 @@ app.get('/logout',function(req,res){
 
 //app.options('*', cors())
 
-app.get('/mapboxtoken',[conf.originUndefined, cors(conf.cors)],(req,res)=>{
+app.get('/mapboxtoken',(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',[conf.originUndefined, cors(conf.cors)],(req,res)=>{
+app.get('/api',(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',[conf.originUndefined, cors(conf.cors)],(req,res)=>{
+app.post('/api',(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',[conf.originUndefined, cors(conf.cors)],(req,res)=>{
+app.get('/ebay',(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
