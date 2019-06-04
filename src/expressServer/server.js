@@ -176,7 +176,7 @@ app.get('/logout',function(req,res){
 })
 app.get('/mapboxtoken',cors(),(req,res)=>{
 
-  res.send(NODE_ENV.MAPBOX_ACCESS_TOKEN)
+  res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
 app.get('/api',cors(),(req,res)=>{
