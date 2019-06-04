@@ -18,6 +18,7 @@ module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
 }
+var whitelist = ['https://squwbs.herokuapp.com/'];
 var user=[]
 passport.use(new TwitterStrategy({
   consumerKey: NODE_ENV.TWITTER_CONSUMER_KEY,
@@ -174,22 +175,25 @@ app.get('/logout',function(req,res){
   req.logout()
   res.redirect('/')
 })
-app.get('/mapboxtoken',cors(),(req,res)=>{
+
+
+
+app.get('/mapboxtoken',cors({credentials: true, origin: whitelist }),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',cors(),(req,res)=>{
+app.get('/api',cors({credentials: true, origin: whitelist }),(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',cors(),(req,res)=>{
+app.post('/api',cors({credentials: true, origin: whitelist }),(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',cors(),(req,res)=>{
+app.get('/ebay',cors({credentials: true, origin: whitelist }),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
