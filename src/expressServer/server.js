@@ -186,7 +186,7 @@ app.get('/logout',function(req,res){
   res.redirect('/')
 })
 
-
+app.options('*', cors())
 
 app.get('/mapboxtoken',cors(corsOptions),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
