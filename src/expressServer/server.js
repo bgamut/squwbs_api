@@ -184,8 +184,8 @@ app.get('/todo', function (req, res) {
 });
 
 app.get('/map', function (req, res) {
-
-  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  res.redirect('/')
+  //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   //res.render('Map', { mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN });
   // fs.readFile(path.join(__dirname, '../../build', 'index.html'),(err,data)=>{
   //   let htmlPlusData = data.toString().replace("MAPBOX_ACCESS_TOKEN_STRING",String(NODE_ENV.MAPBOX_ACCESS_TOKEN))
