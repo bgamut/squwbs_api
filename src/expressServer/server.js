@@ -222,22 +222,22 @@ app.get('/logout',function(req,res){
 
 //app.options('*', cors())
 
-app.get('/mapboxtoken',(req,res)=>{
+app.get('/mapboxtoken',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',(req,res)=>{
+app.get('/api',cors(),(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',(req,res)=>{
+app.post('/api',cors(),(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',(req,res)=>{
+app.get('/ebay',cors(),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
