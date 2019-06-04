@@ -15,7 +15,7 @@ fetch('https://squwbs.herokuapp.com/mapboxtoken')
   return resulst.json()
 })
 .then((json)=>{
-MAPBOX_ACCESS_TOKEN=json
+MAPBOX_ACCESS_TOKEN=json.MAPBOX_ACCESS_TOKEN
 console.log(json)
 })
 .catch((err)=>{
