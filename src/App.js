@@ -8,6 +8,7 @@
  import Home from './components/Home'
  import NoMatch from './components/NoMatch'
  import NavBar from './components/NavBar'
+ import Map from './components/Map'
  var i=1
  export default function App(props){
 
@@ -27,8 +28,8 @@
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/todo" render={()=><Todo itemsChanged={handleItems} items={state.items}/>}>
-            
           </Route>
+          <Route exact path="/map" component={Map}/>
           <Route component={NoMatch} />
         </Switch>
         <NavBar />

@@ -1,4 +1,4 @@
-var NODE_ENV = require('./config');
+var NODE_ENV = require('./keysconfig');
 var express = require('express');
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
@@ -13,6 +13,7 @@ const withQuery = require('with-query').default
 var trustProxy = false;
 require('module-alias/register')
 const path = require('path');
+const fs =require('fs')
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -137,7 +138,16 @@ app.get('/todo', function (req, res) {
   res.sendFile(path.join(__dirname, '../../build', 'index.html'));
 });
 
+app.get('/map', function (req, res) {
 
+  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  //res.render('Map', { mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN });
+  // fs.readFile(path.join(__dirname, '../../build', 'index.html'),(err,data)=>{
+  //   let htmlPlusData = data.toString().replace("MAPBOX_ACCESS_TOKEN_STRING",String(NODE_ENV.MAPBOX_ACCESS_TOKEN))
+  //   res.send( htmlPlusData)
+  // })
+  //res.render('index',{ mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN })
+});
 app.get('/profile',
 
   function(req, res){
@@ -163,6 +173,11 @@ app.get('/profile',
 app.get('/logout',function(req,res){
   req.logout()
   res.redirect('/')
+})
+app.get('/mapboxtoken',cors(),(req,res)=>{
+
+  res.send(NODE_ENV.MAPBOX_ACCESS_TOKEN)
+
 })
 app.get('/api',cors(),(req,res)=>{
 
