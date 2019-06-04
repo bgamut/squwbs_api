@@ -18,7 +18,7 @@ module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
 }
-var whitelist = ['https://squwbs.herokuapp.com/'];
+var whitelist = ['https://squwbs.herokuapp.com/*','https://squwbs.herokuapp.com/map'];
 var user=[]
 passport.use(new TwitterStrategy({
   consumerKey: NODE_ENV.TWITTER_CONSUMER_KEY,
