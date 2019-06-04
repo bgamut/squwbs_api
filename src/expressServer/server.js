@@ -18,7 +18,17 @@ module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
 }
-var whitelist = ['https://squwbs.herokuapp.com/*','https://squwbs.herokuapp.com/map'];
+var whitelist = ['https://squwbs.herokuapp.com/','https://squwbs.herokuapp.com/map'];
+const corsOptions={
+  origin:function(origin,cb){
+    if(whitelist.indexOf(origin)!==-1){
+      cb(null,true)
+    } else {
+      cb(new Error('Not allowed by CORS'))
+    }
+
+  }
+}
 var user=[]
 passport.use(new TwitterStrategy({
   consumerKey: NODE_ENV.TWITTER_CONSUMER_KEY,
@@ -178,22 +188,22 @@ app.get('/logout',function(req,res){
 
 
 
-app.get('/mapboxtoken',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
+app.get('/mapboxtoken',cors(corsOptions),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/api',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
+app.get('/api',cors(corsOptions),(req,res)=>{
 
   res.send(req.query)
 
 })
-app.post('/api',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
+app.post('/api',cors(corsOptions),(req,res)=>{
 
   res.send(req.body)
   
 })
-app.get('/ebay',cors({optionsSuccessStatus:200, origin: whitelist }),(req,res)=>{
+app.get('/ebay',cors(corsOptions),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
