@@ -1,5 +1,5 @@
-
- import React, {useReducer,useState} from 'react'
+ 
+ import React, {useReducer,useState,Component} from 'react'
  import Todo from './components/Todo'
  import './App.css'
  import Header from './components/Header';
@@ -9,32 +9,72 @@
  import NoMatch from './components/NoMatch'
  import NavBar from './components/NavBar'
  import Map from './components/Map'
- var i=1
- export default function App(props){
+ import RouterElement from './components/RouterElement'
+ //import {name} from '/package.json'
+ //var envs = require('./expressServer/keysconfig');
+//console.log(envs)
+//var dotenv= require('dotenv') ;
+//const result = dotenv.config();
+//console.log(dotenv.parse())
+import {produce} from "immer"
+import {WholeContext} from './WholeContext'
+//  var i=1
+// const object=React.createContext({})
+// class App extends Component{
 
+//   constructor(props){
+//     super(props)
+//     this.state={
+//       items:[],
+//     }
+//     this.handleItems=(items)=>{
+//       this.setState({items:[...items]})
+//     }
+//   }
+//   // const [state, setState]=useState(
+//   //   {items:[],
+//   //   }
+//   // )
+//   // function handleItems(items){
+//   //   setState({items:[...items]})
+//   //   console.log(state)
+//   // }
+//   render(){
+//     return (
+//     <div>
+//       <Header title = 'template'/>
+//       <RouterElement/>
+//     </div>
+//     );
+//   }
     
-  const [state, setState]=useState(
-    {items:[],
-    }
-  )
-  function handleItems(items){
-    setState({items:[...items]})
-    console.log(state)
+//   }
+//   export default App
+function useImmerReducer(reducer, initialState)
+{
+  return React.useReducer(produce(reducer),initialState);
+}  
+const wholeReducer=(obj, action)=>{
+  switch (action.type) {
+    case "ADD_TODO":
+      obj.unshift({ text: action.text, complete: false });
+      return;
+    case "TOGGLE_COMPLETE":
+      obj[action.i].complete = !obj[action.i].complete;
+      return;
+    case "RESET":
+      return [];
+    default:
+      return obj;
   }
-      return (
-      <div>
-      <Header title = 'Reader'/>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/todo" render={()=><Todo itemsChanged={handleItems} items={state.items}/>}>
-          </Route>
-          <Route exact path="/map" component={Map}/>
-          <Route component={NoMatch} />
-        </Switch>
-        <NavBar />
-      </BrowserRouter>
-    </div>
-      );
-    
-  }
+}
+export default () => {
+  const [obj, dispatch] = useImmerReducer(wholeReducer, []);
+
+  return (
+    <WholeContext.Provider value={{ obj, dispatch }}>
+      <Header title = 'template'/>
+      <RouterElement/>
+    </WholeContext.Provider>
+  );
+};

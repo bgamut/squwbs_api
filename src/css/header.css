@@ -4,16 +4,18 @@
 }
 #titleBar{
             
-    font-family: "Montserrat";
+    
     background-color:#333333;
     width:100vw;
     height:22px;
     -webkit-app-region:drag;
     text-align: center;
-}
-#title{
+    pointer-events:none;
     
-    font-family: "Montserrat";
+}
+#heading{
+    
+    
     
     font-size:13px;
     text-align: center;

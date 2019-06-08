@@ -1,5 +1,5 @@
 var dotenv= require('dotenv') ;
-var {_} =require('lodash');
+//var {_} =require('lodash');
 
 const result = dotenv.config();
 
@@ -9,7 +9,8 @@ if (!('error' in result)) {
   envs = result.parsed;
 } else {
   envs = {};
-  _.each(process.env, (value, key) => envs[key] = value);
+  //_.each(process.env, (value, key) => envs[key] = value);
+  envs={...process.env};
 }
 
 module.exports = envs;
