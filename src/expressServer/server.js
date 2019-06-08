@@ -184,6 +184,21 @@ app.get('/todo', function (req, res) {
   res.redirect('/')
 });
 
+app.get('/catalogue', function (req, res) {
+  //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  res.redirect('/')
+});
+
+app.get('/category', function (req, res) {
+  //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  res.redirect('/')
+});
+
+app.get('/product', function (req, res) {
+  //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  res.redirect('/')
+});
+
 app.get('/map', function (req, res) {
   res.redirect('/')
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));

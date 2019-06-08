@@ -10,6 +10,7 @@
  import NavBar from './components/NavBar'
  import Map from './components/Map'
  import RouterElement from './components/RouterElement'
+ //import Navigator from './components/Navigator'
  //import {name} from '/package.json'
  
  //var envs = require('./expressServer/keysconfig');
@@ -82,6 +83,8 @@ export default () => {
     <WholeContext.Provider value={{ obj, dispatch }}>
       <Header title = {name}/>
       <RouterElement/>
+      
     </WholeContext.Provider>
+
   );
 };
