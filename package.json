@@ -74,7 +74,7 @@
     "dev": "npm run react-start & node ./src/electron-wait-react.js",
     "react-build": "react-scripts build",
     "preelectron-pack": "npm run build",
-    "electron-packager": "npm run preelectron-pack & electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
+    "electron-package": "npm run preelectron-pack & electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
     "electron-repackage": "electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
     "postinstall": "echo finised"
   },

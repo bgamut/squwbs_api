@@ -16,9 +16,9 @@ function setupWindow(freeport){
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
 
-    // and load the index.html of the app.
-    //var pathname= path.join(__dirname, '/../build/index.html')
-    //mainWindow.loadURL(`file://${pathname}`);
+    //and load the index.html of the app.
+    var pathname= path.join(__dirname, '/../build/index.html')
+    mainWindow.loadURL(`file://${pathname}`);
     mainWindow.loadURL('http://localhost:'+String(freeport));
     mainWindow.focus()
     
