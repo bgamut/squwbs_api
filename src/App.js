@@ -11,6 +11,7 @@
  import Map from './components/Map'
  import RouterElement from './components/RouterElement'
  //import {name} from '/package.json'
+ 
  //var envs = require('./expressServer/keysconfig');
 //console.log(envs)
 //var dotenv= require('dotenv') ;
@@ -18,6 +19,7 @@
 //console.log(dotenv.parse())
 import {produce} from "immer"
 import {WholeContext} from './WholeContext'
+var {name} =require( '../package.json')
 //  var i=1
 // const object=React.createContext({})
 // class App extends Component{
@@ -73,7 +75,7 @@ export default () => {
 
   return (
     <WholeContext.Provider value={{ obj, dispatch }}>
-      <Header title = 'template'/>
+      <Header title = {name}/>
       <RouterElement/>
     </WholeContext.Provider>
   );
