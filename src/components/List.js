@@ -48,8 +48,11 @@ export default () => {
         {obj.map(({ text, complete }, i) => (
             
           <div
-            key={i}
-            onClick={() => dispatch({ type: "TOGGLE_COMPLETE", i })}
+            key={id}
+            onClick={() => {
+              dispatch({ type: "TOGGLE_COMPLETE", i })
+              id++
+          }}
             style={{
               textDecoration: complete ? "line-through" : ""
             }}

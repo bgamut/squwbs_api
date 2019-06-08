@@ -1,16 +1,41 @@
-import React from 'react';
+import React,{useContext, useEffect} from 'react';
 import {SafeAreaView, View, Text, StyleSheet,Animated} from 'react-native';
-import '../css/header.css'
+//import '../css/header.css'
+import {WholeContext} from "../WholeContext"
 
 var header_max_height = 50
 var header_min_height = 22
 var profile_max_height = 80
 var profile_min_height = 13
-const Header = ({ onBack, title }) => (
-    <Animated.View id='titleBar' style={styles.headerContainer}>        
-        <Text accessibilityRole="heading" id='title' style={styles.title}>{title}</Text>
-    </Animated.View>
-);
+
+export default class Header extends React.PureComponent {
+    static contextType = WholeContext;
+  
+    state = {
+      title: this.props.title
+    };
+    componentDidMount(){
+        const { obj, dispatch } = this.context;
+        const { title } = this.state;
+        dispatch({ type: "SET_TITLE", title })
+    }
+    render(){
+        const { title } = this.state;
+        //const { obj, dispatch } = this.context;
+        return(
+            <Animated.View id='titleBar' style={styles.headerContainer}>        
+                <Text 
+                    accessibilityRole="heading" 
+                    id='title' 
+                    style={styles.title} 
+                >
+                    {title}
+                </Text>
+            </Animated.View>
+        )
+    }
+    
+};
 
 const styles = StyleSheet.create({
     headerContainer: {
@@ -27,4 +52,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Header;
+

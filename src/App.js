@@ -66,6 +66,11 @@ const wholeReducer=(obj, action)=>{
       return;
     case "RESET":
       return [];
+    case "SET_TITLE":
+      //console.log(obj)
+      //console.log(action.title)
+      document.title=action.title
+      return;
     default:
       return obj;
   }
