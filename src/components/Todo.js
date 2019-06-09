@@ -1,7 +1,8 @@
-import React, {useReducer,useState,useEffect} from 'react'
+import React, {useReducer,useState,useEffect,memo} from 'react'
 import Form from './Form'
 import List from './List'
 import Header from './Header'
+//import ListView from 'react'
 // var i=1
 //  export default function Todo(props){
 
@@ -51,11 +52,13 @@ import Header from './Header'
 //    )
 //    */
 //  }
-export default () => {
+export default memo(() => {
   return (
     <div>
       <Form />
-      <List />
+   
+        <List />
+  
     </div>
   );
-};
+});

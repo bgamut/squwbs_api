@@ -1,4 +1,4 @@
-import React,{useContext, useEffect} from 'react';
+import React,{useContext, useEffect,memo} from 'react';
 import {SafeAreaView, View, Text, StyleSheet,Animated} from 'react-native';
 //import '../css/header.css'
 import {WholeContext} from "../WholeContext"
@@ -8,7 +8,7 @@ var header_min_height = 22
 var profile_max_height = 80
 var profile_min_height = 13
 
-export default class Header extends React.PureComponent {
+class Header extends React.PureComponent {
     static contextType = WholeContext;
   
     state = {
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
     },
 });
 
-
+export default memo(Header)

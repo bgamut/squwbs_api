@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 
 const Home = () => (
   <div>
@@ -6,4 +6,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default memo(Home)

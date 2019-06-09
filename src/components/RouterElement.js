@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,memo } from 'react';
 import { BrowserRouter,HashRouter, Route, Link,Router,Switch } from "react-router-dom";
 import NavBar from './NavBar'
 import Todo from './Todo'
@@ -28,7 +28,7 @@ class RouterElement extends Component {
     render() {
         return (
             <BrowserRouter>
-                <NavBar />
+                
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/todo" component={Todo}/>
@@ -38,9 +38,9 @@ class RouterElement extends Component {
                     <Route exact path="/Product" component={Product}/>
                     <Route component={NoMatch} />
                 </Switch>
-                
+                <NavBar />
             </BrowserRouter>
         );
     }
 }
-export default RouterElement;
+export default memo(RouterElement);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{memo} from 'react'
 import DeckGL from '@deck.gl/react'
 import {LineLayer} from '@deck.gl/layers'
 import {StaticMap} from 'react-map-gl'
@@ -31,7 +31,7 @@ const initialViewState={
     bearing:0
 }
 const data = [{sourcePosition:[-122.41669,37.7853],targetPosition:[-122.41669,37.781]}]
-export default function Map (props){
+function Map (props){
     const layers=[
         new LineLayer({id:'line-layer',data})
     ]
@@ -54,3 +54,4 @@ export default function Map (props){
     // )
     
 }
+export default memo(Map)

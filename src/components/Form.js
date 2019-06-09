@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,memo} from 'react'
 import {WholeContext} from "../WholeContext"
 // export default function Form(props){
 //     const [value, setValue]=useState('');
@@ -22,7 +22,7 @@ import {WholeContext} from "../WholeContext"
 //         </form>
 //     )
 // }
-export default class Form extends React.PureComponent {
+class Form extends React.PureComponent {
     static contextType = WholeContext;
   
     state = {
@@ -45,8 +45,9 @@ export default class Form extends React.PureComponent {
             value={text}
             onChange={e => this.setState({ text: e.target.value })}
           />
-          <button onClick={()=>dispatch({type:"ADD_TODO"})} >Add</button>
+          <input type="submit" value="Add" />
         </form>
       );
     }
   }
+  export default React.memo(Form)

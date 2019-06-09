@@ -1,7 +1,7 @@
 //import React,{useState, useEffect} from 'react'
-import React, { useContext } from "react";
+import React, { useContext,memo } from "react";
 import {WholeContext} from "../WholeContext"
-import {ScrollView} from 'react-native'
+import {ScrollView,ListView,FlatList} from 'react-native'
 // function ListItem(props){
 //     const[checked, setChecked]=useState(false);
 //     useEffect(()=>{
@@ -39,7 +39,7 @@ import {ScrollView} from 'react-native'
 //     )
 // }
 var id =0
-export default () => {
+export default memo(() => {
     const { obj, dispatch } = useContext(WholeContext);
     
     return (
@@ -63,4 +63,4 @@ export default () => {
         
         </ScrollView>
     );
-  };
+  });

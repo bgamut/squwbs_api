@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{memo }from 'react'
 
 const NoMatch = () => (
   <div>
@@ -6,4 +6,4 @@ const NoMatch = () => (
   </div>
 )
 
-export default NoMatch
+export default memo(NoMatch)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{memo} from 'react';
 //import { createStackNavigator, createAppContainer } from '@react-navigation/native';
 // import { CatalogueScreen, 
 //          CategoryScreen, 
@@ -41,5 +41,5 @@ const Navigator = createBrowserApp(Nav)
  
 //export default createBrowserApp(Navigator)
 
-export default Navigator
+export default memo(Navigator)
 
