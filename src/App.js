@@ -10,6 +10,7 @@
  import NavBar from './components/NavBar'
  import Map from './components/Map'
  import RouterElement from './components/RouterElement'
+ import Scroller from './components/Scroller'
  //import Navigator from './components/Navigator'
  //import {name} from '/package.json'
  
@@ -80,10 +81,11 @@ export default () => {
   const [obj, dispatch] = useImmerReducer(wholeReducer, []);
 
   return (
+    
     <WholeContext.Provider value={{ obj, dispatch }}>
       <Header title = {name}/>
       <RouterElement/>
-      
+      <Scroller/>
     </WholeContext.Provider>
 
   );
