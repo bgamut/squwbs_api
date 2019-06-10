@@ -85,7 +85,7 @@ class HorizontalScroller extends Component{
                         text-align: center;
                         display:flex;
                         background-color:#333333;
-                        height:33vw;
+                        height:25vw;
                         color:white;
                         margin:2px;
                     }
