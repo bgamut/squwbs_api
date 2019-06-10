@@ -90,6 +90,7 @@ class VerticalScroller extends Component{
         this.makeRemoteRequest();
         //console.log('componenet mounted' +Math.floor(Dimensions.get('window').height/3))
         window.addEventListener("resize", this.updateDimensions);
+        window.addEventListener("orientationchange",this.updateDimensions);
         //this.setState({ height: Math.floor(Dimensions.get('window').height/3)});
         
     }
@@ -100,6 +101,7 @@ class VerticalScroller extends Component{
     }
     componentWillUnmount=()=>{
         window.removeEventListener("resize", this.updateDimensions);
+        window.removeEventListener("orientationchange",this.updateDimensions);
     }
     handleRefresh=()=>{
         this.setState(

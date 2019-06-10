@@ -1,5 +1,5 @@
 import React,{useContext, useEffect,memo} from 'react';
-import {SafeAreaView, View, Text, StyleSheet,Animated} from 'react-native';
+import {SafeAreaView, View, Text, StyleSheet,Animated,Dimensions} from 'react-native';
 //import '../css/header.css'
 import {WholeContext} from "../WholeContext"
 
@@ -12,12 +12,33 @@ class Header extends React.PureComponent {
     static contextType = WholeContext;
   
     state = {
-      title: this.props.title
+      title: this.props.title,
+      width:0
     };
+    updateDimensions =(e) =>{
+        this.setState(
+            {
+                width: Math.floor(
+                    Dimensions.get('window').width
+                )
+            }
+        )
+    }
     componentDidMount(){
         const { obj, dispatch } = this.context;
         const { title } = this.state;
         dispatch({ type: "SET_TITLE", title })
+        window.addEventListener("resize", this.updateDimensions);
+        window.addEventListener("orientationchange",this.updateDimensions);
+    }
+    componentWillMount=()=>{
+        //this.setState({ screenHeight: Dimensions.get('window').height});
+        //console.log('componenet updated' +this.state.screenHeight)
+        this.updateDimensions();
+    }
+    componentWillUnmount=()=>{
+        window.removeEventListener("resize", this.updateDimensions);
+        window.removeEventListener("orientationchange",this.updateDimensions);
     }
     render(){
         const { title } = this.state;
