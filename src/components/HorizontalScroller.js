@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     contentBox:{
         flex:1,
         margin:20,
-        backgroundColor:'orange',
+        color:'white',
+        backgroundColor:"rgb(30, 30, 30)",
         margin:10,
         textAlign:'center',
         fontSize:20,
