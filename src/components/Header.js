@@ -66,7 +66,7 @@ class Header extends React.PureComponent {
 
 const styles = StyleSheet.create({
     headerContainer: {
-    backgroundColor:'#cccccc',
+    backgroundColor:'#333333',
     width:'100vw',
     height:header_max_height,
     display:'flex',
