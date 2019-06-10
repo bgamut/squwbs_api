@@ -185,7 +185,7 @@ class VerticalScroller extends Component{
         const { data } = this.state;
         const { dispatch } = this.context;
         //const {containerStyle ,itemStyle } = this.styles
-        screenHeight=Math.floor(Dimensions.get('window').height/2)
+        //screenHeight=Math.floor(Dimensions.get('window').height/2)
         //console.log(styles.container)
         return (
             
