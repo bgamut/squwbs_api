@@ -23,15 +23,42 @@ class Header extends React.PureComponent {
         const { title } = this.state;
         //const { obj, dispatch } = this.context;
         return(
-            <Animated.View id='titleBar' style={styles.headerContainer}>        
-                <Text 
+        <View style={styles.headerContainer}>
+            <div id='titleBar'>        
+                <div 
                     accessibilityRole="heading" 
                     id='title' 
-                    style={styles.title} 
+                    
                 >
                     {title}
-                </Text>
-            </Animated.View>
+                </div>
+            </div>
+            <style jsx>{`
+                #titleBar{
+                
+                    background-color:#333333;
+                    width:100vw;
+                    height:22px;
+                    -webkit-app-region:drag;
+                }
+                #title{
+
+                    font-size:19px;
+                    text-align: center;
+                    color:rgb(256, 256, 256);
+                    width:100vw;
+                    height:50px;
+                    
+                    -webkit-app-region:drag;
+                    -moz-user-select: -moz-none;
+                    -khtml-user-select: none;
+                    -webkit-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+            `}
+            </style>
+        </View>
         )
     }
     
@@ -39,10 +66,12 @@ class Header extends React.PureComponent {
 
 const styles = StyleSheet.create({
     headerContainer: {
-    backgroundColor:'#333333',
+    backgroundColor:'#cccccc',
     width:'100vw',
     height:header_max_height,
-    flex:1
+    display:'flex',
+    textAlign:'center',
+    
     },
     title: {
     fontSize: 19,
