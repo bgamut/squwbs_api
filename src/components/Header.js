@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
     justifyContent:'center'
 
     },
-    title: {
-    fontSize: 19,
-    fontWeight: '600',
-    textAlign: 'center',
-    color: 'white'
-    },
+    // title: {
+    // fontSize: 19,
+    // fontWeight: '600',
+    // textAlign: 'center',
+    // color: 'white'
+    // },
 });
 
 export default memo(Header)
