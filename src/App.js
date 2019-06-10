@@ -85,7 +85,7 @@ export default () => {
     
     <WholeContext.Provider value={{ obj, dispatch }}>
       <Header title = {name}/>
-      <HorizontalScroller/>
+      
       <VerticalScroller/>
       <RouterElement/>
     </WholeContext.Provider>

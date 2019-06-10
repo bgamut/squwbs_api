@@ -23,17 +23,15 @@ class Header extends React.PureComponent {
         const { title } = this.state;
         //const { obj, dispatch } = this.context;
         return(
-        <View style={styles.headerContainer}>
+        <View accessibilityRole="heading" style={styles.headerContainer}>
             <div id='titleBar'>        
                 <div 
-                    accessibilityRole="heading" 
                     id='title' 
-                    
                 >
                     {title}
                 </div>
             </div>
-            <style jsx>{`
+            <style>{`
                 #titleBar{
                 
                     background-color:#333333;
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
     width:'100vw',
     height:header_max_height,
     display:'flex',
-    textAlign:'center',
+//    textAlign:'center',
     alignItems:'center',
     justifyContent:'center'
 

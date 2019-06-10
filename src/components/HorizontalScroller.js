@@ -49,24 +49,60 @@ class HorizontalScroller extends Component{
     render(){
         
         return(
-            
-            <ScrollView horizontal={true} style ={{...styles.contentContainer,width:this.state.width}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-                <View style={{...styles.container,width:this.state.width}}> 
-                    <Text style={styles.contentBox}> sample text 1 </Text>
-                </View>
-                <View style={{...styles.container,width:this.state.width}}> 
-                    <Text style={styles.contentBox}> sample text 2 </Text>
-                </View>
-                <View style={{...styles.container,width:this.state.width}}> 
-                    <Text style={styles.contentBox}> sample text 3 </Text>
-                </View>
-            </ScrollView>
+            <View id = 'outerContainer1' >
+
+                <ScrollView id='outerContainer2'horizontal={true}  showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+                    <div className='container'> 
+                        <p className='contentBox'> sample text 1 </p>
+                    </div>
+                    <div className='container'> 
+                        <p className='contentBox'> sample text 2 </p>
+                    </div>
+                    <div className='container'> 
+                        <p className='contentBox'> sample text 3 </p>
+                    </div>
+                </ScrollView>
+                <style>{`
+                    .container{
+                    
+                        background-color:#ffffff;
+                        width:100vw;
+                        -webkit-app-region:drag;
+                    }
+                    #outerContainer1{
+
+                        background-color:white;
+                        width:100vw;
+                        
+                    }
+                    #outerContainer2{
+
+                        background-color:white;
+                        width:100vw;
+                        
+                    }
+                    .contentBox{
+                        text-align: center;
+                        display:flex;
+                        background-color:#333333;
+                        height:33vw;
+                        color:white;
+                        margin:2px;
+                    }
+                `}
+                </style>
+            </View>
         )
     }
 }
 const styles = StyleSheet.create({
     contentContainer:{    
-        backgroundColor:'#F5FCFF'
+        backgroundColor:'#F5FCFF',
+        width:'100vw',
+        display:'flex',
+        textAlign:'center',
+        alignItems:'center',
+        justifyContent:'center'
     },
     container:{
         flex:1,

@@ -1,7 +1,7 @@
 import React , {Component} from 'react'
 import {View, Text, FlatList,ActivityIndicator,StyleSheet,Dimensions} from 'react-native'
 import {WholeContext} from "../WholeContext"
-
+import HorizontalScroller from './HorizontalScroller'
 //import {List,ListItem,SearchBar} from "react-native-elements"
 var screenHeight=0
 const styles = StyleSheet.create({
@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 22,
     borderTopWidth: 0, 
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    width:'100vw',
     },
     item: {
       padding: 10,
@@ -80,7 +81,7 @@ class VerticalScroller extends Component{
         this.setState(
             {
                 height: Math.floor(
-                    Dimensions.get('window').height/3
+                    Dimensions.get('window').height-100
                 )
             }
         )
@@ -192,6 +193,7 @@ class VerticalScroller extends Component{
                     height:this.state.height
     
                 }}>
+            <HorizontalScroller/>
             <FlatList
                 data={data}
                 showsHorizontalScrollIndicator={false}
@@ -199,16 +201,11 @@ class VerticalScroller extends Component{
                     <div>
                         <Text style={styles.item}>{item.name.first} {item.name.last}</Text>
                         <Text style={styles.item}>{item.email}</Text>
-                        <div>
-                            {this.renderHeader}
-                        </div>
-                        <div>
-                            {this.renderFooter}
-                        </div>
                     </div>
                 }
                 
             />
+
             </View>
         )
     }  
