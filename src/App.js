@@ -10,7 +10,8 @@
  import NavBar from './components/NavBar'
  import Map from './components/Map'
  import RouterElement from './components/RouterElement'
- import Scroller from './components/Scroller'
+ import HorizontalScroller from './components/HorizontalScroller'
+ import VerticalScroller from './components/VerticalScroller'
  //import Navigator from './components/Navigator'
  //import {name} from '/package.json'
  
@@ -84,8 +85,9 @@ export default () => {
     
     <WholeContext.Provider value={{ obj, dispatch }}>
       <Header title = {name}/>
+      <HorizontalScroller/>
+      <VerticalScroller/>
       <RouterElement/>
-      <Scroller/>
     </WholeContext.Provider>
 
   );
