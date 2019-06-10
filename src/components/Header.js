@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
     height:header_max_height,
     display:'flex',
     textAlign:'center',
-    
+    alignItems:'center',
+    justifyContent:'center'
+
     },
     title: {
     fontSize: 19,
