@@ -2,7 +2,7 @@ import React, {Component,useState,memo} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {addPost} from '../actions/postActions'
-import {TextInput,View,Button} from 'react-native'
+import {TextInput,View,TouchableOpacity,Text} from 'react-native'
 // import {WholeContext} from "../WholeContext"
 // export default function Form(props){
 //     const [value, setValue]=useState('');
@@ -85,11 +85,21 @@ class Form extends Component {
             value={this.state.text}
             onChange={this.onChange}
           />
-          <Button
+          <TouchableOpacity
             onPress={this.onSubmit}
-            title='ADD'
-            color='#333333'
-          />
+            style={{
+              height:22,
+              backgroundColor:'#333333',
+              alignItems:'center',
+              justifyContent:'center'
+            }}
+          >
+            <Text style={{
+              color:'white',
+              fontSize:12,
+              paddingBottom:2
+            ,}}>add</Text>
+          </TouchableOpacity>
         </View>
       );
     }

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/postActions';
-import {View,Text} from 'react-native';
+import {View,Text,StyleSheet} from 'react-native';
 
-var id =0
+
   
   const mapStateToProps = state => ({
     posts: state.posts.items,

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { setTitle, setTitleOnload, getYscrolled,updateDimensions } from '../actions/postActions';
 import {bindActionCreators} from 'redux'
 var {name} =require( '../../package.json')
-var header_max_height = 50
+var header_max_height = 22
 var header_min_height = 22
 var profile_max_height = 80
 var profile_min_height = 13
@@ -66,9 +66,7 @@ class Header extends Component {
         return(
         <View accessibilityRole="heading" style={styles.headerContainer}>
             <div id='titleBar'>        
-                <div 
-                    id='title' 
-                >
+                <div id='title' >
                     {this.props.title}
                 </div>
             </div>
@@ -82,12 +80,12 @@ class Header extends Component {
                 }
                 #title{
 
-                    font-size:19px;
+                    font-size:12px;
                     text-align: center;
                     color:rgb(256, 256, 256);
                     width:100vw;
                     height:50px;
-                    
+                    padding-top:2px;
                     -webkit-app-region:drag;
                     -moz-user-select: -moz-none;
                     -khtml-user-select: none;
