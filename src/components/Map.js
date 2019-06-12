@@ -40,14 +40,14 @@ function Map (props){
     ]
 
     return(
-        <View>
+        
             <DeckGL 
                 viewState={initialViewState} 
                 controller={true}
                 layers={layers} >
             <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}/>
             </DeckGL>
-        </View>
+        
     )
     // return(
     //     <DeckGL 
