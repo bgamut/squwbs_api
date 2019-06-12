@@ -81,7 +81,7 @@ class Header extends Component {
                 #title{
                     
                     text-shadow: 0px 0px 5px rgba(1, 1, 1, 1);
-                    font-size:12px;
+                    font-size:14px;
                     text-align: center;
                     color:rgb(256, 256, 256);
                     width:100vw;
