@@ -2,6 +2,9 @@ import React,{memo} from 'react'
 import DeckGL from '@deck.gl/react'
 import {LineLayer} from '@deck.gl/layers'
 import {StaticMap} from 'react-map-gl'
+// import {Header} from './Header'
+// import {NavBar} from './NavBar'
+import{View} from 'react-native'
 //var vari = require('../expressServer/keysconfig');
 //console.log(process.env.NODE_ENV)
 //console.log("MAPBOX : "+process.env.MAPBOX_ACCESS_TOKEN)
@@ -37,12 +40,14 @@ function Map (props){
     ]
 
     return(
-        <DeckGL 
-            viewState={initialViewState} 
-            controller={true}
-            layers={layers} >
-        <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}/>
-        </DeckGL>
+        <View>
+            <DeckGL 
+                viewState={initialViewState} 
+                controller={true}
+                layers={layers} >
+            <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}/>
+            </DeckGL>
+        </View>
     )
     // return(
     //     <DeckGL 

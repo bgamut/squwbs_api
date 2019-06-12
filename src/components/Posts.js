@@ -29,10 +29,10 @@ class Posts extends Component {
 
       }}>
         <Text style={{
-          color:'white',
-          textShadowColor: 'rgba(1, 1, 1, 1)',
-          textShadowOffset: {width: 0, height: 0},
-          textShadowRadius: 5
+          color:'black',
+          // textShadowColor: 'rgba(1, 1, 1, 1)',
+          // textShadowOffset: {width: 0, height: 0},
+          // textShadowRadius: 20
           }}>{post}</Text>
       </View>
     );
@@ -41,10 +41,10 @@ class Posts extends Component {
       <View style={{
         margin:1,
         borderColor:'#cfcfcf',
-        borderWidth:1,
-        shadowColor: 'rgba(1, 1, 1, 1)',
-        shadowOffset: {width: 0, height: 0},
-        shadowRadius: 1,
+        borderWidth:5,
+        // shadowColor: 'rgba(1, 1, 1, 1)',
+        // shadowOffset: {width: 0, height: 0},
+        // shadowRadius: 20,
         }}>
         {postItems}
       </View>

@@ -4,26 +4,27 @@ const NoMatch = () => (
   <View style={{
     margin:1,
     borderColor:'#cfcfcf',
-    borderWidth:1,
-    shadowColor: 'rgba(1, 1, 1, 1)',
-    shadowOffset: {width: 0, height: 0},
-    shadowRadius: 1,
+    borderWidth:5,
+    // shadowColor: 'rgba(1, 1, 1, 1)',
+    // shadowOffset: {width: 0, height: 0},
+    // shadowRadius: 20,
     backgroundColor:'#ffffff',
     alignItems:'center',
     justifyContent:'space-evenly',
+    height:22
   }}>
   <Text style={{          
   
-      height:22,
+      height:50,
  
       flexDirection:'row',
       flex:1,
       fontSize:12,
  
-      color:'white',
-      textShadowColor: 'black',
-      textShadowOffset: {width: 0, height: 0},
-      textShadowRadius: 5
+      color:'black',
+      // textShadowColor: 'black',
+      // textShadowOffset: {width: 0, height: 0},
+      // textShadowRadius: 20
     }}>
     No Match
   </Text>

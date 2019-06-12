@@ -74,17 +74,18 @@ class Header extends Component {
                 #titleBar{
                 
 
-                    width:100vw;
+                    
                     height:22px;
                     -webkit-app-region:drag;
+                    background-color:rgb(256,256,256)
                 }
                 #title{
                     
-                    text-shadow: 0px 0px 5px rgba(1, 1, 1, 1);
+                    
                     font-size:14px;
                     text-align: center;
-                    color:rgb(256, 256, 256);
-                    width:100vw;
+                    color:rgb(0, 0, 0);
+                    
                     height:50px;
                     padding-top:2px;
                     -webkit-app-region:drag;
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
 //     justifyContent:'center',
 //     borderWidth:2,
 //     //padding:1,
-//     borderColor:'white',
+//     borderColor:'black',
 //     margin:1,
 //     // borderColor:'#cfcfcf',
 //     // borderWidth:1,
@@ -124,10 +125,10 @@ const styles = StyleSheet.create({
     flex:1,
     margin:1,
     borderColor:'#cfcfcf',
-    borderWidth:1,
-    shadowColor: 'rgba(1, 1, 1, 1)',
-    shadowOffset: {width: 0, height: 0},
-    shadowRadius: 1,
+    borderWidth:5,
+    //shadowColor: 'rgba(1, 1, 1, 1)',
+    //shadowOffset: {width: 0, height: 0},
+    //shadowRadius: 20,
     backgroundColor:'#ffffff',
     alignItems:'center',
     justifyContent:'space-evenly',
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     // fontSize: 19,
     // fontWeight: '600',
     // textAlign: 'center',
-    // color: 'white'
+    // color: 'black'
     // },
 });
 Header.propTypes={

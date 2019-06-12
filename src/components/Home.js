@@ -4,10 +4,10 @@ const Home = () => (
   <View style={{
     margin:1,
     borderColor:'#cfcfcf',
-    borderWidth:1,
-    shadowColor: 'rgba(1, 1, 1, 1)',
-    shadowOffset: {width: 0, height: 0},
-    shadowRadius: 1,
+    borderWidth:5,
+    // shadowColor: 'rgba(1, 1, 1, 1)',
+    // shadowOffset: {width: 0, height: 0},
+    // shadowRadius: 20,
     backgroundColor:'#ffffff',
     alignItems:'center',
     justifyContent:'space-evenly',
@@ -20,10 +20,10 @@ const Home = () => (
       flex:1,
       fontSize:12,
  
-      color:'white',
-      textShadowColor: 'black',
-      textShadowOffset: {width: 0, height: 0},
-      textShadowRadius: 5
+      color:'black',
+      // textShadowColor: 'black',
+      // textShadowOffset: {width: 0, height: 0},
+      // textShadowRadius: 20
     }}>
     Home
   </Text>

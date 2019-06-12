@@ -88,7 +88,7 @@ class HorizontalScroller extends Component{
                         display:flex;
                         background-color:#333333;
                         height:25vw;
-                        color:white;
+                        color:black;
                         margin:2px;
                     }
                 `}
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     contentBox:{
         flex:1,
         margin:20,
-        color:'white',
+        color:'black',
         backgroundColor:"rgb(30, 30, 30)",
         margin:10,
         textAlign:'center',

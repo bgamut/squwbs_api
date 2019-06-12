@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Header from './Header'
 import PropTypes from 'prop-types';
+import {View,Text,StyleSheet} from 'react'
 var {name} =require( '../../../package.json')
-//import {View,Text,StyleSheet} from 'react-native'
+
 
 class home extends Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class home extends Component {
                                     alignItems:'center',
                                     justifyContent:'space-evenly',
                                 }}>        
-                        <div accessibilityRole="heading" id='title'>{name}</div>
+                        <div id='title'>{name}</div>
                     </div>
                     <div style={{margin:1,
                                 borderColor:'#cfcfcf',

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import {View} from 'react-native'
+
+var {name} =require( '../../../package.json')
 class login extends Component {
     constructor(props) {
         super(props);
@@ -38,9 +40,20 @@ class login extends Component {
     render() {
         return (
             <div className='container'>
+                    <div id='titleBar' style=
+                        "margin:1;
+                        borderColor:'#cfcfcf';
+                        borderWidth:1;
+                        shadowColor: 'rgba(1, 1, 1, 1)';
+                        shadowOffset: {width: 0, height: 0};
+                        shadowRadius: 1;
+                        backgroundColor:'#ffffff';"
+                    >        
+                        <div id='title'>{name}</div>
+                    </div>
                 <style>{`
                                     .container{
-                                    
+                                        color:white
                                         margin:2px;
                                         width:100vw;
                                         height:22px;

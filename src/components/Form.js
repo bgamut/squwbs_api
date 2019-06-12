@@ -87,14 +87,14 @@ class Form extends Component {
             style={{
               margin:1,
               borderColor:'#cfcfcf',
-              borderWidth:1,
-              shadowColor: 'rgba(1, 1, 1, 1)',
-              shadowOffset: {width: 0, height: 0},
-              shadowRadius: 1,
-              color:'white',
-              textShadowColor: 'rgba(1, 1, 1, 1)',
-              textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 5
+              borderWidth:5,
+              // shadowColor: 'rgba(1, 1, 1, 1)',
+              // shadowOffset: {width: 0, height: 0},
+              // shadowRadius: 1,
+              color:'black',
+              // textShadowColor: 'rgba(1, 1, 1, 1)',
+              // textShadowOffset: {width: 0, height: 0},
+              // textShadowRadius: 5
             }}
           />
           <TouchableOpacity
@@ -106,20 +106,20 @@ class Form extends Component {
               justifyContent:'center',
               margin:1,
               borderColor:'#cfcfcf',
-              borderWidth:1,
-              shadowColor: 'rgba(1, 1, 1, 1)',
-              shadowOffset: {width: 0, height: 0},
-              shadowRadius: 1
+              borderWidth:5,
+              //shadowColor: 'rgba(1, 1, 1, 1)',
+              //shadowOffset: {width: 0, height: 0},
+              //shadowRadius: 20
             }}
           >
             <Text style={{
-              color:'white',
+              color:'black',
               fontSize:12,
               paddingBottom:2,
-              textShadowColor: 'rgba(1, 1, 1, 1)',
-              textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 5
-            ,}}>add</Text>
+              //textShadowColor: 'rgba(1, 1, 1, 1)',
+              //textShadowOffset: {width: 0, height: 0},
+              //textShadowRadius: 20,
+            }}>add</Text>
           </TouchableOpacity>
         </View>
       );

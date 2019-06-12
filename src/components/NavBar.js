@@ -25,23 +25,24 @@ const NavBar = () => (
           fontSize:12,
           margin:1,
           borderColor:'#cfcfcf',
-          borderWidth:1,
-          shadowColor: 'rgba(1, 1, 1, 1)',
-          shadowOffset: {width: 0, height: 0},
-          shadowRadius: 1
+          borderWidth:0,
+          // shadowColor: 'rgba(1, 1, 1, 1)',
+          // shadowOffset: {width: 0, height: 0},
+          // shadowRadius: 20,
+          backgroundColor:'#ffffff'
         }}
       >
         <View style={styles.box} >
-          <a id="linkLogin" href="/login" style={{color:'white', textDecorationLine:'none',borderColor:'white',borderWidth:2 }}>Login</a><br/>
+          <a id="linkLogin" href="/login" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2 }}>Login</a><br/>
         </View>
         <View style={styles.box}>
-          <Link id="linkHome" to="/" style={{color:'white', textDecorationLine:'none',borderColor:'white',borderWidth:2}}>Home</Link><br/>
+          <Link id="linkHome" to="/" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Home</Link><br/>
         </View>
         <View style={styles.box}>
-          <Link id="linkTodo" to="/todo" style={{color:'white', textDecorationLine:'none',borderColor:'white',borderWidth:2}}>Todo</Link><br/>
+          <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
         </View>
         <View style={styles.box}>
-          <Link id="linkMap" to="/map" style={{color:'white', textDecorationLine:'none',borderColor:'white',borderWidth:2}}>Map</Link><br/>
+          <Link id="linkMap" to="/map" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Map</Link><br/>
         </View>
       
           
@@ -52,7 +53,7 @@ const NavBar = () => (
 const styles = StyleSheet.create({
   
     box:{
-      margin:1,
+      margin:0,
       //padding:1,
       height:22,
       backgroundColor:'#ffffff',
@@ -63,17 +64,18 @@ const styles = StyleSheet.create({
       fontSize:12,
       borderColor:'black',
       borderRadius:2,
-      color:'white',
+      color:'black',
       fontSize:12,
-      textShadowColor: 'rgba(1, 1, 1, 1)',
-      textShadowOffset: {width: 0, height: 0},
-      textShadowRadius: 5
-      
+      // textShadowColor: 'rgba(1, 1, 1, 1)',
+      // textShadowOffset: {width: 0, height: 0},
+      // textShadowRadius: 20,
+      borderColor:'#cfcfcf',
+      borderWidth:5,
     },
     link:{
-      color:'white', 
+      color:'black', 
       textDecorationLine:'none',
-      borderColor:'white',
+      borderColor:'black',
       borderWidth:2 
     }
         
