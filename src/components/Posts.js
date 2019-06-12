@@ -25,13 +25,27 @@ class Posts extends Component {
   render() {
     
     const postItems = this.props.posts.map((post, i)=>
-      <View key={i} style={{}}>
-        <Text>{post}</Text>
+      <View key={i} style={{
+
+      }}>
+        <Text style={{
+          color:'white',
+          textShadowColor: 'rgba(1, 1, 1, 1)',
+          textShadowOffset: {width: 0, height: 0},
+          textShadowRadius: 5
+          }}>{post}</Text>
       </View>
     );
   
     return (
-      <View>
+      <View style={{
+        margin:1,
+        borderColor:'#cfcfcf',
+        borderWidth:1,
+        shadowColor: 'rgba(1, 1, 1, 1)',
+        shadowOffset: {width: 0, height: 0},
+        shadowRadius: 1,
+        }}>
         {postItems}
       </View>
     );

@@ -84,20 +84,41 @@ class Form extends Component {
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
             onChange={this.onChange}
+            style={{
+              margin:1,
+              borderColor:'#cfcfcf',
+              borderWidth:1,
+              shadowColor: 'rgba(1, 1, 1, 1)',
+              shadowOffset: {width: 0, height: 0},
+              shadowRadius: 1,
+              color:'white',
+              textShadowColor: 'rgba(1, 1, 1, 1)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 5
+            }}
           />
           <TouchableOpacity
             onPress={this.onSubmit}
             style={{
               height:22,
-              backgroundColor:'#333333',
+              backgroundColor:'#ffffff',
               alignItems:'center',
-              justifyContent:'center'
+              justifyContent:'center',
+              margin:1,
+              borderColor:'#cfcfcf',
+              borderWidth:1,
+              shadowColor: 'rgba(1, 1, 1, 1)',
+              shadowOffset: {width: 0, height: 0},
+              shadowRadius: 1
             }}
           >
             <Text style={{
               color:'white',
               fontSize:12,
-              paddingBottom:2
+              paddingBottom:2,
+              textShadowColor: 'rgba(1, 1, 1, 1)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 5
             ,}}>add</Text>
           </TouchableOpacity>
         </View>

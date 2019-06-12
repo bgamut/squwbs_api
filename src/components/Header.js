@@ -73,13 +73,14 @@ class Header extends Component {
             <style>{`
                 #titleBar{
                 
-                    background-color:#333333;
+
                     width:100vw;
                     height:22px;
                     -webkit-app-region:drag;
                 }
                 #title{
-
+                    
+                    text-shadow: 0px 0px 5px rgba(1, 1, 1, 1);
                     font-size:12px;
                     text-align: center;
                     color:rgb(256, 256, 256);
@@ -92,6 +93,7 @@ class Header extends Component {
                     -webkit-user-select: none;
                     -ms-user-select: none;
                     user-select: none;
+
                 }
             `}
             </style>
@@ -103,14 +105,32 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     headerContainer: {
-    backgroundColor:'#333333',
-    width:'100vw',
-    height:header_max_height,
-    display:'flex',
-//    textAlign:'center',
+//     backgroundColor:'#ffffff',
+//     width:'100vw',
+//     height:header_max_height,
+//     display:'flex',
+// //    textAlign:'center',
+//     alignItems:'center',
+//     justifyContent:'center',
+//     borderWidth:2,
+//     //padding:1,
+//     borderColor:'white',
+//     margin:1,
+//     // borderColor:'#cfcfcf',
+//     // borderWidth:1,
+//     shadowColor: 'rgba(1, 1, 1, 1)',
+//     shadowOffset: {width: -1, height: 0},
+//     shadowRadius: 2
+    flex:1,
+    margin:1,
+    borderColor:'#cfcfcf',
+    borderWidth:1,
+    shadowColor: 'rgba(1, 1, 1, 1)',
+    shadowOffset: {width: 0, height: 0},
+    shadowRadius: 1,
+    backgroundColor:'#ffffff',
     alignItems:'center',
-    justifyContent:'center'
-
+    justifyContent:'space-evenly',
     },
     // title: {
     // fontSize: 19,
