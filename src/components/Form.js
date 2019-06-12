@@ -1,5 +1,9 @@
-import React, {useState,memo} from 'react'
-import {WholeContext} from "../WholeContext"
+import React, {Component,useState,memo} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {addPost} from '../actions/postActions'
+import {TextInput,View,Button} from 'react-native'
+// import {WholeContext} from "../WholeContext"
 // export default function Form(props){
 //     const [value, setValue]=useState('');
 
@@ -22,32 +26,75 @@ import {WholeContext} from "../WholeContext"
 //         </form>
 //     )
 // }
-class Form extends React.PureComponent {
-    static contextType = WholeContext;
+
+class Form extends Component {
+    // static contextType = WholeContext;
   
-    state = {
-      text: ""
-    };
+    // state = {
+    //   text: ""
+    // };
   
+    constructor (props){
+      super(props)
+      this.state={
+          text:''
+      }
+      
+      this.onChange= this.onChange.bind(this)
+      this.onSubmit = this.onSubmit.bind(this)
+    }
+    onChange(e){
+      this.setState({text:e.target.value})
+    }
+    onSubmit(e){
+      e.preventDefault();
+      const text= {
+        text: this.state.text
+      }
+      this.props.addPost(text)
+      this.setState({text:""})
+    }
     render() {
-      const { text } = this.state;
-      const { dispatch } = this.context;
+      // const { text } = this.state;
+      // const { todo,dispatch } = this.context;
   
       return (
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            dispatch({ text, type: "ADD_TODO" });
-            this.setState({ text: "" });
-          }}
+        // <form
+        //   onSubmit={this.onSubmit}
+        // >
+        //   <input
+        //     value={this.state.text}
+        //     onChange={this.onChange}
+        //   />
+        //   <input type="submit" value="Add" />
+        // </form>
+        <View style={{
+          backgroundColor: this.state.text,
+          //borderBottomColor: '#ffffff',
+          //borderBottomWidth: 1 ,
+          flexDirection:"column",
+          //flex:2
+        }}
         >
-          <input
-            value={text}
-            onChange={e => this.setState({ text: e.target.value })}
+          <TextInput 
+            editable = {true}
+            maxLength = {40}
+            multiline = {true}
+            numberOfLines = {4}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+            onChange={this.onChange}
           />
-          <input type="submit" value="Add" />
-        </form>
+          <Button
+            onPress={this.onSubmit}
+            title='ADD'
+            color='#333333'
+          />
+        </View>
       );
     }
   }
-  export default React.memo(Form)
+  Form.propTypes={
+    addPost:PropTypes.func.isRequired
+  }
+  export default connect(null,{addPost})(Form)

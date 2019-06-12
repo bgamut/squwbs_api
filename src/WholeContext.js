@@ -8,5 +8,8 @@ export const WholeContext = createContext({
     error:null,
     refreshing:false,
     perpage:50,
-    screenHeight:0
+    screenHeight:0,
+    yScrolled:0,
+    currentTitle:"",
+    todo:[]
 });

@@ -1,4 +1,4 @@
-import React , {Component} from 'react'
+import React , {Component, useContext} from 'react'
 import {View, Text, FlatList,ActivityIndicator,StyleSheet,Dimensions} from 'react-native'
 import {WholeContext} from "../WholeContext"
 import HorizontalScroller from './HorizontalScroller'
@@ -20,19 +20,7 @@ const styles = StyleSheet.create({
   })
 class VerticalScroller extends Component{
     
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //         loading:false,
-    //         date:[],
-    //         page:1,
-    //         seed:1,
-    //         error:null,
-    //         refreshing:false,
-    //         perpage:50,
-    //         screenHeight:0
-    //       };
-    // }
+
     static contextType = WholeContext;
     
     state = {
@@ -43,22 +31,10 @@ class VerticalScroller extends Component{
         error:null,
         refreshing:false,
         perpage:50,
-        height:0
+        height:0,
+        yScroll:0
     };
-    styles = StyleSheet.create({
-        containerStyle: {
-        flex: 1,
-        paddingTop: 22,
-        borderTopWidth: 0, 
-        borderBottomWidth: 0,
-        height:this.state.height
-        },
-        itemStyle: {
-            padding: 10,
-            fontSize: 18,
-            height: 44,
-        },
-    })
+
     makeRemoteRequest = ()=>{
         const {page, seed,perpage} = this.state
         const url=`https://randomuser.me/api/?seed=${seed}&page=${page}&results=${perpage}`
@@ -138,7 +114,7 @@ class VerticalScroller extends Component{
             />
         )
     }
-    renderHEader = () =>{
+    renderHeader = () =>{
         return < input value="Type Here..."/>
     }
     renderFooter = () => {
@@ -156,6 +132,13 @@ class VerticalScroller extends Component{
           </View>
         );
       };
+    handleScroll=(e)=>{
+        const {obj, dispatch } = this.context;
+        const { yScroll } = this.state
+        //console.log(e.nativeEvent.contentOffset.y)
+        this.setState({yScroll:e.nativeEvent.contentOffset.y})
+        dispatch({yScroll,type: "Y_SCROLLED"} )
+    }
     render=() =>{
     // return (
     //     <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
@@ -183,10 +166,11 @@ class VerticalScroller extends Component{
     // );
     //} 
         const { data } = this.state;
-        const { dispatch } = this.context;
+        
         //const {containerStyle ,itemStyle } = this.styles
         //screenHeight=Math.floor(Dimensions.get('window').height/2)
         //console.log(styles.container)
+        
         return (
             
             <View style={{
@@ -199,6 +183,10 @@ class VerticalScroller extends Component{
             <FlatList
                 data={data}
                 showsHorizontalScrollIndicator={false}
+                onScroll={
+                    this.handleScroll
+                    
+                }
                 renderItem={({ item }) => 
                     <div>
                         <Text style={styles.item}>{item.name.first} {item.name.last}</Text>

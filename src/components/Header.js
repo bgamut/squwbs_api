@@ -1,55 +1,75 @@
-import React,{useContext, useEffect,memo} from 'react';
+import React,{useContext, useEffect,memo,Component} from 'react';
 import {SafeAreaView, View, Text, StyleSheet,Animated,Dimensions} from 'react-native';
 //import '../css/header.css'
-import {WholeContext} from "../WholeContext"
-
+//import {WholeContext} from "../WholeContext"
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { setTitle, setTitleOnload, getYscrolled,updateDimensions } from '../actions/postActions';
+import {bindActionCreators} from 'redux'
+var {name} =require( '../../package.json')
 var header_max_height = 50
 var header_min_height = 22
 var profile_max_height = 80
 var profile_min_height = 13
 
-class Header extends React.PureComponent {
-    static contextType = WholeContext;
-  
-    state = {
-      title: this.props.title,
-      width:0
-    };
-    updateDimensions =(e) =>{
-        this.setState(
-            {
-                width: Math.floor(
-                    Dimensions.get('window').width
-                )
-            }
-        )
-    }
+
+class Header extends Component {
+
+    // getYscrolled(e){
+    //     this.setState({yScrollAnimation:e.target})
+    // }
+    
+    // updateDimensions =(e) =>{
+    //     this.setState(
+    //         {
+    //             width: Math.floor(
+    //                 Dimensions.get('window').width
+    //             )
+    //         }
+    //     )
+    // }
+    componentWillReceiveProps(nextProps) {
+        // You don't have to do this check first, but it can help prevent an unneeded render
+        // if (nextProps.startTime !== this.state.startTime) {
+        //     this.setState({ startTime: nextProps.startTime });
+        // }
+        console.log('this is from nextProps '+nextProps.title)
+      }
     componentDidMount(){
-        const { obj, dispatch } = this.context;
-        const { title } = this.state;
-        dispatch({ type: "SET_TITLE", title })
-        window.addEventListener("resize", this.updateDimensions);
-        window.addEventListener("orientationchange",this.updateDimensions);
+        
+
+        //console.log(name +"is from componenetDidMount")
+
+        this.props.setTitleOnload(name)
+        // window.addEventListener("resize", this.props.updateDimensions(Math.floor(Dimensions.get('window').width)));
+        // window.addEventListener("orientationchange",this.props.updateDimensions(Math.floor(Dimensions.get('window').width)));
+        //window.addEventListener("resize", this.props.updateDimensions(window.innerWidth));
+        //window.addEventListener("orientationchange",this.props.updateDimensions(window.innerWidth));
+        window.addEventListener("resize", this.props.updateDimensions);
+        window.addEventListener("orientationchange",this.props.updateDimensions);
     }
     componentWillMount=()=>{
-        //this.setState({ screenHeight: Dimensions.get('window').height});
-        //console.log('componenet updated' +this.state.screenHeight)
-        this.updateDimensions();
+        //console.log(Math.floor(Dimensions.get('window').width))
+        var tempObject = {target:window}
+        this.props.updateDimensions(tempObject);
     }
     componentWillUnmount=()=>{
-        window.removeEventListener("resize", this.updateDimensions);
-        window.removeEventListener("orientationchange",this.updateDimensions);
+        //window.removeEventListener("resize", this.props.updateDimensions(Math.floor(Dimensions.get('window').width)));
+        //window.removeEventListener("orientationchange",this.props.updateDimensions(Math.floor(Dimensions.get('window').width)));
+        //window.removeEventListener("resize", this.props.updateDimensions(window.innerWidth));
+        //window.removeEventListener("orientationchange",this.props.updateDimensions(window.innerWidth));
+        window.removeEventListener("resize", this.props.updateDimensions);
+        window.removeEventListener("orientationchange",this.props.updateDimensions);
     }
     render(){
-        const { title } = this.state;
-        //const { obj, dispatch } = this.context;
+        const title=String(this.props.title)
         return(
         <View accessibilityRole="heading" style={styles.headerContainer}>
             <div id='titleBar'>        
                 <div 
                     id='title' 
                 >
-                    {title}
+                    {this.props.title}
                 </div>
             </div>
             <style>{`
@@ -101,5 +121,22 @@ const styles = StyleSheet.create({
     // color: 'white'
     // },
 });
-
-export default memo(Header)
+Header.propTypes={
+    setTitleOnload:PropTypes.func.isRequired,
+    title:PropTypes.string,
+    width:PropTypes.number,
+}
+const mapStateToProps= state=>({
+    title:state.posts.title,
+    width:state.posts.width
+})
+const matchDispatchToProps=dispatch=>{
+    return bindActionCreators({
+        setTitleOnload:setTitleOnload,
+        getYscrolled:getYscrolled,
+        updateDimensions:updateDimensions
+    
+    },dispatch)
+}
+//export default memo(connect(mapStateToProps,{setTitle})(Header))
+export default connect(mapStateToProps,matchDispatchToProps)(Header)

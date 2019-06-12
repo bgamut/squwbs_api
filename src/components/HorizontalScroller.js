@@ -1,4 +1,4 @@
-import React,{memo, Component} from 'react'
+import React,{memo, Component,useContext} from 'react'
 import {StyleSheet, Text, View, ScrollView, Dimensions} from 'react-native'
 import {WholeContext} from "../WholeContext"
 

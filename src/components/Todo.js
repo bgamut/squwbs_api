@@ -2,6 +2,8 @@ import React, {useReducer,useState,useEffect,memo} from 'react'
 import Form from './Form'
 import List from './List'
 import Header from './Header'
+import Posts from './Posts'
+import Postform from './Postform'
 //import ListView from 'react'
 // var i=1
 //  export default function Todo(props){
@@ -55,10 +57,21 @@ import Header from './Header'
 export default memo(() => {
   return (
     <div>
+      
+      <Posts/>
       <Form />
    
-        <List />
-  
+        {/* <List /> */}
+        {/* <Posts/> */}
     </div>
   );
 });
+// export default ()=>{
+//   return (
+//     <div>
+//       <Postform />
+//       <hr />
+//       <Posts />
+//     </div>
+//   )
+// }
