@@ -47,16 +47,16 @@ const NavBar = () => (
         <View style={styles.box} >
           <a id="linkLogin" href="/login" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2 }}>Login</a><br/>
         </View>
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
           <Link id="linkHome" to="/" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Home</Link><br/>
-        </View>
+        </View> */}
         <View style={styles.box}>
           <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
         </View>
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
           <Link id="linkMap" to="/map" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Map</Link><br/>
         </View>
-      
+       */}
           
       
       </View>
