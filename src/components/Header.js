@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     flex:1,
     margin:1,
     borderColor:'#cfcfcf',
-    borderWidth:5,
+    borderWidth:1,
     //shadowColor: 'rgba(1, 1, 1, 1)',
     //shadowOffset: {width: 0, height: 0},
     //shadowRadius: 20,

@@ -8,30 +8,42 @@ import Category from './screens/CategoryScreen'
 import Product from './screens/ProductScreen'
 import {SafeAreaView,KeyboardAvoidingView,View,StyleSheet} from 'react-native'
 const NavBar = () => (
-  <SafeAreaView>
-    <View style={{
-        // flex:1,
-        // justifyContent: 'flex-end',
-        // marginBottom:0
-    }}>
-      <KeyboardAvoidingView             
-        style={{
-          height:22,
-          //backgroundColor:'#666666',
-          alignItems:'center',
-          justifyContent:'space-evenly',
-          flexDirection:'row',
-          flex:1,
-          fontSize:12,
-          margin:1,
-          borderColor:'#cfcfcf',
-          borderWidth:0,
-          // shadowColor: 'rgba(1, 1, 1, 1)',
-          // shadowOffset: {width: 0, height: 0},
-          // shadowRadius: 20,
-          backgroundColor:'#ffffff'
-        }}
-      >
+  // <SafeAreaView>
+  //     <KeyboardAvoidingView             
+  //     style={{
+  //       height:22,
+  //       //backgroundColor:'#666666',
+  //       alignItems:'center',
+  //       justifyContent:'space-evenly',
+  //       flexDirection:'row',
+  //       flex:1,
+  //       fontSize:12,
+  //       margin:1,
+  //       borderColor:'#cfcfcf',
+  //       borderWidth:0,
+  //       // shadowColor: 'rgba(1, 1, 1, 1)',
+  //       // shadowOffset: {width: 0, height: 0},
+  //       // shadowRadius: 20,
+  //       backgroundColor:'#ffffff'
+  //     }}
+  //   >
+      <View style={{
+              height:22,
+              //backgroundColor:'#666666',
+              alignItems:'center',
+              justifyContent:'space-evenly',
+              flexDirection:'row',
+              flex:1,
+              fontSize:12,
+              margin:1,
+              borderColor:'#cfcfcf',
+              borderWidth:0,
+              // shadowColor: 'rgba(1, 1, 1, 1)',
+              // shadowOffset: {width: 0, height: 0},
+              // shadowRadius: 20,
+              backgroundColor:'#ffffff'
+            }}>
+   
         <View style={styles.box} >
           <a id="linkLogin" href="/login" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2 }}>Login</a><br/>
         </View>
@@ -46,9 +58,10 @@ const NavBar = () => (
         </View>
       
           
-      </KeyboardAvoidingView>
-    </View>
-  </SafeAreaView>
+      
+      </View>
+  //   </KeyboardAvoidingView>
+  // </SafeAreaView>
 )
 const styles = StyleSheet.create({
   
@@ -70,13 +83,13 @@ const styles = StyleSheet.create({
       // textShadowOffset: {width: 0, height: 0},
       // textShadowRadius: 20,
       borderColor:'#cfcfcf',
-      borderWidth:5,
+      borderWidth:1,
     },
     link:{
       color:'black', 
       textDecorationLine:'none',
       borderColor:'black',
-      borderWidth:2 
+      borderWidth:1 
     }
         
 })

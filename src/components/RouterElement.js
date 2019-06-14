@@ -28,7 +28,6 @@ class RouterElement extends Component {
     render() {
         return (
             <BrowserRouter>
-                
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/todo" component={Todo}/>
