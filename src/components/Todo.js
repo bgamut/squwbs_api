@@ -1,77 +1,46 @@
-import React, {useReducer,useState,useEffect,memo} from 'react'
-import Form from './Form'
-import List from './List'
-import Header from './Header'
-import Posts from './Posts'
-import Postform from './Postform'
-//import ListView from 'react'
-// var i=1
-//  export default function Todo(props){
+import React, { Component,Context } from 'react';
 
-//   console.log(props.items)
-//   const [items, setItems]=useState(props.items);
+const Post=(props)=>{
+    return (
+        <div key={props.id}>
+            <p >{props.material}</p>
+        </div>
+    )
+}
 
-  
-//   useEffect(()=>{
-//     props.itemsChanged(items);
+class Posts extends Component{
 
-//   },[items])
-//   function handleOnAdd(value){
-//     setItems([...items,
-//         {
-//           id:i++,
-//           text:value
-//         } 
-//       ])
-      
+    render(){
+        return(
+            this.props.posts.map((post, i)=>
+                <div>
+                    <Post id={i} meterial={post}/>
+                </div>
+            )
+        )
+    }
+} 
     
-//   }
-//   function handleOnDelete(id){
-   
-//     const index=items.findIndex((item)=>item.id===id);
-//       if(index !== -1){
-//         items.splice(index, 1)
-//         setItems(
-//           [
-//             ...items
-//           ]
-//         )
-//       }
-//   }
+
+
+    
+
+
   
-//    return(
-//     <div className='todo'>
-//       <Form onAdd = {handleOnAdd}/>
-//       <List items = {items} onDelete={handleOnDelete}/>
-//     </div>
-//    )
-   
-//   /*
-//   return(
-//     <div className='todo'>
-//       <Header/>
-//     </div>
-//    )
-//    */
-//  }
-export default memo(() => {
+
+
+    
+
+
+ 
+    
+
+
+export default () => {
   return (
-    <div>
-      
+    <div>     
       <Posts/>
       <Form />
-   
-        {/* <List /> */}
-        {/* <Posts/> */}
     </div>
   );
-});
-// export default ()=>{
-//   return (
-//     <div>
-//       <Postform />
-//       <hr />
-//       <Posts />
-//     </div>
-//   )
-// }
+};

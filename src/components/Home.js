@@ -1,18 +1,20 @@
 import React, {memo} from 'react'
-import {Text,View} from 'react-native'
+//import {Text,View} from 'react-native'
 const Home = () => (
-  <View style={{
+  <div style={{
+    flex:1,
     margin:1,
-    borderColor:'#cfcfcf',
-    borderWidth:1,
+    borderColor:'#000000',
+    borderWidth:5,
     // shadowColor: 'rgba(1, 1, 1, 1)',
     // shadowOffset: {width: 0, height: 0},
     // shadowRadius: 20,
-    backgroundColor:'#ffffff',
+    //backgroundColor:'#ffffff',
     alignItems:'center',
     justifyContent:'space-evenly',
+    height:22,
   }}>
-  <Text style={{          
+  <p style={{          
   
       height:22,
  
@@ -26,8 +28,8 @@ const Home = () => (
       // textShadowRadius: 20
     }}>
     Home
-  </Text>
-  </View>
+  </p>
+  </div>
 )
 
-export default memo(Home)
+export default Home
