@@ -178,8 +178,8 @@ const App = (props)=>{
                 <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center'}}>
                   <AddPost style={{marginTop:15,marginRight:10,marginLeft:10}}/>
                 </View>
-                    <Swiper loop={false}>
-                {/* <ScrollView horizontal = {true} style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:15,marginRight:15}}> */}
+                    {/* <Swiper loop={false}> */}
+                <ScrollView horizontal = {true} style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:15,marginRight:15}}>
                   <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'white',flex:1,flexDirection:'column',marginRight:2,marginLeft:3}}>
                     <Text selectable={false}>one</Text>
                   </View>
@@ -204,8 +204,8 @@ const App = (props)=>{
                   <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'black',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
                     <Text selectable={false}>four</Text>
                   </View>
-                {/* </ScrollView> */}
-                </Swiper>
+                </ScrollView>
+                {/* </Swiper> */}
               {/* </KeyboardAvoidingView> */}
             </View> 
               
