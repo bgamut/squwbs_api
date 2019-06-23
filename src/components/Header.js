@@ -1,6 +1,6 @@
 import React from 'react'; 
 //import {WholeContext} from "../WholeContext"
-var {name} =require( '../package.json')
+var {name} =require( '../../package.json')
 
 
 
