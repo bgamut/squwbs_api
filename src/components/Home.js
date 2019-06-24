@@ -38,9 +38,9 @@ const Home = () => (
     Home
   </p> */}
      <View>  
-      <Header/>       
+      {/* <Header/>        */}
       <SwipeableScroller>
-        <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
+        {/* <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
 
           <View  style={{height:Dimensions.get('window').height/6,backgroundColor:'transparent'}}>
 
@@ -76,7 +76,7 @@ const Home = () => (
           </View>
           <View>
             <SwipeableList/>
-          </View>
+          </View> */}
         </SwipeableScroller>
         <KeyboardAvoidingView style={{height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:5}} behavior="padding" enabled>
           <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:10,marginLeft:10}}>

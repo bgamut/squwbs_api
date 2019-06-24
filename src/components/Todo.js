@@ -1,5 +1,5 @@
 import React, { Component,Context } from 'react';
-
+import Form from './Form'
 const Post=(props)=>{
     return (
         <div key={props.id}>
@@ -32,7 +32,7 @@ export default () => {
   return (
     <div>     
       <Posts/>
-      {/* <Form /> */}
+      <Form />
     </div>
   );
 };

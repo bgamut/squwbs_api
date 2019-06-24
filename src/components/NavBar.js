@@ -6,7 +6,7 @@ import Navigator from './Navigator'
 import Catalogue from './screens/CatalogueScreen'
 import Category from './screens/CategoryScreen'
 import Product from './screens/ProductScreen'
-import {SafeAreaView,KeyboardAvoidingView,View,StyleSheet,Dimensions} from 'react-native'
+import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity} from 'react-native'
 const NavBar = () => (
   // <SafeAreaView>
   //     <KeyboardAvoidingView             
@@ -43,12 +43,46 @@ const NavBar = () => (
               // shadowRadius: 20,
               backgroundColor:'#ffffff'
             }}>
-        <View style={styles.box}>
-          <Link id="linkHome" to="/" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Home</Link><br/>
-        </View>
-        <View style={styles.box} >
-          <a id="linkLogin" href="/login" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2 }}>Login</a><br/>
-        </View>
+        <TouchableOpacity style={styles.box}>
+          <Link id="linkHome" 
+            to="/" 
+            style={{
+              // color:'black', 
+              textDecorationLine:'none',
+              borderColor:'black',
+              borderWidth:2,
+              color:'white',
+              fontSize: 12,
+              textShadowColor: 'black',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 8
+            }}><Text
+            
+            style={{
+              // color:'black', 
+              textDecorationLine:'none',
+              color:'white',
+              fontSize: 12,
+              textShadowColor: 'black',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 8
+            }}>Home</Text>
+            </Link><br/>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.box} >
+          <Text id="linkLogin" 
+          href="/login" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 12,
+            textShadowColor: 'black',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8
+          }}
+          >Login</Text><br/>
+        </TouchableOpacity>
         
         {/* <View style={styles.box}>
           <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
