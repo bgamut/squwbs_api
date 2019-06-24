@@ -30,9 +30,11 @@ class SwipeableScroller extends Component {
             //console.log(value)
             //this.setState({...this.state,scroll:value})
             var limit=this.state.headerheight
-           
               this.setState({scroll:value})
-            
+              if(value<=limit){
+                this.setState({change:(limit*(value/limit))})
+                console.log(limit*(value/limit))
+              }
             
             //this.Header.setNativeProps({scrollValue:value})
             // this.scroller.current.scrollTo({
@@ -82,7 +84,7 @@ class SwipeableScroller extends Component {
             <Header ref = {header=>{this.Header=header}} style = {{height:22}} yscroll={this.state.scroll}/>
             <ScrollView 
                 //ref={this.scroller}
-                style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60)+this.state.change*60}}
+                style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60)}}
                 onScroll={this.onScroll}
                 //scrollTop={state.yscroll}
                 scrollEnabled={false}

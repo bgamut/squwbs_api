@@ -95,7 +95,7 @@ const NavBar = () => (
             flexDirection:'row',
             textAlign:'center'
           }
-        } to="/login">
+        } href="/login">
           <TouchableOpacity style={styles.touch}>
           <Text id="linkLogin" 
           style={{
