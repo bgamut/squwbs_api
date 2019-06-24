@@ -78,7 +78,7 @@ const NavBar = () => (
             </Link><br/>
         </View>
         <View style={styles.box}>
-        <Link style={
+        <a style={
           {
             flex:1,
             textDecorationLine:'none',
@@ -95,7 +95,7 @@ const NavBar = () => (
             flexDirection:'row',
             textAlign:'center'
           }
-        } to="/login">
+        } href="/login">
           <TouchableOpacity style={styles.touch}>
           <Text id="linkLogin" 
           style={{
@@ -114,7 +114,7 @@ const NavBar = () => (
           }}
           >Login</Text>
           </TouchableOpacity>
-        </Link><br/>
+        </a><br/>
         </View>
         {/* <View style={styles.box}>
           <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
