@@ -25,14 +25,6 @@ class Posts extends Component{
 
     
 
-
-  
-
-
-    
-
-
- 
     
 
 
@@ -40,7 +32,7 @@ export default () => {
   return (
     <div>     
       <Posts/>
-      <Form />
+      {/* <Form /> */}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import Navigator from './Navigator'
 import Catalogue from './screens/CatalogueScreen'
 import Category from './screens/CategoryScreen'
 import Product from './screens/ProductScreen'
-import {SafeAreaView,KeyboardAvoidingView,View,StyleSheet} from 'react-native'
+import {SafeAreaView,KeyboardAvoidingView,View,StyleSheet,Dimensions} from 'react-native'
 const NavBar = () => (
   // <SafeAreaView>
   //     <KeyboardAvoidingView             
@@ -28,7 +28,7 @@ const NavBar = () => (
   //     }}
   //   >
       <View style={{
-              height:22,
+              height:Dimensions.get('window').height/15,
               //backgroundColor:'#666666',
               alignItems:'center',
               justifyContent:'space-evenly',
@@ -43,16 +43,16 @@ const NavBar = () => (
               // shadowRadius: 20,
               backgroundColor:'#ffffff'
             }}>
-   
+        <View style={styles.box}>
+          <Link id="linkHome" to="/" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Home</Link><br/>
+        </View>
         <View style={styles.box} >
           <a id="linkLogin" href="/login" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2 }}>Login</a><br/>
         </View>
+        
         {/* <View style={styles.box}>
-          <Link id="linkHome" to="/" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Home</Link><br/>
-        </View> */}
-        <View style={styles.box}>
           <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
-        </View>
+        </View> */}
         {/* <View style={styles.box}>
           <Link id="linkMap" to="/map" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Map</Link><br/>
         </View>
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
       borderColor:'black',
       borderRadius:2,
       color:'black',
-      fontSize:12,
       // textShadowColor: 'rgba(1, 1, 1, 1)',
       // textShadowOffset: {width: 0, height: 0},
       // textShadowRadius: 20,

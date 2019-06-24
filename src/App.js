@@ -8,10 +8,13 @@ import Home from './components/Home'
 import Posts from './components/Posts'
 import AddPost from './components/AddPost'
 import Swiper from './components/Swiper'
+import NavBar from './components/NavBar'
 import ScrollableHeader from './components/ScrollableHeader'
 import HorizontalSwipeElements from './components/HorizontalSwipeElements'
 import SwipeableList from './components/SwipeableList'
 import SwipeableScroller from './components/SwipeableScroller'
+import RouterElement from './components/RouterElement'
+// testimport NavigationV3 from './components/Navigationv3'
 //import {FlatList} from 'react'
 import {ContextController,Context} from './context'
 //import { Context } from "./context";
@@ -91,126 +94,12 @@ const App = (props)=>{
       <ContextController>
       
         <SafeAreaView>
-          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
-            <View>
-              {/* <ScrollView 
-                style={{backgroundColor:'transparent',height:Dimensions.get('window').height*13/15-50,scrollTop:state.yscroll,}}
-                onScroll={logger}
-                scrollEventThrottle={1}
-                {..._panResponder.panHandlers}
-              >
-                <View style={{backgroundColor:'transparent',flex:1,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
-
-                  <View  style={{height:Dimensions.get('window').height/6,backgroundColor:'transparent'}}>
-
-                    <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5}>
-                      <View style={{
-                        flex: 1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "rgb(20,20,20)"
-                        }}>
-                          <Text>Slide 1</Text>
-                      </View>
-                      <View style={{
-                        flex: 1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "rgb(110,110,110)"
-                      }}>
-                          <Text>Slide 2</Text>
-                      </View>
-                      <View style={{
-                        flex: 1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "rgb(200,200,200)"
-                      }}>
-                          <Text>Slide 3</Text>
-                      </View>
-                    </Swiper>
-                  </View>
-                
-                </View>
-                <View>
-                  <SwipeableList/>
-                </View>
-              </ScrollView>  */}
-              <SwipeableScroller>
-              <View style={{backgroundColor:'transparent',flex:1,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
-
-                <View  style={{height:Dimensions.get('window').height/6,backgroundColor:'transparent'}}>
-
-                  <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5}>
-                    <View style={{
-                      flex: 1,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "rgb(20,20,20)"
-                      }}>
-                        <Text>Slide 1</Text>
-                    </View>
-                    <View style={{
-                      flex: 1,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "rgb(110,110,110)"
-                    }}>
-                        <Text>Slide 2</Text>
-                    </View>
-                    <View style={{
-                      flex: 1,
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "rgb(200,200,200)"
-                    }}>
-                        <Text>Slide 3</Text>
-                    </View>
-                  </Swiper>
-                </View>
-
-                </View>
-                <View>
-                <SwipeableList/>
-                </View>
-              </SwipeableScroller>
-              {/* <KeyboardAvoidingView style={{height:Dimensions.get('window').height/15+50,backgroundColor:'transparent',flexDirection:'column',margin:5}} behavior="padding" enabled> */}
-                <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center'}}>
-                  <AddPost style={{marginTop:15,marginRight:10,marginLeft:10}}/>
-                </View>
-                    {/* <Swiper loop={false}> */}
-                <ScrollView horizontal = {true} style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:15,marginRight:15}}>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'white',flex:1,flexDirection:'column',marginRight:2,marginLeft:3}}>
-                    <Text selectable={false}>one</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'lightgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>two</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'darkgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>three</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'black',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>four</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'white', flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>one</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'lightgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>two</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'darkgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>three</Text>
-                  </View>
-                  <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'black',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-                    <Text selectable={false}>four</Text>
-                  </View>
-                </ScrollView>
-                {/* </Swiper> */}
-              {/* </KeyboardAvoidingView> */}
-            </View> 
-              
-          </View>
           
+         <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
+            
+            <RouterElement/>
+           
+          </View>
         </SafeAreaView>
       
       </ContextController>

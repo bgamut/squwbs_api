@@ -31,11 +31,11 @@ class RouterElement extends Component {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/todo" component={Todo}/>
-                    {/* <Route exact path="/map" component={Map}/>
-                    <Route exact path="/Catalogue" component={Catalogue} />
+                    <Route exact path="/map" component={Map}/>
+                    {/* <Route exact path="/Catalogue" component={Catalogue} />
                     <Route exact path="/Category" component={Category}/>
-                    <Route exact path="/Product" component={Product}/>
-                    <Route component={NoMatch} /> */}
+                    <Route exact path="/Product" component={Product}/> */}
+                    <Route component={NoMatch} />
                 </Switch>
                 <NavBar />
             </BrowserRouter>

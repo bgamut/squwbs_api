@@ -1,37 +1,46 @@
 import React from 'react'; 
 //import {WholeContext} from "../WholeContext"
+import {Text,View} from 'react-native'
+//import MenuDrawer from 'react-native-side-drawer'
 var {name} =require( '../../package.json')
+
+
 
 
 
 function Header () {
   
     return(
-        <div style={divStyle}>        
-            <p style ={pStyle} >
+        <View style={divStyle}>        
+            <Text style ={pStyle} >
                 {name}
-            </p>
-        </div>
+            </Text>
+        </View>
     
     ) 
 };
 
 const divStyle = {
-    flex:1,
-    margin:1,
-    borderColor:'#000000',
-    borderWidth:5,
-    // shadowColor: 'rgba(1, 1, 1, 1)',
-    // shadowOffset: {width: 0, height: 0},
-    // shadowRadius: 20,
+    margin:0,
+    //padding:1,
+    height:22,
     backgroundColor:'#ffffff',
     alignItems:'center',
-    justifyContent:'space-evenly',
-    height:22,
+    justifyContent:'center',
+    flexDirection:'row',
+    flex:1,
+    borderColor:'black',
+    borderRadius:2,
+    color:'black',
+    borderColor:'#cfcfcf',
+    borderWidth:1,
 };
   const pStyle = {
-    color:'black',
+    color:'white',
     fontSize: 12,
+    textShadowColor: 'rgba(128, 128, 128, 1)',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 8,
     //textAlign: 'center',
     // textShadowColor: 'rgba(1, 1, 1, 1)',
     // textShadowOffset: {width: 0, height: 0},
