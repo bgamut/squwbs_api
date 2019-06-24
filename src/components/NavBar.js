@@ -43,11 +43,12 @@ const NavBar = () => (
               // shadowRadius: 20,
               backgroundColor:'#ffffff'
             }}>
-        <TouchableOpacity style={styles.box}>
+        <View style={styles.box}>
           <Link id="linkHome" 
             to="/" 
             style={{
               // color:'black', 
+              flex:1,
               textDecorationLine:'none',
               borderColor:'black',
               borderWidth:2,
@@ -55,8 +56,14 @@ const NavBar = () => (
               fontSize: 12,
               textShadowColor: 'black',
               textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 8
-            }}><Text
+              textShadowRadius: 8,
+              alignItems:'center',
+              justifyContent:'center',
+              flexDirection:'row',
+              textAlign:'center'
+            }}>
+              <TouchableOpacity style={styles.touch}>
+              <Text
             
             style={{
               // color:'black', 
@@ -67,11 +74,30 @@ const NavBar = () => (
               textShadowOffset: {width: 0, height: 0},
               textShadowRadius: 8
             }}>Home</Text>
+            </TouchableOpacity>
             </Link><br/>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.box} >
+        </View>
+        <View style={styles.box}>
+        <Link style={
+          {
+            flex:1,
+            textDecorationLine:'none',
+            borderColor:'black',
+            borderWidth:2,
+            color:'white',
+            fontSize: 12,
+            textShadowColor: 'black',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8,
+            flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } to="/login">
+          <TouchableOpacity style={styles.touch}>
           <Text id="linkLogin" 
-          href="/login" 
           style={{
             // color:'black', 
             textDecorationLine:'none',
@@ -79,11 +105,17 @@ const NavBar = () => (
             fontSize: 12,
             textShadowColor: 'black',
             textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 8
+            textShadowRadius: 8,
+            flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
           }}
-          >Login</Text><br/>
-        </TouchableOpacity>
-        
+          >Login</Text>
+          </TouchableOpacity>
+        </Link><br/>
+        </View>
         {/* <View style={styles.box}>
           <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
         </View> */}
@@ -117,6 +149,16 @@ const styles = StyleSheet.create({
       // textShadowRadius: 20,
       borderColor:'#cfcfcf',
       borderWidth:1,
+    },
+    touch:{
+      margin:0,
+      //padding:1,
+      height:22,
+      backgroundColor:'transparent',
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      flex:1
     },
     link:{
       color:'black', 
