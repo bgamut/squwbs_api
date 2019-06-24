@@ -20,13 +20,20 @@ class SwipeableScroller extends Component {
             yscroll: new Animated.Value(0),
             dy:new Animated.Value(0),
             lastscroll:0,
-            scroll:0
+            scroll:0,
+            headerheight:22,
+            change:0
         };
       }
     componentDidMount(){
         translateY.addListener(({value})=>{
             //console.log(value)
-            this.setState({...this.state,scroll:value})
+            //this.setState({...this.state,scroll:value})
+            var limit=this.state.headerheight
+           
+              this.setState({scroll:value})
+            
+            
             //this.Header.setNativeProps({scrollValue:value})
             // this.scroller.current.scrollTo({
             //     y:-1*value
@@ -75,7 +82,7 @@ class SwipeableScroller extends Component {
             <Header ref = {header=>{this.Header=header}} style = {{height:22}} yscroll={this.state.scroll}/>
             <ScrollView 
                 //ref={this.scroller}
-                style={{backgroundColor:'transparent',height:Dimensions.get('window').height*13/15-60}}
+                style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60)+this.state.change*60}}
                 onScroll={this.onScroll}
                 //scrollTop={state.yscroll}
                 scrollEnabled={false}
