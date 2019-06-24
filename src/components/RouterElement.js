@@ -34,8 +34,8 @@ class RouterElement extends Component {
                     <Route exact path="/map" component={Map}/>
                     {/* <Route exact path="/Catalogue" component={Catalogue} />
                     <Route exact path="/Category" component={Category}/>
-                    <Route exact path="/Product" component={Product}/> */}
-                    <Route component={NoMatch} />
+                    <Route exact path="/Product" component={Product}/>
+                    <Route component={NoMatch} /> */}
                 </Switch>
                 <NavBar />
             </BrowserRouter>
