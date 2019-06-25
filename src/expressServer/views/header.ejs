@@ -1,0 +1,32 @@
+<!-- views/partials/header.ejs -->
+<!-- snatched from the following link -->
+<!-- https://getbootstrap.com/docs/4.0/examples/offcanvas/ -->
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="">squwbs</a>
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/login/facebook">Facebook </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login/google">Google</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login/twitter">Twitter</a>
+            </li>
+        </div>
+      </nav>
+<script>
+$(function () {
+  'use strict'
+
+  $('[data-toggle="offcanvas"]').on('click', function () {
+    $('.offcanvas-collapse').toggleClass('open')
+  })
+})
+</script>
