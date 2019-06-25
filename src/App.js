@@ -102,9 +102,7 @@ const App = (props,context)=>{
         <SafeAreaView>
           
          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
-            <div>
-              {name}
-            </div>
+
             <RouterElement/>
            
           </View>
