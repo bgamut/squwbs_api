@@ -3,6 +3,7 @@ import React,{useContext,Component,PureComponent} from 'react';
 import {Text,View,Animated} from 'react-native'
 //import MenuDrawer from 'react-native-side-drawer'
 import {Context} from '../context'
+import Drawer from './Drawer'
 var {name} =require( '../../package.json')
 
 

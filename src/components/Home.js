@@ -7,6 +7,7 @@ import SwipeableScroller from './SwipeableScroller'
 import Swiper from './Swiper'
 import AddPost from './AddPost'
 import Header from './Header'
+import Drawer from './Drawer'
 const Home = () => (
   <div style={{
     flex:1,
@@ -39,6 +40,7 @@ const Home = () => (
   </p> */}
      <View>  
       {/* <Header/>        */}
+      <Drawer>
       <SwipeableScroller>
         {/* <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
 
@@ -111,6 +113,7 @@ const Home = () => (
           </ScrollView>
         
         </KeyboardAvoidingView>
+        </Drawer>
       </View> 
   </div>
 )
