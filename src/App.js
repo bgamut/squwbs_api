@@ -16,9 +16,11 @@ import SwipeableScroller from './components/SwipeableScroller'
 import RouterElement from './components/RouterElement'
 // testimport NavigationV3 from './components/Navigationv3'
 //import {FlatList} from 'react'
-import {ContextController,Context} from './context'
+import {ContextController} from './context'
 //import { Context } from "./context";
 import {View,Text,ScrollView,Dimensions,Platform,SafeAreaView,StyleSheet,KeyboardAvoidingView} from 'react-native'
+import {CookiesProvider, useCookies} from 'react-cookie'
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
@@ -41,7 +43,8 @@ const _panResponder = PanResponder.create({
 });
 // class App extends Component {
 
-const App = (props)=>{
+const App = (props,context)=>{
+  const[cookies,setCookie]=useCookies({})
   //const [state, setState] = useContext(Context);
   // const makeRemoteRequest = () => {
   //     if(state.data!=[]){
@@ -74,6 +77,9 @@ const App = (props)=>{
   //     }   
   //   };
   useEffect(()=>{
+    const locals =context && context.locals || {};
+    //console.log(locals)
+    console.log(props.name)
     // console.log('somehow this ran in the App useEffect method!!')
   })
   
@@ -90,19 +96,22 @@ const App = (props)=>{
       
     }
     return(
-     
+     <CookiesProvider>
       <ContextController>
       
         <SafeAreaView>
           
          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
-            
+            <div>
+              {name}
+            </div>
             <RouterElement/>
            
           </View>
         </SafeAreaView>
       
       </ContextController>
+    </CookiesProvider>
     )
   // }
 }

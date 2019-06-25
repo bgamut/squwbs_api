@@ -79,7 +79,7 @@ var app = express();
 //   doctype: "<!DOCTYPE html>\n"   // optional and this is default value
 // });
 app.set('views', __dirname + '/views');
-// app.set('view engine','jsx')
+//app.set('view engine','jsx')
 // app.engine('jsx',require('express-react-views').createEngine())
 app.set('view engine','ejs')
 app.use(require('cookie-parser')());
@@ -182,7 +182,10 @@ app.get('/login/twitter/profile',
 });
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.locals.lang = 'en';
+  res.locals.name='template'
+  res.render(path.join(__dirname, 'build', 'index.html'));
+  //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
 });
 
 app.get('/todo', function (req, res) {
