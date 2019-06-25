@@ -14,6 +14,7 @@ var trustProxy = false;
 require('module-alias/register')
 const path = require('path');
 const fs =require('fs')
+
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -72,7 +73,11 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var app = express();
-
+// require('express-engine-jsx').attachTo(app, {
+//   cache: path.join(__dirname, 'cache'), // required and should be absolute path to cache dir for compiled js files
+//   views: path.join(__dirname, 'views'), // required and should be absolute path to views dir with jsx files
+//   doctype: "<!DOCTYPE html>\n"   // optional and this is default value
+// });
 app.set('views', __dirname + '/views');
 // app.set('view engine','jsx')
 // app.engine('jsx',require('express-react-views').createEngine())
@@ -135,7 +140,8 @@ app.get('/home',
 
 app.get('/login',
   function(req, res){
-
+    res.locals.lang = 'en';
+    res.locals.name='template'
     if(req.user==undefined){
       res.render('login');
     }
