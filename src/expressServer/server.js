@@ -258,8 +258,8 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 
 })
 app.get('/api',cors(),(req,res)=>{
-
-  res.send(req.query)
+  res.sent(req.user)
+  //res.send(req.query)
 
 })
 app.post('/api',cors(),(req,res)=>{

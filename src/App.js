@@ -77,10 +77,11 @@ const App = (props,context)=>{
   //     }   
   //   };
   useEffect(()=>{
-    const locals =context && context.locals || {};
+    //const locals =context && context.locals || {};
     //console.log(locals)
-    console.log(props.name)
+    //console.log(props.name)
     // console.log('somehow this ran in the App useEffect method!!')
+    fetch()
   })
   
   // componentDidMount() {
