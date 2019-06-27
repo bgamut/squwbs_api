@@ -97,6 +97,13 @@ app.use(express.static(path.join(__dirname, 'html/*/*')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+let allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Headers', "*");
+  next();
+}
+app.use(allowCrossDomain);
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -120,7 +127,8 @@ app.get('/cookies',cors(),(req,res)=>{
   res.redirect('/')
 })
 app.get('/readCookies',function(req, res){
-  res.send(req.signedCookies);
+  //res.send(req.signedCookies);
+  res.json(req.signedCookies)
 });
 // var conf={
 //   originUndefined: function (req, res, next) {
