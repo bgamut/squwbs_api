@@ -19,6 +19,7 @@ import RouterElement from './components/RouterElement'
 import {ContextController} from './context'
 //import { Context } from "./context";
 import {View,Text,ScrollView,Dimensions,Platform,SafeAreaView,StyleSheet,KeyboardAvoidingView} from 'react-native'
+import async from 'express-async-await'
 //import {CookiesProvider, useCookies} from 'react-cookie'
 //import Cookies from 'js-cookie'
 //import Cookies from 'universal-cookie'
@@ -93,17 +94,22 @@ const App = (props,context)=>{
     //console.log(props.cookies.get('name'))
     //console.log(cookies.name)
     //console.log(cookie.load('name'))
-     fetch('http://squwbs.herokuapp.com/readCookies',{mode:'cors'})
-     .then(res => res.json())
-     .then(res => {
-      console.log(JSON.stringify(res))
-    })
-    .catch(error => {
-      console.error(error)
-      //this.setState({ error, loading: false });
-    });
-    
-    
+    //  fetch('http://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+    //  .then(res => res.json())
+    //  .then(res => {
+    //   console.log(JSON.stringify(res))
+    // })
+    // .catch(error => {
+    //   console.error(error)
+    //   //this.setState({ error, loading: false });
+    // });
+
+    const getUserData=async()=>{
+      const responded= await fetch('http://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+      const jsonObj = await responded.json()
+      console.log(JSON.stringify(jsonObj))
+    }
+    getUserData()
   })
 
   
