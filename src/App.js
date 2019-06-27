@@ -19,7 +19,12 @@ import RouterElement from './components/RouterElement'
 import {ContextController} from './context'
 //import { Context } from "./context";
 import {View,Text,ScrollView,Dimensions,Platform,SafeAreaView,StyleSheet,KeyboardAvoidingView} from 'react-native'
-import {CookiesProvider, useCookies} from 'react-cookie'
+//import {CookiesProvider, useCookies} from 'react-cookie'
+//import Cookies from 'js-cookie'
+//import Cookies from 'universal-cookie'
+//const cookies = new Cookies();
+//import cookie from 'react-cookies'
+//import {Cookies, CookiesProvider, useCookies,withCookies }from 'react-cookie'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -44,7 +49,7 @@ const _panResponder = PanResponder.create({
 // class App extends Component {
 
 const App = (props,context)=>{
-  const[cookies,setCookie]=useCookies({})
+  //const[cookies,setCookie]=useCookies({})
   //const [state, setState] = useContext(Context);
   // const makeRemoteRequest = () => {
   //     if(state.data!=[]){
@@ -81,9 +86,17 @@ const App = (props,context)=>{
     //console.log(locals)
     //console.log(props.name)
     // console.log('somehow this ran in the App useEffect method!!')
-    fetch('squwbs.herokuapp.com/api').then(res => 
-      console.log(res.json())
+    // fetch('squwbs.herokuapp.com/api').then(res => 
+    //   console.log(res.json())
+    // )
+    //console.log(Cookies.get('name'))
+    //console.log(props.cookies.get('name'))
+    //console.log(cookies.name)
+    //console.log(cookie.load('name'))
+     fetch('squwbs.herokuapp.com/readCookies').then(res => 
+        console.log(res.json())
     )
+    
     
   })
 
@@ -101,7 +114,7 @@ const App = (props,context)=>{
       
     }
     return(
-     <CookiesProvider>
+     //<CookiesProvider>
       <ContextController>
       
         <SafeAreaView>
@@ -114,7 +127,7 @@ const App = (props,context)=>{
         </SafeAreaView>
       
       </ContextController>
-    </CookiesProvider>
+    //</CookiesProvider>
     )
   // }
 }
@@ -132,8 +145,8 @@ const appStyle = {
   justifyContent:'space-evenly',
   height:22,
 };
+//export default withCookies(App);
 export default App;
-
 
 
 

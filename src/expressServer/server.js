@@ -14,6 +14,7 @@ var trustProxy = false;
 require('module-alias/register')
 const path = require('path');
 const fs =require('fs')
+var cookieParser = require('cookie-parser')
 
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
@@ -82,16 +83,17 @@ app.set('views', __dirname + '/views');
 //app.set('view engine','jsx')
 app.engine('jsx',require('express-react-views').createEngine())
 //app.set('view engine','ejs')
-app.use(require('cookie-parser')());
+//app.use(require('cookie-parser')());
+app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
 app.use(require('express-session')({ secret: 'keyboard cat',resave:true,saveUninitialized:true }));
 app.use(express.static(path.join(__dirname, '../../build')));
 app.use(express.static(path.join(__dirname, 'html/*/*')));
-app.use(cookieSession({
-  maxAge:100000,
-  keys:["keyboard cat"]
-}))
+// app.use(cookieSession({
+//   maxAge:100000,
+//   keys:["keyboard cat"]
+// }))
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -104,6 +106,22 @@ var allowedOrigins = [
                       'http://squwbs.herokuapp.com',
                       'https://squwbs.herokuapp.com/'
                     ];
+app.get('/cookies',cors(),(req,res)=>{
+
+  //res.send(req.signedCookies)
+  let options = {
+    maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+    httpOnly: true, // The cookie only accessible by the web server
+    signed: true,// Indicates if the cookie should be signed
+    secret:''
+}
+  res.cookie('name', 'bernard',options);
+  //console.log(req.signedCookies)
+  res.redirect('/')
+})
+app.get('/readCookies',function(req, res){
+  res.send(req.signedCookies);
+});
 // var conf={
 //   originUndefined: function (req, res, next) {
  
@@ -137,6 +155,20 @@ var allowedOrigins = [
 // };
 // app.use(cors(conf.cors))
 // Define routes.
+app.get('/', function (req, res) {
+  // res.locals.lang = 'en';
+  // res.locals.name='template'
+  console.log(req.signedCookies)
+  if(req.signedCookies.name!==undefined)
+  {
+    console.log(req.signedCookies.name)
+  }
+  else{
+    res.render(path.join(__dirname, 'build', 'index.html'));
+  }
+  
+  //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
+});
 app.get('/home',
   function(req, res) {
     if(req.user==undefined){
@@ -191,12 +223,7 @@ app.get('/login/twitter/profile',
   res.redirect('/profile');
 });
 
-app.get('/', function (req, res) {
-  res.locals.lang = 'en';
-  res.locals.name='template'
-  res.render(path.join(__dirname, 'build', 'index.html'));
-  //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
-});
+
 
 app.get('/todo', function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
@@ -231,23 +258,29 @@ app.get('/map', function (req, res) {
 app.get('/profile',
 
   function(req, res){
-  if(req.user==undefined){
-    res.redirect(url.format({
-      pathname:"/"
-  })) 
+  // if(req.user==undefined){
+  //   res.redirect(url.format({
+  //     pathname:"/"
+  // })) 
 
-  }
+  // }
 
-  else{
+  // else{
 
-    res.render('profile', { 
-      provider:req.user.provider,
-      id:req.user.id,
-      displayName:req.user.displayName,
+  //   res.render('profile', { 
+  //     provider:req.user.provider,
+  //     id:req.user.id,
+  //     displayName:req.user.displayName,
 
-    });
-  }
-
+  //   });
+  // }
+  let options = {
+    maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+    httpOnly: true, // The cookie only accessible by the web server
+    signed: true,// Indicates if the cookie should be signed
+    secret:''
+}
+  res.cookie('user', req.user ,options);
      
 });
 app.get('/logout',function(req,res){
@@ -263,10 +296,11 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 
 })
 app.get('/api',cors(),(req,res)=>{
-  res.sent(req.user)
-  //res.send(req.query)
+  
+  res.send(req.query)
 
 })
+
 app.post('/api',cors(),(req,res)=>{
 
   res.send(req.body)
