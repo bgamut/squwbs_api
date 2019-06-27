@@ -96,7 +96,7 @@ const App = (props,context)=>{
      fetch('squwbs.herokuapp.com/readCookies')
      .then(res => res)
      .then(res => {
-      console.log(res.json)
+      console.log(res.json())
     })
     .catch(error => {
       console.error(error)
