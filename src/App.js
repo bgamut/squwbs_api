@@ -81,8 +81,12 @@ const App = (props,context)=>{
     //console.log(locals)
     //console.log(props.name)
     // console.log('somehow this ran in the App useEffect method!!')
-    fetch()
+    fetch('squwbs.herokuapp.com/api').then(res => 
+      console.log(res.json())
+    )
+    
   })
+
   
   // componentDidMount() {
   //  // window.scrollTo(0, 0)
