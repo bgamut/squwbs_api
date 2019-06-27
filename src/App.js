@@ -120,7 +120,7 @@ const App = (props,context)=>{
       
     }
     return(
-     //<CookiesProvider>
+  
       <ContextController>
       
         <SafeAreaView>
@@ -133,7 +133,7 @@ const App = (props,context)=>{
         </SafeAreaView>
       
       </ContextController>
-    //</CookiesProvider>
+    
     )
   // }
 }

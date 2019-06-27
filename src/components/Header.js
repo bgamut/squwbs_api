@@ -73,7 +73,7 @@ class Header extends PureComponent {
                     //flex:1,
                     borderColor:'black',
                     borderRadius:2,
-                    color:'black',
+                    //color:'black',
                     borderColor:'#cfcfcf',
                     borderWidth:1,
                     opacity:this.state.opacity
