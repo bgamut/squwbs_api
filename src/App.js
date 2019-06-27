@@ -93,7 +93,7 @@ const App = (props,context)=>{
     //console.log(props.cookies.get('name'))
     //console.log(cookies.name)
     //console.log(cookie.load('name'))
-     fetch('squwbs.herokuapp.com/readCookies')
+     fetch('squwbs.herokuapp.com/readCookies',{mode:'cors'})
      .then(res => res)
      .then(res => {
       console.log(res.json())
