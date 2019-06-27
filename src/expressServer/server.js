@@ -280,8 +280,21 @@ app.get('/profile',
     signed: true,// Indicates if the cookie should be signed
     secret:''
 }
-  res.cookie('user', req.user ,options);
-     
+  if(req.user==undefined){
+    res.redirect(url.format({
+      pathname:"/"
+    }))
+  }
+  else{
+    res.cookie('userName', req.user.displayName ,options);
+    res.cookie('providerid',req.user.id,options)
+    res.cookie('provider',req.user.provider,options)
+    res.redirect(url.format({
+      pathname:"/"
+    }))
+  }
+  
+  
 });
 app.get('/logout',function(req,res){
   req.logout()

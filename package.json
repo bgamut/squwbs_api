@@ -89,7 +89,7 @@
     "preelectron-pack": "npm run build",
     "electron-package": "npm run preelectron-pack & electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
     "electron-repackage": "electron-packager . --productName=template --icon=./icons/icon.icns --overwrite && open ./template-darwin-x64/template.app",
-    "postinstall": "echo finised"
+    "postinstall": "echo finished"
   },
   "eslintConfig": {
     "extends": "react-app"
