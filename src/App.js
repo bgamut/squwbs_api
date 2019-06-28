@@ -105,7 +105,7 @@ const App = (props,context)=>{
     // });
 
     const getUserData=async()=>{
-      const responded= await fetch('http://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+      const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
       const jsonObj = await responded.json()
       console.log(JSON.stringify(jsonObj))
     }
