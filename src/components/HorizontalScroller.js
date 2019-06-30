@@ -27,9 +27,9 @@ class HorizontalScroller extends Component{
     //         padding:100
     //     }
     // })
-    componentDidMount(){
+    // componentDidMount(){
          
-    }
+    // }
     updateDimensions =(e) =>{
         this.setState(
             {
@@ -84,12 +84,12 @@ class HorizontalScroller extends Component{
                         
                     }
                     .contentBox{
-                        text-align: center;
-                        display:flex;
                         background-color:#333333;
-                        height:25vw;
                         color:black;
+                        display:flex;
+                        height:25vw;
                         margin:2px;
+                        text-align: center; 
                     }
                 `}
                 </style>
@@ -98,27 +98,26 @@ class HorizontalScroller extends Component{
     }
 }
 const styles = StyleSheet.create({
-    contentContainer:{    
-        backgroundColor:'#F5FCFF',
-        width:'100vw',
-        display:'flex',
-        textAlign:'center',
-        alignItems:'center',
-        justifyContent:'center'
-    },
     container:{
+        backgroundColor:'#F5F5F5',
         flex:1,
-        backgroundColor:'#F5F5F5'
     },
     contentBox:{
-        flex:1,
-        margin:20,
-        color:'black',
         backgroundColor:"rgb(30, 30, 30)",
-        margin:10,
-        textAlign:'center',
+        color:'black',
+        flex:1,
         fontSize:20,
-        padding:100
-    }
+        margin:10,
+        padding:100,
+        textAlign:'center',
+    },
+    contentContainer:{    
+        alignItems:'center',
+        backgroundColor:'#F5FCFF',
+        display:'flex',
+        justifyContent:'center',
+        textAlign:'center',
+        width:'100vw',
+    },
 })
 export default memo(HorizontalScroller)

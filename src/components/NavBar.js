@@ -2,10 +2,10 @@ import React from 'react'
 //import { Link } from 'react-router-dom'
 import { BrowserRouter,HashRouter, Route, Link,Router,Switch } from "react-router-dom";
 import {ScrollView} from 'react-native'
-import Navigator from './Navigator'
-import Catalogue from './screens/CatalogueScreen'
-import Category from './screens/CategoryScreen'
-import Product from './screens/ProductScreen'
+//import Navigator from './Navigator'
+//import Catalogue from './screens/CatalogueScreen'
+//import Category from './screens/CategoryScreen'
+//import Product from './screens/ProductScreen'
 import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity} from 'react-native'
 const NavBar = () => (
   // <SafeAreaView>
@@ -31,27 +31,28 @@ const NavBar = () => (
               height:Dimensions.get('window').height/15,
               //backgroundColor:'#666666',
               alignItems:'center',
-              justifyContent:'space-evenly',
-              flexDirection:'row',
-              flex:1,
+              //justifyContent:'space-evenly',
+              //flexDirection:'row',
+              flexDirection:'column',
+              //flex:1,
               // fontSize:12,
               margin:1,
-              borderColor:'#cfcfcf',
-              borderWidth:0,
+              //borderColor:'#cfcfcf',
+              //borderWidth:0,
               // shadowColor: 'rgba(1, 1, 1, 1)',
               // shadowOffset: {width: 0, height: 0},
               // shadowRadius: 20,
               backgroundColor:'#ffffff'
             }}>
         <View style={styles.box}>
-          <Link id="linkHome" 
-            to="/" 
+          <a id="linkHome" 
+            href="/" 
             style={{
               // color:'black', 
               flex:1,
               textDecorationLine:'none',
-              borderColor:'black',
-              borderWidth:2,
+              //borderColor:'black',
+              //borderWidth:2,
               color:'white',
               //fontSize: 12,
               textShadowColor: 'black',
@@ -70,23 +71,23 @@ const NavBar = () => (
               textDecorationLine:'none',
               color:'white',
               fontSize: 12,
-              textShadowColor: 'black',
+              textShadowColor: 'rgba(128, 128, 128, 1)',
               textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 8
+              textShadowRadius: 8,
             }}>Home</Text>
             </TouchableOpacity>
-            </Link><br/>
+            </a><br/>
         </View>
         <View style={styles.box}>
         <a style={
           {
             flex:1,
             textDecorationLine:'none',
-            borderColor:'black',
-            borderWidth:2,
+            //borderColor:'black',
+            //borderWidth:2,
             color:'white',
             fontSize: 12,
-            textShadowColor: 'black',
+            textShadowColor: 'rgba(128, 128, 128, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
             flex:1,
@@ -103,7 +104,7 @@ const NavBar = () => (
             textDecorationLine:'none',
             color:'white',
             fontSize: 12,
-            textShadowColor: 'black',
+            textShadowColor: 'rgba(128, 128, 128, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
             flex:1,
@@ -141,14 +142,14 @@ const styles = StyleSheet.create({
       flexDirection:'row',
       flex:1,
       //fontSize:12,
-      borderColor:'black',
-      borderRadius:2,
+      //borderColor:'black',
+      //borderRadius:2,
       color:'black',
       // textShadowColor: 'rgba(1, 1, 1, 1)',
       // textShadowOffset: {width: 0, height: 0},
       // textShadowRadius: 20,
-      borderColor:'#cfcfcf',
-      borderWidth:1,
+      //borderColor:'#cfcfcf',
+      //borderWidth:1,
     },
     touch:{
       margin:0,
@@ -163,8 +164,8 @@ const styles = StyleSheet.create({
     link:{
       color:'black', 
       textDecorationLine:'none',
-      borderColor:'black',
-      borderWidth:1 
+      //borderColor:'black',
+      //borderWidth:1 
     }
         
 })

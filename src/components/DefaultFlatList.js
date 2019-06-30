@@ -9,12 +9,12 @@ class DefaultFlatList extends Component {
     super(props);
 
     this.state = {
-      loading: false,
       data: [],
-      page: 1,
-      seed: 1,
       error: null,
-      refreshing: false
+      loading: false,
+      page: 1,
+      refreshing: false,
+      seed: 1,
     };
   }
 
@@ -46,8 +46,8 @@ class DefaultFlatList extends Component {
     this.setState(
       {
         page: 1,
+        refreshing: true,
         seed: this.state.seed + 1,
-        refreshing: true
       },
       () => {
         this.makeRemoteRequest();
@@ -70,10 +70,10 @@ class DefaultFlatList extends Component {
     return (
       <View
         style={{
-          height: 1,
-          width: "86%",
           backgroundColor: "#CED0CE",
-          marginLeft: "14%"
+          height: 1,
+          marginLeft: "14%",
+          width: "86%",
         }}
       />
     );
@@ -84,14 +84,15 @@ class DefaultFlatList extends Component {
   };
 
   renderFooter = () => {
-    if (!this.state.loading) return null;
-
+    if (!this.state.loading) {
+      return null;
+    }
     return (
       <View
         style={{
-          paddingVertical: 20,
+          borderColor: "#CED0CE",
           borderTopWidth: 1,
-          borderColor: "#CED0CE"
+          paddingVertical: 20,
         }}
       >
         <ActivityIndicator animating size="large" />
@@ -102,8 +103,8 @@ class DefaultFlatList extends Component {
   render() {
     return (
       <View style={{ 
-        borderTopWidth: 0, 
         borderBottomWidth: 0, 
+        borderTopWidth: 0, 
         }}>
         
            
@@ -119,7 +120,7 @@ class DefaultFlatList extends Component {
                 >
                   <View>
                   <Image
-                    style={{width: 50, height: 50}}
+                    style={{height: 50,width: 50}}
                     source={{uri: item.picture.thumbnail}}
                   />
                   </View>

@@ -31,7 +31,7 @@ const[userInput,setUserInput,Refs] = useState("")
     const addTodo = (e) => {
     //e.preventDefault();
     //setTrackTitle(userInput);
-    if(state.text==""){
+    if(state.text===""){
         //console.log('stop')
     }
     else{
@@ -53,12 +53,12 @@ const[userInput,setUserInput,Refs] = useState("")
     setState({...state,userInput:e.target.value})
     //console.log(e.nativeEvent.inputType)
     
-        if(e.nativeEvent.inputType=='insertLineBreak'){
+        if(e.nativeEvent.inputType==='insertLineBreak'){
             addTodo()
             //console.log('we should be here')
             //setState({...state,posts:[...state.posts,state.text],text:""})
         }
-        else if(e.nativeEvent.inputType=='insertText'){
+        else if(e.nativeEvent.inputType==='insertText'){
             
             setState({...state,text:e.target.value})
         }
@@ -70,11 +70,11 @@ const[userInput,setUserInput,Refs] = useState("")
   return (
     // eslint-disable-next-line no-use-before-define
     <View style={{
-      marginTop:1,
       borderColor:'transparent',
       borderWidth:1,
-      flexDirection:'row',
       flex:1,
+      flexDirection:'row',
+      marginTop:1,
       // width:Dimensions.get('window').width,
     }}>
       {/* <form onSubmit={addTodo}  style={{
@@ -126,25 +126,35 @@ const[userInput,setUserInput,Refs] = useState("")
             clearButtonMode="while-editing"
             autoFocus
             //onFocus={()=>{console.log('on focus')}}
-            theme={{ colors: { placeholder: 'white', text: 'white', primary: 'white', 
-  underlineColor: 'transparent', background: '#003489' } }}
+            theme={{ colors: { 
+              background: '#003489', 
+              placeholder: 'white', 
+              primary: 'white', 
+              text: 'white',  
+              underlineColor: 'transparent',  } 
+            }}
             style={{
-              marginLeft:1,
-              paddingLeft:3,
+              alignItems:'center',
               borderColor:'#cfcfcf',
               borderWidth:1,
-              alignItems:'center',
-              flexDirection:'row',
+              color:'black',
               flex:1,
+              flexDirection:'row',
+              height:22,
+              marginLeft:1,
+              paddingLeft:3,
+              width:Dimensions.get('window').width-26,
+              
+              
 
               //outline:'none',
-              width:Dimensions.get('window').width-26,
+              
               // shadowColor: 'rgba(1, 1, 1, 1)',
               // shadowOffset: {width: 0, height: 0},
               // shadowRadius: 1,
-              color:'black',
+              
               // paddingBottom:2,
-              height:22,
+              
               // textShadowColor: 'rgba(1, 1, 1, 1)',
               // textShadowOffset: {width: 0, height: 0},
               // textShadowRadius: 5
@@ -159,31 +169,47 @@ const[userInput,setUserInput,Refs] = useState("")
            
             type="submit" 
             style={{
-                height:22,
-                width:22,
-                backgroundColor:'#ffffff',
+              alignItems:'center',
+              backgroundColor:'#ffffff',
+              borderColor:'#cfcfcf',
+              borderWidth:1,
+              height:22,
+              justifyContent:'center',
+              marginLeft:2,
+              marginRight:1,
+              paddingLeft:2,
+              paddingRight:2,
+              width:22,
                 
-                alignItems:'center',
-                justifyContent:'center',
-                marginLeft:2,
-                marginRight:1,
-                borderColor:'#cfcfcf',
-                borderWidth:1,
-                paddingLeft:2,
-                paddingRight:2,
+                
+                
+                
+                
+                
+       
                 //flex:1,
                 //shadowColor: 'rgba(1, 1, 1, 1)',
                 //shadowOffset: {width: 0, height: 0},
                 //shadowRadius: 20
                 }}
             onPress={addTodo}>
-          <Text style={{
-              color:'black',
+          <Text selectable ={false} style={{
+              color:'#cfcfcf',
               fontSize:12,
               paddingBottom:2,
-              //textShadowColor: 'rgba(1, 1, 1, 1)',
-              //textShadowOffset: {width: 0, height: 0},
-              //textShadowRadius: 20,
+
+              extDecorationLine:'none',
+              //color:'white',
+              fontSize: 12,
+              // textShadowColor: 'rgba(128, 128, 128, 1)',
+              // textShadowOffset: {width: 0, height: 0},
+              // textShadowRadius: 8,
+              flex:1,
+              textAlign:'center',
+              alignItems:'center',
+              justifyContent:'center',
+              flexDirection:'row',
+              margin:5,
             }}>
                 +
             </Text>

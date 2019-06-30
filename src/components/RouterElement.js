@@ -1,7 +1,7 @@
 import React, { Component,memo } from 'react';
 import { BrowserRouter,HashRouter, Route, Link,Router,Switch } from "react-router-dom";
 import NavBar from './NavBar'
-import Todo from './Todo'
+//import Todo from './Todo'
 import Home from './Home'
 import NoMatch from './NoMatch'
 // import Map from './Map'
@@ -30,14 +30,14 @@ class RouterElement extends Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/todo" component={Todo}/>
+                    {/* <Route exact path="/todo" component={Todo}/> */}
                     <Route exact path="/map" component={Map}/>
                     {/* <Route exact path="/Catalogue" component={Catalogue} />
                     <Route exact path="/Category" component={Category}/>
                     <Route exact path="/Product" component={Product}/>
                     <Route component={NoMatch} /> */}
                 </Switch>
-                <NavBar />
+                {/* <NavBar /> */}
             </BrowserRouter>
         );
     }

@@ -10,17 +10,17 @@ import Header from './Header'
 import Drawer from './Drawer'
 const Home = () => (
   <div style={{
-    flex:1,
-    margin:1,
+    alignItems:'center',
     borderColor:'#cfcfcf',
-    borderWidth:1,
     borderRadius:2,
+    borderWidth:1,
+    flex:1,
+    justifyContent:'space-evenly',
+    margin:1,
     // shadowColor: 'rgba(1, 1, 1, 1)',
     // shadowOffset: {width: 0, height: 0},
     // shadowRadius: 20,
     //backgroundColor:'#ffffff',
-    alignItems:'center',
-    justifyContent:'space-evenly',
     //height:22,
   }}>
   {/* <p style={{          
@@ -39,76 +39,223 @@ const Home = () => (
     Home
   </p> */}
      <View>  
-      {/* <Header/>        */}
       <Drawer>
       <SwipeableScroller>
-        {/* <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
-
-          <View  style={{height:Dimensions.get('window').height/6,backgroundColor:'transparent'}}>
-
-            <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5}>
-  
-              <View style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgb(20,20,20)"
-                }}>
-                  <Text>Slide 1</Text>
-              </View>
-              <View style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgb(110,110,110)"
-              }}>
-                  <Text>Slide 2</Text>
-              </View>
-              <View style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgb(200,200,200)"
-              }}>
-                  <Text>Slide 3</Text>
-              </View>
-            </Swiper>
-          </View>
-
-          </View>
-          <View>
-            <SwipeableList/>
-          </View> */}
-        </SwipeableScroller>
-        <KeyboardAvoidingView style={{height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:5}} behavior="padding" enabled>
-          <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:10,marginLeft:10}}>
-            <AddPost style={{marginTop:0}}/>
+      </SwipeableScroller>
+        <KeyboardAvoidingView style={{bottom:0,flex:1,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
+          <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
+            <AddPost style={{marginTop:0,flex:1}}/>
           </View>
 
           <ScrollView horizontal = {true} style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:0,marginRight:0}}>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'white',flex:1,flexDirection:'column',marginRight:2,marginLeft:3}}>
-              <Text selectable={false}>one</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:3,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+              }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>one</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'lightgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>two</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+              }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                
+              }}>two</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'darkgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>three</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+              }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>three</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'black',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>four</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+            }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>four</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'white', flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>one</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+            }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>one</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'lightgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>two</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+            }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>two</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'darkgrey',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>three</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+            }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>three</Text> */}
             </View>
-            <View style={{height:Dimensions.get('window').height/15,width:(Dimensions.get('window').height)/12,backgroundColor:'black',flex:1,flexDirection:'column',marginRight:2,marginLeft:2}}>
-              <Text selectable={false}>four</Text>
+            <View style={{
+              height:Dimensions.get('window').height/15,
+              width:(Dimensions.get('window').height)/12,
+              backgroundColor:'darkgrey',
+              flex:1,
+              flexDirection:'column',
+              marginRight:2,
+              marginLeft:2,
+              borderRadius:4,
+              borderColor:'white',
+              overflow:'hidden'
+            }}>
+              {/* <Text selectable={false} style={{           
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 12,
+                textShadowColor: 'rgba(128, 128, 128, 1)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 8,
+                flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}>four</Text> */}
             </View>
           </ScrollView>
         

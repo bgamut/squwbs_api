@@ -16,55 +16,55 @@ import {
 import PropTypes from "prop-types"
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
-const _animatedValue = new Animated.Value(0);
+const animatedValue = new Animated.Value(0);
 const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: "transparent",
+  activeDotStyle: {
+    backgroundColor: '#007aff',
+    borderRadius: 4,
+    height: 8,
+    marginBottom: 3,
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 3,
+    width: 8,
   },
-  sliderContainer: {
-      backgroundColor: "transparent",
-      overflow: "hidden",
-      position: "relative",
-      flex: 1,
+  container: {
+    backgroundColor: "transparent",
+    flex: 1,
   },
   controlsWrapperStyle: {
-      position: "absolute",
-      alignItems: "center",
-      justifyContent: "space-between",
-      right: 0,
-      bottom: 0,
-      padding: 10
-  },
-  dotsWrapperStyle: {
-      alignItems: "center",
-      justifyContent: "center"
-  },
-  activeDotStyle: {
-      backgroundColor: '#007aff',
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      marginLeft: 3,
-      marginRight: 3,
-      marginTop: 3,
-      marginBottom: 3
+    alignItems: "center",
+    bottom: 0,
+    justifyContent: "space-between",
+    padding: 10,
+    position: "absolute",
+    right: 0,
   },
   dotStyle: {
-      backgroundColor: 'rgba(0,0,0,.2)',
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      marginLeft: 3,
-      marginRight: 3,
-      marginTop: 3,
-      marginBottom: 3
+    backgroundColor: 'rgba(0,0,0,.2)',
+    borderRadius: 4,
+    height: 8,
+    marginBottom: 3,
+    marginLeft: 3,
+    marginRight: 3,
+    marginTop: 3,
+    width: 8,
   },
-  prevButtonStyle: {
-      color: '#777777'
+  dotsWrapperStyle: {
+    alignItems: "center",
+    justifyContent: "center"
   },
   nextButtonStyle: {
-      color: '#007aff'
+    color: '#007aff'
+  }, 
+  prevButtonStyle: {
+    color: '#777777'
+  },
+  sliderContainer: {
+    backgroundColor: "transparent",
+    flex: 1,
+    overflow: "hidden",
+    position: "relative", 
   },
 });
 
@@ -73,16 +73,15 @@ export default class HorizontalSwipeElements extends Component {
     super(props);
 
     this.state = {
-        width: Dimensions.get('window').width,
-        height: 200,
-        activeIndex: props.index,
-        pan: new Animated.ValueXY(),
+      activeIndex: props.index,
+      height: 200,
+      pan: new Animated.ValueXY(),
+      width: Dimensions.get('window').width,
     };
     this._animatedValueX=0;  
     this._animatedValueY=0;
     this._panResponder = PanResponder.create({
-      onPanResponderTerminationRequest:()=>false,
-      onMoveShouldSetPanResponderCapture:()=>true,
+      // onMoveShouldSetPanResponderCapture:()=>true,
       onMoveShouldSetPanResponderCapture:(e,gestureState)=>{
        return(Math.abs(gestureState.dx)>5)
       },
@@ -100,7 +99,8 @@ export default class HorizontalSwipeElements extends Component {
           })
           this._changeIndex(correction>0 ? -1 :1)
         }
-      }
+      },
+      onPanResponderTerminationRequest:()=>false,
     })
   }
   componentDidMount(){

@@ -17,25 +17,24 @@ class Header extends PureComponent {
         super(props);
         this.scroller=React.createRef()
         this.state = {
-            yscroll: new Animated.Value(0),
             dy:new Animated.Value(0),
-            lastscroll:0,
-            opacity:new Animated.Value(1),
             height:this.maxheight,
-            maxheight:this.maxheight
+            lastscroll:0,
+            maxheight:this.maxheight,
+            opacity:new Animated.Value(1),
+            yscroll: new Animated.Value(0),
         };
         this.state.yscroll.addListener(({value})=>{
-            console.log(value)
+            //console.log(value)
             // this.scroller.current.scrollTo({
             //     y:-1*value
             // })
-            //this.forceUpdate()
-            
+            // this.forceUpdate()     
         })
     }
     
     
-    //opacity= new Animated.Value(1)
+    // opacity= new Animated.Value(1)
     // if(state.yscroll>22){
     //     opacity=0
     // }
@@ -63,25 +62,19 @@ class Header extends PureComponent {
             <View style={
                 // divStyle
                 {
-                    marginBottom :2,
-                    //padding:1,
-                    height:this.state.height,
-                    backgroundColor:'#ffffff',
                     alignItems:'center',
-                    justifyContent:'center',
-                    //flexDirection:'row',
-                    //flex:1,
-                    borderColor:'black',
-                    borderRadius:2,
-                    //color:'black',
+                    backgroundColor:'#ffffff',
                     borderColor:'#cfcfcf',
+                    borderRadius:2,
                     borderWidth:1,
-                    opacity:this.state.opacity
+                    height:this.state.height,
+                    justifyContent:'center',
+                    marginBottom :2,
+                    opacity:this.state.opacity      
                 }
             }>        
                 <Text style ={pStyle} >
                     {name}
-                    {/* {state.yscroll} */}
                 </Text>
             </View>
         
@@ -90,19 +83,17 @@ class Header extends PureComponent {
 };
 
 const divStyle = {
-    margin:0,
-    //padding:1,
-    height:22,
-    backgroundColor:'#ffffff',
     alignItems:'center',
-    justifyContent:'center',
-    flexDirection:'row',
-    flex:1,
-    borderColor:'black',
-    borderRadius:2,
-    color:'black',
+    backgroundColor:'#ffffff',
     borderColor:'#cfcfcf',
-    borderWidth:1
+    borderRadius:2,
+    borderWidth:1,
+    color:'black',
+    flex:1,
+    flexDirection:'row',
+    height:22,
+    justifyContent:'center',
+    margin:0,  
 };
   const pStyle = {
     color:'white',

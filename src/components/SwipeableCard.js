@@ -214,11 +214,12 @@ const SwipeableCard = (props) => {
       
             <View>
                 <Animated.View
-                    style={{left:dragPos.x,height:dragPos.y}} {..._panResponder.panHandlers}
+                    style={{left:dragPos.x,height:dragPos.y,alignItems:'center',}} {..._panResponder.panHandlers}
                 >
                     {/* <Text>
                         {props.title}
                     </Text> */}
+                    <View style={{width:Dimensions.get('window').width*0.618,background:'transparent'}}>
                     <TouchableOpacity onPress={
                         onPress
                         
@@ -230,21 +231,51 @@ const SwipeableCard = (props) => {
                         }}
                         >
                         <View>
-                        <Image
-                            style={{width: 50, height: 50}}
-                            source={{uri: props.picture}}
-                        />
+                          <Image
+                              style={{width: Dimensions.get('window').height/12, height: Dimensions.get('window').height/12,borderRadius:4}}
+                              source={{uri: props.picture}}
+                          />
                         </View>
-                        <View>
-                        <Text selectable={false}>
-                            {String(props.name_first) +" " +String(props.name_last)}
-                        </Text>
-                        <Text selectable={false}>
-                            {props.email}
-                        </Text>
-                        </View>
+                        <View style={{alignItems:'center',justifyContent:'center',flex:1,backgroundColor:'white'}}>
+                            <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'white'}}>
+                              <Text selectable={false} style={{           
+                                textDecorationLine:'none',
+                                color:'white',
+                                fontSize: 12,
+                                textShadowColor: 'rgba(128, 128, 128, 1)',
+                                textShadowOffset: {width: 0, height: 0},
+                                textShadowRadius: 8,
+                                flex:1,
+                                textAlign:'center',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                flexDirection:'row',
+                                margin:5,
+                              }}>
+                                  {String(props.name_first) +" " +String(props.name_last)}
+                              </Text>
+                              <Text selectable={false}
+                              style={{           
+                                textDecorationLine:'none',
+                                color:'white',
+                                fontSize: 12,
+                                textShadowColor: 'rgba(128, 128, 128, 1)',
+                                textShadowOffset: {width: 0, height: 0},
+                                textShadowRadius: 8,
+                                flex:1,
+                                textAlign:'center',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                flexDirection:'row',
+                                margin:5,
+                              }}>
+                                  {props.email}
+                              </Text>
+                            </View>
+                            </View>
                         </View>
                     </TouchableOpacity>
+                  </View>
                 </Animated.View>
             </View>
       

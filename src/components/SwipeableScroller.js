@@ -81,10 +81,10 @@ class SwipeableScroller extends Component {
     render(){
         return(
             <View>
-            <Header ref = {header=>{this.Header=header}} style = {{height:22}} yscroll={this.state.scroll}/>
+            {/* <Header ref = {header=>{this.Header=header}} style = {{height:22}} yscroll={this.state.scroll}/> */}
             <ScrollView 
                 //ref={this.scroller}
-                style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60)}}
+                style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
                 onScroll={this.onScroll}
                 //scrollTop={state.yscroll}
                 scrollEnabled={false}
@@ -92,12 +92,12 @@ class SwipeableScroller extends Component {
                 // {...this._panResponder.panHandlers}
             >
             
-            <View style={{backgroundColor:'transparent',flex:1,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
+            <View style={{backgroundColor:'transparent',flex:1,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
                 {/* {props.children} */}
                 
-                <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:5,paddingRight:2,paddingLeft:2}}>
+                <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
                 
-          <View  style={{height:Dimensions.get('window').height/6,backgroundColor:'transparent'}}>
+          <View  style={{height:Dimensions.get('window').height/6,width:Dimensions.get('window').width-2}}>
           
             <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5}>
   
@@ -105,25 +105,74 @@ class SwipeableScroller extends Component {
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "rgb(20,20,20)"
+                backgroundColor: "rgb(20,20,20)",
+                textAlaign:'center',
+                borderRadius:4,
+                
+                overflow:'hidden',
+                
                 }}>
-                  <Text>Slide 1</Text>
+                  {/* <Text style={{           
+                    textDecorationLine:'none',
+                    color:'white',
+                    fontSize: 12,
+                    textShadowColor: 'rgba(128, 128, 128, 1)',
+                    textShadowOffset: {width: 0, height: 0},
+                    textShadowRadius: 8,
+                    flex:1,
+                    // textAlign:'center',
+                    // alignItems:'center',
+                    // justifyContent:'center',
+                    // flexDirection:'row',
+                  }}>Slide 1</Text> */}
               </View>
               <View style={{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "rgb(110,110,110)"
+                backgroundColor: "rgb(110,110,110)",
+                
+                borderRadius:4,
+                overflow:'hidden',
+                
               }}>
-                  <Text>Slide 2</Text>
+                  {/* <Text style={{           
+                    textDecorationLine:'none',
+                    color:'white',
+                    fontSize: 12,
+                    textShadowColor: 'rgba(128, 128, 128, 1)',
+                    textShadowOffset: {width: 0, height: 0},
+                    textShadowRadius: 8,
+                    flex:1,
+                    textAlign:'center',
+                    // alignItems:'center',
+                    // justifyContent:'center',
+                    // flexDirection:'row',
+                  }}>Slide 2</Text> */}
               </View>
               <View style={{
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "rgb(200,200,200)"
+                backgroundColor: "rgb(200,200,200)",
+                borderRadius:4,
+               
+                overflow:'hidden',
+               
               }}>
-                  <Text>Slide 3</Text>
+                  {/* <Text style={{           
+                    textDecorationLine:'none',
+                    color:'white',
+                    fontSize: 12,
+                    textShadowColor: 'rgba(128, 128, 128, 1)',
+                    textShadowOffset: {width: 0, height: 0},
+                    textShadowRadius: 8,
+                    flex:1,
+                    textAlign:'center',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    // flexDirection:'row',
+                  }}>Slide 3</Text> */}
               </View>
             </Swiper>
           </View>
