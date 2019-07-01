@@ -11,7 +11,7 @@ class Drawer extends Component{
         this.Sliding_Drawer_Toggle = true;
         this.scroller=React.createRef()
         this.maxheight=50
-        this.imageLength=31
+        this.imageLength=30
         this.state = {
             dy:new Animated.Value(0),
             height:this.maxheight,
