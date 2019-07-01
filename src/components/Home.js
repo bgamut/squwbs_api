@@ -8,10 +8,7 @@ import Swiper from './Swiper'
 import AddPost from './AddPost'
 import Header from './Header'
 import Drawer from './Drawer'
-import {Context} from '../context'
-const Home = (props) => {
-  const [state,setState] = useContext(Context)
-  return(
+const Home = () => (
   <div style={{
     alignItems:'center',
     borderColor:'#cfcfcf',
@@ -42,7 +39,7 @@ const Home = (props) => {
     Home
   </p> */}
      <View>  
-      <Drawer style={{width:state.windowDimensions.width}}>
+      <Drawer>
       <SwipeableScroller>
       </SwipeableScroller>
         <KeyboardAvoidingView style={{bottom:0,flex:1,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
@@ -266,7 +263,6 @@ const Home = (props) => {
         </Drawer>
       </View> 
   </div>
-  )
-}
+)
 
 export default Home

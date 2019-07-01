@@ -3,7 +3,6 @@ import React,{Component,useContext,useState,useEffect} from 'react';
 import {Animated,PanResponder} from 'react-native'
 //import logo from './logo.svg';
 //import './App.css';
-import Container from './components/Container'
 import Header from './components/Header'
 import Home from './components/Home'
 import Posts from './components/Posts'
@@ -133,9 +132,9 @@ const App = (props,context)=>{
         <SafeAreaView>
           
          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
-          <Container>
+
             <RouterElement/>
-          </Container>
+           
           </View>
         </SafeAreaView>
       

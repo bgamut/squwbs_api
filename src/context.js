@@ -21,7 +21,6 @@ export function ContextController({ children }) {
     index:0,
     dataManipulated:false,
     filteredData:[],
-    windowDimensions:{width:0,height:0},
     dy: new Animated.Value(0),
     horizontalscroll:new Animated.Value(0)
   };
