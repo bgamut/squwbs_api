@@ -10,8 +10,8 @@ class Drawer extends Component{
         this.Animation = new Animated.Value(0)
         this.Sliding_Drawer_Toggle = true;
         this.scroller=React.createRef()
-        this.maxheight=22
-        this.imageLength=22
+        this.maxheight=50
+        this.imageLength=50
         this.state = {
             dy:new Animated.Value(0),
             height:this.maxheight,
@@ -124,7 +124,7 @@ class Drawer extends Component{
                             style={{
                                 //backgroundColor:'black',
                             }}>
-                            <Image source={require('./icons/24x24.png')} style={{
+                            <Image source={require('./icons/96x96.png')} style={{
                                 Top:(this.maxheight-this.imageLength)/2,
                                 position:'absolue',
                                 height:this.imageLength,
@@ -203,7 +203,7 @@ const styles=StyleSheet.create(
         },
         textStyle:{
             color:'white',
-            fontSize: 12,
+            fontSize: 19,
             textShadowColor: 'rgba(128, 128, 128, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
