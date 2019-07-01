@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions} from 'react-native'
 import NavBar from './NavBar'
+import context from '../context'
 var {name} =require( '../../package.json')
 const SLIDING_DRAWER_WIDTH =300;
 class Drawer extends Component{
@@ -10,15 +11,16 @@ class Drawer extends Component{
         this.Animation = new Animated.Value(0)
         this.Sliding_Drawer_Toggle = true;
         this.scroller=React.createRef()
-        this.maxheight=22
-        this.imageLength=22
+        this.maxheight=50
+        this.width=0
+        this.imageLength=31
         this.state = {
             dy:new Animated.Value(0),
             height:this.maxheight,
             lastscroll:0,
             maxheight:this.maxheight,
             opacity:new Animated.Value(1),
-            yscroll: new Animated.Value(0),
+            yscroll:new Animated.Value(0),
         };
         this.state.yscroll.addListener(({value})=>{
             //console.log(value)
@@ -36,12 +38,16 @@ class Drawer extends Component{
         //this.setState({...this.state,height:nextProps.style.height})
         var maxheight = this.state.maxheight
         var limit=maxheight
-        
+        var width = this.props.style.width
         // console.log(height)
         // console.log(height-nextProps.yscroll)
         // console.log(height-nextProps.yscroll/height)
         
-            this.setState({opacity:((limit-nextProps.yscroll)/limit),height:maxheight-(maxheight*(nextProps.yscroll/(limit*5)))})
+            this.setState({
+                opacity:((limit-nextProps.yscroll)/limit),
+                height:maxheight-(maxheight*(nextProps.yscroll/(limit*5))),
+                width:width
+            })
             //console.log(this.props.scrollValue)
             //this.opacity.setValue((this.height-this.props.scrollValue._value)/this.height)
         
@@ -84,7 +90,7 @@ class Drawer extends Component{
         const ANIMATION_INTERPOLATE =this.Animation.interpolate(
             {
                 inputRange:[0,1],
-                outputRange:[(Dimensions.get('window').width),(Dimensions.get('window').width-SLIDING_DRAWER_WIDTH)]
+                outputRange:[(0-SLIDING_DRAWER_WIDTH),(0)]
             }
         )
         return(
@@ -112,7 +118,7 @@ class Drawer extends Component{
                         // backgroundColor:'black',
                         padding:0,
                         height:this.maxheight,
-                        right:0,
+                        left:0,
                         position:'absolute',
                         width:this.maxheight,
                         flex:1,
@@ -138,7 +144,7 @@ class Drawer extends Component{
                         alignItems:'center',
                         zIndex:0,
                     }}>
-                        <Text style ={styles.textStyle} >
+                        <Text slectable = {false} style ={styles.textStyle} >
                             {name}
                         </Text>
                     </View> 
@@ -202,7 +208,7 @@ const styles=StyleSheet.create(
         },
         textStyle:{
             color:'white',
-            fontSize: 12,
+            fontSize: 18,
             textShadowColor: 'rgba(128, 128, 128, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
