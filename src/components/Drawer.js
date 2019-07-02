@@ -93,7 +93,7 @@ class Drawer extends Component{
                 width:Dimensions.get('window').width,
                 backgroundColor:'transparent'
             }}>
-                <View style={
+                <Animated.View style={
                 {
                     // alignItems:'center',
                     backgroundColor:'#ffffff',
@@ -142,7 +142,7 @@ class Drawer extends Component{
                             {name}
                         </Text>
                     </View> 
-                </View> 
+                </Animated.View> 
                 {this.props.children}
                 <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
                     transform:[{

@@ -125,7 +125,7 @@ const SwipeableCard = (props) => {
         
     }
     const style={
-      height:55,
+      height:Dimensions.get('window').height/11,
 
     }
     //const [userInput,setUserInput,Refs] = useState("")
@@ -219,7 +219,7 @@ const SwipeableCard = (props) => {
                     {/* <Text>
                         {props.title}
                     </Text> */}
-                    <View style={{width:Dimensions.get('window').width*0.618,background:'transparent'}}>
+                    <View style={{width:Dimensions.get('window').width-4,background:'transparent'}}>
                     <TouchableOpacity onPress={
                         onPress
                         
@@ -227,7 +227,9 @@ const SwipeableCard = (props) => {
                         <View 
                         style={{
                             flex:1,
-                            flexDirection:'row'
+                            flexDirection:'row',
+                            margin:2
+                            
                         }}
                         >
                         <View>
@@ -236,8 +238,8 @@ const SwipeableCard = (props) => {
                               source={{uri: props.picture}}
                           />
                         </View>
-                        <View style={{alignItems:'center',justifyContent:'center',flex:1,backgroundColor:'white'}}>
-                            <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'white'}}>
+                        <View style={{alignItems:'center',justifyContent:'center',flex:1,backgroundColor:'transparent'}}>
+                            <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
                               <Text selectable={false} style={{           
                                 textDecorationLine:'none',
                                 color:'white',
