@@ -22,7 +22,11 @@ export function ContextController({ children }) {
     dataManipulated:false,
     filteredData:[],
     dy: new Animated.Value(0),
-    horizontalscroll:new Animated.Value(0)
+    horizontalscroll:new Animated.Value(0),
+    opacity:1,
+    drawerToggle:true,
+    drawerAnimation:new Animated.Value(0),
+    translateY:new Animated.Value(0)
   };
 
   const [state, setState] = useState(intialState);

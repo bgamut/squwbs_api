@@ -28,7 +28,7 @@ const NavBar = () => (
   //     }}
   //   >
       <View style={{
-              height:Dimensions.get('window').height/15,
+              //height:Dimensions.get('window').height/15,
               //backgroundColor:'#666666',
               alignItems:'center',
               //justifyContent:'space-evenly',
@@ -44,7 +44,7 @@ const NavBar = () => (
               // shadowRadius: 20,
               backgroundColor:'#ffffff'
             }}>
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
           <a id="linkHome" 
             href="/" 
             style={{
@@ -70,15 +70,93 @@ const NavBar = () => (
               // color:'black', 
               textDecorationLine:'none',
               color:'white',
-              fontSize: 12,
+              fontSize: 17,
               textShadowColor: 'rgba(128, 128, 128, 1)',
               textShadowOffset: {width: 0, height: 0},
               textShadowRadius: 8,
             }}>Home</Text>
             </TouchableOpacity>
             </a><br/>
+        </View> */}
+        <View style={styles.box}>
+        <a style={
+          {
+            flex:1,
+            textDecorationLine:'none',
+            //borderColor:'black',
+            //borderWidth:2,
+            color:'white',
+            fontSize: 17,
+            textShadowColor: 'rgba(128, 128, 128, 1)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8,
+            flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/login/facebook">
+          <TouchableOpacity style={styles.touch}>
+          <Text id="linkLoginFacebook" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 17,
+            textShadowColor: 'rgba(128, 128, 128, 1)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8,
+            flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          >Login with Facebook</Text>
+          </TouchableOpacity>
+        </a><br/>
         </View>
         <View style={styles.box}>
+        <a style={
+          {
+            flex:1,
+            textDecorationLine:'none',
+            //borderColor:'black',
+            //borderWidth:2,
+            color:'white',
+            fontSize: 17,
+            textShadowColor: 'rgba(128, 128, 128, 1)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8,
+            flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/login/google">
+          <TouchableOpacity style={styles.touch}>
+          <Text id="linkLoginGoogle" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 17,
+            textShadowColor: 'rgba(128, 128, 128, 1)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8,
+            flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          >Login with Google</Text>
+          </TouchableOpacity>
+        </a><br/>
+        </View>
+        {/* <View style={styles.box}>
         <a style={
           {
             flex:1,
@@ -116,7 +194,7 @@ const NavBar = () => (
           >Login</Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
+        </View> */}
         {/* <View style={styles.box}>
           <Link id="linkTodo" to="/todo" style={{color:'black', textDecorationLine:'none',borderColor:'black',borderWidth:2}}>Todo</Link><br/>
         </View> */}
@@ -133,9 +211,9 @@ const NavBar = () => (
 const styles = StyleSheet.create({
   
     box:{
-      margin:0,
+      margin:8,
       //padding:1,
-      height:22,
+      height:Dimensions.get("window").height/9,
       backgroundColor:'#ffffff',
       alignItems:'center',
       justifyContent:'center',

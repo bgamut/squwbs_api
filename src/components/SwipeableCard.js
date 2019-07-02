@@ -243,7 +243,7 @@ const SwipeableCard = (props) => {
                               <Text selectable={false} style={{           
                                 textDecorationLine:'none',
                                 color:'white',
-                                fontSize: 12,
+                                fontSize: 15,
                                 textShadowColor: 'rgba(128, 128, 128, 1)',
                                 textShadowOffset: {width: 0, height: 0},
                                 textShadowRadius: 8,
@@ -260,7 +260,7 @@ const SwipeableCard = (props) => {
                               style={{           
                                 textDecorationLine:'none',
                                 color:'white',
-                                fontSize: 12,
+                                fontSize: 15,
                                 textShadowColor: 'rgba(128, 128, 128, 1)',
                                 textShadowOffset: {width: 0, height: 0},
                                 textShadowRadius: 8,

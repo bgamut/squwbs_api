@@ -38,11 +38,11 @@ const Home = () => (
     }}>
     Home
   </p> */}
-     <View>  
+    <View style={{height:Dimensions.get('window').height}}>  
       <Drawer>
-      <SwipeableScroller/>
-     
-        <KeyboardAvoidingView style={{bottom:0,flex:1,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
+        <SwipeableScroller/>
+      </Drawer>
+      <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
           <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
             <AddPost style={{marginTop:0,flex:1}}/>
           </View>
@@ -259,9 +259,8 @@ const Home = () => (
             </View>
           </ScrollView>
         
-        </KeyboardAvoidingView>
-        </Drawer>
-      </View> 
+        </KeyboardAvoidingView> 
+    </View> 
   </div>
 )
 

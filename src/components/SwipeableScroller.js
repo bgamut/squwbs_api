@@ -7,28 +7,45 @@ import SwipeableList from './SwipeableList'
 import Header from './Header'
 // const translateY = new Animated.Value(0);
 
-
-
+let currentY=0
+//const prevY=new Animated.Value(0)
+let prevY=0
+const yScroll = new Animated.Value(0)
 const SwipeableScroller = (props) => {
   const [state, setState] = useContext(Context);
-  const translateY=new Animated.Value(0)
+  
   
   useEffect(()=>{
-    translateY.addListener(({value})=>{
+    yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
-      
+      //console.log(value)
     })
   },[])
   const onScroll=(e)=>{
-    translateY.setValue(e.nativeEvent.contentOffset.y)
-    const ANIMATION_INTERPOLATE =translateY.interpolate(
+    
+    //console.log(e.nativeEvent.contentOffset.y)
+    currentY=(e.nativeEvent.contentOffset.y)
+    //console.log(yScroll._value+prevY-currentY)
+    yScroll.setValue(yScroll._value+prevY-currentY)
+    // const ANIMATION_INTERPOLATE =currentY.interpolate(
+    //   {
+    //       inputRange:[0,50,100],
+    //       outputRange:[0,50,50]
+    //   }
+    // )
+    //setState({...state,yscroll:ANIMATION_INTERPOLATE})
+    //prevY.setValue(e.nativeEvent.contentOffset.y)
+    state.yscroll.setValue(yScroll._value)
+    let translateYInterp = state.yscroll.interpolate(
       {
-          inputRange:[0,50,100],
-          outputRange:[0,50,50]
+          inputRange:[0,50,51,100],
+          outputRange:[0,50,50,50]
       }
     )
-    setState({...state,yscroll:ANIMATION_INTERPOLATE})
-    //console.log(state.yscroll)
+    setState({...state,translateY:translateYInterp})
+    //setState({...state,yscroll:yScroll})
+    prevY=e.nativeEvent.contentOffset.y
+    
   }
   return(
            
