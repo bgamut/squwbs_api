@@ -1,6 +1,7 @@
 import React,{Component,useContext} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity} from 'react-native'
 import { Context } from "../context";
+import ReactDOM from 'react-dom'
 //import CardFlip from './Card';
 
 
@@ -10,12 +11,21 @@ class SwipeableCard extends Component {
   constructor(props){
     super(props)
     this.state = {
-
+      styleCondition:false
     };
     // this.state.yscroll.addListener(({value})=>{
     
     // })
+    this.myRef=React.createRef();
   }
+  
+  style={
+    height:Dimensions.get('window').height/11,
+  }
+  refsCollection={}
+  dragPos = new Animated.ValueXY({x:0,y:this.style.height});
+  translateX = new Animated.Value(0);
+  translateY=new Animated.Value(0)
   dismiss= (itemIndex,state,setState)=>{
       
       var filtered =state.filteredData.filter(item => item.index !== itemIndex);
@@ -29,18 +39,21 @@ class SwipeableCard extends Component {
       //console.log(state.filteredData)
       
   }
-  style={
-    height:Dimensions.get('window').height/11,
 
-  }
  
-  dragPos = new Animated.ValueXY({x:0,y:this.style.height});
-  translateX = new Animated.Value(0);
-  translateY=new Animated.Value(0)
+  
   
     onPress=(e)=>{
           console.log(this.props)
       }
+    flip=()=>{
+      if(this.state.styleCondition==false){
+        this.setState({styleCondition:true})
+      }
+      else{
+        this.setState({styleCondition:false})
+      }
+    }
     render(){
       // const [state, setState] = useContext(Context);
       return (
@@ -50,9 +63,12 @@ class SwipeableCard extends Component {
                 style={{alignItems:'center',}}
             >
 
-                <View style={{width:Dimensions.get('window').width-4,background:'transparent'}}>
+                <View ref='card' className={this.state.styleCondition ? '':'flipped'} style={{width:Dimensions.get('window').width-4,background:'transparent'}}>
                 <TouchableOpacity onPress={
-                    this.onPress  
+                    //this.onPress  
+                    //ReactDOM.findDOMNode(this.refs.card).className.toggle('flipped')
+                    this.flip
+                    
                 }>
                     <View 
                     style={{
