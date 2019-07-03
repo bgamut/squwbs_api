@@ -98,7 +98,7 @@ const Drawer =(props)=>{
                         <TouchableOpacity 
                             onPress = {ShowSlidingDrawer}
                             style={{
-                                backgroundColor:'orange',
+                                backgroundColor:'transparent',
                                 zIndex:'99',
                             }}>
                             <Image source={require('./icons/96x96.png')} style={{
@@ -169,7 +169,7 @@ const Drawer =(props)=>{
                         <TouchableOpacity 
                             onPress = {ShowSlidingDrawer}
                             style={{
-                                backgroundColor:'red',
+                                backgroundColor:'transparent',
                             }}>
                             <Image source={require('./icons/96x96.png')} style={{
                                 Top:(maxHeight-imageLength)/2,

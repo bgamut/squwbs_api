@@ -1,6 +1,6 @@
 //import React, {memo} from 'react'
 import React,{Component,useContext,useState,useEffect,memo} from 'react';
-import {Animated,TouchableOpacity,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions} from 'react-native'
+import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions} from 'react-native'
 import HorizontalSwipeElements from './HorizontalSwipeElements'
 import SwipeableList from './SwipeableList'
 import SwipeableScroller from './SwipeableScroller'
@@ -295,6 +295,9 @@ const Home = () => {
   //   )
   // }
   // else{
+    const longpress=()=>{
+      alert('longpress')
+    }
     return(
       <View style={{height:Dimensions.get('window').height}}>  
           <Drawer>
@@ -306,7 +309,7 @@ const Home = () => {
               </View>
     
               <ScrollView horizontal = {true} style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:0,marginRight:0}}>
-                <TouchableOpacity>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -333,8 +336,8 @@ const Home = () => {
                     flexDirection:'row',
                   }}>one</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -362,8 +365,8 @@ const Home = () => {
                     
                   }}>two</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -390,8 +393,8 @@ const Home = () => {
                     flexDirection:'row',
                   }}>three</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -418,8 +421,8 @@ const Home = () => {
                     flexDirection:'row',
                   }}>four</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -446,8 +449,8 @@ const Home = () => {
                     flexDirection:'row',
                   }}>one</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -474,8 +477,8 @@ const Home = () => {
                     flexDirection:'row',
                   }}>two</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -502,8 +505,8 @@ const Home = () => {
                     flexDirection:'row',
                   }}>three</Text> */}
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,
                   width:(Dimensions.get('window').height)/12,
@@ -530,7 +533,7 @@ const Home = () => {
                     flexDirection:'row',
                   }}>four</Text> */}
                 </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
               </ScrollView>
             </KeyboardAvoidingView> 
         </View> 
