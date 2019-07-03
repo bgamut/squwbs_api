@@ -267,13 +267,21 @@ app.get('/map', function (req, res) {
 app.get('/profile',
 
   function(req, res){
-  // if(req.user==undefined){
-  //   res.redirect(url.format({
-  //     pathname:"/"
-  // })) 
+  if(req.user==undefined){
+    res.redirect(url.format({
+      pathname:"/"
+  })) 
 
-  // }
+  }
 
+  else{
+
+    res.redirect('/', { 
+      provider:req.user.provider,
+      id:req.user.id,
+      displayName:req.user.displayName,
+    });
+  }
   // else{
 
   //   res.render('profile', { 
