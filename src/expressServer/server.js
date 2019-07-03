@@ -208,7 +208,7 @@ app.get('/login/facebook',
   ));
 app.get('/login/facebook/profile', 
 
-  passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/login'})
+  passport.authenticate('facebook',{successRedirect:'/',failureRedirect:'/'})
 
 )
 app.get('/login/google',
@@ -219,7 +219,7 @@ app.get('/login/google',
 app.get('/login/google/profile',  
   passport.authenticate('google',{failureRedirect:'/login'}),
   function(req, res) {
-  res.redirect('/profile');
+  res.redirect('/');
 });
 app.get('/login/twitter',
   passport.authenticate('twitter')
@@ -229,7 +229,7 @@ app.get('/login/twitter/profile',
   passport.authenticate('twitter',{failureRedirect:'/login'}),
   function(req, res) {
 
-  res.redirect('/profile');
+  res.redirect('/');
 });
 
 
