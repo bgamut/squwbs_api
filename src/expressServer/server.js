@@ -208,7 +208,7 @@ app.get('/login/facebook',
   ));
 app.get('/login/facebook/profile', 
 
-  passport.authenticate('facebook',{successRedirect:'/',failureRedirect:'/'})
+  passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/login'})
 
 )
 app.get('/login/google',
@@ -219,7 +219,7 @@ app.get('/login/google',
 app.get('/login/google/profile',  
   passport.authenticate('google',{failureRedirect:'/login'}),
   function(req, res) {
-  res.redirect('/');
+  res.redirect('/profile');
 });
 app.get('/login/twitter',
   passport.authenticate('twitter')
@@ -229,7 +229,7 @@ app.get('/login/twitter/profile',
   passport.authenticate('twitter',{failureRedirect:'/login'}),
   function(req, res) {
 
-  res.redirect('/');
+  res.redirect('/profile');
 });
 
 
@@ -267,21 +267,21 @@ app.get('/map', function (req, res) {
 app.get('/profile',
 
   function(req, res){
-  if(req.user==undefined){
-    res.redirect(url.format({
-      pathname:"/"
-  })) 
+  // if(req.user==undefined){
+  //   res.redirect(url.format({
+  //     pathname:"/"
+  // })) 
 
-  }
+  // }
 
-  else{
+  // else{
 
-    res.redirect('/', { 
-      provider:req.user.provider,
-      id:req.user.id,
-      displayName:req.user.displayName,
-    });
-  }
+  //   res.redirect('/', { 
+  //     provider:req.user.provider,
+  //     id:req.user.id,
+  //     displayName:req.user.displayName,
+  //   });
+  // }
   // else{
 
   //   res.render('profile', { 
