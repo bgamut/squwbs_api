@@ -31,17 +31,72 @@ class SwipeableCard extends Component {
   translateY=new Animated.Value(0)
   dismiss= (itemIndex,state,setState)=>{
       
-      var filtered =state.filteredData.filter(item => item.index !== itemIndex);
+    var filtered =this.state.filteredData.filter(item => item.index !== itemIndex);
 
-      setState({
-        ...state,
-        filteredData:[...filtered],
-        dataManipulated:true,
-        refreshing:false
-      })
-      //console.log(state.filteredData)
-      
+    setState({
+      ...state,
+      filteredData:[...filtered],
+      dataManipulated:true,
+      refreshing:false
+    })
+    //console.log(state.filteredData)
+    
   }
+  flip=()=>{
+        
+    if(this.state.styleCondition==false){
+      this.setState({styleCondition:true})
+    }
+    else{
+      this.setState({styleCondition:false})
+    }
+    console.log(this.state.styleCondition)
+  }
+  _panResponder = PanResponder.create({
+    onMoveShouldSetResponderCapture: () => true,
+    onMoveShouldSetPanResponderCapture: () => true,
+    onPanResponderMove: (e,gestureState)=>{
+
+      this.dragPos.setValue({x:gestureState.dx,y:0})
+
+    },
+    onPanResponderRelease: (e, {vx, dx}) => {
+      //const [state, setState] = useContext(Context);
+      //console.log(dx)
+      const screenWidth = Dimensions.get("window").width;
+      if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.75 * screenWidth) {
+        Animated.sequence([
+          Animated.spring(this.dragPos, {
+            toValue: dx > 0 ? {x:screenWidth,y:this.style.height} : {x:-screenWidth,y:this.style.height },
+            duration: 250
+            
+          // }).start(props.onDismiss);
+        }).start(
+          ()=>
+          {
+            // this.dismiss(this.props.index)
+            this.flip()
+          },
+        Animated.spring(this.dragPos,{
+          toValue: this.dragPos.x > 0 ?{x:screenWidth,y:0} : {x:-screenWidth,y:0},
+          duration:750
+        })
+          
+        )
+          //console.log("yo this element's index was "+props.name_first)
+          //setState()
+        ])
+        
+      } else {
+        Animated.spring(this.dragPos, {
+          toValue: {x:0,y:this.style.height},
+          bounciness: 10
+        }).start();
+      }
+    }
+  })
+
+  
 
  
   
@@ -49,37 +104,26 @@ class SwipeableCard extends Component {
     onPress=(e)=>{
           console.log(this.props)
       }
-    flip=()=>{
-      
-      if(this.state.styleCondition==false){
-        this.setState({styleCondition:true})
-      }
-      else{
-        this.setState({styleCondition:false})
-      }
-      console.log(this.state.styleCondition)
-    }
+    
     render(){
       // const [state, setState] = useContext(Context);
+      if(this.state.styleCondition==false){
       return (
+        
         <Fade>
+         <Animated.View
+                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}]}} 
+                 {...this._panResponder.panHandlers}
+            >
         <Flippy
           flipOnClick={true}
           flipDirection='vertical'
           ref={(r)=>this.flippy=r}
+          style={{width:Dimensions.get('window').width,height:this.dragPos.y}}
+          
         >
         <View>
-            <Animated.View
-                style={{alignItems:'center',}}
-            >
-
-                {/* <View ref='card' style={this.state.styleCondition ? {width:Dimensions.get('window').width-4,background:'transparent',borderRadius:2,transition:[ {transform: '0.6s'}],transform:[{rotateX:'-180deg'}]}:{width:Dimensions.get('window').width-4,background:'black',borderRadius:2}}> */}
-                {/* <TouchableOpacity onPress={
-                    //this.onPress  
-                    //ReactDOM.findDOMNode(this.refs.card).className.toggle('flipped')
-                    this.flip
-                    
-                }> */}
+            
                   <FrontSide>
                     <View 
                     style={{
@@ -139,14 +183,21 @@ class SwipeableCard extends Component {
                       filler infomation
                     </Text>
                   </BackSide>
-                {/* </TouchableOpacity> */}
-              {/* </View> */}
-            </Animated.View>
+            
         </View>
       </Flippy>
+      </Animated.View>
       </Fade>
       
   );
+}
+else{
+  return(
+    <View style={{height:this.dragPos.y}}>
+
+    </View>
+  )
+}
     }
     
 };
