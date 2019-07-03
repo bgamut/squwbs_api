@@ -2,7 +2,9 @@ import React,{Component,useContext} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
+import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
+import Flippy, {FrontSide,BackSide} from 'react-flippy'
 //import CardFlip from './Card';
 
 
@@ -60,19 +62,25 @@ class SwipeableCard extends Component {
     render(){
       // const [state, setState] = useContext(Context);
       return (
-    
+        <Fade>
+        <Flippy
+          flipOnClick={true}
+          flipDirection='vertical'
+          ref={(r)=>this.flippy=r}
+        >
         <View>
             <Animated.View
                 style={{alignItems:'center',}}
             >
 
-                <View ref='card' className={this.state.styleCondition ? '':'flipped'} style={{width:Dimensions.get('window').width-4,background:'transparent'}}>
-                <TouchableOpacity onPress={
+                {/* <View ref='card' style={this.state.styleCondition ? {width:Dimensions.get('window').width-4,background:'transparent',borderRadius:2,transition:[ {transform: '0.6s'}],transform:[{rotateX:'-180deg'}]}:{width:Dimensions.get('window').width-4,background:'black',borderRadius:2}}> */}
+                {/* <TouchableOpacity onPress={
                     //this.onPress  
                     //ReactDOM.findDOMNode(this.refs.card).className.toggle('flipped')
                     this.flip
                     
-                }>
+                }> */}
+                  <FrontSide>
                     <View 
                     style={{
                         flex:1,
@@ -125,11 +133,18 @@ class SwipeableCard extends Component {
                         </View>
                         </View>
                     </View>
-                </TouchableOpacity>
-              </View>
+                  </FrontSide>
+                  <BackSide>
+                    <Text>
+                      filler infomation
+                    </Text>
+                  </BackSide>
+                {/* </TouchableOpacity> */}
+              {/* </View> */}
             </Animated.View>
         </View>
-  
+      </Flippy>
+      </Fade>
       
   );
     }
