@@ -2,6 +2,7 @@ import React,{Component,useContext} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
+import './css/SwipeableCard.css'
 //import CardFlip from './Card';
 
 
@@ -47,12 +48,14 @@ class SwipeableCard extends Component {
           console.log(this.props)
       }
     flip=()=>{
+      
       if(this.state.styleCondition==false){
         this.setState({styleCondition:true})
       }
       else{
         this.setState({styleCondition:false})
       }
+      console.log(this.state.styleCondition)
     }
     render(){
       // const [state, setState] = useContext(Context);
