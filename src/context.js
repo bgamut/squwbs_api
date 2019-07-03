@@ -26,7 +26,9 @@ export function ContextController({ children }) {
     opacity:1,
     drawerToggle:true,
     drawerAnimation:new Animated.Value(0),
-    translateY:new Animated.Value(0)
+    translateY:new Animated.Value(0),
+    userData:undefined,
+    spinValue:new Animated.Value(0),
   };
 
   const [state, setState] = useState(intialState);

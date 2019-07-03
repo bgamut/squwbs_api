@@ -1,7 +1,8 @@
 import React, {Component,useContext,useEffect} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions,Easing} from 'react-native'
 import NavBar from './NavBar'
 import {Context} from '../context'
+import './css/Drawer.css'
 var {name} =require( '../../package.json')
 const SLIDING_DRAWER_WIDTH =300;
 const maxHeight=50
@@ -55,7 +56,18 @@ const Drawer =(props)=>{
     }
     useEffect(()=>{
         //console.log(state.translateY._parent)
-    })
+        Animated.timing(state.spinValue,
+            {
+                toValue:360,
+                duration:3000,
+                easing:Easing.linear
+            }).start()
+    },[])
+    // const spin = state.spinValue.interpolate({
+    //     inputRange:[0,1],
+    //     ouputRange:['0deg','360deg']
+    // })
+    if(state.userData===undefined){
         return(
             <Animated.View style={{            
                 height:Dimensions.get('window').height-props.footerHeight,
@@ -81,12 +93,13 @@ const Drawer =(props)=>{
                         width:maxHeight,
                         flex:1,
                         justifyContent:'center',
-                        zIndex:'99',
+                        zIndex:'97',
                     }}>
                         <TouchableOpacity 
                             onPress = {ShowSlidingDrawer}
                             style={{
-                                //backgroundColor:'black',
+                                backgroundColor:'transparent',
+                                zIndex:'99',
                             }}>
                             <Image source={require('./icons/96x96.png')} style={{
                                 Top:(maxHeight-imageLength)/2,
@@ -94,6 +107,7 @@ const Drawer =(props)=>{
                                 height:imageLength,
                                 resizeMode:'contain',
                                 width:imageLength,
+                                zIndex:'98'
                                 //Right:0
                             }}/>
                         </TouchableOpacity>
@@ -115,13 +129,83 @@ const Drawer =(props)=>{
                         translateY:maxHeight+2
                     }]
                     },
-                    {height:Dimensions.get('window').height*6/30-maxHeight}]}>
-                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*6/30-maxHeight}]}>
+                    {height:Dimensions.get('window').height*9/30-maxHeight}]}>
+                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight}]}>
                         <NavBar/>
                     </View>
                 </Animated.View> 
             </Animated.View>    
         ) 
+    }
+    else{
+        return(
+            <Animated.View style={{            
+                height:Dimensions.get('window').height-props.footerHeight,
+                width:Dimensions.get('window').width,
+                backgroundColor:'transparent',
+               
+            }}>
+                <View style={{
+                    backgroundColor:'#ffffff',
+                    borderColor:'#cfcfcf',
+                    borderRadius:2,
+                    borderWidth:1,
+                    height:maxHeight,
+                    justifyContent:'center',
+                    marginBottom :2,
+                    //opacity:state.opacity
+                }}>  
+                    <Animated.View style={{
+                        alignItems:'center',
+                        padding:0,
+                        height:maxHeight,
+                        position:'absolute',
+                        width:maxHeight,
+                        flex:1,
+                        justifyContent:'center',
+                        zIndex:'99',
+                        
+                    }}>
+                        <TouchableOpacity 
+                            onPress = {ShowSlidingDrawer}
+                            style={{
+                                backgroundColor:'orange',
+                            }}>
+                            <Image source={require('./icons/96x96.png')} style={{
+                                Top:(maxHeight-imageLength)/2,
+                                position:'absolue',
+                                height:imageLength,
+                                resizeMode:'contain',
+                                width:imageLength,
+                                //Right:0
+                            }}/>
+                        </TouchableOpacity>
+                    </Animated.View>
+                    <View style={{
+                        alignItems:'center',
+                        zIndex:0,
+                    }}>
+                        <Text style ={styles.textStyle} >
+                            {name}
+                        </Text>
+                    </View> 
+                </View> 
+                {props.children}
+                <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
+                    transform:[{
+                        translateX:drawerInterp
+                    },{
+                        translateY:maxHeight+2
+                    }]
+                    },
+                    {height:Dimensions.get('window').height*9/30-maxHeight}]}>
+                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight}]}>
+                        <NavBar/>
+                    </View>
+                </Animated.View> 
+            </Animated.View>  
+        )
+    }
     // if(-maxHeight<=state.yscroll._value && state.yscroll._value<0){
     //     return(
     //         <Animated.View style={{            
@@ -366,6 +450,7 @@ const styles=StyleSheet.create(
             top:(Platform.OS==='ios')? 20:0,
             width:SLIDING_DRAWER_WIDTH,
             zIndex:99,
+            backgroundColor:'white'
         },
         textStyle:{
             color:'white',
