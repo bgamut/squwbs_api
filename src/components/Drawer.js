@@ -67,7 +67,7 @@ const Drawer =(props)=>{
     //     inputRange:[0,1],
     //     ouputRange:['0deg','360deg']
     // })
-    if(state.userData.provider==undefined){
+    if(state.userData!==undefined && state.userData.provider!==undefined){
         return(
             <Animated.View style={{            
                 height:Dimensions.get('window').height-props.footerHeight,
