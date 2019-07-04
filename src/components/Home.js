@@ -311,7 +311,11 @@ const Home = () => {
                 <AddPost style={{marginTop:0,flex:1}}/>
               </View>
     
-              <ScrollView horizontal = {true} style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:0,marginRight:0}}>
+              <ScrollView 
+                horizontal = {true} 
+                style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:0,marginRight:0}} 
+                showsHorizontalScrollIndicator={false}
+              >
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
                 <View style={{
                   height:Dimensions.get('window').height/15,

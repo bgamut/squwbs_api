@@ -179,9 +179,26 @@ class SwipeableCard extends Component {
                     </View>
                   </FrontSide>
                   <BackSide>
-                    <Text>
-                      filler infomation
-                    </Text>
+                    <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
+                      <Text
+                      style={{           
+                        textDecorationLine:'none',
+                        color:'white',
+                        fontSize: 15,
+                        textShadowColor: 'rgba(128, 128, 128, 1)',
+                        textShadowOffset: {width: 0, height: 0},
+                        textShadowRadius: 8,
+                        flex:1,
+                        textAlign:'center',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        flexDirection:'row',
+                        margin:5,
+                      }}
+                      >
+                        filler infomation
+                      </Text>
+                    </View>
                   </BackSide>
             
         </View>

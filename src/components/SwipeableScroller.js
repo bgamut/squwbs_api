@@ -58,6 +58,8 @@ const SwipeableScroller = (props) => {
       }
       scrollEnabled={false}
       scrollEventThrottle={16}
+      showsVerticalScrollIndicator={false}
+
     >
     
       <View style={{backgroundColor:'transparent',flex:1,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
