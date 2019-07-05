@@ -8,6 +8,7 @@ import Swiper from './Swiper'
 import AddPost from './AddPost'
 import Header from './Header'
 import Drawer from './Drawer'
+import FileDrop from './FileDrop'
 import {Context} from '../context'
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const Home = () => {
@@ -302,6 +303,7 @@ const Home = () => {
     return(
       <View style={{height:Dimensions.get('window').height}}>  
           <Drawer>
+            <FileDrop/>
             <SwipeableScroller/>
           </Drawer>
           <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
