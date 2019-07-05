@@ -11,8 +11,8 @@ import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,Toucha
 //import {faFacebookSquare,faGoogle} from '@fortawesome/free-brands-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-var facebookLogo = require('../svgs/brands/facebook-f.svg')
-var googleLogo = require('../svgs/brands/google.svg')
+//var facebookLogo = require('../svgs/brands/facebook-f.svg')
+//var googleLogo = require('../svgs/brands/google.svg')
 const NavBar = () => {
   // <SafeAreaView>
   //     <KeyboardAvoidingView             
@@ -113,7 +113,7 @@ const NavBar = () => {
           {/* <Text style={{fontFamily:'fontAwesome', fontSize:12, height:22, width:22,color:'black'}}>
             &#xf082;
           </Text> */}
-          <img src = {facebookLogo} style={{
+          {/* <img src = {facebookLogo} style={{
             height:22,
             width:22,
             shadowColor: "black",
@@ -123,7 +123,7 @@ const NavBar = () => {
             filter:'lightGrey',
             
           }}>
-          </img>
+          </img> */}
           <Text id="linkLoginFacebook" 
           style={{
             // color:'black', 
@@ -174,7 +174,7 @@ const NavBar = () => {
             shadowOpacity: 0.3,
           }}>
           </Image> */}
-           <img src = {googleLogo} style={{
+           {/* <img src = {googleLogo} style={{
             height:22,
             width:22,
             shadowColor: "black",
@@ -184,7 +184,7 @@ const NavBar = () => {
             filter:'lightGrey',
             
           }}>
-          </img>
+          </img> */}
           <Text id="linkLoginGoogle" 
           style={{
             // color:'black', 
