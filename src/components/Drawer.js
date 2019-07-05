@@ -4,10 +4,12 @@ import NavBar from './NavBar'
 import {Context} from '../context'
 import './css/Drawer.css'
 var {name} =require( '../../package.json')
+
 const SLIDING_DRAWER_WIDTH =300;
 const maxHeight=50
 const imageLength=30
 let currentHeight=maxHeight
+
 const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
@@ -206,22 +208,22 @@ const Drawer =(props)=>{
                     },
                     {height:Dimensions.get('window').height*9/30-maxHeight}]}>
                     <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight,alignItems:'center'}]}>
-                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8}}>
-                        <Image source={require('./icons/96x96.png')} style={{
-                                // Top:(maxHeight-imageLength)/2,
-                                // position:'absolue',
-                                height:25,
-                                resizeMode:'contain',
-                                width:25,
-                                justifyContent:'center',
-                                alignItems:'center',
-                                marginRight:5
-                                //Right:0
-                            }}/>
-                        <Text selectable={false} style ={styles.textStyle}>
-                            Welcome to 
-                            <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
-                        </Text>
+                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8,backgroundColor:'transparent'}}>
+                            <Image source={require('./icons/96x96.png')} style={{
+                                    // Top:(maxHeight-imageLength)/2,
+                                    // position:'absolue',
+                                    height:25,
+                                    resizeMode:'contain',
+                                    width:25,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    marginRight:5
+                                    //Right:0
+                                }}/>
+                            <Text selectable={false} style ={styles.textStyle}>
+                                Welcome to 
+                                <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
+                            </Text>
                         </View>
                         <NavBar/>
                     </View>
