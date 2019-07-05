@@ -119,7 +119,7 @@ const Drawer =(props)=>{
                         alignItems:'center',
                         zIndex:0,
                     }}>
-                        <Text selectable={false} style ={styles.textStyle} >
+                        <Text selectable={false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
                         </Text>
                     </View> 
@@ -191,7 +191,7 @@ const Drawer =(props)=>{
                         alignItems:'center',
                         zIndex:0,
                     }}>
-                        <Text selectable = {false} style ={styles.textStyle} >
+                        <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
                         </Text>
                     </View> 
@@ -219,7 +219,8 @@ const Drawer =(props)=>{
                                 //Right:0
                             }}/>
                         <Text selectable={false} style ={styles.textStyle}>
-                            Welcome to Squwbs
+                            Welcome to 
+                            <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
                         </Text>
                         </View>
                         <NavBar/>

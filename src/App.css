@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "alienEncounters";
+   src: url("./fonts/alien_encounters/Alien-Encounters-Solid-Regular.ttf") format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
 .App {
   text-align: center;
 }

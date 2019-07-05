@@ -7,7 +7,11 @@ import {ScrollView} from 'react-native'
 //import Category from './screens/CategoryScreen'
 //import Product from './screens/ProductScreen'
 import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity} from 'react-native'
-const NavBar = () => (
+//import Icon from 'react-native-vector-icons/FontAwesome'
+import {faFacebookSquare,faGoogle} from '@fortawesome/free-brands-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+const NavBar = () => {
   // <SafeAreaView>
   //     <KeyboardAvoidingView             
   //     style={{
@@ -27,6 +31,8 @@ const NavBar = () => (
   //       backgroundColor:'#ffffff'
   //     }}
   //   >
+  //console.log(faFacebookSquare.icon)
+    return(
       <View style={{
               //height:Dimensions.get('window').height/15,
               //backgroundColor:'#666666',
@@ -98,6 +104,13 @@ const NavBar = () => (
           }
         } href="/login/facebook">
           <TouchableOpacity style={styles.touch}>
+          {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
+          {/* <svg height={22} width={22} >
+            <path d={String(faFacebookSquare.svgPathData)} fill="red"/>
+          </svg> */}
+          {/* <Text style={{fontFamily:'fontAwesome', fontSize:12, height:22, width:22,color:'black'}}>
+            &#xf082;
+          </Text> */}
           <Text id="linkLoginFacebook" 
           style={{
             // color:'black', 
@@ -137,6 +150,10 @@ const NavBar = () => (
           }
         } href="/login/google">
           <TouchableOpacity style={styles.touch}>
+          {/* <FontAwesomeIcon icon="faGoogle" /> */}
+          <svg height={22} width={22} >
+            <path d={faGoogle.svgPathData} stroke="lightgrey"/>
+          </svg>
           <Text id="linkLoginGoogle" 
           style={{
             // color:'black', 
@@ -205,9 +222,11 @@ const NavBar = () => (
           
       
       </View>
+
   //   </KeyboardAvoidingView>
   // </SafeAreaView>
-)
+  )
+}
 const styles = StyleSheet.create({
   
     box:{
