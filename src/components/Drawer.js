@@ -101,7 +101,7 @@ const Drawer =(props)=>{
                                 backgroundColor:'transparent',
                                 zIndex:'99',
                             }}>
-                            <Image source={require('./icons/96x96.png')} style={{
+                            {/* <Image source={require('./icons/96x96.png')} style={{
                                 Top:(maxHeight-imageLength)/2,
                                 position:'absolue',
                                 height:imageLength,
@@ -109,7 +109,10 @@ const Drawer =(props)=>{
                                 width:imageLength,
                                 zIndex:'98'
                                 //Right:0
-                            }}/>
+                            }}/> */}
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'black',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'black',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'black',}}></div>
                         </TouchableOpacity>
                     </View>
                     <View style={{
@@ -171,14 +174,17 @@ const Drawer =(props)=>{
                             style={{
                                 backgroundColor:'transparent',
                             }}>
-                            <Image source={require('./icons/96x96.png')} style={{
+                            {/* <Image source={require('./icons/96x96.png')} style={{
                                 Top:(maxHeight-imageLength)/2,
                                 position:'absolue',
                                 height:imageLength,
                                 resizeMode:'contain',
                                 width:imageLength,
                                 //Right:0
-                            }}/>
+                            }}/> */}
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'lightgrey',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'lightgrey',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'lightgrey',}}></div>
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
@@ -199,7 +205,23 @@ const Drawer =(props)=>{
                     }]
                     },
                     {height:Dimensions.get('window').height*9/30-maxHeight}]}>
-                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight}]}>
+                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight,alignItems:'center'}]}>
+                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8}}>
+                        <Image source={require('./icons/96x96.png')} style={{
+                                // Top:(maxHeight-imageLength)/2,
+                                // position:'absolue',
+                                height:25,
+                                resizeMode:'contain',
+                                width:25,
+                                justifyContent:'center',
+                                alignItems:'center',
+                                marginRight:5
+                                //Right:0
+                            }}/>
+                        <Text selectable={false} style ={styles.textStyle}>
+                            Welcome to Squwbs
+                        </Text>
+                        </View>
                         <NavBar/>
                     </View>
                 </Animated.View> 
@@ -455,7 +477,7 @@ const styles=StyleSheet.create(
         textStyle:{
             color:'white',
             fontSize: 19,
-            textShadowColor: 'rgba(128, 128, 128, 1)',
+            textShadowColor: 'rgba(0, 0, 0, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
         },
