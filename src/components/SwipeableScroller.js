@@ -65,7 +65,7 @@ const SwipeableScroller = (props) => {
       <View style={{backgroundColor:'transparent',flex:1,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
         <View style={{backgroundColor:'transparent',flex:1,height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
           <View  style={{height:Dimensions.get('window').height/6,width:Dimensions.get('window').width-2}}>
-            <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5}>
+            <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='column'>
 
               <View style={{
                 flex: 1,

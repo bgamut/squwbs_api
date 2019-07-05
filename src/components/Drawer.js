@@ -119,7 +119,7 @@ const Drawer =(props)=>{
                         alignItems:'center',
                         zIndex:0,
                     }}>
-                        <Text style ={styles.textStyle} >
+                        <Text selectable={false} style ={styles.textStyle} >
                             {name}
                         </Text>
                     </View> 
@@ -191,7 +191,7 @@ const Drawer =(props)=>{
                         alignItems:'center',
                         zIndex:0,
                     }}>
-                        <Text style ={styles.textStyle} >
+                        <Text selectable = {false} style ={styles.textStyle} >
                             {name}
                         </Text>
                     </View> 
