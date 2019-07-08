@@ -353,6 +353,7 @@ app.get('/ebay',cors(),(req,res)=>{
     })
 
 })
+
 app.get('/mobileCheck',cors(),(req,res)=>{
   //the following doesn't really give us any useful info besides the fact that it gives us maxwidth
   var md = new mobileDetect(req.headers['user-agent'])

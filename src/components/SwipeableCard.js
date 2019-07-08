@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
 import Flippy, {FrontSide,BackSide} from 'react-flippy'
+import AdSense from 'react-adsense';
+//import GoogleAds from 'react-google-ads'
 //import CardFlip from './Card';
 
 
@@ -196,7 +198,14 @@ class SwipeableCard extends Component {
                         margin:5,
                       }}
                       >
-                        filler infomation
+                        filler 
+                        <AdSense.Google 
+                          client='ca-pub-7292810486004926'
+                          slot='7806394673'
+                          style={{height:50,width:200,display:'block'}}
+                          layout='in-article'
+                          format='fluid'
+                        />
                       </Text>
                     </View>
                   </BackSide>

@@ -10,6 +10,7 @@ import Header from './Header'
 import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
+import AdSense from 'react-adsense';
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const Home = () => {
   const [state,setState]=useState(Context)
@@ -301,7 +302,14 @@ const Home = () => {
       alert('longpress')
     }
     return(
-      <View style={{height:Dimensions.get('window').height}}>  
+      <View style={{height:Dimensions.get('window').height}}>
+        <AdSense.Google 
+                          client='ca-pub-7292810486004926'
+                          slot='7806394673'
+                          style={{height:50,width:200,display:'block'}}
+                          layout='in-article'
+                          format='fluid'
+                        />  
           <Drawer>
             <FileDrop/>
             <SwipeableScroller/>
