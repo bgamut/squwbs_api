@@ -20,6 +20,7 @@ import {ContextController} from './context'
 //import { Context } from "./context";
 import {View,Text,ScrollView,Dimensions,Platform,SafeAreaView,StyleSheet,KeyboardAvoidingView} from 'react-native'
 import async from 'express-async-await'
+// import Reanimate from './components/Reanimate'
 //import {CookiesProvider, useCookies} from 'react-cookie'
 //import Cookies from 'js-cookie'
 //import Cookies from 'universal-cookie'
@@ -134,7 +135,7 @@ const App = (props,context)=>{
          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
 
             <RouterElement/>
-           
+            {/* <Reanimate/> */}
           </View>
         </SafeAreaView>
       

@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.8d2ad75f.chunk.css",
-    "main.js": "./static/js/main.aa8cc81e.chunk.js",
-    "main.js.map": "./static/js/main.aa8cc81e.chunk.js.map",
+    "main.css": "./static/css/main.6f355022.chunk.css",
+    "main.js": "./static/js/main.f3b3a11f.chunk.js",
+    "main.js.map": "./static/js/main.f3b3a11f.chunk.js.map",
     "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
     "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
-    "static/js/2.ef9053e7.chunk.js": "./static/js/2.ef9053e7.chunk.js",
-    "static/js/2.ef9053e7.chunk.js.map": "./static/js/2.ef9053e7.chunk.js.map",
+    "static/css/2.c0851dc3.chunk.css": "./static/css/2.c0851dc3.chunk.css",
+    "static/js/2.96a6846f.chunk.js": "./static/js/2.96a6846f.chunk.js",
+    "static/js/2.96a6846f.chunk.js.map": "./static/js/2.96a6846f.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.7b81fd0b2755706694d4159e790950b0.js": "./precache-manifest.7b81fd0b2755706694d4159e790950b0.js",
+    "precache-manifest.d6ad2c02d737c3d0484fbb25ee072d4f.js": "./precache-manifest.d6ad2c02d737c3d0484fbb25ee072d4f.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/main.8d2ad75f.chunk.css.map": "./static/css/main.8d2ad75f.chunk.css.map",
-    "static/media/96x96.png": "./static/media/96x96.9a7fb416.png"
+    "static/css/2.c0851dc3.chunk.css.map": "./static/css/2.c0851dc3.chunk.css.map",
+    "static/css/main.6f355022.chunk.css.map": "./static/css/main.6f355022.chunk.css.map",
+    "static/media/96x96.png": "./static/media/96x96.9a7fb416.png",
+    "static/media/Drawer.css": "./static/media/Alien-Encounters-Solid-Regular.8aeca3f0.ttf"
   }
 }
