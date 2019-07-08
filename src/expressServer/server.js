@@ -15,7 +15,7 @@ require('module-alias/register')
 const path = require('path');
 const fs =require('fs')
 var cookieParser = require('cookie-parser')
-
+var mobileDetect = require('mobile-detect')
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -353,7 +353,31 @@ app.get('/ebay',cors(),(req,res)=>{
     })
 
 })
-
+app.get('/mobileCheck',cors(),(req,res)=>{
+  //the following doesn't really give us any useful info besides the fact that it gives us maxwidth
+  var md = new mobileDetect(req.headers['user-agent'])
+  console.log(md)
+})
+app.get('/formula',cors(),(req,res)=>{
+  function formula(a,b){
+    var c = a+b
+    console.log('this fired '+c)
+  }
+  res.send({
+    code:formula.toString()
+  })
+  // the following defines formula
+  //var a
+  //fetch('/formula')
+  // .then((res)=>{
+  //   return res.json()
+  // })
+  // .then((json)=>{
+  //   a=(json.code)
+  //   console.log(json.code)
+  // })
+  //eval(a)
+})
   
 console.log('server started in port number : '+String(portnumber))
 app.listen(process.env['PORT'] || portnumber);
