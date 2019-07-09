@@ -1,14 +1,15 @@
 import React,{Component,useContext} from 'react';
-import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity} from 'react-native'
+import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity,StyleSheet} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
 import Flippy, {FrontSide,BackSide} from 'react-flippy'
 import AdSense from 'react-adsense';
+import Swipeout from 'react-native-swipeout'
 //import GoogleAds from 'react-google-ads'
 //import CardFlip from './Card';
-
+//import CardFlip from 'react-native-card-flip'
 
 class SwipeableCard extends Component {
   
@@ -16,16 +17,37 @@ class SwipeableCard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      styleCondition:false
+      styleCondition:false,
+      flipLock:false
     };
     // this.state.yscroll.addListener(({value})=>{
     
     // })
     this.myRef=React.createRef();
+    this.swipeoutButtons =[
+      {
+        text:'Button'
+      }
+    ]
+    this.animatedValue = new Animated.Value(0);
+    this.value = 0;
+    this.animatedValue.addListener(({ value }) => {
+      this.value = value;
+    })
+    this.frontInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['0deg', '180deg'],
+    })
+    this.backInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['180deg', '360deg']
+    })
+
   }
   
   style={
-    height:Dimensions.get('window').height/11,
+    // height:Dimensions.get('window').height/11,
+    height:200
   }
   refsCollection={}
   dragPos = new Animated.ValueXY({x:0,y:this.style.height});
@@ -44,29 +66,73 @@ class SwipeableCard extends Component {
     //console.log(state.filteredData)
     
   }
+  flipCard() {
+    if (this.value >= 90) {
+      Animated.spring(this.animatedValue,{
+        toValue: 0,
+        friction: 8,
+        tension: 10
+      }).start();
+    } else {
+      Animated.spring(this.animatedValue,{
+        toValue: 180,
+        friction: 8,
+        tension: 10
+      }).start();
+    }
+
+  }
+
   flip=()=>{
-        
+    // console.log(this.state)
+    // if(this.state.flipLock==false){
+    //   if(this.state.styleCondition==false){
+    //     this.setState({styleCondition:true})
+    //   }
+    //   else{
+    //     this.setState({styleCondition:false})
+    //   }
+    // }
+    // console.log(this.state)
+    
+    if(this.state.flipLock==false){
+      this.flipCard()
+    //   if(this.state.styleCondition==false){
+    //     this.setState({styleCondition:true})
+    //   }
+    //   else{
+    //     this.setState({styleCondition:false})
+    //   }
+    }
+  
+  }
+  remove=()=>{
     if(this.state.styleCondition==false){
       this.setState({styleCondition:true})
     }
     else{
       this.setState({styleCondition:false})
     }
-    console.log(this.state.styleCondition)
   }
   _panResponder = PanResponder.create({
     onMoveShouldSetResponderCapture: () => true,
     onMoveShouldSetPanResponderCapture: () => true,
     onPanResponderMove: (e,gestureState)=>{
-
+      this.setState({flipLock:true})
       this.dragPos.setValue({x:gestureState.dx,y:0})
-
+      //this.onPress()
     },
     onPanResponderRelease: (e, {vx, dx}) => {
       //const [state, setState] = useContext(Context);
       //console.log(dx)
       const screenWidth = Dimensions.get("window").width;
       if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.75 * screenWidth) {
+        if(vx>0){
+          console.log('right')
+        }
+        else if(vx<0){
+          console.log('left')
+        }
         Animated.sequence([
           Animated.spring(this.dragPos, {
             toValue: dx > 0 ? {x:screenWidth,y:this.style.height} : {x:-screenWidth,y:this.style.height },
@@ -77,7 +143,8 @@ class SwipeableCard extends Component {
           ()=>
           {
             // this.dismiss(this.props.index)
-            this.flip()
+            //this.flip()
+            this.remove()
           },
         Animated.spring(this.dragPos,{
           toValue: this.dragPos.x > 0 ?{x:screenWidth,y:0} : {x:-screenWidth,y:0},
@@ -95,6 +162,8 @@ class SwipeableCard extends Component {
           bounciness: 10
         }).start();
       }
+      this.setState({flipLock:false})
+      //this.onPress()
     }
   })
 
@@ -104,29 +173,43 @@ class SwipeableCard extends Component {
   
   
     onPress=(e)=>{
-          console.log(this.props)
+          // console.log(this.props)
+          //console.log(this.state)
       }
     
     render(){
-      // const [state, setState] = useContext(Context);
+  //     // const [state, setState] = useContext(Context);
+      const frontAnimatedStyle = {
+        transform: [
+          { rotateX: this.frontInterpolate}
+        ]
+      }
+      const backAnimatedStyle = {
+        transform: [
+          { rotateX: this.backInterpolate }
+        ]
+      }
       if(this.state.styleCondition==false){
       return (
         
         <Fade>
+        
          <Animated.View
                  style={{alignItems:'center',transform: [{translateX: this.dragPos.x}]}} 
                  {...this._panResponder.panHandlers}
             >
-        <Flippy
+            <TouchableOpacity onPress={this.flip}>
+        {/* <Flippy
           flipOnClick={true}
           flipDirection='vertical'
           ref={(r)=>this.flippy=r}
           style={{width:Dimensions.get('window').width,height:this.dragPos.y}}
           
-        >
-        <View>
+        > */}
+        <View style={StyleSheetList.container}>
             
-                  <FrontSide>
+                  {/* <FrontSide> */}
+                  <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width}]}>
                     <View 
                     style={{
                         flex:1,
@@ -135,9 +218,10 @@ class SwipeableCard extends Component {
                         
                     }}
                     >
+                    {/* <Swipeout right={this.swipeoutButtons}> */}
                     <View>
                       <Image
-                          style={{width: Dimensions.get('window').height/12, height: Dimensions.get('window').height/12,borderRadius:4}}
+                          style={{width: 100, height: 100,borderRadius:4}}
                           source={{uri: this.props.picture}}
                       />
                     </View>
@@ -178,9 +262,12 @@ class SwipeableCard extends Component {
                           </Text>
                         </View>
                         </View>
+                      {/* </Swipeout> */}
                     </View>
-                  </FrontSide>
-                  <BackSide>
+                  </Animated.View>
+                  {/* </FrontSide>
+                  <BackSide> */}
+                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width}]}>
                     <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
                       <Text
                       style={{           
@@ -199,24 +286,136 @@ class SwipeableCard extends Component {
                       }}
                       >
                         filler 
-                        <AdSense.Google 
+                        {/* <AdSense.Google 
                           client='ca-pub-7292810486004926'
                           slot='7806394673'
                           style={{height:50,width:200,display:'block'}}
                           layout='in-article'
                           format='fluid'
-                        />
+                        /> */}
                       </Text>
                     </View>
-                  </BackSide>
+                  </Animated.View>
+                  {/* </BackSide> */}
             
         </View>
-      </Flippy>
+      {/* </Flippy> */}
+      </TouchableOpacity>
       </Animated.View>
+      
       </Fade>
       
   );
 }
+// if(this.state.styleCondition==false){
+//   return(
+//   <Fade>
+   
+//     {/* <Flippy
+//       flipOnClick={true}
+//       flipDirection='vertical'
+//       ref={(r)=>this.flippy=r}
+//       style={{width:Dimensions.get('window').width,height:this.dragPos.y}}
+      
+//     > */}
+     
+//         <CardFlip ref={this.myRef}>
+            
+//                   <TouchableOpacity>
+//                     <View 
+//                     style={{
+//                         flex:1,
+//                         flexDirection:'row',
+//                         margin:2
+                        
+//                     }}
+//                     >
+//                     {/* <Swipeout right={this.swipeoutButtons}> */}
+//                     <View>
+//                       <Image
+//                           style={{width: Dimensions.get('window').height/12, height: Dimensions.get('window').height/12,borderRadius:4}}
+//                           source={{uri: this.props.picture}}
+//                       />
+//                     </View>
+//                     <View style={{alignItems:'center',justifyContent:'center',flex:1,backgroundColor:'transparent'}}>
+//                         <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
+//                           <Text selectable={false} style={{           
+//                             textDecorationLine:'none',
+//                             color:'white',
+//                             fontSize: 15,
+//                             textShadowColor: 'rgba(0, 0, 0, 1)',
+//                             textShadowOffset: {width: 0, height: 0},
+//                             textShadowRadius: 8,
+//                             flex:1,
+//                             textAlign:'center',
+//                             alignItems:'center',
+//                             justifyContent:'center',
+//                             flexDirection:'row',
+//                             margin:5,
+//                           }}>
+//                               {String(this.props.name_first) +" " +String(this.props.name_last)}
+//                           </Text>
+//                           <Text selectable={false}
+//                           style={{           
+//                             textDecorationLine:'none',
+//                             color:'white',
+//                             fontSize: 15,
+//                             textShadowColor: 'rgba(0, 0, 0, 1)',
+//                             textShadowOffset: {width: 0, height: 0},
+//                             textShadowRadius: 8,
+//                             flex:1,
+//                             textAlign:'center',
+//                             alignItems:'center',
+//                             justifyContent:'center',
+//                             flexDirection:'row',
+//                             margin:5,
+//                           }}>
+//                               {this.props.email}
+//                           </Text>
+//                         </View>
+//                         </View>
+//                       {/* </Swipeout> */}
+//                     </View>
+//                   </TouchableOpacity>
+//                   <TouchableOpacity>
+//                   <Swipeout right={this.swipeoutButtons} style={{backgroundColor:'transparent'}}> 
+//                     <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
+//                       <Text
+//                       style={{           
+//                         textDecorationLine:'none',
+//                         color:'white',
+//                         fontSize: 15,
+//                         textShadowColor: 'rgba(0, 0, 0, 1)',
+//                         textShadowOffset: {width: 0, height: 0},
+//                         textShadowRadius: 8,
+//                         flex:1,
+//                         textAlign:'center',
+//                         alignItems:'center',
+//                         justifyContent:'center',
+//                         flexDirection:'row',
+//                         margin:5,
+//                       }}
+//                       >
+//                         filler 
+//                         <AdSense.Google 
+//                           client='ca-pub-7292810486004926'
+//                           slot='7806394673'
+//                           style={{height:50,width:200,display:'block'}}
+//                           layout='in-article'
+//                           format='fluid'
+//                         />
+//                       </Text>
+//                     </View>
+//                     </Swipeout>
+//                   </TouchableOpacity>
+            
+//         </CardFlip>
+        
+//       {/* </Flippy> */}
+   
+//   </Fade>
+//   )
+// }
 else{
   return(
     <View style={{height:this.dragPos.y}}>
@@ -227,7 +426,24 @@ else{
     }
     
 };
-  
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    
+  },
+  flipCard: {
+    
+   
+    
+    backfaceVisibility: 'hidden',
+    height: 100,
+  },
+  flipCardBack: {
+    height: 100,
+    position: "absolute",
+    top: 0,
+  },
+});
 export default SwipeableCard;
 
 

@@ -6,7 +6,7 @@ import SwipeableCard from "./SwipeableCard";
 
 //import { List, ListItem, SearchBar } from "react-native-elements";
 import { Context } from "../context";
-
+// import SortableListView from 'react-native-sortable-listview'
 
 // class DefaultFlatList extends Component {
 //   constructor(props) {
@@ -266,7 +266,7 @@ const DefaultFlatList =(props)=> {
           .catch(error => {
             setState({ ...state,error:true, loading: false });
           });
-        console.log('some how this ran')    
+        console.log(state.data)    
     };
     // console.log('useEffect fired in defaultFlatlist')
     const { seed, page } = state;
@@ -373,7 +373,7 @@ const DefaultFlatList =(props)=> {
                 data={state.data}
                 renderItem={({ item }) => (
                   // <SwipeableCard index={item.index} name_first={String(item.name.first)} name_last = {String(item.name.last)} picture={item.picture.thumbnail} email={item.email} onDismiss={dismiss(item.index)}/>
-                  <SwipeableCard index={String(item.index)} name_first={String(item.name.first)} name_last = {String(item.name.last)} picture={item.picture.thumbnail} email={item.email}/>
+                  <SwipeableCard index={String(item.index)} name_first={String(item.name.first)} name_last = {String(item.name.last)} picture={item.picture.large} email={item.email}/>
                 )}
             keyExtractor={item => item.index}
             //ItemSeparatorComponent={renderSeparator}
