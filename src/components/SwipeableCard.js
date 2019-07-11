@@ -192,10 +192,10 @@ class SwipeableCard extends Component {
       if(this.state.styleCondition==false){
       return (
         
-        <Fade>
+        <Fade >
         
          <Animated.View
-                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}]}} 
+                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'transparent',margin:0.5,}} 
                  {...this._panResponder.panHandlers}
             >
             <TouchableHighlight onPress={this.flip} underlayColor={'transparent'}>
@@ -206,7 +206,9 @@ class SwipeableCard extends Component {
           style={{width:Dimensions.get('window').width,height:this.dragPos.y}}
           
         > */}
-        <View style={StyleSheetList.container}>
+        <View style={{
+                      marginLeft:5,
+                      marginRight:5,}}>
             
                   {/* <FrontSide> */}
                   <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width}]}>
@@ -214,14 +216,13 @@ class SwipeableCard extends Component {
                     style={{
                         
                         flexDirection:'row',
-                        margin:2
                         
                     }}
                     >
                     {/* <Swipeout right={this.swipeoutButtons}> */}
                     <View>
                       <Image
-                          style={{width: 100, height: 100,borderRadius:4}}
+                          style={{width: 90, height: 90,borderRadius:4,top:0,margin:0}}
                           source={{uri: this.props.picture}}
                       />
                     </View>
@@ -239,7 +240,7 @@ class SwipeableCard extends Component {
                             alignItems:'center',
                             justifyContent:'center',
                             flexDirection:'row',
-                            margin:5,
+                            margin:0,
                           }}>
                               {String(this.props.name_first) +" " +String(this.props.name_last)}
                           </Text>
@@ -256,7 +257,7 @@ class SwipeableCard extends Component {
                             alignItems:'center',
                             justifyContent:'center',
                             flexDirection:'row',
-                            margin:5,
+                            margin:0,
                           }}>
                               {this.props.email}
                           </Text>
@@ -282,7 +283,7 @@ class SwipeableCard extends Component {
                         alignItems:'center',
                         justifyContent:'center',
                         flexDirection:'row',
-                        margin:5,
+                        margin:0,
                       }}
                       >
                         filler 
@@ -428,8 +429,7 @@ else{
 };
 const styles = StyleSheet.create({
   container: {
-    
-    
+    margin:0,
   },
   flipCard: {
     borderWidth:1,
@@ -438,13 +438,29 @@ const styles = StyleSheet.create({
     paddingBottom:2,
     paddingLeft:2,
     paddingRight:2,
+    margin:0,
     backfaceVisibility: 'hidden',
     height: 100,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 0
+    },
+    shadowRadius: 4,
+    shadowOpacity: 0.25
   },
   flipCardBack: {
     height: 100,
     position: "absolute",
     top: 0,
+    margin:0,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 0
+    },
+    shadowRadius: 4,
+    shadowOpacity: 0.25
   },
 });
 export default SwipeableCard;
