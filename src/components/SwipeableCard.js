@@ -1,5 +1,5 @@
 import React,{Component,useContext} from 'react';
-import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity,StyleSheet} from 'react-native'
+import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,StyleSheet} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade'
@@ -198,7 +198,7 @@ class SwipeableCard extends Component {
                  style={{alignItems:'center',transform: [{translateX: this.dragPos.x}]}} 
                  {...this._panResponder.panHandlers}
             >
-            <TouchableOpacity onPress={this.flip}>
+            <TouchableHighlight onPress={this.flip} underlayColor={'transparent'}>
         {/* <Flippy
           flipOnClick={true}
           flipDirection='vertical'
@@ -212,7 +212,7 @@ class SwipeableCard extends Component {
                   <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width}]}>
                     <View 
                     style={{
-                        flex:1,
+                        
                         flexDirection:'row',
                         margin:2
                         
@@ -300,7 +300,7 @@ class SwipeableCard extends Component {
             
         </View>
       {/* </Flippy> */}
-      </TouchableOpacity>
+      </TouchableHighlight>
       </Animated.View>
       
       </Fade>
@@ -428,13 +428,16 @@ else{
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    
     
   },
   flipCard: {
-    
-   
-    
+    borderWidth:1,
+    borderColor: 'rgba(128,128,128,0)',
+    paddingTop:2,
+    paddingBottom:2,
+    paddingLeft:2,
+    paddingRight:2,
     backfaceVisibility: 'hidden',
     height: 100,
   },

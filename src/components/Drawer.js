@@ -72,19 +72,20 @@ const Drawer =(props)=>{
     if(state.userData!==undefined && state.userData.provider!==undefined){
         return(
             <Animated.View style={{            
-                height:Dimensions.get('window').height-props.footerHeight,
+                height:150,
                 width:Dimensions.get('window').width,
-                backgroundColor:'transparent',
+                backgroundColor:'orange',
                
             }}>
                 <View style={{
-                    backgroundColor:'#ffffff',
+                    backgroundColor:'orange',
                     borderColor:'#cfcfcf',
                     borderRadius:2,
                     borderWidth:1,
                     height:maxHeight,
                     justifyContent:'center',
                     marginBottom :2,
+                    backgroundColor:'transparent'
                     //opacity:state.opacity
                 }}>  
                     <View style={{
@@ -93,7 +94,7 @@ const Drawer =(props)=>{
                         height:maxHeight,
                         position:'absolute',
                         width:maxHeight,
-                        flex:1,
+                        // flex:1,
                         justifyContent:'center',
                         zIndex:'97',
                     }}>
@@ -135,7 +136,7 @@ const Drawer =(props)=>{
                     }]
                     },
                     {height:Dimensions.get('window').height*9/30-maxHeight}]}>
-                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight}]}>
+                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50}]}>
                         <NavBar/>
                     </View>
                 </Animated.View> 
@@ -145,7 +146,7 @@ const Drawer =(props)=>{
     else{
         return(
             <Animated.View style={{            
-                height:Dimensions.get('window').height-props.footerHeight,
+                height:150,
                 width:Dimensions.get('window').width,
                 backgroundColor:'transparent',
                
@@ -159,6 +160,7 @@ const Drawer =(props)=>{
                     justifyContent:'center',
                     marginBottom :2,
                     //opacity:state.opacity
+                    // backgroundColor:'orange'
                 }}>  
                     <Animated.View style={{
                         alignItems:'center',
@@ -166,7 +168,7 @@ const Drawer =(props)=>{
                         height:maxHeight,
                         position:'absolute',
                         width:maxHeight,
-                        flex:1,
+                        // flex:1,
                         justifyContent:'center',
                         zIndex:'99',
                         
@@ -192,6 +194,7 @@ const Drawer =(props)=>{
                     <View style={{
                         alignItems:'center',
                         zIndex:0,
+                        
                     }}>
                         <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
@@ -206,8 +209,8 @@ const Drawer =(props)=>{
                         translateY:maxHeight+2
                     }]
                     },
-                    {height:Dimensions.get('window').height*9/30-maxHeight}]}>
-                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:Dimensions.get('window').height*9/30-maxHeight,alignItems:'center'}]}>
+                    {height:150,borderColor:"#cfcfcf",borderRadius:4,borderWidth:1,}]}>
+                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50,alignItems:'center'}]}>
                         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8,backgroundColor:'transparent'}}>
                             <Image source={require('./icons/96x96.png')} style={{
                                     // Top:(maxHeight-imageLength)/2,
@@ -453,8 +456,8 @@ export default Drawer
 const styles=StyleSheet.create(
     {
         MAIN_SLIDING_DRAWER_CONTAINER:{
-            backgroundColor:'#ffffff',
-            borderColor:"#cacaca",
+            backgroundColor:'#cfcfcf',
+            borderColor:"transparent",
             borderRadius:2,
             borderWidth:1,
             flex:1,

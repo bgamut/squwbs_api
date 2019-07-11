@@ -89,7 +89,7 @@ const NavBar = () => {
         <View style={styles.box}>
         <a style={
           {
-            flex:1,
+            // flex:1,
             textDecorationLine:'none',
             //borderColor:'black',
             //borderWidth:2,
@@ -98,7 +98,7 @@ const NavBar = () => {
             textShadowColor: 'rgba(0, 0, 0, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
-            flex:1,
+            // flex:1,
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
@@ -133,7 +133,7 @@ const NavBar = () => {
             textShadowColor: 'rgba(0, 0, 0, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
-            flex:1,
+            // flex:1,
             textAlign:'center',
             alignItems:'center',
             justifyContent:'center',
@@ -146,7 +146,7 @@ const NavBar = () => {
         <View style={styles.box}>
         <a style={
           {
-            flex:1,
+            // flex:1,
             textDecorationLine:'none',
             //borderColor:'black',
             //borderWidth:2,
@@ -155,7 +155,7 @@ const NavBar = () => {
             textShadowColor: 'rgba(0, 0, 0, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
-            flex:1,
+            // flex:1,
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
@@ -194,7 +194,7 @@ const NavBar = () => {
             textShadowColor: 'rgba(0, 0, 0, 1)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 8,
-            flex:1,
+            // flex:1,
             textAlign:'center',
             alignItems:'center',
             justifyContent:'center',
@@ -261,14 +261,14 @@ const NavBar = () => {
 const styles = StyleSheet.create({
   
     box:{
-      margin:8,
+      margin:0,
       //padding:1,
-      height:Dimensions.get("window").height/9,
+      height:50,
       backgroundColor:'transparent',
       alignItems:'center',
       justifyContent:'center',
       flexDirection:'row',
-      flex:1,
+      // flex:1,
       //fontSize:12,
       //borderColor:'black',
       //borderRadius:2,
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent:'center',
       flexDirection:'row',
-      flex:1
+      // flex:1
     },
     link:{
       color:'black', 

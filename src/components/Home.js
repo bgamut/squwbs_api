@@ -303,22 +303,22 @@ const Home = () => {
     }
     return(
       <View style={{height:Dimensions.get('window').height}}>
-        <AdSense.Google 
-                          client='ca-pub-7292810486004926'
+        {/* <AdSense.Google 
+                          client='NeM-xU1bQwBXyU8dz_MsINZX'
                           slot='7806394673'
                           style={{height:50,width:200,display:'block'}}
                           layout='in-article'
                           format='fluid'
-                        />  
+                        />   */}
           <Drawer>
             <FileDrop/>
             <SwipeableScroller/>
           </Drawer>
-          <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
+          <KeyboardAvoidingView style={{display:'absolute',bottom:0,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
           {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}
           
-              <View style={{backgroundColor:'transparent',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
-                <AddPost style={{marginTop:0,flex:1}}/>
+              <View style={{backgroundColor:'white',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
+                <AddPost style={{marginTop:0,witdh:Dimensions.get('window').width}}/>
               </View>
     
               <ScrollView 

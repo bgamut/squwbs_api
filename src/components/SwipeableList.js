@@ -367,7 +367,7 @@ const DefaultFlatList =(props)=> {
         <View style={{ 
           borderTopWidth: 0, 
           borderBottomWidth: 0, 
-          
+          margin:0
           }}>
               <FlatList 
                 data={state.data}
