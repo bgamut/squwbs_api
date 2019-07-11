@@ -209,7 +209,7 @@ class SwipeableCard extends Component {
         <View>
             
                   {/* <FrontSide> */}
-                  <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-6}]}>
+                  <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-4}]}>
                     <View 
                     style={{
                         
@@ -266,34 +266,26 @@ class SwipeableCard extends Component {
                   </Animated.View>
                   {/* </FrontSide>
                   <BackSide> */}
-                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-6}]}>
-                    <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
-                      <Text
-                      style={{           
-                        textDecorationLine:'none',
-                        color:'white',
-                        fontSize: 15,
-                        textShadowColor: 'rgba(0, 0, 0, 1)',
-                        textShadowOffset: {width: 0, height: 0},
-                        textShadowRadius: 8,
-                        // flex:1,
-                        textAlign:'center',
-                        alignItems:'center',
-                        justifyContent:'center',
-                        flexDirection:'row',
-                        margin:0,
-                      }}
-                      >
-                        filler 
-                        {/* <AdSense.Google 
-                          client='ca-pub-7292810486004926'
-                          slot='7806394673'
-                          style={{height:50,width:200,display:'block'}}
-                          layout='in-article'
-                          format='fluid'
-                        /> */}
-                      </Text>
-                    </View>
+                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,alignItems:'center',justifyContent:'center'}]}>
+
+                    {/* <Swipeout right={this.swipeoutButtons}> */}
+                     
+                       
+                          <Text selectable={false} style={{           
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 15,
+                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowOffset: {width: 0, height: 0},
+                            textShadowRadius: 8,
+                            margin:0,
+                          }}>
+                              filler
+                          </Text>
+                        
+                      
+                      {/* </Swipeout> */}
+                    
                   </Animated.View>
                   {/* </BackSide> */}
             
