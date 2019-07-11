@@ -53,10 +53,10 @@ const SwipeableScroller = (props) => {
     <ScrollView 
       style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
       onScroll={(e)=>{
-          onScroll(e)
+          // onScroll(e)
         }
       }
-      scrollEnabled={false}
+      // scrollEnabled={true}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={false}
 

@@ -373,18 +373,21 @@ const DefaultFlatList =(props)=> {
                 data={state.data}
                 renderItem={({ item }) => (
                   // <SwipeableCard index={item.index} name_first={String(item.name.first)} name_last = {String(item.name.last)} picture={item.picture.thumbnail} email={item.email} onDismiss={dismiss(item.index)}/>
-                  <SwipeableCard index={String(item.index)} name_first={String(item.name.first)} name_last = {String(item.name.last)} picture={item.picture.large} email={item.email}/>
+                  <View>
+                    <SwipeableCard index={String(item.index)} name_first={String(item.name.first)} name_last = {String(item.name.last)} picture={item.picture.large} email={item.email}/>
+                  </View>
                 )}
-            keyExtractor={item => item.index}
-            //ItemSeparatorComponent={renderSeparator}
-            //ListHeaderComponent={renderHeader}
-            //ListFooterComponent={renderFooter}
-            
-            scrollEventThrottle={1}
-            //onRefresh={handleRefresh}
-            //refreshing={state.refreshing}
-            //onEndReached={handleLoadMore}
-            onEndReachedThreshold={50}
+              keyExtractor={item => item.index}
+              //ItemSeparatorComponent={renderSeparator}
+              //ListHeaderComponent={renderHeader}
+              //ListFooterComponent={renderFooter}
+              
+              scrollEventThrottle={1}
+              //onRefresh={handleRefresh}
+              //refreshing={state.refreshing}
+              //onEndReached={handleLoadMore}
+              onEndReachedThreshold={20}
+              scrollEnabled={false}
           />
         </View>
       );
