@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
 import Flippy, {FrontSide,BackSide} from 'react-flippy'
-import AdSense from 'react-adsense';
+// import AdSense from 'react-adsense';
 import Swipeout from 'react-native-swipeout'
 //import GoogleAds from 'react-google-ads'
 //import CardFlip from './Card';

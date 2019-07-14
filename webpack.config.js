@@ -17,5 +17,10 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    resolve: {
+        alias: {
+          'react-native-svg': 'react-native-svg-web-transform'
+        }
+      }
 };
