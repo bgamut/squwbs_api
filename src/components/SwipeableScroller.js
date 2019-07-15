@@ -56,9 +56,9 @@ const SwipeableScroller = (props) => {
           // onScroll(e)
         }
       }
-      // scrollEnabled={true}
+      scrollEnabled={true}
       scrollEventThrottle={16}
-      showsVerticalScrollIndicator={false}
+      showsVerticalScrollIndicator={true}
 
     >
     

@@ -197,7 +197,7 @@ class SwipeableCard extends Component {
         <Fade >
         
          <Animated.View
-                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'transparent',margin:1.5,}} 
+                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'transparent',margin:1,}} 
                  {...this._panResponder.panHandlers}
             >
             <TouchableHighlight onPress={this.flip} underlayColor={'transparent'}>
@@ -269,10 +269,11 @@ class SwipeableCard extends Component {
                   {/* </FrontSide>
                   <BackSide> */}
                   <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,padding:5,alignItems:'stretch',justifyContent:'center'}]}>
-                    <View style={{backgroundColor:'transparent',marginBottom:10,alignItems:'center',justifyContent:'space-between',flexDirection:'row'}}>
+                    <View style={{backgroundColor:'transparent',marginBottom:0,alignItems:'center',justifyContent:'space-between',flexDirection:'row'}}>
                     {/* <Swipeout right={this.swipeoutButtons}> */}
                         {/* <View style={{flexDirection:'row', alignItems:'center',justifyContent:'space-between',backgroundColor:"red",margin:0}}> */}
-                          <CPB currentNumber={Math.random()*100} endNumber={100}/>
+                          {/* <CPB currentNumber={Math.random()*100} endNumber={100}/> */}
+                          <CPB/>
                           <Geolocation
                               render={({
                                 fetchingPosition,

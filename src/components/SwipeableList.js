@@ -387,7 +387,10 @@ const DefaultFlatList =(props)=> {
               //refreshing={state.refreshing}
               //onEndReached={handleLoadMore}
               onEndReachedThreshold={20}
-              scrollEnabled={false}
+              scrollEnabled={true}
+              
+              scrollEventThrottle={16}
+              showsVerticalScrollIndicator={false}
           />
         </View>
       );
