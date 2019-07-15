@@ -1,6 +1,6 @@
 // import React, { Component,Text,View } from 'react';
 // // import {TouchableHighlight, Animated} from 'react-native'
-import Svg, { Circle, Rect, Line,Path,Text} from "react-native-svg-web-transform";
+import Svg, { Circle, Rect, Line,Path,Text,G,Defs,Filter,FeGaussianBlur,FeMerge,FeMergeNode} from "react-native-svg-web-transform";
 import './css/Svg.css'
 // export const CPB=(props)=>{
 //     // // constructor(props){
@@ -72,40 +72,28 @@ import Swipeout from 'react-native-swipeout'
 
 class CPB extends Component {
   
- 
-  // constructor(props){
-  //   super(props)
-  //   this.state = {
-  //     styleCondition:false,
-  //     flipLock:false
-  //   };
-
-  //   this.myRef=React.createRef();
-  //   this.swipeoutButtons =[
-  //     {
-  //       text:'Button'
-  //     }
-  //   ]
-  //   this.animatedValue = new Animated.Value(0);
-  //   this.value = 0;
-  //   this.animatedValue.addListener(({ value }) => {
-  //     this.value = value;
-  //   })
-  //   this.frontInterpolate = this.animatedValue.interpolate({
-  //     inputRange: [0, 180],
-  //     outputRange: ['0deg', '180deg'],
-  //   })
-  //   this.backInterpolate = this.animatedValue.interpolate({
-  //     inputRange: [0, 180],
-  //     outputRange: ['180deg', '360deg']
-  //   })
-
-  // }
     constructor(props){
         super(props)
         this.state = {
+          percentage:0,
           styleCondition:false,
-          flipLock:false
+          flipLock:false,
+          width:100,
+          height:100,
+          centerX:100,
+          centerY:100,
+          radius:62,
+          startAngle:0,
+          endAngle:0,
+          color:'rgb(169,169,169)',
+          value:0,
+          fontSize:14,
+          translateHeight:0,
+          arc:"",
+          textX:0,
+          textY:0,
+          endNumber:100,
+          currentNumber:0,
         };
         this.fontSize=15
         this.svgRef=React.createRef();
@@ -117,8 +105,9 @@ class CPB extends Component {
         this.centerX=100
         this.centerY=100
         this.radius=70
-        this.startAngle=90
-        this.endAngle=270
+        this.startAngle=0
+        this.endAngle=0
+        this.color='rgb(128,128,128)'
         this.animatedValue.addListener(({ value }) => {
           this.value = value;
         })
@@ -152,136 +141,114 @@ class CPB extends Component {
         })
     
       }
-  
-  style={
-
-    height:200
-  }
-  refsCollection={}
-  dragPos = new Animated.ValueXY({x:0,y:this.style.height});
-  translateX = new Animated.Value(0);
-  translateY=new Animated.Value(0)
-  dismiss= (itemIndex,state,setState)=>{
-      
-    var filtered =this.state.filteredData.filter(item => item.index !== itemIndex);
-
-    setState({
-      ...state,
-      filteredData:[...filtered],
-      dataManipulated:true,
-      refreshing:false
-    })
-
-  }
-  flipCard() {
-    if (this.value >= 90) {
-      Animated.spring(this.animatedValue,{
-        toValue: 0,
-        friction: 8,
-        tension: 10
-      }).start();
-    } else {
-      Animated.spring(this.animatedValue,{
-        toValue: 180,
-        friction: 8,
-        tension: 10
-      }).start();
-    }
-
-  }
-
-  flip=()=>{
-
-    
-    if(this.state.flipLock==false){
-      this.flipCard()
-
-    }
-  
-  }
-  remove=()=>{
-    if(this.state.styleCondition==false){
-      this.setState({styleCondition:true})
-    }
-    else{
-      this.setState({styleCondition:false})
-    }
-  }
-  _panResponder = PanResponder.create({
-    onMoveShouldSetResponderCapture: () => true,
-    onMoveShouldSetPanResponderCapture: () => true,
-    onPanResponderMove: (e,gestureState)=>{
-      this.setState({flipLock:true})
-      this.dragPos.setValue({x:gestureState.dx,y:0})
-
-    },
-    onPanResponderRelease: (e, {vx, dx}) => {
-
-      const screenWidth = Dimensions.get("window").width;
-      if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.75 * screenWidth) {
-        if(vx>0){
-          console.log('right')
+      polarToCartesian=(centerX, centerY, radius, angleInDegrees)=>{
+        var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+        return {
+            x: centerX + (radius * Math.cos(angleInRadians)),
+            y: centerY + (radius * Math.sin(angleInRadians))
+        };
+      }
+      describeArc=(x, y, radius, startAngle, endAngle)=>{
+        var start = this.polarToCartesian(x, y, radius, endAngle);
+        var end = this.polarToCartesian(x, y, radius, startAngle);
+        var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+        var d = [
+            "M", start.x, start.y, 
+            "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+        ].join(" ");
+        return d;       
+      }
+      pad(n, width, z) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+      }
+      update=(current, end)=>{
+        var centerX = this.state.width/2
+        var centerY = this.state.height/2
+        var radius = Number((centerX*0.68).toFixed(0))
+        if(current/end>=1){
+          var fraction = 1
         }
-        else if(vx<0){
-          console.log('left')
+        else{
+          var fraction = current / end
         }
-        Animated.sequence([
-          Animated.spring(this.dragPos, {
-            toValue: dx > 0 ? {x:screenWidth,y:this.style.height} : {x:-screenWidth,y:this.style.height },
-            duration: 250
-
-        }).start(
-          ()=>
-          {
-
-            this.remove()
-          },
-        Animated.spring(this.dragPos,{
-          toValue: this.dragPos.x > 0 ?{x:screenWidth,y:0} : {x:-screenWidth,y:0},
-          duration:750
-        })
-          
-        )
-
-        ])
         
-      } else {
-        Animated.spring(this.dragPos, {
-          toValue: {x:0,y:this.style.height},
-          bounciness: 10
-        }).start();
+        //var percentage=Number((fraction*100).toFixed(2))
+        var percentage = this.pad(parseFloat(Math.round(fraction*10000)/100).toFixed(2),5)
+        var addAngle=0
+        if(fraction==1){
+          addAngle=359
+        }
+        else{
+          addAngle=fraction*360
+        }
+        var endAngle=this.state.startAngle+addAngle
+        var translateHeight= Dimensions.get("window").height*-0.5
+        var arc = this.describeArc(centerX, centerY, radius, this.state.startAngle, endAngle)
+        var textX = centerX-(Number((this.state.fontSize*1.618).toFixed(0)))
+        var textY = centerY
+        this.setState({
+          percentage:percentage,
+          endAngle:endAngle,
+          translateHeight:translateHeight,
+          arc:arc,
+          textX:textX,
+          textY:textY,
+          centerX:centerX,
+          centerY:centerY,
+          radius:radius,
+        })
+        //console.log(this.state)
       }
-      this.setState({flipLock:false})
-
-    }
-  })
-
-
+      pad(n, width, z) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+      }
+      demo(){
+        if(this.value<100){ 
+          this.value+=Math.random()
+        }
+        else{
+          this.value=0
+        }
+        this.update(this.value,100)
+      }
+      componentDidMount(){
+        // this.update(0,100)
+        setInterval(this.demo.bind(this), 100);
+      }
   
-    onPress=(e)=>{
-
+      // UNSAFE_componentWillReceiveProps(nextProps){
+      //   var width=nextProps.width
+      //   var height=nextProps.height
+      //   var endNumber=nextProps.endNumber
+      //   var currentNumber = nextProps.currentNumber
+      //   this.update(currentNumber,endNumber)
+      //   this.setState({
+      //     width:width,
+      //     height:height,
+      //     endNumber:endNumber,
+      //     currentNumber:currentNumber
+      //   })
+      // }
+  
+    onPress=(number)=>{
+      if(this.value<100){ 
+        this.value+=1
       }
-    test=()=>{
+      else{
+        this.value=0
+      }
+      this.update(this.value,100)
+    }
+    test(){
       console.log(this.svgRef.current)
       console.log(this.textRef.current)
     }
-    polarToCartesian=(centerX, centerY, radius, angleInDegrees)=>{
-      var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
-      return {
-          x: centerX + (radius * Math.cos(angleInRadians)),
-          y: centerY + (radius * Math.sin(angleInRadians))
-      };
-    }
-    describeArc=(x, y, radius, startAngle, endAngle)=>{
-      var start = this.polarToCartesian(x, y, radius, endAngle);
-      var end = this.polarToCartesian(x, y, radius, startAngle);
-      var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-      var d = [
-          "M", start.x, start.y, 
-          "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
-      ].join(" ");
-      return d;       
-    }
+    
+    
     render(){
 
       const frontAnimatedStyle = {
@@ -298,30 +265,59 @@ class CPB extends Component {
     
 
 
-const translateHeight= Dimensions.get("window").height*-0.5
-var arc = this.describeArc(this.centerX, this.centerY, this.radius, this.startAngle, this.endAngle)
-var textX = this.centerX-(this.fontSize*1.618)
-var textY = this.centerY
-console.log(this.textRef.x)     
+// var translateHeight= Dimensions.get("window").height*-0.5
+// var arc = this.describeArc(this.centerX, this.centerY, this.radius, this.startAngle, this.endAngle)
+// var textX = this.centerX-(this.fontSize*1.618)
+// var textY = this.centerY
+//console.log(this.textRef.current)     
 // this.svgRef.d=(this.describeArc(this.centerX, this.centerY, this.radius, this.startAngle, this.endAngle));
 return(
+        // <TouchableHighlight onPress={this.onPress()}>
           <View style={{backgroundColor:'transparent'}}>
             {/* <TouchableHighlight onPress={this.test()} style={{backgroundColor:'grey', height:100, width:100}}> */}
               {/* <View> */}
               {/* <Text ref ={this.textRef}>random</Text> */}
               
-              <Svg height={200} width={200} style={{display:'absolute',margin:0,top:0,left:0}}>
+              <Svg height={this.state.width} width={this.state.height} style={{display:'absolute',margin:0,top:0,left:0}}>
               
-                <Path x="0" y="0" height="100%" width="100%"ref={this.svgRef} fill="none" style={{...styles.path,strokeLinecap:'round'}} stroke="rgb(140,140,140)" strokeWidth="15" d={arc}></Path>
-                  {/* <Svg x='0' y={textY} width={150} height={150}> */}
-                  <Text x={textX} y={textY} height="100%" width="100%" ref={this.textRef} style={{display:'block',textAlign:'center'}} textAnchor ="center" dominantBaseline="middle" alignmentBaseline ="middle" fontSize = {this.fontSize}>35.65%</Text>
-                {/* </Svg> */}
+                <Path x="0" y="0" height="100%" width="100%"ref={this.svgRef} fill="none" style={{...styles.path,strokeLinecap:'round'}} stroke={this.state.color} strokeWidth="15" d={this.state.arc}></Path>
+                  {/* <G style={{
+                    
+                    fontSize:15, 
+                    fontFamily: "Roboto"
+                    }}
+                    textAnchor= "middle">
+                  <Defs>
+                  <Filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                  <FeGaussianBlur stdDeviation="10 10" result="glow"/>
+                  <FeMerge>
+                  <FeMergeNode in="glow"/>
+                  <FeMergeNode in="glow"/>
+                  <FeMergeNode in="glow"/>
+                  </FeMerge>
+                  </Filter>
+                  </Defs>
+                  <Text style={{filter: "url(#glow)"}} fill= "#0c9" x="175" y="55"> Simple Glow </Text>
+                  <Text x="175" y="55" fill="white"> Simple Glow </Text>
+                  </G> */}
+                  {/* <Defs>
+                    <Filter id="f1" x="0" y="0">
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+                    </Filter>
+                  </Defs> */}
+                  <Text filter="url(#f1)" x={this.state.textX} y={this.state.textY} height="100%" width="100%" ref={this.textRef} fill={this.state.color }style={{display:'block',textAlign:'center',fontFamily:'Roboto',textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowOffset: {width: 0, height: 0},
+                            textShadowRadius: 8,}} textAnchor ="center" dominantBaseline="middle" alignmentBaseline ="middle" fontSize = {this.fontSize}>
+                    {this.state.percentage}%
+                  </Text>
+                
               </Svg> 
               
               
               {/* </View> */}
             {/* </TouchableHighlight> */}
           </View>
+        // </TouchableHighlight>
       );
 }
 
@@ -332,6 +328,9 @@ const styles = StyleSheet.create({
   path:{
     transform:[{translateX:(-50)},{translateY:(-Dimensions.get("window").width/2)}]
     
+  },
+  text:{
+    color:'${ this.state.color }'
   },
   container: {
     margin:0,

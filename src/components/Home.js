@@ -12,7 +12,7 @@ import FileDrop from './FileDrop'
 import {Context} from '../context'
 import AdSense from 'react-adsense';
 import {Rnd} from 'react-rnd'
-import CPB from './CPB'
+
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const Home = () => {
   const [state,setState]=useState(Context)
@@ -569,7 +569,7 @@ const Home = () => {
               </ScrollView>
             </KeyboardAvoidingView> 
         </View> 
-        // <CPB/>
+        
     )
   // }
   }

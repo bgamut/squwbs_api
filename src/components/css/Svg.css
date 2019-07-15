@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../fonts/Roboto/Roboto-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
 .path{
     transform:translateX(-50px),translateY(-50%)
+}
+Text{
+    filter: drop-shadow( 0px 0px 0px rgba(0, 0, 0, 1));
 }

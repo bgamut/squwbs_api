@@ -12,6 +12,7 @@ import Swipeout from 'react-native-swipeout'
 //import CardFlip from 'react-native-card-flip'
 //import {geolocated,geolocatedProps} from 'react-geolocated'
 import Geolocation from 'react-geolocation'
+import CPB from './CPB'
 class SwipeableCard extends Component {
   
  
@@ -270,8 +271,8 @@ class SwipeableCard extends Component {
                   <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,alignItems:'center',justifyContent:'center'}]}>
 
                     {/* <Swipeout right={this.swipeoutButtons}> */}
-                     
-                       
+                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                          <CPB/>
                           <Text selectable={false} style={{           
                             textDecorationLine:'none',
                             color:'white',
@@ -303,7 +304,7 @@ class SwipeableCard extends Component {
                                   </div>}
                               /> */}
                           </Text>
-                        
+                        </View>
                       
                       {/* </Swipeout> */}
                     
