@@ -200,7 +200,7 @@ class SwipeableCard extends Component {
                  style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'transparent',margin:1.5,}} 
                  {...this._panResponder.panHandlers}
             >
-            <TouchableHighlight onPress={this.flip} underlayColor={'transparent'}>
+            <TouchableHighlight onLongPress={this.flip} underlayColor={'transparent'}>
         {/* <Flippy
           flipOnClick={true}
           flipDirection='vertical'
@@ -208,7 +208,7 @@ class SwipeableCard extends Component {
           style={{width:Dimensions.get('window').width,height:this.dragPos.y}}
           
         > */}
-        <View>
+              <View>
             
                   {/* <FrontSide> */}
                   <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-4}]}>
