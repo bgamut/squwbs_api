@@ -280,14 +280,22 @@ class SwipeableCard extends Component {
                                 error,
                                 getCurrentPosition
                               }) =>
-                                <View style={{flexDirection:'column',justifyContent: 'space-between'}} >
+                                <View style={{flexDirection:'column',justifyContent: 'space-between',backgroundColor:'transparent',flex:1}} >
                                   
                                   {error &&
-                                    <Text>
+                                    <Text style={{           
+                                      textDecorationLine:'none',
+                                      color:'red',
+                                      fontSize: 15,
+                                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                                      textShadowOffset: {width: 0, height: 0},
+                                      textShadowRadius: 8,
+                                      margin:0,
+                                    }}>
                                       {error.message}
                                     </Text>}
                                   <View style={{flexDirection:'row',justifyContent: 'space-between'}} >
-                                  <View style={{paddingLeft:8,backgroundColor:"transparent"}}>
+                                  <View style={{paddingLeft:8,backgroundColor:"transparent",justifyContent:'center',alignItems:'center'}}>
                                     <Text style={{           
                                       textDecorationLine:'none',
                                       color:'white',
