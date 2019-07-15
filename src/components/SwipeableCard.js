@@ -200,7 +200,7 @@ class SwipeableCard extends Component {
                  style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'transparent',margin:1.5,}} 
                  {...this._panResponder.panHandlers}
             >
-            <TouchableHighlight onLongPress={this.flip} underlayColor={'transparent'}>
+            <TouchableHighlight onPress={this.flip} underlayColor={'transparent'}>
         {/* <Flippy
           flipOnClick={true}
           flipDirection='vertical'
@@ -268,11 +268,11 @@ class SwipeableCard extends Component {
                   </Animated.View>
                   {/* </FrontSide>
                   <BackSide> */}
-                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,padding:5,alignItems:'stretch',justifyContent:'stretch'}]}>
+                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,padding:5,alignItems:'stretch',justifyContent:'center'}]}>
                     <View style={{backgroundColor:'transparent',marginBottom:10,alignItems:'center',justifyContent:'space-between',flexDirection:'row'}}>
                     {/* <Swipeout right={this.swipeoutButtons}> */}
                         {/* <View style={{flexDirection:'row', alignItems:'center',justifyContent:'space-between',backgroundColor:"red",margin:0}}> */}
-                          <CPB/>
+                          <CPB currentNumber={Math.random()*100} endNumber={100}/>
                           <Geolocation
                               render={({
                                 fetchingPosition,
@@ -308,7 +308,7 @@ class SwipeableCard extends Component {
                                       latitude: {Number(latitude).toFixed(2)} longitude: {Number(longitude).toFixed(2)}
                                     </Text>
                                   </View>
-                                    <View style={{marginLeft:15,paddingLeft:8,borderRadius:2,borderColor:'#cfcfcf',borderWidth:1}}>
+                                    {/* <View style={{marginLeft:15,paddingLeft:8,borderRadius:2,borderColor:'#cfcfcf',borderWidth:1}}>
                                       <TouchableOpacity onPress={getCurrentPosition} style={{backGroundColor:'#cfcfcf'}}>
                                         <Text style={{           
                                           textDecorationLine:'none',
@@ -324,9 +324,9 @@ class SwipeableCard extends Component {
                                         update
                                       </Text>
                                     </TouchableOpacity>
-                                  </View>
-                                  </View>
-                                </View>}
+                                  </View> */}
+                                </View>
+                              </View>}
                             />
                           {/* <Text selectable={false} style={{           
                             textDecorationLine:'none',
@@ -468,7 +468,7 @@ class SwipeableCard extends Component {
 // }
 else{
   return(
-    <View style={{height:this.dragPos.y}}>
+    <View style={{height:0}}>
 
     </View>
   )

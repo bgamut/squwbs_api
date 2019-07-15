@@ -217,7 +217,7 @@ class CPB extends Component {
       }
       componentDidMount(){
         // this.update(0,100)
-        setInterval(this.demo.bind(this), 100);
+        //setInterval(this.demo.bind(this), 100);
       }
   
       // UNSAFE_componentWillReceiveProps(nextProps){
@@ -233,7 +233,12 @@ class CPB extends Component {
       //     currentNumber:currentNumber
       //   })
       // }
-  
+      componentWillReceiveProps(nextProps){
+        if(nextProps.currentNumber!==undefined&&nextProps.endNumber){
+          this.update(nextProps.currentNumber,nextProps.endNumber)
+        }
+        
+      }
     onPress=(number)=>{
       if(this.value<100){ 
         this.value+=1
@@ -272,7 +277,7 @@ class CPB extends Component {
 //console.log(this.textRef.current)     
 // this.svgRef.d=(this.describeArc(this.centerX, this.centerY, this.radius, this.startAngle, this.endAngle));
 return(
-        // <TouchableHighlight onPress={this.onPress()}>
+        //<TouchableHighlight onPress={this.onPress()}>
           <View style={{backgroundColor:'transparent'}}>
             {/* <TouchableHighlight onPress={this.test()} style={{backgroundColor:'grey', height:100, width:100}}> */}
               {/* <View> */}
@@ -317,7 +322,7 @@ return(
               {/* </View> */}
             {/* </TouchableHighlight> */}
           </View>
-        // </TouchableHighlight>
+        //</TouchableHighlight>
       );
 }
 
