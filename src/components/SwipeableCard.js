@@ -1,5 +1,5 @@
 import React,{Component,useContext} from 'react';
-import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,StyleSheet} from 'react-native'
+import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,TouchableOpacity,StyleSheet} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade'
@@ -268,12 +268,59 @@ class SwipeableCard extends Component {
                   </Animated.View>
                   {/* </FrontSide>
                   <BackSide> */}
-                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,alignItems:'center',justifyContent:'center'}]}>
-
+                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,padding:5,alignItems:'stretch',justifyContent:'stretch'}]}>
+                    <View style={{backgroundColor:'transparent',marginBottom:10,alignItems:'center',justifyContent:'space-between',flexDirection:'row'}}>
                     {/* <Swipeout right={this.swipeoutButtons}> */}
-                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                        {/* <View style={{flexDirection:'row', alignItems:'center',justifyContent:'space-between',backgroundColor:"red",margin:0}}> */}
                           <CPB/>
-                          <Text selectable={false} style={{           
+                          <Geolocation
+                              render={({
+                                fetchingPosition,
+                                position: { coords: { latitude, longitude } = {} } = {},
+                                error,
+                                getCurrentPosition
+                              }) =>
+                                <View style={{flexDirection:'column',justifyContent: 'space-between'}} >
+                                  
+                                  {error &&
+                                    <Text>
+                                      {error.message}
+                                    </Text>}
+                                  <View style={{flexDirection:'row',justifyContent: 'space-between'}} >
+                                  <View style={{paddingLeft:8,backgroundColor:"transparent"}}>
+                                    <Text style={{           
+                                      textDecorationLine:'none',
+                                      color:'white',
+                                      fontSize: 15,
+                                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                                      textShadowOffset: {width: 0, height: 0},
+                                      textShadowRadius: 8,
+                                      margin:0,
+                                    }}>
+                                      latitude: {Number(latitude).toFixed(2)} longitude: {Number(longitude).toFixed(2)}
+                                    </Text>
+                                  </View>
+                                    <View style={{marginLeft:15,paddingLeft:8,borderRadius:2,borderColor:'#cfcfcf',borderWidth:1}}>
+                                      <TouchableOpacity onPress={getCurrentPosition} style={{backGroundColor:'#cfcfcf'}}>
+                                        <Text style={{           
+                                          textDecorationLine:'none',
+                                          color:'white',
+                                          fontSize: 12,
+                                          textShadowColor: 'rgba(0, 0, 0, 1)',
+                                          textShadowOffset: {width: 0, height: 0},
+                                          textShadowRadius: 4,
+                                          marginRight:10,
+                                          
+
+                                        }}>
+                                        update
+                                      </Text>
+                                    </TouchableOpacity>
+                                  </View>
+                                  </View>
+                                </View>}
+                            />
+                          {/* <Text selectable={false} style={{           
                             textDecorationLine:'none',
                             color:'white',
                             fontSize: 15,
@@ -283,31 +330,13 @@ class SwipeableCard extends Component {
                             margin:0,
                           }}>
                               filler
-                              {/* {geoloactedProps} */}
-                              {/* <Geolocation
-                                render={({
-                                  fetchingPosition,
-                                  position: { coords: { latitude, longitude } = {} } = {},
-                                  error,
-                                  getCurrentPosition
-                                }) =>
-                                  <div>
-                                    <button onClick={getCurrentPosition}>Get Position</button>
-                                    {error &&
-                                      <div>
-                                        {error.message}
-                                      </div>}
-                                    <pre>
-                                      latitude: {latitude}
-                                      longitude: {longitude}
-                                    </pre>
-                                  </div>}
-                              /> */}
-                          </Text>
-                        </View>
+                              
+                              
+                          </Text> */}
+                        {/* </View> */}
                       
                       {/* </Swipeout> */}
-                    
+                      </View>
                   </Animated.View>
                   {/* </BackSide> */}
             
@@ -444,6 +473,7 @@ const styles = StyleSheet.create({
     margin:0,
   },
   flipCard: {
+    backgroundColor:'transparent',
     borderWidth:1,
     borderColor: 'rgba(128,128,128,0)',
     paddingTop:2,
@@ -462,6 +492,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25
   },
   flipCardBack: {
+    backgroundColor:'transparent',
     height: 100,
     position: "absolute",
     top: 0,
@@ -473,7 +504,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 3,
     shadowOpacity: 0.25
-  },
+  }
 });
 export default SwipeableCard;
 
