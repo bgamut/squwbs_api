@@ -11,6 +11,7 @@ import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
 import AdSense from 'react-adsense';
+import SplitScreen from './SplitScreen'
 import {Rnd} from 'react-rnd'
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -304,271 +305,272 @@ const Home = () => {
       alert('longpress')
     }
     return(
-      <View style={{height:Dimensions.get('window').height}}>
-        {/* <AdSense.Google 
-                          client='NeM-xU1bQwBXyU8dz_MsINZX'
-                          slot='7806394673'
-                          style={{height:50,width:200,display:'block'}}
-                          layout='in-article'
-                          format='fluid'
-                        />   */}
-          <Drawer>
+      <SplitScreen source ='./icons/256x256.png' srcLoaded='./icons/256x256.png'/>
+      // <View style={{height:Dimensions.get('window').height}}>
+      //   {/* <AdSense.Google 
+      //                     client='NeM-xU1bQwBXyU8dz_MsINZX'
+      //                     slot='7806394673'
+      //                     style={{height:50,width:200,display:'block'}}
+      //                     layout='in-article'
+      //                     format='fluid'
+      //                   />   */}
+      //     <Drawer>
          
-          {/* <Rnd
-            default={{
-              x: 0,
-              y: 0,
-              width: 50,
-              height: 50,
-            }}
-            style={{backgroundColor:'orange',zIndex:1000,borderRadius:4}}
-          >
+      //     {/* <Rnd
+      //       default={{
+      //         x: 0,
+      //         y: 0,
+      //         width: 50,
+      //         height: 50,
+      //       }}
+      //       style={{backgroundColor:'orange',zIndex:1000,borderRadius:4}}
+      //     >
           
-          </Rnd> */}
+      //     </Rnd> */}
           
-            <FileDrop/>
-            <SwipeableScroller/>
-          </Drawer>
-          <KeyboardAvoidingView style={{display:'absolute',bottom:0,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
-          {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}
+      //       <FileDrop/>
+      //       <SwipeableScroller/>
+      //     </Drawer>
+      //     <KeyboardAvoidingView style={{display:'absolute',bottom:0,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
+      //     {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}
           
-              <View style={{backgroundColor:'white',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
-                <AddPost style={{marginTop:0,witdh:Dimensions.get('window').width}}/>
-              </View>
+      //         <View style={{backgroundColor:'white',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
+      //           <AddPost style={{marginTop:0,witdh:Dimensions.get('window').width}}/>
+      //         </View>
     
-              <ScrollView 
-                horizontal = {true} 
-                style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:0,marginRight:0}} 
-                showsHorizontalScrollIndicator={false}
-              >
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:3,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                  }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>one</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                  }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
+      //         <ScrollView 
+      //           horizontal = {true} 
+      //           style={{height:Dimensions.get('window').height/15,backgroundColor:'transparent',flexDirection:'row',marginLeft:0,marginRight:0}} 
+      //           showsHorizontalScrollIndicator={false}
+      //         >
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:3,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //             }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>one</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //             }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
                     
-                  }}>two</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                  }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>three</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>four</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>one</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>two</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>three</Text> */}
-                </View>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
-                <View style={{
-                  height:Dimensions.get('window').height/15,
-                  width:(Dimensions.get('window').height)/12,
-                  backgroundColor:'darkgrey',
-                  flex:1,
-                  flexDirection:'column',
-                  marginRight:2,
-                  marginLeft:2,
-                  borderRadius:4,
-                  borderColor:'white',
-                  overflow:'hidden'
-                }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>four</Text> */}
-                </View>
-                </TouchableHighlight>
-              </ScrollView>
-            </KeyboardAvoidingView> 
-        </View> 
+      //             }}>two</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //             }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>three</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //           }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>four</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //           }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>one</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //           }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>two</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //           }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>three</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //           <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
+      //           <View style={{
+      //             height:Dimensions.get('window').height/15,
+      //             width:(Dimensions.get('window').height)/12,
+      //             backgroundColor:'darkgrey',
+      //             flex:1,
+      //             flexDirection:'column',
+      //             marginRight:2,
+      //             marginLeft:2,
+      //             borderRadius:4,
+      //             borderColor:'white',
+      //             overflow:'hidden'
+      //           }}>
+      //             {/* <Text selectable={false} style={{           
+      //               textDecorationLine:'none',
+      //               color:'white',
+      //               fontSize: 12,
+      //               textShadowColor: 'rgba(128, 128, 128, 1)',
+      //               textShadowOffset: {width: 0, height: 0},
+      //               textShadowRadius: 8,
+      //               flex:1,
+      //               textAlign:'center',
+      //               alignItems:'center',
+      //               justifyContent:'center',
+      //               flexDirection:'row',
+      //             }}>four</Text> */}
+      //           </View>
+      //           </TouchableHighlight>
+      //         </ScrollView>
+      //       </KeyboardAvoidingView> 
+      //   </View> 
         
     )
   // }
