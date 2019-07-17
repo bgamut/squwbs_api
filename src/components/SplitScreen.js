@@ -107,7 +107,9 @@ class SplitScreen extends Component {
         return (
             
             // <WebImage style={this.imgStyle} source={{uri:this.state.baseSixFour}}/>
-            
+            <div
+                style={{height:'100%',width:'100%'}}
+            >
                 <div 
                  
                 ref={this.imageHDRef}
@@ -117,7 +119,7 @@ class SplitScreen extends Component {
                 >
                     {/* <img src={process.env.PUBLIC_URL + '/icons/256x256.png'} alt="logo"/> */}
                 </div>
-                
+            </div>    
             
             
             // <Image 
