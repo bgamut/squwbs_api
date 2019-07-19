@@ -27,6 +27,7 @@ class SplitScreen extends Component {
         this.inputRef = React.createRef();
         this.ironImageHd=null
         this.dimensions={height:0,width:0}
+        this.minimal=15
         this.bg = './temp/jpeg/17.jpeg'
         this.value=''
         this.imgStyle={
@@ -49,22 +50,33 @@ class SplitScreen extends Component {
     });
     changeDimensions(dimensions){
         this.setState({dimensions:dimensions})
+        // this.height=Dimensions.get('window').height
+        // this.width=Dimensions.get('window').width
+        this.height=window.innerHeight
+        this.width=window.innerWidth
+        this.minimal=Math.min(window.innerHeight,window.innerWidth)
     }
+    pad(n, width, z) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+      }
     componentDidMount(){
         const changeDimensions=()=>{
-            const height = Dimensions.get('window').height
-            const width= Dimensions.get('window').width
+            let height = Dimensions.get('window').height
+            let width= Dimensions.get('window').width
             // const dimensions = {hieght:height,width:width}
             // this.imageHDRef.current.style.height=height
             // this.imageHDRef.current.style.width=width
             // if(this.height!==height){
-                this.height=height
+                this.height=window.innerHeight
             // }
             // if(this.width!==width){
-                this.width=width
+                this.width=window.innerWidth
             // }
             // this.setState({dimensions:dimensions})
             // console.log(this.state.dimensions)
+            this.setState({dimensions:{height:height, width:width}})
             this.forceUpdate();
         }
         
@@ -103,16 +115,19 @@ class SplitScreen extends Component {
         console.log(process.env.PUBLIC_URL+this.props.source)
         this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.props.source+")"
         this.setState({
-            value:"this is how you change up the default text"
+            value:"Optical Character Recognition Module Loading"
         })
         
         changeDimensions()
         worker.recognize(process.env.PUBLIC_URL+this.props.source,'kor')
         .progress(progress => {
-            console.log('progress', progress);
+            // console.log('progress', progress);
+            this.setState({value:progress.status +" : " + this.pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"})
+            
         }).then(result => {
-            console.log('result', result.text);
-            this.setState({value:result.text})
+            // console.log('result', result.text);
+            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+            this.setState({value:newText})
         });
 
         // console.log((this.imageHDRef.current.style))
@@ -190,14 +205,27 @@ class SplitScreen extends Component {
             
             // <WebImage style={this.imgStyle} source={{uri:this.state.baseSixFour}}/>
             <View
-                style={{flexDirection:'row'}}
+                style={{flexDirection:'row',padding:1}}
             >
-                    <View >
+                    <View 
+                        style={{
+                            height:'100vh',
+                            width:'50vw',
+                            borderColor:'black',
+                            borderWidth:1,
+                        }}
+                    >
                         <div 
                         
                             ref={this.imageHDRef}
                             // style={{height:hp('100%'),width:wp('50%'),backgroundSize: '100% 100%',backgroundRepeat: 'no-repeat'}}
-                            style={{height:this.height,width:this.width/2,backgroundSize: '100% 100%',backgroundRepeat: 'no-repeat'}}
+                            style={{
+                                height:'100%',
+                                width:'100%',
+                                backgroundSize: '100% 100%',
+                                backgroundRepeat: 'no-repeat',
+                                
+                            }}
                         // style={{height:100,width:100,backgroundSize: 'contain',backgroundRepeat: 'no-repeat'}}
                         // style={{height:100,width:100,backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}}
                         >
@@ -205,16 +233,53 @@ class SplitScreen extends Component {
                         </div>
                     </View>
                 
-                     <View id = 'place-holder2' >
+                     <View 
+                        id = 'place-holder2' 
+                        // pointerEvents="none"
+                        style={{
+                            height:"100vh",
+                            width:"50vw",
+                            paddingTop:1,
+                            paddingBottom:1,
+                            paddingLeft:1,
+                            paddingRight:1,
+                            // borderColor:'black',
+                            // borderWidth:1,
+                            backgroundColor:'black',
+                            // zIndex:1
+                        }}
+                     >
+                        <div  
+                            style={{
+                                height:"100%",
+                                width:"100%",
+                                // zIndex:2,
+                                backgroundColor:'black'
+                            }}
+                            // pointerEvents="none"
+                                >
                         <textarea id='text-input'type='text' spellCheck="false" 
                             ref={this.inputRef}
                             value={this.state.value}
                             //style={{height:hp('100%'),width:wp('50%'),backgroundSize: '100% 100%',backgroundRepeat: 'no-repeat'}} 
-                            style={{height:this.height,width:this.width/2,backgroundSize: '100% 100%',backgroundRepeat: 'no-repeat'}} 
+                            style={{
+                                height:this.height-70,
+                                width:this.width/2-50,
+                                fontSize:13,
+                                lineHeight:2,
+                                // margin:1,
+                                paddingTop:35,
+                                paddingLeft: 25,
+                                paddingRight: 25,
+                                paddingBottom:35,
+                                border:'none',
+                                // zIndex:3,
+                            }} 
                             // onKeyPress={this.handleKeyPress}
                             onChange={this.handleChange}
                             >
                         </textarea> 
+                        </div>
                      </View>
                      
                 
