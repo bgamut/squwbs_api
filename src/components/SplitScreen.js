@@ -13,11 +13,14 @@ class SplitScreen extends Component {
     constructor(props){
         super(props)
         this.state={
-            imgURL:'./temp/jpeg/17.jpeg',
+            // imgURL:'./temp/jpeg/17.jpeg',
+            imgURL:props.source,
             baseSixFour:'',
             orientation:'',
             dimensions:{height:0,width:0},
-            value:''
+            value:'',
+            book:[],
+            currentPage:17
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -80,7 +83,19 @@ class SplitScreen extends Component {
             this.forceUpdate();
         }
         
-        
+        // document.getElementById('text-input').addEventListener("mousedown",{ function(e){
+        //     console.log(e.button)
+        //     }
+        // })
+        this.inputRef.current.addEventListener("mousedown",(e)=>{
+            if(e.shiftKey){
+                if(e.button==2){
+                    this.next()
+                }
+            }
+            console.log(e.button)
+        })
+       
         if ('onorientationchange' in window) {
             window.addEventListener("orientationchange", function() {
                 changeDimensions()
@@ -93,6 +108,26 @@ class SplitScreen extends Component {
                 // console.log("resize");
             }, false);
         }
+    //     this.inputRef.current.addEventListener("contextchange",(e)=>{
+    //         if(e.shiftKey){
+    //             e.preventDefault()
+    //         }
+    //         console.log(e.button)
+    //     }
+    //    )
+       //window.onContextmenu=(e)=>{
+        //     e.preventDefault()
+        //     console.log(e.button())
+        // }
+        window.addEventListener("contextmenu",(e)=>{
+            if(e.shiftKey){
+                e.preventDefault()
+                //console.log(e.button)
+                //this.handleClick()
+                //this.log()
+            }
+        })
+        
         fetch(this.state.imgURL)
         
         .then(res=>res.blob())
@@ -112,8 +147,10 @@ class SplitScreen extends Component {
         // console.log(this.state.dimensions.width)
         // this.imageHDRef.current.style.height=this.state.dimensions.height
         // this.imageHDRef.current.style.width=this.state.dimensions.width
-        console.log(process.env.PUBLIC_URL+this.props.source)
-        this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.props.source+")"
+        //console.log(process.env.PUBLIC_URL+this.props.source)
+        // this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.props.source+")"
+        console.log(process.env.PUBLIC_URL+this.state.imgURL)
+        this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
         this.setState({
             value:"Optical Character Recognition Module Loading"
         })
@@ -166,7 +203,7 @@ class SplitScreen extends Component {
         //   .done();
     }
     componentDidUpdate(){
-        console.log("state changed I think,"+this.state.value)
+        console.log("state changed: "+this.state.imgURL)
         // this.forceUpdate()
     }
     componentWillReceiveProps(newProps){
@@ -189,15 +226,52 @@ class SplitScreen extends Component {
         console.log(newProps.source)
         // process.env.PUBLIC_URL +newProps.source
     }
+    next(){
+        console.log(this.inputRef.current)
+        const pageNumber = this.state.currentPage+1
+        this.setState({
+            imgURL:'./temp/jpeg/'+pageNumber+".jpeg",
+            currentPage:pageNumber
+        })
+        this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
+        this.forceUpdate()
+    }
     handleKeyPress(e){
         // console.log(e.key)
-        console.log(e.target.value)
+        // console.log(e.target.value)
+        if(e.shiftKey){
+            e.preventDefault();
+            e.stopPropagation();
+            if(e.keyCode==13){
+                e.preventDefault();
+                console.log('prev page load function goes here')
+            }
+            else if(e.keyCode==39){
+                e.preventDefault();
+                console.log('next page load function goes here')
+            }
+            else if(e.keyCode==37){
+                e.preventDefault();
+                console.log('previous page load function goes here')
+            }
+            console.log(e.key)
+            console.log(e.button)
+        }
         this.setState({value:e.target.value})
-        //console.log(this.inputRef.current.value)
+        
+        
+        console.log(this.inputRef.current.value)
+        //console.log(e.key)
     }
     handleChange(e){
         //this.value=e.target.value
+        console.log(e)
         this.setState({value:e.target.value})
+    }
+    handleClick(e){
+        e.preventDefault()
+        e.stopPropagation();
+        console.log(e.button)
     }
     render() {
       
@@ -262,6 +336,7 @@ class SplitScreen extends Component {
                             ref={this.inputRef}
                             value={this.state.value}
                             //style={{height:hp('100%'),width:wp('50%'),backgroundSize: '100% 100%',backgroundRepeat: 'no-repeat'}} 
+                            // onContextMenu={false}
                             style={{
                                 height:this.height-70,
                                 width:this.width/2-50,
@@ -275,8 +350,9 @@ class SplitScreen extends Component {
                                 border:'none',
                                 // zIndex:3,
                             }} 
-                            // onKeyPress={this.handleKeyPress}
+                            onKeyPress={this.handleKeyPress}
                             onChange={this.handleChange}
+                            // onClick={this.handleClick}
                             >
                         </textarea> 
                         </div>
