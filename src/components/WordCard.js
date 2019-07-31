@@ -193,7 +193,7 @@ class WordCard extends Component {
             >
             <TouchableHighlight onPress={this.flip} underlayColor={'transparent'}>
 
-              <View heihgt={this.style.height}>
+              <View height={this.style.height}>
             
 
                   <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-15}]}>
@@ -205,7 +205,7 @@ class WordCard extends Component {
                           <Text selectable={false} style={{           
                             textDecorationLine:'none',
                             color:'white',
-                            fontSize: 15,
+                            fontSize: 35,
                             textShadowColor: 'rgba(0, 0, 0, 1)',
                             textShadowOffset: {width: 0, height: 0},
                             textShadowRadius: 8,
@@ -236,7 +236,7 @@ class WordCard extends Component {
                                         <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
-                                        fontSize: 15,
+                                        fontSize: 35,
                                         textShadowColor: 'rgba(0, 0, 0, 1)',
                                         textShadowOffset: {width: 0, height: 0},
                                         textShadowRadius: 8,
@@ -244,6 +244,7 @@ class WordCard extends Component {
                                         }}>
                                             {this.props.meaning} 
                                         </Text>
+                                        <View style = {{justifyContent:'center',alignItems:'center'}}>
                                         <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
@@ -255,6 +256,7 @@ class WordCard extends Component {
                                         }}>
                                             {this.props.example}
                                         </Text>
+                                        </View>
                                     </View>
                                   </View>
                                   {/* <CPB endNumber={100} currentNumber={this.props.percentage} /> */}
@@ -292,7 +294,7 @@ const styles = StyleSheet.create({
     margin:0,
   },
   flipCard: {
-    backgroundColor:'transparent',
+    backgroundColor:'silver',
     borderWidth:1,
     borderColor: 'rgba(128,128,128,0)',
     paddingTop:2,
@@ -314,7 +316,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25
   },
   flipCardBack: {
-    backgroundColor:'transparent',
+    backgroundColor:'silver',
     height: Dimensions.get('window').height-15,
     position: "absolute",
     top: 0,
