@@ -217,7 +217,7 @@ class CPB extends Component {
       }
       componentDidMount(){
         this.update(0,100)
-        setInterval(this.demo.bind(this), 100);
+        //setInterval(this.demo.bind(this), 100);
       }
   
       // UNSAFE_componentWillReceiveProps(nextProps){

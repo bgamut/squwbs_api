@@ -29,6 +29,7 @@ export function ContextController({ children }) {
     translateY:new Animated.Value(0),
     userData:undefined,
     spinValue:new Animated.Value(0),
+    words:[],
   };
 
   const [state, setState] = useState(intialState);
