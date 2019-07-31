@@ -74,6 +74,7 @@ class WordDeck extends Component {
 
   }
   shuffle=(a)=>{
+    //fisher-yates shuffle algorithm via https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
     console.log('cards are shuffled')
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
