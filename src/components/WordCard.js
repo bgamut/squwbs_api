@@ -119,10 +119,12 @@ class WordCard extends Component {
       const screenWidth = Dimensions.get("window").width;
       if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.75 * screenWidth) {
         if(vx>0){
-          console.log('right')
+          this.props.onRightSwipe()
+          //console.log('right')
         }
         else if(vx<0){
-          console.log('left')
+          this.props.onLeftSwipe()
+          //console.log('left')
         }
         Animated.sequence([
           Animated.spring(this.dragPos, {
