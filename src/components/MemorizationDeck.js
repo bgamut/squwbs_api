@@ -22,7 +22,7 @@ class MemorizationDeck extends Component {
     console.log(this.myRef.current.childNodes.length)
     
     // ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove}word={this.props.word} meaning={this.props.meaning} example={this.props.example} percentage={this.props.percentage}/>,this.myRef.current)
-    ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove}/>,this.myRef.current)
+    ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove} word={'shooter'} meaning={'the mand that makes the call'} example={"he's a shooter he makes things happen"}/>,this.myRef.current)
 
   }
   handleCardRemove=()=>{

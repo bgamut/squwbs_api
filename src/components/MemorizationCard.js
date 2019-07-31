@@ -94,15 +94,17 @@ class MemorizationCard extends Component {
     //ReactDOM.render(React.createElement(MemorizationCard),ReactDOM.findDOMNode(this).parentNode)
     if(this.state.styleCondition==false){
       this.setState({styleCondition:true})
-      console.log(this.state.styleCondition)
+      //console.log(this.state.styleCondition)
     }
     else{
       this.setState({styleCondition:false})
-      console.log(this.state.styleCondition)
+      //console.log(this.state.styleCondition)
     }
     //ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this).parentNode);
     this.props.onRemove();
     this.dragPos.setValue({x:0,y:0})
+    //console.log('set this to something else'+this.state.styleCondition)
+    this.setState({styleCondition:false})
   }
   _panResponder = PanResponder.create({
     onMoveShouldSetResponderCapture: () => true,
