@@ -12,7 +12,9 @@ import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
 import AdSense from 'react-adsense';
+import UploadWords from './UploadWords'
 import SplitScreen from './SplitScreen'
+
 import {Rnd} from 'react-rnd'
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -24,6 +26,7 @@ const Home = () => {
     const jsonObj = await responded.json()
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
+    console.log('this is the state'+ state.headerHeight)
   }
   useEffect(()=>{
     
@@ -311,8 +314,8 @@ const Home = () => {
 
       // <SplitScreen source ='./temp/jpeg/17.jpeg' srcLoaded='./temp/jpeg/17.jpeg'/>
 
-      <WordDeckWrapper/>
-
+      //<WordDeckWrapper/>
+      <UploadWords/>
 
       // <View style={{height:Dimensions.get('window').height}}>
       //   {/* <AdSense.Google 

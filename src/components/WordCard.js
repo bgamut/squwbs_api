@@ -6,7 +6,6 @@ import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
 import Flippy, {FrontSide,BackSide} from 'react-flippy'
 import Swipeout from 'react-native-swipeout'
-import Geolocation from 'react-geolocation'
 import CPB from './CPB'
 class WordCard extends Component {
   
@@ -116,7 +115,7 @@ class WordCard extends Component {
     },
     onPanResponderRelease: (e, {vx, dx}) => {
 
-      
+
       const screenWidth = Dimensions.get("window").width-15;
       if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.35 * screenWidth) {
         if(vx>0){
@@ -303,7 +302,7 @@ const styles = StyleSheet.create({
     paddingLeft:2,
     paddingRight:2,
     marginLeft:5,
-    margineRight:5,
+    marginRight:5,
     marginBottom:5,
     marginTop:5,
     backfaceVisibility: 'hidden',
@@ -322,7 +321,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     marginLeft:5,
-    margineRight:5,
+    marginRight:5,
     marginBottom:5,
     marginTop:5,
     shadowColor: '#000000',

@@ -30,6 +30,7 @@ export function ContextController({ children }) {
     userData:undefined,
     spinValue:new Animated.Value(0),
     words:[],
+    sheet:{},
   };
 
   const [state, setState] = useState(intialState);
