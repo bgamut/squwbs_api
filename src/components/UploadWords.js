@@ -6,14 +6,14 @@ import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
 
-var firebase = require('firebase-admin')
-//var firebase = require('firebase')
-var serviceAccount = require('../firebase-adminsdk.json') 
+//var firebase = require('firebase-admin')
+var firebase = require('firebase')
+//var serviceAccount = require('../firebase-adminsdk.json') 
 //var NODE_ENV = require('../expressServer/keysconfig');
-console.log(stringifyObject(serviceAccount, {
-    indent: '  ',
-    singleQuotes: false
-}))
+// console.log(stringifyObject(serviceAccount, {
+//     indent: '  ',
+//     singleQuotes: false
+// }))
 
 const UploadWords = (props)=> {
     var workbook
