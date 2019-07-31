@@ -116,7 +116,7 @@ class WordCard extends Component {
     },
     onPanResponderRelease: (e, {vx, dx}) => {
 
-      const screenWidth = Dimensions.get("window").width;
+      const screenWidth = Dimensions.get("window").width-15;
       if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.75 * screenWidth) {
         if(vx>0){
           this.props.onRightSwipe()
@@ -196,7 +196,7 @@ class WordCard extends Component {
               <View heihgt={this.style.height}>
             
 
-                  <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-4}]}>
+                  <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-15}]}>
                    
 
  
@@ -224,13 +224,13 @@ class WordCard extends Component {
                      
                     
                   </Animated.View>
-                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-4,padding:5,alignItems:'stretch',justifyContent:'center'}]}>
+                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-15,padding:5,alignItems:'stretch',justifyContent:'center'}]}>
                     <View style={{backgroundColor:'transparent',marginBottom:0,alignItems:'center',justifyContent:'space-between',flexDirection:'row'}}>
                    
-                                <View style={{flexDirection:'column',justifyContent: 'space-between',backgroundColor:'transparent',flex:1}} >
+                                <View style={{flexDirection:'column',justifyContent: 'center',backgroundColor:'transparent',flex:1}} >
                                   
                   
-                                  <View style={{flexDirection:'row',justifyContent: 'space-between'}} >
+                                  <View style={{flexDirection:'row',justifyContent: 'center'}} >
                                   <View style={{paddingLeft:8,backgroundColor:"transparent",justifyContent:'center',alignItems:'center'}}>
                                       <View style={{backgroundColor:"transparent",justifyContent:'space-around',alignItems:'stretch'}}>
                                         <Text style={{           
@@ -242,7 +242,7 @@ class WordCard extends Component {
                                         textShadowRadius: 8,
                                         margin:0,
                                         }}>
-                                            meaning: {this.props.meaning} 
+                                            {this.props.meaning} 
                                         </Text>
                                         <Text style={{           
                                         textDecorationLine:'none',
@@ -253,7 +253,7 @@ class WordCard extends Component {
                                         textShadowRadius: 8,
                                         margin:0,
                                         }}>
-                                            example: {this.props.example}
+                                            {this.props.example}
                                         </Text>
                                     </View>
                                   </View>
@@ -299,9 +299,12 @@ const styles = StyleSheet.create({
     paddingBottom:2,
     paddingLeft:2,
     paddingRight:2,
-    margin:0,
+    marginLeft:5,
+    margineRight:5,
+    marginBottom:5,
+    marginTop:5,
     backfaceVisibility: 'hidden',
-    height: 100,
+    height: Dimensions.get('window').height-15,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -312,10 +315,13 @@ const styles = StyleSheet.create({
   },
   flipCardBack: {
     backgroundColor:'transparent',
-    height: 100,
+    height: Dimensions.get('window').height-15,
     position: "absolute",
     top: 0,
-    margin:0,
+    marginLeft:5,
+    margineRight:5,
+    marginBottom:5,
+    marginTop:5,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
