@@ -16,6 +16,7 @@ import {Rnd} from 'react-rnd'
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const Home = () => {
+  run()
   const [state,setState]=useState(Context)
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
@@ -24,6 +25,7 @@ const Home = () => {
     setState({...state,userData:{...jsonObj}})
   }
   useEffect(()=>{
+    
     getUserData()
   },[])
   // if(state.userData=={}){

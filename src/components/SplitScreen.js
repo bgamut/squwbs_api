@@ -5,6 +5,8 @@ import fs from 'fs'
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 // import WebImage from 'react-native-web-image'
 import { TesseractWorker }  from 'tesseract.js';
+import run from './Tensor'
+import PFive from './PFive'
 const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
 
@@ -154,7 +156,7 @@ class SplitScreen extends Component {
         this.setState({
             value:"Optical Character Recognition Module Loading"
         })
-        
+    
         changeDimensions()
         worker.recognize(process.env.PUBLIC_URL+this.props.source,'kor')
         .progress(progress => {
@@ -281,6 +283,7 @@ class SplitScreen extends Component {
             <View
                 style={{flexDirection:'row',padding:1}}
             >
+               
                     <View 
                         style={{
                             height:'100vh',
