@@ -4,13 +4,13 @@ import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,Keyb
 import HorizontalSwipeElements from './HorizontalSwipeElements'
 import SwipeableList from './SwipeableList'
 import SwipeableScroller from './SwipeableScroller'
-import MemorizationDeck from './MemorizationDeck'
+import WordDeck from './WordDeck'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
 
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-const MemorizationDeckWrapper = () => {
+const WordDeckWrapper = () => {
   //run()
     //const [state,setState]=useState(Context)
     const getUserData=async()=>{
@@ -29,9 +29,9 @@ const MemorizationDeckWrapper = () => {
   
     const n =0
     return(
-      <MemorizationDeck visible = {true} word={'random'} meaning={'무작위의'} example={'The lottery number was picked randomly.'} percentage={12}/>
+      <WordDeck visible = {true} word={'random'} meaning={'무작위의'} example={'The lottery number was picked randomly.'} percentage={12}/>
     )
 
   }
 
-export default MemorizationDeckWrapper
+export default WordDeckWrapper

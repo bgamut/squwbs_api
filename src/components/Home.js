@@ -4,7 +4,7 @@ import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,Keyb
 import HorizontalSwipeElements from './HorizontalSwipeElements'
 import SwipeableList from './SwipeableList'
 import SwipeableScroller from './SwipeableScroller'
-import MemorizationDeckWrapper from './MemorizationDeckWrapper'
+import WordDeckWrapper from './WordDeckWrapper'
 import Swiper from './Swiper'
 import AddPost from './AddPost'
 import Header from './Header'
@@ -311,7 +311,7 @@ const Home = () => {
 
       // <SplitScreen source ='./temp/jpeg/17.jpeg' srcLoaded='./temp/jpeg/17.jpeg'/>
 
-      <MemorizationDeckWrapper/>
+      <WordDeckWrapper/>
 
 
       // <View style={{height:Dimensions.get('window').height}}>

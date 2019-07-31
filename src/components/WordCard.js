@@ -8,7 +8,7 @@ import Flippy, {FrontSide,BackSide} from 'react-flippy'
 import Swipeout from 'react-native-swipeout'
 import Geolocation from 'react-geolocation'
 import CPB from './CPB'
-class MemorizationCard extends Component {
+class WordCard extends Component {
   
  
   constructor(props){
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25
   }
 });
-export default MemorizationCard;
+export default WordCard;
 
 
 
