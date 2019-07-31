@@ -7,14 +7,56 @@ const bagOfWords =[
     {word:'word1' 
     ,meaning:'meaning1'
     ,example:'example1'
+    ,lefted:0
+    ,righted:0
     },
     {word:'word2' 
     ,meaning:'meaning2'
     ,example:'example2'
+    ,lefted:0
+    ,righted:0
     },
     {word:'word3' 
     ,meaning:'meaning3'
     ,example:'example3'
+    ,lefted:0
+    ,righted:0
+    },
+    {word:'word4' 
+    ,meaning:'meaning4'
+    ,example:'example4'
+    ,lefted:0
+    ,righted:0
+    },
+    {word:'word5' 
+    ,meaning:'meaning5'
+    ,example:'example5'
+    ,lefted:0
+    ,righted:0
+    },
+    {word:'word6' 
+    ,meaning:'meaning6'
+    ,example:'example6'
+    ,lefted:0
+    ,righted:0
+    },
+    {word:'word7' 
+    ,meaning:'meaning7'
+    ,example:'example7'
+    ,lefted:0
+    ,righted:0
+    },
+    {word:'word8' 
+    ,meaning:'meaning8'
+    ,example:'example8'
+    ,lefted:0
+    ,righted:0
+    },
+    {word:'word9' 
+    ,meaning:'meaning9'
+    ,example:'example9'
+    ,lefted:0
+    ,righted:0
     },
 ]
 class WordDeck extends Component {
@@ -31,9 +73,20 @@ class WordDeck extends Component {
  
 
   }
+  shuffle=(a)=>{
+    console.log('cards are shuffled')
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+  }
   addCard=()=>{
     console.log('card was removed!')
-    console.log(this.myRef.current.childNodes.length)
+    //console.log(this.myRef.current.childNodes.length)
     const currentIndex=this.state.currentIndex
     const endIndex = this.state.endIndex
     if(currentIndex+1<endIndex){
@@ -42,7 +95,9 @@ class WordDeck extends Component {
         })
     }
     else{
+        this.shuffle(bagOfWords)
         this.setState({
+            bagOfWords:[...bagOfWords],
             currentIndex:0
         })
     }
@@ -57,12 +112,13 @@ class WordDeck extends Component {
     
   }
   componentDidMount(){
+    this.shuffle(bagOfWords)
     this.setState({
         bagOfWords:[...bagOfWords],
         endIndex:bagOfWords.length
     })
-    console.log(bagOfWords)
-    console.log(bagOfWords.length)
+    //console.log(bagOfWords)
+    //console.log(bagOfWords.length)
     
     // if(this.myRef.current!==null){
     //     console.log(this.myRef.current.childNodes.length)
@@ -72,10 +128,10 @@ class WordDeck extends Component {
     // }
   }
   componentDidUpdate(){
-      console.log('updated')
-      console.log(this.state.bagOfWords)
+      //console.log('updated')
+     // console.log(this.state.bagOfWords)
         if(this.myRef.current!==null){
-            console.log(this.myRef.current.childNodes.length)
+            //console.log(this.myRef.current.childNodes.length)
             if(this.myRef.current.childNodes.length<=0){
                 ReactDOM.render(<WordCard onRemove={this.handleCardRemove}word={this.state.bagOfWords[this.state.currentIndex].word} meaning={this.state.bagOfWords[this.state.currentIndex].meaning} example={this.state.bagOfWords[this.state.currentIndex].example} percentage={this.props.percentage}/>,this.myRef.current)
             }

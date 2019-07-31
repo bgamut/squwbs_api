@@ -155,7 +155,7 @@ class WordCard extends Component {
     }
   })
   componentDidUpdate(){
-      console.log('updated card element')
+      //console.log('updated card element')
   }
   
     onPress=(e)=>{
