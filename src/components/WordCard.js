@@ -117,7 +117,7 @@ class WordCard extends Component {
     onPanResponderRelease: (e, {vx, dx}) => {
 
       const screenWidth = Dimensions.get("window").width-15;
-      if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.75 * screenWidth) {
+      if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.35 * screenWidth) {
         if(vx>0){
           this.props.onRightSwipe()
           //console.log('right')
