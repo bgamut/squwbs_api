@@ -460,7 +460,7 @@ app.get('/firebaseDeleteUser',cors(),(req,res)=>{
   }
   deleteUser(obj.userEmail)
 })
-app.get('/firebaseAddWordDeck',cors(),(req,res)=>{
+app.get('/firebaseAddWord',cors(),(req,res)=>{
   var obj = req.query
   admin.initializeApp({
     credential:admin.credential.cert(serviceKey),
@@ -469,18 +469,17 @@ app.get('/firebaseAddWordDeck',cors(),(req,res)=>{
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
-  function addWordDeck(word,meaning,example){
+  function addWord(word,meaning,example){
+    //wordDeck needs to be an array [{word,meaning,example}...]
     this.ref.once('value',function(snapshot){
       var words=(snapshot.val().words)
-      for (var i =0; i<wordDeck.length; i++){
-        words.push(wordDeck[i])
-      }
+      words.push({word,meaning,example})
       var wordsRef=this.ref.child('words')
       wordsRef.set(words)
     })
     admin.database().goOffline()
   }
-
+  addWord(obj.word,obj.meaning,obj.example)
 })
     
   
