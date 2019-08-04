@@ -16,6 +16,28 @@ const path = require('path');
 const fs =require('fs')
 var cookieParser = require('cookie-parser')
 var mobileDetect = require('mobile-detect')
+var admin = require('firebase-admin')
+var firebaseConfig = {
+    apiKey:NODE_ENV.FIREBASE_API_KEY
+    ,authDomain:NODE_ENV.FIREBASE_AUTH_DOMAIN
+    ,databaseURL:NODE_ENV.FIREBASE_DATABASE_URL
+    ,projectId:NODE_ENV.FIREBASE_PROJECT_ID
+    ,storageBucket:NODE_ENV.FIREBASE_STORAGE_BUCKET
+    ,messagingSenderId:NODE_ENV.FIREBASE_MESSAGING_SENDER_ID
+    ,appId:NODE_ENV.FIREBASE_APP_ID
+}
+var firebaseServiceKey = {
+    "type": NODE_ENV.FIREBASE_TYPE,
+    "project_id": NODE_ENV.FIREBASE_PROJECT_ID,
+    "private_key_id": NODE_ENV.FIREBASE_PRIVATE_KEY_ID,
+    "private_key": NODE_ENV.FIREBASE_PRIVATE_KEY,
+    "client_email": NODE_ENV.FIREBASE_CLIENT_EMAIL,
+    "client_id": NODE_ENV.FIREBASE_CLIENT_ID,
+    "auth_uri": NODE_ENV.FIREBASE_AUTH_URI,
+    "token_uri": NODE_ENV.FIREBASE_TOKEN_URI,
+    "auth_provider_x509_cert_url": NODE_ENV.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+    "client_x509_cert_url": NODE_ENV.FIREBASE_CLIENT_x509_CERT_URL,
+}
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -336,6 +358,134 @@ app.post('/api',cors(),(req,res)=>{
   res.send(req.body)
   
 })
+app.get('/firebaseAddUser',cors(),(req,res)=>{
+  var obj = req.query
+  admin.initializeApp({
+    credential:admin.credential.cert(serviceKey),
+    databaseURL:config.databaseURL
+  })
+  this.db = admin.database()
+  this.ref = this.db.ref('restricted_access')
+  function addUser(userName,userEmail){
+    this.ref.once('value',function(snapshot){
+      var users=(snapshot.val().users)
+      users.push({userName,userEmail})
+      console.log(users)
+      var usersRef=this.ref.child('users')
+      usersRef.set(users)
+    })
+    admin.database().goOffline()
+  }
+  addUser(obj.userName,obj.userEmail)
+
+})
+app.get('/firebaseGetUser',cors(),(req,res)=>{
+  var obj = req.query
+  admin.initializeApp({
+    credential:admin.credential.cert(serviceKey),
+    databaseURL:config.databaseURL
+  })
+  this.db = admin.database()
+  this.ref = this.db.ref('restricted_access')
+  
+  function getUser(userEmail){
+    this.ref.once('value',function(snapshot){
+    var users=(snapshot.val().users)
+    var picked = users.find(array=>array.userEmail==userEmail)
+    console.log('found user data ' + 
+      stringifyObject(picked, {
+        indent: '  ',
+        singleQuotes: false
+      })
+    )
+    admin.database().goOffline()
+    return(picked)
+            
+    })
+  }
+  getUser(obj.userEmail)
+
+})
+app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
+  var obj = req.query
+  admin.initializeApp({
+    credential:admin.credential.cert(serviceKey),
+    databaseURL:config.databaseURL
+  })
+  this.db = admin.database()
+  this.ref = this.db.ref('restricted_access')
+
+  function updateUserData(userEmail,dataName,data){
+    this.ref.once('value',function(snapshot){
+      var users=(snapshot.val().users)
+      var picked = users.find(array=>array.userEmail==userEmail)
+      picked[dataName]=data
+      console.log('updated user data '+
+      stringifyObject(picked, {
+          indent: '  ',
+          singleQuotes: false
+      }))
+      users[users.indexOf(picked)]=picked
+      var usersRef=this.ref.child('users')
+      usersRef.set(users)
+    })
+    
+  }
+  for(var i = 0; i<Object.keys(obj);i++){
+    if(obj[Object.keys(obj)[i]]!=userEmail){
+      updateUserData(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
+    }
+  }
+  admin.database().goOffline()
+})
+app.get('/firebaseDeleteUser',cors(),(req,res)=>{
+  var obj = req.query
+  admin.initializeApp({
+    credential:admin.credential.cert(serviceKey),
+    databaseURL:config.databaseURL
+  })
+  this.db = admin.database()
+  this.ref = this.db.ref('restricted_access')
+
+  function deleteUser(userEmail){
+    this.ref.once('value',function(snapshot){
+      var users=(snapshot.val().users)
+      var picked = users.find(array=>array.userEmail==userEmail)
+      console.log(UserEmail + 'removed')
+      users.splice(users.indexOf(picked),1)
+      var usersRef=this.ref.child('users')
+      usersRef.set(users)
+    })
+    admin.database().goOffline()
+  }
+  deleteUser(obj.userEmail)
+})
+app.get('/firebaseAddWordDeck',cors(),(req,res)=>{
+  var obj = req.query
+  admin.initializeApp({
+    credential:admin.credential.cert(serviceKey),
+    databaseURL:config.databaseURL
+  })
+  this.db = admin.database()
+  this.ref = this.db.ref('restricted_access')
+
+  function addWordDeck(word,meaning,example){
+    this.ref.once('value',function(snapshot){
+      var words=(snapshot.val().words)
+      for (var i =0; i<wordDeck.length; i++){
+        words.push(wordDeck[i])
+      }
+      var wordsRef=this.ref.child('words')
+      wordsRef.set(words)
+    })
+    admin.database().goOffline()
+  }
+
+})
+    
+  
+  
+
 app.get('/ebay',cors(),(req,res)=>{
 
     fetch(withQuery('https://squwbs.herokuapp.com/api'
