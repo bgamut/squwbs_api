@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 //import Todo from './Todo'
 import Home from './Home'
 import NoMatch from './NoMatch'
+import NotFound from './NotFound'
 // import Map from './Map'
 // import Catalogue from './screens/CatalogueScreen'
 // import Category from './screens/CategoryScreen'
@@ -36,7 +37,9 @@ class RouterElement extends Component {
                     <Route exact path="/Category" component={Category}/>
                     <Route exact path="/Product" component={Product}/>
                     <Route component={NoMatch} /> */}
+                    <Route path="*" component={NotFound} />
                 </Switch>
+
                 {/* <NavBar /> */}
             </BrowserRouter>
         );
