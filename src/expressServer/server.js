@@ -38,11 +38,12 @@ var firebaseServiceKey = {
     "auth_provider_x509_cert_url": NODE_ENV.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url": NODE_ENV.FIREBASE_CLIENT_x509_CERT_URL,
 }
-console.log(firebaseServiceKey)
+
 admin.initializeApp({
   credential:admin.credential.cert(firebaseServiceKey),
   databaseURL:firebaseConfig.databaseURL
 })
+console.log(admin)
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -371,8 +372,11 @@ app.get('/firebaseAddUser',cors(),(req,res)=>{
     //   credential:admin.credential.cert(firebaseServiceKey),
     //   databaseURL:firebaseConfig.databaseURL
     // })
+    console.log({userName,userEmail})
     db = admin.database()
+    console.log(db)
     ref = db.ref('restricted_access')
+
     ref.once('value',function(snapshot){
       var users=(snapshot.val().users)
       users.push({userName,userEmail})
