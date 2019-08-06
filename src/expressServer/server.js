@@ -374,7 +374,7 @@ app.get('/firebaseAddUser',cors(),(req,res)=>{
     // })
     console.log({userName,userEmail})
     db = admin.database()
-    console.log(db)
+    console.log(db.Database)
     ref = db.ref('restricted_access')
 
     ref.once('value',function(snapshot){
