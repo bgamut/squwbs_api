@@ -38,6 +38,10 @@ var firebaseServiceKey = {
     "auth_provider_x509_cert_url": NODE_ENV.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url": NODE_ENV.FIREBASE_CLIENT_x509_CERT_URL,
 }
+admin.initializeApp({
+  credential:admin.credential.cert(serviceKey),
+  databaseURL:config.databaseURL
+})
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -360,13 +364,13 @@ app.post('/api',cors(),(req,res)=>{
 })
 app.get('/firebaseAddUser',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(serviceKey),
-    databaseURL:config.databaseURL
-  })
+  // admin.initializeApp({
+  //   credential:admin.credential.cert(serviceKey),
+  //   databaseURL:config.databaseURL
+  // })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
-  function addUser(userName,userEmail){
+  function addUser({userName,userEmail}){
     this.ref.once('value',function(snapshot){
       var users=(snapshot.val().users)
       users.push({userName,userEmail})
@@ -374,17 +378,17 @@ app.get('/firebaseAddUser',cors(),(req,res)=>{
       var usersRef=this.ref.child('users')
       usersRef.set(users)
     })
-    admin.database().goOffline()
+    // admin.database().goOffline()
   }
-  addUser(obj.userName,obj.userEmail)
+  addUser(obj)
 
 })
 app.get('/firebaseGetUser',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(serviceKey),
-    databaseURL:config.databaseURL
-  })
+  // admin.initializeApp({
+  //   credential:admin.credential.cert(serviceKey),
+  //   databaseURL:config.databaseURL
+  // })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
   
@@ -398,7 +402,7 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
         singleQuotes: false
       })
     )
-    admin.database().goOffline()
+    // admin.database().goOffline()
     return(picked)
             
     })
@@ -408,10 +412,10 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
 })
 app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(serviceKey),
-    databaseURL:config.databaseURL
-  })
+  // admin.initializeApp({
+  //   credential:admin.credential.cert(serviceKey),
+  //   databaseURL:config.databaseURL
+  // })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
@@ -436,14 +440,14 @@ app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
       updateUserData(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
     }
   }
-  admin.database().goOffline()
+  // admin.database().goOffline()
 })
 app.get('/firebaseDeleteUser',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(serviceKey),
-    databaseURL:config.databaseURL
-  })
+  // admin.initializeApp({
+  //   credential:admin.credential.cert(serviceKey),
+  //   databaseURL:config.databaseURL
+  // })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
@@ -456,20 +460,20 @@ app.get('/firebaseDeleteUser',cors(),(req,res)=>{
       var usersRef=this.ref.child('users')
       usersRef.set(users)
     })
-    admin.database().goOffline()
+    // admin.database().goOffline()
   }
   deleteUser(obj.userEmail)
 })
 app.get('/firebaseAddWord',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(serviceKey),
-    databaseURL:config.databaseURL
-  })
+  // admin.initializeApp({
+  //   credential:admin.credential.cert(serviceKey),
+  //   databaseURL:config.databaseURL
+  // })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
-  function addWord(word,meaning,example){
+  function addWord({word,meaning,example}){
     //wordDeck needs to be an array [{word,meaning,example}...]
     this.ref.once('value',function(snapshot){
       var words=(snapshot.val().words)
@@ -477,9 +481,9 @@ app.get('/firebaseAddWord',cors(),(req,res)=>{
       var wordsRef=this.ref.child('words')
       wordsRef.set(words)
     })
-    admin.database().goOffline()
+    // admin.database().goOffline()
   }
-  addWord(obj.word,obj.meaning,obj.example)
+  addWord(obj)
 })
     
   
