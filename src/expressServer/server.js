@@ -38,11 +38,11 @@ var firebaseServiceKey = {
     "auth_provider_x509_cert_url": NODE_ENV.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url": NODE_ENV.FIREBASE_CLIENT_x509_CERT_URL,
 }
-console.log(firbaseServiceKey)
-admin.initializeApp({
-  credential:admin.credential.cert(serviceKey),
-  databaseURL:config.databaseURL
-})
+// console.log(firebaseServiceKey)
+// admin.initializeApp({
+//   credential:admin.credential.cert(firebaseServiceKey),
+//   databaseURL:config.databaseURL
+// })
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -365,10 +365,10 @@ app.post('/api',cors(),(req,res)=>{
 })
 app.get('/firebaseAddUser',cors(),(req,res)=>{
   var obj = req.query
-  // admin.initializeApp({
-  //   credential:admin.credential.cert(serviceKey),
-  //   databaseURL:config.databaseURL
-  // })
+  admin.initializeApp({
+    credential:admin.credential.cert(firebaseServiceKey),
+    databaseURL:config.databaseURL
+  })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
   function addUser({userName,userEmail}){
@@ -379,17 +379,17 @@ app.get('/firebaseAddUser',cors(),(req,res)=>{
       var usersRef=this.ref.child('users')
       usersRef.set(users)
     })
-    // admin.database().goOffline()
+    admin.database().goOffline()
   }
   addUser(obj)
 
 })
 app.get('/firebaseGetUser',cors(),(req,res)=>{
   var obj = req.query
-  // admin.initializeApp({
-  //   credential:admin.credential.cert(serviceKey),
-  //   databaseURL:config.databaseURL
-  // })
+  admin.initializeApp({
+    credential:admin.credential.cert(firebaseServiceKey),
+    databaseURL:config.databaseURL
+  })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
   
@@ -403,7 +403,7 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
         singleQuotes: false
       })
     )
-    // admin.database().goOffline()
+    admin.database().goOffline()
     return(picked)
             
     })
@@ -413,10 +413,10 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
 })
 app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
   var obj = req.query
-  // admin.initializeApp({
-  //   credential:admin.credential.cert(serviceKey),
-  //   databaseURL:config.databaseURL
-  // })
+  admin.initializeApp({
+    credential:admin.credential.cert(firebaseServiceKey),
+    databaseURL:config.databaseURL
+  })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
@@ -441,14 +441,14 @@ app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
       updateUserData(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
     }
   }
-  // admin.database().goOffline()
+  admin.database().goOffline()
 })
 app.get('/firebaseDeleteUser',cors(),(req,res)=>{
   var obj = req.query
-  // admin.initializeApp({
-  //   credential:admin.credential.cert(serviceKey),
-  //   databaseURL:config.databaseURL
-  // })
+  admin.initializeApp({
+    credential:admin.credential.cert(firebaseServiceKey),
+    databaseURL:config.databaseURL
+  })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
@@ -461,16 +461,16 @@ app.get('/firebaseDeleteUser',cors(),(req,res)=>{
       var usersRef=this.ref.child('users')
       usersRef.set(users)
     })
-    // admin.database().goOffline()
+    admin.database().goOffline()
   }
   deleteUser(obj.userEmail)
 })
 app.get('/firebaseAddWord',cors(),(req,res)=>{
   var obj = req.query
-  // admin.initializeApp({
-  //   credential:admin.credential.cert(serviceKey),
-  //   databaseURL:config.databaseURL
-  // })
+  admin.initializeApp({
+    credential:admin.credential.cert(firebaseServiceKey),
+    databaseURL:config.databaseURL
+  })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
 
@@ -482,7 +482,7 @@ app.get('/firebaseAddWord',cors(),(req,res)=>{
       var wordsRef=this.ref.child('words')
       wordsRef.set(words)
     })
-    // admin.database().goOffline()
+    admin.database().goOffline()
   }
   addWord(obj)
 })
