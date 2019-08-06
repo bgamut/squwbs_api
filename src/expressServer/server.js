@@ -38,6 +38,7 @@ var firebaseServiceKey = {
     "auth_provider_x509_cert_url": NODE_ENV.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url": NODE_ENV.FIREBASE_CLIENT_x509_CERT_URL,
 }
+console.log(firbaseServiceKey)
 admin.initializeApp({
   credential:admin.credential.cert(serviceKey),
   databaseURL:config.databaseURL
