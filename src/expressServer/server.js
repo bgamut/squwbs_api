@@ -367,7 +367,7 @@ app.get('/firebaseAddUser',cors(),(req,res)=>{
   var obj = req.query
   admin.initializeApp({
     credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:config.databaseURL
+    databaseURL:firebaseConfig.databaseURL
   })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
@@ -388,7 +388,7 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
   var obj = req.query
   admin.initializeApp({
     credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:config.databaseURL
+    databaseURL:firebaseConfig.databaseURL
   })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
@@ -415,7 +415,7 @@ app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
   var obj = req.query
   admin.initializeApp({
     credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:config.databaseURL
+    databaseURL:firebaseConfig.databaseURL
   })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
@@ -447,7 +447,7 @@ app.get('/firebaseDeleteUser',cors(),(req,res)=>{
   var obj = req.query
   admin.initializeApp({
     credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:config.databaseURL
+    databaseURL:firebaseConfig.databaseURL
   })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
@@ -469,7 +469,7 @@ app.get('/firebaseAddWord',cors(),(req,res)=>{
   var obj = req.query
   admin.initializeApp({
     credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:config.databaseURL
+    databaseURL:firebaseConfig.databaseURL
   })
   this.db = admin.database()
   this.ref = this.db.ref('restricted_access')
