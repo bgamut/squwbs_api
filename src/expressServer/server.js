@@ -30,7 +30,7 @@ var firebaseServiceKey = {
     "type": NODE_ENV.FIREBASE_TYPE,
     "project_id": NODE_ENV.FIREBASE_PROJECT_ID,
     "private_key_id": NODE_ENV.FIREBASE_PRIVATE_KEY_ID,
-    "private_key": NODE_ENV.FIREBASE_PRIVATE_KEY,
+    "private_key": NODE_ENV.FIREBASE_PRIVATE_KEY.replace(/\\n/g,'\n'),
     "client_email": NODE_ENV.FIREBASE_CLIENT_EMAIL,
     "client_id": NODE_ENV.FIREBASE_CLIENT_ID,
     "auth_uri": NODE_ENV.FIREBASE_AUTH_URI,
@@ -534,3 +534,4 @@ app.listen(process.env['PORT'] || portnumber);
 
 
 }
+
