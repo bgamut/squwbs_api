@@ -365,18 +365,19 @@ app.post('/api',cors(),(req,res)=>{
 })
 app.get('/firebaseAddUser',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:firebaseConfig.databaseURL
-  })
-  this.db = admin.database()
-  this.ref = this.db.ref('restricted_access')
+  
   function addUser({userName,userEmail}){
-    this.ref.once('value',function(snapshot){
+    admin.initializeApp({
+      credential:admin.credential.cert(firebaseServiceKey),
+      databaseURL:firebaseConfig.databaseURL
+    })
+    db = admin.database()
+    ref = db.ref('restricted_access')
+    ref.once('value',function(snapshot){
       var users=(snapshot.val().users)
       users.push({userName,userEmail})
       console.log(users)
-      var usersRef=this.ref.child('users')
+      var usersRef=ref.child('users')
       usersRef.set(users)
     })
     admin.database().goOffline()
@@ -386,15 +387,16 @@ app.get('/firebaseAddUser',cors(),(req,res)=>{
 })
 app.get('/firebaseGetUser',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:firebaseConfig.databaseURL
-  })
-  this.db = admin.database()
-  this.ref = this.db.ref('restricted_access')
+  
   
   function getUser(userEmail){
-    this.ref.once('value',function(snapshot){
+    admin.initializeApp({
+      credential:admin.credential.cert(firebaseServiceKey),
+      databaseURL:firebaseConfig.databaseURL
+    })
+    db = admin.database()
+    ref = db.ref('restricted_access')
+    ref.once('value',function(snapshot){
     var users=(snapshot.val().users)
     var picked = users.find(array=>array.userEmail==userEmail)
     console.log('found user data ' + 
@@ -413,15 +415,16 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
 })
 app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:firebaseConfig.databaseURL
-  })
-  this.db = admin.database()
-  this.ref = this.db.ref('restricted_access')
+  
 
   function updateUserData(userEmail,dataName,data){
-    this.ref.once('value',function(snapshot){
+    admin.initializeApp({
+      credential:admin.credential.cert(firebaseServiceKey),
+      databaseURL:firebaseConfig.databaseURL
+    })
+    db = admin.database()
+    ref = db.ref('restricted_access')
+    ref.once('value',function(snapshot){
       var users=(snapshot.val().users)
       var picked = users.find(array=>array.userEmail==userEmail)
       picked[dataName]=data
@@ -431,7 +434,7 @@ app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
           singleQuotes: false
       }))
       users[users.indexOf(picked)]=picked
-      var usersRef=this.ref.child('users')
+      var usersRef=ref.child('users')
       usersRef.set(users)
     })
     
@@ -445,20 +448,21 @@ app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
 })
 app.get('/firebaseDeleteUser',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:firebaseConfig.databaseURL
-  })
-  this.db = admin.database()
-  this.ref = this.db.ref('restricted_access')
+  
 
   function deleteUser(userEmail){
-    this.ref.once('value',function(snapshot){
+    admin.initializeApp({
+      credential:admin.credential.cert(firebaseServiceKey),
+      databaseURL:firebaseConfig.databaseURL
+    })
+    db = admin.database()
+    ref = db.ref('restricted_access')
+    ref.once('value',function(snapshot){
       var users=(snapshot.val().users)
       var picked = users.find(array=>array.userEmail==userEmail)
       console.log(UserEmail + 'removed')
       users.splice(users.indexOf(picked),1)
-      var usersRef=this.ref.child('users')
+      var usersRef=ref.child('users')
       usersRef.set(users)
     })
     admin.database().goOffline()
@@ -467,19 +471,18 @@ app.get('/firebaseDeleteUser',cors(),(req,res)=>{
 })
 app.get('/firebaseAddWord',cors(),(req,res)=>{
   var obj = req.query
-  admin.initializeApp({
-    credential:admin.credential.cert(firebaseServiceKey),
-    databaseURL:firebaseConfig.databaseURL
-  })
-  this.db = admin.database()
-  this.ref = this.db.ref('restricted_access')
-
   function addWord({word,meaning,example}){
     //wordDeck needs to be an array [{word,meaning,example}...]
-    this.ref.once('value',function(snapshot){
+    admin.initializeApp({
+      credential:admin.credential.cert(firebaseServiceKey),
+      databaseURL:firebaseConfig.databaseURL
+    })
+    db = admin.database()
+    ref = db.ref('restricted_access')
+    ref.once('value',function(snapshot){
       var words=(snapshot.val().words)
       words.push({word,meaning,example})
-      var wordsRef=this.ref.child('words')
+      var wordsRef=ref.child('words')
       wordsRef.set(words)
     })
     admin.database().goOffline()
