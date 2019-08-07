@@ -419,7 +419,7 @@ app.get('/getuser',cors(),(req,res)=>{
             
     })
   }
-  getUser(obj.userEmail)
+  res.send(getUser(obj.userEmail))
 
 })
 app.get('/updateuser',cors(),(req,res)=>{
@@ -486,17 +486,17 @@ app.get('/deleteuser',cors(),(req,res)=>{
         if(picked!=undefined){
             userList.splice(userList.indexOf(picked),1)
             ref.set(userList)
-            console.log(userEmail + ' removed')
+            return({message: String(userEmail + ' removed')})
         }
         else{
-            console.log('such user does not exist.')
+            return({message:'such user does not exist.'})
         }
        
     })
 
 }
 
-  deleteUser(obj.userEmail)
+res.send(deleteUser(obj.userEmail))
 })
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
@@ -507,7 +507,9 @@ app.get('/addword',cors(),(req,res)=>{
     //   databaseURL:firebaseConfig.databaseURL
     // })
     var db = admin.database()
+
     ref = db.ref('words')
+    
     ref.once('value',function(snapshot){
       var words=snapshot.val()
       if(words==undefined){
@@ -516,38 +518,46 @@ app.get('/addword',cors(),(req,res)=>{
       else{
         words.push({word,meaning,pronunciation,example})
       }
-      ref.set(words)
-    })
-    // admin.database().goOffline()
-  }
-  addWord(obj)
-})
-    
-app.get('/addjapaneseword',cors(),(req,res)=>{
-  var obj = req.query
-  function addJapaneseWord({word,meaning,hiragana}){
-    //wordDeck needs to be an array [{word,meaning,example}...]
-    // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
-    var db = admin.database()
-    ref = db.ref('Japanese')
-    ref.once('value',function(snapshot){
-      var words=snapshot.val()
+
       if(words==undefined){
-        words={0:{word,meaning,hiragana}}
+        words={0:{word,meaning,pronunciation,example}}
+        ref.set(words)
+        return({
+          message:'this word was added',
+          word:{word,meaning,pronunciation,example}
+        })
       }
       else{
-        words.push({word,meaning,hiragana})
+        var picked = words.find(singleWord=>singleWord.word==word)
+        if(picked==undefined){
+      
+          words.push({word,meaning,pronunciation,example})
+          ref.set(words)
+          return({
+            message:'this word was added',
+            word:{word,meaning,pronunciation,example}
+          })
+        }
+        else{
+          if(_.isEqual(picked,{word,meaning,pronunciation,example})){
+            ref.set(words)
+            return({message:'this user already exists'})
+          }
+          else{
+            ref.set(words)
+            return({message:'this word already exists would you like to update the information'})
+          }
+        }
       }
-      ref.set(words)
+
+
+      
     })
     // admin.database().goOffline()
   }
-  addJapaneseWord(obj)
+  res.send(addWord(obj))
 })
-  
+    
   
 
 app.get('/ebay',cors(),(req,res)=>{
