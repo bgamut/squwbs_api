@@ -500,7 +500,7 @@ app.get('/deleteuser',cors(),(req,res)=>{
 })
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
-  function addWord({word,meaning,hiragana,example}){
+  function addWord({word,meaning,pronunciation,example}){
     //wordDeck needs to be an array [{word,meaning,example}...]
     // admin.initializeApp({
     //   credential:admin.credential.cert(firebaseServiceKey),
@@ -514,7 +514,7 @@ app.get('/addword',cors(),(req,res)=>{
         words={0:{word,meaning,example}}
       }
       else{
-        words.push({word,meaning,hiragana,example})
+        words.push({word,meaning,pronunciation,example})
       }
       ref.set(words)
     })
