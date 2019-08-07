@@ -554,7 +554,8 @@ app.get('/addword',cors(),(req,res)=>{
     })
     // admin.database().goOffline()
   }
-  //res.send(addWord(obj))
+  addWord(obj)
+  
 })
     
   
