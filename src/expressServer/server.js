@@ -522,10 +522,10 @@ app.get('/addword',cors(),(req,res)=>{
       if(words==undefined){
         words={0:{word,meaning,pronunciation,example}}
         ref.set(words)
-        return({
-          message:'this word was added',
-          word:{word,meaning,pronunciation,example}
-        })
+        // return({
+        //   message:'this word was added',
+        //   word:{word,meaning,pronunciation,example}
+        // })
       }
       else{
         var picked = words.find(singleWord=>singleWord.word==word)
@@ -533,19 +533,19 @@ app.get('/addword',cors(),(req,res)=>{
       
           words.push({word,meaning,pronunciation,example})
           ref.set(words)
-          return({
-            message:'this word was added',
-            word:{word,meaning,pronunciation,example}
-          })
+          // return({
+          //   message:'this word was added',
+          //   word:{word,meaning,pronunciation,example}
+          // })
         }
         else{
           if(_.isEqual(picked,{word,meaning,pronunciation,example})){
             ref.set(words)
-            return({message:'this user already exists'})
+            // return({message:'this user already exists'})
           }
           else{
             ref.set(words)
-            return({message:'this word already exists would you like to update the information'})
+            // return({message:'this word already exists would you like to update the information'})
           }
         }
       }
