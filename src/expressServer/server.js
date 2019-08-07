@@ -366,10 +366,10 @@ app.post('/api',cors(),(req,res)=>{
   res.send(req.body)
   
 })
-app.get('/addUser',cors(),(req,res)=>{
+app.get('/adduser',cors(),(req,res)=>{
   var obj = req.query
   function addUser({userName,userEmail}){
-    var db = global.admin.database()
+    var db = admin.database()
     var ref = db.ref('users')
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
@@ -432,7 +432,7 @@ app.get('/updateuser',cors(),(req,res)=>{
     //     databaseURL:firebaseServiceKey.databaseURL
     //   },uuidv4())
     // initFirebase()
-     var db = global.admin.database()
+     var db = admin.database()
      var ref = db.ref('users')
      ref.once('value',function(snapshot){
        var usersList=snapshot.val()
@@ -478,7 +478,7 @@ app.get('/deleteuser',cors(),(req,res)=>{
   var obj = req.query
   function deleteUser(userEmail){
 
-    var db = global.admin.database()
+    var db = admin.database()
     var ref = db.ref('users')
     ref.once('value',function(snapshot){
         var userList = snapshot.val()
@@ -511,7 +511,7 @@ app.get('/addword',cors(),(req,res)=>{
     ref.once('value',function(snapshot){
       var words=snapshot.val()
       if(words==undefined){
-        words={0:{word,meaning,example}}
+        words={0:{word,meaning,pronunciation,example}}
       }
       else{
         words.push({word,meaning,pronunciation,example})
