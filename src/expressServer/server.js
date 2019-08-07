@@ -12,11 +12,13 @@ const fetch = require('node-fetch')
 const withQuery = require('with-query').default
 var trustProxy = false;
 require('module-alias/register')
+const _ = require('lodash')
 const path = require('path');
 const fs =require('fs')
 var cookieParser = require('cookie-parser')
 var mobileDetect = require('mobile-detect')
 var admin = require('firebase-admin')
+
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
     ,authDomain:NODE_ENV.FIREBASE_AUTH_DOMAIN
@@ -364,52 +366,55 @@ app.post('/api',cors(),(req,res)=>{
   res.send(req.body)
   
 })
-app.get('/firebaseAddUser',cors(),(req,res)=>{
+app.get('/addUser',cors(),(req,res)=>{
   var obj = req.query
-  
   function addUser({userName,userEmail}){
-    // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
-    console.log({userName,userEmail})
-    db = admin.database()
-    console.log(db.Database)
-    ref = db.ref('restricted_access')
-
+    var db = global.admin.database()
+    var ref = db.ref('users')
     ref.once('value',function(snapshot){
-      var users=(snapshot.val().users)
-      users.push({userName,userEmail})
-      console.log(users)
-      var usersRef=ref.child('users')
-      usersRef.set(users)
+      var usersList=snapshot.val()
+      if(usersList==undefined){
+        usersList={0:{userName,userEmail}}
+      }
+      else{
+        var picked = usersList.find(user=>user.userEmail==userEmail)
+        if(picked==undefined){
+          console.log(picked==undefined)
+          usersList.push({userName,userEmail})
+        }
+        else{
+          if(_.isEqual(picked,{userName,userEmail})){
+            console.log('this user already exists')
+          }
+          else{
+            console.log('this email address already exists would you like to update the account information?')
+          }
+        }
+      }
+      ref.set(usersList)
     })
-    // admin.database().goOffline()
   }
+  
   addUser(obj)
 
 })
-app.get('/firebaseGetUser',cors(),(req,res)=>{
+app.get('/getuser',cors(),(req,res)=>{
   var obj = req.query
   
   
   function getUser(userEmail){
-    // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
-    db = admin.database()
-    ref = db.ref('restricted_access')
+ 
+    var db = admin.database()
+    var ref = db.ref('users')
     ref.once('value',function(snapshot){
-    var users=(snapshot.val().users)
-    var picked = users.find(array=>array.userEmail==userEmail)
+    var users=(snapshot.val())
+    var picked = users.find(user=>user.userEmail==userEmail)
     console.log('found user data ' + 
       stringifyObject(picked, {
         indent: '  ',
         singleQuotes: false
       })
     )
-    // admin.database().goOffline()
     return(picked)
             
     })
@@ -417,83 +422,131 @@ app.get('/firebaseGetUser',cors(),(req,res)=>{
   getUser(obj.userEmail)
 
 })
-app.get('/firebaseUpdateUserData',cors(),(req,res)=>{
+app.get('/updateuser',cors(),(req,res)=>{
   var obj = req.query
   
 
-  function updateUserData(userEmail,dataName,data){
+  function updateUser(userEmail,dataName,data){
     // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
-    db = admin.database()
-    ref = db.ref('restricted_access')
-    ref.once('value',function(snapshot){
-      var users=(snapshot.val().users)
-      var picked = users.find(array=>array.userEmail==userEmail)
-      picked[dataName]=data
-      console.log('updated user data '+
-      stringifyObject(picked, {
-          indent: '  ',
-          singleQuotes: false
-      }))
-      users[users.indexOf(picked)]=picked
-      var usersRef=ref.child('users')
-      usersRef.set(users)
-    })
-    
-  }
+    //     credential:admin.credential.cert(firebaseServiceKey),
+    //     databaseURL:firebaseServiceKey.databaseURL
+    //   },uuidv4())
+    // initFirebase()
+     var db = global.admin.database()
+     var ref = db.ref('users')
+     ref.once('value',function(snapshot){
+       var usersList=snapshot.val()
+       if(usersList==undefined){
+            var user={userEmail:userEmail}
+            user[dataName]=data
+            usersList={0:user}
+       }
+       else{
+         var picked = usersList.find(user=>user.userEmail==userEmail)
+
+         if(picked==undefined){
+           console.log(picked==undefined)
+           picked={userEmail:userEmail}
+           picked[dataName]=data
+           usersList.push(picked)
+         }
+         else{
+           //console.log(_.isEqual(picked,{userName,userEmail}))
+           if(_.isEqual(picked[dataName],data)){
+             console.log(dataName+' for this user is already set like that.')
+           }
+           else{
+            picked[dataName]=data
+            var index=usersList.findIndex(user=>user.userEmail==userEmail)
+            usersList[index]=picked
+            console.log('updated the account information')
+           }
+         }
+       }
+       ref.set(usersList)
+     })
+    // global.admin.database().goOffline()
+}
   for(var i = 0; i<Object.keys(obj);i++){
     if(obj[Object.keys(obj)[i]]!=userEmail){
-      updateUserData(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
+      updateUser(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
     }
   }
   // admin.database().goOffline()
 })
-app.get('/firebaseDeleteUser',cors(),(req,res)=>{
+app.get('/deleteuser',cors(),(req,res)=>{
   var obj = req.query
-  
-
   function deleteUser(userEmail){
-    // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
-    db = admin.database()
-    ref = db.ref('restricted_access')
+
+    var db = global.admin.database()
+    var ref = db.ref('users')
     ref.once('value',function(snapshot){
-      var users=(snapshot.val().users)
-      var picked = users.find(array=>array.userEmail==userEmail)
-      console.log(UserEmail + 'removed')
-      users.splice(users.indexOf(picked),1)
-      var usersRef=ref.child('users')
-      usersRef.set(users)
+        var userList = snapshot.val()
+        var picked = userList.find(array=>array.userEmail==userEmail)
+        if(picked!=undefined){
+            userList.splice(userList.indexOf(picked),1)
+            ref.set(userList)
+            console.log(userEmail + ' removed')
+        }
+        else{
+            console.log('such user does not exist.')
+        }
+       
     })
-    // admin.database().goOffline()
-  }
+
+}
+
   deleteUser(obj.userEmail)
 })
-app.get('/firebaseAddWord',cors(),(req,res)=>{
+app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
-  function addWord({word,meaning,example}){
+  function addWord({word,meaning,hiragana,example}){
     //wordDeck needs to be an array [{word,meaning,example}...]
     // admin.initializeApp({
     //   credential:admin.credential.cert(firebaseServiceKey),
     //   databaseURL:firebaseConfig.databaseURL
     // })
-    db = admin.database()
-    ref = db.ref('restricted_access')
+    var db = admin.database()
+    ref = db.ref('words')
     ref.once('value',function(snapshot){
-      var words=(snapshot.val().words)
-      words.push({word,meaning,example})
-      var wordsRef=ref.child('words')
-      wordsRef.set(words)
+      var words=snapshot.val()
+      if(words==undefined){
+        words={0:{word,meaning,example}}
+      }
+      else{
+        words.push({word,meaning,hiragana,example})
+      }
+      ref.set(words)
     })
     // admin.database().goOffline()
   }
   addWord(obj)
 })
     
+app.get('/addjapaneseword',cors(),(req,res)=>{
+  var obj = req.query
+  function addJapaneseWord({word,meaning,hiragana}){
+    //wordDeck needs to be an array [{word,meaning,example}...]
+    // admin.initializeApp({
+    //   credential:admin.credential.cert(firebaseServiceKey),
+    //   databaseURL:firebaseConfig.databaseURL
+    // })
+    var db = admin.database()
+    ref = db.ref('Japanese')
+    ref.once('value',function(snapshot){
+      var words=snapshot.val()
+      if(words==undefined){
+        words={0:{word,meaning,hiragana}}
+      }
+      else{
+        words.push({word,meaning,hiragana})
+      }
+      ref.set(words)
+    })
+    // admin.database().goOffline()
+  }
+  addJapaneseWord(obj)
+})
   
   
 
