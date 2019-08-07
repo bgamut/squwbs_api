@@ -379,15 +379,15 @@ app.get('/adduser',cors(),(req,res)=>{
       else{
         var picked = usersList.find(user=>user.userEmail==userEmail)
         if(picked==undefined){
-          console.log(picked==undefined)
+          // console.log(picked==undefined)
           usersList.push({userName,userEmail})
         }
         else{
           if(_.isEqual(picked,{userName,userEmail})){
-            console.log('this user already exists')
+            // console.log('this user already exists')
           }
           else{
-            console.log('this email address already exists would you like to update the account information?')
+            // console.log('this email address already exists would you like to update the account information?')
           }
         }
       }
@@ -509,7 +509,6 @@ app.get('/addword',cors(),(req,res)=>{
     var db = admin.database()
 
     ref = db.ref('words')
-    
     ref.once('value',function(snapshot){
       var words=snapshot.val()
       if(words==undefined){
@@ -521,7 +520,7 @@ app.get('/addword',cors(),(req,res)=>{
 
       if(words==undefined){
         words={0:{word,meaning,pronunciation,example}}
-        ref.set(words)
+        // ref.set(words)
         // return({
         //   message:'this word was added',
         //   word:{word,meaning,pronunciation,example}
@@ -532,7 +531,7 @@ app.get('/addword',cors(),(req,res)=>{
         if(picked==undefined){
       
           words.push({word,meaning,pronunciation,example})
-          ref.set(words)
+          //ref.set(words)
           // return({
           //   message:'this word was added',
           //   word:{word,meaning,pronunciation,example}
@@ -540,22 +539,22 @@ app.get('/addword',cors(),(req,res)=>{
         }
         else{
           if(_.isEqual(picked,{word,meaning,pronunciation,example})){
-            ref.set(words)
-            // return({message:'this user already exists'})
+            //ref.set(words)
+            console.log('this user already exists')
           }
           else{
-            ref.set(words)
-            // return({message:'this word already exists would you like to update the information'})
+            
+            console.log('this word already exists would you like to update the information')
           }
         }
       }
 
-
+      ref.set(words)
       
     })
     // admin.database().goOffline()
   }
-  res.send(addWord(obj))
+  //res.send(addWord(obj))
 })
     
   
