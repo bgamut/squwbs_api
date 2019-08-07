@@ -501,59 +501,35 @@ res.send(deleteUser(obj.userEmail))
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
   function addWord({word,meaning,pronunciation,example}){
-    //wordDeck needs to be an array [{word,meaning,example}...]
-    // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
+    
     var db = admin.database()
-
     var ref = db.ref('words')
     ref.once('value',function(snapshot){
-      var words=snapshot.val()
-      if(words==undefined){
-        words={0:{word,meaning,pronunciation,example}}
-      }
-      else{
-        words.push({word,meaning,pronunciation,example})
-      }
-
-      if(words==undefined){
-        words={0:{word,meaning,pronunciation,example}}
-        // ref.set(words)
-        // return({
-        //   message:'this word was added',
-        //   word:{word,meaning,pronunciation,example}
-        // })
-      }
-      else{
-        var picked = words.find(singleWord=>singleWord.word==word)
-        if(picked==undefined){
-      
-          words.push({word,meaning,pronunciation,example})
-          //ref.set(words)
-          // return({
-          //   message:'this word was added',
-          //   word:{word,meaning,pronunciation,example}
-          // })
+        var words=snapshot.val()
+        console.log(words)
+        if(words==undefined){
+            words={0:{word,meaning,pronunciation,example}}
         }
         else{
-          if(_.isEqual(picked,{word,meaning,pronunciation,example})){
-            //ref.set(words)
-            console.log('this user already exists')
-          }
-          else{
-            
-            console.log('this word already exists would you like to update the information')
-          }
-        }
-      }
+            var picked = words.find(singleWord=>singleWord.word==word)
+            console.log(picked)
+            if(picked==undefined){  
+                
+                words.push({word,meaning,pronunciation,example})
+            }
+            else{
+                if(_.isEqual(picked,{word,meaning,pronunciation,example})){
 
-      ref.set(words)
-      
+                    console.log('this word already exists')
+                }
+                else{
+                    console.log('this word already exists would you like to update the information')
+                }
+            }
+        }
+        ref.set(words)  
     })
-    // admin.database().goOffline()
-  }
+}
   addWord(obj)
   
 })
