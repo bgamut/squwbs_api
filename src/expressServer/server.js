@@ -508,7 +508,7 @@ app.get('/addword',cors(),(req,res)=>{
     // })
     var db = admin.database()
 
-    ref = db.ref('words')
+    var ref = db.ref('words')
     ref.once('value',function(snapshot){
       var words=snapshot.val()
       if(words==undefined){
@@ -603,7 +603,24 @@ app.get('/formula',cors(),(req,res)=>{
   // })
   //eval(a)
 })
-  
+app.get('/verifytoken',cors(),(req,res)=>{
+  async function verfiyToken(req,res,next){
+    const idToken=req.headers.authorization;
+    try{
+      const decodedToken = await admin.auth().verifyIdToken(idToken)
+      if(decodedToken){
+        req.body.uid=decodedToken.uid
+        return next()
+      }
+      else{
+        return res.status(401).send('you are not authorized')
+      }
+    }
+    catch(e){
+      return res.status(401).send('you are not authorized.')
+    }
+  }
+}) 
 console.log('server started in port number : '+String(portnumber))
 app.listen(process.env['PORT'] || portnumber);
 
