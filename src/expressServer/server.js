@@ -568,7 +568,7 @@ app.get('/addword',cors(),(req,res)=>{
 })
 
 app.get('/addwordlist',cors(),(req,res)=>{
-  var list = req.query
+  var list = req.query.list
   function addWordList(list){
     
     var db = admin.database()

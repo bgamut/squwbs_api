@@ -12,12 +12,13 @@ const _ = require('lodash')
 
 const withQuery = require('with-query');
 
-const addWordListToServer = (array)=>{
+const addWordListToServer = (list)=>{
     
     //console.log(word,meaning,example,pronunciation)
-    fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', JSON.stringify(array)
-    
-    ))
+    fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+      list:list,
+      mode:'cors'
+    }))
     // .then(resulst=>{
     //     return resulst.json()
     //   })
