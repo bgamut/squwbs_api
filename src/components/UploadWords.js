@@ -34,7 +34,7 @@ const addWordToServer = async({word,meaning,example,pronunciation})=>{
       mode:'cors'
     }))
     const jsonObj = await responded.json()
-    console.log(JSON.stringify(jsonObj))
+    console.log(jsonObj)
     
 }
 function addWord({word,meaning,pronunciation,example}){

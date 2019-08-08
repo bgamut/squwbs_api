@@ -550,7 +550,7 @@ app.get('/addword',cors(),(req,res)=>{
             //func(error)
           }
           else{
-            console.log('call back fired')
+            console.log('callback fired in /addWord')
             //func(words)
             res.send({message:message})
           }
