@@ -12,6 +12,29 @@ const _ = require('lodash')
 
 const withQuery = require('with-query');
 
+const addWordListToServer = (array)=>{
+
+    console.log(word,meaning,example,pronunciation)
+    fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+      word:word,
+      meaning:meaning,
+      example:example,
+      pronunciation:pronunciation,
+      mode:'cors'
+    }))
+    // .then(resulst=>{
+    //     return resulst.json()
+    //   })
+    //   .then((json)=>{
+    //     console.log(json)
+    //   })
+    //   .catch((err)=>{
+  
+    //   })
+    
+    
+    
+}
 
 const addWordToServer = ({word,meaning,example,pronunciation})=>{
 
@@ -32,15 +55,16 @@ const addWordToServer = ({word,meaning,example,pronunciation})=>{
       example:example,
       pronunciation:pronunciation,
       mode:'cors'
-    })).then(resulst=>{
-        return resulst.json()
-      })
-      .then((json)=>{
-        console.log(json)
-      })
-      .catch((err)=>{
+    }))
+    // .then(resulst=>{
+    //     return resulst.json()
+    //   })
+    //   .then((json)=>{
+    //     console.log(json)
+    //   })
+    //   .catch((err)=>{
   
-      })
+    //   })
     
     
     
@@ -161,12 +185,12 @@ const UploadWords = (props)=> {
                 }
                 console.log(objList)
                 //initFirebase()
-                for (var i =0; i<objList.length; i++){
-                    addWordToServer(objList[i])
-                    //addWord(objList)
-                }
+                // for (var i =0; i<objList.length; i++){
+                //     addWordToServer(objList[i])
+                //     //addWord(objList)
+                // }
                 //words need to be uploaded to a database now
-               
+                addWordListToServer(objList)
               };
               reader.readAsBinaryString(file)
             })(acceptedFiles[i]);

@@ -546,12 +546,14 @@ app.get('/addword',cors(),(req,res)=>{
         ref.set(words,function(error){
           if(error){
             console.log(error)
+            res.setHeader('Content-Type','application/json')
             res.send({message:message})
             //func(error)
           }
           else{
             console.log('callback fired in /addWord')
             //func(words)
+            res.setHeader('Content-Type','application/json')
             res.send({message:message})
           }
 
@@ -564,7 +566,65 @@ app.get('/addword',cors(),(req,res)=>{
   addWord(obj,sendSuccess)
   
 })
+
+app.get('/addwordlist',cors(),(req,res)=>{
+  var list = req.query
+  function addWordList(list){
     
+    var db = admin.database()
+    var ref = db.ref('words')
+    ref.once('value',function(snapshot){
+        var words=snapshot.val()
+        //console.log(words)
+        if(words==undefined){
+          words={}
+          for (var i=0; i<list.length; i++){
+            words[i]=list[i]
+          }  
+        }
+        else{
+          for(var i =0; i<list.length; i++){
+            //words.push(list[i])
+            var picked = words.find(singleWord=>singleWord.word==list[i].word)
+            console.log(picked)
+            if(picked==undefined){  
+                
+                words.push(list[i])
+            }
+            else{
+                if(_.isEqual(picked,list[i])){
+                    console.log(list[i].word+' already exists')
+                }
+                else{
+                    console.log(list[i].word+' already exists would you like to update the information')
+                }
+            }
+          }
+            
+        }
+        ref.set(words,function(error){
+          if(error){
+            console.log(error)
+            res.setHeader('Content-Type','application/json')
+            res.send({message:message})
+            //func(error)
+          }
+          else{
+            console.log('callback fired in /addWord')
+            //func(words)
+            res.setHeader('Content-Type','application/json')
+            res.send({message:message})
+          }
+
+        })
+    })
+}
+  function sendSuccess(message){
+  res.send({message:message})
+}
+  addWord(list)
+  
+})
   
 
 app.get('/ebay',cors(),(req,res)=>{
@@ -572,11 +632,11 @@ app.get('/ebay',cors(),(req,res)=>{
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
     ))
-    .then(resulst=>{
-      return resulst.json()
+    .then(result=>{
+      return result.json()
     })
     .then((json)=>{
-
+      
       res.send(json)
     })
     .catch((err)=>{
