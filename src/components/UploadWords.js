@@ -14,7 +14,7 @@ const withQuery = require('with-query');
 
 const addWordListToServer = (array)=>{
 
-    console.log(word,meaning,example,pronunciation)
+    //console.log(word,meaning,example,pronunciation)
     fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
       word:word,
       meaning:meaning,
