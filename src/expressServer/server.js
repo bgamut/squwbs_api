@@ -546,11 +546,13 @@ app.get('/addword',cors(),(req,res)=>{
         ref.set(words,function(error){
           if(error){
             console.log(error)
-            func(error)
+            res.send({message:message})
+            //func(error)
           }
           else{
             console.log('call back fired')
-            func(words)
+            //func(words)
+            res.send({message:message})
           }
 
         })
