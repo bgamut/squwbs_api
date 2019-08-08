@@ -19,15 +19,15 @@ const addWordListToServer = (list)=>{
       list:list,
       mode:'cors'
     }))
-    // .then(resulst=>{
-    //     return resulst.json()
-    //   })
-    //   .then((json)=>{
-    //     console.log(json)
-    //   })
-    //   .catch((err)=>{
+    .then(result=>{
+        return result.json()
+      })
+      .then((json)=>{
+        console.log(json)
+      })
+      .catch((err)=>{
   
-    //   })
+      })
     
     
     
