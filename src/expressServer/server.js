@@ -588,7 +588,6 @@ app.get('/addwordlist',cors(),(req,res)=>{
             var picked = words.find(singleWord=>singleWord.word==list[i].word)
             console.log(picked)
             if(picked==undefined){  
-                
                 words.push(list[i])
             }
             else{
@@ -596,7 +595,8 @@ app.get('/addwordlist',cors(),(req,res)=>{
                     console.log(list[i].word+' already exists')
                 }
                 else{
-                    console.log(list[i].word+' already exists would you like to update the information')
+                    words[words.findIndex(row=>row.word==list[i].word)]=list[i]
+                    console.log(list[i].word+' updated to the information provided')
                 }
             }
           }
