@@ -15,13 +15,23 @@ const withQuery = require('with-query');
 
 const addWordToServer = ({word,meaning,example,pronunciation})=>{
 
+    var a = {word,meaning,example,pronunciation}
+    for (var i = 0; i<Object.keys(a).length; i++){
+        if(a[Object.keys(a)[i]]==undefined){
+            a[Object.keys(a)[i]]=""
+        }
+    }
+    word=a.word
+    meaning=a.meaning
+    example=a.example
+    pronunciation=a.pronunciation
     console.log(word,meaning,example,pronunciation)
     fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
       word:word,
       meaning:meaning,
       example:example,
       pronunciation:pronunciation,
-      mode:'no-cors'
+      mode:'cors'
     }
   ))
 }
