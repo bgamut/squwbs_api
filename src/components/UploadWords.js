@@ -1,26 +1,127 @@
 import React, {Component,useCallback,useState} from 'react'
 import {Text,View,Dimensions,TouchableOpacity} from 'react-native'
 import Dropzone, {useDropzone} from 'react-dropzone'
-import {Context} from '../context'
+//import {Context} from '../context'
 import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
+const _ = require('lodash')
 
-//var firebase = require('firebase-admin')
-var firebase = require('firebase')
-//var serviceAccount = require('../firebase-adminsdk.json') 
-//var NODE_ENV = require('../expressServer/keysconfig');
-// console.log(stringifyObject(serviceAccount, {
-//     indent: '  ',
-//     singleQuotes: false
-// }))
+var firebaseServiceKey = {
+    "type": process.env.FIREBASE_TYPE,
+    "project_id": process.env.FIREBASE_PROJECT_ID,
+    "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
+    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g,'\n'),
+    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+    "client_id": process.env.FIREBASE_CLIENT_ID,
+    "auth_uri": process.env.FIREBASE_AUTH_URI,
+    "token_uri": process.env.FIREBASE_TOKEN_URI,
+    "auth_provider_x509_cert_url": process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+    "client_x509_cert_url": process.env.FIREBASE_CLIENT_x509_CERT_URL,
+    "databaseURL":process.env.FIREBASE_DATABASE_URL
+  }
 
+
+const withQuery = require('with-query');
+
+const initFirebase=()=>{
+    global.admin = require('firebase-admin')
+    global.admin.initializeApp({
+        credential:global.admin.credential.cert(firebaseServiceKey),
+        databaseURL:firebaseServiceKey.databaseURL
+    })
+}
+const addWordToServer = ({word,meaning,example,pronunciation})=>{
+    if (example==undefined){
+        example=""
+    }
+    if (pronunciation==undefined){
+        pronunciation=''
+    }
+    fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
+      word:word,
+      meaning:meaning,
+      example:example,
+      pronunciation:pronunciation
+    }
+  ))
+}
+function addWord({word,meaning,pronunciation,example}){
+    
+    var db = global.admin.database()
+    var ref = db.ref('words')
+    ref.once('value',function(snapshot){
+        var words=snapshot.val()
+        console.log(words)
+        if(words==undefined){
+            words={0:{word,meaning,pronunciation,example}}
+        }
+        else{
+            var picked = words.find(singleWord=>singleWord.word==word)
+            console.log(picked)
+            if(picked==undefined){  
+
+                words.push({word,meaning,pronunciation,example})
+            }
+            else{
+                if(_.isEqual(picked,{word,meaning,pronunciation,example})){
+
+                    console.log('this word already exists')
+                }
+                else{
+                    console.log('this word already exists would you like to update the information')
+                }
+            }
+        }
+        ref.set(words)  
+    })
+}
+const convertLetterToNumber=(str) =>{
+    var out = 0, len = str.length;
+    for (var pos = 0; pos < len; pos++) {
+      out += (str.charCodeAt(pos) - 64) * Math.pow(26, len - pos - 1);
+    }
+    return out;
+  }
+const cloneObject=(obj)=> {
+    var copy;
+
+    // Handle the 3 simple types, and null or undefined
+    if (null == obj || "object" != typeof obj) return obj;
+
+    // Handle Date
+    if (obj instanceof Date) {
+        copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+    }
+
+    // Handle Array
+    if (obj instanceof Array) {
+        copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = cloneObject(obj[i]);
+        }
+        return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+        copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = cloneObject(obj[attr]);
+        }
+        return copy;
+    }
+
+    throw new Error("Unable to copy obj! Its type isn't supported.");
+}
 const UploadWords = (props)=> {
     var workbook
     var sheet
     var card = []
-    var words=[]
-    
+    global.words=[]
+    var labels=[]
     
     const onDrop = useCallback(acceptedFiles => {
         for (var i = 0; i < acceptedFiles.length; i++) {
@@ -30,23 +131,41 @@ const UploadWords = (props)=> {
                 const binaryStr = reader.result
                 workbook =XLSX.read(binaryStr,{type:'binary'})
                 
-                sheet = workbook.Sheets.Sheet1
-             
-                
-                for (var i=0; i<Object.keys(sheet).length; i++){
+                global.sheet = workbook.Sheets.Sheet1
+                console.log(global.sheet)
+                var numCol = convertLetterToNumber(Object.keys(global.sheet)[Object.keys(global.sheet).length-2][0])
+                for (var i=0; i<Object.keys(global.sheet).length; i++){
                     
-                    card[i%3]=sheet[Object.keys(sheet)[i]]['w']
-                    if(i>3){
-                        if(i%3==2){
+                    card[i%numCol]=global.sheet[Object.keys(global.sheet)[i]]['w']
+                    if(i<numCol){
+                        labels=card.slice()
+                    }
+                    else{
+                        if(i%numCol==numCol-1){
                             // console.log(card)
-                            words.push(card.slice())
+                            global.words.push(card.slice())
                         }
                     }
                     
                     
+                    
                 }
-                console.log(words)
-
+                //console.log(labels)
+                //console.log(global.words)
+                var objList=[]
+                for (var i =0; i<global.words.length; i++){
+                    var tempObj={}
+                    for (var j =0; j<labels.length; j++){
+                        tempObj[labels[j]]=global.words[i][j]
+                    }
+                    objList[i]=cloneObject(tempObj)
+                }
+                console.log(objList)
+                initFirebase()
+                for (var i =0; i<objList.length; i++){
+                    //addWordToServer(objList[i])
+                    addWord(objList)
+                }
                 //words need to be uploaded to a database now
                
               };
