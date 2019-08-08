@@ -32,7 +32,13 @@ const addWordToServer = ({word,meaning,example,pronunciation})=>{
       example:example,
       pronunciation:pronunciation,
       mode:'cors'
-    }
+    }.then(res => res.json())
+    .then((json) => {
+        console.log(json);
+    })
+    .catch((err) => {
+        console.error(err);
+    })
   ))
 }
 function addWord({word,meaning,pronunciation,example}){

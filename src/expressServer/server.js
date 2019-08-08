@@ -45,7 +45,8 @@ admin.initializeApp({
   credential:admin.credential.cert(firebaseServiceKey),
   databaseURL:firebaseConfig.databaseURL
 })
-console.log(admin)
+
+
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
   trustProxy = true;
@@ -368,7 +369,8 @@ app.post('/api',cors(),(req,res)=>{
 })
 app.get('/adduser',cors(),(req,res)=>{
   var obj = req.query
-  function addUser({userName,userEmail}){
+
+  function addUser({userName,userEmail},func){
     var db = admin.database()
     var ref = db.ref('users')
     ref.once('value',function(snapshot){
@@ -391,11 +393,25 @@ app.get('/adduser',cors(),(req,res)=>{
           }
         }
       }
-      ref.set(usersList)
+      ref.set(usersList,function(error){
+        if(error){
+          console.log(error)
+          func(error)
+        }
+        else{
+          console.log('callback fired')
+          func({userName,userEmail})
+        }
+
+      })
     })
   }
   
-  addUser(obj)
+  function sendSuccess(message){
+    res.send({message:message})
+  }
+
+  addUser(obj,sendSucess)
 
 })
 app.get('/getuser',cors(),(req,res)=>{
@@ -500,7 +516,7 @@ res.send(deleteUser(obj.userEmail))
 })
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
-  function addWord({word,meaning,pronunciation,example}){
+  function addWord({word,meaning,pronunciation,example},func){
     
     var db = admin.database()
     var ref = db.ref('words')
@@ -527,10 +543,23 @@ app.get('/addword',cors(),(req,res)=>{
                 }
             }
         }
-        ref.set(words)  
+        ref.set(words,function(error){
+          if(error){
+            console.log(error)
+            func(error)
+          }
+          else{
+            console.log('call back fired')
+            func(words)
+          }
+
+        })
     })
 }
-  addWord(obj)
+  function sendSuccess(message){
+  res.send({message:message})
+}
+  addWord(obj,sendSucess)
   
 })
     
@@ -578,6 +607,14 @@ app.get('/formula',cors(),(req,res)=>{
   //   console.log(json.code)
   // })
   //eval(a)
+})
+app.get('/api/jsonTester',cors(),async(req,res)=>{
+  try{
+
+  }
+  catch(error){
+    console.log(error)
+  }
 })
 app.get('/verifytoken',cors(),(req,res)=>{
   async function verfiyToken(req,res,next){
