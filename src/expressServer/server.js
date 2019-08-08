@@ -411,7 +411,7 @@ app.get('/adduser',cors(),(req,res)=>{
     res.send({message:message})
   }
 
-  addUser(obj,sendSucess)
+  addUser(obj,sendSuccess)
 
 })
 app.get('/getuser',cors(),(req,res)=>{
@@ -559,7 +559,7 @@ app.get('/addword',cors(),(req,res)=>{
   function sendSuccess(message){
   res.send({message:message})
 }
-  addWord(obj,sendSucess)
+  addWord(obj,sendSuccess)
   
 })
     
