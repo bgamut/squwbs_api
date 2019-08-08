@@ -14,17 +14,14 @@ const withQuery = require('with-query');
 
 
 const addWordToServer = ({word,meaning,example,pronunciation})=>{
-    if (example==undefined){
-        example=""
-    }
-    if (pronunciation==undefined){
-        pronunciation=''
-    }
+
+    console.log(word,meaning,example,pronunciation)
     fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
       word:word,
       meaning:meaning,
       example:example,
-      pronunciation:pronunciation
+      pronunciation:pronunciation,
+      mode:'no-cors'
     }
   ))
 }
