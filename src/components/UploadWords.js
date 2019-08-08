@@ -13,7 +13,7 @@ const _ = require('lodash')
 const withQuery = require('with-query');
 
 
-const addWordToServer = async({word,meaning,example,pronunciation})=>{
+const addWordToServer = ({word,meaning,example,pronunciation})=>{
 
     var a = {word,meaning,example,pronunciation}
     for (var i = 0; i<Object.keys(a).length; i++){
@@ -26,15 +26,23 @@ const addWordToServer = async({word,meaning,example,pronunciation})=>{
     example=a.example
     pronunciation=a.pronunciation
     console.log(word,meaning,example,pronunciation)
-    var responded=await fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
+    fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
       word:word,
       meaning:meaning,
       example:example,
       pronunciation:pronunciation,
       mode:'cors'
-    }))
-    const jsonObj = await responded.json()
-    console.log(jsonObj)
+    })).then(resulst=>{
+        return resulst.json()
+      })
+      .then((json)=>{
+        console.log(json)
+      })
+      .catch((err)=>{
+  
+      })
+    
+    
     
 }
 function addWord({word,meaning,pronunciation,example}){
