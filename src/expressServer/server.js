@@ -606,14 +606,14 @@ app.get('/addwordlist',cors(),(req,res)=>{
           if(error){
             console.log(error)
             res.setHeader('Content-Type','application/json')
-            res.send({message:message})
+            res.send({message:error})
             //func(error)
           }
           else{
-            console.log('callback fired in /addWord')
+            console.log('callback fired in /addWordList')
             //func(words)
             res.setHeader('Content-Type','application/json')
-            res.send({message:message})
+            res.send({message:'success!'})
           }
 
         })
