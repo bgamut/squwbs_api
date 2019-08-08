@@ -622,7 +622,7 @@ app.get('/addwordlist',cors(),(req,res)=>{
   function sendSuccess(message){
   res.send({message:message})
 }
-  addWord(list)
+  addWordList(list)
   
 })
   
