@@ -27,10 +27,10 @@ var firebaseServiceKey = {
 }
 class WordDeck extends Component {
   constructor(props){
-    admin.initializeApp({
-      credential:admin.credential.cert(firebaseServiceKey),
-      databaseURL:firebaseConfig.databaseURL
-    })
+    // admin.initializeApp({
+    //   credential:admin.credential.cert(firebaseServiceKey),
+    //   databaseURL:firebaseConfig.databaseURL
+    // })
     super(props)
     this.state = {
       styleCondition:false,
@@ -40,18 +40,18 @@ class WordDeck extends Component {
       endIndex:1,
     };
     this.myRef=React.createRef();
-    var db = admin.database()
-    var ref = db.ref('words')
-    ref.once('value',function(snapshot){
-        var words=snapshot.val()
-        console.log(words)
-        if(words==undefined){
-          this.setState({bagOfWords:[]})
-        }
-        else{
-          this.setState({bagOfWords:words})
-        }
-    })
+    // var db = admin.database()
+    // var ref = db.ref('words')
+    // ref.once('value',function(snapshot){
+    //     var words=snapshot.val()
+    //     console.log(words)
+    //     if(words==undefined){
+    //       this.setState({bagOfWords:[]})
+    //     }
+    //     else{
+    //       this.setState({bagOfWords:words})
+    //     }
+    // })
     
 
   }
