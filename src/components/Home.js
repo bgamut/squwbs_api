@@ -313,10 +313,10 @@ const Home = () => {
     return(
 
       // <SplitScreen source ='./temp/jpeg/17.jpeg' srcLoaded='./temp/jpeg/17.jpeg'/>
-
-      //<WordDeckWrapper/>
-      <UploadWords/>
-
+      <div>
+        <WordDeckWrapper/>
+        <UploadWords/>
+      </div>
       // <View style={{height:Dimensions.get('window').height}}>
       //   {/* <AdSense.Google 
       //                     client='NeM-xU1bQwBXyU8dz_MsINZX'
