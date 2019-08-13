@@ -73,7 +73,7 @@ class WordDeck extends Component {
         currentIndex:currentIndex
       })
     }
-    
+
     // if(next==true){
     //   if(currentIndex+1<endIndex){
     //     currentIndex=currentIndex+1
@@ -124,7 +124,7 @@ class WordDeck extends Component {
     this.setState({
       bagOfWords:[...bagOfWords],
       next:true,
-      currentIndex=currentIndex+1
+      currentIndex:currentIndex+1
     })
     //console.log(bagOfWords[currentIndex])
   }
