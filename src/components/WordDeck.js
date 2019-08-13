@@ -3,6 +3,7 @@ import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,Touc
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import WordCard from './WordCard'
+import stringifyObject from 'stringify-object'
 // var admin = require('firebase-admin')
 // var firebaseConfig = {
 //   apiKey:process.env.FIREBASE_API_KEY
@@ -114,63 +115,78 @@ class WordDeck extends Component {
   }
   
   componentDidMount(){
-    const bagOfWords =[
-        {word:'word1' 
-        ,meaning:'meaning1'
-        ,example:'example1'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word2' 
-        ,meaning:'meaning2'
-        ,example:'example2'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word3' 
-        ,meaning:'meaning3'
-        ,example:'example3'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word4' 
-        ,meaning:'meaning4'
-        ,example:'example4'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word5' 
-        ,meaning:'meaning5'
-        ,example:'example5'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word6' 
-        ,meaning:'meaning6'
-        ,example:'example6'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word7' 
-        ,meaning:'meaning7'
-        ,example:'example7'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word8' 
-        ,meaning:'meaning8'
-        ,example:'example8'
-        ,lefted:0
-        ,righted:0
-        },
-        {word:'word9' 
-        ,meaning:'meaning9'
-        ,example:'example9'
-        ,lefted:0
-        ,righted:0
-        },
-    ]
-
+    // const bagOfWords =[
+    //     {word:'word1' 
+    //     ,meaning:'meaning1'
+    //     ,example:'example1'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word2' 
+    //     ,meaning:'meaning2'
+    //     ,example:'example2'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word3' 
+    //     ,meaning:'meaning3'
+    //     ,example:'example3'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word4' 
+    //     ,meaning:'meaning4'
+    //     ,example:'example4'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word5' 
+    //     ,meaning:'meaning5'
+    //     ,example:'example5'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word6' 
+    //     ,meaning:'meaning6'
+    //     ,example:'example6'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word7' 
+    //     ,meaning:'meaning7'
+    //     ,example:'example7'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word8' 
+    //     ,meaning:'meaning8'
+    //     ,example:'example8'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    //     {word:'word9' 
+    //     ,meaning:'meaning9'
+    //     ,example:'example9'
+    //     ,lefted:0
+    //     ,righted:0
+    //     },
+    // ]
+    function requestValue(){
+      fetch('https://squwbs.herokuapp.com/getwordlist')
+      .then((res)=>{
+        console.log(stringifyObject(res))
+        res.json()
+      })
+      .then((json)=>{
+        console.log(stringifyObject(json))
+        
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
+    
+    var bagOfWords =requestValue()
     //this.shuffle(bagOfWords)
     this.setState({
         bagOfWords:[...bagOfWords],

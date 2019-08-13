@@ -643,8 +643,8 @@ app.get('/getwordlist',cors(),(req,res)=>{
   function sendSuccess(message){
   res.send({message:message})
 }
-
-  res.send(getWordList())
+  var words = getWordList()
+  res.send(JSON.stringify(words))
 })
   
 
