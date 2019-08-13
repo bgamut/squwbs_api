@@ -655,7 +655,6 @@ app.get('/getwordlist',cors(),(req,res)=>{
     //   message:'success',
     //   words:words
     // })
-    
     res.send({
       message:'success',
       words:JSON.stringify(words)
