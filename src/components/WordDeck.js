@@ -178,8 +178,8 @@ class WordDeck extends Component {
       //   return(res.json())
       // })
       // .then((json)=>{
-        console.log(stringifyObject(json))
-        return json.words
+        console.log(stringifyObject(res))
+        return res.words
       })
       .catch((err) => {
         console.error(err);
