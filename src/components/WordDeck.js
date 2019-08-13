@@ -180,18 +180,23 @@ class WordDeck extends Component {
       .then((json)=>{
         //console.log(json)
         console.log(stringifyObject(json))
-        return json.words
+        this.setState({
+          bagOfWords:json.words,
+          endIndex:json.words.length
+        })
+        //return json.words
       })
       .catch((err) => {
         console.error(err);
       });
     }
-    var bagOfWords=requestWords()
-    console.log(stringifyObject(bagOfWords))
-    this.setState({
-      bagOfWords:bagOfWords,
-      endIndex:bagOfWords.length
-    })
+    requestWords()
+    // var bagOfWords=requestWords()
+    //console.log(stringifyObject(bagOfWords))
+    // this.setState({
+    //   bagOfWords:bagOfWords,
+    //   endIndex:bagOfWords.length
+    // })
     
     //var bagOfWords =requestWords()
     //this.shuffle(bagOfWords)
