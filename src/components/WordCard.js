@@ -231,7 +231,7 @@ class WordCard extends Component {
                                   
                   
                                   <View style={{flexDirection:'row',justifyContent: 'center'}} >
-                                  <View style={{paddingLeft:8,backgroundColor:"transparent",justifyContent:'center',alignItems:'center'}}>
+                                    <View style={{paddingLeft:8,backgroundColor:"transparent",justifyContent:'center',alignItems:'center'}}>
                                       <View style={{backgroundColor:"transparent",justifyContent:'space-around',alignItems:'stretch'}}>
                                         <Text style={{           
                                         textDecorationLine:'none',
@@ -244,7 +244,7 @@ class WordCard extends Component {
                                         }}>
                                             {this.props.meaning} 
                                         </Text>
-                                        <View style = {{justifyContent:'center',alignItems:'center'}}>
+                                       
                                         <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
@@ -256,8 +256,8 @@ class WordCard extends Component {
                                         }}>
                                             {this.props.pronunciation}
                                         </Text>
-                                        </View>
-                                        <View style = {{justifyContent:'center',alignItems:'center'}}>
+                                       
+                                        
                                         <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
@@ -269,7 +269,7 @@ class WordCard extends Component {
                                         }}>
                                             {this.props.example}
                                         </Text>
-                                        </View>
+                                        
                                     </View>
                                   </View>
                                   {/* <CPB endNumber={100} currentNumber={this.props.percentage} /> */}
