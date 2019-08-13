@@ -192,6 +192,7 @@ class WordDeck extends Component {
     // ]
     
     this.requestWords()
+    console.log(this.state)
     // var bagOfWords=requestWords()
     //console.log(stringifyObject(bagOfWords))
     // this.setState({
@@ -228,7 +229,7 @@ class WordDeck extends Component {
                   onRemove={this.handleCardRemove}
                   word={this.state.bagOfWords[this.state.currentIndex].word} 
                   meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
-                  example={this.state.bagOfWords[this.state.currentIndex].example} 
+                  // example={this.state.bagOfWords[this.state.currentIndex].example} 
                   pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
                   percentage={this.props.percentage}
                 />,
