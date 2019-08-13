@@ -223,7 +223,7 @@ class WordDeck extends Component {
   componentDidUpdate(){
     console.log('updated')
     console.log('bagofwords are null : '+this.state.bagOfWords == null)
-    console.log('bagofwords' + stringifyObject(this.state.bagOfWords))
+    console.log('bagofwords' + stringifyObject(this.state.bagOfWords[this.state.currentIndex]))
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
       if(this.myRef.current.childNodes.length<=0){
