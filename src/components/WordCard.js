@@ -218,7 +218,17 @@ class WordCard extends Component {
                           }}>
                               {this.props.word}
                           </Text>
-                         
+                          <Text style={{           
+                                        textDecorationLine:'none',
+                                        color:'white',
+                                        fontSize: 15,
+                                        textShadowColor: 'rgba(0, 0, 0, 1)',
+                                        textShadowOffset: {width: 0, height: 0},
+                                        textShadowRadius: 8,
+                                        margin:0,
+                                        }}>
+                            {this.props.pronunciation}
+                          </Text>
                         </View>
                     </View>
                      
@@ -245,17 +255,7 @@ class WordCard extends Component {
                                             {this.props.meaning} 
                                         </Text>
                                        
-                                        <Text style={{           
-                                        textDecorationLine:'none',
-                                        color:'white',
-                                        fontSize: 15,
-                                        textShadowColor: 'rgba(0, 0, 0, 1)',
-                                        textShadowOffset: {width: 0, height: 0},
-                                        textShadowRadius: 8,
-                                        margin:0,
-                                        }}>
-                                            {this.props.pronunciation}
-                                        </Text>
+                                        
                                        
                                         
                                         <Text style={{           
