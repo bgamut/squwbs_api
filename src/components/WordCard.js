@@ -254,13 +254,14 @@ class WordCard extends Component {
                                         textShadowRadius: 8,
                                         margin:0,
                                         }}>
-                                            {this.props.pronunciation}
+                                            {this.props.example}
                                         </Text>
+                                        </View>
                                         <View style = {{justifyContent:'center',alignItems:'center'}}>
                                         <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
-                                        fontSize: 25,
+                                        fontSize: 15,
                                         textShadowColor: 'rgba(0, 0, 0, 1)',
                                         textShadowOffset: {width: 0, height: 0},
                                         textShadowRadius: 8,
