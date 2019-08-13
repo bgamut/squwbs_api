@@ -61,11 +61,26 @@ class WordDeck extends Component {
     const next = this.state.next
     
     if(next ==true){
+      if(currentIndex-1<0){
+        currentIndex=endIndex-1
+        this.setState({
+            currentIndex:currentIndex
+        })
+      }
+      else{
+        currentIndex=currentIndex-1
+        this.setState({
+            currentIndex:currentIndex
+        })
+      }
+
+    }
+    else{
       if(currentIndex+1<endIndex){
-          currentIndex=currentIndex+1
-          this.setState({
-              currentIndex:currentIndex
-          })
+        currentIndex=currentIndex+1
+        this.setState({
+            currentIndex:currentIndex
+        })
       }
       else{
           currentIndex=0
@@ -74,20 +89,6 @@ class WordDeck extends Component {
               currentIndex:currentIndex
           })
       }
-    }
-    else{
-      if(currentIndex-1<0){
-        currentIndex=endIndex-1
-        this.setState({
-            currentIndex:currentIndex
-        })
-    }
-    else{
-        currentIndex=currentIndex-1
-        this.setState({
-            currentIndex:currentIndex
-        })
-    }
     }
     console.log("currentIndex :"+currentIndex)
     
