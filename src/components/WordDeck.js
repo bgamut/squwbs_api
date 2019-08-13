@@ -58,8 +58,8 @@ class WordDeck extends Component {
     //console.log(this.myRef.current.childNodes.length)
     var currentIndex=this.state.currentIndex
     const endIndex = this.state.endIndex
-    const next = this.state.next
-    
+    var next = this.state.next
+    console.log(next)
     if(next ==true){
       if(currentIndex-1<0){
         currentIndex=endIndex-1
@@ -76,7 +76,7 @@ class WordDeck extends Component {
 
     }
     else{
-            if(currentIndex+1<endIndex){
+      if(currentIndex+1<endIndex){
           currentIndex=currentIndex+1
           this.setState({
               currentIndex:currentIndex
@@ -102,6 +102,7 @@ class WordDeck extends Component {
     
   }
   handleLeftSwipe=()=>{
+    console.log('swiped left')
     var currentIndex = this.state.currentIndex
     var bagOfWords = this.state.bagOfWords
     
@@ -113,6 +114,7 @@ class WordDeck extends Component {
     //console.log(bagOfWords[currentIndex])
   }
   handleRightSwipe=()=>{
+    console.log('swiped right')
     var currentIndex = this.state.currentIndex
     var bagOfWords = this.state.bagOfWords
     bagOfWords[currentIndex].righted=bagOfWords[currentIndex].righted+1
