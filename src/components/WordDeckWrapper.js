@@ -1,12 +1,7 @@
 //import React, {memo} from 'react'
 import React,{Component,useContext,useState,useEffect,memo} from 'react';
-import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions} from 'react-native'
-import HorizontalSwipeElements from './HorizontalSwipeElements'
-import SwipeableList from './SwipeableList'
-import SwipeableScroller from './SwipeableScroller'
 import WordDeck from './WordDeck'
-import FileDrop from './FileDrop'
-import {Context} from '../context'
+
 
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
