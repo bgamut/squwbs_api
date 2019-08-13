@@ -59,37 +59,51 @@ class WordDeck extends Component {
     var currentIndex=this.state.currentIndex
     const endIndex = this.state.endIndex
     var next = this.state.next
-    console.log(next)
-    if(next ==true){
-      if(currentIndex-1<0){
-        currentIndex=endIndex-1
-        this.setState({
-            currentIndex:currentIndex
-        })
-      }
-      else{
-        currentIndex=currentIndex-1
-        this.setState({
-            currentIndex:currentIndex
-        })
-      }
+    //console.log(next)
+    if(currentIndex>=endIndex){
+      currentIndex=0
+      this.setState({
+        bagOfWords:[...this.shuffle(this.state.bagOfWords)],
+        currentIndex:currentIndex
+      })
+    }
+    else if(currentIndex<0){
+      currentIndex=endIndex-1
+      this.setState({
+        currentIndex:currentIndex
+      })
+    }
+    
+    // if(next==true){
+    //   if(currentIndex+1<endIndex){
+    //     currentIndex=currentIndex+1
+    //     this.setState({
+    //         currentIndex:currentIndex
+    //     })
+    //   }
+    //   else{
+    //       currentIndex=0
+    //       this.setState({
+    //           bagOfWords:[...this.shuffle(this.state.bagOfWords)],
+    //           currentIndex:currentIndex
+    //       })
+    //   }
+    // }
+    // else{
+    //   if(currentIndex-1<0){
+    //     currentIndex=endIndex-1
+    //     this.setState({
+    //         currentIndex:currentIndex
+    //     })
+    //   }
+    //   else{
+    //     currentIndex=currentIndex-1
+    //     this.setState({
+    //         currentIndex:currentIndex
+    //     })
+    //   }
+    // }
 
-    }
-    else{
-      if(currentIndex+1<endIndex){
-          currentIndex=currentIndex+1
-          this.setState({
-              currentIndex:currentIndex
-          })
-      }
-      else{
-          currentIndex=0
-          this.setState({
-              bagOfWords:[...this.shuffle(this.state.bagOfWords)],
-              currentIndex:currentIndex
-          })
-      }
-    }
     console.log("currentIndex :"+currentIndex)
     
     // ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove}word={this.props.word} meaning={this.props.meaning} example={this.props.example} percentage={this.props.percentage}/>,this.myRef.current)
@@ -109,7 +123,8 @@ class WordDeck extends Component {
     bagOfWords[currentIndex].lefted=bagOfWords[currentIndex].lefted+1
     this.setState({
       bagOfWords:[...bagOfWords],
-      next:true
+      next:true,
+      currentIndex=currentIndex+1
     })
     //console.log(bagOfWords[currentIndex])
   }
@@ -120,7 +135,8 @@ class WordDeck extends Component {
     bagOfWords[currentIndex].righted=bagOfWords[currentIndex].righted+1
     this.setState({
       bagOfWords:[...bagOfWords],
-      next:false
+      next:false,
+      currentIndex:currentIndex-1
     })
     //console.log(bagOfWords[currentIndex])
   }
