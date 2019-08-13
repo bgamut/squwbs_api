@@ -644,12 +644,15 @@ app.get('/getwordlist',cors(),(req,res)=>{
   res.send({message:message})
 }
   var words = getWordList()
-  res.send(JSON.stringify(words))
+  res.send({
+    message:'success',
+    words:words
+  }
+    )
 })
   
 
 app.get('/ebay',cors(),(req,res)=>{
-
     fetch(withQuery('https://squwbs.herokuapp.com/api'
     ,req.query
     ))
@@ -657,7 +660,6 @@ app.get('/ebay',cors(),(req,res)=>{
       return result.json()
     })
     .then((json)=>{
-      
       res.send(json)
     })
     .catch((err)=>{

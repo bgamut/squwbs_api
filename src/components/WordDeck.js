@@ -171,7 +171,7 @@ class WordDeck extends Component {
     //     ,righted:0
     //     },
     // ]
-    function requestValue(){
+    function requestWords(){
       fetch('https://squwbs.herokuapp.com/getwordlist')
       .then((res)=>{
         console.log(stringifyObject(res))
@@ -179,7 +179,7 @@ class WordDeck extends Component {
       })
       .then((json)=>{
         console.log(stringifyObject(json))
-        
+        return json.words
       })
       .catch((err) => {
         console.error(err);
