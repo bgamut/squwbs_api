@@ -192,7 +192,19 @@ class WordDeck extends Component {
         if(this.myRef.current!==null){
             //console.log(this.myRef.current.childNodes.length)
             if(this.myRef.current.childNodes.length<=0){
-                ReactDOM.render(<WordCard onLeftSwipe={this.handleLeftSwipe} onRightSwipe={this.handleRightSwipe} onRemove={this.handleCardRemove}word={this.state.bagOfWords[this.state.currentIndex].word} meaning={this.state.bagOfWords[this.state.currentIndex].meaning} example={this.state.bagOfWords[this.state.currentIndex].example} percentage={this.props.percentage}/>,this.myRef.current)
+              ReactDOM.render(
+                <WordCard 
+                  onLeftSwipe={this.handleLeftSwipe} 
+                  onRightSwipe={this.handleRightSwipe} 
+                  onRemove={this.handleCardRemove}
+                  word={this.state.bagOfWords[this.state.currentIndex].word} 
+                  meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+                  example={this.state.bagOfWords[this.state.currentIndex].example} 
+                  pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
+                  percentage={this.props.percentage}
+                />,
+                this.myRef.current
+              )
             }
         }
   }

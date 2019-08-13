@@ -625,6 +625,27 @@ app.get('/addwordlist',cors(),(req,res)=>{
   addWordList(list)
   
 })
+
+app.get('/getwordlist',cors(),(req,res)=>{
+
+  function getWordList(){
+    
+    var db = admin.database()
+    var ref = db.ref('words')
+    ref.once('value',function(snapshot){
+        var words=snapshot.val()
+        //console.log(words)
+        if(words==undefined){
+          words={}
+        }
+        return words
+    })
+}
+  function sendSuccess(message){
+  res.send({message:message})
+}
+  res.send(getWordList())
+})
   
 
 app.get('/ebay',cors(),(req,res)=>{
