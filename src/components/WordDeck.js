@@ -36,7 +36,12 @@ class WordDeck extends Component {
     this.state = {
       styleCondition:false,
       flipLock:false,
-      bagOfWords:null,
+      bagOfWords:[{
+        word:'word',
+        meaning:'meaning',
+        example:'example',
+        pronunciation:'pronunciation'
+      }],
       currentIndex:0,
       endIndex:1,
     };
@@ -226,23 +231,23 @@ class WordDeck extends Component {
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
       if(this.myRef.current.childNodes.length<=0){
-        if(this.state.bagOfWords==null){
-          console.log('entered null condition')
-          ReactDOM.render(
-            <WordCard 
-              onLeftSwipe={this.handleLeftSwipe} 
-              onRightSwipe={this.handleRightSwipe} 
-              onRemove={this.handleCardRemove}
-              word={'word'} 
-              meaning={'meaning'} 
-              example={'example'} 
-              pronunciation={'pronunciation'} 
-              percentage={this.props.percentage}
-            />,
-            this.myRef.current
-          )
-        }
-        else{
+        // if(this.state.bagOfWords==null){
+        //   console.log('entered null condition')
+        //   ReactDOM.render(
+        //     <WordCard 
+        //       onLeftSwipe={this.handleLeftSwipe} 
+        //       onRightSwipe={this.handleRightSwipe} 
+        //       onRemove={this.handleCardRemove}
+        //       word={'word'} 
+        //       meaning={'meaning'} 
+        //       example={'example'} 
+        //       pronunciation={'pronunciation'} 
+        //       percentage={this.props.percentage}
+        //     />,
+        //     this.myRef.current
+        //   )
+        // }
+        // else{
          
           ReactDOM.render(
             <WordCard 
