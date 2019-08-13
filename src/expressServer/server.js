@@ -18,6 +18,7 @@ const fs =require('fs')
 var cookieParser = require('cookie-parser')
 var mobileDetect = require('mobile-detect')
 var admin = require('firebase-admin')
+const stringifyObject= require('stringify-object')
 
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
@@ -634,16 +635,15 @@ app.get('/getwordlist',cors(),(req,res)=>{
     var ref = db.ref('words')
     ref.once('value',function(snapshot){
         var words=snapshot.val()
-        //console.log(words)
-        if(words==undefined){
-          words={}
-        }
+
+        console.log(stringifyObject(words))
         return words
     })
 }
   function sendSuccess(message){
   res.send({message:message})
 }
+
   res.send(getWordList())
 })
   
