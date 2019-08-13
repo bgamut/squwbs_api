@@ -174,10 +174,10 @@ class WordDeck extends Component {
     function requestWords(){
       fetch('https://squwbs.herokuapp.com/getwordlist')
       .then((res)=>{
-        console.log(stringifyObject(res))
-        res.json()
-      })
-      .then((json)=>{
+      //   console.log(stringifyObject(res))
+      //   return(res.json())
+      // })
+      // .then((json)=>{
         console.log(stringifyObject(json))
         return json.words
       })
@@ -186,7 +186,7 @@ class WordDeck extends Component {
       });
     }
     
-    var bagOfWords =requestValue()
+    var bagOfWords =requestWords()
     //this.shuffle(bagOfWords)
     this.setState({
         bagOfWords:[...bagOfWords],
