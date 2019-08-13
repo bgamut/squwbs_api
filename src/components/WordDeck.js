@@ -98,7 +98,7 @@ class WordDeck extends Component {
   handleLeftSwipe=()=>{
     var currentIndex = this.state.currentIndex
     var bagOfWords = this.state.bagOfWords
-    if()
+    
     bagOfWords[currentIndex].lefted=bagOfWords[currentIndex].lefted+1
     this.setState({
       bagOfWords:[...bagOfWords],
