@@ -76,11 +76,11 @@ class WordDeck extends Component {
 
     }
     else{
-      if(currentIndex+1<endIndex){
-        currentIndex=currentIndex+1
-        this.setState({
-            currentIndex:currentIndex
-        })
+            if(currentIndex+1<endIndex){
+          currentIndex=currentIndex+1
+          this.setState({
+              currentIndex:currentIndex
+          })
       }
       else{
           currentIndex=0
@@ -108,7 +108,7 @@ class WordDeck extends Component {
     bagOfWords[currentIndex].lefted=bagOfWords[currentIndex].lefted+1
     this.setState({
       bagOfWords:[...bagOfWords],
-      next:false
+      next:true
     })
     //console.log(bagOfWords[currentIndex])
   }
@@ -118,7 +118,7 @@ class WordDeck extends Component {
     bagOfWords[currentIndex].righted=bagOfWords[currentIndex].righted+1
     this.setState({
       bagOfWords:[...bagOfWords],
-      next:true
+      next:false
     })
     //console.log(bagOfWords[currentIndex])
   }
