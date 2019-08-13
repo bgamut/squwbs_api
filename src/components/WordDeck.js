@@ -75,19 +75,19 @@ class WordDeck extends Component {
     }
 
     // if(next==true){
-    //   if(currentIndex+1<endIndex){
-    //     currentIndex=currentIndex+1
-    //     this.setState({
-    //         currentIndex:currentIndex
-    //     })
-    //   }
-    //   else{
-    //       currentIndex=0
-    //       this.setState({
-    //           bagOfWords:[...this.shuffle(this.state.bagOfWords)],
-    //           currentIndex:currentIndex
-    //       })
-    //   }
+      if(currentIndex+1<endIndex){
+        currentIndex=currentIndex+1
+        this.setState({
+            currentIndex:currentIndex
+        })
+      }
+      else{
+          currentIndex=0
+          this.setState({
+              bagOfWords:[...this.shuffle(this.state.bagOfWords)],
+              currentIndex:currentIndex
+          })
+      }
     // }
     // else{
     //   if(currentIndex-1<0){
@@ -124,7 +124,7 @@ class WordDeck extends Component {
     this.setState({
       bagOfWords:[...bagOfWords],
       next:true,
-      currentIndex:currentIndex+1
+      // currentIndex:currentIndex+1
     })
     //console.log(bagOfWords[currentIndex])
   }
@@ -136,7 +136,7 @@ class WordDeck extends Component {
     this.setState({
       bagOfWords:[...bagOfWords],
       next:false,
-      currentIndex:currentIndex-1
+      // currentIndex:currentIndex-1
     })
     //console.log(bagOfWords[currentIndex])
   }
