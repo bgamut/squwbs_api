@@ -637,7 +637,7 @@ app.get('/getwordlist',cors(),(req,res)=>{
       ref.once('value',function(snapshot){
           var words=snapshot.val()
 
-          console.log(stringifyObject(words))
+          //console.log(stringifyObject(words))
           if(words!=undefined){
             resolve (words)
           }
