@@ -195,10 +195,10 @@ class WordDeck extends Component {
     })
     //var bagOfWords =requestWords()
     //this.shuffle(bagOfWords)
-    this.setState({
-        bagOfWords:bagOfWords,
-        endIndex:bagOfWords.length
-    })
+    // this.setState({
+    //     bagOfWords:bagOfWords,
+    //     endIndex:bagOfWords.length
+    // })
     //console.log(bagOfWords)
     //console.log(bagOfWords.length)
     
