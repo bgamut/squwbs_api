@@ -128,7 +128,7 @@ class WordCard extends Component {
         }
         Animated.sequence([
           Animated.spring(this.dragPos, {
-            toValue: dx > 0 ? {x:screenWidth,y:this.style.height} : {x:-screenWidth,y:this.style.height },
+            toValue: dx > 0 ? {x:screenWidth*1.5,y:this.style.height} : {x:-screenWidth*1.5,y:this.style.height },
             duration: 250
             
         }).start(
@@ -137,7 +137,7 @@ class WordCard extends Component {
             this.remove()
           },
         Animated.spring(this.dragPos,{
-          toValue: this.dragPos.x > 0 ?{x:screenWidth,y:0} : {x:-screenWidth,y:0},
+          toValue: this.dragPos.x > 0 ?{x:screenWidth*1.5,y:0} : {x:-screenWidth*1.5,y:0},
           duration:750
         })
           
