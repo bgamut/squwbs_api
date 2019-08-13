@@ -252,7 +252,7 @@ class WordCard extends Component {
                                         textShadowRadius: 8,
                                         margin:0,
                                         }}>
-                                            {String(this.props.meaning)+' '+String(this.props.pronunciation) } 
+                                            {this.props.meaning} 
                                         </Text>
                                       
                                         
