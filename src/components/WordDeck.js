@@ -184,6 +184,7 @@ class WordDeck extends Component {
           bagOfWords:json.words,
           endIndex:json.words.length
         })
+        
         //return json.words
       })
       .catch((err) => {
