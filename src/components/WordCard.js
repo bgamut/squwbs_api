@@ -117,7 +117,7 @@ class WordCard extends Component {
 
 
       const screenWidth = Dimensions.get("window").width-15;
-      if (Math.abs(vx) >= 0.35 || Math.abs(dx) >= 0.35 * screenWidth) {
+      if (Math.abs(vx) >= 0.15 || Math.abs(dx) >= 0.15 * screenWidth) {
         if(vx>0){
           this.props.onRightSwipe()
           //console.log('right')
@@ -218,7 +218,7 @@ class WordCard extends Component {
                           }}>
                               {this.props.word}
                           </Text>
-                          <Text style={{           
+                          {/* <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
                                         fontSize: 15,
@@ -228,7 +228,7 @@ class WordCard extends Component {
                                         margin:0,
                                         }}>
                             {this.props.pronunciation}
-                          </Text>
+                          </Text> */}
                         </View>
                     </View>
                      
@@ -258,7 +258,7 @@ class WordCard extends Component {
                                         
                                        
                                         
-                                        <Text style={{           
+                                        {/* <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
                                         fontSize: 15,
@@ -268,7 +268,7 @@ class WordCard extends Component {
                                         margin:0,
                                         }}>
                                             {this.props.example}
-                                        </Text>
+                                        </Text> */}
                                         
                                     </View>
                                   </View>
