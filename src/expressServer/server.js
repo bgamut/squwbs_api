@@ -636,7 +636,7 @@ app.get('/getwordlist',cors(),(req,res)=>{
     ref.once('value',function(snapshot){
         var words=snapshot.val()
 
-        console.log(stringifyObject(words))
+        //console.log(stringifyObject(words))
         return words
     })
 }
@@ -644,6 +644,7 @@ app.get('/getwordlist',cors(),(req,res)=>{
   res.send({message:message})
 }
   var words = getWordList()
+  console.log(stringifyObject(words))
   res.send({
     message:'success',
     words:words
