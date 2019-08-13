@@ -186,13 +186,13 @@ class WordDeck extends Component {
         console.error(err);
       });
     }
-    requestWords()
-    .then((bagOfWords)=>{
-      this.setState({
-        bagOfWords:bagOfWords,
-        endIndex:bagOfWords.length
-      })
+    var bagOfWords=requestWords()
+    console.log(stringifyObject(bagOfWords))
+    this.setState({
+      bagOfWords:bagOfWords,
+      endIndex:bagOfWords.length
     })
+    
     //var bagOfWords =requestWords()
     //this.shuffle(bagOfWords)
     // this.setState({

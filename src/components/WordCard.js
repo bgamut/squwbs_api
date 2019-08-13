@@ -6,7 +6,6 @@ import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
 import Flippy, {FrontSide,BackSide} from 'react-flippy'
 import Swipeout from 'react-native-swipeout'
-import CPB from './CPB'
 
 class WordCard extends Component {
   
