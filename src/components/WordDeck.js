@@ -4,28 +4,7 @@ import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import WordCard from './WordCard'
 import stringifyObject from 'stringify-object'
-// var admin = require('firebase-admin')
-// var firebaseConfig = {
-//   apiKey:process.env.FIREBASE_API_KEY
-//   ,authDomain:process.env.FIREBASE_AUTH_DOMAIN
-//   ,databaseURL:process.env.FIREBASE_DATABASE_URL
-//   ,projectId:process.env.FIREBASE_PROJECT_ID
-//   ,storageBucket:process.env.FIREBASE_STORAGE_BUCKET
-//   ,messagingSenderId:process.env.FIREBASE_MESSAGING_SENDER_ID
-//   ,appId:process.env.FIREBASE_APP_ID
-// }
-// var firebaseServiceKey = {
-//   "type": process.env.FIREBASE_TYPE,
-//   "project_id": process.env.FIREBASE_PROJECT_ID,
-//   "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
-//   "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g,'\n'),
-//   "client_email": process.env.FIREBASE_CLIENT_EMAIL,
-//   "client_id": process.env.FIREBASE_CLIENT_ID,
-//   "auth_uri": process.env.FIREBASE_AUTH_URI,
-//   "token_uri": process.env.FIREBASE_TOKEN_URI,
-//   "auth_provider_x509_cert_url": process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
-//   "client_x509_cert_url": process.env.FIREBASE_CLIENT_x509_CERT_URL,
-// }
+
 class WordDeck extends Component {
   constructor(props){
     // admin.initializeApp({
@@ -161,43 +140,7 @@ class WordDeck extends Component {
     //     ,example:'example3'
     //     ,lefted:0
     //     ,righted:0
-    //     },
-    //     {word:'word4' 
-    //     ,meaning:'meaning4'
-    //     ,example:'example4'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word5' 
-    //     ,meaning:'meaning5'
-    //     ,example:'example5'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word6' 
-    //     ,meaning:'meaning6'
-    //     ,example:'example6'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word7' 
-    //     ,meaning:'meaning7'
-    //     ,example:'example7'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word8' 
-    //     ,meaning:'meaning8'
-    //     ,example:'example8'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word9' 
-    //     ,meaning:'meaning9'
-    //     ,example:'example9'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
+    //     }
     // ]
     
     this.requestWords()
@@ -226,7 +169,7 @@ class WordDeck extends Component {
     // }
   }
   componentDidUpdate(){
-    console.log('updated')
+    
     console.log(this.state.bagOfWords[this.state.currentIndex])
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
@@ -265,21 +208,21 @@ class WordDeck extends Component {
         }
       }
     }
-  }
+  // }
 
 
  
  
-render(){
-    
-    
-      return (
-          
-            <div id='MemorizationDeck' ref={this.myRef}>
-            </div>
+  render(){
+      
+      
+        return (
             
-    );
-}
+              <div id='MemorizationDeck' ref={this.myRef}>
+              </div>
+              
+      );
+  }
 
 
 }
