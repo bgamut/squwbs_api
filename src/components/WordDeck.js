@@ -122,10 +122,13 @@ class WordDeck extends Component {
     })
     .then((json)=>{
       //console.log(json)
-      console.log(stringifyObject(json))
+      //console.log(stringifyObject(json))
+      var words = json.words.slice()
+      console.log(stringifyObject(words))
       this.setState({
-        bagOfWords:json.words.slice(),
-        endIndex:json.words.length
+
+        bagOfWords:words,
+        endIndex:words.length
       })
 
       //return json.words
@@ -219,7 +222,7 @@ class WordDeck extends Component {
   }
   componentDidUpdate(){
     console.log('updated')
-    // console.log(this.state.bagOfWords)
+    console.log('bagofwords are null : '+this.state.bagOfWords == null)
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
       if(this.myRef.current.childNodes.length<=0){
