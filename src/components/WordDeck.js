@@ -23,6 +23,7 @@ class WordDeck extends Component {
       }],
       currentIndex:0,
       endIndex:1,
+      next:true
     };
     this.myRef=React.createRef();
     // var db = admin.database()
@@ -57,30 +58,35 @@ class WordDeck extends Component {
     //console.log(this.myRef.current.childNodes.length)
     const currentIndex=this.state.currentIndex
     const endIndex = this.state.endIndex
-    // if(currentIndex+1<endIndex){
-    //     this.setState({
-    //         currentIndex:currentIndex+1
-    //     })
-    // }
-    // else{
+    const next = this.state.next
+    if(next ==true){
+      if(currentIndex+1<endIndex){
+          this.setState({
+              currentIndex:currentIndex+1
+          })
+      }
+      else{
+          
+          this.setState({
+              bagOfWords:[...this.shuffle(this.state.bagOfWords)],
+              currentIndex:0
+          })
+      }
+    }
+    else{
+      if(currentIndex-1<0){
+        this.setState({
+            currentIndex:endIndex-1
+        })
+    }
+    else{
         
-    //     this.setState({
-    //         bagOfWords:[...this.shuffle(this.state.bagOfWords)],
-    //         currentIndex:0
-    //     })
-    // }
-    // if(currentIndex+1<endIndex){
-    //   this.setState({
-    //       currentIndex:currentIndex+1
-    //   })
-    // }
-    // else{
-      
-      this.setState({
-          bagOfWords:[...this.shuffle(this.state.bagOfWords)],
-          // currentIndex:0
-      })
-    // }
+        this.setState({
+            currentIndex:currentIndex-1
+        })
+    }
+    }
+    
     
     // ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove}word={this.props.word} meaning={this.props.meaning} example={this.props.example} percentage={this.props.percentage}/>,this.myRef.current)
     ReactDOM.render(<WordCard onLeftSwipe={this.handleLeftSwipe} onRightSwipe={this.handleRightSwipe} onRemove={this.handleCardRemove } word={this.state.bagOfWords[this.state.currentIndex].word} meaning={this.state.bagOfWords[this.state.currentIndex].meaning} example={this.state.bagOfWords[this.state.currentIndex].example} percentage={this.props.percentage}/>,this.myRef.current)
@@ -94,48 +100,24 @@ class WordDeck extends Component {
   handleLeftSwipe=()=>{
     var currentIndex = this.state.currentIndex
     var bagOfWords = this.state.bagOfWords
-    var endIndex=this.state.endIndex
+    
     bagOfWords[currentIndex].lefted=bagOfWords[currentIndex].lefted+1
     this.setState({
       bagOfWords:[...bagOfWords],
+      next:false
     })
-    if(currentIndex-1<0){
-      this.setState({
-        bagOfWords:[...bagOfWords],
-        currentIndex:endIndex-1
-      })
-    }
-    else{
-      this.setState({
-        bagOfWords:[...bagOfWords],
-        currentIndex:currentIndex-1
-      })
-    }
     console.log(bagOfWords[currentIndex])
   }
   handleRightSwipe=()=>{
     var currentIndex = this.state.currentIndex
     var bagOfWords = this.state.bagOfWords
-    var endIndex=this.state.endIndex
     bagOfWords[currentIndex].righted=bagOfWords[currentIndex].righted+1
-    if(currentIndex+1<endIndex){
-      this.setState({
-        bagOfWords:[...bagOfWords],
-        currentIndex:0
-      })
-    }
-    else{
-      this.setState({
-        bagOfWords:[...bagOfWords],
-        currentIndex:currentIndex+1
-      })
-    }
-      
+    this.setState({
+      bagOfWords:[...bagOfWords],
+      next:true
+    })
     console.log(bagOfWords[currentIndex])
   }
-    
-    
-  
   requestWords=()=>{
     fetch('https://squwbs.herokuapp.com/getwordlist')
     .then((res)=>{
