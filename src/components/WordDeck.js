@@ -56,7 +56,7 @@ class WordDeck extends Component {
   addCard=()=>{
     //console.log('card was removed!')
     //console.log(this.myRef.current.childNodes.length)
-    const currentIndex=this.state.currentIndex
+    var currentIndex=this.state.currentIndex
     const endIndex = this.state.endIndex
     const next = this.state.next
     
