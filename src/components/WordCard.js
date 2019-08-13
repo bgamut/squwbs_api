@@ -218,7 +218,7 @@ class WordCard extends Component {
                           }}>
                               {this.props.word}
                           </Text>
-                          {/* <Text style={{           
+                          <Text style={{           
                                         textDecorationLine:'none',
                                         color:'white',
                                         fontSize: 15,
@@ -228,7 +228,7 @@ class WordCard extends Component {
                                         margin:0,
                                         }}>
                             {this.props.pronunciation}
-                          </Text> */}
+                          </Text>
                         </View>
                     </View>
                      
