@@ -650,7 +650,7 @@ app.get('/getwordlist',cors(),(req,res)=>{
 
   getWordList
   .then((words)=>{
-    console.log(stringifyObject(words))
+    //console.log(stringifyObject(words))
     res.send({
       message:'success',
       words:words
