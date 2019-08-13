@@ -170,7 +170,7 @@ class WordDeck extends Component {
   }
   componentDidUpdate(){
     
-    console.log(this.state.bagOfWords[this.state.currentIndex])
+    console.log(this.state.bagOfWords[this.state.currentIndex].pronunciation)
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
       if(this.myRef.current.childNodes.length<=0){
