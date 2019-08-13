@@ -11,7 +11,7 @@ import Header from './Header'
 import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
-import AdSense from 'react-adsense';
+//import AdSense from 'react-adsense';
 import UploadWords from './UploadWords'
 import SplitScreen from './SplitScreen'
 
