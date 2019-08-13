@@ -254,7 +254,7 @@ class WordCard extends Component {
                                         textShadowRadius: 8,
                                         margin:0,
                                         }}>
-                                            {this.props.example}
+                                            {this.props.pronunciation}
                                         </Text>
                                         </View>
                                         <View style = {{justifyContent:'center',alignItems:'center'}}>
