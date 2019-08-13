@@ -629,30 +629,45 @@ app.get('/addwordlist',cors(),(req,res)=>{
 
 app.get('/getwordlist',cors(),(req,res)=>{
 
-  function getWordList(){
+  var getWordList = new Promise(
     
-    var db = admin.database()
-    var ref = db.ref('words')
-    ref.once('value',function(snapshot){
-        var words=snapshot.val()
+    function(resolve,reject){
+      var db = admin.database()
+      var ref = db.ref('words')
+      ref.once('value',function(snapshot){
+          var words=snapshot.val()
 
-        //console.log(stringifyObject(words))
-        return words
-    })
-}
+          console.log(stringifyObject(words))
+          if(words!=undefined){
+            resolve (words)
+          }
+          else{
+            reject (words)
+          } 
+      })
+    }
+  ) 
+
   function sendSuccess(message){
   res.send({message:message})
 }
-  var words = getWordList()
-  console.log(stringifyObject(words))
+  getWordList()
+  .then((words)=>{
+    console.log(stringifyObject(words))
+    res.send({
+      message:'success',
+      words:stringifyObject(words)
+    })
+  })
+  .catch((err)=>{
+    console.log("getWordList error : "+ err)
+  })
+  
   // res.send({
   //   message:'success',
   //   words:words
   // })
-  res.send({
-    message:'success',
-    words:stringifyObject(words)
-  })
+  
 })
   
 
