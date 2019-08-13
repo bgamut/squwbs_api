@@ -191,7 +191,7 @@ class WordDeck extends Component {
     var bagOfWords =requestWords()
     //this.shuffle(bagOfWords)
     this.setState({
-        bagOfWords:[...bagOfWords],
+        bagOfWords:bagOfWords,
         endIndex:bagOfWords.length
     })
     //console.log(bagOfWords)
