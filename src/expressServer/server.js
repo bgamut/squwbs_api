@@ -651,14 +651,14 @@ app.get('/getwordlist',cors(),(req,res)=>{
   getWordList
   .then((words)=>{
     console.log(stringifyObject(words))
-    // res.send({
-    //   message:'success',
-    //   words:words
-    // })
     res.send({
       message:'success',
-      words:JSON.stringify(words)
+      words:words
     })
+    // res.send({
+    //   message:'success',
+    //   words:JSON.stringify(words)
+    // })
   })
   .catch((err)=>{
     console.log("getWordList error : "+ err)
