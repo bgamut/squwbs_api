@@ -98,6 +98,7 @@ class WordDeck extends Component {
   handleLeftSwipe=()=>{
     var currentIndex = this.state.currentIndex
     var bagOfWords = this.state.bagOfWords
+    if()
     bagOfWords[currentIndex].lefted=bagOfWords[currentIndex].lefted+1
     this.setState({
       bagOfWords:[...bagOfWords],
@@ -217,7 +218,7 @@ class WordDeck extends Component {
     // }
   }
   componentDidUpdate(){
-    //console.log('updated')
+    console.log('updated')
     // console.log(this.state.bagOfWords)
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
