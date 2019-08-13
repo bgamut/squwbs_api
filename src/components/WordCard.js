@@ -117,7 +117,7 @@ class WordCard extends Component {
 
 
       const screenWidth = Dimensions.get("window").width-15;
-      if (Math.abs(vx) >= 0.15 || Math.abs(dx) >= 0.15 * screenWidth) {
+      if (Math.abs(vx) >= 0.1 || Math.abs(dx) >= 0.1 * screenWidth) {
         if(vx>0){
           this.props.onRightSwipe()
           //console.log('right')
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     margin:0,
   },
   flipCard: {
-    backgroundColor:'silver',
+    backgroundColor:'black',
     borderWidth:1,
     borderColor: 'rgba(128,128,128,0)',
     paddingTop:2,
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25
   },
   flipCardBack: {
-    backgroundColor:'silver',
+    backgroundColor:'black',
     height: Dimensions.get('window').height-15,
     position: "absolute",
     top: 0,
