@@ -3,19 +3,17 @@ import React,{Component,useContext,useState,useEffect} from 'react';
 import {Animated,PanResponder} from 'react-native'
 //import logo from './logo.svg';
 //import './App.css';
-// import Header from './components/Header'
-// import Home from './components/Home'
-// import Posts from './components/Posts'
-// import AddPost from './components/AddPost'
-// import Swiper from './components/Swiper'
-// import NavBar from './components/NavBar'
-// import ScrollableHeader from './components/ScrollableHeader'
-// import HorizontalSwipeElements from './components/HorizontalSwipeElements'
-// import SwipeableList from './components/SwipeableList'
-// import SwipeableScroller from './components/SwipeableScroller'
-// import RouterElement from './components/RouterElement'
-import UploadWords from './components/UploadWords'
-import WordDeckWrapper from './components/WordDeckWrapper'
+import Header from './components/Header'
+import Home from './components/Home'
+import Posts from './components/Posts'
+import AddPost from './components/AddPost'
+import Swiper from './components/Swiper'
+import NavBar from './components/NavBar'
+import ScrollableHeader from './components/ScrollableHeader'
+import HorizontalSwipeElements from './components/HorizontalSwipeElements'
+import SwipeableList from './components/SwipeableList'
+import SwipeableScroller from './components/SwipeableScroller'
+import RouterElement from './components/RouterElement'
 // testimport NavigationV3 from './components/Navigationv3'
 //import {FlatList} from 'react'
 import {ContextController} from './context'
@@ -135,8 +133,9 @@ const App = (props,context)=>{
         <SafeAreaView>
           
          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,padding:0}}>
-            <UploadWords/>
-            <WordDeckWrapper/>
+
+            <RouterElement/>
+            {/* <Reanimate/> */}
           </View>
         </SafeAreaView>
       

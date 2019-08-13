@@ -113,7 +113,26 @@ class WordDeck extends Component {
     })
     console.log(bagOfWords[currentIndex])
   }
-  
+  requestWords=()=>{
+    fetch('https://squwbs.herokuapp.com/getwordlist')
+    .then((res)=>{
+      console.log(stringifyObject(res))
+      return(res.json())
+    })
+    .then((json)=>{
+      //console.log(json)
+      console.log(stringifyObject(json))
+      this.setState({
+        bagOfWords:json.words,
+        endIndex:json.words.length
+      })
+
+      //return json.words
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
   componentDidMount(){
     // const bagOfWords =[
     //     {word:'word1' 
@@ -171,27 +190,8 @@ class WordDeck extends Component {
     //     ,righted:0
     //     },
     // ]
-    function requestWords(){
-      fetch('https://squwbs.herokuapp.com/getwordlist')
-      .then((res)=>{
-        console.log(stringifyObject(res))
-        return(res.json())
-      })
-      .then((json)=>{
-        //console.log(json)
-        console.log(stringifyObject(json))
-        this.setState({
-          bagOfWords:json.words,
-          endIndex:json.words.length
-        })
-        
-        //return json.words
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    }
-    requestWords()
+    
+    this.requestWords()
     // var bagOfWords=requestWords()
     //console.log(stringifyObject(bagOfWords))
     // this.setState({
