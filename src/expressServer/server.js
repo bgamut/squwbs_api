@@ -648,15 +648,12 @@ app.get('/getwordlist',cors(),(req,res)=>{
     }
   ) 
 
-  function sendSuccess(message){
-  res.send({message:message})
-}
-  getWordList()
+  getWordList
   .then((words)=>{
     console.log(stringifyObject(words))
     res.send({
       message:'success',
-      words:stringifyObject(words)
+      words:JSON.strinify(words)
     })
   })
   .catch((err)=>{
