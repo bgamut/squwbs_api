@@ -124,13 +124,13 @@ class WordDeck extends Component {
       //console.log(json)
       //console.log(stringifyObject(json))
       var words = json.words.slice()
-      console.log(stringifyObject(words))
+      //console.log(stringifyObject(words))
       this.setState({
 
         bagOfWords:words,
         endIndex:words.length
       })
-
+      console.log(this.state.bagOfWords)
       //return json.words
     })
     .catch((err) => {
@@ -222,7 +222,7 @@ class WordDeck extends Component {
   }
   componentDidUpdate(){
     console.log('updated')
-    
+    console.log(this.state.bagOfWords[this.state.currentIndex])
     if(this.myRef.current!==null){
       //console.log(this.myRef.current.childNodes.length)
       if(this.myRef.current.childNodes.length<=0){
@@ -243,7 +243,7 @@ class WordDeck extends Component {
           )
         }
         else{
-          console.log(stringifyObject(this.state.bagOfWords[this.state.currentIndex]))
+         
           ReactDOM.render(
             <WordCard 
               onLeftSwipe={this.handleLeftSwipe} 
