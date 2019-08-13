@@ -36,7 +36,7 @@ class WordDeck extends Component {
     this.state = {
       styleCondition:false,
       flipLock:false,
-      bagOfWords:[],
+      bagOfWords:null,
       currentIndex:0,
       endIndex:1,
     };
@@ -123,7 +123,7 @@ class WordDeck extends Component {
       //console.log(json)
       console.log(stringifyObject(json))
       this.setState({
-        bagOfWords:json.words,
+        bagOfWords:json.words.slice(),
         endIndex:json.words.length
       })
 
@@ -217,26 +217,35 @@ class WordDeck extends Component {
     // }
   }
   componentDidUpdate(){
-      //console.log('updated')
-     // console.log(this.state.bagOfWords)
-        if(this.myRef.current!==null){
-            //console.log(this.myRef.current.childNodes.length)
-            if(this.myRef.current.childNodes.length<=0){
-              ReactDOM.render(
-                <WordCard 
-                  onLeftSwipe={this.handleLeftSwipe} 
-                  onRightSwipe={this.handleRightSwipe} 
-                  onRemove={this.handleCardRemove}
-                  word={this.state.bagOfWords[this.state.currentIndex].word} 
-                  meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
-                  // example={this.state.bagOfWords[this.state.currentIndex].example} 
-                  pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
-                  percentage={this.props.percentage}
-                />,
-                this.myRef.current
-              )
-            }
+    //console.log('updated')
+    // console.log(this.state.bagOfWords)
+    if(this.myRef.current!==null){
+      //console.log(this.myRef.current.childNodes.length)
+      if(this.myRef.current.childNodes.length<=0){
+        if(this.state.bagOfWords==null){
+          ReactDOM.render(
+            <div>
+              <a>Cards are being loaded.</a>
+            </div>
+          )
         }
+        else{
+          ReactDOM.render(
+            <WordCard 
+              onLeftSwipe={this.handleLeftSwipe} 
+              onRightSwipe={this.handleRightSwipe} 
+              onRemove={this.handleCardRemove}
+              word={this.state.bagOfWords[this.state.currentIndex].word} 
+              meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+              example={this.state.bagOfWords[this.state.currentIndex].example} 
+              pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
+              percentage={this.props.percentage}
+            />,
+            this.myRef.current
+          )
+        }
+      }
+    }
   }
 
 
