@@ -153,7 +153,7 @@ class WordDeck extends Component {
       //console.log(stringifyObject(words))
       this.setState({
 
-        bagOfWords:words,
+        bagOfWords:this.shuffle(words),
         endIndex:words.length
       })
       console.log(this.state.bagOfWords)
