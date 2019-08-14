@@ -17,7 +17,7 @@ const addWordListToServer = (list)=>{
     //console.log(word,meaning,example,pronunciation)
     fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
       list:list,
-      mode:'cors'
+      mode:'no-cors'
     }))
     .then(result=>{
         return result.json()
@@ -51,7 +51,7 @@ const addWordToServer = ({word,meaning,example,pronunciation})=>{
       meaning:meaning,
       example:example,
       pronunciation:pronunciation,
-      mode:'cors'
+      mode:'no-cors'
     }))
     // .then(resulst=>{
     //     return resulst.json()
