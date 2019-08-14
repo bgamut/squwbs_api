@@ -141,7 +141,7 @@ class WordDeck extends Component {
     //console.log(bagOfWords[currentIndex])
   }
   requestWords=()=>{
-    fetch('https://squwbs.herokuapp.com/getwordlist')
+    fetch('https://squwbs.herokuapp.com/getwordlist',{mode:'no-cors'})
     .then((res)=>{
       console.log(stringifyObject(res))
       return(res.json())
