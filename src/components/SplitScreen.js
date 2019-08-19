@@ -15,7 +15,7 @@ class SplitScreen extends Component {
     constructor(props){
         super(props)
         this.state={
-            // imgURL:'./temp/jpeg/17.jpeg',
+            //imgURL:'./temp/jpeg/17.jpeg',
             imgURL:props.source,
             baseSixFour:'',
             orientation:'',
@@ -66,6 +66,23 @@ class SplitScreen extends Component {
         n = n + '';
         return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
       }
+    read(){
+        this.setState({
+            value:"Optical Character Recognition Module Loading"
+        })
+    
+        //worker.recognize(process.env.PUBLIC_URL+this.props.source,'kor')
+        worker.recognize(process.env.PUBLIC_URL+this.state.imgURL,'kor')
+        .progress(progress => {
+            // console.log('progress', progress);
+            this.setState({value:progress.status +" : " + this.pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"})
+            
+        }).then(result => {
+            // console.log('result', result.text);
+            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+            this.setState({value:newText})
+        }); 
+    }
     componentDidMount(){
         const changeDimensions=()=>{
             let height = Dimensions.get('window').height
@@ -90,9 +107,13 @@ class SplitScreen extends Component {
         //     }
         // })
         this.inputRef.current.addEventListener("mousedown",(e)=>{
+            //e.preventDefault()
             if(e.shiftKey){
                 if(e.button==2){
                     this.next()
+                }
+                else if(e.button==0){
+                    this.prev()
                 }
             }
             console.log(e.button)
@@ -124,7 +145,7 @@ class SplitScreen extends Component {
         window.addEventListener("contextmenu",(e)=>{
             if(e.shiftKey){
                 e.preventDefault()
-                //console.log(e.button)
+                console.log(e.button)
                 //this.handleClick()
                 //this.log()
             }
@@ -158,7 +179,8 @@ class SplitScreen extends Component {
         })
     
         changeDimensions()
-        worker.recognize(process.env.PUBLIC_URL+this.props.source,'kor')
+        //worker.recognize(process.env.PUBLIC_URL+this.props.source,'kor')
+        worker.recognize(process.env.PUBLIC_URL+this.state.imgURL,'kor')
         .progress(progress => {
             // console.log('progress', progress);
             this.setState({value:progress.status +" : " + this.pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"})
@@ -236,14 +258,27 @@ class SplitScreen extends Component {
             currentPage:pageNumber
         })
         this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
+        
         this.forceUpdate()
+        this.read()
+    }
+    prev(){
+        console.log(this.inputRef.current)
+        const pageNumber = this.state.currentPage-1
+        this.setState({
+            imgURL:'./temp/jpeg/'+pageNumber+".jpeg",
+            currentPage:pageNumber
+        })
+        this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
+        this.forceUpdate()
+        this.read()
     }
     handleKeyPress(e){
-        // console.log(e.key)
+        console.log(e.key)
         // console.log(e.target.value)
         if(e.shiftKey){
-            e.preventDefault();
-            e.stopPropagation();
+            //e.preventDefault();
+            //e.stopPropagation();
             if(e.keyCode==13){
                 e.preventDefault();
                 console.log('prev page load function goes here')
@@ -263,7 +298,7 @@ class SplitScreen extends Component {
         
         
         console.log(this.inputRef.current.value)
-        //console.log(e.key)
+        console.log(e.key)
     }
     handleChange(e){
         //this.value=e.target.value

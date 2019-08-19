@@ -316,6 +316,8 @@ const Home = () => {
       <div>
         <WordDeckWrapper/>
         <UploadWords/>
+        {/* <SplitScreen source='./temp/jpeg/17.jpeg'/> */}
+        
       </div>
       // <View style={{height:Dimensions.get('window').height}}>
       //   {/* <AdSense.Google 
