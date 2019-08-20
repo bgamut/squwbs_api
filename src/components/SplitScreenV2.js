@@ -67,7 +67,17 @@ const SplitScreenV2=()=> {
       var img = canvasEl.current.toDataURL()
       console.log(img)
       imageHDRef.current.style.backgroundImage="url("+img+")"
-      
+      var img = canvasEl.current.toDataURL()
+      console.log(img)
+      imageHDRef.current.style.backgroundImage="url("+img+")"
+      worker.recognize(img,'eng')
+        .progress(progress => {
+            setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+            
+        }).then(result => {
+            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+            setTextValue(newText)
+        });
     }, [])
     useEffect(()=>{
       // canvasEl.width(width)
@@ -82,6 +92,16 @@ const SplitScreenV2=()=> {
       
     },[numPages])
     useEffect(()=>{
+      
+      setPageChange(false)
+    },[pageChange])
+    const pad=(n, width, z) =>{
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+      }
+    const pageUp=()=>{
+      setPage(page+1)
       var img = canvasEl.current.toDataURL()
       console.log(img)
       imageHDRef.current.style.backgroundImage="url("+img+")"
@@ -93,15 +113,6 @@ const SplitScreenV2=()=> {
             var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
             setTextValue(newText)
         });
-      setPageChange(false)
-    },[pageChange])
-    const pad=(n, width, z) =>{
-        z = z || '0';
-        n = n + '';
-        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-      }
-    const pageUp=()=>{
-      setPage(page+1)
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
       // imageHDRef.current.style.backgroundImage="url("+img+")"
@@ -110,6 +121,17 @@ const SplitScreenV2=()=> {
     const pageDown=()=>{
       
       setPage(page-1)
+      var img = canvasEl.current.toDataURL()
+      console.log(img)
+      imageHDRef.current.style.backgroundImage="url("+img+")"
+      worker.recognize(img,'eng')
+        .progress(progress => {
+            setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+            
+        }).then(result => {
+            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+            setTextValue(newText)
+        });
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
       // imageHDRef.current.style.backgroundImage="url("+img+")"
