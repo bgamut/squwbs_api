@@ -13,7 +13,7 @@ import FileDrop from './FileDrop'
 import {Context} from '../context'
 //import AdSense from 'react-adsense';
 import UploadWords from './UploadWords'
-import SplitScreen from './SplitScreen'
+import SplitScreenV2 from './SplitScreenV2'
 
 import {Rnd} from 'react-rnd'
 
@@ -316,7 +316,7 @@ const Home = () => {
       <div>
         <WordDeckWrapper/>
         <UploadWords/>
-        {/* <SplitScreen source='./temp/jpeg/17.jpeg'/> */}
+        {/* <SplitScreenV2 source='./temp/jpeg/17.jpeg'/> */}
         
       </div>
       // <View style={{height:Dimensions.get('window').height}}>

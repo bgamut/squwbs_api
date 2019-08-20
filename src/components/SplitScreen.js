@@ -7,6 +7,7 @@ import fs from 'fs'
 import { TesseractWorker }  from 'tesseract.js';
 import run from './Tensor'
 import PFive from './PFive'
+import {usePdf} from 'react-pdf-js'
 const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
 
@@ -16,6 +17,7 @@ class SplitScreen extends Component {
         super(props)
         this.state={
             //imgURL:'./temp/jpeg/17.jpeg',
+            pdfURL:'./temp/pdf/doc.pdf',
             imgURL:props.source,
             baseSixFour:'',
             orientation:'',
@@ -151,12 +153,21 @@ class SplitScreen extends Component {
             }
         })
         
-        fetch(this.state.imgURL)
+        // fetch(this.state.imgURL)
+        
+        // .then(res=>res.blob())
+        // .then(ab=>this.convertBlobToBase64(ab))
+        // .then(data=>{
+        //     // console.log(data)
+        //     this.setState({baseSixFour:data})
+        // })
+        // .catch(err=>console.err(err))
+        fetch(this.state.pdfURL)
         
         .then(res=>res.blob())
         .then(ab=>this.convertBlobToBase64(ab))
         .then(data=>{
-            // console.log(data)
+            console.log(data)
             this.setState({baseSixFour:data})
         })
         .catch(err=>console.err(err))
