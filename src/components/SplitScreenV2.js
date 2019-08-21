@@ -1,4 +1,4 @@
-import React, { Component,useRef,useState,useEffect,Fragment } from 'react';
+import React, { Component,useRef,useState,useEffect,Fragment,useCallback } from 'react';
 
 import './css/SplitScreen.css'
 import {TouchableOpacity,Text,View,Dimensions} from 'react-native'
@@ -9,6 +9,9 @@ import { TesseractWorker }  from 'tesseract.js';
 import run from './Tensor'
 import PFive from './PFive'
 import {usePdf} from 'react-pdf-js'
+import { updateStatement } from 'typescript';
+import ReactDOM from 'react-dom'
+
 const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
 
@@ -16,19 +19,31 @@ const worker = new TesseractWorker();
 const SplitScreenV2=()=> {
    
     const [page,setPage]=useState(1);
-    const [pages,setPages]=useState(null);
+    const [pages,setPages]=useState([]);
     const [width,setWidth] =useState(0)
     const [height,setHeight]=useState(0)
-    const [pageChange,setPageChange]=useState(false)
+    
     const [textValue,setTextValue] = useState('')
+    const [lock,setLock]= useState(false)
+
+    const frame = useRef(null)
     const canvasEl=useRef(null)
     const imageHDRef=useRef(null)
     const inputRef = useRef(null)
+
+
+
+    const [pageChange,setPageChange]=useState(false)
     
+
+    const [force,forceState] = useState()
+    const forceUpdate = useCallback(()=>forceState({}),[force])
+
+
     const [loading,numPages]=usePdf({
         file:process.env.PUBLIC_URL+'/temp/pdf/doc.pdf',
-        page,
-        canvasEl
+        page:page,
+        canvasEl:canvasEl
     })
     const convertBlobToBase64 = blob => new Promise((resolve, reject) => {
         const reader = new FileReader;
@@ -53,6 +68,48 @@ const SplitScreenV2=()=> {
         
         
     }
+    useEffect(()=>{
+      // if(frame.current!==null){
+      //   if(frame.current.childNodes.length<=0){
+            ReactDOM.render(
+              <canvas style={{display:'none'}} ref={canvasEl} /> ,
+              frame.current
+            )
+            var img = canvasEl.current.toDataURL()
+            //console.log(img)
+            imageHDRef.current.style.backgroundImage="url("+img+")"
+            worker.recognize(img,'eng')
+              .progress(progress => {
+                  setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+                  
+              }).then(result => {
+                  var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+                  setTextValue(newText)
+                  //setPages(...pages,newText)
+                  console.log(newText)
+                  console.log(page+'/'+numPages)
+                  console.log(lock)
+                  if(numPages==null){
+                    setPage(page+1)
+                  }
+                  else{
+                    if(lock==false){
+                      if(page<numPages){
+                        setPage(page+1)
+                      }
+                      else{
+                        
+                        setLock(true)
+                      }
+                    }
+                  }
+                  
+                  
+              });
+        //   }
+        // }
+      
+    },[page])
     useEffect(() => {
       // code to run on component mount
       changeDimension()
@@ -64,25 +121,24 @@ const SplitScreenV2=()=> {
           changeDimension()
           
       }, false);
-      var img = canvasEl.current.toDataURL()
-      console.log(img)
-      imageHDRef.current.style.backgroundImage="url("+img+")"
-      var img = canvasEl.current.toDataURL()
-      console.log(img)
-      imageHDRef.current.style.backgroundImage="url("+img+")"
-      worker.recognize(img,'eng')
-        .progress(progress => {
-            setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+      console.log('first setup fired')
+      // var img = canvasEl.current.toDataURL()
+      // console.log(img)
+      // imageHDRef.current.style.backgroundImage="url("+img+")"
+      // worker.recognize(img,'eng')
+      //   .progress(progress => {
+      //       setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
             
-        }).then(result => {
-            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
-            setTextValue(newText)
-        });
+      //   }).then(result => {
+      //       var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+      //       setTextValue(newText)
+      //   });
+      setPage(1)
     }, [])
     useEffect(()=>{
       // canvasEl.width(width)
       // canvasEl.hegiht(height)
-      console.log(canvasEl.current.width)
+      //console.log(canvasEl.current.width)
       canvasEl.current.width=width
       canvasEl.current.height=height
     },[height,width])
@@ -102,40 +158,43 @@ const SplitScreenV2=()=> {
       }
     const pageUp=()=>{
       setPage(page+1)
-      var img = canvasEl.current.toDataURL()
-      console.log(img)
-      imageHDRef.current.style.backgroundImage="url("+img+")"
-      worker.recognize(img,'eng')
-        .progress(progress => {
-            setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+      console.log(page)
+      // var img = canvasEl.current.toDataURL()
+      // console.log(img)
+      // imageHDRef.current.style.backgroundImage="url("+img+")"
+      // worker.recognize(img,'eng')
+      //   .progress(progress => {
+      //       setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
             
-        }).then(result => {
-            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
-            setTextValue(newText)
-        });
+      //   }).then(result => {
+      //       var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+      //       setTextValue(newText)
+      //   });
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
       // imageHDRef.current.style.backgroundImage="url("+img+")"
       setPageChange(true)
+      forceUpdate()
     }
     const pageDown=()=>{
       
       setPage(page-1)
-      var img = canvasEl.current.toDataURL()
-      console.log(img)
-      imageHDRef.current.style.backgroundImage="url("+img+")"
-      worker.recognize(img,'eng')
-        .progress(progress => {
-            setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+      // var img = canvasEl.current.toDataURL()
+      // console.log(img)
+      // imageHDRef.current.style.backgroundImage="url("+img+")"
+      // worker.recognize(img,'eng')
+      //   .progress(progress => {
+      //       setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
             
-        }).then(result => {
-            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
-            setTextValue(newText)
-        });
+      //   }).then(result => {
+      //       var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+      //       setTextValue(newText)
+      //   });
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
       // imageHDRef.current.style.backgroundImage="url("+img+")"
       setPageChange(true)
+      forceUpdate()
     }
     const read=()=>{
         this.setState({
@@ -158,7 +217,7 @@ const SplitScreenV2=()=> {
         // //let previousButton = <li className="previous" onClick={() => setPage(page - 1)}><a href="#"><i className="fa fa-arrow-left"></i> Previous</a></li>;        
           
         if (page === 1) {
-            console.log("page1")
+            // console.log("page1")
             return(
             
             <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"grey",padding:4,justifyContent: 'center'}}>
@@ -507,8 +566,9 @@ const SplitScreenV2=()=> {
                      </View> 
                     
                 
-            </View>    
-            <canvas style={{display:'none'}} ref={canvasEl} />  
+            </View> 
+            <div ref={frame}/>   
+            {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
         </View>
 
     )
