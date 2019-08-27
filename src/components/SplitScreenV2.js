@@ -11,7 +11,7 @@ import PFive from './PFive'
 import {usePdf} from 'react-pdf-js'
 import { updateStatement } from 'typescript';
 import ReactDOM from 'react-dom'
-
+const stringifyObject = require('stringify-object')
 const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
 
@@ -86,15 +86,22 @@ const SplitScreenV2=()=> {
                   var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
                   setTextValue(newText)
                   //setPages(...pages,newText)
-                  console.log(newText)
+                  //console.log(newText)
                   console.log(page+'/'+numPages)
-                  console.log(lock)
+                  //console.log(lock)
                   if(numPages==null){
                     setPage(page+1)
                   }
                   else{
                     if(lock==false){
+                      setPages([...pages,newText])
+                        const pretty = stringifyObject(pages, {
+                          indent: '  ',
+                          singleQuotes: false
+                        });
+                        console.log(pretty)
                       if(page<numPages){
+                        
                         setPage(page+1)
                       }
                       else{
@@ -143,10 +150,10 @@ const SplitScreenV2=()=> {
       canvasEl.current.height=height
     },[height,width])
     
-    useEffect(()=>{
-      setPages(numPages);
+    // useEffect(()=>{
+    //   setPages(numPages);
       
-    },[numPages])
+    // },[numPages])
     useEffect(()=>{
       
       setPageChange(false)

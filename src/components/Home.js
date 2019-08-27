@@ -314,9 +314,9 @@ const Home = () => {
 
       // <SplitScreen source ='./temp/jpeg/17.jpeg' srcLoaded='./temp/jpeg/17.jpeg'/>
       <div>
-        <WordDeckWrapper/>
-        <UploadWords/>
-        {/* <SplitScreenV2 source='./temp/jpeg/17.jpeg'/> */}
+        {/* <WordDeckWrapper/>
+        <UploadWords/> */}
+        <SplitScreenV2 source='./temp/jpeg/17.jpeg'/>
         
       </div>
       // <View style={{height:Dimensions.get('window').height}}>
