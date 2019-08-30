@@ -13,9 +13,13 @@ import { updateStatement } from 'typescript';
 import ReactDOM from 'react-dom'
 import FilePicker from './FilePicker'
 const stringifyObject = require('stringify-object')
-const worker = new TesseractWorker();
+// const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
-
+const pad=(n, width, z)=>{
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
 
 const SplitScreenV2=(props)=> {
     // const [fileSelected,setFileSelected]=useState(false);
@@ -77,6 +81,7 @@ const SplitScreenV2=(props)=> {
     // if(fileSelected==true){ 
       // if(frame.current!==null){
       //   if(frame.current.childNodes.length<=0){
+        const worker = new TesseractWorker();
             ReactDOM.render(
               <canvas style={{display:'none'}} ref={canvasEl} /> ,
               frame.current
@@ -94,6 +99,7 @@ const SplitScreenV2=(props)=> {
                   //setPages(...pages,newText)
                   //console.log(newText)
                   console.log(page+'/'+numPages)
+                  console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
                   //console.log(lock)
                   if(numPages==null){
                     setPage(page+1)
@@ -222,19 +228,19 @@ const SplitScreenV2=(props)=> {
       setPageChange(true)
       forceUpdate()
     }
-    const read=()=>{
-        this.setState({
-            value:"Optical Character Recognition Module Loading"
-        })
-        worker.recognize(process.env.PUBLIC_URL+this.state.imgURL,'kor')
-        .progress(progress => {
-            this.setState({value:progress.status +" : " + this.pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"})
+    // const read=()=>{
+    //     this.setState({
+    //         value:"Optical Character Recognition Module Loading"
+    //     })
+    //     worker.recognize(process.env.PUBLIC_URL+this.state.imgURL,'kor')
+    //     .progress(progress => {
+    //         this.setState({value:progress.status +" : " + this.pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"})
             
-        }).then(result => {
-            var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
-            this.setState({value:newText})
-        }); 
-    }
+    //     }).then(result => {
+    //         var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+    //         this.setState({value:newText})
+    //     }); 
+    // }
     const renderPagination = (page, pages) => {
       // if(fileSelected==false){
       //   // console.log(fileSelected)
