@@ -101,11 +101,12 @@ const SplitScreenV2=(props)=> {
                   else{
                     if(lock==false){
                       setPages([...pages,newText])
-                        const pretty = stringifyObject(pages, {
-                          indent: '  ',
-                          singleQuotes: false
-                        });
-                        console.log(pretty)
+                        // const pretty = stringifyObject(pages, {
+                        //   indent: '  ',
+                        //   singleQuotes: false
+                        // });
+                        // console.log('page info updating')
+                        // console.log(pretty)
                       if(page<numPages){
                         
                         setPage(page+1)
@@ -113,6 +114,15 @@ const SplitScreenV2=(props)=> {
                       else{
                         
                         setLock(true)
+                        const pretty = stringifyObject(pages, {
+                          indent: '  ',
+                          singleQuotes: false
+                        });
+                        console.log(pretty)
+                        console.log('lock activated')
+                        console.log("the length of page array is"+pages.length)
+                        setPage(1)
+
                       }
                     }
                   }
@@ -235,7 +245,10 @@ const SplitScreenV2=(props)=> {
         
       // }
       // else{
-
+      if(lock==false){
+        return(null)
+      }
+      else{
         if (!pages) {
           return(null)
         }
@@ -288,7 +301,8 @@ const SplitScreenV2=(props)=> {
           </TouchableOpacity>
               {/* <Text>testing</Text> */}
             </View>
-        );       
+        );  
+      }     
       // }
     }
     
