@@ -11,13 +11,15 @@ import PFive from './PFive'
 import {usePdf} from 'react-pdf-js'
 import { updateStatement } from 'typescript';
 import ReactDOM from 'react-dom'
+import FilePicker from './FilePicker'
 const stringifyObject = require('stringify-object')
 const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
 
 
-const SplitScreenV2=()=> {
-   
+const SplitScreenV2=(props)=> {
+    // const [fileSelected,setFileSelected]=useState(false);
+    // const [fileBinaryStr,setFileBinaryStr]=useState(null)
     const [page,setPage]=useState(1);
     const [pages,setPages]=useState([]);
     const [width,setWidth] =useState(0)
@@ -41,7 +43,10 @@ const SplitScreenV2=()=> {
 
 
     const [loading,numPages]=usePdf({
-        file:process.env.PUBLIC_URL+'/temp/pdf/doc.pdf',
+        //file:process.env.PUBLIC_URL+'/temp/pdf/doc.pdf',
+        
+        //the following takes BinaryString of the File
+        file:props.file,
         page:page,
         canvasEl:canvasEl
     })
@@ -69,6 +74,7 @@ const SplitScreenV2=()=> {
         
     }
     useEffect(()=>{
+    // if(fileSelected==true){ 
       // if(frame.current!==null){
       //   if(frame.current.childNodes.length<=0){
             ReactDOM.render(
@@ -115,7 +121,7 @@ const SplitScreenV2=()=> {
               });
         //   }
         // }
-      
+      // }
     },[page])
     useEffect(() => {
       // code to run on component mount
@@ -146,8 +152,11 @@ const SplitScreenV2=()=> {
       // canvasEl.width(width)
       // canvasEl.hegiht(height)
       //console.log(canvasEl.current.width)
-      canvasEl.current.width=width
-      canvasEl.current.height=height
+      // if(fileSelected==true){
+        canvasEl.current.width=width
+        canvasEl.current.height=height
+      // }
+      
     },[height,width])
     
     // useEffect(()=>{
@@ -217,7 +226,16 @@ const SplitScreenV2=()=> {
         }); 
     }
     const renderPagination = (page, pages) => {
-    
+      // if(fileSelected==false){
+      //   // console.log(fileSelected)
+      //   return(
+      //     // <FilePicker fileBinaryStr={fileBinaryStr} setFileBinaryStr={setFileBinaryStr} setFileSelected={setFileSelected} fileSelected = {fileSelected} fileBinaryStr=''/>
+      //     null
+      //   )
+        
+      // }
+      // else{
+
         if (!pages) {
           return(null)
         }
@@ -270,8 +288,9 @@ const SplitScreenV2=()=> {
           </TouchableOpacity>
               {/* <Text>testing</Text> */}
             </View>
-        );
-      }
+        );       
+      // }
+    }
     
     // componentDidMount(){
     //     const changeDimensions=()=>{
@@ -496,14 +515,10 @@ const SplitScreenV2=()=> {
           {renderPagination(page,pages)}
             {loading && <span>Loading...</span>}
             {/* <View style={{height:"68%",width:"100%", backgroundColor:'orange',padding:15}}> */}
-              
-               
-              
             {/* </View> */}
             <View
                 style={{flexDirection:'row',padding:1}}
             >
-               
                     <View 
                         style={{
                             height:'100vh',
@@ -571,11 +586,9 @@ const SplitScreenV2=()=> {
                         </textarea> 
                         </div>
                      </View> 
-                    
-                
             </View> 
             <div ref={frame}/>   
-            {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
+            <canvas style={{display:'none'}} ref={canvasEl} />  
         </View>
 
     )

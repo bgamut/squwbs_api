@@ -14,6 +14,7 @@ import {Context} from '../context'
 //import AdSense from 'react-adsense';
 import UploadWords from './UploadWords'
 import SplitScreenV2 from './SplitScreenV2'
+import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
 
@@ -314,10 +315,10 @@ const Home = () => {
 
       // <SplitScreen source ='./temp/jpeg/17.jpeg' srcLoaded='./temp/jpeg/17.jpeg'/>
       <div>
-        <WordDeckWrapper/>
-        <UploadWords/>
+        {/* <WordDeckWrapper/>
+        <UploadWords/> */}
         {/* <SplitScreenV2 source='./temp/jpeg/17.jpeg'/> */}
-        
+        <ReadPDF/>
       </div>
       // <View style={{height:Dimensions.get('window').height}}>
       //   {/* <AdSense.Google 
