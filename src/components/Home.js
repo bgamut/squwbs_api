@@ -317,7 +317,7 @@ const Home = () => {
       <div>
         {/* <WordDeckWrapper/>
         <UploadWords/> */}
-        {/* <SplitScreenV2 source='./temp/jpeg/17.jpeg'/> */}
+        
         <ReadPDF/>
       </div>
       // <View style={{height:Dimensions.get('window').height}}>

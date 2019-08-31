@@ -128,8 +128,17 @@ const FilePicker = (props)=> {
                 marginBottom:2,
                 borderRadius:4,
                 borderWidth:1,
-                borderColor:'lightgrey',
-                overflow:'hidden'}} 
+                borderColor:'transparent',
+                overflow:'hidden',
+                shadowColor:'#000',
+                shadowOpacity:0.25,
+                shadowRadius:3.84,
+                shadowOffset:{
+                width:0,
+                height:2
+                },
+                elevation:5
+            }} 
                 {...getRootProps({refKey:'innerRef'})}
             >
                 <View style={{
@@ -143,10 +152,9 @@ const FilePicker = (props)=> {
                             textDecorationLine:'none',
                             color:'white',
                             fontSize: 15,
-                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowColor: 'rgba(128, 128, 128, 0.99)',
                             textShadowOffset: {width: 0, height: 0},
-                            textShadowRadius: 8,
-                            flex:1,
+                            textShadowRadius: 3,
                             textAlign:'center',
                             alignItems:'center',
                             justifyContent:'center',

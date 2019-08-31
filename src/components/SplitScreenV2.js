@@ -311,10 +311,10 @@ const SplitScreenV2=(props)=> {
             // console.log("page1")
             return(
             
-            <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"grey",padding:4,justifyContent: 'center'}}>
+            <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
             <View style={{height:'100%',width:'38%',backgroundColor:'white',padding:4}}/>
             <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center"}}>
+              <Text style={{textAlign:"center",color:"grey"}}>
                 next
               </Text>
             </TouchableOpacity>
@@ -327,9 +327,9 @@ const SplitScreenV2=(props)=> {
         // // let nextButton = <li className="next" onClick={() => setPage(page + 1)}><a href="#">Next <i className="fa fa-arrow-right"></i></a></li>;
         if (page === numPages) {
           return (
-            <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"grey",padding:4,justifyContent: 'center'}}>
+            <View style = {{flexDirection:'row',height:'10vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
               <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center"}}>
+              <Text style={{textAlign:"center",color:"grey"}}>
                 previous
               </Text>
             </TouchableOpacity>
@@ -341,14 +341,14 @@ const SplitScreenV2=(props)=> {
           )
         }
         return (
-            <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"grey",padding:4,justifyContent: 'center'}}>
+            <View style = {{flexDirection:'row',height:'10vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
               <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center"}}>
+              <Text style={{textAlign:"center",color:"grey"}}>
                 previous
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center"}}>
+              <Text style={{textAlign:"center",color:"grey"}}>
                 next
               </Text>
           </TouchableOpacity>
@@ -572,9 +572,13 @@ const SplitScreenV2=(props)=> {
       console.log(e.key)
   }
   const handleChange=(e)=>{
-      console.log(e.target.value)
+      //console.log(e.target.value)
       //this.setState({value:e.target.value})
       setTextValue(e.target.value)
+      var copiedPages=pages.slice()
+      copiedPages[page-1]=e.target.value
+      console.log(copiedPages[page-1])
+      setPages(copiedPages)
   }
   var text=textValue
   if(lock==true){
@@ -585,11 +589,27 @@ const SplitScreenV2=(props)=> {
             {/* <View style={{height:"68%",width:"100%", backgroundColor:'orange',padding:15}}> */}
             {/* </View> */}
             <View
-                style={{flexDirection:'row',padding:1}}
+              style={{
+                padding:8
+              }}
+            >
+            <View
+                style={{
+                  flexDirection:'row',
+                  
+                  shadowColor:'#000',
+                  shadowOpacity:0.25,
+                  shadowRadius:3.84,
+                  shadowOffset:{
+                    width:1,
+                    height:1
+                  },
+                  elevation:5
+                }}
             >
                     <View 
                         style={{
-                            height:'100vh',
+                            height:'90vh',
                             width:'50vw',
                             borderColor:'black',
                             borderWidth:1,
@@ -658,6 +678,7 @@ const SplitScreenV2=(props)=> {
             {/* <div ref={frame}/>    */}
             {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
         </View>
+        </View>
 
     )
    }
@@ -667,29 +688,90 @@ const SplitScreenV2=(props)=> {
         style={{
           height:"100vh",
           width:"100vw",
-          paddingTop:1,
-          paddingBottom:1,
-          paddingLeft:1,
-          paddingRight:1,
-          backgroundColor:'gray',
+          paddingTop:8,
+          paddingBottom:8,
+          paddingLeft:8,
+          paddingRight:8,
+          backgroundColor:'white',
         }}
        >
-        <a ref={textRef}/>
-        <div            
-          ref={imageHDRef}
+        <View
           style={{
-          height:'100%',
-          width:'100%',
-          backgroundSize: '100% 100%',
-          backgroundRepeat: 'no-repeat',
+            height:"100%",
+            width:"100%",
+            // padding:8,
+            backgroundColor:'white',
+            // borderColor:'lightgrey',
+            // borderWidth:2,
+            // borderRadius:2,
+            shadowColor:'#000',
+            shadowOpacity:0.25,
+            shadowRadius:3.84,
+            shadowOffset:{
+              width:1,
+              height:1
+            },
+            elevation:5
           }}
         >
-          <div ref={frame}>
-            <canvas ref={canvasEl}/> 
+        <View
+          style={{
+            height:"8vh",
+            flexDirection:'row',
+            // justifyContent:'center',
+            alignItems:'center',
+            backgroundColor:'white',
+            padding:20
+          }}
+        >
+        <a 
+          style={{
+            //height:"8vh",
+            marginTop:'auto',
+            marginBottom:'auto',
+            marginRight:'auto',
+            color:'grey',
+            //backgroundColor:'white',
+            textShadowColor: 'rgba(128, 128, 128, 0.99)',
+            // textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 8,
+            // alignItems:'center',
+            // justifyContent:'center',
+          }}
+        ref={textRef}/>
+        </View>
+        <View
+          style={{
+            height:"80vh",
+            width:"100%",
+            backgroundColor:'white',
+          }}
+        >
+          <div            
+            ref={imageHDRef}
+            style={{
+            height:'100%',
+            width:'100%',
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor:'white'
+            }}
+          >
+            <div style={{
+              height:"100%",
+              width:"100%",
+              backgroundColor:'white',
+              display:'none'
+            }}
+            
+            ref={frame}>
+              <canvas ref={canvasEl}/> 
+            </div>
           </div>
-        </div>
+        </View>
         {/* <div ref={frame}/>    */}
         {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
+        </View>
       </View>
      )
    }

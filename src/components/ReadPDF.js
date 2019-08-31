@@ -18,7 +18,14 @@ const PDFReader = () => {
   
     if(fileSelected == false){
         return(
-        <View>
+        <View
+            style={{
+                height:'100vh',
+                width:'100vw',
+                alignItems:'center',
+                justifyContent:'center'
+            }}
+        >
             <FilePicker 
             setFileBinaryStr={setFileBinaryStr} 
             setFileSelected={setFileSelected} 
