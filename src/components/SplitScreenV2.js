@@ -209,8 +209,10 @@ const SplitScreenV2=(props)=> {
       // canvasEl.hegiht(height)
       //console.log(canvasEl.current.width)
       // if(fileSelected==true){
-        canvasEl.current.width=width
-        canvasEl.current.height=height
+        if(lock==false){ 
+          canvasEl.current.width=width
+          canvasEl.current.height=height
+        }
       // }
       
     },[height,width])
@@ -323,7 +325,7 @@ const SplitScreenV2=(props)=> {
          
         }
         // // let nextButton = <li className="next" onClick={() => setPage(page + 1)}><a href="#">Next <i className="fa fa-arrow-right"></i></a></li>;
-        if (page === pages) {
+        if (page === numPages) {
           return (
             <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"grey",padding:4,justifyContent: 'center'}}>
               <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
