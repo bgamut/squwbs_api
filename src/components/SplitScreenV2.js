@@ -87,7 +87,7 @@ const SplitScreenV2=(props)=> {
             frame.current
           )
           var img = canvasEl.current.toDataURL()
-          var imageKey="image"+String(page)
+          var imageKey="image"+String(page-1)
           window.localStorage.setItem(imageKey,img)
           console.log(window.localStorage)
           //console.log(img)
