@@ -26,8 +26,9 @@ const SplitScreenV2=(props)=> {
     // const [fileBinaryStr,setFileBinaryStr]=useState(null)
     const [page,setPage]=useState(1);
     const [pages,setPages]=useState([]);
-    const [width,setWidth] =useState(0)
-    const [height,setHeight]=useState(0)
+    const [images,setImages]=useState([]);
+    const [width,setWidth] =useState(0);
+    const [height,setHeight]=useState(0);
     
     const [textValue,setTextValue] = useState('')
     const [lock,setLock]= useState(false)
@@ -81,17 +82,25 @@ const SplitScreenV2=(props)=> {
     // if(fileSelected==true){ 
       // if(frame.current!==null){
       //   if(frame.current.childNodes.length<=0){
-        const worker = new TesseractWorker();
+        if(lock==false){
+          const worker = new TesseractWorker();
           ReactDOM.render(
             <canvas style={{display:'none'}} ref={canvasEl} /> ,
             frame.current
           )
           var img = canvasEl.current.toDataURL()
+          setImages([...images,img])
           var imageKey="image"+String(page-1)
-          window.localStorage.setItem(imageKey,img)
-          console.log(window.localStorage)
+          //window.localStorage.setItem(imageKey,img)
+          //console.log(window.localStorage)
+          const prettyImages = stringifyObject(images, {
+            indent: '  ',
+            singleQuotes: false
+          });
+          console.log(prettyImages)
           //console.log(img)
-          imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
+          //imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
+          imageHDRef.current.style.backgroundImage="url("+img+")"
           worker.recognize(img,'eng')
             .progress(progress => {
                 setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
@@ -100,13 +109,14 @@ const SplitScreenV2=(props)=> {
                 
             }).then(result => {
                 var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
-                setTextValue(newText)
+                
                 //setPages(...pages,newText)
                 //console.log(newText)
                 console.log(page+'/'+numPages)
                 if(page>1){
-                  const textKey="text"+String(page-1)
-                  window.localStorage.setItem(textKey,newText)
+                  //const textKey="text"+String(page-1)
+                  //window.localStorage.setItem(textKey,newText)
+                  setTextValue(newText)
                 }
                 
                 //console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
@@ -115,7 +125,7 @@ const SplitScreenV2=(props)=> {
                   setPage(page+1)
                 }
                 else{
-                  if(lock==false){
+                  //if(lock==false){
                     setPages([...pages,newText])
                       // const pretty = stringifyObject(pages, {
                       //   indent: '  ',
@@ -140,11 +150,19 @@ const SplitScreenV2=(props)=> {
                       setPage(1)
 
                     }
-                  }
+                  //}
                 }
                   
                   
               });
+          }
+        else{
+          
+          //var imageKey="image"+String(page)
+          //imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
+          imageHDRef.current.style.backgroundImage="url("+images[page-1]+")"
+          setTextValue(pages[page])
+        }
         //   }
         // }
       // }
