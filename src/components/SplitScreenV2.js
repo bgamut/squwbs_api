@@ -93,11 +93,15 @@ const SplitScreenV2=(props)=> {
           var imageKey="image"+String(page-1)
           //window.localStorage.setItem(imageKey,img)
           //console.log(window.localStorage)
+
+
           const prettyImages = stringifyObject(images, {
             indent: '  ',
             singleQuotes: false
           });
           console.log(prettyImages)
+
+
           //console.log(img)
           //imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
           imageHDRef.current.style.backgroundImage="url("+img+")"
@@ -105,7 +109,9 @@ const SplitScreenV2=(props)=> {
             .progress(progress => {
                 setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
                 //console.log(textRef.current)
-                textRef.current.innerHTML = "page "+page+" : "+progress.status +" " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"
+                if(page<=numPages+1){ 
+                  textRef.current.innerHTML = "page "+String(page-1)+" : "+progress.status +" " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"
+                }
                 
             }).then(result => {
                 var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
@@ -127,6 +133,11 @@ const SplitScreenV2=(props)=> {
                 else{
                   //if(lock==false){
                     setPages([...pages,newText])
+                    const prettyPages = stringifyObject(pages, {
+                      indent: '  ',
+                      singleQuotes: false
+                    });
+                    console.log(prettyPages)
                       // const pretty = stringifyObject(pages, {
                       //   indent: '  ',
                       //   singleQuotes: false
@@ -160,8 +171,8 @@ const SplitScreenV2=(props)=> {
           
           //var imageKey="image"+String(page)
           //imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
-          imageHDRef.current.style.backgroundImage="url("+images[page-1]+")"
-          setTextValue(pages[page])
+          imageHDRef.current.style.backgroundImage="url("+images[page]+")"
+          setTextValue(pages[page-1])
         }
         //   }
         // }
@@ -218,7 +229,10 @@ const SplitScreenV2=(props)=> {
         return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
       }
     const pageUp=()=>{
-      setPage(page+1)
+      if(page<numPages){
+        setPage(page+1)
+      }
+      
       console.log(page)
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
@@ -238,8 +252,10 @@ const SplitScreenV2=(props)=> {
       forceUpdate()
     }
     const pageDown=()=>{
+      if(page>1){
+        setPage(page-1)
+      }
       
-      setPage(page-1)
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
       // imageHDRef.current.style.backgroundImage="url("+img+")"
@@ -589,7 +605,7 @@ const SplitScreenV2=(props)=> {
                             }}
                        
                         >
-                            <canvas ref={canvasEl}/> 
+                            {/* <canvas ref={canvasEl}/>  */}
                         </div>
                     </View>
        
@@ -637,8 +653,8 @@ const SplitScreenV2=(props)=> {
                         </div>
                      </View> 
             </View> 
-            <div ref={frame}/>   
-            <canvas style={{display:'none'}} ref={canvasEl} />  
+            {/* <div ref={frame}/>    */}
+            {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
         </View>
 
     )
@@ -653,7 +669,7 @@ const SplitScreenV2=(props)=> {
           paddingBottom:1,
           paddingLeft:1,
           paddingRight:1,
-          backgroundColor:'white',
+          backgroundColor:'gray',
         }}
        >
         <a ref={textRef}/>
@@ -666,9 +682,11 @@ const SplitScreenV2=(props)=> {
           backgroundRepeat: 'no-repeat',
           }}
         >
-          <canvas ref={canvasEl}/> 
+          <div ref={frame}>
+            <canvas ref={canvasEl}/> 
+          </div>
         </div>
-        <div ref={frame}/>   
+        {/* <div ref={frame}/>    */}
         {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
       </View>
      )
