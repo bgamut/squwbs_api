@@ -36,7 +36,7 @@ const SplitScreenV2=(props)=> {
     const canvasEl=useRef(null)
     const imageHDRef=useRef(null)
     const inputRef = useRef(null)
-
+    const textRef = useRef('')
 
 
     const [pageChange,setPageChange]=useState(false)
@@ -82,56 +82,66 @@ const SplitScreenV2=(props)=> {
       // if(frame.current!==null){
       //   if(frame.current.childNodes.length<=0){
         const worker = new TesseractWorker();
-            ReactDOM.render(
-              <canvas style={{display:'none'}} ref={canvasEl} /> ,
-              frame.current
-            )
-            var img = canvasEl.current.toDataURL()
-            //console.log(img)
-            imageHDRef.current.style.backgroundImage="url("+img+")"
-            worker.recognize(img,'eng')
-              .progress(progress => {
-                  setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
-                  
-              }).then(result => {
-                  var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
-                  setTextValue(newText)
-                  //setPages(...pages,newText)
-                  //console.log(newText)
-                  console.log(page+'/'+numPages)
-                  console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
-                  //console.log(lock)
-                  if(numPages==null){
-                    setPage(page+1)
-                  }
-                  else{
-                    if(lock==false){
-                      setPages([...pages,newText])
-                        // const pretty = stringifyObject(pages, {
-                        //   indent: '  ',
-                        //   singleQuotes: false
-                        // });
-                        // console.log('page info updating')
-                        // console.log(pretty)
-                      if(page<numPages){
-                        
-                        setPage(page+1)
-                      }
-                      else{
-                        
-                        setLock(true)
-                        const pretty = stringifyObject(pages, {
-                          indent: '  ',
-                          singleQuotes: false
-                        });
-                        console.log(pretty)
-                        console.log('lock activated')
-                        console.log("the length of page array is"+pages.length)
-                        setPage(1)
+          ReactDOM.render(
+            <canvas style={{display:'none'}} ref={canvasEl} /> ,
+            frame.current
+          )
+          var img = canvasEl.current.toDataURL()
+          var imageKey="image"+String(page)
+          window.localStorage.setItem(imageKey,img)
+          console.log(window.localStorage)
+          //console.log(img)
+          imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
+          worker.recognize(img,'eng')
+            .progress(progress => {
+                setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
+                //console.log(textRef.current)
+                textRef.current.innerHTML = "page "+page+" : "+progress.status +" " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%"
+                
+            }).then(result => {
+                var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+                setTextValue(newText)
+                //setPages(...pages,newText)
+                //console.log(newText)
+                console.log(page+'/'+numPages)
+                if(page>1){
+                  const textKey="text"+String(page-1)
+                  window.localStorage.setItem(textKey,newText)
+                }
+                
+                //console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
+                //console.log(lock)
+                if(numPages==null){
+                  setPage(page+1)
+                }
+                else{
+                  if(lock==false){
+                    setPages([...pages,newText])
+                      // const pretty = stringifyObject(pages, {
+                      //   indent: '  ',
+                      //   singleQuotes: false
+                      // });
+                      // console.log('page info updating')
+                      // console.log(pretty)
+                    if(page<=numPages+1){
+                      
+                      setPage(page+1)
+                    }
+                    else{
+                      
+                      setLock(true)
+                      const pretty = stringifyObject(pages, {
+                        indent: '  ',
+                        singleQuotes: false
+                      });
+                      console.log(pretty)
+                      console.log('lock activated')
+                      console.log("the length of page array is"+pages.length)
+                      setPage(1)
 
-                      }
                     }
                   }
+                }
                   
                   
               });
@@ -150,6 +160,7 @@ const SplitScreenV2=(props)=> {
           changeDimension()
           
       }, false);
+      window.localStorage.clear()
       console.log('first setup fired')
       // var img = canvasEl.current.toDataURL()
       // console.log(img)
@@ -530,6 +541,7 @@ const SplitScreenV2=(props)=> {
       setTextValue(e.target.value)
   }
   var text=textValue
+  if(lock==true){
     return(
         <View>
           {renderPagination(page,pages)}
@@ -612,6 +624,37 @@ const SplitScreenV2=(props)=> {
         </View>
 
     )
+   }
+   else{ 
+     return(
+       <View
+        style={{
+          height:"100vh",
+          width:"100vw",
+          paddingTop:1,
+          paddingBottom:1,
+          paddingLeft:1,
+          paddingRight:1,
+          backgroundColor:'white',
+        }}
+       >
+        <a ref={textRef}/>
+        <div            
+          ref={imageHDRef}
+          style={{
+          height:'100%',
+          width:'100%',
+          backgroundSize: '100% 100%',
+          backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <canvas ref={canvasEl}/> 
+        </div>
+        <div ref={frame}/>   
+        {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
+      </View>
+     )
+   }
 }
 
 export default SplitScreenV2;
