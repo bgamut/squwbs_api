@@ -600,15 +600,7 @@ const SplitScreenV2=(props)=> {
                 width:'100vw'
               }}
             >
-            <View
-            style={{
-              padding:4,
-              height:'8%',
-              width:'100%'
-            }}
-            >
-              {renderPagination(page,pages)}
-            </View>
+            
             <View
                 style={{
                   flexDirection:'row',
@@ -707,6 +699,15 @@ const SplitScreenV2=(props)=> {
             </View> 
             {/* <div ref={frame}/>    */}
             {/* <canvas style={{display:'none'}} ref={canvasEl} />   */}
+            <View
+            style={{
+              padding:4,
+              height:'8%',
+              width:'100%'
+            }}
+            >
+              {renderPagination(page,pages)}
+            </View>
         </View>
         </View>
 
