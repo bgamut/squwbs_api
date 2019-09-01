@@ -311,7 +311,7 @@ const SplitScreenV2=(props)=> {
             // console.log("page1")
             return(
             
-            <View style = {{flexDirection:'row',height:50,width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
+            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
             <View style={{height:'100%',width:'38%',backgroundColor:'white',padding:4}}/>
             <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
               <Text style={{textAlign:"center",color:"grey"}}>
@@ -327,7 +327,7 @@ const SplitScreenV2=(props)=> {
         // // let nextButton = <li className="next" onClick={() => setPage(page + 1)}><a href="#">Next <i className="fa fa-arrow-right"></i></a></li>;
         if (page === numPages) {
           return (
-            <View style = {{flexDirection:'row',height:'10vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
+            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
               <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
               <Text style={{textAlign:"center",color:"grey"}}>
                 previous
@@ -341,7 +341,7 @@ const SplitScreenV2=(props)=> {
           )
         }
         return (
-            <View style = {{flexDirection:'row',height:'10vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
+            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
               <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
               <Text style={{textAlign:"center",color:"grey"}}>
                 previous
@@ -584,19 +584,31 @@ const SplitScreenV2=(props)=> {
   if(lock==true){
     return(
         <View>
-          {renderPagination(page,pages)}
+          
             {loading && <span>Loading...</span>}
             {/* <View style={{height:"68%",width:"100%", backgroundColor:'orange',padding:15}}> */}
             {/* </View> */}
             <View
               style={{
-                padding:8
+                padding:8,
+                height:'100vh',
+                width:'100vw'
               }}
             >
             <View
+            style={{
+              padding:4,
+              height:'8%',
+              width:'100%'
+            }}
+            >
+              {renderPagination(page,pages)}
+            </View>
+            <View
                 style={{
                   flexDirection:'row',
-                  
+                  height:'92%',
+                  width:'100%',
                   shadowColor:'#000',
                   shadowOpacity:0.25,
                   shadowRadius:3.84,
@@ -609,10 +621,10 @@ const SplitScreenV2=(props)=> {
             >
                     <View 
                         style={{
-                            height:'90vh',
-                            width:'50vw',
-                            borderColor:'black',
-                            borderWidth:1,
+                            height:'99%',
+                            width:'45%',
+                            // borderColor:'black',
+                            // borderWidth:1,
                         }}
                     >
                         <div 
@@ -623,7 +635,8 @@ const SplitScreenV2=(props)=> {
                                 width:'100%',
                                 backgroundSize: '100% 100%',
                                 backgroundRepeat: 'no-repeat',
-                                
+                                // borderRight:1,
+                                // borderColor:'lightgrey'
                             }}
                        
                         >
@@ -634,38 +647,50 @@ const SplitScreenV2=(props)=> {
                      <View 
                         id = 'place-holder2' 
                         style={{
-                            height:"100vh",
-                            width:"50vw",
+                            height:"99%",
+                            width:"45%",
                             paddingTop:1,
                             paddingBottom:1,
                             paddingLeft:1,
                             paddingRight:1,
-                            backgroundColor:'black',
+                            // backgroundColor:'black',
                         }}
                      >
                         <div  
                             style={{
                                 height:"100%",
                                 width:"100%",
-                                backgroundColor:'black'
+                                // borderLeftWidth:1,
+                                // borderLeftColor:'lightgrey'
+                        
+                                // backgroundColor:'black'
                             }}
                             
-                                >
+                        >
                         <textarea id='text-input'type='text' spellCheck="false" 
                             ref={inputRef}
                             value={textValue}
 
                             style={{
-                                height:height-70,
-                                width:width/2-50,
+                                // height:height-70,
+                                // width:width/2-50,
+                                height:"88%",
+                                width:"97%",
                                 fontSize:13,
                                 lineHeight:2,
                                 paddingTop:35,
                                 paddingLeft: 25,
                                 paddingRight: 25,
                                 paddingBottom:35,
-                                border:'none',
-     
+                                borderLeftWidth:1,
+                                borderLeftColor:'lightgrey',
+                                borderRightColor:'white',
+                                borderBottomColor:'white',
+                                borderTopColor:'white',
+                                backgroundColor:'transparent',
+                                resize:'none',
+                                outlineColor: 'transparent',
+                                outlineStyle: 'none'
                             }} 
                             onKeyPress={handleKeyPress}
                             onChange={handleChange}
