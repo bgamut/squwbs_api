@@ -310,15 +310,16 @@ const SplitScreenV2=(props)=> {
         if (page === 1) {
             // console.log("page1")
             return(
-            
-            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
-            <View style={{height:'100%',width:'38%',backgroundColor:'white',padding:4}}/>
-            <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center",color:"grey"}}>
-                next
-              </Text>
-            </TouchableOpacity>
-              {/* <Text>testing</Text> */}
+            <View style={{leftPadding:'19%'}}>
+              <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',transform:[{translateX:-width*0.05}]}}>
+                <View style={{height:'100%',width:'50%',backgroundColor:'white',padding:4}}/>
+                  <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
+                    <Text style={{textAlign:"left",color:"grey"}}>
+                      next
+                    </Text>
+                  </TouchableOpacity>
+                  {/* <Text>testing</Text> */}
+              </View>
             </View>
             
             )
@@ -327,33 +328,37 @@ const SplitScreenV2=(props)=> {
         // // let nextButton = <li className="next" onClick={() => setPage(page + 1)}><a href="#">Next <i className="fa fa-arrow-right"></i></a></li>;
         if (page === numPages) {
           return (
-            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
-              <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center",color:"grey"}}>
-                previous
-              </Text>
-            </TouchableOpacity>
-            <View onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4}}>
-              
-            </View>
-              {/* <Text>testing</Text> */}
+            <View style={{leftPadding:'19%'}}>
+              <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',alignContent:'flex-start',transform:[{translateX:-width*0.05}]}}>
+                <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
+                <Text style={{textAlign:"left",color:"grey"}}>
+                  prev
+                </Text>
+              </TouchableOpacity>
+              <View onPress={pageUp}style={{height:'100%',width:'50%',backgroundColor:'white',padding:4}}>
+                
+              </View>
+                {/* <Text>testing</Text> */}
+              </View>
             </View>
           )
         }
         return (
-            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center'}}>
-              <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center",color:"grey"}}>
-                previous
+          <View style={{leftPadding:'19%'}}>
+            <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',transform:[{translateX:-width*0.05}]}}>
+              <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
+              <Text style={{textAlign:"left",color:"grey"}}>
+                prev
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"center",color:"grey"}}>
+            <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
+              <Text style={{textAlign:"left",color:"grey"}}>
                 next
               </Text>
           </TouchableOpacity>
               {/* <Text>testing</Text> */}
             </View>
+          </View>
         );  
       }     
       // }
@@ -755,6 +760,7 @@ const SplitScreenV2=(props)=> {
             marginTop:'auto',
             marginBottom:'auto',
             marginRight:'auto',
+            marginLeft:width*0.05,
             color:'grey',
             //backgroundColor:'white',
             textShadowColor: 'rgba(128, 128, 128, 0.99)',
