@@ -125,21 +125,24 @@ const FilePicker = (props)=> {
                 flexDirection:'column',
                 justifyContent:'center',
                 alignItems:'center',
-                marginRight:8,
-                marginLeft:8,
-                marginBottom:2,
+                // marginRight:8,
+                // marginLeft:8,
+                // marginBottom:2,
                 borderRadius:4,
-                borderWidth:1,
-                borderColor:'transparent',
+                borderBottom:2,
+                borderTop:1,
+                borderColor:'#aaa',
+                borderStyle:'solid',
                 overflow:'hidden',
+                boxSizing:"border-box",
                 shadowColor:'#000',
                 shadowOpacity:0.25,
-                shadowRadius:3.84,
+                shadowRadius:2,
                 shadowOffset:{
                 width:0,
-                height:2
+                height:0
                 },
-                elevation:5
+                elevation:2
             }} 
                 {...getRootProps({refKey:'innerRef'})}
             >
