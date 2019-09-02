@@ -117,14 +117,16 @@ const FilePicker = (props)=> {
         <Fade>
             <View style={{ 
                 // height:100,
-                width:(Dimensions.get('window').width-8),
+                //width:(Dimensions.get('window').width-8),
+                width:"100vw",
                 backgroundColor:'white',
+                
                 flex:1,
                 flexDirection:'column',
                 justifyContent:'center',
                 alignItems:'center',
-                marginRight:2,
-                marginLeft:2,
+                marginRight:8,
+                marginLeft:8,
                 marginBottom:2,
                 borderRadius:4,
                 borderWidth:1,
@@ -149,9 +151,11 @@ const FilePicker = (props)=> {
                     <input {...getInputProps()} />
                     <TouchableOpacity>
                         <Text selectable={false} style ={{
+                            fontSize: 16,
+                            fontWeight:700,
                             textDecorationLine:'none',
                             color:'white',
-                            fontSize: 15,
+                            
                             textShadowColor: 'rgba(128, 128, 128, 0.99)',
                             textShadowOffset: {width: 0, height: 0},
                             textShadowRadius: 3,

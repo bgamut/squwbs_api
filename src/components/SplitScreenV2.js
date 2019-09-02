@@ -12,6 +12,7 @@ import {usePdf} from 'react-pdf-js'
 import { updateStatement } from 'typescript';
 import ReactDOM from 'react-dom'
 import FilePicker from './FilePicker'
+var pdf = require('pdf').pdf
 const stringifyObject = require('stringify-object')
 // const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
@@ -105,7 +106,9 @@ const SplitScreenV2=(props)=> {
           //console.log(img)
           //imageHDRef.current.style.backgroundImage="url("+window.localStorage.getItem(imageKey)+")"
           imageHDRef.current.style.backgroundImage="url("+img+")"
-          worker.recognize(img,'eng')
+          
+          //worker.recognize(img,'eng')
+          worker.recognize(img,props.language)
             .progress(progress => {
                 setTextValue(progress.status +" : " + pad(parseFloat(Math.round(progress.progress*10000)/100).toFixed(2),5)+"%")
                 //console.log(textRef.current)
@@ -114,8 +117,16 @@ const SplitScreenV2=(props)=> {
                 }
                 
             }).then(result => {
-                var newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm,"").replace(/\s\s+/g," ").replace(/[\/|\\]/g,"");
+                var newText=''
+                if(props.language=='kor'){
+                  newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm," ").replace(/\s\s+/g," ").replace(/[\/|\\]/g," ");
+                }
+                else{
+                  newText =  result.text.replace(/(\r\n\t|\n|\r\t|\t|\f|;|\|\/|<|>|'|'|:|_|]'+'|'*'|ㅠ|ㅎ|ㅋ|\s)/gm," ").replace(/\s\s+/g," ")
+                }
                 
+                
+
                 //setPages(...pages,newText)
                 //console.log(newText)
                 console.log(page+'/'+numPages)
@@ -144,7 +155,7 @@ const SplitScreenV2=(props)=> {
                       // });
                       // console.log('page info updating')
                       // console.log(pretty)
-                    if(page<=numPages+1){
+                    if(page<=numPages){
                       
                       setPage(page+1)
                     }
@@ -232,8 +243,36 @@ const SplitScreenV2=(props)=> {
       }
     const pageUp=()=>{
       if(page<numPages){
+        
         setPage(page+1)
+        
       }
+      if(page==numPages){
+        //todo prompt output options
+        var fileName=prompt("please enter the name of the output .txt file")+'.txt'
+        console.log(fileName)
+
+        var doc = new pdf()
+        doc.setFontSize(16)
+        var element = document.createElement('a')
+        var text = ''
+        for (var i =0; i<pages.length; i++){
+          if(i==0){
+            text = text+pages[i]
+          }
+          else{
+            text=text+' '+pages[i] 
+          }
+          
+        }
+        
+        
+        element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text))
+        element.setAttribute('download',fileName)
+        element.click()
+        //document.body.removeChild(element)
+      }
+
       
       console.log(page)
       // var img = canvasEl.current.toDataURL()
@@ -314,7 +353,11 @@ const SplitScreenV2=(props)=> {
               <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',transform:[{translateX:-width*0.05}]}}>
                 <View style={{height:'100%',width:'50%',backgroundColor:'white',padding:4}}/>
                   <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'38%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-                    <Text style={{textAlign:"left",color:"grey"}}>
+                    <Text style={{
+                      fontSize: 16,
+                    fontWeight:700,
+                    textAlign:"left",
+                    color:"grey"}}>
                       next
                     </Text>
                   </TouchableOpacity>
@@ -326,33 +369,37 @@ const SplitScreenV2=(props)=> {
          
         }
         // // let nextButton = <li className="next" onClick={() => setPage(page + 1)}><a href="#">Next <i className="fa fa-arrow-right"></i></a></li>;
-        if (page === numPages) {
-          return (
-            <View style={{leftPadding:'19%'}}>
-              <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',alignContent:'flex-start',transform:[{translateX:-width*0.05}]}}>
-                <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-                <Text style={{textAlign:"left",color:"grey"}}>
-                  prev
-                </Text>
-              </TouchableOpacity>
-              <View onPress={pageUp}style={{height:'100%',width:'50%',backgroundColor:'white',padding:4}}>
+        
+        // if (page === numPages) {
+        //   return (
+        //     <View style={{leftPadding:'19%'}}>
+        //       <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',alignContent:'flex-start',transform:[{translateX:-width*0.05}]}}>
+        //         <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
+        //         <Text style={{textAlign:"left",color:"grey"}}>
+        //           prev
+        //         </Text>
+        //       </TouchableOpacity>
+        //       <View onPress={pageUp}style={{height:'100%',width:'50%',backgroundColor:'white',padding:4}}>
                 
-              </View>
-                {/* <Text>testing</Text> */}
-              </View>
-            </View>
-          )
-        }
+        //       </View>
+        //         {/* <Text>testing</Text> */}
+        //       </View>
+        //     </View>
+        //   )
+        // }
+
         return (
           <View style={{leftPadding:'19%'}}>
             <View style = {{flexDirection:'row',height:'8vh',width:'100vw',backgroundColor:"white",padding:4,justifyContent: 'center',transform:[{translateX:-width*0.05}]}}>
               <TouchableOpacity onPress={pageDown} style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"left",color:"grey"}}>
+              <Text style={{fontSize: 16,
+                    fontWeight:700,textAlign:"left",color:"grey"}}>
                 prev
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={pageUp}style={{height:'100%',width:'50%',backgroundColor:'white',padding:4,justifyContent: 'center',flexDirection:'row'}}>
-              <Text style={{textAlign:"left",color:"grey"}}>
+              <Text style={{fontSize: 16,
+                    fontWeight:700,textAlign:"left",color:"grey"}}>
                 next
               </Text>
           </TouchableOpacity>
@@ -674,7 +721,7 @@ const SplitScreenV2=(props)=> {
                                 height:"88%",
                                 width:"97%",
                                 fontSize:13,
-                                lineHeight:2,
+                                lineHeight:'2em',
                                 paddingTop:35,
                                 paddingLeft: 25,
                                 paddingRight: 25,
@@ -762,7 +809,9 @@ const SplitScreenV2=(props)=> {
             marginBottom:'auto',
             marginRight:'auto',
             marginLeft:width*0.05,
-            color:'grey',
+            color:'lightgrey',
+            fontSize: 16,
+            fontWeight:700,
             //backgroundColor:'white',
             textShadowColor: 'rgba(128, 128, 128, 0.99)',
             // textShadowOffset: {width: 0, height: 0},
