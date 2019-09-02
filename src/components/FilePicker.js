@@ -118,7 +118,7 @@ const FilePicker = (props)=> {
             <View style={{ 
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
-                width:"100vw",
+                width:200,
                 backgroundColor:'white',
                 
                 flex:1,
