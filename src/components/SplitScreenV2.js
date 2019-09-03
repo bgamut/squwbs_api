@@ -12,7 +12,9 @@ import {usePdf} from 'react-pdf-js'
 import { updateStatement } from 'typescript';
 import ReactDOM from 'react-dom'
 import FilePicker from './FilePicker'
-var pdf = require('pdf').pdf
+//var pdf = require('pdf').pdf
+// const PDFDocument=require('pdfkit')
+//const blobStream  = require('blob-stream');
 const stringifyObject = require('stringify-object')
 // const worker = new TesseractWorker();
 // import RNTesseractOcr from 'react-native-tesseract-ocr'
@@ -324,6 +326,94 @@ const SplitScreenV2=(props)=> {
           element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text))
           element.setAttribute('download',fileName)
           element.click()
+          // var img = document.createElement('img')
+          // img.src=images[0]
+          // var newImage=document.createElement('a')
+          // newImage.setAttribute('download','fuck.png')
+          // newImage.setAttribute('href',images[0])
+          // newImage.appendChild(img)
+          // newImage.click()
+        //   const pageImage=new Image()
+        //   pageImage.src=images[0]
+        //   console.log(images[0])
+        //   pageImage.onload=function(){
+        //     const canvas = document.createElement('canvas');
+        //     canvas.width=pageImage.naturalWidth
+        //     canvas.height=pageImage.naturalHeight
+        //     const ctx = canvas.getContext('2d')
+        //     ctx.imageSmoothingEnabled=true
+        //     ctx.drawImage(pageImage,0,0)
+        //     saveScreenshot(canvas,'test.png')
+        //   }
+        //   function saveScreenshot(canvas,fileName) {
+            
+        //     const link = document.createElement('a');
+        //     link.download = fileName + '.png';
+        //     console.log(canvas)
+        //     canvas.toBlob(function(blob) {
+        //         console.log(blob)
+        //         link.href = URL.createObjectURL(blob);
+        //         link.click();
+        //     });
+        // };
+        // var url = images[0].replace(/^data:image\/[^;]+/, 'data:application/octet-stream')
+        // element.setAttribute('href',url)
+        // element.setAttribute('download','test.png')
+        // element.click()
+        // var image_data = atob(images[0].split(',')[1]);
+        // // Use typed arrays to convert the binary data to a Blob
+        // var arraybuffer = new ArrayBuffer(image_data.length);
+        // var view = new Uint8Array(arraybuffer);
+        // for (var i=0; i<image_data.length; i++) {
+        //     view[i] = image_data.charCodeAt(i) & 0xff;
+        // }
+        // try {
+        //     // This is the recommended method:
+        //     var blob = new Blob([arraybuffer], {type: 'application/octet-stream'});
+        // } catch (e) {
+        //     // The BlobBuilder API has been deprecated in favour of Blob, but older
+        //     // browsers don't know about the Blob constructor
+        //     // IE10 also supports BlobBuilder, but since the `Blob` constructor
+        //     //  also works, there's no need to add `MSBlobBuilder`.
+        //     var bb = new (window.WebKitBlobBuilder || window.MozBlobBuilder);
+        //     bb.append(arraybuffer);
+        //     var blob = bb.getBlob('application/octet-stream'); // <-- Here's the Blob
+        // }
+    
+        // // Use the URL object to create a temporary URL
+        // var url = (window.webkitURL || window.URL).createObjectURL(blob);
+        // //location.href = url; // <-- Download!
+        // element.href=url
+        // element.download='test.png'
+        // element.click()
+    
+          // element.setAttribute('download','coverimage.png')
+          // element.click()
+          // const doc=new PDFDocument()
+          // //const stream = doc.pipe(blobStream())
+          // for (var i =0; i<pages.length; i++){
+          //   doc.addPage()
+          //   doc.image(images[i],{
+          //     fit:[250,300],
+          //     align:'center',
+          //     valign:'center'
+          //   })
+          //   doc.addPage()
+          //   doc.fontSize(16)
+          //   doc.text(pages[i],100,100)
+            
+            
+          // }
+          // doc.end()
+          
+          // stream.on('finish',()=>{
+          //   const blob=stream.toBlobURL('application/pdf')
+          //   //const data=stream.toDataURL()
+          //   var element = document.createElement('a')
+          //   element.setAttribute('href',blob)
+          //   element.setAttribute('download','referencePDF.pdf')
+          //   element.click()
+          // })
           //document.body.removeChild(element)
         }
 
@@ -866,7 +956,7 @@ const SplitScreenV2=(props)=> {
             marginRight:'auto',
             marginLeft:width*0.05,
             color:'lightgrey',
-            fontSize: 16,
+            fontSize: 11,
             fontWeight:700,
             //backgroundColor:'white',
             textShadowColor: 'rgba(128, 128, 128, 0.99)',

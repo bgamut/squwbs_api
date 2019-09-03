@@ -154,7 +154,7 @@ const FilePicker = (props)=> {
                     <input {...getInputProps()} />
                     <TouchableOpacity>
                         <Text selectable={false} style ={{
-                            fontSize: 16,
+                            fontSize: 11,
                             fontWeight:700,
                             textDecorationLine:'none',
                             color:'white',

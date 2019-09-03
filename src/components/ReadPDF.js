@@ -33,7 +33,7 @@ const PDFReader = () => {
             <select 
                 style={{
                     color:'white',
-                    fontSize: 16,
+                    fontSize: 11,
                     fontWeight:700,
                     height:33,
                     lineHeight:1.3,
