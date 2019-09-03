@@ -282,12 +282,12 @@ const SplitScreenV2=(props)=> {
         // }
 
         // else{
-          //var fileName=prompt("please enter the name of the output .txt file")+'.txt'
+          var fileName=prompt("please enter the name of the output .txt file")+'.txt'
           // if (fileName==null){
           // fileName='output.txt'
           // }
         // }
-        var fileName='output.txt'
+        //var fileName='output.txt'
         console.log(fileName)
         var text = ''
         for (var i =0; i<pages.length; i++){

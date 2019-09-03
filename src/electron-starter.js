@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain
 const path = require('path');
 const url = require('url');
-//var expressServer=require('./expressServer/server').expressServer;
+var expressServer=require('./expressServer/server').expressServer;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -66,7 +66,7 @@ function createWindow() {
     pf.getPortPromise()
     .then((port)=>{
         freeport=port
-        //expressServer(freeport);
+        expressServer(freeport);
         //setupWindow(freeport);
         checkNConnect(freeport);
     })
