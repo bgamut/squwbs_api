@@ -23,8 +23,14 @@ const pad=(n, width, z)=>{
 }
 
 const SplitScreenV2=(props)=> {
-    // const [fileSelected,setFileSelected]=useState(false);
-    // const [fileBinaryStr,setFileBinaryStr]=useState(null)
+    const [fileSelected,setFileSelected]=useState(false);
+    const [fileBinaryStr,setFileBinaryStr]=useState(null)
+    // var userAgent = navigator.userAgent.toLowerCase();
+    // if(userAgent.indexOf(' electron/')>-1){
+    //   const {ipcRenderer} = require('electron')
+    //   ipcRenderer.send('resize', 100, 168);
+    //   ipcRenderer.send('resizable',false)
+    // }
     const [page,setPage]=useState(1);
     const [pages,setPages]=useState([]);
     const [images,setImages]=useState([]);
@@ -170,7 +176,12 @@ const SplitScreenV2=(props)=> {
                       console.log('lock activated')
                       console.log("the length of page array is"+pages.length)
                       setPage(1)
-
+                      var userAgent = navigator.userAgent.toLowerCase();
+                      if(userAgent.indexOf(' electron/')>-1){
+                        const {ipcRenderer} = require('electron')
+                        ipcRenderer.send('resize', 800, 600);
+                        ipcRenderer.send('resizable',true)
+                      }
                     }
                   //}
                 }
@@ -248,13 +259,36 @@ const SplitScreenV2=(props)=> {
         
       }
       if(page==numPages){
-        //todo prompt output options
-        var fileName=prompt("please enter the name of the output .txt file")+'.txt'
-        console.log(fileName)
+        //check if the app is running in electron
+        var userAgent = navigator.userAgent.toLowerCase();
+        console.log(userAgent)
+        // if(userAgent.indexOf(' electron/')>-1){
+        //   // const prompt = require('electron-prompt') 
+        //   // prompt({
+        //   //   title:'Choose File Name',
+        //   //   label: 'Name',
+        //   //   value:'output'
 
-        var doc = new pdf()
-        doc.setFontSize(16)
-        var element = document.createElement('a')
+        //   // })
+        //   // .then((result)=>{
+        //   //   if(result===null){
+        //   //     var fileName='output.txt'
+        //   //   }
+        //   //   else{
+        //   //     var fileName=result+'.txt'
+        //   //   }
+        //   // })
+        //   var fileName='output.txt'
+        // }
+
+        // else{
+          //var fileName=prompt("please enter the name of the output .txt file")+'.txt'
+          // if (fileName==null){
+          // fileName='output.txt'
+          // }
+        // }
+        var fileName='output.txt'
+        console.log(fileName)
         var text = ''
         for (var i =0; i<pages.length; i++){
           if(i==0){
@@ -263,15 +297,37 @@ const SplitScreenV2=(props)=> {
           else{
             text=text+' '+pages[i] 
           }
-          
         }
-        
-        
-        element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text))
-        element.setAttribute('download',fileName)
-        element.click()
-        //document.body.removeChild(element)
-      }
+        // var doc = new pdf()
+        // doc.setFontSize(16)
+        // if(userAgent.indexOf(' electron/')>-1){
+
+        //   var fileName='output.txt'
+        //   // var fs = require('fs')
+        //   // fs.writeFileSync('output.txt',text,'utf-8')
+        //   // alert('Read Text Saved As output.txt')
+        //   var element = document.createElement('a')
+          
+        //   element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text))
+        //   element.setAttribute('download',fileName)
+        //   element.click()
+
+        // }
+
+        // else{
+          //var fileName=prompt("please enter the name of the output .txt file")+'.txt'
+          if (fileName==null){
+            fileName='output.txt'
+          }
+          var element = document.createElement('a')
+          
+          element.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text))
+          element.setAttribute('download',fileName)
+          element.click()
+          //document.body.removeChild(element)
+        }
+
+      // }
 
       
       console.log(page)

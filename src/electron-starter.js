@@ -4,18 +4,18 @@ var pf = require('portfinder')
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-
+const ipcMain = electron.ipcMain
 const path = require('path');
 const url = require('url');
-var expressServer=require('./expressServer/server').expressServer;
+//var expressServer=require('./expressServer/server').expressServer;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
 function setupWindow(freeport){
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
-
+    //mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
+    mainWindow = new BrowserWindow({width: 420, height: 400,resizable:true,title:'reader'});
     //and load the index.html of the app.
     var pathname= path.join(__dirname, '/../build/index.html')
     mainWindow.loadURL(`file://${pathname}`);
@@ -66,7 +66,7 @@ function createWindow() {
     pf.getPortPromise()
     .then((port)=>{
         freeport=port
-        expressServer(freeport);
+        //expressServer(freeport);
         //setupWindow(freeport);
         checkNConnect(freeport);
     })
@@ -111,6 +111,13 @@ app.on('activate', function () {
         createWindow()
     }
 });
+
+ipcMain.on('resize',function(e,x,y){
+    mainWindow.setSize(x,y)
+})
+ipcMain.on('resizable',function(e,setting){
+    mainWindow.setResizable(setting)
+})
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
