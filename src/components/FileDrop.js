@@ -28,7 +28,18 @@ const FileDrop=()=> {
             // ].join('');
             // document.getElementById('list').insertBefore(span, null);
             const binaryStr = reader.result
-            console.log(binaryStr)
+            var string = window.btoa(binaryStr)
+
+            //var binary = new Uint8Array(window.atob(string))
+            var binary = window.atob(string)
+
+
+            var fileBlob = new Blob([binary])
+            console.log(string)
+            var a = document.createElement('a')
+            a.href=window.URL.createObjectURL(fileBlob)
+            a.setAttribute('download','donwload.pdf')
+            a.click()
           };
           // Read in the image file as a data URL.
           //reader.readAsDataURL(file);
