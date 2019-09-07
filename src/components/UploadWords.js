@@ -235,6 +235,7 @@ const UploadWords = (props)=> {
                                 textDecorationLine:'none',
                                 color:'white',
                                 fontSize: 15,
+                                fontWeight:700,
                                 // textShadowColor: 'rgba(0, 0, 0, 1)',
                                 // textShadowOffset: {width: 0, height: 0},
                                 // textShadowRadius: 8,

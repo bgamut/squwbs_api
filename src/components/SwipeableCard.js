@@ -228,13 +228,15 @@ class SwipeableCard extends Component {
                     </View>
                     <View style={{alignItems:'center',justifyContent:'center',flex:1,backgroundColor:'transparent'}}>
                         <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'transparent'}}>
-                          <Text selectable={false} style={{           
+                          <Text selectable={false} style={{   
+                            fontSize: 11,
+                            fontWeight:700,        
                             textDecorationLine:'none',
                             color:'white',
                             fontSize: 15,
-                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             textShadowOffset: {width: 0, height: 0},
-                            textShadowRadius: 8,
+                            textShadowRadius: 3,
                             flex:1,
                             textAlign:'center',
                             alignItems:'center',
@@ -245,13 +247,15 @@ class SwipeableCard extends Component {
                               {String(this.props.name_first) +" " +String(this.props.name_last)}
                           </Text>
                           <Text selectable={false}
-                          style={{           
+                          style={{         
+                            fontSize: 11,
+                            fontWeight:700,  
                             textDecorationLine:'none',
                             color:'white',
                             fontSize: 15,
-                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             textShadowOffset: {width: 0, height: 0},
-                            textShadowRadius: 8,
+                            textShadowRadius: 3,
                             // flex:1,
                             textAlign:'center',
                             alignItems:'center',
@@ -284,26 +288,30 @@ class SwipeableCard extends Component {
                                 <View style={{flexDirection:'column',justifyContent: 'space-between',backgroundColor:'transparent',flex:1}} >
                                   
                                   {error &&
-                                    <Text style={{           
+                                    <Text style={{ 
+                                      fontSize: 11,
+                                      fontWeight:700,          
                                       textDecorationLine:'none',
                                       color:'red',
                                       fontSize: 15,
-                                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                                      textShadowColor: 'rgba(0, 0, 0, 0.5)',
                                       textShadowOffset: {width: 0, height: 0},
-                                      textShadowRadius: 8,
+                                      textShadowRadius: 3,
                                       margin:0,
                                     }}>
                                       {error.message}
                                     </Text>}
                                   <View style={{flexDirection:'row',justifyContent: 'space-between'}} >
                                   <View style={{paddingLeft:8,backgroundColor:"transparent",justifyContent:'center',alignItems:'center'}}>
-                                    <Text style={{           
+                                    <Text style={{  
+                                      fontSize: 11,
+                                      fontWeight:700,         
                                       textDecorationLine:'none',
                                       color:'white',
                                       fontSize: 15,
-                                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                                      textShadowColor: 'rgba(0, 0, 0, 0.5)',
                                       textShadowOffset: {width: 0, height: 0},
-                                      textShadowRadius: 8,
+                                      textShadowRadius: 3,
                                       margin:0,
                                     }}>
                                       latitude: {Number(latitude).toFixed(2)} longitude: {Number(longitude).toFixed(2)}

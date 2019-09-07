@@ -67,12 +67,14 @@ const FileDrop=()=> {
                     <input {...getInputProps()} />
                     <TouchableOpacity>
                         <Text selectable={false} style ={{
+                            fontSize: 11,
+                            fontWeight:700,
                             textDecorationLine:'none',
                             color:'white',
                             fontSize: 15,
-                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             textShadowOffset: {width: 0, height: 0},
-                            textShadowRadius: 8,
+                            textShadowRadius: 3,
                             flex:1,
                             textAlign:'center',
                             alignItems:'center',

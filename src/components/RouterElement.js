@@ -5,6 +5,9 @@ import NavBar from './NavBar'
 import Home from './Home'
 import NoMatch from './NoMatch'
 import NotFound from './NotFound'
+import WordDeckWrapper from './WordDeckWrapper'
+import ReadPDF from './ReadPDF'
+import UploadWords from './UploadWords'
 // import Map from './Map'
 // import Catalogue from './screens/CatalogueScreen'
 // import Category from './screens/CategoryScreen'
@@ -32,12 +35,16 @@ class RouterElement extends Component {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     {/* <Route exact path="/todo" component={Todo}/> */}
+                    <Route exact path="/cards" component={WordDeckWrapper}/>
+                    <Route exact path="/PDF" component={ReadPDF}/>
+                    <Route path ="/uploadjw" component={UploadWords}/>
                     <Route exact path="/map" component={Map}/>
                     {/* <Route exact path="/Catalogue" component={Catalogue} />
                     <Route exact path="/Category" component={Category}/>
                     <Route exact path="/Product" component={Product}/>
                     <Route component={NoMatch} /> */}
                     <Route path="*" component={NotFound} />
+                    
                 </Switch>
 
                 {/* <NavBar /> */}

@@ -209,7 +209,7 @@ const Drawer =(props)=>{
                         translateY:maxHeight+2
                     }]
                     },
-                    {height:150,borderColor:"#cfcfcf",borderRadius:4,borderWidth:1,}]}>
+                    {height:250,borderColor:"#cfcfcf",borderRadius:4,borderWidth:1,}]}>
                     <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50,alignItems:'center'}]}>
                         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8,backgroundColor:'transparent'}}>
                             <Image source={require('./icons/96x96.png')} style={{
@@ -482,10 +482,12 @@ const styles=StyleSheet.create(
         },
         textStyle:{
             color:'white',
+            
+            fontWeight:700,
             fontSize: 19,
-            textShadowColor: 'rgba(0, 0, 0, 1)',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 8,
+            textShadowRadius: 4,
         },
     }
 )
