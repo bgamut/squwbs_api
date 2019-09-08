@@ -12,9 +12,9 @@ import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
 //import AdSense from 'react-adsense';
-import UploadWords from './UploadWords'
-import SplitScreenV2 from './SplitScreenV2'
-import ReadPDF from './ReadPDF'
+// import UploadWords from './UploadWords'
+// import SplitScreenV2 from './SplitScreenV2'
+// import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
 
