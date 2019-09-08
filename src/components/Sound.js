@@ -143,12 +143,14 @@ const Sound=()=> {
             //     rightIfft=null
             // }
 
-            
+            //below is uint8 array
             var encoded=wav.encode([left,right],{sampleRate:result.sampleRate, float:true, bitDepth:32}).slice()
+            //below changes it to 64string
             var blob = new Blob([encoded],{
               type:'audio/wav'
             })
             var url=window.URL.createObjectURL(blob)
+            
             console.log(url)
             var a = document.createElement('a')
             a.setAttribute('href',url)     

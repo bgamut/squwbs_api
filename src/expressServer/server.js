@@ -264,7 +264,15 @@ app.get('/login/twitter/profile',
   res.redirect('/profile');
 });
 
-
+app.get('/cards',function(req,res){
+  res.redirect('/')
+})
+app.get('/PDF',function(req,res){
+  res.redirect('/')
+})
+app.get('/sound',function(req,res){
+  res.redirect('/')
+})
 
 app.get('/todo', function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
