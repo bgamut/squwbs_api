@@ -370,6 +370,12 @@ app.get('/mongouri',cors(),(req,res)=>{
   res.send({"mongouri":NODE_ENV.MONGO_URI})
 
 })
+app.get('/instagramuri',cors(),(req,res)=>{
+  //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
+  res.send({"instagramuri":NODE_ENV.INSTAGRAM_URI})
+
+})
+
 app.get('/api',cors(),(req,res)=>{
   
   res.send(req.query)

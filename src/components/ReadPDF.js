@@ -30,45 +30,89 @@ const PDFReader = () => {
                 justifyContent:'center',
             }}
         >
-            <select 
+            <Text 
                 style={{
                     color:'white',
                     fontSize: 11,
                     fontWeight:700,
                     height:33,
                     lineHeight:1.3,
-                    padding:'.6em 1.4em .5em .8em',
-                    boxSizing:"border-box",
-                    textAlign:'center',
-          
                   
-                    textAlignLast:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
+                    textAlign:'center',
+        
+                
                     flexDirection:'row',
                     borderBottom:2,
                     borderTop:1,
-                    borderStyle:'solid',
-                    borderColor:"#aaa",
+                    borderColor:'#aaa',
+                    borderRadius:4,
+                    textShadowColor: 'rgba(128, 128, 128, 0.99)',
+                    textShadowOffset: {width: 0, height: 0},
+                    textShadowRadius: 3,
                     width:200,
                     marginBottom:4,
-                    backgroundColor:'lightgrey',
-                    // shadowColor:'#000',
-                    // shadowOpacity:0.25,
-                    // shadowRadius:3.84,
-                    // shadowOffset:{
-                    // width:0,
-                    // height:2
-                    // },
+                    backgroundColor:'transparent',
+                    shadowColor:'#000',
+                    shadowOpacity:0.25,
+                    shadowRadius:3.84,
+                    shadowOffset:{
+                    width:0,
+                    height:2
+                    },
                     // elevation:5,
                     overflow:'hidden'
                     //backgroundImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC',
                 }}
-                value={language} 
-                onChange={changeLanguage}>
-                <option value="eng">English</option>
-                <option value="kor">한글</option>
-            </select>
+            >
+                <label
+                    for="foo"
+                    className="center-select"
+                >
+                    <select 
+                        className="center-select__input"
+                        style={{
+                            color:'white',
+                            fontSize: 11,
+                            fontWeight:700,
+                            height:33,
+                            lineHeight:1.3,
+                            padding:'.6em 1.4em .5em .8em',
+                            boxSizing:"border-box",
+                            textAlign:'center',
+                           
+                        
+                            textAlignLast:'center',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            flexDirection:'row',
+                            borderBottom:2,
+                            borderTop:1,
+                            borderStyle:'solid',
+                            borderColor:"#aaa",
+                            width:200,
+                            marginBottom:4,
+                            backgroundColor:'lightgrey',
+                            // shadowColor:'#000',
+                            // shadowOpacity:0.25,
+                            // shadowRadius:3.84,
+                            // shadowOffset:{
+                            // width:0,
+                            // height:2
+                            // },
+                            // elevation:5,
+                            overflow:'hidden'
+                            //backgroundImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC',
+                        }}
+                        value={language} 
+                        onChange={changeLanguage}>
+                        <option value="eng">English</option>
+                        <option value="kor">한글</option>
+                    </select>
+                    <span class="center-select__text">
+                        English
+                    </span>
+                </label>
+            </Text>
             <FilePicker 
             setFileBinaryStr={setFileBinaryStr} 
             setFileSelected={setFileSelected} 

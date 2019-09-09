@@ -73,7 +73,8 @@ const Drawer =(props)=>{
         return(
             <Animated.View style={{            
                 height:150,
-                width:Dimensions.get('window').width,
+                // width:Dimensions.get('window').width,
+                width:"100vw",
                 backgroundColor:'orange',
                
             }}>
@@ -147,7 +148,8 @@ const Drawer =(props)=>{
         return(
             <Animated.View style={{            
                 height:150,
-                width:Dimensions.get('window').width,
+                // width:Dimensions.get('window').width,
+                width:"100vw",
                 backgroundColor:'transparent',
                
             }}>
@@ -158,7 +160,7 @@ const Drawer =(props)=>{
                     borderWidth:1,
                     height:maxHeight,
                     justifyContent:'center',
-                    marginBottom :2,
+                    marginBottom :0,
                     //opacity:state.opacity
                     // backgroundColor:'orange'
                 }}>  

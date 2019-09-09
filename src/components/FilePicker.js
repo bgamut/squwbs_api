@@ -147,7 +147,7 @@ const FilePicker = (props)=> {
                 {...getRootProps({refKey:'innerRef'})}
             >
                 <View style={{
-                    // height:100,
+                    height:33,
                     justifyContent:'center',
                     alignItems:'center'
                 }}>

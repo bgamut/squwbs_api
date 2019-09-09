@@ -115,7 +115,6 @@ class WordCard extends Component {
     },
     onPanResponderRelease: (e, {vx, dx}) => {
 
-
       const screenWidth = Dimensions.get("window").width-15;
       if (Math.abs(vx) >= 0.1 || Math.abs(dx) >= 0.1 * screenWidth) {
         if(vx>0){
@@ -196,7 +195,18 @@ class WordCard extends Component {
               <View height={this.style.height}>
             
 
-                  <Animated.View style={[styles.flipCard, frontAnimatedStyle,{width:Dimensions.get('window').width-15}]}>
+                  <Animated.View 
+                    style={
+                      [styles.flipCard, 
+                        frontAnimatedStyle,
+                        {
+                          // width:Dimensions.get('window').width-15
+                          width:"100vw"
+                        }
+
+                      ]
+                    }
+                  >
                    
 
  
@@ -234,7 +244,20 @@ class WordCard extends Component {
                      
                     
                   </Animated.View>
-                  <Animated.View style={[backAnimatedStyle,styles.flipCard, styles.flipCardBack,{width:Dimensions.get('window').width-15,padding:5,alignItems:'stretch',justifyContent:'center'}]}>
+                  <Animated.View 
+                    style={
+                      [
+                        backAnimatedStyle,styles.flipCard, 
+                        styles.flipCardBack,
+                        {
+                          // width:Dimensions.get('window').width-15,
+                          width:"100vw",
+                          padding:5,alignItems:'stretch',
+                          justifyContent:'center'
+                        }
+                      ]
+                    }
+                  >
                     <View style={{backgroundColor:'transparent',marginBottom:0,alignItems:'center',justifyContent:'space-between',flexDirection:'row'}}>
                    
                                 <View style={{flexDirection:'column',justifyContent: 'center',backgroundColor:'transparent',flex:1}} >
@@ -307,7 +330,7 @@ const styles = StyleSheet.create({
     margin:0,
   },
   flipCard: {
-    backgroundColor:'black',
+    backgroundColor:'grey',
     borderWidth:1,
     borderColor: 'rgba(128,128,128,0)',
     paddingTop:2,
@@ -329,7 +352,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25
   },
   flipCardBack: {
-    backgroundColor:'black',
+    backgroundColor:'lightGrey',
     height: Dimensions.get('window').height-15,
     position: "absolute",
     top: 0,

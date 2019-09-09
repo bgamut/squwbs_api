@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+/>
+<title>
+Center "Select" Example
+</title>
+<style>
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-family: sans-serif;
+  font-size: 13px;
+}
+
+.constrain-width {
+  width: 300px;
+}
+
+.center-select,
+.center-select * {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.center-select {
+  display: block;
+  position: relative;
+}
+
+.center-select__input {
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  width: 100%;
+  height: 30px;
+}
+
+.center-select__text {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  line-height: 30px;
+  pointer-events: none;
+  text-align: center;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.center-select__input:focus + .center-select__text {
+  border-bottom-color: orange;
+}
+
+</style>
+<script>
+
+function handleChange (el) {
+  document
+  .querySelector('.center-select__text')
+  .innerHTML = el.value
+}
+
+</script>
+</head>
+<body>
+<p class="constrain-width">
+  <label
+    for="foo"
+    class="center-select"
+  >
+    <select
+      id="foo"
+      class="center-select__input"
+      onchange="handleChange(this)"
+    >
+      <option value="Option 1">Option 1</option>
+      <option value="Option 2">Option 2</option>
+      <option value="Option 3">Option 3</option>
+    </select>
+    <span class="center-select__text">
+      Option 1
+    </span>
+  </label>
+</p>
+</body>
+</html>

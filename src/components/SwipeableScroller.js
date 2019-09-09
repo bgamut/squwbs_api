@@ -8,6 +8,9 @@ import Header from './Header'
 import ReadPDF from './ReadPDF'
 import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
+//import {Slider,Slide,Caption,Card} from 'react-materialize'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 // const translateY = new Animated.Value(0);
 
 let currentY=0
@@ -68,8 +71,8 @@ const SwipeableScroller = (props) => {
     
       <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
         {/* <View style={{backgroundColor:'transparent',height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}> */}
-          <View  style={{height:"38vh",width:Dimensions.get('window').width-2}}>
-            <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='row'>
+          {/* <View  style={{height:"38vh",width:Dimensions.get('window').width-2}}> */}
+            {/* <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='row'>
 
               <View style={{
                 flex: 1,
@@ -107,9 +110,62 @@ const SwipeableScroller = (props) => {
               }}>
 
               </View>
-            </Swiper>
-          </View>
+            </Swiper> */}
+      
         {/* </View> */}
+        <section id="slider"
+          style={{
+            height:"38vh",
+            width:"100vw",
+            backgroundColor:'white',
+            textAlign:'center'
+          }}
+        >
+          <Carousel 
+            
+            showArrows={false} 
+            showStatus={false} 
+            showIndicators={false}
+            showThumbs={false}
+            infiniteLoop={true}
+            autoPlay={true}
+            interval={3000}
+            transitionTime={750}
+            emulateTouch={true}
+          >
+            <div style={{
+              height:"38vh",
+              width:"100vw",
+              backgroundColor:'white',
+              textAlign:'center'
+              }}>
+                {/* <img src="assets/1.jpeg" /> */}
+                <p className="legend">1</p>
+            </div>
+            <div 
+              style={{
+                height:"38vh",
+                width:"100vw",
+                backgroundColor:'grey',
+                textAlign:'center'
+              }}
+            >
+                {/* <img src="assets/2.jpeg" /> */}
+                <p className="legend">2</p>
+            </div>
+            <div 
+              style={{
+                height:"38vh",
+                width:"100vw",
+                backgroundColor:'lightGrey',
+                textAlign:'center'
+              }}
+            >
+                {/* <img src="assets/3.jpeg" /> */}
+                <p className="legend">3</p>
+            </div>
+          </Carousel>
+        </section>
         <View style={{flexDirection:'column'}}>
           
           <section id="PDF">
