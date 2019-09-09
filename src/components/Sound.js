@@ -186,6 +186,7 @@ const Sound=()=> {
                 width:'100vw',
                 alignItems:'center',
                 justifyContent:'center',
+                backgroundColor:'trasparent'
             }}
         >
         <View
@@ -237,7 +238,7 @@ const Sound=()=> {
             // marginLeft:2,
             // marginBottom:2,
             
-            padding:4,
+            // padding:4,
             borderRadius:4,
             borderBottom:2,
             borderTop:1,

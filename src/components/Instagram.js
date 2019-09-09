@@ -39,7 +39,7 @@ const Instagram = (props)=> {
         .catch((err)=>{
             console.log(err)
         })
-
+       
     },[])
         
     
@@ -71,21 +71,21 @@ const Instagram = (props)=> {
                 // marginRight:8,
                 // marginLeft:8,
                 // marginBottom:2,
-                borderRadius:4,
-                borderBottom:2,
-                borderTop:1,
-                borderColor:'#aaa',
-                borderStyle:'solid',
-                overflow:'hidden',
-                boxSizing:"border-box",
-                shadowColor:'#000',
-                shadowOpacity:0.25,
-                shadowRadius:2,
-                shadowOffset:{
-                width:0,
-                height:0
-                },
-                elevation:2
+                // borderRadius:4,
+                // borderBottom:2,
+                // borderTop:1,
+                // borderColor:'#aaa',
+                // borderStyle:'solid',
+                // overflow:'hidden',
+                // boxSizing:"border-box",
+                // shadowColor:'#000',
+                // shadowOpacity:0.25,
+                // shadowRadius:2,
+                // shadowOffset:{
+                // width:0,
+                // height:0
+                // },
+                // elevation:2
             }} >
 
       

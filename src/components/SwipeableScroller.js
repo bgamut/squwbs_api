@@ -170,13 +170,22 @@ const SwipeableScroller = (props) => {
         <View style={{flexDirection:'column'}}>
           
           <section id="PDF">
-            <View style={{height:"100vh",zIndex:0}}>
+            <View 
+              style={{
+                height:"100vh",
+                zIndex:0,
+                backgroundColor:'transparent'
+            }}>
               {/* <SwipeableList/> */}
               <ReadPDF/>
             </View>
           </section>
           <section id="cards">
-            <View style={{height:"100vh",zIndex:0}}>
+            <View style={{
+              height:"100vh",
+              zIndex:0,
+            backgroundColor:'transparent'
+          }}>
               <WordDeckWrapper/>
             </View>
           </section>
@@ -187,12 +196,53 @@ const SwipeableScroller = (props) => {
             </View>
           </section>
           <section id="follow">
-            <View style={{height:500,
-            width:"100%",justifyContent:'center',
-                    alignItems:'center',zIndex:0,backgroundColor:'grey'}}>
-              <Instagram/>
+            <View
+              style={{
+                height:500,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'transparent',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'white',
+                  borderRadius:4,
+                  borderBottom:2,
+                  borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'#000',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <Instagram/>
+              </View>
             </View>
           </section>
+          <View
+            style={{
+              height:50
+            }}
+          >
+          </View>
+          
         </View>
       
     </View>
