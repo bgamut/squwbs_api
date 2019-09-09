@@ -14,42 +14,57 @@ const Instagram = (props)=> {
     const [current,setCurrent]=useState(0)
     const imgRef = useRef(null)
     useEffect(()=>{
-        fetch('https://squwbs.herokuapp.com/instagramuri', {
-            credentials: "include"
-        })
+        // fetch('https://squwbs.herokuapp.com/instagramuri', {
+        //     credentials: "include"
+        // })
+        // .then(function(result){
+        //     return result.json()
+        // })
+        // .then(function(json){
+        //     console.log(json)
+        //     var instagramuri=json.instagramuri
+        //     console.log(instagramuri)
+        //     fetch(instagramuri)
+        //     .then(function(result){
+        //         return result.json()
+        //     })
+        //     .then(function(json){
+        //         console.log(json)
+        //         var imageurl=json.data[0].images.standard_resolution.url;
+        //         console.log(imageurl)
+        //         imgRef.current.style.backgroundImage="url("+imageurl+")"
+        //     })
+            
+        // })
+        // .catch((err)=>{
+        //     console.log(err)
+        // })
+        var instagramuri='https://api.instagram.com/v1/users/self/media/recent/?access_token=185265937.1677ed0.5722b610ef6b4cb085f67f62aff1abb5'
+        console.log(instagramuri)
+        fetch(instagramuri)
         .then(function(result){
             return result.json()
         })
         .then(function(json){
             console.log(json)
-            instagramuri=json.instagramuri
-            console.log(instagramuri)
-            fetch(instagramuri)
-            .then(function(result){
-                return result.json()
-            })
-            .then(function(json){
-                console.log(json)
-                var imageurl=json.data[0].images.standard_resolution.url;
-                console.log(imageurl)
-                imgRef.current.style.backgroundImage="url("+imageurl+")"
-            })
-            
-        })
-        .catch((err)=>{
-            console.log(err)
+            var imageurl=json.data[0].images.standard_resolution.url;
+            console.log(imageurl)
+            imgRef.current.src=imageurl
         })
     },[])
         
     
       return (
         <Fade>
-            <section id="follow" class="section section-follow grey lighten-2 white-text center z-depth-1">
+            
               <View class="container"
                 style={{
                     width:"100%",
                     height:"100%",
-                    backgroundColor:"lightGrey"
+                    backgroundColor:"grey",
+                    justifyContent:'center',
+                    alignItems:'center',
+                    flexDirection:'row'
                 }}
             >
                 <View 
@@ -58,8 +73,10 @@ const Instagram = (props)=> {
                 //width:(Dimensions.get('window').width-8),
                 width:"100%",
                 height:"100%",
-                backgroundColor:'white',
                 flexDirection:'column',
+                padding:15,
+                backgroundColor:'white',
+                
                 justifyContent:'center',
                 alignItems:'center',
                 // marginRight:8,
@@ -83,17 +100,99 @@ const Instagram = (props)=> {
             }} >
 
       
-                        <div href="https://www.instagram.com/squwbs/?hl=ko" ref={imgRef}/>
-                     
-                    <a href="https://www.instagram.com/squwbs/?hl=ko" class="white-text">
-                      <i class="fab fa-instagram fa-4x"></i>
-                      <h5>FOLLOW</h5>
+                    {/* <div href="https://www.instagram.com/squwbs/?hl=ko" ref={imgRef}/> */}
+                    
+                    <a style={{           
+                            textDecorationLine:'none',
+                            textDecorationStyle:'none',
+                            height:"100%",
+                            width:"100%"
+                          }} href="https://www.instagram.com/squwbs/?hl=ko" >
+                      
+                      
+                    <View 
+                        style={{
+
+                            justifyContent:"center",
+                            alignItems:"center",
+                            background:'transparent'
+                        }}
+                    >
+                    <img ref={imgRef}w
+                        style={{
+                            display:"block",
+                            maxHeight:500,
+                            // maxWidth:"61%",
+                            width:'auto',
+                            height:'auto'
+                        }}
+                    src="" alt=""/>
+                    <View      
+                        style={{
+                            height:33,
+                            justifyContent:'center',
+                            alignItems:'center',
+                            background:'transparent'
+                        }}>
+                    <i 
+                        style={{           
+                            height:33,
+                            color:'grey',
+                            display:'block',
+                            margin:0,
+                            shadowColor:'#000',
+                            shadowOpacity:0.25,
+                            shadowRadius:2,
+                            shadowOffset:{
+                            width:0,
+                            height:0
+                            },
+                            elevation:2
+                          }}
+                      class="fab fa-instagram fa-4x">
+                        
+                      </i>
+                    </View>
+                    </View>
+                        <View 
+                            style={{
+                                justifyContent:"center",
+                                alignItems:"center",
+                                
+                                maxHeight:33,
+                                maxWidth:"100%",
+                                width:'auto',
+                                height:'auto'
+                                
+                            }}
+                        >
+                      {/* <Text
+                        style={{           
+                            textDecorationLine:'none',
+                            fontWeight:'700',
+                            color:'grey',
+                            fontSize: 16,
+                            // textShadowColor: 'rgba(0, 0, 0, 1)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 2,
+                           
+                            textAlign:'center',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            flexDirection:'row',
+                            margin:0,
+                            textDecorationStyle:'none'
+                          }}
+                      >
+                          FOLLOW
+                      </Text> */}
+                    </View>
                     </a>
-                    <p>Check Up On What We Are Up To</p>
+                    
                 </View>
               </View>
-            </section>
-            <View style={{ 
+            
+            {/* <View style={{ 
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
                 width:200,
@@ -150,7 +249,7 @@ const Instagram = (props)=> {
                         </Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </View> */}
         </Fade>
       )
 }

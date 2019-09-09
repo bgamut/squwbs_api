@@ -8,6 +8,7 @@ import Header from './Header'
 import ReadPDF from './ReadPDF'
 import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
+import Instagram from './Instagram'
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -185,7 +186,13 @@ const SwipeableScroller = (props) => {
               <Sound/>
             </View>
           </section>
-         
+          <section id="follow">
+            <View style={{height:750,
+            width:"100%",justifyContent:'center',
+                    alignItems:'center',zIndex:0,backgroundColor:'grey'}}>
+              <Instagram/>
+            </View>
+          </section>
         </View>
       
     </View>
