@@ -80,7 +80,8 @@ const Drawer =(props)=>{
             }}>
                 <View style={{
                     backgroundColor:'orange',
-                    borderColor:'#cfcfcf',
+                    // borderColor:'#cfcfcf',
+                    borderColor:'transparent',
                     borderRadius:2,
                     borderWidth:1,
                     height:maxHeight,
@@ -155,7 +156,8 @@ const Drawer =(props)=>{
             }}>
                 <View style={{
                     backgroundColor:'#ffffff',
-                    borderColor:'#cfcfcf',
+                    //borderColor:'#cfcfcf',
+                    borderColor:'transparent',
                     borderRadius:2,
                     borderWidth:1,
                     height:maxHeight,
@@ -211,7 +213,11 @@ const Drawer =(props)=>{
                         translateY:maxHeight+2
                     }]
                     },
-                    {height:300,borderColor:"#cfcfcf",borderRadius:4,borderWidth:1,}]}>
+                    {height:300,
+                    borderColor:"#cfcfcf",
+                    // borderColor:'transparent',
+                    borderRadius:4,
+                    borderWidth:1,}]}>
                     <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50,alignItems:'center'}]}>
                         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8,backgroundColor:'transparent'}}>
                             <Image source={require('./icons/96x96.png')} style={{

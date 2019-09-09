@@ -137,11 +137,11 @@ const SwipeableScroller = (props) => {
             <div style={{
               height:"38vh",
               width:"100vw",
-              backgroundColor:'white',
+              backgroundColor:'darkGrey',
               textAlign:'center'
               }}>
                 {/* <img src="assets/1.jpeg" /> */}
-                <p className="legend">1</p>
+                {/* <p className="legend">1</p> */}
             </div>
             <div 
               style={{
@@ -152,7 +152,7 @@ const SwipeableScroller = (props) => {
               }}
             >
                 {/* <img src="assets/2.jpeg" /> */}
-                <p className="legend">2</p>
+                {/* <p className="legend">2</p> */}
             </div>
             <div 
               style={{
@@ -163,7 +163,7 @@ const SwipeableScroller = (props) => {
               }}
             >
                 {/* <img src="assets/3.jpeg" /> */}
-                <p className="legend">3</p>
+                {/* <p className="legend">3</p> */}
             </div>
           </Carousel>
         </section>
@@ -187,7 +187,7 @@ const SwipeableScroller = (props) => {
             </View>
           </section>
           <section id="follow">
-            <View style={{height:750,
+            <View style={{height:500,
             width:"100%",justifyContent:'center',
                     alignItems:'center',zIndex:0,backgroundColor:'grey'}}>
               <Instagram/>
