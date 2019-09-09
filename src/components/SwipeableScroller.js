@@ -5,6 +5,9 @@ import { Context } from "../context";
 import Swiper from './Swiper'
 import SwipeableList from './SwipeableList'
 import Header from './Header'
+import ReadPDF from './ReadPDF'
+import WordDeckWrapper from './WordDeckWrapper'
+import Sound from './Sound'
 // const translateY = new Animated.Value(0);
 
 let currentY=0
@@ -51,7 +54,8 @@ const SwipeableScroller = (props) => {
            
   <View>
     <ScrollView 
-      style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
+      // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
+      style={{backgroundColor:'transparent',height:"100vh",zIndex:98}}
       onScroll={(e)=>{
           // onScroll(e)
         }
@@ -64,8 +68,8 @@ const SwipeableScroller = (props) => {
     
       <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
         {/* <View style={{backgroundColor:'transparent',height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}> */}
-          <View  style={{height:Dimensions.get('window').height/6,width:Dimensions.get('window').width-2}}>
-            <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='column'>
+          <View  style={{height:"38vh",width:Dimensions.get('window').width-2}}>
+            <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='row'>
 
               <View style={{
                 flex: 1,
@@ -106,9 +110,28 @@ const SwipeableScroller = (props) => {
             </Swiper>
           </View>
         {/* </View> */}
-      <View style={{height:Dimensions.get('window').height/2}}>
-        <SwipeableList/>
-      </View>
+        <View style={{flexDirection:'column'}}>
+          
+          <section id="PDF">
+            <View style={{height:"100vh",zIndex:0}}>
+              {/* <SwipeableList/> */}
+              <ReadPDF/>
+            </View>
+          </section>
+          <section id="cards">
+            <View style={{height:"100vh",zIndex:0}}>
+              <WordDeckWrapper/>
+            </View>
+          </section>
+          <section id="sound">
+            <View style={{height:"100vh",zIndex:0}}>
+              {/* <SwipeableList/> */}
+              <Sound/>
+            </View>
+          </section>
+         
+        </View>
+      
     </View>
   </ScrollView>
 </View>

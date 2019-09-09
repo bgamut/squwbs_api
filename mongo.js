@@ -5,11 +5,12 @@ var mongouri=''
 fetch('https://squwbs.herokuapp.com/mongouri', {
     credentials: "include"
   })
-.then(resulst=>{
-  return resulst.json()
+.then(function(result){
+  return result.json()
 })
-.then((json)=>{
-  mongouri=json.MONGO_URI
+.then(function(json){
+  
+  mongouri=json.mongouri
   console.log(mongouri)
   const client = new MongoClient(mongouri, { useNewUrlParser: true });
   client.connect(function(err){
@@ -34,6 +35,6 @@ fetch('https://squwbs.herokuapp.com/mongouri', {
 });
 })
 .catch((err)=>{
-
+  console.log(err)
 })
 

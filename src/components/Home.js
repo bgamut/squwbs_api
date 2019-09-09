@@ -342,11 +342,12 @@ const Home = () => {
           
           </Rnd> */}
           
-            <FileDrop/>
+            {/* <FileDrop/> */}
             <SwipeableScroller/>
           </Drawer>
-          <KeyboardAvoidingView style={{display:'absolute',bottom:0,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
           {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}
+          {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
+          
           
               <View style={{backgroundColor:'white',height:30,felxDirection:'column',alignItems:'center',justifyContent:'center',marginRight:0,marginLeft:0,}}>
                 <AddPost style={{marginTop:0,witdh:Dimensions.get('window').width}}/>
@@ -370,19 +371,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                   }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>one</Text> */}
+                 
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -398,20 +387,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                   }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                    
-                  }}>two</Text> */}
+                
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -427,19 +403,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                   }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>three</Text> */}
+                
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -455,19 +419,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                 }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>four</Text> */}
+               
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -483,19 +435,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                 }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>one</Text> */}
+            
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -511,19 +451,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                 }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>two</Text> */}
+     
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -539,19 +467,7 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                 }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>three</Text> */}
+      
                 </View>
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor = 'white' onLongPress={longpress}>
@@ -567,23 +483,11 @@ const Home = () => {
                   borderColor:'white',
                   overflow:'hidden'
                 }}>
-                  {/* <Text selectable={false} style={{           
-                    textDecorationLine:'none',
-                    color:'white',
-                    fontSize: 12,
-                    textShadowColor: 'rgba(128, 128, 128, 1)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 8,
-                    flex:1,
-                    textAlign:'center',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'row',
-                  }}>four</Text> */}
+
                 </View>
                 </TouchableHighlight>
               </ScrollView>
-            </KeyboardAvoidingView> 
+            </KeyboardAvoidingView>  */}
         </View> 
         
     )

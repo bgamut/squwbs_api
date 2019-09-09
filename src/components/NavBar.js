@@ -227,66 +227,7 @@ const NavBar = () => {
             flexDirection:'row',
             textAlign:'center'
           }
-        } href="/cards">
-          <TouchableOpacity style={styles.touch}>
-          {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
-          {/* <svg height={22} width={22} >
-            <path d={String(faFacebookSquare.svgPathData)} fill="red"/>
-          </svg> */}
-          {/* <Text style={{fontFamily:'fontAwesome', fontSize:12, height:22, width:22,color:'black'}}>
-            &#xf082;
-          </Text> */}
-          {/* <img src = {facebookLogo} style={{
-            height:22,
-            width:22,
-            shadowColor: "black",
-            shadowOffset: { width:0,height: 0},
-            shadowRadius:5,
-            shadowOpacity: 0.3,
-            filter:'lightGrey',
-            
-          }}>
-          </img> */}
-          <Text id="Word Cards" 
-          style={{
-            // color:'black', 
-            textDecorationLine:'none',
-            color:'white',
-            fontWeight:700,
-            fontSize: 17,
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}
-          >Word Cards</Text>
-          </TouchableOpacity>
-        </a><br/>
-        </View>
-        <View style={styles.box}>
-        <a style={
-          {
-            // flex:1,
-            textDecorationLine:'none',
-            //borderColor:'black',
-            //borderWidth:2,
-            backgroundColor:'transparent',
-            fontSize: 17,
-            fontWeight:700,
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-            textAlign:'center'
-          }
-        } href="/PDF">
+        } href="/#PDF">
           <TouchableOpacity style={styles.touch}>
           {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
           {/* <svg height={22} width={22} >
@@ -345,7 +286,67 @@ const NavBar = () => {
             flexDirection:'row',
             textAlign:'center'
           }
-        } href="/sound">
+        } href="/#cards">
+          <TouchableOpacity style={styles.touch}>
+          {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
+          {/* <svg height={22} width={22} >
+            <path d={String(faFacebookSquare.svgPathData)} fill="red"/>
+          </svg> */}
+          {/* <Text style={{fontFamily:'fontAwesome', fontSize:12, height:22, width:22,color:'black'}}>
+            &#xf082;
+          </Text> */}
+          {/* <img src = {facebookLogo} style={{
+            height:22,
+            width:22,
+            shadowColor: "black",
+            shadowOffset: { width:0,height: 0},
+            shadowRadius:5,
+            shadowOpacity: 0.3,
+            filter:'lightGrey',
+            
+          }}>
+          </img> */}
+          <Text id="Word Cards" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontWeight:700,
+            fontSize: 17,
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          >Word Cards</Text>
+          </TouchableOpacity>
+        </a><br/>
+        </View>
+        
+        <View style={styles.box}>
+        <a style={
+          {
+            // flex:1,
+            textDecorationLine:'none',
+            //borderColor:'black',
+            //borderWidth:2,
+            backgroundColor:'transparent',
+            fontSize: 17,
+            fontWeight:700,
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/#sound">
           <TouchableOpacity style={styles.touch}>
           {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
           {/* <svg height={22} width={22} >
