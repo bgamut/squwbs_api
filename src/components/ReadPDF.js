@@ -1,5 +1,5 @@
 //import React, {memo} from 'react'
-import React,{Component,useContext,useState,useEffect,memo} from 'react';
+import React,{Component,useContext,useState,useEffect,memo,useRef} from 'react';
 import SplitScreenV2 from './SplitScreenV2'
 import {TouchableOpacity,Text,View,Dimensions} from 'react-native'
 import FilePicker from './FilePicker'
@@ -10,11 +10,23 @@ const PDFReader = () => {
     const [fileBinaryStr,setFileBinaryStr]=useState(null)
     const [file,setFile]=useState(null)
     const [language,setLanguage]=useState('eng')
+    const spanRef = useRef(null)
     const getUserData=async()=>{
     
     }
     const changeLanguage=(e)=>{
+        console.log(e.target.value)
+        if(e.target.value=='kor'){
+            console.log('korean')
+            spanRef.current.innerHTML='한글'
+        }
+        else if(e.target.value=='eng'){
+            console.log('english')
+            spanRef.current.innerHTML='English'
+        }
         setLanguage(e.target.value)
+        
+        console.log(spanRef.current.innerHTML)
     }
     useEffect(()=>{
         
@@ -108,7 +120,7 @@ const PDFReader = () => {
                         <option value="eng">English</option>
                         <option value="kor">한글</option>
                     </select>
-                    <span class="center-select__text">
+                    <span ref={spanRef} class="center-select__text">
                         English
                     </span>
                 </label>

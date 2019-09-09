@@ -238,7 +238,7 @@ const SwipeableScroller = (props) => {
           </section>
           <View
             style={{
-              height:77
+              height:100
             }}
           >
           </View>

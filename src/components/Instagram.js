@@ -109,7 +109,7 @@ const Instagram = (props)=> {
                             background:'transparent'
                         }}
                     >
-                    <img ref={imgRef}w
+                    <img ref={imgRef}
                         style={{
                             display:"block",
                             maxHeight:300,
