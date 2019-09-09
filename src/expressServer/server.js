@@ -365,6 +365,11 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
+app.get('/mongouri',cors(),(req,res)=>{
+  //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
+  res.send({"mongouri":NODE_ENV.MONGO_URI})
+
+})
 app.get('/api',cors(),(req,res)=>{
   
   res.send(req.query)

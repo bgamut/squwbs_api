@@ -45,6 +45,7 @@
     "lodash": "^4.17.15",
     "mobile-detect": "^1.4.3",
     "module-alias": "^2.2.0",
+    "mongodb": "^3.3.2",
     "node-fetch": "^2.6.0",
     "node-lame": "^1.2.0",
     "node-wav": "0.0.2",
