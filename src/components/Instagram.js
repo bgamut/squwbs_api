@@ -14,9 +14,11 @@ const Instagram = (props)=> {
     const [current,setCurrent]=useState(0)
     const imgRef = useRef(null)
     useEffect(()=>{
-        fetch('https://squwbs.herokuapp.com/instagramuri', {
-            credentials: "include"
-        })
+        fetch('https://squwbs.herokuapp.com/instagramuri'
+            // , {
+            //     credentials: "include"
+            // }
+        )
         .then(function(result){
             return result.json()
         })
