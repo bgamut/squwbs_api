@@ -1,5 +1,5 @@
 
-import React,{Component,useContext,useEffect,useState} from 'react';
+import React,{Component,useContext,useEffect,useState,useRef} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity,ScrollView} from 'react-native'
 import { Context } from "../context";
 import Swiper from './Swiper'
@@ -20,22 +20,32 @@ let currentY=0
 let prevY=0
 const yScroll = new Animated.Value(0)
 const SwipeableScroller = (props) => {
+  
   const [state, setState] = useContext(Context);
   const [height,setHeight]=useState(0)
-  
+  const heightRef = useRef('')
   useEffect(()=>{
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
       //console.log(value)
     })
-    window.addEventListener("resize", updateDimensions);
-    window.addEventListener('orientationchange', updateDimensions)
-    setHeight(Math.floor(Dimensions.get('window').height))
+    //window.addEventListener("resize", updateDimensions);
+    //window.addEventListener('orientationchange', updateDimensions)
+    Dimensions.addEventListener('change',(e)=>{
+      updateDimensions()
+    })
+    updateDimensions()
+    //setHeight(Math.floor(Dimensions.get('window').height))
   },[])
+  useEffect(()=>{
+    console.log('height changed!')
+    console.log(Dimensions.get('window').height)
+  },[height])
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height))
     //style.height=Math.floor(Dimensions.get('window').height)
-    //console.log(this.state)
+    //console.log('dimensions update')
+    
   }
  
   const onScroll=(e)=>{
@@ -125,6 +135,7 @@ const SwipeableScroller = (props) => {
       
         {/* </View> */}
         <section id="slider"
+          ref={heightRef}
           style={{
             //height:"38vh",
             height:height-50,
@@ -145,8 +156,11 @@ const SwipeableScroller = (props) => {
             transitionTime={750}
             emulateTouch={false}
           >
-            <div style={{
+            <div 
+            ref={heightRef}
+            style={{
               //height:"38vh",
+              
               height:height-50,
               width:"100vw",
               backgroundColor:'rgb(250,250,250)',
@@ -156,6 +170,7 @@ const SwipeableScroller = (props) => {
                 {/* <p className="legend">1</p> */}
             </div>
             <div 
+              ref={heightRef}
               style={{
                 //height:"38vh",
                 height:height-50,
@@ -168,6 +183,7 @@ const SwipeableScroller = (props) => {
                 {/* <p className="legend">2</p> */}
             </div>
             <div 
+              ref={heightRef}
               style={{
                 //height:"38vh",
                 height:height-50,
@@ -185,6 +201,7 @@ const SwipeableScroller = (props) => {
           
           <section id="PDF">
             <View 
+              ref={heightRef}
               style={{
                 //height:"100vh",
                 height:height-50,
@@ -199,7 +216,9 @@ const SwipeableScroller = (props) => {
             </View>
           </section>
           <section id="cards">
-            <View style={{
+            <View 
+              ref={heightRef}
+              style={{
               //height:"100vh",
               height:height-50,
               zIndex:0,
@@ -214,55 +233,21 @@ const SwipeableScroller = (props) => {
             </View>
           </section>
           <section id="sound">
-            <View style={{height:"100vh",zIndex:0}}>
+            <View 
+            ref={heightRef}
+            style={{
+              height:height-50,
+              zIndex:0
+              }}
+            >
               {/* <SwipeableList/> */}
               <Sound/>
             </View>
           </section>
-          <section id="contact">
-            <View
-              style={{
-                //height:"100vh",
-                height:height-50,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'transparent',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'rgb(211,211,211)',
-                  borderRadius:4,
-                  borderBottom:2,
-                  borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                <Contact/>
-              </View>
-            </View>
-          </section>
+         
           <section id="follow">
             <View
+              ref={heightRef}
               style={{
                 //height:"100vh",
                 height:height-50,
@@ -303,11 +288,54 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
-          
+          <section id="contact">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'transparent',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'rgb(211,211,211)',
+                  borderRadius:4,
+                  borderBottom:2,
+                  borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <Contact/>
+              </View>
+            </View>
+          </section>
           <View
             style={{
               height:100,
-              backgroundColor:'rgb(211,211,211)'
+              // backgroundColor:'rgb(211,211,211)'
+              backgroundColor:'white'
             }}
           >
           </View>

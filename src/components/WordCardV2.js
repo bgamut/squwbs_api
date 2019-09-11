@@ -6,7 +6,7 @@ import Fade from 'react-reveal/Fade'
 import './css/SwipeableCard.css'
 import Flippy, {FrontSide,BackSide} from 'react-flippy'
 import Swipeout from 'react-native-swipeout'
-
+var h
 const WordCardV2 = (props)=> {
   
   const [styleCondition, setStyleCondition]=useState(false)
@@ -153,13 +153,18 @@ const WordCardV2 = (props)=> {
 //   }
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height-50))
-    style.height=Math.floor(Dimensions.get('window').height-50)
+    //style.height=Math.floor(Dimensions.get('window').height-50)
     //console.log(this.state)
+    h=Math.floor(Dimensions.get('window').height-50)
   }
   useEffect(()=>{
-    window.addEventListener("resize", updateDimensions);
-    window.addEventListener('orientationchange', updateDimensions)
-    setHeight(Math.floor(Dimensions.get('window').height-50))
+   // window.addEventListener("resize", updateDimensions);
+    //window.addEventListener('orientationchange', updateDimensions)
+    
+    Dimensions.addEventListener('change',(e)=>{
+      updateDimensions()
+    })
+    updateDimensions()
   },[])
   
 
@@ -207,7 +212,7 @@ const WordCardV2 = (props)=> {
                       [styles.flipCard, 
                         frontAnimatedStyle,
                         {
-                      
+                          height:height,
                           width:"100vw"
                         }
 
@@ -247,6 +252,7 @@ const WordCardV2 = (props)=> {
                         styles.flipCardBack,
                         {
                           width:"100vw",
+                          height:height,
                         //   padding:5,
                           alignItems:'center',
                           justifyContent:'center'
@@ -329,7 +335,8 @@ const styles = StyleSheet.create({
     // marginBottom:5,
     // marginTop:5,
     backfaceVisibility: 'hidden',
-    height: Dimensions.get('window').height,
+    //height: Dimensions.get('window').height,
+    //height:height,
     // shadowColor: '#000000',
     // shadowOffset: {
     //   width: 0,
@@ -340,7 +347,8 @@ const styles = StyleSheet.create({
   },
   flipCardBack: {
     backgroundColor:'white',
-    height: Dimensions.get('window').height,
+    //height: Dimensions.get('window').height,
+    //height:height,
     position: "absolute",
     top: 0,
     // marginLeft:5,

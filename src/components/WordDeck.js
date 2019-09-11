@@ -14,8 +14,8 @@ class WordDeck extends Component {
       styleCondition:false,
       flipLock:false,
       bagOfWords:[{
-        word:'word',
-        meaning:'meaning',
+        word:'touch',
+        meaning:'swipe',
         example:'example',
         pronunciation:'pronunciation'
       }],
@@ -88,6 +88,10 @@ class WordDeck extends Component {
         meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
         example={this.state.bagOfWords[this.state.currentIndex].example} 
         percentage={this.props.percentage}
+        style={{
+          height:"100%",
+          width:"100%"
+        }}
       />,
       this.myRef.current
     )
@@ -181,6 +185,10 @@ class WordDeck extends Component {
             example={this.state.bagOfWords[this.state.currentIndex].example} 
             pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
             percentage={this.props.percentage}
+            style={{
+              height:"100%",
+              width:"100%"
+            }}
           />
             ,
             this.myRef.current
