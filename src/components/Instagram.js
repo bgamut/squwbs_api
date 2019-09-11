@@ -12,7 +12,12 @@ const withQuery = require('with-query');
 
 const Instagram = (props)=> {
     const [current,setCurrent]=useState(0)
+    const [height,setHeight]=useState(0)
     const imgRef = useRef(null)
+    const updateDimensions=()=>{
+        setHeight(Math.floor(Dimensions.get('window').height)-200)
+    }
+        
     useEffect(()=>{
         fetch('https://squwbs.herokuapp.com/instagramuri'
             // , {
@@ -41,9 +46,14 @@ const Instagram = (props)=> {
         .catch((err)=>{
             console.log(err)
         })
-       
+        window.addEventListener("resize", updateDimensions);
+        setHeight(Math.floor(Dimensions.get('window').height)-200)
+   
     },[])
+  
+
         
+      
     
       return (
         <Fade>
@@ -112,10 +122,11 @@ const Instagram = (props)=> {
                     <img ref={imgRef}
                         style={{
                             display:"block",
-                            maxHeight:300,
+                            //maxHeight:300,
                             // maxWidth:"61%",
                             width:'auto',
-                            height:'auto'
+                            //height:'auto'
+                            height:height
                         }}
                     src="" alt=""/>
                     <View      
@@ -128,7 +139,7 @@ const Instagram = (props)=> {
                     <i 
                         style={{           
                             height:33,
-                            color:'rgb(211,211,211)',
+                            color:'grey',
                             display:'block',
                             margin:0,
                             shadowColor:'#000',
