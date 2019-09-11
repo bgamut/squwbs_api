@@ -1,4 +1,4 @@
-import React, {Component,useContext,useEffect} from 'react'
+import React, {Component,useContext,useEffect,useState} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions,Easing} from 'react-native'
 import NavBar from './NavBar'
 import {Context} from '../context'
@@ -13,6 +13,7 @@ let currentHeight=maxHeight
 const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
+    const [height,setHeight]=useState(0)
     const drawerInterp =state.drawerAnimation.interpolate(
         {
             inputRange:[0,1],
@@ -56,14 +57,21 @@ const Drawer =(props)=>{
             })
         }
     }
+    const updateDimensions=()=>{
+        setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
+        //style.height=Math.floor(Dimensions.get('window').height)
+        //console.log(this.state)
+    }
     useEffect(()=>{
         //console.log(state.translateY._parent)
+        setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
         Animated.timing(state.spinValue,
             {
                 toValue:360,
                 duration:3000,
                 easing:Easing.linear
             }).start()
+        window.addEventListener("resize", updateDimensions);
     },[])
     // const spin = state.spinValue.interpolate({
     //     inputRange:[0,1],
@@ -72,15 +80,15 @@ const Drawer =(props)=>{
     if(state.userData!==undefined && state.userData.provider!==undefined){
         return(
             <Animated.View style={{            
-                height:150,
+                height:height,
                 // width:Dimensions.get('window').width,
                 width:"100vw",
-                backgroundColor:'orange',
+                backgroundColor:'red',
                
             }}>
                 <View style={{
-                    backgroundColor:'orange',
-                    // borderColor:'#cfcfcf',
+                    //backgroundColor:'yellow',
+                    // borderColor:'transparent',
                     borderColor:'transparent',
                     borderRadius:2,
                     borderWidth:1,
@@ -99,6 +107,7 @@ const Drawer =(props)=>{
                         // flex:1,
                         justifyContent:'center',
                         zIndex:'97',
+                        backgroundColor:'white'
                     }}>
                         <TouchableOpacity 
                             onPress = {ShowSlidingDrawer}
@@ -124,9 +133,21 @@ const Drawer =(props)=>{
                         alignItems:'center',
                         zIndex:0,
                     }}>
-                        <Text selectable={false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
+                        {/* <Text selectable={false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
-                        </Text>
+                        </Text> */}
+                        <Image href = "/#slider"source={require('./icons/96x96.png')} style={{
+                            // Top:(maxHeight-imageLength)/2,
+                            // position:'absolue',
+                            height:25,
+                            resizeMode:'contain',
+                            width:25,
+                            justifyContent:'center',
+                            alignItems:'center',
+                            marginRight:5,
+                            marginbottom:2
+                            //Right:0
+                        }}/>
                     </View> 
                 </View> 
                 {props.children}
@@ -190,9 +211,9 @@ const Drawer =(props)=>{
                                 width:imageLength,
                                 //Right:0
                             }}/> */}
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'lightgrey',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'lightgrey',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'lightgrey',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
@@ -200,9 +221,25 @@ const Drawer =(props)=>{
                         zIndex:0,
                         
                     }}>
-                        <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
+                        {/* <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
-                        </Text>
+                        </Text> */}
+                        <a  href = "/#slider" >
+                         <Image 
+                           
+                            source={require('./icons/96x96.png')} style={{
+                            // Top:(maxHeight-imageLength)/2,
+                            // position:'absolue',
+                            height:35,
+                            resizeMode:'contain',
+                            width:35,
+                            justifyContent:'center',
+                            alignItems:'center',
+                            marginRight:5,
+                            marginbottom:2
+                            //Right:0
+                        }}/>
+                        </a>
                     </View> 
                 </View> 
                 {props.children}
@@ -210,17 +247,57 @@ const Drawer =(props)=>{
                     transform:[{
                         translateX:drawerInterp
                     },{
-                        translateY:maxHeight+2
+                        translateY:maxHeight
                     }]
                     },
-                    {height:300,
-                    borderColor:"#cfcfcf",
+                    {
+                    // height:300,
+                    height:height,
+                    width:300,
+                    //backgroundColor:'white',
+                    backgroundColor:'white',
+                    borderColor:'rgb(200,200,200)',
+                    justifyContent:'center',
+
+                    padding:0,
                     // borderColor:'transparent',
                     borderRadius:4,
                     borderWidth:1,}]}>
-                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50,alignItems:'center'}]}>
-                        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginTop:8,marginBottom:8,backgroundColor:'transparent'}}>
-                            <Image source={require('./icons/96x96.png')} style={{
+                    <View style = {[
+                        styles.MAIN_SLIDING_DRAWER_CONTAINER,
+                        {
+                            height:50,
+                            alignItems:'center',
+                            padding:0,
+                            paddingTop:3,
+                            margin:0,
+                            marginRight:2,
+                            marginLeft:2,
+                            backgroundColor:'rgb(211,211,211)',
+                            //backgroundColor:'purple',
+                            //borderColor:"rgb(211,211,211)",
+                            borderColor:'rgb(200,200,200)',
+                            
+                            borderRadius:2,
+                            borderWidth:1,
+                            width:298,
+                        }]
+                    }>
+                        <View style={{
+                            flexDirection:'row',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            marginBottom:10,
+                            paddingTop:8,
+                            paddingBottom:8,
+                            paddingRight:25,
+                            paddingLeft:25,
+                            backgroundColor:'transparent',
+                            zIndex:0,
+                            
+                            
+                        }}>
+                            {/* <Image source={require('./icons/96x96.png')} style={{
                                     // Top:(maxHeight-imageLength)/2,
                                     // position:'absolue',
                                     height:25,
@@ -228,236 +305,80 @@ const Drawer =(props)=>{
                                     width:25,
                                     justifyContent:'center',
                                     alignItems:'center',
-                                    marginRight:5
+                                    marginRight:5,
+                                    marginbottom:2
                                     //Right:0
-                                }}/>
-                            <Text selectable={false} style ={styles.textStyle}>
-                                Welcome to 
-                                <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
-                            </Text>
+                                }}/> */}
+                            <a  style ={{textDecorationLine:'none'}}
+                            
+                            href = "/#slider" >
+                                <Text selectable={false} style ={styles.textStyle}>
+                                    Welcome to 
+                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
+                                </Text>
+                            </a>
                         </View>
-                        <NavBar/>
+                        <View
+                            style={{
+                                backgroundColor:'transparent',
+                                width:'100%',
+                                borderColor:'transparent',
+                                borderRadius:2,
+                                borderWidth:1,
+                               // height:height,
+                            }}
+                        >
+                            <NavBar/>
+                           
+                        </View>
+                    <View
+                    style={{
+                        position:'absolute',
+                        top:height-maxHeight-3,
+                        backgroundColor:'rgb(211,211,211)',
+                        //backgroundColor:'purple',
+                        width:298,
+                        height:maxHeight,
+                        marginTop:0,
+                        marginBottom:0,
+                        marginLeft:0,
+                        marginRight:0,
+                        
+                        borderRadius:2,
+                        borderWidth:1,
+                        
+                        //backgroundColor:'purple',
+                        //borderColor:"rgb(211,211,211)",
+                        borderColor:'rgb(200,200,200)',
+                        //borderColor:'transparent',
+                        
+                        borderRadius:2,
+                        borderWidth:1,
+                        paddingBottom:0,
+                        height:maxHeight,
+                        justifyContent:'center',
+                        alignItems:'center'
+                    }}
+                    >
+                       <Text
+                        style ={[
+                            styles.textStyle,
+                            {
+                                fontSize:14,
+
+                            }
+                        ]}
+                       >
+                           2019
+                        </Text>
                     </View>
+                    </View>
+                    
                 </Animated.View> 
             </Animated.View>  
         )
     }
-    // if(-maxHeight<=state.yscroll._value && state.yscroll._value<0){
-    //     return(
-    //         <Animated.View style={{            
-    //             height:Dimensions.get('window').height-props.footerHeight+state.yscroll,
-    //             width:Dimensions.get('window').width,
-    //             backgroundColor:'transparent',
-    //             transform:[{
-    //                 //translateY:state.yscroll
-    //                 //translateY:100
-    //                 translateY:state.yscroll
-    //             }],
-    //         }}>
-    //             <View style={{
-    //                 backgroundColor:'#ffffff',
-    //                 borderColor:'#cfcfcf',
-    //                 borderRadius:2,
-    //                 borderWidth:1,
-    //                 height:maxHeight,
-    //                 justifyContent:'center',
-    //                 marginBottom :2,
-    //                 opacity:state.opacity
-    //             }}>  
-    //                 <View style={{
-    //                     alignItems:'center',
-    //                     padding:0,
-    //                     height:maxHeight,
-    //                     position:'absolute',
-    //                     width:maxHeight,
-    //                     flex:1,
-    //                     justifyContent:'center',
-    //                     zIndex:'99',
-    //                 }}>
-    //                     <TouchableOpacity 
-    //                         onPress = {ShowSlidingDrawer}
-    //                         style={{
-    //                             //backgroundColor:'black',
-    //                         }}>
-    //                         <Image source={require('./icons/96x96.png')} style={{
-    //                             Top:(maxHeight-imageLength)/2,
-    //                             position:'absolue',
-    //                             height:imageLength,
-    //                             resizeMode:'contain',
-    //                             width:imageLength,
-    //                             //Right:0
-    //                         }}/>
-    //                     </TouchableOpacity>
-    //                 </View>
-    //                 <View style={{
-    //                     alignItems:'center',
-    //                     zIndex:0,
-    //                 }}>
-    //                     <Text style ={styles.textStyle} >
-    //                         {name}
-    //                     </Text>
-    //                 </View> 
-    //             </View> 
-    //             {props.children}
-    //             <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
-    //                 transform:[{
-    //                     translateX:drawerInterp
-    //                 },{
-    //                     translateY:maxHeight
-    //                 }],
-    //                 height:Dimensions.get('window').height-currentHeight-props.footerHeight,
-    //                 }]}>
-    //                 <View style = {styles.MAIN_SLIDING_DRAWER_CONTAINER}>
-    //                     <NavBar/>
-    //                 </View>
-    //             </Animated.View> 
-    //         </Animated.View>    
-    //     ) 
-    // }
-    // else if(0<=state.yscroll._value){
-    //     return(
-    //         <Animated.View style={{            
-    //             height:Dimensions.get('window').height-props.footerHeight,
-    //             width:Dimensions.get('window').width,
-    //             backgroundColor:'transparent',
-    //             transform:[{
-    //                 //translateY:state.yscroll
-    //                 //translateY:100
-    //                 translateY:0
-    //             }],
-    //         }}>
-    //             <View style={{
-    //                 backgroundColor:'#ffffff',
-    //                 borderColor:'#cfcfcf',
-    //                 borderRadius:2,
-    //                 borderWidth:1,
-    //                 height:maxHeight,
-    //                 justifyContent:'center',
-    //                 marginBottom :2,
-    //                 opacity:state.opacity
-    //             }}>  
-    //                 <View style={{
-    //                     alignItems:'center',
-    //                     padding:0,
-    //                     height:maxHeight,
-    //                     position:'absolute',
-    //                     width:maxHeight,
-    //                     flex:1,
-    //                     justifyContent:'center',
-    //                     zIndex:'99',
-    //                 }}>
-    //                     <TouchableOpacity 
-    //                         onPress = {ShowSlidingDrawer}
-    //                         style={{
-    //                             //backgroundColor:'black',
-    //                         }}>
-    //                         <Image source={require('./icons/96x96.png')} style={{
-    //                             Top:(maxHeight-imageLength)/2,
-    //                             position:'absolue',
-    //                             height:imageLength,
-    //                             resizeMode:'contain',
-    //                             width:imageLength,
-    //                             //Right:0
-    //                         }}/>
-    //                     </TouchableOpacity>
-    //                 </View>
-    //                 <View style={{
-    //                     alignItems:'center',
-    //                     zIndex:0,
-    //                 }}>
-    //                     <Text style ={styles.textStyle} >
-    //                         {name}
-    //                     </Text>
-    //                 </View> 
-    //             </View> 
-    //             {props.children}
-    //             <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
-    //                 transform:[{
-    //                     translateX:drawerInterp
-    //                 },{
-    //                     translateY:maxHeight
-    //                 }],
-    //                 height:Dimensions.get('window').height-currentHeight-props.footerHeight,
-    //                 }]}>
-    //                 <View style = {styles.MAIN_SLIDING_DRAWER_CONTAINER}>
-    //                     <NavBar/>
-    //                 </View>
-    //             </Animated.View> 
-    //         </Animated.View>    
-    //     ) 
-    // }
-    // else if(state.yscroll._value<(-maxHeight)){
-    //     return(
-    //         <Animated.View style={{            
-    //             height:Dimensions.get('window').height-props.footerHeight-maxHeight,
-    //             width:Dimensions.get('window').width,
-    //             backgroundColor:'transparent',
-    //             transform:[{
-    //                 //translateY:state.yscroll
-    //                 //translateY:100
-    //                 translateY:-maxHeight
-    //             }],
-    //         }}>
-    //             <View style={{
-    //                 backgroundColor:'#ffffff',
-    //                 borderColor:'#cfcfcf',
-    //                 borderRadius:2,
-    //                 borderWidth:1,
-    //                 height:maxHeight,
-    //                 justifyContent:'center',
-    //                 marginBottom :2,
-    //                 opacity:state.opacity
-    //             }}>  
-    //                 <View style={{
-    //                     alignItems:'center',
-    //                     padding:0,
-    //                     height:maxHeight,
-    //                     position:'absolute',
-    //                     width:maxHeight,
-    //                     flex:1,
-    //                     justifyContent:'center',
-    //                     zIndex:'99',
-    //                 }}>
-    //                     <TouchableOpacity 
-    //                         onPress = {ShowSlidingDrawer}
-    //                         style={{
-    //                             //backgroundColor:'black',
-    //                         }}>
-    //                         <Image source={require('./icons/96x96.png')} style={{
-    //                             Top:(maxHeight-imageLength)/2,
-    //                             position:'absolue',
-    //                             height:imageLength,
-    //                             resizeMode:'contain',
-    //                             width:imageLength,
-    //                             //Right:0
-    //                         }}/>
-    //                     </TouchableOpacity>
-    //                 </View>
-    //                 <View style={{
-    //                     alignItems:'center',
-    //                     zIndex:0,
-    //                 }}>
-    //                     <Text style ={styles.textStyle} >
-    //                         {name}
-    //                     </Text>
-    //                 </View> 
-    //             </View> 
-    //             {props.children}
-    //             <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
-    //                 transform:[{
-    //                     translateX:drawerInterp
-    //                 },{
-    //                     translateY:maxHeight
-    //                 }],
-    //                 height:Dimensions.get('window').height-currentHeight-props.footerHeight,
-    //                 }]}>
-    //                 <View style = {styles.MAIN_SLIDING_DRAWER_CONTAINER}>
-    //                     <NavBar/>
-    //                 </View>
-    //             </Animated.View> 
-    //         </Animated.View>    
-    //     ) 
-    // }
+  
      
 } 
 export default Drawer
@@ -468,8 +389,8 @@ const styles=StyleSheet.create(
             borderColor:"transparent",
             borderRadius:2,
             borderWidth:1,
-            flex:1,
-            paddingHorizontal:10,
+            // flex:1,
+            paddingHorizontal:0,
             zIndex:1,
             padding:5,
         },
@@ -486,7 +407,7 @@ const styles=StyleSheet.create(
             top:(Platform.OS==='ios')? 20:0,
             width:SLIDING_DRAWER_WIDTH,
             zIndex:99,
-            backgroundColor:'white'
+            backgroundColor:'red'
         },
         textStyle:{
             color:'white',
@@ -499,217 +420,3 @@ const styles=StyleSheet.create(
         },
     }
 )
-
-// class Drawer extends Component{
-//     // maxheight=22
-//     constructor(props){
-//         super(props)
-//         this.Animation = new Animated.Value(0)
-//         this.Sliding_Drawer_Toggle = true;
-//         this.scroller=React.createRef()
-//         this.maxheight=50
-//         this.imageLength=30
-//         this.state = {
-//             dy:new Animated.Value(0),
-//             height:this.maxheight,
-//             lastscroll:0,
-//             maxheight:this.maxheight,
-//             opacity:new Animated.Value(1),
-//             yscroll: new Animated.Value(0),
-//         };
-//         this.state.yscroll.addListener(({value})=>{
-//             //console.log(value)
-//             // this.scroller.current.scrollTo({
-//             //     y:-1*value
-//             // })
-//             // this.forceUpdate()     
-//         })
-//     }
-//     static defaultProps ={
-//         footerHeight:2
-//     }
-//     UNSAFE_componentWillReceiveProps(nextProps){
-//         //console.log(nextProps)
-//         //this.setState({...this.state,height:nextProps.style.height})
-//         var maxheight = this.state.maxheight
-//         var limit=maxheight
-        
-//         // console.log(height)
-//         // console.log(height-nextProps.yscroll)
-//         // console.log(height-nextProps.yscroll/height)
-        
-//             this.setState({opacity:((limit-nextProps.yscroll)/limit),height:maxheight-(maxheight*(nextProps.yscroll/(limit*5)))})
-//             //console.log(this.props.scrollValue)
-//             //this.opacity.setValue((this.height-this.props.scrollValue._value)/this.height)
-        
-//        // console.log(this.state)
-
-//     }
-//     ShowSlidingDrawer = ()=>
-//     {
-       
-//         if(this.Sliding_Drawer_Toggle==true)
-//         {
-            
-//             Animated.timing(
-//                 this.Animation,
-//                 {
-//                     duration:500,
-//                     toValue:1,
-//                 }
-//             ).start(()=>
-//             {
-//                 this.Sliding_Drawer_Toggle=false;
-//             })
-//         }
-//         else
-//         {
-          
-//             Animated.timing(
-//                 this.Animation,
-//                 {
-//                     duration:500,
-//                     toValue:0, 
-//                 }
-//             ).start(()=>
-//             {
-//                 this.Sliding_Drawer_Toggle=true;
-//             })
-//         }
-//     }
-//     render(){
-//         const ANIMATION_INTERPOLATE =this.Animation.interpolate(
-//             {
-//                 inputRange:[0,1],
-//                 outputRange:[-SLIDING_DRAWER_WIDTH,0]
-//             }
-//         )
-//         return(
-//             <View style={{            
-//                 height:Dimensions.get('window').height-this.props.footerHeight,
-//                 width:Dimensions.get('window').width,
-//                 backgroundColor:'transparent'
-//             }}>
-//                 <Animated.View style={
-//                 {
-//                     // alignItems:'center',
-//                     backgroundColor:'#ffffff',
-//                     borderColor:'#cfcfcf',
-//                     borderRadius:2,
-//                     borderWidth:1,
-//                     // flexDirection:'row',
-//                     height:this.state.height,
-//                     justifyContent:'center',
-//                     marginBottom :2,
-//                     opacity:this.state.opacity      
-//                 }
-//                 }>  
-//                     <View style={{
-//                         alignItems:'center',
-//                         // backgroundColor:'black',
-//                         padding:0,
-//                         height:this.maxheight,
-//                         //right:0,
-//                         position:'absolute',
-//                         width:this.maxheight,
-//                         flex:1,
-//                         justifyContent:'center',
-//                         zIndex:'99',
-//                     }}>
-//                         <TouchableOpacity 
-//                             onPress = {this.ShowSlidingDrawer}
-//                             style={{
-//                                 //backgroundColor:'black',
-//                             }}>
-//                             <Image source={require('./icons/96x96.png')} style={{
-//                                 Top:(this.maxheight-this.imageLength)/2,
-//                                 position:'absolue',
-//                                 height:this.imageLength,
-//                                 resizeMode:'contain',
-//                                 width:this.imageLength,
-//                                 //Right:0
-//                             }}/>
-//                         </TouchableOpacity>
-//                     </View>
-//                     <View style={{
-//                         alignItems:'center',
-//                         zIndex:0,
-//                     }}>
-//                         <Text style ={styles.textStyle} >
-//                             {name}
-//                         </Text>
-//                     </View> 
-//                 </Animated.View> 
-//                 {this.props.children}
-//                 <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
-//                     transform:[{
-//                         translateX:ANIMATION_INTERPOLATE
-//                         //translateX:0
-//                     },{
-//                         translateY:this.state.height
-//                     }],
-//                     height:Dimensions.get('window').height-this.state.height-this.props.footerHeight,
-                    
-//                     }]}>
-//                     <View style = {styles.MAIN_SLIDING_DRAWER_CONTAINER}>
-//                         {/* <Text style ={styles.TextStyle}>another put stuff here placeholder </Text> */}
-//                         <NavBar/>
-//                     </View>
-//                 </Animated.View>
-                
-                
-                
-                
-//             </View>
-            
-//         )
-
-        
-//     }
-// } 
-// export default Drawer
-// const styles=StyleSheet.create(
-//     {
-//         MAIN_SLIDING_DRAWER_CONTAINER:{
-//             //alignItems:'center',
-//             backgroundColor:'#ffffff',
-//             borderColor:"#cacaca",
-//             borderRadius:2,
-//             borderWidth:1,
-//             flex:1,
-//             //justifyContent: 'center',
-//             paddingHorizontal:10,
-//             zIndex:1,
-//             padding:5,
-//         },
-//         MainContainer:
-//         {
-//             top:0
-//         },
-//         ROOT_SLIDING_DRAWER_CONTAINER:
-//         {
-//             bottom:0,
-//             flexDirection:'row',
-//             left:0,
-//             position:'absolute',
-//             top:(Platform.OS==='ios')? 20:0,
-//             width:SLIDING_DRAWER_WIDTH,
-//             // margin:4,
-//             // padding:1,
-//             zIndex:99,
-//         },
-//         textStyle:{
-//             color:'white',
-//             fontSize: 19,
-//             textShadowColor: 'rgba(128, 128, 128, 1)',
-//             textShadowOffset: {width: 0, height: 0},
-//             textShadowRadius: 8,
-//             //height:this.maxheight
-//             //textAlign: 'center',
-//             // textShadowColor: 'rgba(1, 1, 1, 1)',
-//             // textShadowOffset: {width: 0, height: 0},
-//             // textShadowRadius: 20
-//         },
-
-//     }
-// )

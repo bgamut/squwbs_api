@@ -37,20 +37,20 @@ const NavBar = () => {
     return(
       <View style={{
               //height:Dimensions.get('window').height/15,
-              //backgroundColor:'#666666',
+              backgroundColor:'#666666',
               alignItems:'center',
               //justifyContent:'space-evenly',
               //flexDirection:'row',
               flexDirection:'column',
               //flex:1,
               // fontSize:12,
-              margin:1,
+              margin:0,
               //borderColor:'#cfcfcf',
               //borderWidth:0,
               // shadowColor: 'rgba(1, 1, 1, 1)',
               // shadowOffset: {width: 0, height: 0},
               // shadowRadius: 20,
-              backgroundColor:'#transparent'
+              backgroundColor:'transparent'
             }}>
         {/* <View style={styles.box}>
           <a id="linkHome" 

@@ -10,40 +10,8 @@ const _ = require('lodash')
 const withQuery = require('with-query');
 
 
-const Instagram = (props)=> {
-    const [current,setCurrent]=useState(0)
-    const imgRef = useRef(null)
-    useEffect(()=>{
-        fetch('https://squwbs.herokuapp.com/instagramuri'
-            // , {
-            //     credentials: "include"
-            // }
-        )
-        .then(function(result){
-            return result.json()
-        })
-        .then(function(json){
-            console.log(json)
-            var instagramuri=json.instagramuri
-            console.log(instagramuri)
-            fetch(instagramuri)
-            .then(function(result){
-                return result.json()
-            })
-            .then(function(json){
-                console.log(json)
-                var imageurl=json.data[0].images.standard_resolution.url;
-                console.log(imageurl)
-                imgRef.current.src=imageurl
-            })
-            
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-       
-    },[])
-        
+const Contact = (props)=> {
+    
     
       return (
         <Fade>
@@ -52,7 +20,7 @@ const Instagram = (props)=> {
                 style={{
                     width:"100%",
                     height:"100%",
-                    backgroundColor:"grey",
+                    backgroundColor:"transparent",
                     justifyContent:'center',
                     alignItems:'center',
                     flexDirection:'row'
@@ -66,7 +34,7 @@ const Instagram = (props)=> {
                 height:"100%",
                 flexDirection:'column',
                 padding:15,
-                backgroundColor:'white',
+                backgroundColor:'transparent',
                 
                 justifyContent:'center',
                 alignItems:'center',
@@ -91,14 +59,14 @@ const Instagram = (props)=> {
             }} >
 
       
-                    {/* <div href="https://www.instagram.com/squwbs/?hl=ko" ref={imgRef}/> */}
+                    {/* <div href="https://www.Contac.com/squwbs/?hl=ko" ref={imgRef}/> */}
                     
                     <a style={{           
                             textDecorationLine:'none',
                             textDecorationStyle:'none',
                             height:"100%",
                             width:"100%"
-                          }} href="https://www.instagram.com/squwbs/?hl=ko" >
+                          }} href="mailto:bernardahn@squwbs.com" >
                       
                       
                     <View 
@@ -109,40 +77,50 @@ const Instagram = (props)=> {
                             background:'transparent'
                         }}
                     >
-                    <img ref={imgRef}
+                   
+                  
+                    {/* <Text
                         style={{
-                            display:"block",
-                            maxHeight:300,
-                            // maxWidth:"61%",
-                            width:'auto',
-                            height:'auto'
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
                         }}
-                    src="" alt=""/>
+                    >
+                        Contact
+                    </Text> */}
+               
                     <View      
                         style={{
-                            height:33,
+                            height:'100%',
+                            width:'100%',
                             justifyContent:'center',
                             alignItems:'center',
                             background:'transparent'
                         }}>
                     <i 
-                        style={{           
-                            height:33,
-                            color:'rgb(211,211,211)',
-                            display:'block',
-                            margin:0,
-                            shadowColor:'#000',
-                            shadowOpacity:0.25,
-                            shadowRadius:2,
-                            shadowOffset:{
-                            width:0,
-                            height:0
-                            },
-                            elevation:2
-                          }}
-                      class="fab fa-instagram fa-4x">
-                        
-                      </i>
+                    style={{           
+                        height:45,
+                        color:'white',
+                        display:'block',
+                        margin:0,
+                        shadowColor:'#000',
+                        shadowOpacity:0.25,
+                        shadowRadius:2,
+                        shadowOffset:{
+                        width:0,
+                        height:0
+                        },
+                        fontSize:33,
+                        elevation:2,
+                        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                        textShadowOffset: {width: 0, height: 0},
+                        textShadowRadius: 8,
+                      }}class="material-icons large white-text">email</i>
                     </View>
                     </View>
                         <View 
@@ -168,4 +146,4 @@ const Instagram = (props)=> {
         </Fade>
       )
 }
-export default Instagram
+export default Contact
