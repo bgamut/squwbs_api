@@ -180,8 +180,36 @@ class WordDeck extends Component {
             onLeftSwipe={this.handleLeftSwipe} 
             onRightSwipe={this.handleRightSwipe} 
             onRemove={this.handleCardRemove}
-            word={this.state.bagOfWords[this.state.currentIndex].word} 
-            meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+             //word={this.state.bagOfWords[this.state.currentIndex].word} 
+            word={<i style={{           
+              height:33,
+              color:'white',
+              display:'block',
+              margin:3,
+              shadowColor:'#000',
+              shadowOpacity:0.25,
+              shadowRadius:2,
+              shadowOffset:{
+              width:0,
+              height:0
+              },
+              elevation:2
+          }}class="far fa-hand-pointer"></i>}
+            //meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+            meaning={<i style={{           
+              height:33,
+              color:'grey',
+              display:'block',
+              margin:3,
+              shadowColor:'#000',
+              shadowOpacity:0.25,
+              shadowRadius:2,
+              shadowOffset:{
+              width:0,
+              height:0
+              },
+              elevation:2
+          }}class="fas fa-arrows-alt-h"></i>}
             example={this.state.bagOfWords[this.state.currentIndex].example} 
             pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
             percentage={this.props.percentage}

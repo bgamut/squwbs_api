@@ -64,14 +64,18 @@ const Drawer =(props)=>{
     }
     useEffect(()=>{
         //console.log(state.translateY._parent)
-        setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
+        //setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
         Animated.timing(state.spinValue,
             {
                 toValue:360,
                 duration:3000,
                 easing:Easing.linear
             }).start()
-        window.addEventListener("resize", updateDimensions);
+        //window.addEventListener("resize", updateDimensions);
+        Dimensions.addEventListener('change',(e)=>{
+            updateDimensions()
+        })
+        updateDimensions()
     },[])
     // const spin = state.spinValue.interpolate({
     //     inputRange:[0,1],
