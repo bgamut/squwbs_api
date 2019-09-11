@@ -15,7 +15,7 @@ const Instagram = (props)=> {
     const [height,setHeight]=useState(0)
     const imgRef = useRef(null)
     const updateDimensions=()=>{
-        setHeight(Math.floor(Dimensions.get('window').height)-200)
+        setHeight(Math.floor(Dimensions.get('window').height)-300)
     }
         
     useEffect(()=>{
@@ -47,8 +47,9 @@ const Instagram = (props)=> {
             console.log(err)
         })
         window.addEventListener("resize", updateDimensions);
-        setHeight(Math.floor(Dimensions.get('window').height)-200)
-   
+        window.addEventListener('orientationchange', updateDimensions)
+        setHeight(Math.floor(Dimensions.get('window').height)-300)
+        
     },[])
   
 

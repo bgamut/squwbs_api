@@ -29,6 +29,7 @@ const SwipeableScroller = (props) => {
       //console.log(value)
     })
     window.addEventListener("resize", updateDimensions);
+    window.addEventListener('orientationchange', updateDimensions)
     setHeight(Math.floor(Dimensions.get('window').height))
   },[])
   const updateDimensions=()=>{
@@ -206,8 +207,8 @@ const SwipeableScroller = (props) => {
               alignContent:'center',
               justifyContent:'center',
               overflow:'hidden',
-              borderWidth:1,
-              borderColor:'rgb(211,211,211)',
+              // borderWidth:1,
+              // borderColor:'rgb(211,211,211)',
           }}>
               <WordDeckWrapper/>
             </View>

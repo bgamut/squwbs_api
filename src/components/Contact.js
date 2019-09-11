@@ -115,7 +115,7 @@ const Contact = (props)=> {
                         width:0,
                         height:0
                         },
-                        fontSize:33,
+                        fontSize:45,
                         elevation:2,
                         textShadowColor: 'rgba(0, 0, 0, 0.5)',
                         textShadowOffset: {width: 0, height: 0},

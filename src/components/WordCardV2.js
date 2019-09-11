@@ -158,6 +158,7 @@ const WordCardV2 = (props)=> {
   }
   useEffect(()=>{
     window.addEventListener("resize", updateDimensions);
+    window.addEventListener('orientationchange', updateDimensions)
     setHeight(Math.floor(Dimensions.get('window').height-50))
   },[])
   
