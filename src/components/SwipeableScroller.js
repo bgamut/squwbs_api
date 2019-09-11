@@ -1,5 +1,5 @@
 
-import React,{Component,useContext,useEffect} from 'react';
+import React,{Component,useContext,useEffect,useState} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity,ScrollView} from 'react-native'
 import { Context } from "../context";
 import Swiper from './Swiper'
@@ -21,14 +21,22 @@ let prevY=0
 const yScroll = new Animated.Value(0)
 const SwipeableScroller = (props) => {
   const [state, setState] = useContext(Context);
-  
+  const [height,setHeight]=useState(0)
   
   useEffect(()=>{
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
       //console.log(value)
     })
+    window.addEventListener("resize", updateDimensions);
+    setHeight(Math.floor(Dimensions.get('window').height))
   },[])
+  const updateDimensions=()=>{
+    setHeight(Math.floor(Dimensions.get('window').height))
+    //style.height=Math.floor(Dimensions.get('window').height)
+    //console.log(this.state)
+  }
+ 
   const onScroll=(e)=>{
     
     //console.log(e.nativeEvent.contentOffset.y)
@@ -117,7 +125,8 @@ const SwipeableScroller = (props) => {
         {/* </View> */}
         <section id="slider"
           style={{
-            height:"38vh",
+            //height:"38vh",
+            height:height-50,
             width:"100vw",
             backgroundColor:'white',
             textAlign:'center'
@@ -136,7 +145,8 @@ const SwipeableScroller = (props) => {
             emulateTouch={false}
           >
             <div style={{
-              height:"38vh",
+              //height:"38vh",
+              height:height-50,
               width:"100vw",
               backgroundColor:'rgb(250,250,250)',
               textAlign:'center'
@@ -146,7 +156,8 @@ const SwipeableScroller = (props) => {
             </div>
             <div 
               style={{
-                height:"38vh",
+                //height:"38vh",
+                height:height-50,
                 width:"100vw",
                 backgroundColor:'rgb(235,235,235)',
                 textAlign:'center'
@@ -157,7 +168,8 @@ const SwipeableScroller = (props) => {
             </div>
             <div 
               style={{
-                height:"38vh",
+                //height:"38vh",
+                height:height-50,
                 width:"100vw",
                 backgroundColor:'rgb(211,211,211)',
                 textAlign:'center'
@@ -173,9 +185,13 @@ const SwipeableScroller = (props) => {
           <section id="PDF">
             <View 
               style={{
-                height:"100vh",
+                //height:"100vh",
+                height:height-50,
                 zIndex:0,
-                backgroundColor:'transparent'
+                backgroundColor:'transparent',
+                alignItems:'center',
+                justifyContent:'center',
+                
             }}>
               {/* <SwipeableList/> */}
               <ReadPDF/>
@@ -183,11 +199,15 @@ const SwipeableScroller = (props) => {
           </section>
           <section id="cards">
             <View style={{
-              height:"100vh",
+              //height:"100vh",
+              height:height-50,
               zIndex:0,
               backgroundColor:'white',
               alignContent:'center',
-              justifyContent:'center'
+              justifyContent:'center',
+              overflow:'hidden',
+              borderWidth:1,
+              borderColor:'rgb(211,211,211)',
           }}>
               <WordDeckWrapper/>
             </View>
@@ -201,7 +221,8 @@ const SwipeableScroller = (props) => {
           <section id="contact">
             <View
               style={{
-                height:500,
+                //height:"100vh",
+                height:height-50,
                 width:"100%",
                 padding:15,
                 
@@ -242,7 +263,8 @@ const SwipeableScroller = (props) => {
           <section id="follow">
             <View
               style={{
-                height:500,
+                //height:"100vh",
+                height:height-50,
                 width:"100%",
                 padding:15,
                 

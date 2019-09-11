@@ -42,6 +42,13 @@ const PDFReader = () => {
                 justifyContent:'center',
             }}
         >
+            <View
+                style={{
+                    alignItems:'center',
+                    justifyContent:'center',
+                    padding:20,
+                }}
+            >
             <Text 
                 style={{
                     color:'white',
@@ -131,6 +138,7 @@ const PDFReader = () => {
             fileSelected={fileSelected}
             setFile={setFile}
             />
+            </View>
         </View>  
         )    
     }

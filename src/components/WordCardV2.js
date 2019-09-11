@@ -152,13 +152,13 @@ const WordCardV2 = (props)=> {
 //     setHeight(Math.floor(Dimensions.get('window').height))
 //   }
   const updateDimensions=()=>{
-    setHeight(Math.floor(Dimensions.get('window').height))
-    style.height=Math.floor(Dimensions.get('window').height)
+    setHeight(Math.floor(Dimensions.get('window').height-50))
+    style.height=Math.floor(Dimensions.get('window').height-50)
     //console.log(this.state)
   }
   useEffect(()=>{
     window.addEventListener("resize", updateDimensions);
-    setHeight(Math.floor(Dimensions.get('window').height))
+    setHeight(Math.floor(Dimensions.get('window').height-50))
   },[])
   
 
