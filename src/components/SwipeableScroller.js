@@ -333,7 +333,7 @@ const SwipeableScroller = (props) => {
           </section>
           <View
             style={{
-              height:100,
+              height:125,
               // backgroundColor:'rgb(211,211,211)'
               backgroundColor:'white'
             }}

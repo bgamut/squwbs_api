@@ -1,5 +1,5 @@
-import React, {Component,useContext,useEffect,useState} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions,Easing} from 'react-native'
+import React, {Component,useContext,useEffect,useState,useRef} from 'react'
+import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions,Easing,ScrollView} from 'react-native'
 import NavBar from './NavBar'
 import {Context} from '../context'
 import './css/Drawer.css'
@@ -14,6 +14,7 @@ const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
     const [height,setHeight]=useState(0)
+    const scroller=useRef('')
     const drawerInterp =state.drawerAnimation.interpolate(
         {
             inputRange:[0,1],
@@ -58,9 +59,11 @@ const Drawer =(props)=>{
         }
     }
     const updateDimensions=()=>{
-        setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
+        setHeight(Dimensions.get('window').height)
         //style.height=Math.floor(Dimensions.get('window').height)
         //console.log(this.state)
+        console.log(Dimensions.get('window').height)
+        //scroller.current.props.style.height=Dimensions.get('window').height-150
     }
     useEffect(()=>{
         //console.log(state.translateY._parent)
@@ -84,7 +87,7 @@ const Drawer =(props)=>{
     if(state.userData!==undefined && state.userData.provider!==undefined){
         return(
             <Animated.View style={{            
-                height:height,
+                height:height-50,
                 // width:Dimensions.get('window').width,
                 width:"100vw",
                 backgroundColor:'red',
@@ -162,9 +165,23 @@ const Drawer =(props)=>{
                         translateY:maxHeight+2
                     }]
                     },
-                    {height:Dimensions.get('window').height*9/30-maxHeight}]}>
+                    // {height:Dimensions.get('window').height*9/30-maxHeight}
+                    {height:height*9/30-maxHeight}
+                ]}>
                     <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50}]}>
+                    <ScrollView
+                        ref={scroller}
+                        style={{backgroundColor:'transparent',zIndex:98}}
+                        onScroll={(e)=>{
+                            // onScroll(e)
+                        }
+                        }
+                        scrollEnabled={true}
+                        scrollEventThrottle={16}
+                        showsVerticalScrollIndicator={true}
+                    >
                         <NavBar/>
+                    </ScrollView>
                     </View>
                 </Animated.View> 
             </Animated.View>    
@@ -256,7 +273,7 @@ const Drawer =(props)=>{
                     },
                     {
                     // height:300,
-                    height:height,
+                    height:height-50,
                     width:300,
                     //backgroundColor:'white',
                     backgroundColor:'white',
@@ -291,7 +308,7 @@ const Drawer =(props)=>{
                             flexDirection:'row',
                             alignItems:'center',
                             justifyContent:'center',
-                            marginBottom:10,
+                            marginBottom:6,
                             paddingTop:8,
                             paddingBottom:8,
                             paddingRight:25,
@@ -324,7 +341,7 @@ const Drawer =(props)=>{
                         </View>
                         <View
                             style={{
-                                backgroundColor:'transparent',
+                                backgroundColor:'trarensparent',
                                 width:'100%',
                                 borderColor:'transparent',
                                 borderRadius:2,
@@ -332,13 +349,30 @@ const Drawer =(props)=>{
                                // height:height,
                             }}
                         >
+                            <ScrollView
+                                ref={scroller}
+                                scrollIndicatorInsets={300,300,300,300}
+                                indicatorStyle='white'
+                                style={{
+                                    backgroundColor:'transparent',
+                                    zIndex:98,
+                                    height:height-150,
+                                }}
+                                onScroll={(e)=>{
+                                    // onScroll(e)
+                                }
+                                }
+                                scrollEnabled={true}
+                                scrollEventThrottle={16}
+                                showsVerticalScrollIndicator={false}
+                            >
                             <NavBar/>
-                           
+                            </ScrollView>
                         </View>
                     <View
                     style={{
                         position:'absolute',
-                        top:height-maxHeight-3,
+                        top:height-maxHeight-53,
                         backgroundColor:'rgb(211,211,211)',
                         //backgroundColor:'purple',
                         width:298,
