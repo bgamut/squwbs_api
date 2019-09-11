@@ -184,7 +184,9 @@ const SwipeableScroller = (props) => {
             <View style={{
               height:"100vh",
               zIndex:0,
-            backgroundColor:'transparent'
+              backgroundColor:'white',
+              alignContent:'center',
+              justifyContent:'center'
           }}>
               <WordDeckWrapper/>
             </View>

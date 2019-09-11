@@ -14,7 +14,8 @@ class WordCard extends Component {
     super(props)
     this.state = {
       styleCondition:false,
-      flipLock:false
+      flipLock:false,
+      height:0
     };
     // this.state.yscroll.addListener(({value})=>{
     
@@ -155,6 +156,20 @@ class WordCard extends Component {
       //this.onPress()
     }
   })
+  componentDidMount(){
+    // window.addEventListener("resize", this.updateDimensions);
+  }
+  updateDimensions(){
+  //   this.setState(
+  //     {
+  //         height: Math.floor(
+  //             Dimensions.get('window').height
+  //         )
+  //     }
+  // )
+    // this.style.height=Math.floor(Dimensions.get('window').height)
+    // this.setState("height",Math.floor(Dimensions.get('window').height))
+  }
   componentDidUpdate(){
       //console.log('updated card element')
   }

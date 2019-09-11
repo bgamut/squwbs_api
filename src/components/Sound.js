@@ -186,7 +186,7 @@ const Sound=()=> {
                 width:'100vw',
                 alignItems:'center',
                 justifyContent:'center',
-                backgroundColor:'trasparent'
+                backgroundColor:'transparent'
             }}
         >
         <View

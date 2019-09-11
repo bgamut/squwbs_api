@@ -3,14 +3,12 @@ import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,Touc
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import WordCard from './WordCard'
+import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 
 class WordDeck extends Component {
   constructor(props){
-    // admin.initializeApp({
-    //   credential:admin.credential.cert(firebaseServiceKey),
-    //   databaseURL:firebaseConfig.databaseURL
-    // })
+  
     super(props)
     this.state = {
       styleCondition:false,
@@ -26,18 +24,7 @@ class WordDeck extends Component {
       next:true
     };
     this.myRef=React.createRef();
-    // var db = admin.database()
-    // var ref = db.ref('words')
-    // ref.once('value',function(snapshot){
-    //     var words=snapshot.val()
-    //     console.log(words)
-    //     if(words==undefined){
-    //       this.setState({bagOfWords:[]})
-    //     }
-    //     else{
-    //       this.setState({bagOfWords:words})
-    //     }
-    // })
+  
     
 
   }
@@ -88,27 +75,27 @@ class WordDeck extends Component {
               currentIndex:currentIndex
           })
       }
-    // }
-    // else{
-    //   if(currentIndex-1<0){
-    //     currentIndex=endIndex-1
-    //     this.setState({
-    //         currentIndex:currentIndex
-    //     })
-    //   }
-    //   else{
-    //     currentIndex=currentIndex-1
-    //     this.setState({
-    //         currentIndex:currentIndex
-    //     })
-    //   }
-    // }
+   
 
     console.log("currentIndex :"+currentIndex)
     
-    // ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove}word={this.props.word} meaning={this.props.meaning} example={this.props.example} percentage={this.props.percentage}/>,this.myRef.current)
-    ReactDOM.render(<WordCard onLeftSwipe={this.handleLeftSwipe} onRightSwipe={this.handleRightSwipe} onRemove={this.handleCardRemove } word={this.state.bagOfWords[this.state.currentIndex].word} meaning={this.state.bagOfWords[this.state.currentIndex].meaning} example={this.state.bagOfWords[this.state.currentIndex].example} percentage={this.props.percentage}/>,this.myRef.current)
+    ReactDOM.render(
+      <WordCard 
+        onLeftSwipe={this.handleLeftSwipe} 
+        onRightSwipe={this.handleRightSwipe} 
+        onRemove={this.handleCardRemove } 
+        word={this.state.bagOfWords[this.state.currentIndex].word} 
+        meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+        example={this.state.bagOfWords[this.state.currentIndex].example} 
+        percentage={this.props.percentage}
+      />,
+      this.myRef.current
+    )
 
+  }
+  abortController= new AbortController()
+  componentWillUnmount(){
+    this.abortController.abort()
   }
   handleCardRemove=()=>{
       
@@ -124,9 +111,7 @@ class WordDeck extends Component {
     this.setState({
       bagOfWords:[...bagOfWords],
       next:true,
-      // currentIndex:currentIndex+1
     })
-    //console.log(bagOfWords[currentIndex])
   }
   handleRightSwipe=()=>{
     console.log('swiped right')
@@ -136,115 +121,68 @@ class WordDeck extends Component {
     this.setState({
       bagOfWords:[...bagOfWords],
       next:false,
-      // currentIndex:currentIndex-1
     })
-    //console.log(bagOfWords[currentIndex])
+
   }
   requestWords=()=>{
-    fetch('https://squwbs.herokuapp.com/getwordlist',{mode:'cors'})
+    fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
     .then((res)=>{
       console.log(stringifyObject(res))
       return(res.json())
     })
     .then((json)=>{
-      //console.log(json)
-      //console.log(stringifyObject(json))
+
       var words = json.words.slice()
-      //console.log(stringifyObject(words))
+
       this.setState({
 
         bagOfWords:this.shuffle(words),
         endIndex:words.length
       })
       console.log(this.state.bagOfWords)
-      //return json.words
+
     })
     .catch((err) => {
       console.error(err);
     });
   }
   componentDidMount(){
-    // const bagOfWords =[
-    //     {word:'word1' 
-    //     ,meaning:'meaning1'
-    //     ,example:'example1'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word2' 
-    //     ,meaning:'meaning2'
-    //     ,example:'example2'
-    //     ,lefted:0
-    //     ,righted:0
-    //     },
-    //     {word:'word3' 
-    //     ,meaning:'meaning3'
-    //     ,example:'example3'
-    //     ,lefted:0
-    //     ,righted:0
-    //     }
-    // ]
+
     
     this.requestWords()
     console.log(this.state)
-    // var bagOfWords=requestWords()
-    //console.log(stringifyObject(bagOfWords))
-    // this.setState({
-    //   bagOfWords:bagOfWords,
-    //   endIndex:bagOfWords.length
-    // })
-    
-    //var bagOfWords =requestWords()
-    //this.shuffle(bagOfWords)
-    // this.setState({
-    //     bagOfWords:bagOfWords,
-    //     endIndex:bagOfWords.length
-    // })
-    //console.log(bagOfWords)
-    //console.log(bagOfWords.length)
-    
-    // if(this.myRef.current!==null){
-    //     console.log(this.myRef.current.childNodes.length)
-    //     if(this.myRef.current.childNodes.length<=0){
-    //         ReactDOM.render(<MemorizationCard onRemove={this.handleCardRemove}word={this.state.bagOfWords[this.state.currentIndex].word} meaning={this.state.bagOfWords[this.state.currentIndex].meaning} example={this.state.bagOfWords[this.state.currentIndex].example} percentage={this.props.percentage}/>,this.myRef.current)
-    //     }
-    // }
+
   }
   componentDidUpdate(){
     
     
     if(this.myRef.current!==null){
-      //console.log(this.myRef.current.childNodes.length)
+
       if(this.myRef.current.childNodes.length<=0){
-        // if(this.state.bagOfWords==null){
-        //   console.log('entered null condition')
-        //   ReactDOM.render(
-        //     <WordCard 
-        //       onLeftSwipe={this.handleLeftSwipe} 
-        //       onRightSwipe={this.handleRightSwipe} 
-        //       onRemove={this.handleCardRemove}
-        //       word={'word'} 
-        //       meaning={'meaning'} 
-        //       example={'example'} 
-        //       pronunciation={'pronunciation'} 
-        //       percentage={this.props.percentage}
-        //     />,
-        //     this.myRef.current
-        //   )
-        // }
-        // else{
+
           console.log(this.state.bagOfWords[this.state.currentIndex].pronunciation)
           ReactDOM.render(
-            <WordCard 
-              onLeftSwipe={this.handleLeftSwipe} 
-              onRightSwipe={this.handleRightSwipe} 
-              onRemove={this.handleCardRemove}
-              word={this.state.bagOfWords[this.state.currentIndex].word} 
-              meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
-              example={this.state.bagOfWords[this.state.currentIndex].example} 
-              pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
-              percentage={this.props.percentage}
-            />,
+            // <WordCard 
+            //   onLeftSwipe={this.handleLeftSwipe} 
+            //   onRightSwipe={this.handleRightSwipe} 
+            //   onRemove={this.handleCardRemove}
+            //   word={this.state.bagOfWords[this.state.currentIndex].word} 
+            //   meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+            //   example={this.state.bagOfWords[this.state.currentIndex].example} 
+            //   pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
+            //   percentage={this.props.percentage}
+            // />
+            <WordCardV2
+            onLeftSwipe={this.handleLeftSwipe} 
+            onRightSwipe={this.handleRightSwipe} 
+            onRemove={this.handleCardRemove}
+            word={this.state.bagOfWords[this.state.currentIndex].word} 
+            meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+            example={this.state.bagOfWords[this.state.currentIndex].example} 
+            pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
+            percentage={this.props.percentage}
+          />
+            ,
             this.myRef.current
           )
         }
@@ -269,44 +207,44 @@ class WordDeck extends Component {
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    margin:0,
-  },
-  flipCard: {
-    backgroundColor:'transparent',
-    borderWidth:1,
-    borderColor: 'rgba(128,128,128,0)',
-    paddingTop:2,
-    paddingBottom:2,
-    paddingLeft:2,
-    paddingRight:2,
-    margin:0,
-    backfaceVisibility: 'hidden',
-    height: 100,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 0
-    },
-    shadowRadius: 3,
-    shadowOpacity: 0.25
-  },
-  flipCardBack: {
-    backgroundColor:'transparent',
-    height: 100,
-    position: "absolute",
-    top: 0,
-    margin:0,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 0
-    },
-    shadowRadius: 3,
-    shadowOpacity: 0.25
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     // margin:0,
+//   },
+//   flipCard: {
+//     backgroundColor:'transparent',
+//     // borderWidth:1,
+//     borderColor: 'rgba(128,128,128,0)',
+//     // paddingTop:2,
+//     // paddingBottom:2,
+//     // paddingLeft:2,
+//     // paddingRight:2,
+//     // margin:0,
+//     backfaceVisibility: 'hidden',
+//     height: 100,
+//     shadowColor: '#000000',
+//     shadowOffset: {
+//       width: 0,
+//       height: 0
+//     },
+//     shadowRadius: 3,
+//     shadowOpacity: 0.25
+//   },
+//   flipCardBack: {
+//     backgroundColor:'transparent',
+//     height: 100,
+//     position: "absolute",
+//     top: 0,
+//     // margin:0,
+//     shadowColor: '#000000',
+//     shadowOffset: {
+//       width: 0,
+//       height: 0
+//     },
+//     shadowRadius: 3,
+//     shadowOpacity: 0.25
+//   }
+// });
 export default WordDeck;
 
 

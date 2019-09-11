@@ -24,7 +24,10 @@ const WordDeckWrapper = () => {
   
     const n =0
     return(
-      <WordDeck visible = {true} word={'random'} meaning={'무작위의'} example={'The lottery number was picked randomly.'} percentage={12}/>
+      <WordDeck style={{
+        alignContent:'center',
+        justifyContent:'center'
+      }}visible = {true} word={'random'} meaning={'무작위의'} example={'The lottery number was picked randomly.'} percentage={12}/>
     )
 
   }
