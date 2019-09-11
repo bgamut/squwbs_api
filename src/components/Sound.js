@@ -281,7 +281,7 @@ const Sound=()=> {
                         flexDirection:'row',
                         margin:5,
                     }}>
-                        Select Wav File
+                        WAV
                     </Text>
                 </TouchableOpacity>
             </View>

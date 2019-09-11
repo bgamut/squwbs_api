@@ -237,7 +237,9 @@ const SwipeableScroller = (props) => {
             ref={heightRef}
             style={{
               height:height-50,
-              zIndex:0
+              zIndex:0,
+              alignItems:'center',
+              justifyContent:'center',
               }}
             >
               {/* <SwipeableList/> */}
