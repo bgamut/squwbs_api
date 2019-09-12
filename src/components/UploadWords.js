@@ -5,6 +5,8 @@ import Dropzone, {useDropzone} from 'react-dropzone'
 import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
+//const fetch = require('node-fetch');
+const MongoClient = require('mongodb').MongoClient;
 const _ = require('lodash')
 
 
@@ -12,24 +14,80 @@ const _ = require('lodash')
 
 const withQuery = require('with-query');
 
+// const addWordListToServer = (list)=>{
+    
+//     //console.log(word,meaning,example,pronunciation)
+//     fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+//       list:list,
+//       mode:'cors'
+//     }))
+//     .then(result=>{
+//         return result.json()
+//       })
+//       .then((json)=>{
+//         console.log(json)
+//       })
+//       .catch((err)=>{
+  
+//       })
+    
+    
+    
+// }
 const addWordListToServer = (list)=>{
     
     //console.log(word,meaning,example,pronunciation)
-    fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
-      list:list,
-      mode:'cors'
-    }))
-    .then(result=>{
+    // fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+    //   list:list,
+    //   mode:'cors'
+    // }))
+    // .then(result=>{
+    //     return result.json()
+    //   })
+    //   .then((json)=>{
+    //     console.log(json)
+    //   })
+    //   .catch((err)=>{
+  
+    //   })
+    
+      var mongouri=''
+      fetch('https://squwbs.herokuapp.com/mongouri'
+      ,{mode:'cors'}
+      )
+      .then(function(result){
         return result.json()
       })
-      .then((json)=>{
-        console.log(json)
+      .then(function(json){
+        
+        mongouri=json.mongouri
+        console.log(mongouri)
+        const client = new MongoClient(mongouri, { useNewUrlParser: true });
+        client.connect(function(err){
+        const collection = client.db("SAT").collection("words");
+        
+        collection.insertMany([
+          ...list
+        ],function(err,result){
+            console.log(err)
+        })
+      
+    //     //this returns the array
+    //     collection.find({}).toArray(function(err,docs){
+    //         console.log(docs)
+    //     })
+      
+    //     // this searches parameters and returns array
+    //     collection.find({a:1}).toArray(function(err,docs){
+    //       console.log(docs)
+    //   })
+        // close connection
+        client.close();
+      });
       })
       .catch((err)=>{
-  
+        console.log(err)
       })
-    
-    
     
 }
 
@@ -201,7 +259,7 @@ const UploadWords = (props)=> {
         <Fade>
                 <View style={{ 
                     // height:100,
-                    width:(Dimensions.get('window').width-8),
+                    width:200,,
                     backgroundColor:'white',
                     //flex:1,
                     flexDirection:'column',

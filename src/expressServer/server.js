@@ -546,6 +546,37 @@ app.get('/getUser',cors(),(req,res)=>{
   res.send(getUser(obj))
 
 })
+app.get('/getCookieUser',cors(),(req,res)=>{
+  var obj = req.query
+  
+  
+  function getCookieUser(obj){
+ 
+    var db = admin.database()
+    var ref = db.ref('users')
+    ref.once('value',function(snapshot){
+    var users=(snapshot.val())
+    var user = users.find(user=>user['connect.sid']==obj['connect.sid'])
+    
+   
+    if(user!==undefined){
+      //user = filtered.find(user=>user.provider==obj.provider)
+      console.log('found user data ' + 
+        stringifyObject(user, {
+          indent: '  ',
+          singleQuotes: false
+        }
+      )
+    )
+    }
+    
+    return(user)
+            
+    })
+  }
+  res.send(getCookieUser(obj))
+
+})
 app.get('/updateuser',cors(),(req,res)=>{
   var obj = req.query
   

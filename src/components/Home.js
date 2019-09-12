@@ -25,7 +25,7 @@ const _ = require('lodash')
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const requestUser=(obj)=>{
-  fetch('https://squwbs.herokuapp.com/getUser',[{mode:'cors'},{...obj}])
+  fetch('https://squwbs.herokuapp.com/getCookieUser',[{mode:'cors'},{...obj}])
   .then((res)=>{
     console.log(stringifyObject(res))
     return(res.json())
@@ -102,15 +102,20 @@ const Home = () => {
     setState({...state,userData:{...jsonObj}})
     if(diff(jsonObj,{})!==undefined){
       var user = requestUser(jsonObj)
-      console.log(user)
+      //console.log(user)
+      if(user==undefined){
+        addUser(user)
+
+      }
+      else{
+        console.log('user found')
+        console.log(user)
+      }
     }
-    else{
-      addUser(user)
-    }
+    
     //console.log('this is the state'+ state.headerHeight)
   }
   useEffect(()=>{
-    
     getUserData()
   },[])
   // if(state.userData=={}){n

@@ -129,26 +129,84 @@ class WordDeck extends Component {
 
   }
   requestWords=()=>{
-    fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
-    .then((res)=>{
-      console.log(stringifyObject(res))
-      return(res.json())
-    })
-    .then((json)=>{
+    // fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
+    // .then((res)=>{
+    //   console.log(stringifyObject(res))
+    //   return(res.json())
+    // })
+    // .then((json)=>{
 
-      var words = json.words.slice()
+    //   var words = json.words.slice()
 
-      this.setState({
+    //   this.setState({
 
-        bagOfWords:this.shuffle(words),
-        endIndex:words.length
-      })
-      console.log(this.state.bagOfWords)
+    //     bagOfWords:this.shuffle(words),
+    //     endIndex:words.length
+    //   })
+    //   console.log(this.state.bagOfWords)
 
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    // })
+    // .catch((err) => {
+    //   console.error(err);
+    // });
+    const addWordListToServer = (list)=>{
+    
+      //console.log(word,meaning,example,pronunciation)
+      // fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+      //   list:list,
+      //   mode:'cors'
+      // }))
+      // .then(result=>{
+      //     return result.json()
+      //   })
+      //   .then((json)=>{
+      //     console.log(json)
+      //   })
+      //   .catch((err)=>{
+    
+      //   })
+      
+        var mongouri=''
+        fetch('https://squwbs.herokuapp.com/mongouri'
+        ,{mode:'cors'}
+        )
+        .then(function(result){
+          return result.json()
+        })
+        .then(function(json){
+          
+          mongouri=json.mongouri
+          console.log(mongouri)
+          const client = new MongoClient(mongouri, { useNewUrlParser: true });
+          client.connect(function(err){
+          const collection = client.db("SAT").collection("words");
+          
+          // collection.insertMany([
+          //   ...list
+          // ],function(err,result){
+          //     console.log(err)
+          // })
+        
+          //this returns the array
+          collection.find({}).toArray(function(err,docs){
+              client.close();
+              console.log(docs)
+              return(docs)
+          })
+        
+      //     // this searches parameters and returns array
+      //     collection.find({a:1}).toArray(function(err,docs){
+      //       console.log(docs)
+      //   })
+          // close connection
+          
+        });
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+      
+  }
   }
   componentDidMount(){
 
