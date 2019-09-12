@@ -10,7 +10,10 @@ import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
 import Instagram from './Instagram'
 import Contact from './Contact'
+<<<<<<< HEAD
 //import UploadWords from './UploadWords'
+=======
+>>>>>>> parent of 37b44c1... testing user adding ability
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';

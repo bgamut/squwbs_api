@@ -433,6 +433,7 @@ app.get('/adduser',cors(),(req,res)=>{
 
   addUser(obj,sendSuccess)
 
+<<<<<<< HEAD
 })
 app.get('/getuser',cors(),(req,res)=>{
   var obj = req.query
@@ -463,11 +464,20 @@ app.get('/getCookieUser',cors(),(req,res)=>{
   
   
   function getCookieUser(obj){
+=======
+})
+app.get('/getuser',cors(),(req,res)=>{
+  var obj = req.query
+  
+  
+  function getUser(userEmail){
+>>>>>>> parent of 37b44c1... testing user adding ability
  
     var db = admin.database()
     var ref = db.ref('users')
     ref.once('value',function(snapshot){
     var users=(snapshot.val())
+<<<<<<< HEAD
     var user = users.find(user=>user['connect.sid']==obj['connect.sid'])
     
    
@@ -479,14 +489,24 @@ app.get('/getCookieUser',cors(),(req,res)=>{
           singleQuotes: false
         }
       )
+=======
+    var picked = users.find(user=>user.userEmail==userEmail)
+    console.log('found user data ' + 
+      stringifyObject(picked, {
+        indent: '  ',
+        singleQuotes: false
+      })
+>>>>>>> parent of 37b44c1... testing user adding ability
     )
-    }
-    
-    return(user)
+    return(picked)
             
     })
   }
+<<<<<<< HEAD
   res.send(getCookieUser(obj))
+=======
+  res.send(getUser(obj.userEmail))
+>>>>>>> parent of 37b44c1... testing user adding ability
 
 })
 app.get('/updateuser',cors(),(req,res)=>{
