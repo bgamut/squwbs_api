@@ -10,6 +10,7 @@ import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
 import Instagram from './Instagram'
 import Contact from './Contact'
+import UploadWords from './UploadWords'
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -328,6 +329,49 @@ const SwipeableScroller = (props) => {
                 }}
               >
                 <Contact/>
+              </View>
+            </View>
+          </section>
+          <section id="uploadwords">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'transparent',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'rgb(211,211,211)',
+                  borderRadius:4,
+                  borderBottom:2,
+                  borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <UploadWords/>
               </View>
             </View>
           </section>
