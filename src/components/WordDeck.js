@@ -81,7 +81,7 @@ class WordDeck extends Component {
     console.log("currentIndex :"+currentIndex)
     
     ReactDOM.render(
-      <WordCard 
+      <WordCardV2
         onLeftSwipe={this.handleLeftSwipe} 
         onRightSwipe={this.handleRightSwipe} 
         onRemove={this.handleCardRemove } 
