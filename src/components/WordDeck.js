@@ -6,7 +6,6 @@ import WordCard from './WordCard'
 import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 const MongoClient = require('mongodb').MongoClient;
-
 class WordDeck extends Component {
   constructor(props){
   
