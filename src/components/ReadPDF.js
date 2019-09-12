@@ -137,7 +137,6 @@ const PDFReader = () => {
             setFileSelected={setFileSelected} 
             fileSelected={fileSelected}
             setFile={setFile}
-            text = 'PDF'
             />
             </View>
         </View>  

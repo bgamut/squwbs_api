@@ -168,7 +168,7 @@ const FilePicker = (props)=> {
                             flexDirection:'row',
                             margin:5,
                         }}>
-                            {props.text}
+                            Select File
                         </Text>
                     </TouchableOpacity>
                 </View>
