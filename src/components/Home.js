@@ -17,85 +17,9 @@ import {Context} from '../context'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
-<<<<<<< HEAD
-const withQuery = require('with-query')
-const stringifyObject= require('stringify-object')
-=======
->>>>>>> parent of 37b44c1... testing user adding ability
 
 const _ = require('lodash')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-<<<<<<< HEAD
-const requestUser=(obj)=>{
-  fetch('https://squwbs.herokuapp.com/getCookieUser',[{mode:'cors'},{...obj}])
-  .then((res)=>{
-    console.log(stringifyObject(res))
-    return(res.json())
-  })
-  .then((json)=>{
-
-    var user = json.slice()
-    
-    console.log(stringifyObject(user))
-    return user
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-}
-const addUser= (userObj)=>{
-
-  console.log(userObj)
-  fetch(withQuery.default('https://squwbs.herokuapp.com/addUser', [
-    {...userObj},
-    {mode:'cors'}
-  ]
-))
-  .then(resulst=>{
-      return resulst.json()
-    })
-    .then((json)=>{
-      console.log(json)
-    })
-    .catch((err)=>{
-
-    })
-  
-  
-  
-}
-function addWord({word,meaning,pronunciation,example}){
-  
-  var db = global.admin.database()
-  var ref = db.ref('words')
-  ref.once('value',function(snapshot){
-      var words=snapshot.val()
-      console.log(words)
-      if(words==undefined){
-          words={0:{word,meaning,pronunciation,example}}
-      }
-      else{
-          var picked = words.find(singleWord=>singleWord.word==word)
-          console.log(picked)
-          if(picked==undefined){  
-
-              words.push({word,meaning,pronunciation,example})
-          }
-          else{
-              if(_.isEqual(picked,{word,meaning,pronunciation,example})){
-
-                  console.log('this word already exists')
-              }
-              else{
-                  console.log('this word already exists would you like to update the information')
-              }
-          }
-      }
-      ref.set(words)  
-  })
-}
-=======
->>>>>>> parent of 37b44c1... testing user adding ability
 const Home = () => {
   //run()
   const [state,setState]=useState(Context)
@@ -104,24 +28,7 @@ const Home = () => {
     const jsonObj = await responded.json()
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
-<<<<<<< HEAD
-    
-      var user = requestUser(jsonObj)
-      console.log(user)
-      if(user==undefined){
-        addUser(user)
-
-      }
-      else{
-        console.log('user found')
-        console.log(user)
-      }
-    
-    
-    //console.log('this is the state'+ state.headerHeight)
-=======
     console.log('this is the state'+ state.headerHeight)
->>>>>>> parent of 37b44c1... testing user adding ability
   }
   useEffect(()=>{
     

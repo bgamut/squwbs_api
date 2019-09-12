@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "src/electron-starter.js",
-  "engines":{
+  "engines": {
     "node": "^10.0.0"
   },
   "dependencies": {
@@ -49,7 +49,6 @@
     "materialize-css": "^1.0.0",
     "mobile-detect": "^1.4.3",
     "module-alias": "^2.2.0",
-    "mongodb": "^3.3.2",
     "node-fetch": "^2.6.0",
     "node-lame": "^1.2.0",
     "node-wav": "0.0.2",

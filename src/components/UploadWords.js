@@ -6,7 +6,7 @@ import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
 //const fetch = require('node-fetch');
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
 const _ = require('lodash')
 
 
@@ -51,43 +51,8 @@ const addWordListToServer = (list)=>{
   
     //   })
     
-      var mongouri=''
-      fetch('https://squwbs.herokuapp.com/mongouri'
-      ,{mode:'cors'}
-      )
-      .then(function(result){
-        return result.json()
-      })
-      .then(function(json){
-        
-        mongouri=json.mongouri
-        console.log(mongouri)
-        const client = new MongoClient(mongouri, { useNewUrlParser: true });
-        client.connect(function(err){
-        const collection = client.db("SAT").collection("words");
-        
-        collection.insertMany([
-          ...list
-        ],function(err,result){
-            console.log(err)
-        })
-      
-    //     //this returns the array
-    //     collection.find({}).toArray(function(err,docs){
-    //         console.log(docs)
-    //     })
-      
-    //     // this searches parameters and returns array
-    //     collection.find({a:1}).toArray(function(err,docs){
-    //       console.log(docs)
-    //   })
-        // close connection
-        client.close();
-      });
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
+  
+ 
     
 }
 
@@ -293,7 +258,7 @@ const UploadWords = (props)=> {
                                 textDecorationLine:'none',
                                 color:'white',
                                 fontSize: 15,
-                                fontWeight:700,
+                                fontWeight:100,
                                 // textShadowColor: 'rgba(0, 0, 0, 1)',
                                 // textShadowOffset: {width: 0, height: 0},
                                 // textShadowRadius: 8,

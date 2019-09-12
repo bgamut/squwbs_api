@@ -233,7 +233,7 @@ class WordCard extends Component {
                             fontSize: 35,
                             textShadowColor: 'rgba(0, 0, 0, 1)',
                             textShadowOffset: {width: 0, height: 0},
-                            textShadowRadius: 8,
+                            textShadowRadius: 2,
                             flex:1,
                             textAlign:'center',
                             alignItems:'center',
@@ -287,7 +287,7 @@ class WordCard extends Component {
                                         fontSize: 35,
                                         textShadowColor: 'rgba(0, 0, 0, 1)',
                                         textShadowOffset: {width: 0, height: 0},
-                                        textShadowRadius: 8,
+                                        textShadowRadius: 2,
                                         margin:0,
                                         }}>
                                             {this.props.meaning} 
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     margin:0,
   },
   flipCard: {
-    backgroundColor:'grey',
+    backgroundColor:'rgb(211,211,211)',
     borderWidth:1,
     borderColor: 'rgba(128,128,128,0)',
     paddingTop:2,
@@ -363,11 +363,11 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0
     },
-    shadowRadius: 3,
+    shadowRadius: 2,
     shadowOpacity: 0.25
   },
   flipCardBack: {
-    backgroundColor:'lightGrey',
+    backgroundColor:'rgb(211,211,211)',
     height: Dimensions.get('window').height-15,
     position: "absolute",
     top: 0,
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0
     },
-    shadowRadius: 3,
+    shadowRadius: 2,
     shadowOpacity: 0.25
   }
 });

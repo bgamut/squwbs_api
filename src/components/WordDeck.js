@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import WordCard from './WordCard'
 import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
 
 class WordDeck extends Component {
   constructor(props){
@@ -130,84 +130,27 @@ class WordDeck extends Component {
 
   }
   requestWords=()=>{
-    // fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
-    // .then((res)=>{
-    //   console.log(stringifyObject(res))
-    //   return(res.json())
-    // })
-    // .then((json)=>{
+    fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
+    .then((res)=>{
+      console.log(stringifyObject(res))
+      return(res.json())
+    })
+    .then((json)=>{
 
-    //   var words = json.words.slice()
+      var words = json.words.slice()
+      console.log(words)
+      this.setState({
 
-    //   this.setState({
+        bagOfWords:this.shuffle(words),
+        endIndex:words.length
+      })
+      console.log(this.state.bagOfWords)
 
-    //     bagOfWords:this.shuffle(words),
-    //     endIndex:words.length
-    //   })
-    //   console.log(this.state.bagOfWords)
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
-    // })
-    // .catch((err) => {
-    //   console.error(err);
-    // });
-    const addWordListToServer = (list)=>{
-    
-      //console.log(word,meaning,example,pronunciation)
-      // fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
-      //   list:list,
-      //   mode:'cors'
-      // }))
-      // .then(result=>{
-      //     return result.json()
-      //   })
-      //   .then((json)=>{
-      //     console.log(json)
-      //   })
-      //   .catch((err)=>{
-    
-      //   })
-      
-        var mongouri=''
-        fetch('https://squwbs.herokuapp.com/mongouri'
-        ,{mode:'cors'}
-        )
-        .then(function(result){
-          return result.json()
-        })
-        .then(function(json){
-          
-          mongouri=json.mongouri
-          console.log(mongouri)
-          const client = new MongoClient(mongouri, { useNewUrlParser: true });
-          client.connect(function(err){
-          const collection = client.db("SAT").collection("words");
-          
-          // collection.insertMany([
-          //   ...list
-          // ],function(err,result){
-          //     console.log(err)
-          // })
-        
-          //this returns the array
-          collection.find({}).toArray(function(err,docs){
-              client.close();
-              console.log(docs)
-              return(docs)
-          })
-        
-      //     // this searches parameters and returns array
-      //     collection.find({a:1}).toArray(function(err,docs){
-      //       console.log(docs)
-      //   })
-          // close connection
-          
-        });
-        })
-        .catch((err)=>{
-          console.log(err)
-        })
-      
-  }
   }
   componentDidMount(){
 
@@ -235,7 +178,7 @@ class WordDeck extends Component {
             //   pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
             //   percentage={this.props.percentage}
             // />
-            <WordCardV2
+            <WordCard
             onLeftSwipe={this.handleLeftSwipe} 
             onRightSwipe={this.handleRightSwipe} 
             onRemove={this.handleCardRemove}
@@ -245,9 +188,13 @@ class WordDeck extends Component {
               color:'white',
               display:'block',
               margin:3,
+              textShadowColor: 'rgba(0, 0, 0, 1)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 3,
               shadowColor:'#000',
               shadowOpacity:0.25,
               shadowRadius:2,
+              
               shadowOffset:{
               width:0,
               height:0
@@ -257,9 +204,12 @@ class WordDeck extends Component {
             //meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
             meaning={<i style={{           
               height:33,
-              color:'grey',
+              color:'white',
               display:'block',
               margin:3,
+              textShadowColor: 'rgba(0, 0, 0, 1)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 3,
               shadowColor:'#000',
               shadowOpacity:0.25,
               shadowRadius:2,
