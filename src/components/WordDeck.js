@@ -2,8 +2,8 @@ import React,{Component,useContext} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,TouchableOpacity,StyleSheet} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
-import WordCard from './WordCard'
-//import WordCardV2 from './WordCardV2'
+//import WordCard from './WordCard'
+import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 const MongoClient = require('mongodb').MongoClient;
 
@@ -81,7 +81,7 @@ class WordDeck extends Component {
     console.log("currentIndex :"+currentIndex)
     
     ReactDOM.render(
-      <WordCard
+      <WordCardV2
         onLeftSwipe={this.handleLeftSwipe} 
         onRightSwipe={this.handleRightSwipe} 
         onRemove={this.handleCardRemove } 
@@ -235,7 +235,7 @@ class WordDeck extends Component {
             //   pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
             //   percentage={this.props.percentage}
             // />
-            <WordCard
+            <WordCardV2
             onLeftSwipe={this.handleLeftSwipe} 
             onRightSwipe={this.handleRightSwipe} 
             onRemove={this.handleCardRemove}
