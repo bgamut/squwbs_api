@@ -2,9 +2,6 @@
   "name": "squwbs",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "10.15.1"
-  },
   "main": "src/electron-starter.js",
   "dependencies": {
     "@deck.gl/aggregation-layers": "^7.0.11",
