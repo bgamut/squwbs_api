@@ -2,7 +2,7 @@ import React,{Component,useContext} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,TouchableOpacity,StyleSheet} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
-import WordCard from './WordCard'
+//import WordCard from './WordCard'
 import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 const MongoClient = require('mongodb').MongoClient;
