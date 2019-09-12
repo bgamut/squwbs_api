@@ -10,7 +10,10 @@ import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
 import Instagram from './Instagram'
 import Contact from './Contact'
+<<<<<<< HEAD
 //import UploadWords from './UploadWords'
+=======
+>>>>>>> parent of 37b44c1... testing user adding ability
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -39,8 +42,8 @@ const SwipeableScroller = (props) => {
     //setHeight(Math.floor(Dimensions.get('window').height))
   },[])
   useEffect(()=>{
-    //console.log('height changed!')
-    //console.log(Dimensions.get('window').height)
+    console.log('height changed!')
+    console.log(Dimensions.get('window').height)
   },[height])
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height))
@@ -334,6 +337,7 @@ const SwipeableScroller = (props) => {
           </section>
           {/* <View
             style={{
+<<<<<<< HEAD
               //height:"100vh",
               height:height-50,
               width:"100%",
@@ -348,14 +352,13 @@ const SwipeableScroller = (props) => {
           </View> */}
           <View
             style={{
+=======
+>>>>>>> parent of 37b44c1... testing user adding ability
               height:125,
               // backgroundColor:'rgb(211,211,211)'
-              backgroundColor:'white',
-              justifyContent:'center',
-              alignItems:'center',
+              backgroundColor:'white'
             }}
           >
-            
           </View>
           
         </View>

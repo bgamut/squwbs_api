@@ -11,19 +11,15 @@ import Header from './Header'
 import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
-import stringifyObject from 'stringify-object'
-import {diff} from 'json-diff'
 //import AdSense from 'react-adsense';
 // import UploadWords from './UploadWords'
 // import SplitScreenV2 from './SplitScreenV2'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
-import { request } from 'https';
-const withQuery = require('with-query').default
-const _ = require('lodash')
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+<<<<<<< HEAD
 const requestUser=(obj)=>{
   fetch('https://squwbs.herokuapp.com/getCookieUser',[{mode:'cors'},{...obj}])
   .then((res)=>{
@@ -92,6 +88,8 @@ function addWord({word,meaning,pronunciation,example}){
       ref.set(words)  
   })
 }
+=======
+>>>>>>> parent of 37b44c1... testing user adding ability
 const Home = () => {
   //run()
   const [state,setState]=useState(Context)
@@ -100,6 +98,7 @@ const Home = () => {
     const jsonObj = await responded.json()
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
+<<<<<<< HEAD
     if(diff(jsonObj,{})!==undefined){
       var user = requestUser(jsonObj)
       console.log(user)
@@ -114,12 +113,15 @@ const Home = () => {
     }
     
     //console.log('this is the state'+ state.headerHeight)
+=======
+    console.log('this is the state'+ state.headerHeight)
+>>>>>>> parent of 37b44c1... testing user adding ability
   }
   useEffect(()=>{
     
     getUserData()
   },[])
-  // if(state.userData=={}){n
+  // if(state.userData=={}){
   //   return(
   //     <div style={{
   //       alignItems:'center',

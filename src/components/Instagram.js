@@ -23,16 +23,16 @@ const Instagram = (props)=> {
     }
         
     useEffect(()=>{
-        //console.log('width:'+width+' height:'+height)
+        console.log('width:'+width+' height:'+height)
         if(width>=height){
-            //console.log('landscape')
+            console.log('landscape')
             imgRef.current.height=Dimensions.get('window').height-150
         }
         else{
-            //console.log('portrait')
+            console.log('portrait')
             imgRef.current.height=Dimensions.get('window').height-300
         }
-        //console.log(imgRef.current.height)
+        console.log(imgRef.current.height)
         
     },[height,width])
     useEffect(()=>{
@@ -45,17 +45,17 @@ const Instagram = (props)=> {
             return result.json()
         })
         .then(function(json){
-            //console.log(json)
+            console.log(json)
             var instagramuri=json.instagramuri
-            //console.log(instagramuri)
+            console.log(instagramuri)
             fetch(instagramuri)
             .then(function(result){
                 return result.json()
             })
             .then(function(json){
-                //console.log(json)
+                console.log(json)
                 var imageurl=json.data[0].images.standard_resolution.url;
-                //console.log(imageurl)
+                console.log(imageurl)
                 setUri(imageurl)
                 imgRef.current.src=imageurl
                 
