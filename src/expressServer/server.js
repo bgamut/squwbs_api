@@ -387,75 +387,163 @@ app.post('/api',cors(),(req,res)=>{
   res.send(req.body)
   
 })
-app.get('/adduser',cors(),(req,res)=>{
-  var obj = req.query
+// app.get('/adduser',cors(),(req,res)=>{
+//   var obj = req.query
 
-  function addUser({userName,userEmail},func){
+//   function addUser({userName,userEmail},func){
+//     var db = admin.database()
+//     var ref = db.ref('users')
+//     ref.once('value',function(snapshot){
+//       var usersList=snapshot.val()
+//       if(usersList==undefined){
+//         usersList={0:{userName,userEmail}}
+//       }
+//       else{
+//         var picked = usersList.find(user=>user.userEmail==userEmail)
+//         if(picked==undefined){
+//           // console.log(picked==undefined)
+//           usersList.push({userName,userEmail})
+//         }
+//         else{
+//           if(_.isEqual(picked,{userName,userEmail})){
+//             // console.log('this user already exists')
+//           }
+//           else{
+//             // console.log('this email address already exists would you like to update the account information?')
+//           }
+//         }
+//       }
+//       ref.set(usersList,function(error){
+//         if(error){
+//           console.log(error)
+//           func(error)
+//         }
+//         else{
+//           console.log('callback fired')
+//           func({userName,userEmail})
+//         }
+
+//       })
+//     })
+//   }
+  
+//   function sendSuccess(message){
+//     res.send({message:message})
+//   }
+
+//   addUser(obj,sendSuccess)
+
+// })
+// app.get('/getuser',cors(),(req,res)=>{
+//   var obj = req.query
+  
+  
+//   function getUser(userEmail){
+ 
+//     var db = admin.database()
+//     var ref = db.ref('users')
+//     ref.once('value',function(snapshot){
+//     var users=(snapshot.val())
+//     var picked = users.find(user=>user.userEmail==userEmail)
+//     console.log('found user data ' + 
+//       stringifyObject(picked, {
+//         indent: '  ',
+//         singleQuotes: false
+//       })
+//     )
+//     return(picked)
+            
+//     })
+//   }
+//   res.send(getUser(obj.userEmail))
+
+// })
+app.get('/addUser',cors(),(req,res)=>{
+  var obj = req.query
+  function addUser(user,func){
+    
     var db = admin.database()
     var ref = db.ref('users')
     ref.once('value',function(snapshot){
-      var usersList=snapshot.val()
-      if(usersList==undefined){
-        usersList={0:{userName,userEmail}}
-      }
-      else{
-        var picked = usersList.find(user=>user.userEmail==userEmail)
-        if(picked==undefined){
-          // console.log(picked==undefined)
-          usersList.push({userName,userEmail})
+        var users=snapshot.val()
+        console.log(users)
+        if(words==undefined){
+            users={0:obj}
         }
         else{
-          if(_.isEqual(picked,{userName,userEmail})){
-            // console.log('this user already exists')
+            var picked = users.find(singleUser=>singleUser.providerid==obj.providerid)
+            console.log(picked)
+            if(picked==undefined){  
+                
+                users.push(obj)
+            }
+            else{
+                //if(_.isEqual(picked.providerid,obj.providerid)){
+                  if(picked.userName==obj.userName){
+                    if(picked.provider==obj.provider){
+                      console.log('this user already exists')
+                    }
+                  }                    
+                //}
+                else{
+                    users.push(obj)
+                    //console.log('this word already exists would you like to update the information')
+                }
+            }
+        }
+        ref.set(users,function(error){
+          if(error){
+            console.log(error)
+            res.setHeader('Content-Type','application/json')
+            res.send({message:error})
+            //func(error)
           }
           else{
-            // console.log('this email address already exists would you like to update the account information?')
+            console.log('callback fired in /addWord')
+            //func(words)
+            message='user added'
+            res.setHeader('Content-Type','application/json')
+            res.send({message:message})
           }
-        }
-      }
-      ref.set(usersList,function(error){
-        if(error){
-          console.log(error)
-          func(error)
-        }
-        else{
-          console.log('callback fired')
-          func({userName,userEmail})
-        }
 
-      })
+        })
     })
-  }
-  
+}
   function sendSuccess(message){
-    res.send({message:message})
-  }
-
+  res.send({message:message})
+}
   addUser(obj,sendSuccess)
-
+  
 })
-app.get('/getuser',cors(),(req,res)=>{
+app.get('/getUser',cors(),(req,res)=>{
   var obj = req.query
   
   
-  function getUser(userEmail){
+  function getUser(obj){
  
     var db = admin.database()
     var ref = db.ref('users')
     ref.once('value',function(snapshot){
     var users=(snapshot.val())
-    var picked = users.find(user=>user.userEmail==userEmail)
-    console.log('found user data ' + 
-      stringifyObject(picked, {
-        indent: '  ',
-        singleQuotes: false
-      })
+    var filtered = users.find(user=>user.providerid==obj.providerid)
+    console.log(filtered)
+    var user = null
+    if(filtered!==undefined){
+      user = filtered.find(user=>user.provider==obj.provider)
+      console.log('found user data ' + 
+        stringifyObject(user, {
+          indent: '  ',
+          singleQuotes: false
+        }
+      )
     )
-    return(picked)
+    }
+    
+    return(user)
             
     })
   }
-  res.send(getUser(obj.userEmail))
+  res.send(getUser(obj))
 
 })
 app.get('/updateuser',cors(),(req,res)=>{

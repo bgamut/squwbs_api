@@ -10,6 +10,7 @@ import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
 import Instagram from './Instagram'
 import Contact from './Contact'
+import UploadWords from './UploadWords'
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -38,8 +39,8 @@ const SwipeableScroller = (props) => {
     //setHeight(Math.floor(Dimensions.get('window').height))
   },[])
   useEffect(()=>{
-    console.log('height changed!')
-    console.log(Dimensions.get('window').height)
+    //console.log('height changed!')
+    //console.log(Dimensions.get('window').height)
   },[height])
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height))
@@ -335,11 +336,28 @@ const SwipeableScroller = (props) => {
           </section>
           <View
             style={{
-              height:125,
-              // backgroundColor:'rgb(211,211,211)'
-              backgroundColor:'white'
+              //height:"100vh",
+              height:height-50,
+              width:"100%",
+              padding:15,
+              
+              backgroundColor:'transparent',
+              justifyContent:'center',
+              alignItems:'center',
             }}
           >
+            <UploadWords/>
+          </View>
+          <View
+            style={{
+              height:125,
+              // backgroundColor:'rgb(211,211,211)'
+              backgroundColor:'white',
+              justifyContent:'center',
+              alignItems:'center',
+            }}
+          >
+            
           </View>
           
         </View>

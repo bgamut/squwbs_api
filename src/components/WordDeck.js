@@ -154,7 +154,7 @@ class WordDeck extends Component {
 
     
     this.requestWords()
-    console.log(this.state)
+    //console.log(this.state)
 
   }
   componentDidUpdate(){
