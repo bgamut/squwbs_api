@@ -102,7 +102,7 @@ const Home = () => {
     setState({...state,userData:{...jsonObj}})
     if(diff(jsonObj,{})!==undefined){
       var user = requestUser(jsonObj)
-      //console.log(user)
+      console.log(user)
       if(user==undefined){
         addUser(user)
 
@@ -116,6 +116,7 @@ const Home = () => {
     //console.log('this is the state'+ state.headerHeight)
   }
   useEffect(()=>{
+    
     getUserData()
   },[])
   // if(state.userData=={}){n
