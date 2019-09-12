@@ -10,10 +10,7 @@ import WordDeckWrapper from './WordDeckWrapper'
 import Sound from './Sound'
 import Instagram from './Instagram'
 import Contact from './Contact'
-<<<<<<< HEAD
 //import UploadWords from './UploadWords'
-=======
->>>>>>> parent of 37b44c1... testing user adding ability
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -335,25 +332,8 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
-          {/* <View
-            style={{
-<<<<<<< HEAD
-              //height:"100vh",
-              height:height-50,
-              width:"100%",
-              padding:15,
-              
-              backgroundColor:'transparent',
-              justifyContent:'center',
-              alignItems:'center',
-            }}
-          >
-            <UploadWords/>
-          </View> */}
           <View
             style={{
-=======
->>>>>>> parent of 37b44c1... testing user adding ability
               height:125,
               // backgroundColor:'rgb(211,211,211)'
               backgroundColor:'white'

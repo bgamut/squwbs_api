@@ -17,9 +17,11 @@ import {Context} from '../context'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
+const withQuery = require('with-query')
+const stringifyObject= require('stringify-object')
 
+const _ = require('lodash')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-<<<<<<< HEAD
 const requestUser=(obj)=>{
   fetch('https://squwbs.herokuapp.com/getCookieUser',[{mode:'cors'},{...obj}])
   .then((res)=>{
@@ -37,7 +39,7 @@ const requestUser=(obj)=>{
     console.error(err);
   });
 }
-const addUser= ({userObj})=>{
+const addUser= (userObj)=>{
 
   console.log(userObj)
   fetch(withQuery.default('https://squwbs.herokuapp.com/addUser', [
@@ -88,8 +90,6 @@ function addWord({word,meaning,pronunciation,example}){
       ref.set(words)  
   })
 }
-=======
->>>>>>> parent of 37b44c1... testing user adding ability
 const Home = () => {
   //run()
   const [state,setState]=useState(Context)
@@ -98,8 +98,7 @@ const Home = () => {
     const jsonObj = await responded.json()
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
-<<<<<<< HEAD
-    if(diff(jsonObj,{})!==undefined){
+    
       var user = requestUser(jsonObj)
       console.log(user)
       if(user==undefined){
@@ -110,12 +109,9 @@ const Home = () => {
         console.log('user found')
         console.log(user)
       }
-    }
+    
     
     //console.log('this is the state'+ state.headerHeight)
-=======
-    console.log('this is the state'+ state.headerHeight)
->>>>>>> parent of 37b44c1... testing user adding ability
   }
   useEffect(()=>{
     

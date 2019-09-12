@@ -259,7 +259,7 @@ const UploadWords = (props)=> {
         <Fade>
                 <View style={{ 
                     // height:100,
-                    width:200,,
+                    width:200,
                     backgroundColor:'white',
                     //flex:1,
                     flexDirection:'column',
