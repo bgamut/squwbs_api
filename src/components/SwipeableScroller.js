@@ -39,8 +39,8 @@ const SwipeableScroller = (props) => {
     //setHeight(Math.floor(Dimensions.get('window').height))
   },[])
   useEffect(()=>{
-    console.log('height changed!')
-    console.log(Dimensions.get('window').height)
+    //console.log('height changed!')
+    //console.log(Dimensions.get('window').height)
   },[height])
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height))
