@@ -130,26 +130,47 @@ class WordDeck extends Component {
 
   }
   requestWords=()=>{
-    fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
-    .then((res)=>{
-      console.log(stringifyObject(res))
-      return(res.json())
-    })
-    .then((json)=>{
+    // fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
+    // .then((res)=>{
+    //   console.log(stringifyObject(res))
+    //   return(res.json())
+    // })
+    // .then((json)=>{
 
-      var words = json.words.slice()
-      console.log(words)
-      this.setState({
+    //   var words = json.words.slice()
+    //   console.log(words)
+    //   this.setState({
 
-        bagOfWords:this.shuffle(words),
-        endIndex:words.length
+    //     bagOfWords:this.shuffle(words),
+    //     endIndex:words.length
+    //   })
+    //   console.log(this.state.bagOfWords)
+
+    // })
+    // .catch((err) => {
+    //   console.error(err);
+    // });
+    const mongoURLGetWordList='https://squwbs.herokuapp.com/getwordlistfrommongo'
+    const getWordListFromMongoViaServer = (list)=>{
+      fetch(mongoURLGetWordList, {
+        mode:'cors'
       })
-      console.log(this.state.bagOfWords)
-
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+      .then(result=>{
+        return result.json()
+      })
+      .then((json)=>{
+        console.log(json)
+        var words = json.data.slice()
+        console.log(words)
+        this.setState({
+          bagOfWords:this.shuffle(words),
+          endIndex:words.length
+        })
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
 
   }
   componentDidMount(){
