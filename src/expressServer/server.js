@@ -744,7 +744,9 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
     return result.json()
   })
   .then(function(json){
-    addWordList(wordList,json.mongouri,sendObj)
+    var mongouri=json.mongouri
+    console.log(mongouri)
+    addWordList(wordList,mongouri,sendObj)
   })
   .catch(function(err){
     sendObj({error:err})
