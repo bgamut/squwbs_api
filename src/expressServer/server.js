@@ -625,7 +625,7 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
       .catch((err)=>{
         console.log(err)
         callbackList.push({message:err})
-        callback(callbakList)
+        callback(callbackList)
       })
       var db = mongoose.connection
       
@@ -655,7 +655,7 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
             if(err){
               console.log(err)
               callbackList.push({message:err})
-              callback(callbakList)
+              callback(callbackList)
             }
             
             const newCard = new Card(tempObject)
@@ -762,7 +762,7 @@ app.get('/getwordlistfrommongo',cors(),(req,res)=>{
       .catch((err)=>{
         console.log(err)
         callbackList.push({message:err})
-        callback(callbakList)
+        callback(callbackList)
       })
       var db = mongoose.connection
       
