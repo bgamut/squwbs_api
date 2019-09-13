@@ -617,7 +617,7 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
   }
 
   function sendSuccess(message){
-    res.send({message:message})
+    res.json({message:message})
   }
   addWordToMongo(obj,sendSuccess)
   
@@ -787,10 +787,10 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
     }
 
     function sendSuccess(message){
-      res.send({message:message})
+      res.json({message:message})
     }
     function sendObj(obj){
-      res.send(obj)
+      res.json(obj)
     }
   addWordListToMongo(obj,sendObj)
   
