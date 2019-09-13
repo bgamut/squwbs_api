@@ -152,7 +152,7 @@ const Drawer =(props)=>{
                             justifyContent:'center',
                             alignItems:'center',
                             marginRight:5,
-                            marginbottom:2
+                            marginBottom:2
                             //Right:0
                         }}/>
                     </View> 
@@ -274,7 +274,7 @@ const Drawer =(props)=>{
                     {
                     // height:300,
                     height:height-50,
-                    width:300,
+                    width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
                     backgroundColor:'white',
                     borderColor:'rgb(200,200,200)',
@@ -334,7 +334,7 @@ const Drawer =(props)=>{
                             
                             href = "/#slider" >
                                 <Text selectable={false} style ={styles.textStyle}>
-                                    Welcome to 
+                                    {/* Welcome to  */}
                                     <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
                                 </Text>
                             </a>
