@@ -616,7 +616,8 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
 })
 app.get('/addwordlisttomongo',cors(),(req,res)=>{
   var wordList = req.query.list
-  
+  var mongouri=""
+ 
   const addWordList =(wordList,callback)=>{
     //const ObjectId=uuidv4()
     callbackList=[]
@@ -737,7 +738,21 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
   function sendObj(obj){
     res.json(obj)
   }
-  addWordList(wordList,sendObj)
+
+  fetch(mongourlStringExpress, {credentials: "include"})
+  .then(function(result){
+    return result.json()
+  })
+  .then(function(json){      
+    mongouri=json.mongouri
+  })
+  .then(function(){
+    addWordList(wordList,sendObj)
+  })
+  .catch(function(err){
+    sendObj({error:err})
+  })
+  
 })
     
   
