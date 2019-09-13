@@ -615,9 +615,10 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
   
 })
 app.get('/addwordlisttomongo',cors(),(req,res)=>{
-  var wordList = req.query.list
+  //var wordList = req.query.list
+  var wordList = req.body.list
   //var mongouri=""
- 
+  console.log(wordList)
   const addWordList =(wordList,mongouri,callback)=>{
     //const ObjectId=uuidv4()
     callbackList=[]
