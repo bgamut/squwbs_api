@@ -602,16 +602,21 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
         //     }
         // })
         //Card.push(newCard)
-        Card.updateOne(newCard,{omitUndefined:true})
-        Card.save(function(err,cards){
-          if(err){
-            console.error(err)
-          }
-          else{
-            //console.log(cards)
-            callback(stringifyObject(cards))
-          }
+        const Cards = Card.find({})
+        const card = new Card({
+          word:word,
+          meaning:meaning,
+          example:example,
+          pronunciation:pronunciation,
+
         })
+        card.save()
+        Cards.updateOne(
+          { omitUndefined: true },
+          card
+        );
+  
+
         //list all of the cards
         // Card.find(function(err,cards){
         //     if(err){
@@ -700,128 +705,131 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
           //     }
           // })
 
-          console.log("Card Model: "+Card)
+          
 
-          //list all of the cards
-          Card.find(function(err,cards){
-              if(err){
-                  console.error(err)
-                  callback(err)
-              }
-              else{
-                  //console.log(cards)
-                  // no cards previously saved
-                  if(cards==undefined){
+
+          //console.log("Card Model: "+Card)
+
+          // //list all of the cards
+          // Card.find(function(err,cards){
+          //     if(err){
+          //         console.error(err)
+          //         callback(err)
+          //     }
+          //     else{
+          //         //console.log(cards)
+          //         // no cards previously saved
+          //         if(cards==undefined){
                   
-                    for (var i=0; i<list.length; i++){
-                      //make the card
-                      // var newCard = new Card({
-                      //     word:word,
-                      //     meaning:meaning,
-                      //     example:example,
-                      //     pronunciation:pronunciation,
-                      // })
-                      var newCard = {
-                          word:word,
-                          meaning:meaning,
-                          example:example,
-                          pronunciation:pronunciation,
-                      }
+          //           for (var i=0; i<list.length; i++){
+          //             //make the card
+          //             // var newCard = new Card({
+          //             //     word:word,
+          //             //     meaning:meaning,
+          //             //     example:example,
+          //             //     pronunciation:pronunciation,
+          //             // })
+          //             var newCard = {
+          //                 word:word,
+          //                 meaning:meaning,
+          //                 example:example,
+          //                 pronunciation:pronunciation,
+          //             }
                       
-                      //fill the unfilled card 
-                      for (var j = 0; j<Object.keys(newCard).length; j++){
-                        if(list[i][Object.keys(a)[j]]==undefined){
-                            list[i][Object.keys(a)[j]]=""
-                        }
-                      }
-                      //add the card
-                      // newCard.save(function(err,newCard){
-                      //   if(err){
-                      //     console.error(err)
-                      //   }
-                      //   else{
-                      //     console.log(newCard.word+' saved')
-                      //     callback(newCard.word+' saved')
-                      //   }
-                      // })
-                      //Card.push(newCard)
-                      Card.updateOne(newCard,{omitUndefined:true})
-                    }  
-                  }
-                  //some previous cards exist
-                  else{
-                    for(var i =0; i<list.length; i++){
+          //             //fill the unfilled card 
+          //             for (var j = 0; j<Object.keys(newCard).length; j++){
+          //               if(list[i][Object.keys(a)[j]]==undefined){
+          //                   list[i][Object.keys(a)[j]]=""
+          //               }
+          //             }
+          //             //add the card
+          //             // newCard.save(function(err,newCard){
+          //             //   if(err){
+          //             //     console.error(err)
+          //             //   }
+          //             //   else{
+          //             //     console.log(newCard.word+' saved')
+          //             //     callback(newCard.word+' saved')
+          //             //   }
+          //             // })
+          //             //Card.push(newCard)
+          //             Card.updateOne(newCard,{omitUndefined:true})
+          //           }  
+          //         }
+          //         //some previous cards exist
+          //         else{
+          //           for(var i =0; i<list.length; i++){
                       
-                      //look for a specific card in the deck
-                      Card.find(
-                        {
-                          word:list[i].word,
-                          meaning:list[i].meaning,
-                        }
-                        ,function(picked){
-                          console.log(picked)
+          //             //look for a specific card in the deck
+          //             Card.find(
+          //               {
+          //                 word:list[i].word,
+          //                 meaning:list[i].meaning,
+          //               }
+          //               ,function(picked){
+          //                 console.log(picked)
 
-                          //no cards match the new info
-                          if(picked==undefined){  
+          //                 //no cards match the new info
+          //                 if(picked==undefined){  
                               
-                              // make a new card with the new info
-                              // var newCard = new Card({
-                              //   word:list[i].word,
-                              //   meaning:list[i].meaning,
-                              //   example:list[i].example,
-                              //   pronunciation:list[i].pronunciation,
-                              // })
-                              var newCard = {
-                                word:list[i].word,
-                                meaning:list[i].meaning,
-                                example:list[i].example,
-                                pronunciation:list[i].pronunciation,
-                              }
-                              //fill the unfilled data with ""
-                              for (var j = 0; j<Object.keys(newCard).length; j++){
-                                if(list[i][Object.keys(a)[j]]==undefined){
-                                    list[i][Object.keys(a)[j]]=""
-                                }
-                              }
-                              //add the new card in the deck
-                              // newCard.save(function(err,newCard){
-                              //   if(err){
-                              //     console.error(err)
-                              //   }
-                              //   else{
-                              //     console.log(newCard.word+' saved')
-                              //     finalMessage[list[i]]='saved'
-                              //     //callback(newCard.word+' saved')
-                              //   }
-                              // })
-                              //Card.push(newCard)
-                              Card.updateOne(newCard,{omitUndefined:true})
-                          }
-                          //there is a card in the deck that matches the info
-                          else{
-                            console.log(list[i].word+' already exists')
-                            finalMessage[list[i]]='already exists'
-                          }
+          //                     // make a new card with the new info
+          //                     // var newCard = new Card({
+          //                     //   word:list[i].word,
+          //                     //   meaning:list[i].meaning,
+          //                     //   example:list[i].example,
+          //                     //   pronunciation:list[i].pronunciation,
+          //                     // })
+          //                     var newCard = {
+          //                       word:list[i].word,
+          //                       meaning:list[i].meaning,
+          //                       example:list[i].example,
+          //                       pronunciation:list[i].pronunciation,
+          //                     }
+          //                     //fill the unfilled data with ""
+          //                     for (var j = 0; j<Object.keys(newCard).length; j++){
+          //                       if(list[i][Object.keys(a)[j]]==undefined){
+          //                           list[i][Object.keys(a)[j]]=""
+          //                       }
+          //                     }
+          //                     //add the new card in the deck
+          //                     // newCard.save(function(err,newCard){
+          //                     //   if(err){
+          //                     //     console.error(err)
+          //                     //   }
+          //                     //   else{
+          //                     //     console.log(newCard.word+' saved')
+          //                     //     finalMessage[list[i]]='saved'
+          //                     //     //callback(newCard.word+' saved')
+          //                     //   }
+          //                     // })
+          //                     //Card.push(newCard)
+          //                     Card.updateOne(newCard,{omitUndefined:true})
+          //                 }
+          //                 //there is a card in the deck that matches the info
+          //                 else{
+          //                   console.log(list[i].word+' already exists')
+          //                   finalMessage[list[i]]='already exists'
+          //                 }
                           
-                        }
-                      )
+          //               }
+          //             )
                       
-                    }
-                    Card.save(function(err,newCard){
-                        if(err){
-                            console.error(err)
-                            finalMessage={message:err}
-                        }
-                        else{
-                            console.log('list saved')
-                            console.log(stringifyObject(newCard))
-                            //callback({message:newCard.word+' saved'})
-                        }
-                    })
-                  callback(finalMessage)   
-                  }
-              }
-          })
+          //           }
+          //           Card.save(function(err,newCard){
+          //               if(err){
+          //                   console.error(err)
+          //                   finalMessage={message:err}
+          //               }
+          //               else{
+          //                   console.log('list saved')
+          //                   console.log(stringifyObject(newCard))
+          //                   //callback({message:newCard.word+' saved'})
+          //               }
+          //           })
+          //         callback(finalMessage)   
+          //         }
+          //     }
+          // })
           //find a specific card
           // Card.find(
           //     {
