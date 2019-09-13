@@ -68,7 +68,7 @@ const addWordListToServer = (list)=>{
         })
       }
     addWordListToMongoViaServer(list)
-    
+
     
 }
 
@@ -188,7 +188,7 @@ const UploadWords = (props)=> {
                 workbook =XLSX.read(binaryStr,{type:'binary'})
                 
                 global.sheet = workbook.Sheets.Sheet1
-                console.log(global.sheet)
+                //console.log(global.sheet)
                 var numCol = convertLetterToNumber(Object.keys(global.sheet)[Object.keys(global.sheet).length-2][0])
                 for (var i=0; i<Object.keys(global.sheet).length; i++){
                     

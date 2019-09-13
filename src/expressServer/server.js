@@ -709,7 +709,7 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                   var callbackObject = {}
                   callbackObject[currentWord]='saved'
                   //console.log(callbackObject)
-                  callbackList.push(callbakObject)
+                  callbackList.push(callbackObject)
                   console.log(currentWord+' has been saved')
                 })
                 .then(function(){
