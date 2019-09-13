@@ -752,7 +752,69 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
   
 })
     
+app.get('/getwordlistfrommongo',cors(),(req,res)=>{
+  var wordList = req.query.list
   
+  const getWordList =(wordList,mongouri,callback)=>{
+    //const ObjectId=uuidv4()
+    callbackList=[]
+    mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
+      .catch((err)=>{
+        console.log(err)
+        callbackList.push({message:err})
+        callback(callbakList)
+      })
+      var db = mongoose.connection
+      
+      db.once('open',function(){
+        const CardSchema = new mongoose.Schema({
+          word:{type:String,default:undefined},
+          meaning:{type:String,default:undefined},
+          example:{type:String,default:undefined},
+          pronunciation:{type:String,default:undefined},
+          thumbnail:{type:String,default:undefined},
+          header:{type:String,default:undefined},
+          subhead:{type:String,default:undefined},
+          picture:{type:String,default:undefined},
+          youtubeLink:{type:String,default:undefined},
+          supportingText:{type:String,default:undefined},
+          timeStamp:{type:String,default:Date()}
+        })
+        var Card = mongoose.model('Cards',CardSchema)
+        // for (var i=0; i<wordList.length; i++){
+        Card.find({})
+        .then(function(result){
+          var list=[]
+          for (var i =0; i<result.length; i++){
+            list.push(result[i]._doc)
+          }
+          callback({data:list})
+        })
+        .then(function(){
+          db.close()
+        })
+        //return Card.find({})
+  
+      })
+  }
+  
+  
+  function sendObj(obj){
+    res.json(obj)
+  }
+
+  fetch(mongourlStringExpress, {credentials: "include"})
+  .then(function(result){
+    return result.json()
+  })
+  .then(function(json){
+    getWordList(wordList,json.mongouri,sendObj)
+  })
+  .catch(function(err){
+    sendObj({error:err})
+  })
+  
+})
 
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
