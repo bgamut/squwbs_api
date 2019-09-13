@@ -69,6 +69,7 @@ const addWordListToServer = (list)=>{
       }
     addWordListToMongoViaServer(list)
     
+    
 }
 
 const addWordToServer = ({word,meaning,example,pronunciation})=>{
