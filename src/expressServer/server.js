@@ -616,9 +616,9 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
 })
 app.get('/addwordlisttomongo',cors(),(req,res)=>{
   var wordList = req.query.list
-  var mongouri=""
+  //var mongouri=""
  
-  const addWordList =(wordList,callback)=>{
+  const addWordList =(wordList,mongouri,callback)=>{
     //const ObjectId=uuidv4()
     callbackList=[]
     mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
@@ -743,11 +743,8 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
   .then(function(result){
     return result.json()
   })
-  .then(function(json){      
-    mongouri=json.mongouri
-  })
-  .then(function(){
-    addWordList(wordList,sendObj)
+  .then(function(json){
+    addWordList(wordList,json.mongouri,sendObj)
   })
   .catch(function(err){
     sendObj({error:err})
