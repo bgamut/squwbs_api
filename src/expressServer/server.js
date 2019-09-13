@@ -577,23 +577,39 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
           supportingText:{type:String,default:""},
           timeStamp:{type:String,default:Date()}
         })
-        //var Card = mongoose.model('Cards',CardSchema)
-        var Card = mongoose.model('Cards')
+        var Card = mongoose.model('Cards',CardSchema)
+       
         console.log("Card Model: "+Card)
-        var newCard = new Card({
-            word:word,
-            meaning:meaning,
-            example:example,
-            pronunciation:pronunciation,
-        })
-        newCard.save(function(err,newCard){
-            if(err){
-                console.error(err)
-            }
-            else{
-                console.log(newCard.word+' saved')
-                callback(newCard.word+' saved')
-            }
+        // var newCard = new Card({
+        //     word:word,
+        //     meaning:meaning,
+        //     example:example,
+        //     pronunciation:pronunciation,
+        // })
+        var newCard = {
+          word:word,
+          meaning:meaning,
+          example:example,
+          pronunciation:pronunciation,
+        }
+        // newCard.save(function(err,newCard){
+        //     if(err){
+        //         console.error(err)
+        //     }
+        //     else{
+        //         console.log(newCard.word+' saved')
+        //         callback(newCard.word+' saved')
+        //     }
+        // })
+        Card.push(newCard)
+        Card.save(function(err,cards){
+          if(err){
+            console.error(err)
+          }
+          else{
+            console.log(cards)
+            callback(stringifyObject(cards))
+          }
         })
         //list all of the cards
         // Card.find(function(err,cards){
@@ -665,8 +681,8 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
             supportingText:{type:String,default:""},
             timeStamp:{type:String,default:Date()}
           })
-          //var Card = mongoose.model('Cards',CardSchema)
-          var Card = mongoose.model('Cards')
+          var Card = mongoose.model('Cards',CardSchema)
+          //var Card = mongoose.model('Cards')
           // var word = new Card({
           //     word:word,
           //     meaning:meaning,
@@ -698,12 +714,19 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                   
                     for (var i=0; i<list.length; i++){
                       //make the card
-                      var newCard = new Card({
+                      // var newCard = new Card({
+                      //     word:word,
+                      //     meaning:meaning,
+                      //     example:example,
+                      //     pronunciation:pronunciation,
+                      // })
+                      var newCard = {
                           word:word,
                           meaning:meaning,
                           example:example,
                           pronunciation:pronunciation,
-                      })
+                      }
+                      
                       //fill the unfilled card 
                       for (var j = 0; j<Object.keys(newCard).length; j++){
                         if(list[i][Object.keys(a)[j]]==undefined){
@@ -711,15 +734,16 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                         }
                       }
                       //add the card
-                      newCard.save(function(err,newCard){
-                        if(err){
-                          console.error(err)
-                        }
-                        else{
-                          console.log(newCard.word+' saved')
-                          callback(newCard.word+' saved')
-                        }
-                      })
+                      // newCard.save(function(err,newCard){
+                      //   if(err){
+                      //     console.error(err)
+                      //   }
+                      //   else{
+                      //     console.log(newCard.word+' saved')
+                      //     callback(newCard.word+' saved')
+                      //   }
+                      // })
+                      Card.push(newCard)
                     }  
                   }
                   //some previous cards exist
@@ -739,12 +763,18 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                           if(picked==undefined){  
                               
                               // make a new card with the new info
-                              var newCard = new Card({
+                              // var newCard = new Card({
+                              //   word:list[i].word,
+                              //   meaning:list[i].meaning,
+                              //   example:list[i].example,
+                              //   pronunciation:list[i].pronunciation,
+                              // })
+                              var newCard = {
                                 word:list[i].word,
                                 meaning:list[i].meaning,
                                 example:list[i].example,
                                 pronunciation:list[i].pronunciation,
-                              })
+                              }
                               //fill the unfilled data with ""
                               for (var j = 0; j<Object.keys(newCard).length; j++){
                                 if(list[i][Object.keys(a)[j]]==undefined){
@@ -752,16 +782,17 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                                 }
                               }
                               //add the new card in the deck
-                              newCard.save(function(err,newCard){
-                                if(err){
-                                  console.error(err)
-                                }
-                                else{
-                                  console.log(newCard.word+' saved')
-                                  finalMessage[list[i]]='saved'
-                                  //callback(newCard.word+' saved')
-                                }
-                              })
+                              // newCard.save(function(err,newCard){
+                              //   if(err){
+                              //     console.error(err)
+                              //   }
+                              //   else{
+                              //     console.log(newCard.word+' saved')
+                              //     finalMessage[list[i]]='saved'
+                              //     //callback(newCard.word+' saved')
+                              //   }
+                              // })
+                              Card.push(newCard)
                           }
                           //there is a card in the deck that matches the info
                           else{
@@ -773,6 +804,17 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                       )
                       
                     }
+                    Card.save(function(err,newCard){
+                        if(err){
+                            console.error(err)
+                            finalMessage={message:err}
+                        }
+                        else{
+                            console.log('list saved')
+                            console.log(stringifyObject(newCard))
+                            //callback({message:newCard.word+' saved'})
+                        }
+                    })
                   callback(finalMessage)   
                   }
               }
