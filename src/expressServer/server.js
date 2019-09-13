@@ -544,7 +544,7 @@ app.get('/addWordToMongo',cors(),(req,res)=>{
     return result.json()
   })
   .then(function(json){      
-    mongouri=json.mongouri
+    var mongouri=json.mongouri
     console.log(mongouri)
     mongoose.connect(mongouri,{useNewUrlParser:true})
     .catch((err)=>{
