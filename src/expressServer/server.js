@@ -19,6 +19,7 @@ var cookieParser = require('cookie-parser')
 var mobileDetect = require('mobile-detect')
 var admin = require('firebase-admin')
 const stringifyObject= require('stringify-object')
+const uuidv4 = require('uuid/v4')
 const mongoose = require('mongoose');
 const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
 const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
@@ -559,10 +560,12 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
     
     db.once('open',function(){
       console.log('connected')
-        const ObjectId=Schema.ObjectId
-        console.log(ObjectId)
+        //const ObjectId=Schema.ObjectId
+        //console.log(ObjectId)
+        const ObjectId=uuidv4();
         const CardSchema = new mongoose.Schema({
-          id:{type:String,default:ObjectId},
+          //id:{type:String,default:ObjectId},
+          id:{},
           word:{type:String,default:""},
           meaning:{type:String,default:""},
           example:{type:String,default:""},
@@ -644,8 +647,9 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
       
       db.once('open',function(){
         console.log('connected')
-          const ObjectId=Schema.ObjectId
-          console.log(ObjectId)
+          //const ObjectId=Schema.ObjectId
+          //console.log(ObjectId)
+          const ObjectId=uuidv4()
           const CardSchema = new mongoose.Schema({
             id:{type:String,default:ObjectId},
             word:{type:String,default:""},
