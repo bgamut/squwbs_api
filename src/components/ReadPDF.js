@@ -65,13 +65,13 @@ const PDFReader = () => {
                     borderTop:1,
                     borderColor:'#aaa',
                     borderRadius:4,
-                    textShadowColor: 'rgba(128, 128, 128, 0.99)',
+                    textShadowColor: 'rgba(0, 0, 0, 0.85)',
                     textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 3,
-                    width:200,
+                    textShadowRadius: 2,
+                    width:90,
                     marginBottom:4,
                     backgroundColor:'transparent',
-                    shadowColor:'#000',
+                    shadowColor:'black',
                     shadowOpacity:0.25,
                     shadowRadius:3.84,
                     shadowOffset:{
@@ -108,7 +108,7 @@ const PDFReader = () => {
                             borderTop:1,
                             borderStyle:'solid',
                             borderColor:"#aaa",
-                            width:200,
+                            width:90,
                             marginBottom:4,
                             backgroundColor:'lightgrey',
                             // shadowColor:'#000',
@@ -133,6 +133,7 @@ const PDFReader = () => {
                 </label>
             </Text>
             <FilePicker 
+            text={'PDF'}
             setFileBinaryStr={setFileBinaryStr} 
             setFileSelected={setFileSelected} 
             fileSelected={fileSelected}

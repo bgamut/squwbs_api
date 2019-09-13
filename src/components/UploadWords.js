@@ -237,7 +237,7 @@ const UploadWords = (props)=> {
         <Fade>
                 <View style={{ 
                     // height:100,
-                    width:200,
+                    width:90,
                     backgroundColor:'white',
                     //flex:1,
                     flexDirection:'column',
@@ -246,10 +246,10 @@ const UploadWords = (props)=> {
                     marginRight:2,
                     marginLeft:2,
                     marginBottom:2,
-                    borderRadius:2,
+                    borderRadius:4,
                     borderWidth:1,
                     borderColor:'lightgrey',
-                    shadowColor:'#000',
+                    shadowColor:'black',
                     shadowOpacity:0.25,
                     shadowRadius:3.84,
                     shadowOffset:{
@@ -268,24 +268,25 @@ const UploadWords = (props)=> {
                         <input {...getInputProps()} />
                         <TouchableOpacity>
                             <Text selectable={false} style ={{
+
                                 textDecorationLine:'none',
                                 color:'white',
-                                fontSize: 15,
-                                fontWeight:100,
+                                fontSize: 11,
+                                fontWeight:'700',
                                 // textShadowColor: 'rgba(0, 0, 0, 1)',
                                 // textShadowOffset: {width: 0, height: 0},
                                 // textShadowRadius: 8,
-                                textShadowColor: 'rgba(128, 128, 128, 0.99)',
+                                textShadowColor: 'rgba(0, 0, 0, 0.85)',
                                 textShadowOffset: {width: 0, height: 0},
-                                textShadowRadius: 3,
-                                flex:1,
+                                textShadowRadius: 2,
+                                
                                 textAlign:'center',
                                 alignItems:'center',
                                 justifyContent:'center',
                                 flexDirection:'row',
                                 margin:5,
                             }}>
-                                Click to Select XLSX
+                                Load XLSX
                             </Text>
                         </TouchableOpacity>
                     </View>

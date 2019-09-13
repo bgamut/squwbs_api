@@ -227,7 +227,7 @@ const Sound=()=> {
           </View> */}
         <View style={{ 
             // height:100,
-            width:200,
+            width:90,
             height:33,
             backgroundColor:'white',
             
@@ -263,6 +263,12 @@ const Sound=()=> {
                 justifyContent:'center',
                 alignItems:'center'
             }}>
+              <View style={{
+                height:50,
+                width:50,
+                justifyContent:'center',
+                alignItems:'center',
+            }}>
                 <input {...getInputProps()} />
                 <TouchableOpacity>
                     <Text selectable={false} style ={{
@@ -271,19 +277,20 @@ const Sound=()=> {
                         textDecorationLine:'none',
                         color:'white',
                         
-                        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                        textShadowColor: 'rgba(0, 0, 0, 0.85)',
                         textShadowOffset: {width: 0, height: 0},
-                        textShadowRadius: 3,
-                        flex:1,
+                        textShadowRadius: 2,
+                        
                         textAlign:'center',
                         alignItems:'center',
                         justifyContent:'center',
                         flexDirection:'row',
                         margin:5,
                     }}>
-                        Select Wav File
+                        WAV
                     </Text>
                 </TouchableOpacity>
+                </View>
             </View>
         </View>
         </View>

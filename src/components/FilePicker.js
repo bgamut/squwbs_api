@@ -118,7 +118,7 @@ const FilePicker = (props)=> {
             <View style={{ 
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
-                width:200,
+                width:90,
                 backgroundColor:'white',
                 
                 flex:1,
@@ -155,20 +155,20 @@ const FilePicker = (props)=> {
                     <TouchableOpacity>
                         <Text selectable={false} style ={{
                             fontSize: 11,
-                            fontWeight:700,
+                            fontWeight:'700',
                             textDecorationLine:'none',
                             color:'white',
                             
-                            textShadowColor: 'rgba(128, 128, 128, 0.99)',
+                            textShadowColor: 'rgba(0, 0, 0, 0.85)',
                             textShadowOffset: {width: 0, height: 0},
-                            textShadowRadius: 3,
+                            textShadowRadius: 2,
                             textAlign:'center',
                             alignItems:'center',
                             justifyContent:'center',
                             flexDirection:'row',
                             margin:5,
                         }}>
-                            Select File
+                            {props.text}
                         </Text>
                     </TouchableOpacity>
                 </View>

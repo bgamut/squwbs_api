@@ -80,7 +80,7 @@ const SwipeableScroller = (props) => {
   <View>
     <ScrollView 
       // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
-      style={{backgroundColor:'transparent',height:"100vh",zIndex:98}}
+      style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
       onScroll={(e)=>{
           // onScroll(e)
         }
@@ -238,7 +238,10 @@ const SwipeableScroller = (props) => {
             ref={heightRef}
             style={{
               height:height-50,
-              zIndex:0
+              zIndex:0,
+              alignContent:'center',
+              justifyContent:'center',
+              overflow:'hidden',
               }}
             >
               {/* <SwipeableList/> */}
