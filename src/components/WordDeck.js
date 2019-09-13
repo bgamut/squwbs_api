@@ -151,7 +151,7 @@ class WordDeck extends Component {
     //   console.error(err);
     // });
     const mongoURLGetWordList='https://squwbs.herokuapp.com/getwordlistfrommongo'
-    const getWordListFromMongoViaServer = (list)=>{
+    const getWordListFromMongoViaServer = ()=>{
       fetch(mongoURLGetWordList, {
         mode:'cors'
       })
@@ -161,6 +161,7 @@ class WordDeck extends Component {
       .then((json)=>{
         console.log(json)
         var words = json.data.slice()
+        
         console.log(words)
         this.setState({
           bagOfWords:this.shuffle(words),
@@ -171,6 +172,7 @@ class WordDeck extends Component {
         console.log(err)
       })
     }
+    getWordListFromMongoViaServer()
 
   }
   componentDidMount(){
