@@ -577,7 +577,9 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
           supportingText:{type:String,default:""},
           timeStamp:{type:String,default:Date()}
         })
-        var Card = mongoose.model('Cards',CardSchema)
+        //var Card = mongoose.model('Cards',CardSchema)
+        var Card = mongoose.model('Cards')
+        console.log("Card Model: "+Card)
         var newCard = new Card({
             word:word,
             meaning:meaning,
@@ -663,7 +665,8 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
             supportingText:{type:String,default:""},
             timeStamp:{type:String,default:Date()}
           })
-          var Card = mongoose.model('Cards',CardSchema)
+          //var Card = mongoose.model('Cards',CardSchema)
+          var Card = mongoose.model('Cards')
           // var word = new Card({
           //     word:word,
           //     meaning:meaning,
@@ -679,6 +682,8 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
           //         callback(word.word+' saved')
           //     }
           // })
+
+          console.log("Card Model: "+Card)
 
           //list all of the cards
           Card.find(function(err,cards){
