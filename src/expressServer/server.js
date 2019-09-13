@@ -564,8 +564,7 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
         //console.log(ObjectId)
         const ObjectId=uuidv4();
         const CardSchema = new mongoose.Schema({
-          //id:{type:String,default:ObjectId},
-          id:{},
+          id:{type:String,default:ObjectId},
           word:{type:String,default:""},
           meaning:{type:String,default:""},
           example:{type:String,default:""},
