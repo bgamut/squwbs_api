@@ -95,6 +95,7 @@ const mongoose = require('mongoose');
   
 // })
 
+
 const addWordToMongoViaServer = ({word,meaning,example,pronunciation})=>{
 
   var a = {word,meaning,example,pronunciation}
