@@ -534,6 +534,89 @@ app.get('/deleteuser',cors(),(req,res)=>{
 
 res.send(deleteUser(obj.userEmail))
 })
+app.get('/addWordToMongo',cors(),(req,res)=>{
+  var obj = req.query
+  function addWordToMongo({word,meaning,example,pronunciation},callback){
+  fetch(mongourlStringExpress, {
+      credentials: "include"
+    })
+  .then(function(result){
+    return result.json()
+  })
+  .then(function(json){      
+    mongouri=json.mongouri
+    console.log(mongouri)
+    mongoose.connect(mongouri,{useNewUrlParser:true})
+    .catch((err)=>{
+      console.log(err)
+    })
+    var db = mongoose.connection
+    //db.on('error',console.error.bind(console,'connection error : '))
+    db.once('open',function(){
+      console.log('connected')
+        const ObjectId=Schema.ObjectId
+        console.log(ObjectId)
+        const CardSchema = new mongoose.Schema({
+          id:{type:String,default:ObjectId},
+          word:{type:String,default:""},
+          meaning:{type:String,default:""},
+          example:{type:String,default:""},
+          pronunciation:{type:String,default:""},
+          thumbnail:{type:String,default:""},
+          header:{type:String,default:""},
+          subhead:{type:String,default:""},
+          picture:{type:String,default:""},
+          youtubeLink:{type:String,default:""},
+          supportingText:{type:String,default:""},
+          timeStamp:{type:String,default:Date()}
+        })
+        var Card = mongoose.model('Cards',CardSchema)
+        var word = new Card({
+            word:word,
+            meaning:meaning,
+            example:example,
+            pronunciation:pronunciation,
+        })
+        word.save(function(err,word){
+            if(err){
+                console.error(err)
+            }
+            else{
+                console.log(word.word+' saved')
+                callback(word.word+' saved')
+            }
+        })
+        //list all of the cards
+        Card.find(function(err,cards){
+            if(err){
+                console.error(err)
+            }
+            else{
+                console.log(cards)
+            }
+        })
+        //find a specific card
+        Card.find(
+            {
+                word:word,
+                meaning:meaning,
+            }
+        ,function(input){
+          console.log(input)
+        })
+    })
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+  }
+
+  function sendSuccess(message){
+    res.send({message:message})
+  }
+  addWordToMongo(obj,sendSuccess)
+  
+})
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
   function addWord({word,meaning,pronunciation,example},func){

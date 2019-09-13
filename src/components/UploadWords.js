@@ -86,9 +86,6 @@ const addWordToServer = ({word,meaning,example,pronunciation})=>{
     //   .catch((err)=>{
   
     //   })
-    
-    
-    
 }
 function addWord({word,meaning,pronunciation,example}){
     
