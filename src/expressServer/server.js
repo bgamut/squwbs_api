@@ -601,13 +601,14 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
         //         callback(newCard.word+' saved')
         //     }
         // })
-        Card.push(newCard)
+        //Card.push(newCard)
+        Card.updateOne(newCard,{omitUndefined:true})
         Card.save(function(err,cards){
           if(err){
             console.error(err)
           }
           else{
-            console.log(cards)
+            //console.log(cards)
             callback(stringifyObject(cards))
           }
         })
@@ -708,7 +709,7 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                   callback(err)
               }
               else{
-                  console.log(cards)
+                  //console.log(cards)
                   // no cards previously saved
                   if(cards==undefined){
                   
@@ -743,7 +744,8 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                       //     callback(newCard.word+' saved')
                       //   }
                       // })
-                      Card.push(newCard)
+                      //Card.push(newCard)
+                      Card.updateOne(newCard,{omitUndefined:true})
                     }  
                   }
                   //some previous cards exist
@@ -792,7 +794,8 @@ app.get('/addwordlisttomongo',cors(),(req,res)=>{
                               //     //callback(newCard.word+' saved')
                               //   }
                               // })
-                              Card.push(newCard)
+                              //Card.push(newCard)
+                              Card.updateOne(newCard,{omitUndefined:true})
                           }
                           //there is a card in the deck that matches the info
                           else{
