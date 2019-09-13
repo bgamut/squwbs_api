@@ -19,6 +19,7 @@ var cookieParser = require('cookie-parser')
 var mobileDetect = require('mobile-detect')
 var admin = require('firebase-admin')
 const stringifyObject= require('stringify-object')
+const mongoose = require('mongoose');
 const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
 const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs.herokuapp.com/addwordlisttomongo'
