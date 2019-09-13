@@ -7,6 +7,7 @@ import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
 //const fetch = require('node-fetch');
 //const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose')
 const _ = require('lodash')
 
 

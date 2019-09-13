@@ -49,6 +49,7 @@
     "materialize-css": "^1.0.0",
     "mobile-detect": "^1.4.3",
     "module-alias": "^2.2.0",
+    "mongoose": "^5.7.0",
     "node-fetch": "^2.6.0",
     "node-lame": "^1.2.0",
     "node-wav": "0.0.2",
