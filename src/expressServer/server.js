@@ -539,107 +539,73 @@ app.get('/deleteuser',cors(),(req,res)=>{
 
 res.send(deleteUser(obj.userEmail))
 })
+
 app.get('/addwordtomongo',cors(),(req,res)=>{
   var obj = req.query
   function addWordToMongo({word,meaning,example,pronunciation},callback){
-  fetch(mongourlStringExpress, {
-      credentials: "include"
+    fetch(mongourlStringExpress, {
+        credentials: "include"
+      })
+    .then(function(result){
+      return result.json()
     })
-  .then(function(result){
-    return result.json()
-  })
-  .then(function(json){      
-    //mongouri=jsongmongouri
-    var mongouri=json.mongouri
-    console.log(mongouri)
-    mongoose.connect(mongouri,{useNewUrlParser:true})
+    .then(function(json){      
+      //mongouri=jsongmongouri
+      var mongouri=json.mongouri
+      console.log(mongouri)
+      mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology: true })
+      .catch((err)=>{
+        console.log(err)
+      })
+      var db = mongoose.connection
+      
+      db.once('open',function(){
+        const CardSchema = new mongoose.Schema({
+          word:{type:String,default:undefined},
+          meaning:{type:String,default:undefined},
+          example:{type:String,default:undefined},
+          pronunciation:{type:String,default:undefined},
+          thumbnail:{type:String,default:undefined},
+          header:{type:String,default:undefined},
+          subhead:{type:String,default:undefined},
+          picture:{type:String,default:undefined},
+          youtubeLink:{type:String,default:undefined},
+          supportingText:{type:String,default:undefined},
+          timeStamp:{type:String,default:Date()}
+        })
+        const Card = mongoose.model('Cards',CardSchema)
+        Card.findOne({word:word},function(err,obj){
+          console.log(obj)
+          const newCard = new Card({
+            word:word,
+            meaning:meaning,
+            example:example,
+            pronunciation:pronunciation,
+          })
+          if(obj!==null){
+            Card.findOneAndRemove(
+              {"word":word },{useFindAndModify:false},function(){
+                console.log('findOneAndRemove() function fired')
+              }
+            );
+            
+          }
+          newCard.save()
+          Card.updateOne(
+            { omitUndefined: true },
+            newCard
+          );
+          callback('successfully added '+word)
+
+        })
+        
+
+        
+      })
+    })
     .catch((err)=>{
       console.log(err)
     })
-    var db = mongoose.connection
-    
-    db.once('open',function(){
-      console.log('connected')
-        //const ObjectId=Schema.ObjectId
-        //console.log(ObjectId)
-        const ObjectId=uuidv4();
-        const CardSchema = new mongoose.Schema({
-          id:{type:String,default:ObjectId},
-          word:{type:String,default:""},
-          meaning:{type:String,default:""},
-          example:{type:String,default:""},
-          pronunciation:{type:String,default:""},
-          thumbnail:{type:String,default:""},
-          header:{type:String,default:""},
-          subhead:{type:String,default:""},
-          picture:{type:String,default:""},
-          youtubeLink:{type:String,default:""},
-          supportingText:{type:String,default:""},
-          timeStamp:{type:String,default:Date()}
-        })
-        var Card = mongoose.model('Cards',CardSchema)
-       
-        console.log("Card Model: "+Card)
-        // var newCard = new Card({
-        //     word:word,
-        //     meaning:meaning,
-        //     example:example,
-        //     pronunciation:pronunciation,
-        // })
-        var newCard = {
-          word:word,
-          meaning:meaning,
-          example:example,
-          pronunciation:pronunciation,
-        }
-        // newCard.save(function(err,newCard){
-        //     if(err){
-        //         console.error(err)
-        //     }
-        //     else{
-        //         console.log(newCard.word+' saved')
-        //         callback(newCard.word+' saved')
-        //     }
-        // })
-        //Card.push(newCard)
-        const Cards = Card.find({})
-        const card = new Card({
-          word:word,
-          meaning:meaning,
-          example:example,
-          pronunciation:pronunciation,
-
-        })
-        card.save()
-        Cards.updateOne(
-          { omitUndefined: true },
-          card
-        );
-  
-
-        //list all of the cards
-        // Card.find(function(err,cards){
-        //     if(err){
-        //         console.error(err)
-        //     }
-        //     else{
-        //         console.log(cards)
-        //     }
-        // })
-        //find a specific card
-        // Card.find(
-        //     {
-        //         word:word,
-        //         meaning:meaning,
-        //     }
-        // ,function(input){
-        //   console.log(input)
-        // })
-    })
-  })
-  .catch((err)=>{
-    console.log(err)
-  })
   }
 
   function sendSuccess(message){
@@ -649,213 +615,133 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
   
 })
 app.get('/addwordlisttomongo',cors(),(req,res)=>{
-  var obj = req.query.list
-  function addWordListToMongo({word,meaning,example,pronunciation},callback){
-    var finalMessage={}
-    fetch(mongourlStringExpress, {
-        credentials: "include"
-      })
-    .then(function(result){
-      return result.json()
-    })
-    .then(function(json){   
-      //mongouri=json.mongouri 
-      var mongouri=json.mongouri
-      console.log(mongouri)
-      mongoose.connect(mongouri,{useNewUrlParser:true})
+  var wordList = req.query.list
+  
+  const addWordList =(wordList,callback)=>{
+    //const ObjectId=uuidv4()
+    callbackList=[]
+    mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
       .catch((err)=>{
         console.log(err)
+        callbackList.push({message:err})
+        callback(callbakList)
       })
       var db = mongoose.connection
       
       db.once('open',function(){
-        console.log('connected')
-          //const ObjectId=Schema.ObjectId
-          //console.log(ObjectId)
-          const ObjectId=uuidv4()
-          const CardSchema = new mongoose.Schema({
-            id:{type:String,default:ObjectId},
-            word:{type:String,default:""},
-            meaning:{type:String,default:""},
-            example:{type:String,default:""},
-            pronunciation:{type:String,default:""},
-            thumbnail:{type:String,default:""},
-            header:{type:String,default:""},
-            subhead:{type:String,default:""},
-            picture:{type:String,default:""},
-            youtubeLink:{type:String,default:""},
-            supportingText:{type:String,default:""},
-            timeStamp:{type:String,default:Date()}
-          })
-          var Card = mongoose.model('Cards',CardSchema)
-          //var Card = mongoose.model('Cards')
-          // var word = new Card({
-          //     word:word,
-          //     meaning:meaning,
-          //     example:example,
-          //     pronunciation:pronunciation,
-          // })
-          // word.save(function(err,word){
-          //     if(err){
-          //         console.error(err)
-          //     }
-          //     else{
-          //         console.log(word.word+' saved')
-          //         callback(word.word+' saved')
-          //     }
-          // })
-
+        const CardSchema = new mongoose.Schema({
+          word:{type:String,default:undefined},
+          meaning:{type:String,default:undefined},
+          example:{type:String,default:undefined},
+          pronunciation:{type:String,default:undefined},
+          thumbnail:{type:String,default:undefined},
+          header:{type:String,default:undefined},
+          subhead:{type:String,default:undefined},
+          picture:{type:String,default:undefined},
+          youtubeLink:{type:String,default:undefined},
+          supportingText:{type:String,default:undefined},
+          timeStamp:{type:String,default:Date()}
+        })
+        var Card = mongoose.model('Cards',CardSchema)
+        // for (var i=0; i<wordList.length; i++){
+        
           
-
-
-          //console.log("Card Model: "+Card)
-
-          // //list all of the cards
-          // Card.find(function(err,cards){
-          //     if(err){
-          //         console.error(err)
-          //         callback(err)
-          //     }
-          //     else{
-          //         //console.log(cards)
-          //         // no cards previously saved
-          //         if(cards==undefined){
-                  
-          //           for (var i=0; i<list.length; i++){
-          //             //make the card
-          //             // var newCard = new Card({
-          //             //     word:word,
-          //             //     meaning:meaning,
-          //             //     example:example,
-          //             //     pronunciation:pronunciation,
-          //             // })
-          //             var newCard = {
-          //                 word:word,
-          //                 meaning:meaning,
-          //                 example:example,
-          //                 pronunciation:pronunciation,
-          //             }
-                      
-          //             //fill the unfilled card 
-          //             for (var j = 0; j<Object.keys(newCard).length; j++){
-          //               if(list[i][Object.keys(a)[j]]==undefined){
-          //                   list[i][Object.keys(a)[j]]=""
-          //               }
-          //             }
-          //             //add the card
-          //             // newCard.save(function(err,newCard){
-          //             //   if(err){
-          //             //     console.error(err)
-          //             //   }
-          //             //   else{
-          //             //     console.log(newCard.word+' saved')
-          //             //     callback(newCard.word+' saved')
-          //             //   }
-          //             // })
-          //             //Card.push(newCard)
-          //             Card.updateOne(newCard,{omitUndefined:true})
-          //           }  
-          //         }
-          //         //some previous cards exist
-          //         else{
-          //           for(var i =0; i<list.length; i++){
-                      
-          //             //look for a specific card in the deck
-          //             Card.find(
-          //               {
-          //                 word:list[i].word,
-          //                 meaning:list[i].meaning,
-          //               }
-          //               ,function(picked){
-          //                 console.log(picked)
-
-          //                 //no cards match the new info
-          //                 if(picked==undefined){  
-                              
-          //                     // make a new card with the new info
-          //                     // var newCard = new Card({
-          //                     //   word:list[i].word,
-          //                     //   meaning:list[i].meaning,
-          //                     //   example:list[i].example,
-          //                     //   pronunciation:list[i].pronunciation,
-          //                     // })
-          //                     var newCard = {
-          //                       word:list[i].word,
-          //                       meaning:list[i].meaning,
-          //                       example:list[i].example,
-          //                       pronunciation:list[i].pronunciation,
-          //                     }
-          //                     //fill the unfilled data with ""
-          //                     for (var j = 0; j<Object.keys(newCard).length; j++){
-          //                       if(list[i][Object.keys(a)[j]]==undefined){
-          //                           list[i][Object.keys(a)[j]]=""
-          //                       }
-          //                     }
-          //                     //add the new card in the deck
-          //                     // newCard.save(function(err,newCard){
-          //                     //   if(err){
-          //                     //     console.error(err)
-          //                     //   }
-          //                     //   else{
-          //                     //     console.log(newCard.word+' saved')
-          //                     //     finalMessage[list[i]]='saved'
-          //                     //     //callback(newCard.word+' saved')
-          //                     //   }
-          //                     // })
-          //                     //Card.push(newCard)
-          //                     Card.updateOne(newCard,{omitUndefined:true})
-          //                 }
-          //                 //there is a card in the deck that matches the info
-          //                 else{
-          //                   console.log(list[i].word+' already exists')
-          //                   finalMessage[list[i]]='already exists'
-          //                 }
-                          
-          //               }
-          //             )
-                      
-          //           }
-          //           Card.save(function(err,newCard){
-          //               if(err){
-          //                   console.error(err)
-          //                   finalMessage={message:err}
-          //               }
-          //               else{
-          //                   console.log('list saved')
-          //                   console.log(stringifyObject(newCard))
-          //                   //callback({message:newCard.word+' saved'})
-          //               }
-          //           })
-          //         callback(finalMessage)   
-          //         }
-          //     }
-          // })
-          //find a specific card
-          // Card.find(
-          //     {
-          //         word:word,
-          //         meaning:meaning,
-          //     }
-          // ,function(input){
-          //   console.log(input)
-          // })
-      })
-    })
-    .catch((err)=>{
-      console.log(err)
-      callback(err)
-    })
-    }
-
-    function sendSuccess(message){
-      res.json({message:message})
-    }
-    function sendObj(obj){
-      res.json(obj)
-    }
-  addWordListToMongo(obj,sendObj)
+        
+        function addOneWordFromList(wordList,index){
+          
+          var tempObject = wordList[index]
+          Card.findOne({word:tempObject.word},function(err,obj){
+            if(err){
+              console.log(err)
+              callbackList.push({message:err})
+              callback(callbakList)
+            }
+            
+            const newCard = new Card(tempObject)
+            if(obj!==null){
+              console.log(obj.word +" already exists.")
+              //console.log(typeof(Card.findOneAndRemove))
+              Card.findOneAndRemove(
+                {"word":tempObject["word"] },{useFindAndModify:false},function(){
+                  console.log('updating '+tempObject["word"])
+                }
+              ).then(function(){
+                newCard.save()
+                .then(function(){
+                  Card.updateOne(
+                    { omitUndefined: true },
+                    newCard
+                  )
+                  .then(function(){
+                    var currentWord=tempObject["word"]
+                    var callbackObject = {}
+                    callbackObject[currentWord]='updated'
+                    //console.log(callbackObject)
+                    callbackList.push(callbackObject)
+                    console.log(currentWord+' has been saved')
+                  })
+                  .then(function(){
+                    
+                    
+                    if(index+1<wordList.length){
+                      addOneWordFromList(wordList,index+1)
+                    }
+                    else{
+                      db.close()
+                      callback(callbackList)
+                    }
+                  })
+                })
+                }
+              ) 
+            }
+            else{
+              newCard.save()
+              .then(function(){
+                Card.updateOne(
+                  { omitUndefined: true },
+                  newCard
+                )
+                .then(function(){
   
+                  var currentWord=tempObject["word"]
+                  var callbackObject = {}
+                  callbackObject[currentWord]='saved'
+                  //console.log(callbackObject)
+                  callbackList.push(callbakObject)
+                  console.log(currentWord+' has been saved')
+                })
+                .then(function(){
+                  
+                  locked=false
+                  if(index+1<wordList.length){
+                    addOneWordFromList(wordList,index+1)
+                  }
+                  else{
+                    db.close()
+                    callback(callbackList)
+                  }
+                })
+              })
+              
+            }
+            
+            
+          })
+  
+        }
+        addOneWordFromList(wordList,0)      
+      })
+  }
+  
+  function sendObj(obj){
+    res.json(obj)
+  }
+  addWordList(wordList,sendObj)
 })
+    
+  
+
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
   function addWord({word,meaning,pronunciation,example},func){
