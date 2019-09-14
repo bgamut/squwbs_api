@@ -614,7 +614,7 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
   addWordToMongo(obj,sendSuccess)
   
 })
-app.get('/addwordlisttomongo',cors(),(req,res)=>{
+app.get('/addlist',cors(),(req,res)=>{
   var wordList = req.query.list
   //var wordList = req.body.list
   //var mongouri=""

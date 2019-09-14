@@ -51,7 +51,7 @@ const addWordListToServer = (list)=>{
     //   .catch((err)=>{
   
     //   })
-    const mongoURLAddWordList='https://squwbs.herokuapp.com/addwordlisttomongo'
+    const mongoURLAddWordList='https://squwbs.herokuapp.com/addlist'
     const addWordListToMongoViaServer = (list)=>{
         fetch(mongoURLAddWordList, 
           {
