@@ -874,54 +874,167 @@ app.get('/addword',cors(),(req,res)=>{
 
 app.get('/addwordlist',cors(),(req,res)=>{
   var list = req.query.list
-  function addWordList(list){
+//   function addWordList(list){
     
-    var db = admin.database()
-    var ref = db.ref('words')
-    ref.once('value',function(snapshot){
-        var words=snapshot.val()
-        //console.log(words)
-        if(words==undefined){
-          words={}
-          for (var i=0; i<list.length; i++){
-            words[i]=list[i]
-          }  
-        }
-        else{
-          for(var i =0; i<list.length; i++){
-            //words.push(list[i])
-            var picked = words.find(singleWord=>singleWord.word==list[i].word)
-            console.log(picked)
-            if(picked==undefined){  
-                words.push(list[i])
-            }
-            else{
-                if(_.isEqual(picked,list[i])){
-                    console.log(list[i].word+' already exists')
-                }
-                else{
-                    words[words.findIndex(row=>row.word==list[i].word)]=list[i]
-                    console.log(list[i].word+' updated to the information provided')
-                }
-            }
-          }
+//     var db = admin.database()
+//     var ref = db.ref('words')
+//     ref.once('value',function(snapshot){
+//         var words=snapshot.val()
+//         //console.log(words)
+//         if(words==undefined){
+//           words={}
+//           for (var i=0; i<list.length; i++){
+//             words[i]=list[i]
+//           }  
+//         }
+//         else{
+//           for(var i =0; i<list.length; i++){
+//             //words.push(list[i])
+//             var picked = words.find(singleWord=>singleWord.word==list[i].word)
+//             console.log(picked)
+//             if(picked==undefined){  
+//                 words.push(list[i])
+//             }
+//             else{
+//                 if(_.isEqual(picked,list[i])){
+//                     console.log(list[i].word+' already exists')
+//                 }
+//                 else{
+//                     words[words.findIndex(row=>row.word==list[i].word)]=list[i]
+//                     console.log(list[i].word+' updated to the information provided')
+//                 }
+//             }
+//           }
             
-        }
-        ref.set(words,function(error){
-          if(error){
-            console.log(error)
-            res.setHeader('Content-Type','application/json')
-            res.send({message:error})
-            //func(error)
+//         }
+//         ref.set(words,function(error){
+//           if(error){
+//             console.log(error)
+//             res.setHeader('Content-Type','application/json')
+//             res.send({message:error})
+//             //func(error)
+//           }
+//           else{
+//             console.log('callback fired in /addWordList')
+//             //func(words)
+//             res.setHeader('Content-Type','application/json')
+//             res.send({message:'success!'})
+//           }
+
+//         })
+//     })
+// }
+const addWordList =(wordList,callback)=>{
+  callbackList=[]
+  mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
+    .catch((err)=>{
+      console.log(err)
+      callbackList.push({message:err})
+      callback(callbakList)
+    })
+    var db = mongoose.connection
+    
+    db.once('open',function(){
+      const CardSchema = new mongoose.Schema({
+        word:{type:String,default:undefined},
+        meaning:{type:String,default:undefined},
+        example:{type:String,default:undefined},
+        pronunciation:{type:String,default:undefined},
+        thumbnail:{type:String,default:undefined},
+        header:{type:String,default:undefined},
+        subhead:{type:String,default:undefined},
+        picture:{type:String,default:undefined},
+        youtubeLink:{type:String,default:undefined},
+        supportingText:{type:String,default:undefined},
+        timeStamp:{type:String,default:Date()}
+      })
+      var Card = mongoose.model('Cards',CardSchema)
+
+      
+      function addOneWordFromList(wordList,index){
+        
+        var tempObject = wordList[index]
+        Card.findOne({word:tempObject.word},function(err,obj){
+          if(err){
+            console.log(err)
+            callbackList.push({message:err})
+            callback(callbakList)
+          }
+          
+          const newCard = new Card(tempObject)
+          if(obj!==null){
+            console.log(obj.word +" already exists.")
+            //console.log(typeof(Card.findOneAndRemove))
+            Card.findOneAndRemove(
+              {"word":tempObject["word"] },{useFindAndModify:false},function(){
+                console.log('updating '+tempObject["word"])
+              }
+            ).then(function(){
+              newCard.save()
+              .then(function(){
+                Card.updateOne(
+                  { omitUndefined: true },
+                  newCard
+                )
+                .then(function(){
+                  var currentWord=tempObject["word"]
+                  var callbackObject = {}
+                  callbackObject[currentWord]='updated'
+                  //console.log(callbackObject)
+                  callbackList.push(callbackObject)
+                  console.log(currentWord+' has been saved')
+                })
+                .then(function(){
+                  
+                  
+                  if(index+1<wordList.length){
+                    addOneWordFromList(wordList,index+1)
+                  }
+                  else{
+                    db.close()
+                    callback(callbackList)
+                  }
+                })
+              })
+              }
+            ) 
           }
           else{
-            console.log('callback fired in /addWordList')
-            //func(words)
-            res.setHeader('Content-Type','application/json')
-            res.send({message:'success!'})
-          }
+            newCard.save()
+            .then(function(){
+              Card.updateOne(
+                { omitUndefined: true },
+                newCard
+              )
+              .then(function(){
 
+                var currentWord=tempObject["word"]
+                var callbackObject = {}
+                callbackObject[currentWord]='saved'
+                //console.log(callbackObject)
+                callbackList.push(callbakObject)
+                console.log(currentWord+' has been saved')
+              })
+              .then(function(){
+                
+                locked=false
+                if(index+1<wordList.length){
+                  addOneWordFromList(wordList,index+1)
+                }
+                else{
+                  db.close()
+                  callback(callbackList)
+                }
+              })
+            })
+            
+          }
+          
+          
         })
+
+      }
+      addOneWordFromList(wordList,0)      
     })
 }
   function sendSuccess(message){
