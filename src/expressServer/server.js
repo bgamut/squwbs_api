@@ -644,7 +644,9 @@ app.get('/addlist',cors(),(req,res)=>{
           supportingText:{type:String,default:undefined},
           timeStamp:{type:String,default:Date()}
         })
-        var Card = mongoose.model('Cards',CardSchema)
+        //var Card = mongoose.model('Cards',CardSchema)
+        var Card = mongoose.model('Cards')
+        console.log(Card)
         // for (var i=0; i<wordList.length; i++){
         
           
