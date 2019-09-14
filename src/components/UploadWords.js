@@ -53,13 +53,10 @@ const addWordListToServer = (list)=>{
     //   })
     const mongoURLAddWordList='https://squwbs.herokuapp.com/addlist'
     const addWordListToMongoViaServer = (list)=>{
-        fetch(mongoURLAddWordList, 
-          {
-            method:'post',
-            body:JSON.stringify({list:list}),
+        fetch(withQuery.default('https://squwbs.herokuapp.com/addlist', { 
+            list:list,
             mode:'cors'
-          }
-        )
+        }))
         .then(result=>{
           return result.json()
         })
