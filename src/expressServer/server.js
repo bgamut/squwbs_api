@@ -647,6 +647,7 @@ app.get('/addlist',cors(),(req,res)=>{
         //var Card = mongoose.model('Cards',CardSchema)
         var Card = mongoose.model('Cards')
         console.log(Card)
+        
         // for (var i=0; i<wordList.length; i++){
         
           
