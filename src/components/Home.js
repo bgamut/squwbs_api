@@ -28,7 +28,7 @@ const stringifyObject= require('stringify-object')
 
 const addUserToServer = (obj)=>{
 
-  fetch(withQuery('https://squwbs.herokuapp.com/addWord', {
+  fetch(withQuery('https://squwbs.herokuapp.com/user', {
     ...obj,
     mode:'cors'
   }))
@@ -50,9 +50,9 @@ const Home = () => {
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const jsonObj = await responded.json()
-    console.log(Object.keys(jsonObj).length)
-    console.log(Object.keys(jsonObj).length==0)
-    if(Object.keys(jsonObj).length!==0){
+    //console.log(Object.keys(jsonObj).length)
+    console.log(Object.keys(jsonObj).length>0)
+    if(Object.keys(jsonObj).length>1){
       console.log('user info sent to server')
       const user = await addUserToServer(jsonObj)
       console.log('user : ')
