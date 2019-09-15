@@ -423,27 +423,31 @@ app.get('/user',cors(),(req,res)=>{
       //console,log('userlist function')
       if(usersList==undefined){
         //var userStructure={}
-        userStructure.provider[obj.provider]=obj.providerid
-        userStructure.names[obj.provider]=obj.Name
-        userStructure['connect.sid']=obj['connect.sid']
-        usersList={0:userStructure}
-      }
-      else{
-        var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
-        if(picked==undefined){
-          // console.log(picked==undefined)
-          var userStructure={}
+        if(obj.provider!==undefined){
           userStructure.provider[obj.provider]=obj.providerid
           userStructure.names[obj.provider]=obj.Name
           userStructure['connect.sid']=obj['connect.sid']
-          usersList.push(userStructure)
-          //console.log('user added')
+          usersList={0:userStructure}
         }
-        else{
-          //console.log('this user already exists')
-          picked['connect.id']=obj['connect.id']
-          var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
-          usersList[index]=picked
+      }
+      else{
+        if(usersList==undefined){
+          var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
+          if(picked==undefined){
+            // console.log(picked==undefined)
+            var userStructure={}
+            userStructure.provider[obj.provider]=obj.providerid
+            userStructure.names[obj.provider]=obj.Name
+            userStructure['connect.sid']=obj['connect.sid']
+            usersList.push(userStructure)
+            //console.log('user added')
+          }
+          else{
+            //console.log('this user already exists')
+            picked['connect.id']=obj['connect.id']
+            var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
+            usersList[index]=picked
+          }
         }
       }
       ref.set(usersList,function(error){
