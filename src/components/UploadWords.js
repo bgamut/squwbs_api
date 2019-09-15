@@ -255,27 +255,32 @@ const UploadWords = (props)=> {
         <Fade>
                 <View style={{ 
                     // height:100,
-                    width:90,
+                    height:33,
+                    width:150,
                     backgroundColor:'white',
-                    //flex:1,
+                    
+                    flex:1,
                     flexDirection:'column',
                     justifyContent:'center',
                     alignItems:'center',
-                    marginRight:2,
-                    marginLeft:2,
-                    marginBottom:2,
-                    borderRadius:4,
-                    borderWidth:1,
+                    // marginRight:8,
+                    // marginLeft:8,
+                    // marginBottom:2,
+                    borderRadius:2,
+                    
                     borderColor:'lightgrey',
-                    shadowColor:'black',
-                    shadowOpacity:0.25,
-                    shadowRadius:3.84,
+                    borderStyle:'solid',
+                    overflow:'hidden',
+                    boxSizing:"border-box",
+                    shadowColor:'#000',
+                    shadowOpacity:0.85,
+                    shadowRadius:2,
                     shadowOffset:{
                     width:0,
-                    height:2
+                    height:0
                     },
-                    elevation:5,
-                    overflow:'hidden'}} 
+                    elevation:2
+                }} 
                     {...getRootProps({refKey:'innerRef'})}
                 >
                     <View style={{

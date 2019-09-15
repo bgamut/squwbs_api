@@ -49,89 +49,120 @@ const PDFReader = () => {
                     padding:20,
                 }}
             >
-            <Text 
-                style={{
-                    color:'white',
-                    fontSize: 11,
-                    fontWeight:'700',
+            <View
+                style ={{
                     height:33,
-                    lineHeight:1.3,
-                  
-                    textAlign:'center',
-        
-                
-                    flexDirection:'row',
-                    // borderBottom:2,
-                    // borderTop:1,
-                    borderColor:'#aaa',
-                    borderRadius:4,
-                    textShadowColor: 'rgba(0, 0, 0, 0.85)',
-                    textShadowOffset: {width: 0, height: 0},
-                    textShadowRadius: 2,
-                    width:90,
-                    marginBottom:4,
+                    width:150,
                     backgroundColor:'transparent',
-                    shadowColor:'black',
-                    shadowOpacity:0.25,
-                    shadowRadius:3.84,
+                    
+                    flex:1,
+                    flexDirection:'column',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    // marginRight:8,
+                    // marginLeft:8,
+                    // marginBottom:2,
+                    borderRadius:2,
+                    
+                    //borderColor:'lightgrey',
+                    borderStyle:'solid',
+                    overflow:'hidden',
+                    boxSizing:"border-box",
+                    shadowColor:'#000',
+                    shadowOpacity:0.85,
+                    shadowRadius:2,
                     shadowOffset:{
                     width:0,
-                    height:2
+                    height:0
                     },
-                    // elevation:5,
-                    overflow:'hidden'
-                    //backgroundImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC',
-                }}
-            >
-                <label
-                    // for="foo"
-                    className="center-select"
-                >
-                    <select 
-                        className="center-select__input"
-                        style={{
-                            color:'white',
-                            fontSize: 11,
-                            fontWeight:'700',
-                            height:33,
-                            lineHeight:1.3,
-                            padding:'.6em 1.4em .5em .8em',
-                            boxSizing:"border-box",
-                            textAlign:'center',
-                           
+                    elevation:2,
+                    marginBottom:4,
+                }}>
+                <Text 
+                    style={{
+                        color:'white',
+                        fontSize: 11,
+                        fontWeight:'700',
+                        height:33,
+                        lineHeight:1.3,
+                        backgroundColor:'transparent',
+                        textAlign:'center',
+            
+                    
+                        flexDirection:'row',
+                        // borderBottom:2,
+                        // borderTop:1,
+                        // borderWidth:1,
+                        // borderColor:'lightgrey',
+                        // borderRadius:4,
+                        textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                        textShadowOffset: {width: 0, height: 0},
+                        textShadowRadius: 2,
+                        width:150,
                         
-                            textAlignLast:'center',
-                            alignItems:'center',
-                            justifyContent:'center',
-                            flexDirection:'row',
-                            // borderBottom:2,
-                            // borderTop:1,
-                            borderStyle:'solid',
-                            borderColor:"#aaa",
-                            width:90,
-                            marginBottom:4,
-                            backgroundColor:'lightgrey',
-                            // shadowColor:'#000',
-                            // shadowOpacity:0.25,
-                            // shadowRadius:3.84,
-                            // shadowOffset:{
-                            // width:0,
-                            // height:2
-                            // },
-                            // elevation:5,
-                            overflow:'hidden'
-                            //backgroundImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC',
-                        }}
-                        value={language} 
-                        onChange={changeLanguage}>
-                        <option value="eng">English</option>
-                        <option value="kor">한글</option>
-                    </select>
-                    <span ref={spanRef} className="center-select__text">
-                        English
-                    </span>
-                </label>
-            </Text>
+                        //backgroundColor:'transparent',
+                        // shadowColor:'black',
+                        // shadowOpacity:0.25,
+                        // shadowRadius:2,
+                        // shadowOffset:{
+                        // width:0,
+                        // height:0
+                        // },
+                        // elevation:5,
+                        overflow:'hidden'
+                        //backgroundImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC',
+                    }}
+                >
+                    <label
+                        // for="foo"
+                        className="center-select"
+                    >
+                        <select 
+                            className="center-select__input"
+                            style={{
+                                color:'white',
+                                fontSize: 11,
+                                fontWeight:'700',
+                                height:36,
+                                lineHeight:1.3,
+                                //padding:'.6em 1.4em .5em .8em',
+                                boxSizing:"border-box",
+                                textAlign:'center',
+                                
+                            
+                                textAlignLast:'center',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                flexDirection:'row',
+                                // borderBottom:2,
+                                // borderTop:1,
+                                //borderStyle:'solid',
+                                //borderColor:"#aaa",
+                                //width:90,
+                                //marginBottom:4,
+                                //backgroundColor:'lightgrey',
+                                // shadowColor:'#000',
+                                // shadowOpacity:0.25,
+                                // shadowRadius:3.84,
+                                // shadowOffset:{
+                                // width:0,
+                                // height:2
+                                // },
+                                // elevation:5,
+                                //overflow:'hidden'
+                                //backgroundImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC',
+                            }}
+                            value={language} 
+                            onChange={changeLanguage}>
+                            <option value="eng">English</option>
+                            <option value="kor">한글</option>
+                        </select>
+                        <span ref={spanRef} className="center-select__text">
+                            English
+                        </span>
+                    </label>
+                </Text>
+            </View>
             <FilePicker 
             text={'PDF'}
             setFileBinaryStr={setFileBinaryStr} 

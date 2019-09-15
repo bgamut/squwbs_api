@@ -118,7 +118,7 @@ const FilePicker = (props)=> {
             <View style={{ 
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
-                width:90,
+                width:150,
                 backgroundColor:'white',
                 
                 flex:1,
@@ -128,14 +128,14 @@ const FilePicker = (props)=> {
                 // marginRight:8,
                 // marginLeft:8,
                 // marginBottom:2,
-                borderRadius:4,
+                borderRadius:2,
                 
-                borderColor:'#aaa',
+                borderColor:'lightgrey',
                 borderStyle:'solid',
                 overflow:'hidden',
                 boxSizing:"border-box",
                 shadowColor:'#000',
-                shadowOpacity:0.25,
+                shadowOpacity:0.85,
                 shadowRadius:2,
                 shadowOffset:{
                 width:0,

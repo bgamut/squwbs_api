@@ -344,7 +344,7 @@ const SwipeableScroller = (props) => {
                 width:"100%",
                 padding:15,
                 
-                backgroundColor:'transparent',
+                backgroundColor:'rgb(211,211,211)',
                 justifyContent:'center',
                 alignItems:'center',
               }}
@@ -356,7 +356,7 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   alignItems:'center',
                   zIndex:0,
-                  backgroundColor:'rgb(211,211,211)',
+                  backgroundColor:'white',
                   borderRadius:4,
                   //borderBottom:2,
                   //borderTop:1,

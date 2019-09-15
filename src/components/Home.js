@@ -18,7 +18,7 @@ import {Context} from '../context'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
-const withQuery = require('with-query')
+const withQuery = require('with-query').default
 
 
 var diff = require('object-diff')
@@ -28,7 +28,7 @@ const stringifyObject= require('stringify-object')
 
 const addUserToServer = (obj)=>{
 
-  fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
+  fetch(withQuery('https://squwbs.herokuapp.com/addWord', {
     ...obj,
     mode:'cors'
   }))

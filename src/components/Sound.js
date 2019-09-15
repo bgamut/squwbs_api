@@ -191,10 +191,11 @@ const Sound=()=> {
         >
         <View
           style={{
-            height:'25%',
+            height:'100%',
             width:'100%',
             alignItems:'center',
             justifyContent:'center',
+            backgroundColor:'transparent'
           }}
         >
         
@@ -227,33 +228,35 @@ const Sound=()=> {
           </View> */}
         <View style={{ 
             // height:100,
-            width:90,
+            width:150,
             height:33,
+           
             backgroundColor:'white',
             
-            flexDirection:'column',
+           
             justifyContent:'center',
             alignItems:'center',
-            // marginRight:2,
-            // marginLeft:2,
+            // marginRight:8,
+            // marginLeft:8,
             // marginBottom:2,
+            borderRadius:2,
             
-            // padding:4,
-            borderRadius:4,
-            borderColor:'#aaa',
+            borderColor:'lightgrey',
             borderStyle:'solid',
             overflow:'hidden',
             boxSizing:"border-box",
             shadowColor:'#000',
-            shadowOpacity:0.25,
+            shadowOpacity:0.85,
             shadowRadius:2,
             shadowOffset:{
             width:0,
             height:0
             },
-            elevation:2,
-            borderColor:'lightgrey',
-            overflow:'hidden'}} 
+            elevation:2
+                
+            
+            
+          }} 
             {...getRootProps({refKey:'innerRef'})}
         >
             <View style={{
