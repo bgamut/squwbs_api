@@ -175,14 +175,14 @@ class WordDeck extends Component {
     // getWordListFromMongoViaServer()
 
   }
-  UNSAFE_componentDidMount(){
+  componentDidMount(){
 
     
     this.requestWords()
     console.log(this.state)
 
   }
-  UNSAFE_componentDidUpdate(){
+  componentDidUpdate(){
     
     
     if(this.myRef.current!==null){

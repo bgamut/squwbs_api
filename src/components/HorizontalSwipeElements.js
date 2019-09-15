@@ -103,7 +103,7 @@ export default class HorizontalSwipeElements extends Component {
       onPanResponderTerminationRequest:()=>false,
     })
   }
-  UNSAFE_componentDidMount(){
+  componentDidMount(){
     this.state.pan.x.addListener((value)=> this._animatedValueX=value.value)
     //this.startAutoplay()
   }

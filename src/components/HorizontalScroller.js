@@ -37,7 +37,7 @@ class HorizontalScroller extends Component{
             }
         )
     }
-    UNSAFE_componentDidMount=()=>{
+    componentDidMount=()=>{
         window.addEventListener("resize", this.updateDimensions);
         window.addEventListener("orientationchange",this.updateDimensions);
     }

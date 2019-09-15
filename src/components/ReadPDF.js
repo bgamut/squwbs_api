@@ -76,7 +76,7 @@ const PDFReader = () => {
                     height:0
                     },
                     elevation:2,
-                    marginBottom:4,
+                    marginBottom:2,
                 }}>
                 <Text 
                     style={{
@@ -157,19 +157,29 @@ const PDFReader = () => {
                             <option value="eng">English</option>
                             <option value="kor">한글</option>
                         </select>
-                        <span ref={spanRef} className="center-select__text">
+                        <span ref={spanRef} className="center-select__text"
+                            style={{
+                                marginTop:2
+                            }}
+                        >
                             English
                         </span>
                     </label>
                 </Text>
             </View>
-            <FilePicker 
-            text={'PDF'}
-            setFileBinaryStr={setFileBinaryStr} 
-            setFileSelected={setFileSelected} 
-            fileSelected={fileSelected}
-            setFile={setFile}
-            />
+                <View
+                    style={{
+                        marginTop:2
+                    }}
+                >
+                    <FilePicker 
+                    text={'PDF'}
+                    setFileBinaryStr={setFileBinaryStr} 
+                    setFileSelected={setFileSelected} 
+                    fileSelected={fileSelected}
+                    setFile={setFile}
+                    />
+                </View>
             </View>
         </View>  
         )    

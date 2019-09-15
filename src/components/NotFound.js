@@ -13,7 +13,7 @@ class NotFound extends React.Component{
         this.height=0
         this.width=0
     }
-    UNSAFE_componentDidMount(){
+    componentDidMount(){
         this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
     }
     UNSAFE_componentWillReceiveProps(nextProps){

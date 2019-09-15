@@ -60,7 +60,7 @@ class WordCard extends Component {
       dataManipulated:true,
       refreshing:false
     })
-    //console.log(state.filteredData)
+    console.log(state.filteredData)
     
   }
   flipCard() {
@@ -156,7 +156,7 @@ class WordCard extends Component {
       //this.onPress()
     }
   })
-  UNSAFE_componentDidMount(){
+  componentDidMount(){
     // window.addEventListener("resize", this.updateDimensions);
   }
   updateDimensions(){

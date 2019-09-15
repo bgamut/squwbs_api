@@ -62,7 +62,7 @@ class VerticalScroller extends Component{
             }
         )
     }
-    UNSAFE_componentDidMount=()=>{
+    componentDidMount=()=>{
         this.makeRemoteRequest();
         //console.log('componenet mounted' +Math.floor(Dimensions.get('window').height/3))
         window.addEventListener("resize", this.updateDimensions);
