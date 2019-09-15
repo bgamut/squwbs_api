@@ -76,7 +76,7 @@ const PDFReader = () => {
                     height:0
                     },
                     elevation:2,
-                    marginBottom:4,
+                    marginBottom:3,
                 }}>
                 <Text 
                     style={{
@@ -169,7 +169,7 @@ const PDFReader = () => {
             </View>
                 <View
                     style={{
-                        marginTop:2
+                        marginTop:3
                     }}
                 >
                     <FilePicker 

@@ -40,7 +40,7 @@ const addUserToServer = (obj)=>{
       return json
     })
     .catch((err)=>{
-      console.err(err)
+      console.error(err)
     })
 }
 
@@ -58,7 +58,7 @@ const Home = () => {
       console.log('user : ')
       console.log(stringifyObject(user))
     }
-    console.log(JSON.stringify(jsonObj))
+    
     setState({...state,userData:{...jsonObj}})
     //console.log('this is the state'+ state.headerHeight)
   }
