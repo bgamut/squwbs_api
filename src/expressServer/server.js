@@ -463,7 +463,7 @@ app.get('/user',cors(),(req,res)=>{
     res.send({message:message})
   }
 
-  addUser(obj,sendSuccess)
+  user(obj,sendSuccess)
 
 })
 app.get('/adduser',cors(),(req,res)=>{
