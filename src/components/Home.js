@@ -51,7 +51,7 @@ const Home = () => {
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const jsonObj = await responded.json()
     //console.log(Object.keys(jsonObj).length)
-    console.log(Object.keys(jsonObj).length>0)
+    console.log(Object.keys(jsonObj).length)
     if(Object.keys(jsonObj).length>1){
       console.log('user info sent to server')
       const user = await addUserToServer(jsonObj)

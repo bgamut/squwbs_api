@@ -420,7 +420,7 @@ app.get('/user',cors(),(req,res)=>{
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
-      console,log('userlist function')
+      //console,log('userlist function')
       if(usersList==undefined){
         //var userStructure={}
         userStructure.provider[obj.provider]=obj.providerid
@@ -437,10 +437,10 @@ app.get('/user',cors(),(req,res)=>{
           userStructure.names[obj.provider]=obj.Name
           userStructure['connect.sid']=obj['connect.sid']
           usersList.push(userStructure)
-          console.log('user added')
+          //console.log('user added')
         }
         else{
-          console.log('this user already exists')
+          //console.log('this user already exists')
           picked['connect.id']=obj['connect.id']
           var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
           usersList[index]=picked
@@ -448,11 +448,11 @@ app.get('/user',cors(),(req,res)=>{
       }
       ref.set(usersList,function(error){
         if(error){
-          console.log(error)
+          //console.log(error)
           func(error)
         }
         else{
-          console.log('callback fired')
+          //console.log('callback fired')
           func(picked)
         }
 
