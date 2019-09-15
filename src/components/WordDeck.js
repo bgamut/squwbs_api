@@ -3,7 +3,7 @@ import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,Touc
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
 import WordCard from './WordCard'
-import WordCardV2 from './WordCardV2'
+//import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 //const MongoClient = require('mongodb').MongoClient;
 
@@ -99,7 +99,7 @@ class WordDeck extends Component {
 
   }
   abortController= new AbortController()
-  componentWillUnmount(){
+  UNSAFE_componentWillUnmount(){
     this.abortController.abort()
   }
   handleCardRemove=()=>{
@@ -175,14 +175,14 @@ class WordDeck extends Component {
     // getWordListFromMongoViaServer()
 
   }
-  componentDidMount(){
+  UNSAFE_componentDidMount(){
 
     
     this.requestWords()
     console.log(this.state)
 
   }
-  componentDidUpdate(){
+  UNSAFE_componentDidUpdate(){
     
     
     if(this.myRef.current!==null){
@@ -223,7 +223,7 @@ class WordDeck extends Component {
               height:0
               },
               elevation:2
-          }}class="far fa-hand-pointer"></i>}
+          }}className="far fa-hand-pointer"></i>}
             //meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
             meaning={<i style={{           
               height:33,
@@ -241,7 +241,7 @@ class WordDeck extends Component {
               height:0
               },
               elevation:2
-          }}class="fas fa-arrows-alt-h"></i>}
+          }}className="fas fa-arrows-alt-h"></i>}
             example={this.state.bagOfWords[this.state.currentIndex].example} 
             pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
             percentage={this.props.percentage}

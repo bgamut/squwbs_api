@@ -12,11 +12,11 @@ import {View,Text,StyleSheet} from 'react-native';
   });
 
 class Posts extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     //this.props.fetchPosts();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.newPost) {
       this.props.posts.unshift(nextProps.newPost);
     }

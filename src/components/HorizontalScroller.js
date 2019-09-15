@@ -37,14 +37,14 @@ class HorizontalScroller extends Component{
             }
         )
     }
-    componentDidMount=()=>{
+    UNSAFE_componentDidMount=()=>{
         window.addEventListener("resize", this.updateDimensions);
         window.addEventListener("orientationchange",this.updateDimensions);
     }
-    componentWillMount=()=>{
+    UNSAFE_componentWillMount=()=>{
         this.updateDimensions();
     }
-    componentWillUnmount=()=>{
+    UNSAFE_componentWillUnmount=()=>{
         window.removeEventListener("resize", this.updateDimensions);
         window.removeEventListener("orientationchange",this.updateDimensions);
     }

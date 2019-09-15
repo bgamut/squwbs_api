@@ -107,13 +107,13 @@ export default class Swiper extends React.Component {
         });
     }
 
-    componentDidMount() {
+    UNSAFE_componentDidMount() {
         this.state.pan.x.addListener((value) => this._animatedValueX = value.value);
         this.state.pan.y.addListener((value) => this._animatedValueY = value.value);
         this.startAutoplay();
     }
 
-    componentWillUnmount() {
+    UNSAFE_componentWillUnmount() {
         this.stopAutoplay();
         this.state.pan.x.removeAllListeners();
         this.state.pan.y.removeAllListeners();

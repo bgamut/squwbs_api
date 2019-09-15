@@ -237,11 +237,11 @@ class SplitScreen extends Component {
         //   })
         //   .done();
     }
-    componentDidUpdate(){
+    UNSAFE_componentDidUpdate(){
         console.log("state changed: "+this.state.imgURL)
         // this.forceUpdate()
     }
-    componentWillReceiveProps(newProps){
+    UNSAFE_componentWillReceiveProps(newProps){
         // fs.readFile(newProps.source,(err,data)=>{
         //     console.log(data)
         // })

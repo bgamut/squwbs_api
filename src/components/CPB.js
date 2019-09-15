@@ -215,7 +215,7 @@ class CPB extends Component {
         }
         this.update(this.value,100)
       }
-      componentDidMount(){
+      UNSAFE_componentDidMount(){
         this.update(0,100)
         //setInterval(this.demo.bind(this), 100);
       }
@@ -233,7 +233,7 @@ class CPB extends Component {
       //     currentNumber:currentNumber
       //   })
       // }
-      componentWillReceiveProps(nextProps){
+      UNSAFE_componentWillReceiveProps(nextProps){
         if(nextProps.currentNumber!==undefined&&nextProps.endNumber){
           this.update(nextProps.currentNumber,nextProps.endNumber)
         }

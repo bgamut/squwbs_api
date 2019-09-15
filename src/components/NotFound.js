@@ -13,15 +13,15 @@ class NotFound extends React.Component{
         this.height=0
         this.width=0
     }
-    componentDidMount(){
+    UNSAFE_componentDidMount(){
         this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
     }
-    componentWillReceiveProps(nextProps){
+    UNSAFE_componentWillReceiveProps(nextProps){
         this.setState({
             imgURL: nextProps.imgURL,
           });
     }
-    componentDidUpdate(){
+    UNSAFE_componentDidUpdate(){
         const changeDimensions=()=>{
             let height = Dimensions.get('window').height
             let width= Dimensions.get('window').width

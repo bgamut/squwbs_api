@@ -24,7 +24,7 @@ export default class CardFlip extends Component {
     }
   }
 
-  componentDidMount(){
+  UNSAFE_componentDidMount(){
     this.setState({
       duration: this.props.duration,
       flipZoom: this.props.flipZoom,
@@ -32,7 +32,7 @@ export default class CardFlip extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps){
+  UNSAFE_componentWillReceiveProps(nextProps){
     this.setState({
       duration: nextProps.duration,
       flipZoom: nextProps.flipZoom,

@@ -11,6 +11,7 @@ import Header from './Header'
 import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
+
 //import AdSense from 'react-adsense';
 // import UploadWords from './UploadWords'
 // import SplitScreenV2 from './SplitScreenV2'
@@ -18,6 +19,7 @@ import {Context} from '../context'
 
 import {Rnd} from 'react-rnd'
 
+var diff = require('object-diff')
 const _ = require('lodash')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 const Home = () => {
@@ -26,10 +28,11 @@ const Home = () => {
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const jsonObj = await responded.json()
-    console.log(jsonObj=={})
+    console.log(Object.keys(jsonObj).length==0)
+    console.log(Object.keys(jsonObj).length)
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
-    console.log('this is the state'+ state.headerHeight)
+    //console.log('this is the state'+ state.headerHeight)
   }
   useEffect(()=>{
     

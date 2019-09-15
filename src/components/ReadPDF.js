@@ -53,7 +53,7 @@ const PDFReader = () => {
                 style={{
                     color:'white',
                     fontSize: 11,
-                    fontWeight:700,
+                    fontWeight:'700',
                     height:33,
                     lineHeight:1.3,
                   
@@ -61,8 +61,8 @@ const PDFReader = () => {
         
                 
                     flexDirection:'row',
-                    borderBottom:2,
-                    borderTop:1,
+                    // borderBottom:2,
+                    // borderTop:1,
                     borderColor:'#aaa',
                     borderRadius:4,
                     textShadowColor: 'rgba(0, 0, 0, 0.85)',
@@ -84,7 +84,7 @@ const PDFReader = () => {
                 }}
             >
                 <label
-                    for="foo"
+                    // for="foo"
                     className="center-select"
                 >
                     <select 
@@ -92,7 +92,7 @@ const PDFReader = () => {
                         style={{
                             color:'white',
                             fontSize: 11,
-                            fontWeight:700,
+                            fontWeight:'700',
                             height:33,
                             lineHeight:1.3,
                             padding:'.6em 1.4em .5em .8em',
@@ -104,8 +104,8 @@ const PDFReader = () => {
                             alignItems:'center',
                             justifyContent:'center',
                             flexDirection:'row',
-                            borderBottom:2,
-                            borderTop:1,
+                            // borderBottom:2,
+                            // borderTop:1,
                             borderStyle:'solid',
                             borderColor:"#aaa",
                             width:90,
@@ -127,7 +127,7 @@ const PDFReader = () => {
                         <option value="eng">English</option>
                         <option value="kor">한글</option>
                     </select>
-                    <span ref={spanRef} class="center-select__text">
+                    <span ref={spanRef} className="center-select__text">
                         English
                     </span>
                 </label>

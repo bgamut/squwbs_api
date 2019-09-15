@@ -62,7 +62,7 @@ class VerticalScroller extends Component{
             }
         )
     }
-    componentDidMount=()=>{
+    UNSAFE_componentDidMount=()=>{
         this.makeRemoteRequest();
         //console.log('componenet mounted' +Math.floor(Dimensions.get('window').height/3))
         window.addEventListener("resize", this.updateDimensions);
@@ -70,12 +70,12 @@ class VerticalScroller extends Component{
         //this.setState({ height: Math.floor(Dimensions.get('window').height/3)});
         
     }
-    componentWillMount=()=>{
+    UNSAFE_componentWillMount=()=>{
         //this.setState({ screenHeight: Dimensions.get('window').height});
         //console.log('componenet updated' +this.state.screenHeight)
         this.updateDimensions();
     }
-    componentWillUnmount=()=>{
+    UNSAFE_componentWillUnmount=()=>{
         window.removeEventListener("resize", this.updateDimensions);
         window.removeEventListener("orientationchange",this.updateDimensions);
     }

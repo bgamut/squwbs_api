@@ -216,7 +216,7 @@ const Drawer =(props)=>{
                         width:maxHeight,
                         // flex:1,
                         justifyContent:'center',
-                        zIndex:'99',
+                        zIndex:99,
                         
                     }}>
                         <TouchableOpacity 
@@ -257,7 +257,7 @@ const Drawer =(props)=>{
                             justifyContent:'center',
                             alignItems:'center',
                             marginRight:5,
-                            marginbottom:2
+                            marginBottom:2
                             //Right:0
                         }}/>
                         </a>
@@ -450,7 +450,7 @@ const styles=StyleSheet.create(
         textStyle:{
             color:'white',
             
-            fontWeight:700,
+            fontWeight:'700',
             fontSize: 19,
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},

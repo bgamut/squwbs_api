@@ -156,7 +156,7 @@ class WordCard extends Component {
       //this.onPress()
     }
   })
-  componentDidMount(){
+  UNSAFE_componentDidMount(){
     // window.addEventListener("resize", this.updateDimensions);
   }
   updateDimensions(){
@@ -170,7 +170,7 @@ class WordCard extends Component {
     // this.style.height=Math.floor(Dimensions.get('window').height)
     // this.setState("height",Math.floor(Dimensions.get('window').height))
   }
-  componentDidUpdate(){
+  UNSAFE_componentDidUpdate(){
       //console.log('updated card element')
   }
   

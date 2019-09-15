@@ -129,8 +129,7 @@ const FilePicker = (props)=> {
                 // marginLeft:8,
                 // marginBottom:2,
                 borderRadius:4,
-                borderBottom:2,
-                borderTop:1,
+                
                 borderColor:'#aaa',
                 borderStyle:'solid',
                 overflow:'hidden',

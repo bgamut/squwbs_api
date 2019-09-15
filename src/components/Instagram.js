@@ -139,7 +139,7 @@ const Instagram = (props)=> {
 
                                 justifyContent:"center",
                                 alignItems:"center",
-                                background:'transparent',
+                                backgroundColor:'transparent',
                                 height:height-50,
                                 width:width-150,
                                 maxWidth:width-600
@@ -177,7 +177,7 @@ const Instagram = (props)=> {
                                     height:39,
                                     justifyContent:'center',
                                     alignItems:'center',
-                                    background:'transparent'
+                                    backgroundColor:'transparent'
                                 }}>
                                  <a 
                                     style={{  
@@ -206,7 +206,7 @@ const Instagram = (props)=> {
                                         },
                                         elevation:2
                                     }}
-                                    class="fab fa-instagram fa-4x">
+                                    className="fab fa-instagram fa-4x">
                                 
                                 </i>
                                 </a>

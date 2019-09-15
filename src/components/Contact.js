@@ -1,4 +1,4 @@
-import React, {Component,useCallback,useState,useRef,useEffect} from 'react'
+import React, {useCallback,useState,useRef,useEffect} from 'react'
 import {Text,View,Dimensions,TouchableOpacity} from 'react-native'
 import Dropzone, {useDropzone} from 'react-dropzone'
 //import {Context} from '../context'
@@ -74,7 +74,7 @@ const Contact = (props)=> {
 
                             justifyContent:"center",
                             alignItems:"center",
-                            background:'transparent'
+                            backgroundColor:'transparent'
                         }}
                     >
                    
@@ -100,7 +100,7 @@ const Contact = (props)=> {
                             width:'100%',
                             justifyContent:'center',
                             alignItems:'center',
-                            background:'transparent'
+                            backgroundColor:'transparent'
                         }}>
                     <i 
                     style={{           
@@ -120,7 +120,7 @@ const Contact = (props)=> {
                         textShadowColor: 'rgba(0, 0, 0, 0.5)',
                         textShadowOffset: {width: 0, height: 0},
                         textShadowRadius: 8,
-                      }}class="material-icons large white-text">email</i>
+                      }}className="material-icons large white-text">email</i>
                     </View>
                     </View>
                         <View 

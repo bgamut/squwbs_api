@@ -18,7 +18,7 @@ class DefaultFlatList extends Component {
     };
   }
 
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     this.makeRemoteRequest();
   }
 

@@ -51,8 +51,26 @@ const addWordListToServer = (list)=>{
     //   .catch((err)=>{
   
     //   })
-    const mongoURLAddWordList='https://squwbs.herokuapp.com/addlist'
-    const addWordListToMongoViaServer = (list)=>{
+    //const mongoURLAddWordList='https://squwbs.herokuapp.com/addlist'
+
+    // const addWordListToMongoViaServer = (list)=>{
+    //     fetch(withQuery.default('https://squwbs.herokuapp.com/addlist', { 
+    //         list:list,
+    //         mode:'cors'
+    //     }))
+    //     .then(result=>{
+    //       return result.json()
+    //     })
+    //     .then((json)=>{
+    //       console.log(json)
+    //     })
+    //     .catch((err)=>{
+    //       console.log(err)
+    //     })
+    //   }
+    // addWordListToMongoViaServer(list)
+
+    const addWordListToViaServer = (list)=>{
         fetch(withQuery.default('https://squwbs.herokuapp.com/addlist', { 
             list:list,
             mode:'cors'
@@ -67,7 +85,7 @@ const addWordListToServer = (list)=>{
           console.log(err)
         })
       }
-    addWordListToMongoViaServer(list)
+    addWordListToViaServer(list)
 
     
 }

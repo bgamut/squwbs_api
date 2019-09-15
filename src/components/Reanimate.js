@@ -96,7 +96,7 @@ export default class Reanimate extends Component {
     // this._transX = cond(new Value(0), twenty, multiply(3, thirty));
     this._transX = runTiming(clock, -120, 120);
   }
-  componentDidMount() {
+  UNSAFE_componentDidMount() {
     // Animated.spring(this._transX, {
     //   duration: 300,
     //   velocity: -300,

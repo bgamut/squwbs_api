@@ -240,8 +240,6 @@ const Sound=()=> {
             
             // padding:4,
             borderRadius:4,
-            borderBottom:2,
-            borderTop:1,
             borderColor:'#aaa',
             borderStyle:'solid',
             overflow:'hidden',
