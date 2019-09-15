@@ -54,13 +54,17 @@ const Home = () => {
     console.log(Object.keys(jsonObj).length)
     if(Object.keys(jsonObj).length>1){
       console.log('user info sent to server')
-      const user = await addUserToServer(jsonObj)
-      console.log('user : ')
-      console.log(stringifyObject(user))
+      addUserToServer(jsonObj)
+      .then(function(user){
+        console.log('user : ')
+        console.log(stringifyObject(user))
+        setState({...state,userData:{...user}})
+        //console.log('this is the state'+ state.headerHeight)
+      })
+      
     }
     
-    setState({...state,userData:{...jsonObj}})
-    //console.log('this is the state'+ state.headerHeight)
+    
   }
   useEffect(()=>{
     
