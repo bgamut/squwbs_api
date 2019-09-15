@@ -392,30 +392,132 @@ app.post('/api',cors(),(req,res)=>{
   res.send(req.body)
   
 })
-app.get('/adduser',cors(),(req,res)=>{
+app.get('/user',cors(),(req,res)=>{
   var obj = req.query
 
-  function addUser({userName,userEmail},func){
+  //function addUser({userName,userEmail},func){
+  function user(object,func){
     var db = admin.database()
     var ref = db.ref('users')
+    // var user = {
+    //   'provider':{
+    //     'google':{
+    //       'providerid':''
+    //     },
+    //     'facebook':{
+    //       'providerid':''
+    //     }
+    //   },
+    //   'names':{
+    //     'google':'',
+    //     'facebook':''
+    //   },
+    //   'connect.sid':{
+
+    //   }
+    // }
+    
+
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
       if(usersList==undefined){
-        usersList={0:{userName,userEmail}}
+        var userStructure={}
+        userStructure.provider[obj.provider]=obj.providerid
+        userStructure.names[obj.provider]=obj.Name
+        userStructure['connect.sid']=obj['connect.sid']
+        usersList={0:userStructure}
       }
       else{
-        var picked = usersList.find(user=>user.userEmail==userEmail)
+        var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
         if(picked==undefined){
           // console.log(picked==undefined)
-          usersList.push({userName,userEmail})
+          var userStructure={}
+          userStructure.provider[obj.provider]=obj.providerid
+          userStructure.names[obj.provider]=obj.Name
+          userStructure['connect.sid']=obj['connect.sid']
+          usersList.push(userStructure)
+          console.log('user added')
         }
         else{
-          if(_.isEqual(picked,{userName,userEmail})){
-            // console.log('this user already exists')
-          }
-          else{
-            // console.log('this email address already exists would you like to update the account information?')
-          }
+          console.log('this user already exists')
+          picked['connect.id']=obj['connect.id']
+          var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
+          usersList[index]=picked
+        }
+      }
+      ref.set(usersList,function(error){
+        if(error){
+          console.log(error)
+          func(error)
+        }
+        else{
+          console.log('callback fired')
+          func(picked)
+        }
+
+      })
+    })
+  }
+  
+  function sendSuccess(message){
+    res.send({message:message})
+  }
+
+  addUser(obj,sendSuccess)
+
+})
+app.get('/adduser',cors(),(req,res)=>{
+  var obj = req.query
+
+  //function addUser({userName,userEmail},func){
+  function addUser(object,func){
+    var db = admin.database()
+    var ref = db.ref('users')
+    // var user = {
+    //   'provider':{
+    //     'google':{
+    //       'providerid':''
+    //     },
+    //     'facebook':{
+    //       'providerid':''
+    //     }
+    //   },
+    //   'names':{
+    //     'google':'',
+    //     'facebook':''
+    //   },
+    //   'connect.sid':{
+
+    //   }
+    // }
+    
+
+    ref.once('value',function(snapshot){
+      var usersList=snapshot.val()
+      if(usersList==undefined){
+        var userStructure={}
+        userStructure.provider[obj.provider]=obj.providerid
+        userStructure.names[obj.provider]=obj.Name
+        userStructure['connect.sid']=obj['connect.sid']
+        usersList={0:userStructure}
+      }
+      else{
+        var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
+        if(picked==undefined){
+          // console.log(picked==undefined)
+          var userStructure={}
+          userStructure.provider[obj.provider]=obj.providerid
+          userStructure.names[obj.provider]=obj.Name
+          userStructure['connect.sid']=obj['connect.sid']
+          usersList.push(userStructure)
+          console.log('user added')
+        }
+        else{
+          
+          console.log('this user already exists')
+          picked['connect.id']=obj['connect.id']
+          var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
+          usersList[index]=picked
         }
       }
       ref.set(usersList,function(error){
@@ -614,150 +716,150 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
   addWordToMongo(obj,sendSuccess)
   
 })
-app.get('/addlist',cors(),(req,res)=>{
-  var wordList = req.query.list
-  //var wordList = req.body.list
-  //var mongouri=""
-  console.log(wordList)
-  const addWordList =(wordList,mongouri,callback)=>{
-    //const ObjectId=uuidv4()
-    callbackList=[]
-    mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
-      .catch((err)=>{
-        console.log(err)
-        callbackList.push({message:err})
-        callback(callbackList)
-      })
-      var db = mongoose.connection
+// app.get('/addlist',cors(),(req,res)=>{
+//   var wordList = req.query.list
+//   //var wordList = req.body.list
+//   //var mongouri=""
+//   console.log(wordList)
+//   const addWordList =(wordList,mongouri,callback)=>{
+//     //const ObjectId=uuidv4()
+//     callbackList=[]
+//     mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
+//       .catch((err)=>{
+//         console.log(err)
+//         callbackList.push({message:err})
+//         callback(callbackList)
+//       })
+//       var db = mongoose.connection
       
-      db.once('open',function(){
-        const CardSchema = new mongoose.Schema({
-          word:{type:String,default:undefined},
-          meaning:{type:String,default:undefined},
-          example:{type:String,default:undefined},
-          pronunciation:{type:String,default:undefined},
-          thumbnail:{type:String,default:undefined},
-          header:{type:String,default:undefined},
-          subhead:{type:String,default:undefined},
-          picture:{type:String,default:undefined},
-          youtubeLink:{type:String,default:undefined},
-          supportingText:{type:String,default:undefined},
-          timeStamp:{type:String,default:Date()}
-        }) 
+//       db.once('open',function(){
+//         const CardSchema = new mongoose.Schema({
+//           word:{type:String,default:undefined},
+//           meaning:{type:String,default:undefined},
+//           example:{type:String,default:undefined},
+//           pronunciation:{type:String,default:undefined},
+//           thumbnail:{type:String,default:undefined},
+//           header:{type:String,default:undefined},
+//           subhead:{type:String,default:undefined},
+//           picture:{type:String,default:undefined},
+//           youtubeLink:{type:String,default:undefined},
+//           supportingText:{type:String,default:undefined},
+//           timeStamp:{type:String,default:Date()}
+//         }) 
 
-        //var Card = mongoose.model('Cards',CardSchema)
-        var Card = mongoose.model('Cards')
-        console.log(Card)
+//         //var Card = mongoose.model('Cards',CardSchema)
+//         var Card = mongoose.model('Cards')
+//         console.log(Card)
 
-        // for (var i=0; i<wordList.length; i++){
+//         // for (var i=0; i<wordList.length; i++){
         
           
         
-        function addOneWordFromList(wordList,index){
+//         function addOneWordFromList(wordList,index){
           
-          var tempObject = wordList[index]
-          Card.findOne({word:tempObject.word},function(err,obj){
-            if(err){
-              console.log(err)
-              callbackList.push({message:err})
-              callback(callbackList)
-            }
+//           var tempObject = wordList[index]
+//           Card.findOne({word:tempObject.word},function(err,obj){
+//             if(err){
+//               console.log(err)
+//               callbackList.push({message:err})
+//               callback(callbackList)
+//             }
             
-            const newCard = new Card(tempObject)
-            if(obj!==null){
-              console.log(obj.word +" already exists.")
-              //console.log(typeof(Card.findOneAndRemove))
-              Card.findOneAndRemove(
-                {"word":tempObject["word"] },{useFindAndModify:false},function(){
-                  console.log('updating '+tempObject["word"])
-                }
-              ).then(function(){
-                newCard.save()
-                .then(function(){
-                  Card.updateOne(
-                    { omitUndefined: true },
-                    newCard
-                  )
-                  .then(function(){
-                    var currentWord=tempObject["word"]
-                    var callbackObject = {}
-                    callbackObject[currentWord]='updated'
-                    //console.log(callbackObject)
-                    callbackList.push(callbackObject)
-                    console.log(currentWord+' has been saved')
-                  })
-                  .then(function(){
+//             const newCard = new Card(tempObject)
+//             if(obj!==null){
+//               console.log(obj.word +" already exists.")
+//               //console.log(typeof(Card.findOneAndRemove))
+//               Card.findOneAndRemove(
+//                 {"word":tempObject["word"] },{useFindAndModify:false},function(){
+//                   console.log('updating '+tempObject["word"])
+//                 }
+//               ).then(function(){
+//                 newCard.save()
+//                 .then(function(){
+//                   Card.updateOne(
+//                     { omitUndefined: true },
+//                     newCard
+//                   )
+//                   .then(function(){
+//                     var currentWord=tempObject["word"]
+//                     var callbackObject = {}
+//                     callbackObject[currentWord]='updated'
+//                     //console.log(callbackObject)
+//                     callbackList.push(callbackObject)
+//                     console.log(currentWord+' has been saved')
+//                   })
+//                   .then(function(){
                     
                     
-                    if(index+1<wordList.length){
-                      addOneWordFromList(wordList,index+1)
-                    }
-                    else{
-                      db.close()
-                      callback(callbackList)
-                    }
-                  })
-                })
-                }
-              ) 
-            }
-            else{
-              newCard.save()
-              .then(function(){
-                Card.updateOne(
-                  { omitUndefined: true },
-                  newCard
-                )
-                .then(function(){
+//                     if(index+1<wordList.length){
+//                       addOneWordFromList(wordList,index+1)
+//                     }
+//                     else{
+//                       db.close()
+//                       callback(callbackList)
+//                     }
+//                   })
+//                 })
+//                 }
+//               ) 
+//             }
+//             else{
+//               newCard.save()
+//               .then(function(){
+//                 Card.updateOne(
+//                   { omitUndefined: true },
+//                   newCard
+//                 )
+//                 .then(function(){
   
-                  var currentWord=tempObject["word"]
-                  var callbackObject = {}
-                  callbackObject[currentWord]='saved'
-                  //console.log(callbackObject)
-                  callbackList.push(callbackObject)
-                  console.log(currentWord+' has been saved')
-                })
-                .then(function(){
+//                   var currentWord=tempObject["word"]
+//                   var callbackObject = {}
+//                   callbackObject[currentWord]='saved'
+//                   //console.log(callbackObject)
+//                   callbackList.push(callbackObject)
+//                   console.log(currentWord+' has been saved')
+//                 })
+//                 .then(function(){
                   
-                  locked=false
-                  if(index+1<wordList.length){
-                    addOneWordFromList(wordList,index+1)
-                  }
-                  else{
-                    db.close()
-                    callback(callbackList)
-                  }
-                })
-              })
+//                   locked=false
+//                   if(index+1<wordList.length){
+//                     addOneWordFromList(wordList,index+1)
+//                   }
+//                   else{
+//                     db.close()
+//                     callback(callbackList)
+//                   }
+//                 })
+//               })
               
-            }
+//             }
             
             
-          })
+//           })
   
-        }
-        addOneWordFromList(wordList,0)      
-      })
-  }
+//         }
+//         addOneWordFromList(wordList,0)      
+//       })
+//   }
   
-  function sendObj(obj){
-    res.json(obj)
-  }
+//   function sendObj(obj){
+//     res.json(obj)
+//   }
 
-  fetch(mongourlStringExpress, {credentials: "include"})
-  .then(function(result){
-    return result.json()
-  })
-  .then(function(json){
-    var mongouri=json.mongouri
-    console.log(mongouri)
-    addWordList(wordList,mongouri,sendObj)
-  })
-  .catch(function(err){
-    sendObj({error:err})
-  })
+//   fetch(mongourlStringExpress, {credentials: "include"})
+//   .then(function(result){
+//     return result.json()
+//   })
+//   .then(function(json){
+//     var mongouri=json.mongouri
+//     console.log(mongouri)
+//     addWordList(wordList,mongouri,sendObj)
+//   })
+//   .catch(function(err){
+//     sendObj({error:err})
+//   })
   
-})
+// })
     
 app.get('/getwordlistfrommongo',cors(),(req,res)=>{
   var wordList = req.query.list
@@ -875,6 +977,7 @@ app.get('/addword',cors(),(req,res)=>{
   addWord(obj,sendSuccess)
   
 })
+
 
 app.get('/addwordlist',cors(),(req,res)=>{
   var list = req.query.list

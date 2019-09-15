@@ -103,7 +103,7 @@ const addWordToServer = ({word,meaning,example,pronunciation})=>{
     example=a.example
     pronunciation=a.pronunciation
     console.log(word,meaning,example,pronunciation)
-    fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
+    fetch(withQuery.default('https://squwbs.herokuapp.com/user', {
       word:word,
       meaning:meaning,
       example:example,

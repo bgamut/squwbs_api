@@ -21,15 +21,41 @@ import {Rnd} from 'react-rnd'
 
 var diff = require('object-diff')
 const _ = require('lodash')
+const stringifyObject= require('stringify-object')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+const addUserToServer = (obj)=>{
+
+  fetch(withQuery.default('https://squwbs.herokuapp.com/addWord', {
+    ...obj,
+    mode:'cors'
+  }))
+  .then(result=>{
+      return result.json()
+    })
+    .then((json)=>{
+      console.log(json)
+      return json
+    })
+    .catch((err)=>{
+      console.err(err)
+    })
+}
+
 const Home = () => {
   //run()
   const [state,setState]=useState(Context)
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const jsonObj = await responded.json()
-    console.log(Object.keys(jsonObj).length==0)
     console.log(Object.keys(jsonObj).length)
+    console.log(Object.keys(jsonObj).length==0)
+    if(Object.keys(jsonObj).length!==0){
+      console.log('user info sent to server')
+      const user = await addUserToServer(jsonObj)
+      console.log('user : ')
+      console.log(stringifyObject(user))
+    }
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
     //console.log('this is the state'+ state.headerHeight)
