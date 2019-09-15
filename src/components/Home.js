@@ -18,6 +18,8 @@ import {Context} from '../context'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
+const withQuery = require('with-query').default
+
 
 var diff = require('object-diff')
 const _ = require('lodash')
