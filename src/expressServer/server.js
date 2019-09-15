@@ -399,29 +399,30 @@ app.get('/user',cors(),(req,res)=>{
   function user(object,func){
     var db = admin.database()
     var ref = db.ref('users')
-    // var user = {
-    //   'provider':{
-    //     'google':{
-    //       'providerid':''
-    //     },
-    //     'facebook':{
-    //       'providerid':''
-    //     }
-    //   },
-    //   'names':{
-    //     'google':'',
-    //     'facebook':''
-    //   },
-    //   'connect.sid':{
+    var userStructure = {
+      'provider':{
+        'google':{
+          'providerid':''
+        },
+        'facebook':{
+          'providerid':''
+        }
+      },
+      'names':{
+        'google':'',
+        'facebook':''
+      },
+      'connect.sid':{
 
-    //   }
-    // }
+      }
+    }
     
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
+      console,log('userlist function')
       if(usersList==undefined){
-        var userStructure={}
+        //var userStructure={}
         userStructure.provider[obj.provider]=obj.providerid
         userStructure.names[obj.provider]=obj.Name
         userStructure['connect.sid']=obj['connect.sid']

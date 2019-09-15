@@ -76,7 +76,7 @@ const PDFReader = () => {
                     height:0
                     },
                     elevation:2,
-                    marginBottom:2,
+                    marginBottom:4,
                 }}>
                 <Text 
                     style={{
@@ -159,7 +159,7 @@ const PDFReader = () => {
                         </select>
                         <span ref={spanRef} className="center-select__text"
                             style={{
-                                marginTop:2
+                                marginTop:4
                             }}
                         >
                             English
