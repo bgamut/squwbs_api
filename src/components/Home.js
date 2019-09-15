@@ -26,6 +26,7 @@ const Home = () => {
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const jsonObj = await responded.json()
+    console.log(jsonObj=={})
     console.log(JSON.stringify(jsonObj))
     setState({...state,userData:{...jsonObj}})
     console.log('this is the state'+ state.headerHeight)
