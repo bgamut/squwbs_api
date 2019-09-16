@@ -54,13 +54,13 @@ const Home = () => {
     console.log(Object.keys(jsonObj).length)
     if(Object.keys(jsonObj).length>1){
       console.log('user info sent to server')
-      addUserToServer(jsonObj)
-      .then(function(user){
-        console.log('user : ')
-        console.log(stringifyObject(user))
-        setState({...state,userData:{...user}})
-        //console.log('this is the state'+ state.headerHeight)
-      })
+      var user = addUserToServer(jsonObj)
+      
+      console.log('user : ')
+      console.log(stringifyObject(user))
+      setState({...state,userData:{...user}})
+      //console.log('this is the state'+ state.headerHeight)
+      
       
     }
     
