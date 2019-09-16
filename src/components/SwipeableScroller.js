@@ -19,6 +19,7 @@ import { Carousel } from 'react-responsive-carousel';
 let currentY=0
 //const prevY=new Animated.Value(0)
 let prevY=0
+let buffer=[0,0]
 const yScroll = new Animated.Value(0)
 const SwipeableScroller = (props) => {
   
@@ -53,18 +54,24 @@ const SwipeableScroller = (props) => {
     
     //console.log(e.nativeEvent.contentOffset.y)
     currentY=(e.nativeEvent.contentOffset.y)
-    //console.log(yScroll._value+prevY-currentY)
-    yScroll.setValue(yScroll._value+prevY-currentY)
-    // const ANIMATION_INTERPOLATE =currentY.interpolate(
-    //   {
-    //       inputRange:[0,50,100],
-    //       outputRange:[0,50,50]
+    
+    //
+    //console.log(currentY-prevY)
+    buffer=buffer.splice(-1)
+    buffer.push(currentY-prevY)
+    var average=0
+    for (var i=0; i<buffer.length; i++){
+      average+=buffer[i]
+    }
+    console.log('average : '+average)
+    // Animated.spring(yScroll,{
+    //   toValue: currentY,
+      
+    //   //speed:12,
+      
     //   }
-    // )
-    //setState({...state,yscroll:ANIMATION_INTERPOLATE})
-    //prevY.setValue(e.nativeEvent.contentOffset.y)
-    state.yscroll.setValue(yScroll._value)
-    let translateYInterp = state.yscroll.interpolate(
+    // ).start()
+    let translateYInterp = yScroll.interpolate(
       {
           inputRange:[0,50,51,100],
           outputRange:[0,50,50,50]
@@ -72,7 +79,7 @@ const SwipeableScroller = (props) => {
     )
     setState({...state,translateY:translateYInterp})
     //setState({...state,yscroll:yScroll})
-    prevY=e.nativeEvent.contentOffset.y
+    prevY=currentY
     
   }
   return(
@@ -82,7 +89,7 @@ const SwipeableScroller = (props) => {
       // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
       style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
       onScroll={(e)=>{
-          // onScroll(e)
+          onScroll(e)
         }
       }
       scrollEnabled={true}

@@ -1,5 +1,5 @@
 import React, {Component,useCallback,useState,useRef,useEffect} from 'react'
-import {Text,View,Dimensions,TouchableOpacity,Image} from 'react-native'
+import {Text,View,Dimensions,TouchableOpacity,Image,Animated,Easing} from 'react-native'
 import Dropzone, {useDropzone} from 'react-dropzone'
 //import {Context} from '../context'
 import Fade from 'react-reveal/Fade'
@@ -19,23 +19,68 @@ const Instagram = (props)=> {
     const [uriList,setUriList]=useState([])
     const [show,setShow]=useState('Show')
     const [index,setIndex]=useState(0)
-    const imgRef = useRef(null)
+    const [dummy,setDummy]=useState(0)
+    const imgRef1 = useRef(null)
+    const imgRef2 = useRef(null)
+    var opacity = new Animated.Value(0);
+    //var val
+    opacity.addListener(({value}) => {
+        //value;
+        //console.log(value)
+        imgRef1.current.style.opacity=value
+
+    })
+    const opacityAnimationToOne=()=>{
+        // console.log(opacity._value)
+
+        // console.log(opacity._value==0)
+        // console.log(opacity._value==1)
+        //console.log('to One')
+        Animated.spring(opacity, 
+            {
+                toValue: 1,
+                
+            }
+        ).start()
+    }
+    const opacityAnimationToZero=()=>{
+        //console.log(opacity._value)
+        //console.log("to Zero")
+        Animated.spring(opacity, 
+            {
+                toValue: 0,
+                
+                //speed:12,
+                
+            }
+        ).start()
+    }
+    
+    
     const updateDimensions=()=>{
         setHeight(Dimensions.get('window').height)
         setWidth(Dimensions.get('window').width)
     }
         
     useEffect(()=>{
-        //console.log('width:'+width+' height:'+height)
+        console.log('width:'+width+' height:'+height)
         if(width>=height){
             //console.log('landscape')
-            imgRef.current.height=Dimensions.get('window').height-150
+            //imgRef1.current.maxHeight=height-200
+            //console.log(imgRef1.current.style)
+            //imgRef1.current.maxWidth=width-200
+            //imgRef2.current.maxHeight=height-200
+            //imgRef2.current.maxWidth=width-200
         }
         else{
             //console.log('portrait')
-            imgRef.current.height=Dimensions.get('window').height-300
+            //imgRef1.current.maxHeight=height-200
+            // imgRef1.current.width=width-300
+            //imgRef2.current.maxHeight=height-200
+            // imgRef2.current.width=width-300
+            
         }
-        //console.log(imgRef.current.height)
+        //console.log(imgRef1.current.height)
         
     },[height,width])
     useEffect(()=>{
@@ -60,17 +105,17 @@ const Instagram = (props)=> {
                 var imageurl=json.data[0].images.standard_resolution.url;
                 //console.log(imageurl)
                 setUri(imageurl)
-                imgRef.current.src=imageurl
+                imgRef1.current.src=imageurl
                 var temp = []
                 for (var i =0; i<20; i++){
                     temp[i]=json.data[i].images.standard_resolution.url
                 }
                 setUriList(temp)
                 
-                // imgRef.setNativeProps({
+                // imgRef1.setNativeProps({
                 //     source:[{uri:imageurl}]
                 // })
-                // console.log(imgRef.source)
+                // console.log(imgRef1.source)
                 
             })
             
@@ -102,7 +147,7 @@ const Instagram = (props)=> {
         // //console.log("album picture # "+i%15)
         // //console.log(uriList[i%15])
         
-        // //imgRef.current.src=uriList[i%15]
+        // //imgRef1.current.src=uriList[i%15]
         
         
         // //i++
@@ -111,29 +156,39 @@ const Instagram = (props)=> {
     
     useEffect(()=>{
         //console.log('index change')
-        if(show=='Hide'){
-            imgRef.current.src=uriList[index%20]
-            
-            setShow('Show')
-            
-        }
-        else{
-            setShow('Hide')
-        }
-        
-       
         function sleep(ms){
             return new Promise(resolve=>{
                 setTimeout(resolve,ms)
             })
         }
-        sleep(3000).then(
-            function(){
-                setIndex(index+1)
-            }
-        )
+        // sleep(3000).then(
+        //     function(){
+        //         setIndex(index+1)
+        //     }
+        // )
+        if(show=='Hide'){
+            imgRef1.current.src=uriList[index%20]
+            
+            setShow('Show')
+            opacityAnimationToOne()
+            sleep(3000).then(
+                function(){
+                   // console.log('hi')
+                    setDummy(dummy+1)
+                }
+            )
+        }
+        else{
+            
+            setShow('Hide')
+            setIndex(index+1)
+            opacityAnimationToZero()
+        }
+        //opacityAnimation()
+       
         
-    },[index])
+        
+    },[index,dummy])
       
     
       return (
@@ -182,37 +237,67 @@ const Instagram = (props)=> {
             }} >
 
       
-                    {/* <div href="https://www.instagram.com/squwbs/?hl=ko" ref={imgRef}/> */}
+                    {/* <div href="https://www.instagram.com/squwbs/?hl=ko" ref={imgRef1}/> */}
                     
                    
                       
                       
-                        <View 
+                        <Animated.View 
                             style={{
 
                                 justifyContent:"center",
                                 alignItems:"center",
                                 backgroundColor:'transparent',
-                                height:height-50,
+                                height:height-150,
                                 width:width-150,
-                                maxWidth:width-600
+                                //opacity:opacity
+                                //maxWidth:width-600
                                 //paddingTop:0,
                             }}
                         >
-                            
-                                <img ref={imgRef}
+                            {/* <View
+                                style={{
+                                    backgroundColor:'red',
+                                    height:height,
+                                    width:width,
+                                   
+
+                                    //paddingTop:0,
+                                }}
+                            > */}
+                                <img ref={imgRef1}
                                     style={{
                                         //top:0,
                                         //display:"inline-block",
-                                        //maxHeight:height-150,
+                                        maxHeight:height-200,
+                                        width:'auto',
+                                        height:'auto',
+                                        margin: 5,
+                                        //opacity:0.5
+                                        //textAlign: "center",
+                                        //height:height
+                                        //position:'absolute',
+                                        //top:0,
+                                        //left:0
+                                    }}
+                                src="" alt=""/>
+                                <img ref={imgRef2}
+                                    style={{
+                                        //top:0,
+                                        //display:"inline-block",
+                                        maxHeight:height-200,
                                         //width:'auto',
                                         //height:'auto',
                                         margin: 5,
                                         //textAlign: "center",
                                         //height:height
+                                        //position:'absolute',
+                                        //top:0,
+                                        //left:0
+                                        display:'hidden'
                                     }}
                                 src="" alt=""/>
-                            
+                            {/* </View> */}
                             
                             {/* <Image ref={imgRef}
                                 style={{
@@ -265,7 +350,7 @@ const Instagram = (props)=> {
                                 </i>
                                 </a>
                             </View>
-                        </View>
+                        </Animated.View>
                         {/* <View 
                             style={{
                                 justifyContent:"center",
