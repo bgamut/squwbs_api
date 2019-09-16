@@ -397,7 +397,8 @@ app.get('/user',cors(),(req,res)=>{
 
   //function addUser({userName,userEmail},func){
   function user(obj,func){
-    console.log(stringifyObject(obj))
+    var copy = Object.create(obj)
+    console.log(stringifyObject(copy))
     var db = admin.database()
     var ref = db.ref('users')
     var userStructure = {
@@ -412,9 +413,9 @@ app.get('/user',cors(),(req,res)=>{
       token:''
     }
     //var userStructure = {}
-    userStructure.provider[String(obj.provider)]=obj.providerid
-    userStructure.names[String(obj.provider)]=obj.userName
-    userStructure.token=obj['connect.sid']
+    userStructure.provider[String(copy.provider)]=copy.providerid
+    userStructure.names[String(copy.provider)]=copy.userName
+    userStructure.token=copy['connect.sid']
     console.log(userStructure)
 
     ref.once('value',function(snapshot){
@@ -422,29 +423,29 @@ app.get('/user',cors(),(req,res)=>{
       //console,log('userlist function')
       if(usersList==undefined){
         //var userStructure={}
-        if(obj.provider!==undefined){
-          userStructure.provider[obj.provider]=obj.providerid
-          userStructure.names[obj.provider]=obj.Name
-          userStructure['connect.sid']=obj['connect.sid']
+        if(copy.provider!==undefined){
+          userStructure.provider[copy.provider]=copy.providerid
+          userStructure.names[copy.provider]=copy.Name
+          userStructure['connect.sid']=copy['connect.sid']
           usersList={0:userStructure}
         }
       }
       else{
         if(usersList==undefined){
-          var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
+          var picked = usersList.find(user=>user.provider[copy.provider]==copy.providerid)
           if(picked==undefined){
             // console.log(picked==undefined)
             var userStructure={}
-            userStructure.provider[obj.provider]=obj.providerid
-            userStructure.names[obj.provider]=obj.Name
-            userStructure['connect.sid']=obj['connect.sid']
+            userStructure.provider[copy.provider]=copy.providerid
+            userStructure.names[copy.provider]=copy.Name
+            userStructure['connect.sid']=copy['connect.sid']
             usersList.push(userStructure)
             //console.log('user added')
           }
           else{
             //console.log('this user already exists')
-            picked['connect.id']=obj['connect.id']
-            var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
+            picked['connect.id']=copy['connect.id']
+            var index=usersList.findIndex(user=>user.provider[copy.provider]==copy.providerid)
             usersList[index]=picked
           }
         }
