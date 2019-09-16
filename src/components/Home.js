@@ -37,7 +37,7 @@ const addUserToServer = (obj)=>{
       return result.json()
     })
     .then((json)=>{
-      console.log(json)
+      console.log(stringifyObject(json))
       return json
     })
     .catch((err)=>{
