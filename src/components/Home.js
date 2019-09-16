@@ -50,15 +50,7 @@ const Home = () => {
   const [state,setState]=useState(Context)
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
-    const jsonObj = await responded.json()
-    
-    return jsonObj
-    
-  }
-
-  useEffect(()=>{
-    
-    const userCookie=await getUserData()
+    const userCookie = await responded.json()
     console.log(userCookie)
     //console.log(Object.keys(jsonObj).length)
     //console.log(Object.keys(userCookie))
@@ -69,6 +61,27 @@ const Home = () => {
       console.log('user : ')
       console.log(stringifyObject(user))
       setState({...state,userData:{...user}})
+      //console.log('this is the state'+ state.headerHeight)
+      
+      
+    }
+    //return jsonObj
+    
+  }
+
+  useEffect(()=>{
+    getUserData()
+    // const userCookie=getUserData()
+    // console.log(userCookie)
+    // //console.log(Object.keys(jsonObj).length)
+    // //console.log(Object.keys(userCookie))
+    // if(Object.keys(userCookie).length>1){
+    //   console.log('user info sent to server')
+    //   var user = addUserToServer(userCookie)
+      
+    //   console.log('user : ')
+    //   console.log(stringifyObject(user))
+    //   setState({...state,userData:{...user}})
       //console.log('this is the state'+ state.headerHeight)
       
       
