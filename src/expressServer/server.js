@@ -396,7 +396,8 @@ app.get('/user',cors(),(req,res)=>{
   var obj = req.query
 
   //function addUser({userName,userEmail},func){
-  function user(object,func){
+  function user(obj,func){
+    console.log(stringifyObject(obj))
     var db = admin.database()
     var ref = db.ref('users')
     var userStructure = {
@@ -420,7 +421,7 @@ app.get('/user',cors(),(req,res)=>{
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
-      //console,log('userlist function')
+      console,log('userlist function')
       if(usersList==undefined){
         //var userStructure={}
         if(obj.provider!==undefined){
@@ -440,7 +441,7 @@ app.get('/user',cors(),(req,res)=>{
             userStructure.names[obj.provider]=obj.Name
             userStructure['connect.sid']=obj['connect.sid']
             usersList.push(userStructure)
-            //console.log('user added')
+            console.log('user added')
           }
           else{
             //console.log('this user already exists')
