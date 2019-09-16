@@ -447,6 +447,7 @@ app.get('/user',cors(),(req,res)=>{
         }
 
       })
+      delete global.copy
     })
   }
   
