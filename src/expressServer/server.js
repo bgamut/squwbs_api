@@ -400,24 +400,19 @@ app.get('/user',cors(),(req,res)=>{
     console.log(stringifyObject(obj))
     var db = admin.database()
     var ref = db.ref('users')
-    // var userStructure = {
-    //   'provider':{
-    //     'google':{
-    //       'providerid':''
-    //     },
-    //     'facebook':{
-    //       'providerid':''
-    //     }
-    //   },
-    //   'names':{
-    //     'google':'',
-    //     'facebook':''
-    //   },
-    //   'connect.sid':''
-    //    token:''
-    // }
-    var userStructure = {}
-    userStructure[String(obj.provider)]=obj.providerid
+    var userStructure = {
+      provider:{
+        google:'',
+        facebook:''
+      },
+      names:{
+        google:'',
+        facebook:''
+      },
+      token:''
+    }
+    //var userStructure = {}
+    userStructure.provider[String(obj.provider)]=obj.providerid
     userStructure.names[String(obj.provider)]=obj.userName
     userStructure.token=obj['connect.sid']
     console.log(userStructure)
