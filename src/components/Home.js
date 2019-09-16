@@ -58,7 +58,7 @@ const Home = () => {
 
   useEffect(()=>{
     
-    const userCookie=getUserData()
+    const userCookie=await getUserData()
     console.log(userCookie)
     //console.log(Object.keys(jsonObj).length)
     //console.log(Object.keys(userCookie))
