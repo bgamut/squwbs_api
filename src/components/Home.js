@@ -85,7 +85,7 @@ const Home = () => {
       //console.log('this is the state'+ state.headerHeight)
       
       
-    }
+    //}
   },[])
   // if(state.userData=={}){
   //   return(
