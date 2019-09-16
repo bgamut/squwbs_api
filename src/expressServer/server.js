@@ -397,7 +397,8 @@ app.get('/user',cors(),(req,res)=>{
 
   //function addUser({userName,userEmail},func){
   function user(obj,func){
-    var copy = Object.create(obj)
+    //var copy = Object.create(obj)
+    global.copy = Object.create(obj)
     console.log(stringifyObject(copy))
     var db = admin.database()
     var ref = db.ref('users')
@@ -422,33 +423,18 @@ app.get('/user',cors(),(req,res)=>{
       var usersList=snapshot.val()
       //console,log('userlist function')
       if(usersList==undefined){
-        //var userStructure={}
-        if(copy.provider!==undefined){
-          userStructure.provider[copy.provider]=copy.providerid
-          userStructure.names[copy.provider]=copy.Name
-          userStructure['connect.sid']=copy['connect.sid']
-          usersList={0:userStructure}
-        }
+        usersList={0:userStructure}
       }
       else{
-        if(usersList==undefined){
-          var picked = usersList.find(user=>user.provider[copy.provider]==copy.providerid)
-          if(picked==undefined){
-            // console.log(picked==undefined)
-            var userStructure={}
-            userStructure.provider[copy.provider]=copy.providerid
-            userStructure.names[copy.provider]=copy.Name
-            userStructure['connect.sid']=copy['connect.sid']
-            usersList.push(userStructure)
-            //console.log('user added')
-          }
-          else{
-            //console.log('this user already exists')
-            picked['connect.id']=copy['connect.id']
-            var index=usersList.findIndex(user=>user.provider[copy.provider]==copy.providerid)
-            usersList[index]=picked
-          }
+        var picked = usersList.find(user=>user.provider[copy.provider]==copy.providerid)
+        if(picked==undefined){
+          usersList.push(userStructure)
         }
+        else{
+          var index=usersList.findIndex(user=>user.provider[copy.provider]==copy.providerid)
+          usersList[index]=userStructure
+        }
+        
       }
       ref.set(usersList,function(error){
         if(error){

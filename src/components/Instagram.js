@@ -16,6 +16,7 @@ const Instagram = (props)=> {
     const [height,setHeight]=useState(0)
     const [width,setWidth]=useState(0)
     const [uri,setUri]=useState('')
+    const [uriList,setUriList]=useState([])
     const imgRef = useRef(null)
     const updateDimensions=()=>{
         setHeight(Dimensions.get('window').height)
@@ -58,7 +59,11 @@ const Instagram = (props)=> {
                 //console.log(imageurl)
                 setUri(imageurl)
                 imgRef.current.src=imageurl
-                
+                var temp = []
+                for (var i =0; i<15; i++){
+                    temp[i]=json.data[i].images.standard_resolution.url
+                }
+                setUriList(temp)
                 // imgRef.setNativeProps({
                 //     source:[{uri:imageurl}]
                 // })
@@ -76,6 +81,19 @@ const Instagram = (props)=> {
         Dimensions.addEventListener('change',(e)=>{
             updateDimensions()
         })
+        var i=0
+        setInterval(function(){ console.log("Hello"); 
+        const pad=(n, width, z)=>{
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+        console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
+        console.log("album picture #"+i%15)
+        console.log(uriList[i%15])
+        imgRef.current.src=uriList[i%15]
+        i++
+        }, 3000);
         updateDimensions()
     },[])
   
