@@ -421,7 +421,7 @@ app.get('/user',cors(),(req,res)=>{
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
-      console,log('userlist function')
+      //console,log('userlist function')
       if(usersList==undefined){
         //var userStructure={}
         if(obj.provider!==undefined){
@@ -441,7 +441,7 @@ app.get('/user',cors(),(req,res)=>{
             userStructure.names[obj.provider]=obj.Name
             userStructure['connect.sid']=obj['connect.sid']
             usersList.push(userStructure)
-            console.log('user added')
+            //console.log('user added')
           }
           else{
             //console.log('this user already exists')
