@@ -62,7 +62,7 @@ const Instagram = (props)=> {
                 setUri(imageurl)
                 imgRef.current.src=imageurl
                 var temp = []
-                for (var i =0; i<15; i++){
+                for (var i =0; i<20; i++){
                     temp[i]=json.data[i].images.standard_resolution.url
                 }
                 setUriList(temp)
@@ -86,37 +86,54 @@ const Instagram = (props)=> {
         })
         
         updateDimensions()
+        setIndex(1)
     },[])
     useEffect(()=>{
-        console.log(uriList)
-        var i=0
-        setInterval(function(){ 
-        //console.log("Hello"); 
-        const pad=(n, width, z)=>{
-        z = z || '0';
-        n = n + '';
-        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-        }
-        //console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
-        //console.log("album picture # "+i%15)
-        //console.log(uriList[i%15])
-        setShow('Hide')
-        //imgRef.current.src=uriList[i%15]
+        //console.log(uriList)
+        // var i=0
+        // setInterval(function(){ 
+        // //console.log("Hello"); 
+        // const pad=(n, width, z)=>{
+        // z = z || '0';
+        // n = n + '';
+        // return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        // }
+        // //console.log('memory percentage :'+pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5))
+        // //console.log("album picture # "+i%15)
+        // //console.log(uriList[i%15])
+        
+        // //imgRef.current.src=uriList[i%15]
         
         
-        //i++
-        }, 3000);
+        // //i++
+        // }, 7000);
     },[uriList])
     
     useEffect(()=>{
+        //console.log('index change')
         if(show=='Hide'){
-            imgRef.current.src=uriList[index%15]
+            imgRef.current.src=uriList[index%20]
             
             setShow('Show')
-            setIndex((index+1)%15)
+            
+        }
+        else{
+            setShow('Hide')
         }
         
-    },[show])
+       
+        function sleep(ms){
+            return new Promise(resolve=>{
+                setTimeout(resolve,ms)
+            })
+        }
+        sleep(3000).then(
+            function(){
+                setIndex(index+1)
+            }
+        )
+        
+    },[index])
       
     
       return (
@@ -195,6 +212,7 @@ const Instagram = (props)=> {
                                         //height:height
                                     }}
                                 src="" alt=""/>
+                            
                             
                             {/* <Image ref={imgRef}
                                 style={{
