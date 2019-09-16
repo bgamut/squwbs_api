@@ -27,12 +27,13 @@ const stringifyObject= require('stringify-object')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const addUserToServer = (obj)=>{
-
+  console.log('user add function entered')
   fetch(withQuery('https://squwbs.herokuapp.com/user', {
     ...obj,
     mode:'cors'
   }))
   .then(result=>{
+      console.log('got result from user fetch')
       return result.json()
     })
     .then((json)=>{
@@ -50,11 +51,20 @@ const Home = () => {
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const jsonObj = await responded.json()
+    
+    return jsonObj
+    
+  }
+
+  useEffect(()=>{
+    
+    const userCookie=getUserData()
+    console.log(userCookie)
     //console.log(Object.keys(jsonObj).length)
-    console.log(Object.keys(jsonObj).length)
-    if(Object.keys(jsonObj).length>1){
+    //console.log(Object.keys(userCookie))
+    if(Object.keys(userCookie).length>1){
       console.log('user info sent to server')
-      var user = addUserToServer(jsonObj)
+      var user = addUserToServer(userCookie)
       
       console.log('user : ')
       console.log(stringifyObject(user))
@@ -63,12 +73,6 @@ const Home = () => {
       
       
     }
-    
-    
-  }
-  useEffect(()=>{
-    
-    getUserData()
   },[])
   // if(state.userData=={}){
   //   return(

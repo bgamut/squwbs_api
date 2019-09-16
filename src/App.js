@@ -105,12 +105,12 @@ const App = (props,context)=>{
     //   //this.setState({ error, loading: false });
     // });
 
-    const getUserData=async()=>{
-      const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
-      const jsonObj = await responded.json()
-      console.log(JSON.stringify(jsonObj))
-    }
-    getUserData()
+    // const getUserData=async()=>{
+    //   const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+    //   const jsonObj = await responded.json()
+    //   console.log(JSON.stringify(jsonObj))
+    // }
+    // getUserData()
   })
 
   
