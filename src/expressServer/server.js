@@ -471,181 +471,181 @@ app.get('/user',cors(),(req,res)=>{
   user(obj,sendSuccess)
 
 })
-app.get('/adduser',cors(),(req,res)=>{
-  var obj = req.query
+// app.get('/adduser',cors(),(req,res)=>{
+//   var obj = req.query
 
-  //function addUser({userName,userEmail},func){
-  function addUser(object,func){
-    var db = admin.database()
-    var ref = db.ref('users')
-    // var user = {
-    //   'provider':{
-    //     'google':{
-    //       'providerid':''
-    //     },
-    //     'facebook':{
-    //       'providerid':''
-    //     }
-    //   },
-    //   'names':{
-    //     'google':'',
-    //     'facebook':''
-    //   },
-    //   'connect.sid':{
+//   //function addUser({userName,userEmail},func){
+//   function addUser(object,func){
+//     var db = admin.database()
+//     var ref = db.ref('users')
+//     // var user = {
+//     //   'provider':{
+//     //     'google':{
+//     //       'providerid':''
+//     //     },
+//     //     'facebook':{
+//     //       'providerid':''
+//     //     }
+//     //   },
+//     //   'names':{
+//     //     'google':'',
+//     //     'facebook':''
+//     //   },
+//     //   'connect.sid':{
 
-    //   }
-    // }
+//     //   }
+//     // }
     
 
-    ref.once('value',function(snapshot){
-      var usersList=snapshot.val()
-      if(usersList==undefined){
-        var userStructure={}
-        userStructure.provider[obj.provider]=obj.providerid
-        userStructure.names[obj.provider]=obj.Name
-        userStructure['connect.sid']=obj['connect.sid']
-        usersList={0:userStructure}
-      }
-      else{
-        var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
-        if(picked==undefined){
-          // console.log(picked==undefined)
-          var userStructure={}
-          userStructure.provider[obj.provider]=obj.providerid
-          userStructure.names[obj.provider]=obj.Name
-          userStructure['connect.sid']=obj['connect.sid']
-          usersList.push(userStructure)
-          console.log('user added')
-        }
-        else{
+//     ref.once('value',function(snapshot){
+//       var usersList=snapshot.val()
+//       if(usersList==undefined){
+//         var userStructure={}
+//         userStructure.provider[obj.provider]=obj.providerid
+//         userStructure.names[obj.provider]=obj.Name
+//         userStructure['connect.sid']=obj['connect.sid']
+//         usersList={0:userStructure}
+//       }
+//       else{
+//         var picked = usersList.find(user=>user.provider[obj.provider]==obj.providerid)
+//         if(picked==undefined){
+//           // console.log(picked==undefined)
+//           var userStructure={}
+//           userStructure.provider[obj.provider]=obj.providerid
+//           userStructure.names[obj.provider]=obj.Name
+//           userStructure['connect.sid']=obj['connect.sid']
+//           usersList.push(userStructure)
+//           console.log('user added')
+//         }
+//         else{
           
-          console.log('this user already exists')
-          picked['connect.id']=obj['connect.id']
-          var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
-          usersList[index]=picked
-        }
-      }
-      ref.set(usersList,function(error){
-        if(error){
-          console.log(error)
-          func(error)
-        }
-        else{
-          console.log('callback fired')
-          func({userName,userEmail})
-        }
+//           console.log('this user already exists')
+//           picked['connect.id']=obj['connect.id']
+//           var index=usersList.findIndex(user=>user.provider[obj.provider]==obj.providerid)
+//           usersList[index]=picked
+//         }
+//       }
+//       ref.set(usersList,function(error){
+//         if(error){
+//           console.log(error)
+//           func(error)
+//         }
+//         else{
+//           console.log('callback fired')
+//           func({userName,userEmail})
+//         }
 
-      })
-    })
-  }
+//       })
+//     })
+//   }
   
-  function sendSuccess(message){
-    res.send({message:message})
-  }
+//   function sendSuccess(message){
+//     res.send({message:message})
+//   }
 
-  addUser(obj,sendSuccess)
+//   addUser(obj,sendSuccess)
 
-})
-app.get('/getuser',cors(),(req,res)=>{
-  var obj = req.query
+// })
+// app.get('/getuser',cors(),(req,res)=>{
+//   var obj = req.query
   
   
-  function getUser(userEmail){
+//   function getUser(userEmail){
  
-    var db = admin.database()
-    var ref = db.ref('users')
-    ref.once('value',function(snapshot){
-    var users=(snapshot.val())
-    var picked = users.find(user=>user.userEmail==userEmail)
-    console.log('found user data ' + 
-      stringifyObject(picked, {
-        indent: '  ',
-        singleQuotes: false
-      })
-    )
-    return(picked)
+//     var db = admin.database()
+//     var ref = db.ref('users')
+//     ref.once('value',function(snapshot){
+//     var users=(snapshot.val())
+//     var picked = users.find(user=>user.userEmail==userEmail)
+//     console.log('found user data ' + 
+//       stringifyObject(picked, {
+//         indent: '  ',
+//         singleQuotes: false
+//       })
+//     )
+//     return(picked)
             
-    })
-  }
-  res.send(getUser(obj.userEmail))
+//     })
+//   }
+//   res.send(getUser(obj.userEmail))
 
-})
-app.get('/updateuser',cors(),(req,res)=>{
-  var obj = req.query
+// })
+// app.get('/updateuser',cors(),(req,res)=>{
+//   var obj = req.query
   
 
-  function updateUser(userEmail,dataName,data){
-    // admin.initializeApp({
-    //     credential:admin.credential.cert(firebaseServiceKey),
-    //     databaseURL:firebaseServiceKey.databaseURL
-    //   },uuidv4())
-    // initFirebase()
-     var db = admin.database()
-     var ref = db.ref('users')
-     ref.once('value',function(snapshot){
-       var usersList=snapshot.val()
-       if(usersList==undefined){
-            var user={userEmail:userEmail}
-            user[dataName]=data
-            usersList={0:user}
-       }
-       else{
-         var picked = usersList.find(user=>user.userEmail==userEmail)
+//   function updateUser(userEmail,dataName,data){
+//     // admin.initializeApp({
+//     //     credential:admin.credential.cert(firebaseServiceKey),
+//     //     databaseURL:firebaseServiceKey.databaseURL
+//     //   },uuidv4())
+//     // initFirebase()
+//      var db = admin.database()
+//      var ref = db.ref('users')
+//      ref.once('value',function(snapshot){
+//        var usersList=snapshot.val()
+//        if(usersList==undefined){
+//             var user={userEmail:userEmail}
+//             user[dataName]=data
+//             usersList={0:user}
+//        }
+//        else{
+//          var picked = usersList.find(user=>user.userEmail==userEmail)
 
-         if(picked==undefined){
-           console.log(picked==undefined)
-           picked={userEmail:userEmail}
-           picked[dataName]=data
-           usersList.push(picked)
-         }
-         else{
-           //console.log(_.isEqual(picked,{userName,userEmail}))
-           if(_.isEqual(picked[dataName],data)){
-             console.log(dataName+' for this user is already set like that.')
-           }
-           else{
-            picked[dataName]=data
-            var index=usersList.findIndex(user=>user.userEmail==userEmail)
-            usersList[index]=picked
-            console.log('updated the account information')
-           }
-         }
-       }
-       ref.set(usersList)
-     })
-    // global.admin.database().goOffline()
-}
-  for(var i = 0; i<Object.keys(obj);i++){
-    if(obj[Object.keys(obj)[i]]!=userEmail){
-      updateUser(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
-    }
-  }
-  // admin.database().goOffline()
-})
-app.get('/deleteuser',cors(),(req,res)=>{
-  var obj = req.query
-  function deleteUser(userEmail){
+//          if(picked==undefined){
+//            console.log(picked==undefined)
+//            picked={userEmail:userEmail}
+//            picked[dataName]=data
+//            usersList.push(picked)
+//          }
+//          else{
+//            //console.log(_.isEqual(picked,{userName,userEmail}))
+//            if(_.isEqual(picked[dataName],data)){
+//              console.log(dataName+' for this user is already set like that.')
+//            }
+//            else{
+//             picked[dataName]=data
+//             var index=usersList.findIndex(user=>user.userEmail==userEmail)
+//             usersList[index]=picked
+//             console.log('updated the account information')
+//            }
+//          }
+//        }
+//        ref.set(usersList)
+//      })
+//     // global.admin.database().goOffline()
+// }
+//   for(var i = 0; i<Object.keys(obj);i++){
+//     if(obj[Object.keys(obj)[i]]!=userEmail){
+//       updateUser(obj.userEmail,Object.keys(obj)[i],obj[Object.keys(obj)[i]])
+//     }
+//   }
+//   // admin.database().goOffline()
+// })
+// app.get('/deleteuser',cors(),(req,res)=>{
+//   var obj = req.query
+//   function deleteUser(userEmail){
 
-    var db = admin.database()
-    var ref = db.ref('users')
-    ref.once('value',function(snapshot){
-        var userList = snapshot.val()
-        var picked = userList.find(array=>array.userEmail==userEmail)
-        if(picked!=undefined){
-            userList.splice(userList.indexOf(picked),1)
-            ref.set(userList)
-            return({message: String(userEmail + ' removed')})
-        }
-        else{
-            return({message:'such user does not exist.'})
-        }
+//     var db = admin.database()
+//     var ref = db.ref('users')
+//     ref.once('value',function(snapshot){
+//         var userList = snapshot.val()
+//         var picked = userList.find(array=>array.userEmail==userEmail)
+//         if(picked!=undefined){
+//             userList.splice(userList.indexOf(picked),1)
+//             ref.set(userList)
+//             return({message: String(userEmail + ' removed')})
+//         }
+//         else{
+//             return({message:'such user does not exist.'})
+//         }
        
-    })
+//     })
 
-}
+// }
 
-res.send(deleteUser(obj.userEmail))
-})
+// res.send(deleteUser(obj.userEmail))
+// })
 
 app.get('/addwordtomongo',cors(),(req,res)=>{
   var obj = req.query
