@@ -67,10 +67,10 @@ const Home = () => {
           return result.json()
         })
         .then((json)=>{
-          setState({...state,userData:{...json}})
+          setState({...state,userData:json.message})
           
           console.log(stringifyObject(json))
-          setUser(json)
+          setUser(json.message)
         })
         .catch((err)=>{
           console.error(err)

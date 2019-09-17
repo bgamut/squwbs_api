@@ -18,6 +18,7 @@ const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
     const [user,setUser]=useState({})
+    const [userName,setUserName]=useState('')
     const [height,setHeight]=useState(0)
     const scroller=useRef('')
 
@@ -42,9 +43,9 @@ const Drawer =(props)=>{
             })
             .then((json)=>{
             //setState({...state,userData:{...json}})
-            setUser(json)
+            //setUser(json)
             console.log(stringifyObject(json))
-            setUser(json)
+            setUser(json.message)
             })
             .catch((err)=>{
             console.error(err)
@@ -188,6 +189,12 @@ const Drawer =(props)=>{
     useEffect(()=>{
         console.log(stringifyObject(user)=='{}')
         console.log(stringifyObject(user))
+        for (var i =0; i<Object.keys(user.provider).length; i++){
+            if(user[Object.keys(user.provider)[i]]!==''){
+                setUserName(user[Object.keys(user.provider)[i]])
+                break
+            }
+        }
     },[user])
     if(stringifyObject(user)!=='{}'){
         return(
@@ -252,7 +259,7 @@ const Drawer =(props)=>{
                             {name}
                         </Text> */}
                         <a  href = "/#slider" >
-                         <Image 
+                         {/* <Image 
                            
                             source={require('./icons/96x96.png')} style={{
                             // Top:(maxHeight-imageLength)/2,
@@ -265,7 +272,17 @@ const Drawer =(props)=>{
                             marginRight:5,
                             marginBottom:2
                             //Right:0
-                        }}/>
+                        }}/> */}
+                            <Text
+                                style ={[
+                                    styles.textStyle,
+                                    {
+                                        fontSize:16,
+                                    }
+                                ]}
+                            >
+                                {{userName}}
+                            </Text>
                         </a>
                     </View> 
                 </View> 
@@ -340,8 +357,8 @@ const Drawer =(props)=>{
                             
                             href = "/#slider" >
                                 <Text selectable={false} style ={styles.textStyle}>
-                                    {/* Welcome to  */}
-                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
+                                    Welcome
+                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {{name}}</Text>
                                 </Text>
                             </a>
                         </View>
