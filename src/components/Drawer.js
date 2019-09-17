@@ -1,10 +1,14 @@
 import React, {Component,useContext,useEffect,useState,useRef} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity , Image, Platform, Animated,Dimensions,Easing,ScrollView} from 'react-native'
+import NavBarWithLogIn from './NavBarWithLogIn'
 import NavBar from './NavBar'
 import {Context} from '../context'
 import './css/Drawer.css'
 var {name} =require( '../../package.json')
-
+const withQuery = require('with-query').default
+var diff = require('object-diff')
+const _ = require('lodash')
+const stringifyObject= require('stringify-object')
 const SLIDING_DRAWER_WIDTH =300;
 const maxHeight=50
 const imageLength=30
@@ -37,8 +41,8 @@ const Drawer =(props)=>{
             return result.json()
             })
             .then((json)=>{
-            setState({...state,userData:{...json}})
-            
+            //setState({...state,userData:{...json}})
+            setUser(json)
             console.log(stringifyObject(json))
             setUser(json)
             })
@@ -183,15 +187,15 @@ const Drawer =(props)=>{
 
     useEffect(()=>{
         console.log(stringifyObject(user)=='{}')
-        console.log(user)
+        console.log(stringifyObject(user))
     },[user])
-    if(state.userData!==undefined && state.userData.provider!==undefined){
+    if(stringifyObject(user)!=='{}'){
         return(
             <Animated.View style={{            
-                height:height-50,
+                height:150,
                 // width:Dimensions.get('window').width,
                 width:"100vw",
-                backgroundColor:'red',
+                backgroundColor:'transparent',
                 // transform:[{
                 //     translateX:0
                 // },{
@@ -199,18 +203,18 @@ const Drawer =(props)=>{
                 // }]
             }}>
                 <View style={{
-                    //backgroundColor:'yellow',
-                    // borderColor:'transparent',
+                    backgroundColor:'#ffffff',
+                    //borderColor:'#cfcfcf',
                     borderColor:'transparent',
                     borderRadius:2,
                     borderWidth:1,
                     height:maxHeight,
                     justifyContent:'center',
-                    marginBottom :2,
-                    backgroundColor:'transparent'
+                    marginBottom :0,
                     //opacity:state.opacity
+                    // backgroundColor:'orange'
                 }}>  
-                    <View style={{
+                    <Animated.View style={{
                         alignItems:'center',
                         padding:0,
                         height:maxHeight,
@@ -218,14 +222,13 @@ const Drawer =(props)=>{
                         width:maxHeight,
                         // flex:1,
                         justifyContent:'center',
-                        zIndex:'97',
-                        backgroundColor:'white'
+                        zIndex:99,
+                        
                     }}>
                         <TouchableOpacity 
                             onPress = {ShowSlidingDrawer}
                             style={{
                                 backgroundColor:'transparent',
-                                zIndex:'99',
                             }}>
                             {/* <Image source={require('./icons/96x96.png')} style={{
                                 Top:(maxHeight-imageLength)/2,
@@ -233,33 +236,37 @@ const Drawer =(props)=>{
                                 height:imageLength,
                                 resizeMode:'contain',
                                 width:imageLength,
-                                zIndex:'98'
                                 //Right:0
                             }}/> */}
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'black',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'black',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'black',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
                         </TouchableOpacity>
-                    </View>
+                    </Animated.View>
                     <View style={{
                         alignItems:'center',
                         zIndex:0,
+                        
                     }}>
-                        {/* <Text selectable={false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
+                        {/* <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
                         </Text> */}
-                        <Image href = "/#slider"source={require('./icons/96x96.png')} style={{
+                        <a  href = "/#slider" >
+                         <Image 
+                           
+                            source={require('./icons/96x96.png')} style={{
                             // Top:(maxHeight-imageLength)/2,
                             // position:'absolue',
-                            height:25,
+                            height:35,
                             resizeMode:'contain',
-                            width:25,
+                            width:35,
                             justifyContent:'center',
                             alignItems:'center',
                             marginRight:5,
                             marginBottom:2
                             //Right:0
                         }}/>
+                        </a>
                     </View> 
                 </View> 
                 {props.children}
@@ -267,29 +274,152 @@ const Drawer =(props)=>{
                     transform:[{
                         translateX:drawerInterp
                     },{
-                        translateY:maxHeight+2
+                        translateY:maxHeight
                     }]
                     },
-                    // {height:Dimensions.get('window').height*9/30-maxHeight}
-                    {height:height*9/30-maxHeight}
-                ]}>
-                    <View style = {[styles.MAIN_SLIDING_DRAWER_CONTAINER,{height:50}]}>
-                    <ScrollView
-                        ref={scroller}
-                        style={{backgroundColor:'transparent',zIndex:98}}
-                        onScroll={(e)=>{
-                            // onScroll(e)
-                        }
-                        }
-                        scrollEnabled={true}
-                        scrollEventThrottle={16}
-                        showsVerticalScrollIndicator={true}
+                    {
+                    // height:300,
+                    height:height-50,
+                    width:SLIDING_DRAWER_WIDTH,
+                    //backgroundColor:'white',
+                    backgroundColor:'white',
+                    borderColor:'rgb(200,200,200)',
+                    justifyContent:'center',
+
+                    padding:0,
+                    // borderColor:'transparent',
+                    borderRadius:4,
+                    borderWidth:1,}]}>
+                    <View style = {[
+                        styles.MAIN_SLIDING_DRAWER_CONTAINER,
+                        {
+                            height:50,
+                            alignItems:'center',
+                            padding:0,
+                            paddingTop:3,
+                            margin:0,
+                            marginRight:2,
+                            marginLeft:2,
+                            backgroundColor:'rgb(211,211,211)',
+                            //backgroundColor:'purple',
+                            //borderColor:"rgb(211,211,211)",
+                            borderColor:'rgb(200,200,200)',
+                            
+                            borderRadius:2,
+                            borderWidth:1,
+                            width:298,
+                        }]
+                    }>
+                        <View style={{
+                            flexDirection:'row',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            marginBottom:6,
+                            paddingTop:8,
+                            paddingBottom:8,
+                            paddingRight:25,
+                            paddingLeft:25,
+                            backgroundColor:'transparent',
+                            zIndex:0,
+                            
+                            
+                        }}>
+                            {/* <Image source={require('./icons/96x96.png')} style={{
+                                    // Top:(maxHeight-imageLength)/2,
+                                    // position:'absolue',
+                                    height:25,
+                                    resizeMode:'contain',
+                                    width:25,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    marginRight:5,
+                                    marginbottom:2
+                                    //Right:0
+                                }}/> */}
+                            <a  style ={{textDecorationLine:'none'}}
+                            
+                            href = "/#slider" >
+                                <Text selectable={false} style ={styles.textStyle}>
+                                    {/* Welcome to  */}
+                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
+                                </Text>
+                            </a>
+                        </View>
+                        <View
+                            style={{
+                                backgroundColor:'trarensparent',
+                                width:'100%',
+                                borderColor:'transparent',
+                                borderRadius:2,
+                                borderWidth:1,
+                               // height:height,
+                            }}
+                        >
+                            <ScrollView
+                                ref={scroller}
+                                scrollIndicatorInsets={300,300,300,300}
+                                indicatorStyle='white'
+                                style={{
+                                    backgroundColor:'transparent',
+                                    zIndex:98,
+                                    height:height-150,
+                                }}
+                                onScroll={(e)=>{
+                                    // onScroll(e)
+                                }
+                                }
+                                scrollEnabled={true}
+                                scrollEventThrottle={16}
+                                showsVerticalScrollIndicator={false}
+                            >
+                            <NavBar/>
+                            </ScrollView>
+                        </View>
+                    <View
+                    style={{
+                        position:'absolute',
+                        top:height-maxHeight-53,
+                        backgroundColor:'rgb(211,211,211)',
+                        //backgroundColor:'purple',
+                        width:298,
+                        height:maxHeight,
+                        marginTop:0,
+                        marginBottom:0,
+                        marginLeft:0,
+                        marginRight:0,
+                        
+                        borderRadius:2,
+                        borderWidth:1,
+                        
+                        //backgroundColor:'purple',
+                        //borderColor:"rgb(211,211,211)",
+                        borderColor:'rgb(200,200,200)',
+                        //borderColor:'transparent',
+                        
+                        borderRadius:2,
+                        borderWidth:1,
+                        paddingBottom:0,
+                        height:maxHeight,
+                        justifyContent:'center',
+                        alignItems:'center'
+                    }}
                     >
-                        <NavBar/>
-                    </ScrollView>
+                       <Text
+                        style ={[
+                            styles.textStyle,
+                            {
+                                fontSize:14,
+
+                            }
+                        ]}
+                       >
+                           2019
+                        </Text>
                     </View>
+                    </View>
+                    
                 </Animated.View> 
-            </Animated.View>    
+            </Animated.View>     
         ) 
     }
     else{
@@ -475,7 +605,7 @@ const Drawer =(props)=>{
                                 scrollEventThrottle={16}
                                 showsVerticalScrollIndicator={false}
                             >
-                            <NavBar/>
+                            <NavBarWithLogIn/>
                             </ScrollView>
                         </View>
                     <View
