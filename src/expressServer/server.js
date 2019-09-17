@@ -451,11 +451,11 @@ app.get('/user',cors(),(req,res)=>{
     })
   }
   
-  function sendSuccess(message){
-    res.send({message:message})
+  function sendObj(obj){
+    res.send(obj)
   }
 
-  user(obj,sendSuccess)
+  user(obj,sendObj)
 
 })
 // app.get('/adduser',cors(),(req,res)=>{

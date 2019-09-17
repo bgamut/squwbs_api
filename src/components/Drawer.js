@@ -45,7 +45,7 @@ const Drawer =(props)=>{
             //setState({...state,userData:{...json}})
             //setUser(json)
             console.log(stringifyObject(json))
-            setUser(json.message)
+            setUser(json)
             })
             .catch((err)=>{
             console.error(err)
