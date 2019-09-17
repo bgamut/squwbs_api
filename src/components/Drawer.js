@@ -15,18 +15,70 @@ const Drawer =(props)=>{
     const [state,setState]=useContext(Context)
     const [height,setHeight]=useState(0)
     const scroller=useRef('')
+    const yScroll = new Animated.Value(0)
+    var currentY=0
+    var prevY=0
+    var buffer=[0,0]
+    const onScroll=(e)=>{
+    
+        //console.log(e.nativeEvent.contentOffset.y)
+        currentY=(e.nativeEvent.contentOffset.y)
+        
+        //
+        //console.log(currentY-prevY)
+        buffer=buffer.splice(-1)
+        buffer.push(currentY-prevY)
+        var average=0
+        for (var i=0; i<buffer.length; i++){
+          average+=buffer[i]
+        }
+        //console.log('average : '+average)
+        if(average<0){
+          Animated.spring(yScroll,
+            {
+              toValue: 50,
+              overshootClamping:true,
+              stiffness:1000
+             //speed:12,
+            
+             }
+          ).start()
+        }
+        else{
+          Animated.spring(yScroll,
+            {
+              toValue: 0,
+              overshootClamping:true,
+              stiffness:1000
+             //speed:12,
+            
+             }
+          ).start()
+        }
+    
+        let translateYInterp = yScroll.interpolate(
+          {
+              inputRange:[0,50,51,100],
+              outputRange:[0,50,50,50]
+          }
+        )
+        setState({...state,translateY:translateYInterp})
+        //setState({...state,yscroll:yScroll})
+        prevY=currentY
+        
+      }
     const drawerInterp =state.drawerAnimation.interpolate(
         {
             inputRange:[0,1],
             outputRange:[-SLIDING_DRAWER_WIDTH,0]
         }
     )
-    let translateYInterp = state.yscroll.interpolate(
-        {
-            inputRange:[-100,-51,-50,0,50,51,100],
-            outputRange:[100,-50,-50,0,50,50,50]
-        }
-    )
+    // let translateYInterp = state.yscroll.interpolate(
+    //     {
+    //         inputRange:[-100,-51,-50,0,50,51,100],
+    //         outputRange:[100,-50,-50,0,50,50,50]
+    //     }
+    // )
     const ShowSlidingDrawer = ()=>
     {
         if(state.drawerToggle==true)
@@ -78,8 +130,17 @@ const Drawer =(props)=>{
         Dimensions.addEventListener('change',(e)=>{
             updateDimensions()
         })
+        yScroll.addListener(({value})=>{
+            //console.log(state.yscroll)
+            //global.headerHeight=value
+            //console.log(value)
+        })
         updateDimensions()
     },[])
+    useEffect(()=>{
+        //console.log(state)
+    }
+    ,[state])
     // const spin = state.spinValue.interpolate({
     //     inputRange:[0,1],
     //     ouputRange:['0deg','360deg']
@@ -91,7 +152,11 @@ const Drawer =(props)=>{
                 // width:Dimensions.get('window').width,
                 width:"100vw",
                 backgroundColor:'red',
-               
+                // transform:[{
+                //     translateX:0
+                // },{
+                //     translateY:-50+state.yscroll
+                // }]
             }}>
                 <View style={{
                     //backgroundColor:'yellow',
@@ -194,7 +259,11 @@ const Drawer =(props)=>{
                 // width:Dimensions.get('window').width,
                 width:"100vw",
                 backgroundColor:'transparent',
-               
+                // transform:[{
+                //     translateX:0
+                // },{
+                //     translateY:-50+state.yscroll
+                // }]
             }}>
                 <View style={{
                     backgroundColor:'#ffffff',

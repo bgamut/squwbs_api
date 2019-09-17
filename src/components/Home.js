@@ -27,6 +27,7 @@ const stringifyObject= require('stringify-object')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const addUserToServer = (obj)=>{
+  
   console.log('user add function entered')
   fetch(withQuery('https://squwbs.herokuapp.com/user', {
     ...obj,
@@ -37,6 +38,8 @@ const addUserToServer = (obj)=>{
       return result.json()
     })
     .then((json)=>{
+      //setState({...state,userData:{...json}})
+      
       console.log(stringifyObject(json))
       return json
     })
@@ -48,21 +51,39 @@ const addUserToServer = (obj)=>{
 const Home = () => {
   //run()
   const [state,setState]=useState(Context)
+  const [user,setUser]=useState({})
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const userCookie = await responded.json()
-    console.log(userCookie)
+    console.log('userCookie : '+stringifyObject(userCookie))
     //console.log(Object.keys(jsonObj).length)
     //console.log(Object.keys(userCookie))
     if(Object.keys(userCookie).length>1){
       console.log('user info sent to server')
-      var user = addUserToServer(userCookie)
+      //var user = addUserToServer(userCookie)
       
-      console.log('user : ')
-      console.log(stringifyObject(user))
-      setState({...state,userData:{...user}})
+      //console.log('user : ')
+      //console.log(stringifyObject(user))
+      //setState({...state,userData:{...user}})
       //console.log('this is the state'+ state.headerHeight)
-      
+      fetch(withQuery('https://squwbs.herokuapp.com/user', {
+        ...userCookie,
+        mode:'cors'
+      }))
+      .then(result=>{
+          console.log('got result from user fetch')
+          return result.json()
+        })
+        .then((json)=>{
+          setState({...state,userData:{...json}})
+          
+          console.log(stringifyObject(json))
+          setUser(json)
+          //return json
+        })
+        .catch((err)=>{
+          console.error(err)
+        })
       
     }
     //return jsonObj
@@ -87,6 +108,9 @@ const Home = () => {
       
     //}
   },[])
+  useEffect(()=>{
+    console.log(stringifyObject(user))
+  },[user])
   // if(state.userData=={}){
   //   return(
   //     <div style={{

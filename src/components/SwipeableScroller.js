@@ -30,6 +30,8 @@ const SwipeableScroller = (props) => {
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
       //console.log(value)
+      setState({...state,yscroll:value})
+      //global.header=value
     })
     //window.addEventListener("resize", updateDimensions);
     //window.addEventListener('orientationchange', updateDimensions)
@@ -63,22 +65,39 @@ const SwipeableScroller = (props) => {
     for (var i=0; i<buffer.length; i++){
       average+=buffer[i]
     }
-    console.log('average : '+average)
-    // Animated.spring(yScroll,{
-    //   toValue: currentY,
-      
-    //   //speed:12,
-      
-    //   }
-    // ).start()
+    //console.log('average : '+average)
+    if(average<0){
+      Animated.spring(yScroll,
+        {
+          toValue: 50,
+          overshootClamping:true,
+          stiffness:100
+         //speed:12,
+        
+         }
+      ).start()
+    }
+    else{
+      Animated.spring(yScroll,
+        {
+          toValue: 0,
+          overshootClamping:true,
+          stiffness:100
+         //speed:12,
+        
+         }
+      ).start()
+    }
+
     let translateYInterp = yScroll.interpolate(
       {
           inputRange:[0,50,51,100],
           outputRange:[0,50,50,50]
       }
     )
-    setState({...state,translateY:translateYInterp})
+    //setState({...state,translateY:translateYInterp})
     //setState({...state,yscroll:yScroll})
+    //setState
     prevY=currentY
     
   }
