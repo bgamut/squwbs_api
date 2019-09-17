@@ -13,12 +13,42 @@ let currentHeight=maxHeight
 const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
+    const [user,setUser]=useState({})
     const [height,setHeight]=useState(0)
     const scroller=useRef('')
+
     const yScroll = new Animated.Value(0)
     var currentY=0
     var prevY=0
     var buffer=[0,0]
+    
+    const getUserData=async()=>{
+        const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+        const userCookie = await responded.json()
+        console.log('userCookie : '+stringifyObject(userCookie))
+        if(Object.keys(userCookie).length>1){
+        console.log('user info sent to server')
+        fetch(withQuery('https://squwbs.herokuapp.com/user', {
+            ...userCookie,
+            mode:'cors'
+        }))
+        .then(result=>{
+            console.log('got result from user fetch')
+            return result.json()
+            })
+            .then((json)=>{
+            setState({...state,userData:{...json}})
+            
+            console.log(stringifyObject(json))
+            setUser(json)
+            })
+            .catch((err)=>{
+            console.error(err)
+            })
+        
+        }
+        
+    }
     const onScroll=(e)=>{
     
         //console.log(e.nativeEvent.contentOffset.y)
@@ -145,6 +175,16 @@ const Drawer =(props)=>{
     //     inputRange:[0,1],
     //     ouputRange:['0deg','360deg']
     // })
+    
+
+    useEffect(()=>{
+        getUserData()
+    },[])
+
+    useEffect(()=>{
+        console.log(stringifyObject(user)=='{}')
+        console.log(user)
+    },[user])
     if(state.userData!==undefined && state.userData.provider!==undefined){
         return(
             <Animated.View style={{            

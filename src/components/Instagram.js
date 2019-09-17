@@ -63,7 +63,7 @@ const Instagram = (props)=> {
     }
         
     useEffect(()=>{
-        console.log('width:'+width+' height:'+height)
+        //console.log('width:'+width+' height:'+height)
         if(width>=height){
             //console.log('landscape')
             //imgRef1.current.maxHeight=height-200
