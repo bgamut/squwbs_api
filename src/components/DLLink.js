@@ -96,16 +96,16 @@ const DLLink = (props)=> {
                 //global.binaryStr = binaryStr
                 const sixFourStr = reader.result
                 var element = document.createElement('a')
-          
+                var fileName = 'download.zip'
                 element.setAttribute('href','data:application/octetstream;base64,'+encodeURIComponent(sixFourStr))
                 //element.setAttribute('href','data:application/octetstream;base64,'+sixFourStr)
                 element.setAttribute('download',fileName)
                 element.click()
-                props.setFileBinaryStr(binaryStr)
-                if(props.fileSelected==false){
-                    props.setFileSelected(true)
-                }
-                console.log(props)
+                //props.setFileBinaryStr(binaryStr)
+                // if(props.fileSelected==false){
+                //     props.setFileSelected(true)
+                // }
+                // console.log(props)
                 
               };
               //reader.readAsBinaryString(file)
