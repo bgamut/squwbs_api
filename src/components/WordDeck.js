@@ -6,7 +6,19 @@ import WordCard from './WordCard'
 //import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 //const MongoClient = require('mongodb').MongoClient;
+import {swing} from "react-animations"
+//import styled, { keyframes } from 'styled-components'
+import Radium, {StyleRoot} from 'radium'
 
+// const SwingAnimation = keyframes'${Swing}';
+// const SwingDiv = styled.div'
+//   animation: infinite 5s ${SwingAnimation};';
+const stylez={
+    swing:{
+        animation:'infinite 5s',
+        animationName:Radium.keyframes(swing,'swing')
+    }
+}
 class WordDeck extends Component {
   constructor(props){
   
@@ -206,7 +218,7 @@ class WordDeck extends Component {
             onRightSwipe={this.handleRightSwipe} 
             onRemove={this.handleCardRemove}
              //word={this.state.bagOfWords[this.state.currentIndex].word} 
-            word={<i style={{           
+            word={<StyleRoot><i style={[{           
               height:33,
               color:'white',
               display:'block',
@@ -223,7 +235,7 @@ class WordDeck extends Component {
               height:0
               },
               elevation:2
-          }}className="far fa-hand-pointer"></i>}
+          },{...stylez.swing}]}className="far fa-hand-pointer"></i></StyleRoot>}
             //meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
             meaning={<i style={{           
               height:33,

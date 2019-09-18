@@ -5,6 +5,20 @@ import Dropzone, {useDropzone} from 'react-dropzone'
 import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
+import {swing} from "react-animations"
+//import styled, { keyframes } from 'styled-components'
+import Radium, {StyleRoot} from 'radium'
+import iglogo from './icons/iglogo.svg'
+import './css/Wiggle.css'
+// const SwingAnimation = keyframes'${Swing}';
+// const SwingDiv = styled.div'
+//   animation: infinite 5s ${SwingAnimation};';
+const styles={
+    swing:{
+        animation:'infinite 5s',
+        animationName:Radium.keyframes(swing,'swing')
+    }
+}
 
 const _ = require('lodash')
 
@@ -266,6 +280,7 @@ const Instagram = (props)=> {
                                     //paddingTop:0,
                                 }}
                             > */}
+                            
                                 <img ref={imgRef1}
                                     style={{
                                         //top:0,
@@ -300,6 +315,7 @@ const Instagram = (props)=> {
                                         display:'hidden'
                                     }}
                                 src="" alt=""/>
+                            
                             {/* </View> */}
                             
                             {/* <Image ref={imgRef}
@@ -333,24 +349,41 @@ const Instagram = (props)=> {
                                     }} 
                                     href="https://www.instagram.com/squwbs/?hl=ko" 
                                 >
-                                <i 
-                                    style={{           
-                                        height:33,
-                                        color:'grey',
-                                        display:'block',
-                                        margin:3,
-                                        shadowColor:'#000',
-                                        shadowOpacity:0.25,
-                                        shadowRadius:2,
-                                        shadowOffset:{
-                                        width:0,
-                                        height:0
-                                        },
-                                        elevation:2
-                                    }}
-                                    className="fab fa-instagram fa-4x">
-                                
-                                </i>
+                                    {/* <StyleRoot>
+                                        <i 
+                                            style={[{           
+                                                height:33,
+                                                color:'grey',
+                                                display:'block',
+                                                margin:3,
+                                                shadowColor:'#000',
+                                                shadowOpacity:0.25,
+                                                shadowRadius:2,
+                                                shadowOffset:{
+                                                width:0,
+                                                height:0
+                                                },
+                                                elevation:2
+                                            },{...styles.swing}]}
+                                            className="fab fa-instagram fa-4x">
+                                        
+                                        </i>
+                                    </StyleRoot> */}
+                                    <img 
+                     className="Wiggle" 
+                        src={iglogo}
+                        style={{           
+                        height:25,
+                        width:25,
+                        color:'white',
+                        filter:'invert(0.8)',
+                       
+                      
+                      textAlign:'center',
+                     
+                      
+                    }}
+                      />
                                 </a>
                             </View>
                         </View>

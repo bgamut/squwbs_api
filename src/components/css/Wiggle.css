@@ -1,0 +1,14 @@
+.Wiggle {
+    animation: Wiggle infinite .75s ease-in-out;
+}
+@keyframes Wiggle {
+    0% { 
+        transform: rotate(-2.5deg);
+    }
+    50%  { 
+        transform: rotate(2.5deg);
+    }
+    100% { 
+        transform: rotate(-2.5deg);
+    }
+}

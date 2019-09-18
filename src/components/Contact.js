@@ -5,6 +5,20 @@ import Dropzone, {useDropzone} from 'react-dropzone'
 import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
+import {swing} from "react-animations"
+//import styled, { keyframes } from 'styled-components'
+import Radium, {StyleRoot} from 'radium'
+import envelope from './icons/close-envelope.svg'
+import './css/Wiggle.css'
+// const SwingAnimation = keyframes'${Swing}';
+// const SwingDiv = styled.div'
+//   animation: infinite 5s ${SwingAnimation};';
+const stylez={
+    swing:{
+        animation:'infinite 5s',
+        animationName:Radium.keyframes(swing,'swing')
+    }
+}
 const _ = require('lodash')
 
 const withQuery = require('with-query');
@@ -94,7 +108,7 @@ const Contact = (props)=> {
                         Contact
                     </Text> */}
                
-                    <View      
+                    <View    
                         style={{
                             height:'100%',
                             width:'100%',
@@ -102,8 +116,9 @@ const Contact = (props)=> {
                             alignItems:'center',
                             backgroundColor:'transparent'
                         }}>
-                    <i 
-                    style={{           
+                    {/* <StyleRoot> */}
+                    {/* <i 
+                    style={[{           
                         height:45,
                         color:'white',
                         display:'block',
@@ -120,7 +135,40 @@ const Contact = (props)=> {
                         textShadowColor: 'rgba(0, 0, 0, 0.5)',
                         textShadowOffset: {width: 0, height: 0},
                         textShadowRadius: 8,
-                      }}className="material-icons large white-text">email</i>
+                      },{...stylez.swing}]}className="material-icons large white-text">email</i> */}
+                      {/* </StyleRoot> */}
+                    <img 
+                     className="Wiggle" 
+                        src={envelope}
+                        style={{           
+                        height:25,
+                        width:25,
+                        color:'white',
+                        filter:'invert(1)',
+                        // display:'block',
+                        // margin:0,
+                        // shadowColor:'#000',
+                        // shadowOpacity:0.25,
+                        // shadowRadius:2,
+                        // shadowOffset:{
+                        // width:0,
+                        // height:0
+                        // },
+                        // fontSize:45,
+                        // elevation:2,
+                        // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                        // textShadowOffset: {width: 0, height: 0},
+                        // textShadowRadius: 8,
+                      
+                      
+                      //backgroundSize: '100% 100%',
+                      
+                      textAlign:'center',
+                     
+                      //backgroundRepeat:"no-repeat",
+                    }}
+                      />
+                    
                     </View>
                     </View>
                         <View 
