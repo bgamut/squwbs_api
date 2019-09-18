@@ -16,6 +16,7 @@ import DLLink from './DLLink'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import './css/Image.css'
+import Fade from 'react-reveal/Fade'
 // const translateY = new Animated.Value(0);
 
 let currentY=0
@@ -186,7 +187,7 @@ const SwipeableScroller = (props) => {
             interval={4500}
             transitionTime={750}
             emulateTouch={true}
-            stopOnHover={false}
+            stopOnHover={true}
             swipeScrollTolerance={1}
             useKeyboardArrows={true}
             centerSlidePercentage={10}
@@ -224,6 +225,7 @@ const SwipeableScroller = (props) => {
                 </div> */}
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
+                <Fade>
                   <Text
                     className='Unselectable'
                     style={{
@@ -244,6 +246,7 @@ const SwipeableScroller = (props) => {
                   >
                     Get the Sound You Want
                   </Text>
+                  </Fade>
                 </View>
             </div>
             <div 
@@ -280,6 +283,7 @@ const SwipeableScroller = (props) => {
                 </div> */}
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
+                <Fade>
                   <Text
                     className='Unselectable'
                     style={{
@@ -298,8 +302,9 @@ const SwipeableScroller = (props) => {
                       flexDirection:'row',
                     }}
                   >
-                    VST and AU available
+                  Your Idea To A Song In Minutes  
                   </Text>
+                </Fade>
                 </View>
                 {/* <img src="assets/2.jpeg" /> */}
                 {/* <p className="legend">2</p> */}
@@ -334,6 +339,7 @@ const SwipeableScroller = (props) => {
                 </div> */}
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
+                  <Fade>
                   <Text
                     className='Unselectable'
                     style={{
@@ -352,8 +358,10 @@ const SwipeableScroller = (props) => {
                       flexDirection:'row',
                     }}
                   >
-                    Your Idea To A Song In Minutes
+                    
+                    Available in VST & AU File Format
                   </Text>
+                  </Fade>
                 </View>
                 {/* <img src="assets/3.jpeg" /> */}
                 {/* <p className="legend">3</p> */}
