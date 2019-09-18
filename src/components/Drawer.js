@@ -191,9 +191,10 @@ const Drawer =(props)=>{
         console.log(stringifyObject(user))
         if(stringifyObject(user)!=='{}'){ 
             if(user.provider!=undefined){
+                console.log(user.provider)
                 for (var i =0; i<Object.keys(user.provider).length; i++){
-                    //console.log(user.names[Object.keys(user.provider)[i]])
-                    if(user[Object.keys(user.provider)[i]]!==''){
+                    console.log(user.names[Object.keys(user.provider)[i]])
+                    if(user.names[Object.keys(user.provider)[i]]!==''){
                         setUserName(user.names[Object.keys(user.provider)[i]])
                         break
                     }
