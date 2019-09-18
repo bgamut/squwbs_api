@@ -191,11 +191,52 @@ const SwipeableScroller = (props) => {
               
               height:height-50,
               width:"100vw",
-              backgroundColor:'rgb(250,250,250)',
-              textAlign:'center'
+              backgroundSize: '100% 100%',
+              //backgroundColor:'rgb(250,250,250)',
+              backgroundColor:'rgb(211,211,211)',
+              textAlign:'center',
+              
+              backgroundRepeat:"no-repeat",
               }}>
-                {/* <img src="assets/1.jpeg" /> */}
+                <View
+                  style={{
+                    width:"100%",
+                    height:"100%",
+                    backgroundColor:'transparent',
+                    justifyContent:'center',
+                    alignItems:'center'
+                  }}
+                >
+                {/* <div
+                  style={{
+                    height:'100%',
+                    width:'100%',
+                    
+                  }}
+                >
+                </div> */}
+                {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
+                  <Text
+                    style={{
+
+                      textDecorationLine:'none',
+                      color:'white',
+                      fontWeight:'700',
+                      fontSize: 25,
+                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                      textShadowOffset: {width: 0, height: 0},
+                      textShadowRadius: 2,
+          
+                      textAlign:'center',
+                      alignItems:'center',
+                      justifyContent:'center',
+                      flexDirection:'row',
+                    }}
+                  >
+                    Filler Information 1
+                  </Text>
+                </View>
             </div>
             <div 
               ref={heightRef}
@@ -203,10 +244,54 @@ const SwipeableScroller = (props) => {
                 //height:"38vh",
                 height:height-50,
                 width:"100vw",
-                backgroundColor:'rgb(235,235,235)',
-                textAlign:'center'
+                backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
+                // textAlign:'center',
+                backgroundSize: '100% 100%',
+                //backgroundColor:'rgb(250,250,250)',
+                textAlign:'center',
+               //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
+                backgroundRepeat:"no-repeat",
               }}
             >
+              <View
+                  style={{
+                    width:"100%",
+                    height:"100%",
+                    backgroundColor:'transparent',
+                    justifyContent:'center',
+                    alignItems:'center'
+                  }}
+                >
+                {/* <div
+                  style={{
+                    height:'100%',
+                    width:'100%',
+                    
+                  }}
+                >
+                </div> */}
+                {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
+                {/* <p className="legend">1</p> */}
+                  <Text
+                    style={{
+
+                      textDecorationLine:'none',
+                      color:'white',
+                      fontWeight:'700',
+                      fontSize: 25,
+                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                      textShadowOffset: {width: 0, height: 0},
+                      textShadowRadius: 2,
+          
+                      textAlign:'center',
+                      alignItems:'center',
+                      justifyContent:'center',
+                      flexDirection:'row',
+                    }}
+                  >
+                    Filler Information 2
+                  </Text>
+                </View>
                 {/* <img src="assets/2.jpeg" /> */}
                 {/* <p className="legend">2</p> */}
             </div>
@@ -216,10 +301,50 @@ const SwipeableScroller = (props) => {
                 //height:"38vh",
                 height:height-50,
                 width:"100vw",
-                backgroundColor:'rgb(211,211,211)',
+                
+                backgroundColor:'rgb(255,255,255)',
                 textAlign:'center'
               }}
             >
+              <View
+                  style={{
+                    width:"100%",
+                    height:"100%",
+                    backgroundColor:'transparent',
+                    justifyContent:'center',
+                    alignItems:'center'
+                  }}
+                >
+                {/* <div
+                  style={{
+                    height:'100%',
+                    width:'100%',
+                    
+                  }}
+                >
+                </div> */}
+                {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
+                {/* <p className="legend">1</p> */}
+                  <Text
+                    style={{
+
+                      textDecorationLine:'none',
+                      color:'white',
+                      fontWeight:'700',
+                      fontSize: 25,
+                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                      textShadowOffset: {width: 0, height: 0},
+                      textShadowRadius: 2,
+          
+                      textAlign:'center',
+                      alignItems:'center',
+                      justifyContent:'center',
+                      flexDirection:'row',
+                    }}
+                  >
+                    Filler Information 3
+                  </Text>
+                </View>
                 {/* <img src="assets/3.jpeg" /> */}
                 {/* <p className="legend">3</p> */}
             </div>
