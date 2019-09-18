@@ -367,9 +367,9 @@ app.get('/logout',function(req,res){
     signed: true,// Indicates if the cookie should be signed
     secret:''
   }
-  res.cookie('userName', '' ,options);
-  res.cookie('providerid','',options)
-  res.cookie('provider','',options)
+  res.cookie('userName', undefined ,options);
+  res.cookie('providerid',undefined,options)
+  res.cookie('provider',undefined,options)
   res.redirect('/')
 })
 

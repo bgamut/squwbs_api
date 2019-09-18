@@ -70,8 +70,33 @@ class NotFound extends React.Component{
 
                     >
                       
-                    <p style={{textAlign:"center"}}>
-                        <Link to="/">Go to Home </Link>
+                    <p style={{
+                        textAlign:"center",
+                        textDecorationLine:'none',
+                        color:'white',
+                        fontWeight:'700',
+                        fontSize: 19,
+                        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                        textShadowOffset: {width: 0, height: 0},
+                        textShadowRadius: 4,
+
+                }}>
+                        <Link 
+                            style={{
+                                textAlign:"center",
+                                textDecorationLine:'none',
+                                color:'grey',
+                                fontWeight:'700',
+                                fontSize: 19,
+                                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                                textShadowOffset: {width: 0, height: 0},
+                                textShadowRadius: 4,
+                            }}
+                            to="/"
+                        >
+                            Back Home 
+                            
+                        </Link>
                     </p>
             </div>
             </View>
