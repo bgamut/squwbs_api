@@ -17,7 +17,7 @@ let currentHeight=maxHeight
 const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
-    const [user,setUser]=useState({})
+    const [user,setUser]=useState(null)
     const [userName,setUserName]=useState('')
     const [height,setHeight]=useState(0)
     const scroller=useRef('')
@@ -43,8 +43,8 @@ const Drawer =(props)=>{
             })
             .then((json)=>{
             //setState({...state,userData:{...json}})
-            //setUser(json)
-            //console.log(stringifyObject(json))
+            
+            console.log(stringifyObject(json))
             setUser(json)
             })
             .catch((err)=>{
