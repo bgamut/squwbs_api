@@ -270,7 +270,7 @@ const Drawer =(props)=>{
                             {name}
                         </Text> */}
                         <a  href = "/#slider" >
-                         {/* <Image 
+                         <Image 
                            
                             source={require('./icons/96x96.png')} style={{
                             // Top:(maxHeight-imageLength)/2,
@@ -283,8 +283,8 @@ const Drawer =(props)=>{
                             marginRight:5,
                             marginBottom:2
                             //Right:0
-                        }}/> */}
-                            <Text
+                        }}/>
+                            {/* <Text
                                 style ={[
                                     styles.textStyle,
                                     {
@@ -294,7 +294,7 @@ const Drawer =(props)=>{
                                 ]}
                             >
                                 {userName}
-                            </Text>
+                            </Text> */}
                         </a>
                     </View> 
                 </View> 

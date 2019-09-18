@@ -359,7 +359,8 @@ app.get('/profile',
   
 });
 app.get('/logout',function(req,res){
-  req.logout()
+  //req.logout()
+  req.signedCookies = null
   res.redirect('/')
 })
 
