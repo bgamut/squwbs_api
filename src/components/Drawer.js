@@ -264,8 +264,11 @@ const Drawer =(props)=>{
                     <View style={{
                         alignItems:'center',
                         zIndex:0,
-                        
-                    }}>
+                        userSelect:'none'
+                    }}
+                    //pointerEvents='none'
+                    
+                    >
                         {/* <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
                         </Text> */}
@@ -512,8 +515,10 @@ const Drawer =(props)=>{
                     <View style={{
                         alignItems:'center',
                         zIndex:0,
-                        
-                    }}>
+                        userSelect:'none'
+                    }}
+                    //pointerEvents='none'
+                    >
                         {/* <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
                         </Text> */}
