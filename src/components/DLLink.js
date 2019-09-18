@@ -97,8 +97,8 @@ const DLLink = (props)=> {
                 const sixFourStr = reader.result
                 var element = document.createElement('a')
           
-                //element.setAttribute('href','data:application/octetstream;base64,'+encodeURIComponent(sixFourStr))
-                element.setAttribute('href','data:application/octetstream;base64,'+sixFourStr)
+                element.setAttribute('href','data:application/octetstream;base64,'+encodeURIComponent(sixFourStr))
+                //element.setAttribute('href','data:application/octetstream;base64,'+sixFourStr)
                 element.setAttribute('download',fileName)
                 element.click()
                 props.setFileBinaryStr(binaryStr)
