@@ -360,7 +360,10 @@ app.get('/profile',
 });
 app.get('/logout',function(req,res){
   //req.logout()
-  req.signedCookies = null
+  //req.signedCookies = null
+  res.cookie('userName', '' ,options);
+  res.cookie('providerid','',options)
+  res.cookie('provider','',options)
   res.redirect('/')
 })
 
