@@ -10,6 +10,7 @@ import {swing} from "react-animations"
 import Radium, {StyleRoot} from 'radium'
 import envelope from './icons/close-envelope.svg'
 import './css/Wiggle.css'
+import './css/Image.css'
 // const SwingAnimation = keyframes'${Swing}';
 // const SwingDiv = styled.div'
 //   animation: infinite 5s ${SwingAnimation};';
@@ -138,8 +139,10 @@ const Contact = (props)=> {
                       },{...stylez.swing}]}className="material-icons large white-text">email</i> */}
                       {/* </StyleRoot> */}
                     <img 
-                     className="Wiggle" 
+                     className="Wiggle Unselectable" 
+
                         src={envelope}
+                        unselectable='on'
                         style={{           
                         height:25,
                         width:25,

@@ -252,6 +252,8 @@ class WordDeck extends Component {
               // transform:([{
               //   translateX:75
               // },])
+              userSelect:'none',
+              pointerEvents:'none'
             }}
             className="Pointer" 
             src={pointer}

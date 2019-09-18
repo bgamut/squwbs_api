@@ -10,6 +10,7 @@ import {swing} from "react-animations"
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
 import './css/Wiggle.css'
+import './css/Image.css'
 // const SwingAnimation = keyframes'${Swing}';
 // const SwingDiv = styled.div'
 //   animation: infinite 5s ${SwingAnimation};';
@@ -287,6 +288,7 @@ const Instagram = (props)=> {
                             > */}
                             
                                 <img ref={imgRef1}
+                                    className="Unselectable"
                                     style={{
                                         //top:0,
                                         //display:"inline-block",
@@ -301,9 +303,14 @@ const Instagram = (props)=> {
                                         //position:'absolute',
                                         //top:0,
                                         //left:0
+                                        userSelece:'none',
+                                        pointerEvents:'none',
+                                        
                                     }}
+                                    unselectable="on"
                                 src="" alt=""/>
                                 <img ref={imgRef2}
+                                    unselectable="on"
                                     style={{
                                         //top:0,
                                         //display:"inline-block",
@@ -375,7 +382,7 @@ const Instagram = (props)=> {
                                         </i>
                                     </StyleRoot> */}
                                     <img 
-                                        className="Wiggle" 
+                                        className="Wiggle Unselectable" 
                                             src={iglogo}
                                             style={{           
                                             height:25,

@@ -15,6 +15,7 @@ import DLLink from './DLLink'
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import './css/Image.css'
 // const translateY = new Animated.Value(0);
 
 let currentY=0
@@ -115,7 +116,9 @@ const SwipeableScroller = (props) => {
       scrollEnabled={true}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={true}
-
+      snapToInterval={height-50}
+      snapeToAlignment='end'
+      decelerationRate="fast"
     >
     
       <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
@@ -174,15 +177,19 @@ const SwipeableScroller = (props) => {
         >
           <Carousel 
             
-            showArrows={false} 
+            showArrows={true} 
             showStatus={false} 
             showIndicators={false}
             showThumbs={false}
             infiniteLoop={true}
             autoPlay={true}
-            interval={3000}
+            interval={4500}
             transitionTime={750}
-            emulateTouch={false}
+            emulateTouch={true}
+            stopOnHover={false}
+            swipeScrollTolerance={1}
+            useKeyboardArrows={true}
+            centerSlidePercentage={10}
           >
             <div 
             ref={heightRef}
@@ -218,6 +225,7 @@ const SwipeableScroller = (props) => {
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
                   <Text
+                    className='Unselectable'
                     style={{
 
                       textDecorationLine:'none',
@@ -273,6 +281,7 @@ const SwipeableScroller = (props) => {
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
                   <Text
+                    className='Unselectable'
                     style={{
 
                       textDecorationLine:'none',
@@ -326,6 +335,7 @@ const SwipeableScroller = (props) => {
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
                   <Text
+                    className='Unselectable'
                     style={{
 
                       textDecorationLine:'none',
