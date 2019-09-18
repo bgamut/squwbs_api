@@ -111,7 +111,7 @@ const DLLink = (props)=> {
               //reader.readAsBinaryString(file)
               //console.log(file)
               reader.readAsDataURL(file)
-              props.setFile(file)
+              //props.setFile(file)
             })(acceptedFiles[i]);
           }
           
