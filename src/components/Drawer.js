@@ -17,7 +17,7 @@ let currentHeight=maxHeight
 const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
-    const [user,setUser]=useState(null)
+    const [user,setUser]=useState({})
     const [userName,setUserName]=useState('')
     const [height,setHeight]=useState(0)
     const scroller=useRef('')
@@ -189,11 +189,13 @@ const Drawer =(props)=>{
     useEffect(()=>{
         console.log(stringifyObject(user)=='{}')
         console.log(stringifyObject(user))
-        if(user.provider!=undefined){
-            for (var i =0; i<Object.keys(user.provider).length; i++){
-                if(user[Object.keys(user.provider)[i]]!==''){
-                    setUserName(user[Object.keys(user.provider)[i]])
-                    break
+        if(stringifyObject(user)!=='{}'){ 
+            if(user.provider!=undefined){
+                for (var i =0; i<Object.keys(user.provider).length; i++){
+                    if(user[Object.keys(user.provider)[i]]!==''){
+                        setUserName(user[Object.keys(user.provider)[i]])
+                        break
+                    }
                 }
             }
         }
@@ -288,7 +290,7 @@ const Drawer =(props)=>{
                                     }
                                 ]}
                             >
-                                {{userName}}
+                                {userName}
                             </Text>
                         </a>
                     </View> 
@@ -365,7 +367,7 @@ const Drawer =(props)=>{
                             href = "/#slider" >
                                 <Text selectable={false} style ={styles.textStyle}>
                                     Welcome
-                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {{name}}</Text>
+                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text>
                                 </Text>
                             </a>
                         </View>
