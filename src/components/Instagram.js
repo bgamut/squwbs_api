@@ -242,7 +242,8 @@ const Instagram = (props)=> {
                    
                       
                       
-                        <Animated.View 
+                        {/* <Animated.View  */}
+                        <View
                             style={{
 
                                 justifyContent:"center",
@@ -270,6 +271,7 @@ const Instagram = (props)=> {
                                         //top:0,
                                         //display:"inline-block",
                                         maxHeight:height-200,
+                                        maxWidth:width-100,
                                         width:'auto',
                                         height:'auto',
                                         margin: 5,
@@ -286,6 +288,7 @@ const Instagram = (props)=> {
                                         //top:0,
                                         //display:"inline-block",
                                         maxHeight:height-200,
+                                        maxWidth:width-100,
                                         //width:'auto',
                                         //height:'auto',
                                         margin: 5,
@@ -350,7 +353,8 @@ const Instagram = (props)=> {
                                 </i>
                                 </a>
                             </View>
-                        </Animated.View>
+                        </View>
+                        {/* </Animated.View> */}
                         {/* <View 
                             style={{
                                 justifyContent:"center",

@@ -234,7 +234,7 @@ const SwipeableScroller = (props) => {
                       flexDirection:'row',
                     }}
                   >
-                    Filler Information 1
+                    Get the Sound You Want
                   </Text>
                 </View>
             </div>
@@ -289,7 +289,7 @@ const SwipeableScroller = (props) => {
                       flexDirection:'row',
                     }}
                   >
-                    Filler Information 2
+                    VST and AU available
                   </Text>
                 </View>
                 {/* <img src="assets/2.jpeg" /> */}
@@ -342,7 +342,7 @@ const SwipeableScroller = (props) => {
                       flexDirection:'row',
                     }}
                   >
-                    Filler Information 3
+                    Your Idea To A Song In Minutes
                   </Text>
                 </View>
                 {/* <img src="assets/3.jpeg" /> */}
