@@ -6,19 +6,21 @@ import WordCard from './WordCard'
 //import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 //const MongoClient = require('mongodb').MongoClient;
-import {swing} from "react-animations"
+//import {swing} from "react-animations"
 //import styled, { keyframes } from 'styled-components'
-import Radium, {StyleRoot} from 'radium'
-
+//import Radium, {StyleRoot} from 'radium'
+import pointer from './icons/pointer.svg'
+//import './css/Zoom.css'
+import './css/Pointer.css'
 // const SwingAnimation = keyframes'${Swing}';
 // const SwingDiv = styled.div'
 //   animation: infinite 5s ${SwingAnimation};';
-const stylez={
-    swing:{
-        animation:'infinite 5s',
-        animationName:Radium.keyframes(swing,'swing')
-    }
-}
+// const stylez={
+//     swing:{
+//         animation:'infinite 5s',
+//         animationName:Radium.keyframes(swing,'swing')
+//     }
+// }
 class WordDeck extends Component {
   constructor(props){
   
@@ -218,54 +220,92 @@ class WordDeck extends Component {
             onRightSwipe={this.handleRightSwipe} 
             onRemove={this.handleCardRemove}
              //word={this.state.bagOfWords[this.state.currentIndex].word} 
-            word={<StyleRoot><i style={[{           
-              height:33,
-              color:'white',
-              display:'block',
-              margin:3,
-              textShadowColor: 'rgba(0, 0, 0, 1)',
-              textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 3,
-              shadowColor:'#000',
-              shadowOpacity:0.25,
-              shadowRadius:2,
+            word={
+          //   <StyleRoot><i style={[{           
+          //     height:33,
+          //     color:'white',
+          //     display:'block',
+          //     margin:3,
+          //     textShadowColor: 'rgba(0, 0, 0, 1)',
+          //     textShadowOffset: {width: 0, height: 0},
+          //     textShadowRadius: 3,
+          //     shadowColor:'#000',
+          //     shadowOpacity:0.25,
+          //     shadowRadius:2,
               
-              shadowOffset:{
-              width:0,
-              height:0
-              },
-              elevation:2
-          },{...stylez.swing}]}className="far fa-hand-pointer"></i></StyleRoot>}
-            //meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
-            meaning={<i style={{           
-              height:33,
+          //     shadowOffset:{
+          //     width:0,
+          //     height:0
+          //     },
+          //     elevation:2
+          // },{...stylez.swing}]}className="far fa-hand-pointer"></i></StyleRoot>
+         
+          <img 
+            style={{  
+              marginTop:25,         
+              height:25,
+              width:25,
               color:'white',
-              display:'block',
-              margin:3,
-              textShadowColor: 'rgba(0, 0, 0, 1)',
-              textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 3,
-              shadowColor:'#000',
-              shadowOpacity:0.25,
-              shadowRadius:2,
-              shadowOffset:{
-              width:0,
-              height:0
-              },
-              elevation:2
-          }}className="fas fa-arrows-alt-h"></i>}
-            example={this.state.bagOfWords[this.state.currentIndex].example} 
-            pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
-            percentage={this.props.percentage}
-            style={{
-              height:"100%",
-              width:"100%"
+              backfaceVisibility: 'hidden',
+              textAlign:'center',
+              filter:'invert(1)',
+              // transform:([{
+              //   translateX:75
+              // },])
             }}
+            className="Pointer" 
+            src={pointer}
+            unselectable="on"  
           />
-            ,
-            this.myRef.current
-          )
+          
         }
+            //meaning={this.state.bagOfWords[this.state.currentIndex].meaning} 
+            meaning={
+          //   <i style={{           
+          //     height:33,
+          //     color:'white',
+          //     display:'block',
+          //     margin:3,
+          //     textShadowColor: 'rgba(0, 0, 0, 1)',
+          //     textShadowOffset: {width: 0, height: 0},
+          //     textShadowRadius: 3,
+          //     shadowColor:'#000',
+          //     shadowOpacity:0.25,
+          //     shadowRadius:2,
+          //     shadowOffset:{
+          //     width:0,
+          //     height:0
+          //     },
+          //     elevation:2
+          // }}className="fas fa-arrows-alt-h"></i>}
+          //   example={this.state.bagOfWords[this.state.currentIndex].example} 
+          //   pronunciation={this.state.bagOfWords[this.state.currentIndex].pronunciation} 
+          //   percentage={this.props.percentage}
+          //   style={{
+          //     height:"100%",
+          //     width:"100%"
+          //   }}
+          // />
+          // <img 
+          // style={{           
+          //   height:25,
+          //   width:25,
+          //   color:'white',
+          //   //filter:'invert(1)',
+          //   textAlign:'center',
+          // }}
+          //     className="Back" 
+          //     src={pointer}
+              
+          //   />
+              'Click and Swipe'
+            }/>
+            ,
+             this.myRef.current
+          )
+          
+        }
+        
       }
     }
   // }

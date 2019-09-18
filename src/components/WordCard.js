@@ -370,6 +370,7 @@ const styles = StyleSheet.create({
     backgroundColor:'rgb(211,211,211)',
     height: Dimensions.get('window').height-15,
     position: "absolute",
+    backfaceVisibility: 'hidden',
     top: 0,
     marginLeft:5,
     marginRight:5,

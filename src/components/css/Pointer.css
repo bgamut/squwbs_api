@@ -1,0 +1,53 @@
+.Pointer {
+    animation: Pointer infinite 4s ease-in-out;
+    
+}
+.Back{
+    animation: Pointer infinite 4.5s ease-in-out;
+}
+@keyframes Pointer {
+    0% { 
+        transform: translate(0px,0px);
+    }
+    8% { 
+        transform: translate(0px,0px) scale(0.618,0.618); 
+    }
+    16% { 
+        transform: translate(0px,0px) scale(1,1);
+    }
+    24% { 
+        
+        transform: translate(-24px,0px) rotate(-30deg);
+    }
+    
+    33% { 
+        transform: translate(30px,0px) rotate(20deg);
+    }
+
+    41% { 
+        transform: translate(0px,0px);
+    }
+    49% { 
+        transform: translate(0px,0px);
+    }
+    58%  { 
+        transform: translate(0px,0px) scale(0.618,0.618);
+    }
+    66%{
+        transform: translate(0px,0px) scale(1,1)
+    }    
+    74% {
+        
+        transform: translate(24px,0px) rotate(20deg);
+    }
+    83% {
+        transform: translate(-30px,0px) rotate(-30deg);
+    }
+    91% { 
+        transform: translate(0px,0px) scale(1,1) rotate(0deg);
+    }
+    99%{
+        transform: translate(0px,0px);
+    }
+    
+}

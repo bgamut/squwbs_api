@@ -181,22 +181,27 @@ const Instagram = (props)=> {
         //     }
         // )
         if(show=='Hide'){
-            imgRef1.current.src=uriList[index%20]
-            
-            setShow('Show')
-            opacityAnimationToOne()
-            sleep(3000).then(
+            sleep(5).then(
                 function(){
-                   // console.log('hi')
-                    setDummy(dummy+1)
+                    setShow('Show')
+                    opacityAnimationToOne()
+                    sleep(3000).then(
+                        function(){
+                        // console.log('hi')
+                            setDummy(dummy+1)
+                        }
+                    )
                 }
             )
+            
+            
         }
         else{
             
             setShow('Hide')
             setIndex(index+1)
             opacityAnimationToZero()
+            imgRef1.current.src=uriList[index%20]
         }
         //opacityAnimation()
        
@@ -370,20 +375,20 @@ const Instagram = (props)=> {
                                         </i>
                                     </StyleRoot> */}
                                     <img 
-                     className="Wiggle" 
-                        src={iglogo}
-                        style={{           
-                        height:25,
-                        width:25,
-                        color:'white',
-                        filter:'invert(0.8)',
-                       
-                      
-                      textAlign:'center',
-                     
-                      
-                    }}
-                      />
+                                        className="Wiggle" 
+                                            src={iglogo}
+                                            style={{           
+                                            height:25,
+                                            width:25,
+                                            color:'white',
+                                            filter:'invert(0.8)',
+                                        
+                                        
+                                        textAlign:'center',
+                                        
+                                        
+                                        }}
+                                        />
                                 </a>
                             </View>
                         </View>
