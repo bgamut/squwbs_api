@@ -361,6 +361,12 @@ app.get('/profile',
 app.get('/logout',function(req,res){
   //req.logout()
   //req.signedCookies = null
+  let options = {
+    maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+    httpOnly: true, // The cookie only accessible by the web server
+    signed: true,// Indicates if the cookie should be signed
+    secret:''
+  }
   res.cookie('userName', '' ,options);
   res.cookie('providerid','',options)
   res.cookie('provider','',options)
