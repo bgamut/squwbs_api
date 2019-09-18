@@ -289,6 +289,7 @@ const Drawer =(props)=>{
                                     styles.textStyle,
                                     {
                                         fontSize:16,
+                                        textDecorationLine:'none'
                                     }
                                 ]}
                             >
