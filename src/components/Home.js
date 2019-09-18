@@ -70,7 +70,7 @@ const Home = () => {
           setState({...state,userData:json.message})
           
           console.log(stringifyObject(json))
-          setUser(json.message)
+          setUser(json)
         })
         .catch((err)=>{
           console.error(err)
