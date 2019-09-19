@@ -370,7 +370,7 @@ const SwipeableScroller = (props) => {
         </section>
         <View style={{flexDirection:'column'}}>
           
-          <section id="PDF">
+          {/* <section id="PDF">
             <View 
               ref={heightRef}
               style={{
@@ -382,7 +382,7 @@ const SwipeableScroller = (props) => {
                 justifyContent:'center',
                 
             }}>
-              {/* <SwipeableList/> */}
+              
               <ReadPDF/>
             </View>
           </section>
@@ -402,7 +402,7 @@ const SwipeableScroller = (props) => {
           }}>
               <WordDeckWrapper/>
             </View>
-          </section>
+          </section> */}
           <section id="sound">
             <View 
             ref={heightRef}
@@ -505,7 +505,7 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
-          <section id="uploadwords">
+          {/* <section id="uploadwords">
             <View
               ref={heightRef}
               style={{
@@ -590,7 +590,7 @@ const SwipeableScroller = (props) => {
                 <DLLink/>
               </View>
             </View>
-          </section>
+          </section> */}
           {/* <View
             style={{
               height:125,
