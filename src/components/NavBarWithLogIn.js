@@ -52,41 +52,8 @@ const NavBarWithLogIn = () => {
               // shadowRadius: 20,
               backgroundColor:'transparent'
             }}>
+       
         {/* <View style={styles.box}>
-          <a id="linkHome" 
-            href="/" 
-            style={{
-              // color:'black', 
-              flex:1,
-              textDecorationLine:'none',
-              //borderColor:'black',
-              //borderWidth:2,
-              color:'white',
-              //fontSize: 12,
-              textShadowColor: 'black',
-              textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 8,
-              alignItems:'center',
-              justifyContent:'center',
-              flexDirection:'row',
-              textAlign:'center'
-            }}>
-              <TouchableOpacity style={styles.touch}>
-              <Text
-            
-            style={{
-              // color:'black', 
-              textDecorationLine:'none',
-              color:'white',
-              fontSize: 17,
-              textShadowColor: 'rgba(128, 128, 128, 1)',
-              textShadowOffset: {width: 0, height: 0},
-              textShadowRadius: 8,
-            }}>Home</Text>
-            </TouchableOpacity>
-            </a><br/>
-        </View> */}
-        <View style={styles.box}>
         <a style={
           {
             // flex:1,
@@ -107,24 +74,7 @@ const NavBarWithLogIn = () => {
           }
         } href="/login/facebook">
           <TouchableOpacity style={styles.touch}>
-          {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
-          {/* <svg height={22} width={22} >
-            <path d={String(faFacebookSquare.svgPathData)} fill="red"/>
-          </svg> */}
-          {/* <Text style={{fontFamily:'fontAwesome', fontSize:12, height:22, width:22,color:'black'}}>
-            &#xf082;
-          </Text> */}
-          {/* <img src = {facebookLogo} style={{
-            height:22,
-            width:22,
-            shadowColor: "black",
-            shadowOffset: { width:0,height: 0},
-            shadowRadius:5,
-            shadowOpacity: 0.3,
-            filter:'lightGrey',
-            
-          }}>
-          </img> */}
+    
           <Text id="linkLoginFacebook" 
           style={{
             // color:'black', 
@@ -166,28 +116,7 @@ const NavBarWithLogIn = () => {
           }
         } href="/login/google">
           <TouchableOpacity style={styles.touch}>
-          {/* <FontAwesomeIcon icon="faGoogle" /> */}
-          {/* <svg height={22} width={22} >
-            <path d={faGoogle.svgPathData} stroke="lightgrey"/>
-          </svg> */}
-          {/* <Image source = {googleLogo} style={{
-            shadowColor: "black",
-            shadowOffset: { width:0,height: 0},
-            shadowRadius:5,
-            shadowOpacity: 0.3,
-          }}>
-          </Image> */}
-           {/* <img src = {googleLogo} style={{
-            height:22,
-            width:22,
-            shadowColor: "black",
-            shadowOffset: { width:0,height: 0},
-            shadowRadius:5,
-            shadowOpacity: 0.3,
-            filter:'lightGrey',
-            
-          }}>
-          </img> */}
+          
           <Text id="linkLoginGoogle" 
           style={{
             // color:'black', 
@@ -207,7 +136,7 @@ const NavBarWithLogIn = () => {
           >Login with Google</Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
+        </View> */}
         <View style={styles.box}>
         <a style={
           {
