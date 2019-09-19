@@ -368,9 +368,12 @@ app.get('/logout',function(req,res){
     secret:''
   }
   
-  res.cookie('userName', undefined ,options);
-  res.cookie('providerid',undefined,options)
-  res.cookie('provider',undefined,options)
+  //res.cookie('userName', undefined ,options);
+  //res.cookie('providerid',undefined,options)
+  //res.cookie('provider',undefined,options)
+  res.clearCookie('userName')
+  res.clearCookie('providerid')
+  res.clearCookie('provider')
   res.redirect('/')
 })
 
