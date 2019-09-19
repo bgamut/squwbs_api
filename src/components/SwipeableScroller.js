@@ -186,11 +186,11 @@ const SwipeableScroller = (props) => {
             autoPlay={true}
             interval={4500}
             transitionTime={750}
-            emulateTouch={true}
+            //emulateTouch={true}
             stopOnHover={true}
-            swipeScrollTolerance={1}
+            //swipeScrollTolerance={1}
             useKeyboardArrows={true}
-            centerSlidePercentage={10}
+            //centerSlidePercentage={10}
           >
             <div 
             ref={heightRef}
