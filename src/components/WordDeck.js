@@ -9,8 +9,13 @@ import stringifyObject from 'stringify-object'
 //import {swing} from "react-animations"
 //import styled, { keyframes } from 'styled-components'
 //import Radium, {StyleRoot} from 'radium'
+
+//the following svg is downloaded from fontawesome
+//https://fontawesome.com/license
 import pointer from './icons/pointer.svg'
+
 //import './css/Zoom.css'
+
 import './css/Pointer.css'
 // const SwingAnimation = keyframes'${Swing}';
 // const SwingDiv = styled.div'
