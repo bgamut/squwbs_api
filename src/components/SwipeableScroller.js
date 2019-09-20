@@ -48,20 +48,6 @@ const SwipeableScroller = (props) => {
     })
     updateDimensions()
     //setHeight(Math.floor(Dimensions.get('window').height))
-
-  },[])
-  useEffect(()=>{
-    //console.log('height changed!')
-    //console.log(Dimensions.get('window').height)
-  },[height])
-  const updateDimensions=()=>{
-    setHeight(Math.floor(Dimensions.get('window').height))
-    //style.height=Math.floor(Dimensions.get('window').height)
-    //console.log('dimensions update')
-    
-  }
- 
-  const onScroll=(e)=>{
     //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
       fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
       mode:'cors'
@@ -80,6 +66,20 @@ const SwipeableScroller = (props) => {
     .catch((err)=>{
       console.error(err)
     })
+  },[])
+  useEffect(()=>{
+    //console.log('height changed!')
+    //console.log(Dimensions.get('window').height)
+  },[height])
+  const updateDimensions=()=>{
+    setHeight(Math.floor(Dimensions.get('window').height))
+    //style.height=Math.floor(Dimensions.get('window').height)
+    //console.log('dimensions update')
+    
+  }
+ 
+  const onScroll=(e)=>{
+    
     //console.log(e.nativeEvent.contentOffset.y)
     currentY=(e.nativeEvent.contentOffset.y)
     

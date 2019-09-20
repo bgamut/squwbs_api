@@ -42,7 +42,7 @@ class RouterElement extends Component {
                     <Route path ="/uploadjw" component={UploadWords}/>
                     <Route exact path="/map" component={Map}/>
                     <Route exact path = "/sound" component={Sound}/>
-                    <Route exact path ="/login" component={Login}/>
+                    {/* <Route exact path ="/login" component={Login}/> */}
                     {/* <Route exact path ="/login/*" component={Home}/> */}
                     {/* <Route exact path="/Catalogue" component={Catalogue} />
                     <Route exact path="/Category" component={Category}/>
