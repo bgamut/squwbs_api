@@ -52,7 +52,7 @@ const NavBarWithLogIn = () => {
               // shadowRadius: 20,
               backgroundColor:'transparent'
             }}>
-{/*               
+             
         <View style={styles.box}>
         <a style={
           {
@@ -138,7 +138,7 @@ const NavBarWithLogIn = () => {
           </TouchableOpacity>
         </a><br/>
         </View>
-         */}
+         
          
         {/* <View style={styles.box}>
         <a style={

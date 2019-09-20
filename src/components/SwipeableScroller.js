@@ -359,7 +359,7 @@ const SwipeableScroller = (props) => {
                     }}
                   >
                     
-                    Available in VST & AU File Format
+                    Available in Mac & PC
                   </Text>
                   </Fade>
                 </View>
