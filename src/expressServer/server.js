@@ -224,12 +224,12 @@ app.get('/login', function (req, res) {
   });  
   //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
 });
-app.get('/getpaypalliveid',
+app.get('/getpaypalliveid',cors(),(req,res)=>{
   res.send({'paypalid':NODE_ENV.PAYPAL_LIVE_CLIENT_ID})
-)
-app.get('/getpaypalsandboxid',
+})
+app.get('/getpaypalsandboxid',cors(),(req,res)=>{
   res.send({'paypalid':NODE_ENV.PAYPAL_SANDBOX_CLIENT_ID})
-)
+})
 app.get('/mapboxtoken',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})

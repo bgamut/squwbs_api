@@ -92,22 +92,24 @@ class Login extends Component {
             flexDirection:'row',
           }}
           >Google Login</Text>
-          <i class="fa fa-google" aria-hidden="true"
+          {/* <i class="fa fa-google" aria-hidden="true"
           style={{
-            color:'black', 
-            textDecorationLine:'none',
-            color:'white',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}></i>
+            height:33,
+              color:'white',
+              display:'block',
+              margin:3,
+              textShadowColor: 'rgba(0, 0, 0, 1)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 3,
+              shadowColor:'#000',
+              shadowOpacity:0.25,
+              shadowRadius:2,
+              shadowOffset:{
+              width:0,
+              height:0
+              },
+              elevation:2
+          }}></i> */}
           </TouchableOpacity>
         </a><br/>
         </View>
@@ -151,22 +153,24 @@ class Login extends Component {
             flexDirection:'row',
           }}
           >Facebook Login</Text>
-          <i class="fa fa-facebook" aria-hidden="true"
+          {/* <i class="fa fa-facebook" aria-hidden="true"
           style={{
-            color:'black', 
-            textDecorationLine:'none',
-            color:'white',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}></i>
+            height:33,
+              color:'white',
+              display:'block',
+              margin:3,
+              textShadowColor: 'rgba(0, 0, 0, 1)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 3,
+              shadowColor:'#000',
+              shadowOpacity:0.25,
+              shadowRadius:2,
+              shadowOffset:{
+              width:0,
+              height:0
+              },
+              elevation:2
+          }}></i> */}
           </TouchableOpacity>
         </a><br/>
         </View>
