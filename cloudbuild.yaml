@@ -10,3 +10,4 @@ steps:
   args: ['beta', 'run', 'deploy', 'squwbs-252702', '--image', 'gcr.io/squwbs-252702/quickstart-image', '--region', asia-northeast1, '--platform', 'managed', '--allow-unauthenticated']
 images:
 - gcr.io/squwbs-252702/quickstart-image
+

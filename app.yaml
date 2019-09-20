@@ -1,3 +1,2 @@
 runtime: nodejs10
-steps:
-- name: 'gcr.io/cloud-builders/gcloud'
+port: 8080
