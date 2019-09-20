@@ -1,7 +1,7 @@
 
-import React,{Component,useContext,useEffect,useState,useRef} from 'react';
+import React,{Component,useContext,useEffect,useState,useRef} from 'react'
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableOpacity,ScrollView} from 'react-native'
-import { Context } from "../context";
+import { Context } from "../context"
 import Swiper from './Swiper'
 import SwipeableList from './SwipeableList'
 import Header from './Header'
@@ -13,10 +13,13 @@ import Contact from './Contact'
 import UploadWords from './UploadWords'
 import DLLink from './DLLink'
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+import { Carousel } from 'react-responsive-carousel'
 import './css/Image.css'
 import Fade from 'react-reveal/Fade'
+import { PayPalButton } from "react-paypal-button-v2"
+const withQuery = require('with-query').default
+const stringifyObject= require('stringify-object')
 // const translateY = new Animated.Value(0);
 
 let currentY=0
@@ -28,7 +31,9 @@ const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
   const [height,setHeight]=useState(0)
+  const [paypalID,setpaypalID] = useState('')
   const heightRef = useRef('')
+  
   useEffect(()=>{
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
@@ -43,6 +48,7 @@ const SwipeableScroller = (props) => {
     })
     updateDimensions()
     //setHeight(Math.floor(Dimensions.get('window').height))
+
   },[])
   useEffect(()=>{
     //console.log('height changed!')
@@ -56,7 +62,24 @@ const SwipeableScroller = (props) => {
   }
  
   const onScroll=(e)=>{
-    
+    //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
+      fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+      mode:'cors'
+    }))
+    .then(result=>{
+      console.log('got result from getPaypalID')
+      return result.json()
+    })
+    .then((json)=>{
+      //setState({...state,userData:{...json}})
+      
+      console.log(stringifyObject(json))
+      setpaypalID(json.paypalid)
+      //return json
+    })
+    .catch((err)=>{
+      console.error(err)
+    })
     //console.log(e.nativeEvent.contentOffset.y)
     currentY=(e.nativeEvent.contentOffset.y)
     
@@ -591,6 +614,73 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section> */}
+          {/* <View
+            style={{
+              height:125,
+              // backgroundColor:'rgb(211,211,211)'
+              backgroundColor:'white'
+            }}
+          >
+          </View> */}
+        
+        <section id="download">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'rgb(211,211,211)',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'white',
+                  borderRadius:4,
+                  //borderBottom:2,
+                  //borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <PayPalButton
+                  amount="49.99"
+                  options={{clientId: paypalID}}
+                  onSuccess={(details, data) => {
+                    alert("Transaction completed by " + details.payer.name.given_name);
+          
+                    // OPTIONAL: Call your server to save the transaction
+                    return fetch("/paypal-transaction-complete", {
+                      method: "post",
+                      body: JSON.stringify({
+                        orderID: data.orderID
+                      })
+                    });
+                  }}
+                />
+              </View>
+            </View>
+          </section>
+          
           {/* <View
             style={{
               height:125,

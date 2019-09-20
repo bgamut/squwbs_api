@@ -212,7 +212,7 @@ app.get('/', function (req, res) {
   else{
     res.render(path.join(__dirname, 'build', 'index.html'));
   }
-  app.get('/login', function (req, res) {
+app.get('/login', function (req, res) {
     res.redirect('/')
     //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
     res.render('login');
@@ -224,6 +224,17 @@ app.get('/', function (req, res) {
   });  
   //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
 });
+app.get('/getpaypalliveid',
+  res.send({'paypalid':NODE_ENV.PAYPAL_LIVE_CLIENT_ID})
+)
+app.get('/getpaypalsandboxid',
+  res.send({'paypalid':NODE_ENV.PAYPAL_SANDBOX_CLIENT_ID})
+)
+app.get('/mapboxtoken',cors(),(req,res)=>{
+  //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
+  res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
+
+})
 app.get('/home',
   function(req, res) {
     if(req.user==undefined){
