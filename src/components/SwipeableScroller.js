@@ -426,6 +426,63 @@ const SwipeableScroller = (props) => {
               <WordDeckWrapper/>
             </View>
           </section> */}
+          <section id="download">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'rgb(211,211,211)',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'white',
+                  borderRadius:4,
+                  //borderBottom:2,
+                  //borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <PayPalButton
+                  amount="49.99"
+                  options={{clientId: paypalID}}
+                  onSuccess={(details, data) => {
+                    alert("Transaction completed by " + details.payer.name.given_name);
+          
+                    // OPTIONAL: Call your server to save the transaction
+                    return fetch("/paypal-transaction-complete", {
+                      method: "post",
+                      body: JSON.stringify({
+                        orderID: data.orderID
+                      })
+                    });
+                  }}
+                />
+              </View>
+            </View>
+          </section>
           <section id="sound">
             <View 
             ref={heightRef}
@@ -623,63 +680,7 @@ const SwipeableScroller = (props) => {
           >
           </View> */}
         
-        <section id="download">
-            <View
-              ref={heightRef}
-              style={{
-                //height:"100vh",
-                height:height-50,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'rgb(211,211,211)',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                <PayPalButton
-                  amount="49.99"
-                  options={{clientId: paypalID}}
-                  onSuccess={(details, data) => {
-                    alert("Transaction completed by " + details.payer.name.given_name);
-          
-                    // OPTIONAL: Call your server to save the transaction
-                    return fetch("/paypal-transaction-complete", {
-                      method: "post",
-                      body: JSON.stringify({
-                        orderID: data.orderID
-                      })
-                    });
-                  }}
-                />
-              </View>
-            </View>
-          </section>
+        
           
           {/* <View
             style={{
