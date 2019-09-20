@@ -396,6 +396,39 @@ app.get('/logout',function(req,res){
   res.clearCookie('provider')
   res.redirect('/')
 })
+app.get('/file',function(req,res){
+  res.download(__dirname+'/squwbs.zip')
+})
+app.get('/download', function (req, res) {
+  var options = {
+    method: 'GET',
+    host: 'localhost',
+    port: port,
+    path: '/file'
+  };
+
+  var request = http.request(options, function(response) {
+    var data = [];
+
+    response.on('data', function(chunk) {
+      data.push(chunk);
+    });
+
+    response.on('end', function() {
+      data = Buffer.concat(data);
+      console.log('requested content length: ', response.headers['content-length']);
+      console.log('parsed content length: ', data.length);
+      res.writeHead(200, {
+        'Content-Type': 'application/zip',
+        'Content-Disposition': 'attachment; filename=squwbs.zip',
+        'Content-Length': data.length
+      });
+      res.end(data);
+    });
+  });
+
+  request.end();
+});
 app.get('/removeme',function(req,res){
   var obj = req.query
 
