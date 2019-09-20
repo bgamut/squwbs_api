@@ -421,7 +421,7 @@ app.get('/removeme',function(req,res){
     // userStructure.provider[String(copy.provider)]=copy.providerid
     // userStructure.names[String(copy.provider)]=copy.userName
     // userStructure.token=copy['connect.sid']
-    console.log(userStructure)
+    //console.log(userStructure)
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()

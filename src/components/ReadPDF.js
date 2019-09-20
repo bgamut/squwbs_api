@@ -3,6 +3,7 @@ import React,{Component,useContext,useState,useEffect,memo,useRef} from 'react';
 import SplitScreenV2 from './SplitScreenV2'
 import {TouchableOpacity,Text,View,Dimensions} from 'react-native'
 import FilePicker from './FilePicker'
+import Fade from 'react-reveal/Fade'
 
 
 const PDFReader = () => {
@@ -49,6 +50,7 @@ const PDFReader = () => {
                     padding:20,
                 }}
             >
+            <Fade>
             <View
                 style ={{
                     height:33,
@@ -167,6 +169,7 @@ const PDFReader = () => {
                     </label>
                 </Text>
             </View>
+            </Fade>
                 <View
                     style={{
                         marginTop:3

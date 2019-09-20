@@ -309,7 +309,7 @@ const UploadWords = (props)=> {
                                 flexDirection:'row',
                                 margin:5,
                             }}>
-                                Load XLSX
+                                Upload XLSX
                             </Text>
                         </TouchableOpacity>
                     </View>

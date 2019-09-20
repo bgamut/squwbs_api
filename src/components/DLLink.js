@@ -174,7 +174,7 @@ const DLLink = (props)=> {
                             flexDirection:'row',
                             margin:5,
                         }}>
-                            test file
+                            Download
                         </Text>
                     </TouchableOpacity>
                 </View>

@@ -492,6 +492,50 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
+           
+          <section id="testDownloadLink">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'white',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'rgb(211,211,211)',
+                  borderRadius:4,
+                  //borderBottom:2,
+                  //borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <DLLink/>
+              </View>
+            </View>
+          </section>
           <section id="sound">
             <View 
             ref={heightRef}
@@ -594,92 +638,7 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
-          {/* <section id="uploadwords">
-            <View
-              ref={heightRef}
-              style={{
-                //height:"100vh",
-                height:height-50,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'rgb(211,211,211)',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                <UploadWords/>
-              </View>
-            </View>
-          </section>
-          <section id="testDownloadLink">
-            <View
-              ref={heightRef}
-              style={{
-                //height:"100vh",
-                height:height-50,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'white',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'rgb(211,211,211)',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                <DLLink/>
-              </View>
-            </View>
-          </section> */}
+         
           {/* <View
             style={{
               height:125,
@@ -730,6 +689,49 @@ const SwipeableScroller = (props) => {
               // borderColor:'rgb(211,211,211)',
           }}>
               <WordDeckWrapper/>
+            </View>
+          </section>
+          <section id="uploadwords">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'rgb(211,211,211)',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'white',
+                  borderRadius:4,
+                  //borderBottom:2,
+                  //borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <UploadWords/>
+              </View>
             </View>
           </section>
         </View>
