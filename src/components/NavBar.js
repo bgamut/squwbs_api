@@ -265,7 +265,6 @@ const NavBar = () => {
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
-
             textAlign:'center',
             alignItems:'center',
             justifyContent:'center',

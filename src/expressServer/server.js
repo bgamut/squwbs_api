@@ -118,8 +118,8 @@ var app = express();
 // });
 app.set('views', __dirname + '/views');
 //app.set('view engine','jsx')
-app.engine('jsx',require('express-react-views').createEngine())
-//app.set('view engine','ejs')
+//app.engine('jsx',require('express-react-views').createEngine())
+app.set('view engine','ejs')
 //app.use(require('cookie-parser')());
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
@@ -212,7 +212,16 @@ app.get('/', function (req, res) {
   else{
     res.render(path.join(__dirname, 'build', 'index.html'));
   }
-  
+  app.get('/login', function (req, res) {
+    res.redirect('/')
+    //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+    res.render('login');
+    // fs.readFile(path.join(__dirname, '../../build', 'index.html'),(err,data)=>{
+    //   let htmlPlusData = data.toString().replace("MAPBOX_ACCESS_TOKEN_STRING",String(NODE_ENV.MAPBOX_ACCESS_TOKEN))
+    //   res.send( htmlPlusData)
+    // })
+    //res.render('index',{ mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN })
+  });  
   //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
 });
 app.get('/home',
@@ -226,17 +235,17 @@ app.get('/home',
     
   });
 
-app.get('/login',
-  function(req, res){
-    res.locals.lang = 'en';
-    res.locals.name='template'
-    if(req.user==undefined){
-      res.render('login');
-    }
-    else{
-      res.redirect('/profile')
-    }
-  });
+// app.get('/login',
+//   function(req, res){
+//     res.locals.lang = 'en';
+//     res.locals.name='template'
+//     if(req.user==undefined){
+//       res.render('login');
+//     }
+//     else{
+//       res.redirect('/profile')
+//     }
+//   });
 
 app.get('/login/facebook',
   passport.authenticate('facebook'
