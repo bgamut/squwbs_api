@@ -25,7 +25,7 @@ const NavBar = () => {
             }}>
         
        
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
         <a style={
           {
             // flex:1,
@@ -66,8 +66,9 @@ const NavBar = () => {
           >PDF Reader</Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
-        <View style={styles.box}>
+        </View> */}
+        
+        {/* <View style={styles.box}>
         <a style={
           {
             // flex:1,
@@ -88,24 +89,7 @@ const NavBar = () => {
           }
         } href="/#cards">
           <TouchableOpacity style={styles.touch}>
-          {/* <FontAwesomeIcon icon="faFacebookSquare" /> */}
-          {/* <svg height={22} width={22} >
-            <path d={String(faFacebookSquare.svgPathData)} fill="red"/>
-          </svg> */}
-          {/* <Text style={{fontFamily:'fontAwesome', fontSize:12, height:22, width:22,color:'black'}}>
-            &#xf082;
-          </Text> */}
-          {/* <img src = {facebookLogo} style={{
-            height:22,
-            width:22,
-            shadowColor: "black",
-            shadowOffset: { width:0,height: 0},
-            shadowRadius:5,
-            shadowOpacity: 0.3,
-            filter:'lightGrey',
-            
-          }}>
-          </img> */}
+
           <Text id="Word Cards" 
           style={{
             // color:'black', 
@@ -125,7 +109,7 @@ const NavBar = () => {
           >Word Cards</Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
+        </View> */}
         
         <View style={styles.box}>
         <a style={
