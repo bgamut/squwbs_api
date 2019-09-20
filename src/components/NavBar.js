@@ -274,6 +274,45 @@ const NavBar = () => {
           </TouchableOpacity>
         </a><br/>
         </View>
+        <View style={styles.box}>
+        <a style={
+          {
+            textDecorationLine:'none',
+  
+            backgroundColor:'transparent',
+            fontSize: 17,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/removeme">
+          <TouchableOpacity style={styles.touch}>
+         
+          <Text id="Contact" 
+          style={{
+
+            textDecorationLine:'none',
+            color:'white',
+            fontWeight:'700',
+            fontSize: 17,
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          >Remove Profile</Text>
+          </TouchableOpacity>
+        </a><br/>
+        </View>
       </View>
 
   //   </KeyboardAvoidingView>

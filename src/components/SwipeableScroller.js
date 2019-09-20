@@ -31,7 +31,7 @@ const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
   const [height,setHeight]=useState(0)
-  const [paypalID,setpaypalID] = useState('')
+  const [paypalID,setpaypalID] = useState('AaamfRY_m3oI8mrgUFZsl-1irWNv48ea3YvOSIdq31Jt9_cJIjMVS8wyPH_tH143O03B1cRsqbq1beGT')
   const heightRef = useRef('')
   
   useEffect(()=>{
@@ -249,6 +249,12 @@ const SwipeableScroller = (props) => {
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
                 <Fade>
+                <a 
+                  style={{
+                    textDecorationLine:'none'
+                  }}
+                  href='#download'
+                >
                   <Text
                     //className='Unselectable'
                     style={{
@@ -269,6 +275,7 @@ const SwipeableScroller = (props) => {
                   >
                     Get the Sound You Want
                   </Text>
+                </a>
                   </Fade>
                 </View>
             </div>
@@ -307,26 +314,33 @@ const SwipeableScroller = (props) => {
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
                 <Fade>
-                  <Text
-                    //className='Unselectable'
-                    style={{
-
-                      textDecorationLine:'none',
-                      color:'white',
-                      fontWeight:'700',
-                      fontSize: 25,
-                      textShadowColor: 'rgba(0, 0, 0, 1)',
-                      textShadowOffset: {width: 0, height: 0},
-                      textShadowRadius: 2,
-          
-                      textAlign:'center',
-                      alignItems:'center',
-                      justifyContent:'center',
-                      flexDirection:'row',
+                  <a 
+                     style={{
+                      textDecorationLine:'none'
                     }}
+                    href='#download'
                   >
-                  Your Idea To A Song In Minutes  
-                  </Text>
+                    <Text
+                      //className='Unselectable'
+                      style={{
+
+                        textDecorationLine:'none',
+                        color:'white',
+                        fontWeight:'700',
+                        fontSize: 25,
+                        textShadowColor: 'rgba(0, 0, 0, 1)',
+                        textShadowOffset: {width: 0, height: 0},
+                        textShadowRadius: 2,
+            
+                        textAlign:'center',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        flexDirection:'row',
+                      }}
+                    >
+                    Your Idea To A Song In Minutes  
+                    </Text>
+                  </a>
                 </Fade>
                 </View>
                 {/* <img src="assets/2.jpeg" /> */}
@@ -363,6 +377,12 @@ const SwipeableScroller = (props) => {
                 {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                 {/* <p className="legend">1</p> */}
                   <Fade>
+                  <a 
+                    style={{
+                      textDecorationLine:'none'
+                    }}
+                    href='#download'
+                  >
                   <Text
                     //className='Unselectable'
                     style={{
@@ -384,6 +404,7 @@ const SwipeableScroller = (props) => {
                     
                     Available in Mac & PC
                   </Text>
+                  </a>
                   </Fade>
                 </View>
                 {/* <img src="assets/3.jpeg" /> */}
@@ -393,39 +414,7 @@ const SwipeableScroller = (props) => {
         </section>
         <View style={{flexDirection:'column'}}>
           
-          {/* <section id="PDF">
-            <View 
-              ref={heightRef}
-              style={{
-                //height:"100vh",
-                height:height-50,
-                zIndex:0,
-                backgroundColor:'transparent',
-                alignItems:'center',
-                justifyContent:'center',
-                
-            }}>
-              
-              <ReadPDF/>
-            </View>
-          </section>
-          <section id="cards">
-            <View 
-              ref={heightRef}
-              style={{
-              //height:"100vh",
-              height:height-50,
-              zIndex:0,
-              backgroundColor:'white',
-              alignContent:'center',
-              justifyContent:'center',
-              overflow:'hidden',
-              // borderWidth:1,
-              // borderColor:'rgb(211,211,211)',
-          }}>
-              <WordDeckWrapper/>
-            </View>
-          </section> */}
+          
           <section id="download">
             <View
               ref={heightRef}
@@ -465,6 +454,26 @@ const SwipeableScroller = (props) => {
                   elevation:2
                 }}
               >
+                <Text
+                    //className='Unselectable'
+                    style={{
+
+                      textDecorationLine:'none',
+                      color:'white',
+                      fontWeight:'700',
+                      fontSize: 15,
+                      textShadowColor: 'rgba(0, 0, 0, 1)',
+                      textShadowOffset: {width: 0, height: 0},
+                      textShadowRadius: 2,
+                      margin:15,
+                      textAlign:'center',
+                      alignItems:'center',
+                      justifyContent:'center',
+                      flexDirection:'row',
+                    }}
+                  >
+                    SQUWBS VST & AU
+                  </Text>
                 <PayPalButton
                   amount="49.99"
                   options={{clientId: paypalID}}
@@ -690,7 +699,39 @@ const SwipeableScroller = (props) => {
             }}
           >
           </View> */}
-          
+          <section id="PDF">
+            <View 
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                zIndex:0,
+                backgroundColor:'transparent',
+                alignItems:'center',
+                justifyContent:'center',
+                
+            }}>
+              
+              <ReadPDF/>
+            </View>
+          </section>
+          <section id="cards">
+            <View 
+              ref={heightRef}
+              style={{
+              //height:"100vh",
+              height:height-50,
+              zIndex:0,
+              backgroundColor:'white',
+              alignContent:'center',
+              justifyContent:'center',
+              overflow:'hidden',
+              // borderWidth:1,
+              // borderColor:'rgb(211,211,211)',
+          }}>
+              <WordDeckWrapper/>
+            </View>
+          </section>
         </View>
       
     </View>
