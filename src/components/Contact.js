@@ -9,6 +9,7 @@ import {swing} from "react-animations"
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import envelope from './icons/close-envelope.svg'
+
 import './css/Wiggle.css'
 import './css/Image.css'
 // const SwingAnimation = keyframes'${Swing}';
@@ -142,6 +143,7 @@ const Contact = (props)=> {
                      className="Wiggle Unselectable" 
 
                         src={envelope}
+                        
                         unselectable='on'
                         style={{           
                         height:25,

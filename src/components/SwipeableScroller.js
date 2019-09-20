@@ -227,7 +227,7 @@ const SwipeableScroller = (props) => {
                 {/* <p className="legend">1</p> */}
                 <Fade>
                   <Text
-                    className='Unselectable'
+                    //className='Unselectable'
                     style={{
 
                       textDecorationLine:'none',
@@ -255,10 +255,10 @@ const SwipeableScroller = (props) => {
                 //height:"38vh",
                 height:height-50,
                 width:"100vw",
-                backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
+                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
                 // textAlign:'center',
                 backgroundSize: '100% 100%',
-                //backgroundColor:'rgb(250,250,250)',
+                backgroundColor:'rgb(250,250,250)',
                 textAlign:'center',
                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
                 backgroundRepeat:"no-repeat",
@@ -285,7 +285,7 @@ const SwipeableScroller = (props) => {
                 {/* <p className="legend">1</p> */}
                 <Fade>
                   <Text
-                    className='Unselectable'
+                    //className='Unselectable'
                     style={{
 
                       textDecorationLine:'none',
@@ -341,7 +341,7 @@ const SwipeableScroller = (props) => {
                 {/* <p className="legend">1</p> */}
                   <Fade>
                   <Text
-                    className='Unselectable'
+                    //className='Unselectable'
                     style={{
 
                       textDecorationLine:'none',

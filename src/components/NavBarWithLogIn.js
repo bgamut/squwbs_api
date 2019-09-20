@@ -52,49 +52,7 @@ const NavBarWithLogIn = () => {
               // shadowRadius: 20,
               backgroundColor:'transparent'
             }}>
-       
-        {/* <View style={styles.box}>
-        <a style={
-          {
-            // flex:1,
-            textDecorationLine:'none',
-            //borderColor:'black',
-            //borderWidth:2,
-            backgroundColor:'transparent',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-            textAlign:'center'
-          }
-        } href="/login/facebook">
-          <TouchableOpacity style={styles.touch}>
-    
-          <Text id="linkLoginFacebook" 
-          style={{
-            // color:'black', 
-            textDecorationLine:'none',
-            color:'white',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}
-          >Login with Facebook</Text>
-          </TouchableOpacity>
-        </a><br/>
-        </View>
+{/*               
         <View style={styles.box}>
         <a style={
           {
@@ -133,11 +91,55 @@ const NavBarWithLogIn = () => {
             justifyContent:'center',
             flexDirection:'row',
           }}
-          >Login with Google</Text>
+          >Google Login</Text>
           </TouchableOpacity>
         </a><br/>
-        </View> */}
+        </View>
        
+        <View style={styles.box}>
+        <a style={
+          {
+            // flex:1,
+            textDecorationLine:'none',
+            //borderColor:'black',
+            //borderWidth:2,
+            backgroundColor:'transparent',
+            fontSize: 17,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/login/facebook">
+          <TouchableOpacity style={styles.touch}>
+    
+          <Text id="linkLoginFacebook" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 17,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          >Facebook Login</Text>
+          </TouchableOpacity>
+        </a><br/>
+        </View>
+         */}
+         
         {/* <View style={styles.box}>
         <a style={
           {

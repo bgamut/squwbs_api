@@ -9,6 +9,7 @@ import {swing} from "react-animations"
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
+
 import './css/Wiggle.css'
 import './css/Image.css'
 // const SwingAnimation = keyframes'${Swing}';

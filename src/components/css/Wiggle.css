@@ -3,12 +3,12 @@
 }
 @keyframes Wiggle {
     0% { 
-        transform: rotate(-1.5deg);
+        transform: rotate(-1.75deg);
     }
     50%  { 
-        transform: rotate(1.5deg);
+        transform: rotate(1.75deg);
     }
     100% { 
-        transform: rotate(-1.5deg);
+        transform: rotate(-1.75deg);
     }
 }
