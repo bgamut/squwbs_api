@@ -396,6 +396,81 @@ app.get('/logout',function(req,res){
   res.clearCookie('provider')
   res.redirect('/')
 })
+app.get('/removeme',function(req,res){
+  var obj = req.query
+
+  //function addUser({userName,userEmail},func){
+  function removeuser(obj,func){
+    //var copy = Object.create(obj)
+    global.copy = Object.create(obj)
+    console.log(stringifyObject(copy))
+    var db = admin.database()
+    var ref = db.ref('users')
+    // var userStructure = {
+    //   provider:{
+    //     google:'',
+    //     facebook:''
+    //   },
+    //   names:{
+    //     google:'',
+    //     facebook:''
+    //   },
+    //   token:''
+    // }
+    //var userStructure = {}
+    // userStructure.provider[String(copy.provider)]=copy.providerid
+    // userStructure.names[String(copy.provider)]=copy.userName
+    // userStructure.token=copy['connect.sid']
+    console.log(userStructure)
+
+    ref.once('value',function(snapshot){
+      var usersList=snapshot.val()
+      //console,log('userlist function')
+      if(usersList==undefined){
+        usersList={0:userStructure}
+      }
+      else{
+        var picked = usersList.find(user=>user.provider[copy.provider]==copy.providerid)
+        if(picked==undefined){
+          //usersList.push(userStructure)
+          console.log('no such user')
+        }
+        else{
+          var index=usersList.findIndex(user=>user.provider[copy.provider]==copy.providerid)
+          //usersList[index]=userStructure
+          usersList.splice(index,1)
+        }
+
+        
+      }
+      ref.set(usersList,function(error){
+        if(error){
+          //console.log(error)
+          func(error)
+        }
+        else{
+          //console.log('callback fired')
+          func(picked)
+        }
+
+      })
+      delete global.copy
+    })
+  }
+  
+  function sendObj(obj){
+    res.send(obj)
+  }
+
+  removeuser(obj,sendObj)
+  res.clearCookie('userName')
+  res.clearCookie('providerid')
+  res.clearCookie('provider')
+  res.redirect('/')
+
+  
+  
+})
 
 //app.options('*', cors())
 //var corsOptions = {origin:'https://squwbs.herokuapp.com/'}
