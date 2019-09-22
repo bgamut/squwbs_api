@@ -66,7 +66,7 @@ const DLLink = (props)=> {
                     alignItems:'center'
                 }}>
                     {/* <input {...getInputProps()} /> */}
-                    <TouchableOpacity onPress={}>
+                    <TouchableOpacity onPress={(e)=>{console.log(e)}}>
                         <Text selectable={false} style ={{
                             fontSize: 11,
                             fontWeight:'700',
