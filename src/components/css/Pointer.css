@@ -17,11 +17,14 @@
     }
     24% { 
         
-        transform: translate(-24px,0px) rotate(-30deg);
+        transform: translate(-24px,0px) rotate(-30deg) scale(1,1);
+    }
+    27%{
+        transform: translate(-27px,0px) rotate(0deg) scale(0.618,0.618);
     }
     
     33% { 
-        transform: translate(30px,0px) rotate(20deg);
+        transform: translate(30px,0px) rotate(20deg) scale(1,1);
     }
 
     41% { 
@@ -38,10 +41,13 @@
     }    
     74% {
         
-        transform: translate(24px,0px) rotate(20deg);
+        transform: translate(24px,0px) rotate(20deg) scale(1,1);
+    }
+    77% {
+        transform: translate(24px,0px) rotate(0deg) scale(0.618,0.618);
     }
     83% {
-        transform: translate(-30px,0px) rotate(-30deg);
+        transform: translate(-30px,0px) rotate(-30deg) scale(1,1);
     }
     91% { 
         transform: translate(0px,0px) scale(1,1) rotate(0deg);

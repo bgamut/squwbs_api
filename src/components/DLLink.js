@@ -17,6 +17,7 @@ const DLLink = (props)=> {
                 mode:'cors'
             }))
             .then(result=>{
+                console.log(result)
                 return result.json()
             })
             .then((json)=>{
