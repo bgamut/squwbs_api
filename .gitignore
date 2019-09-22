@@ -4,7 +4,11 @@
 
 # Node.js
 node_modules/
-!node_modules/rimraf/*
+!node_modules/rimraf/bin.js
+!node_modules/rimraf/rimraf.js
+!node_modules/rimraf/package.json
+!node_modules/rimraf/LICENSE
+!node_modules/rimraf/README.md
 
 npm-debug.log
 squwbs-darwin-x64/
