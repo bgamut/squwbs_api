@@ -68,7 +68,7 @@ const DLLink = (props)=> {
                 }}>
                     {/* <input {...getInputProps()} /> */}
                     <TouchableOpacity onPress={(e)=>{
-                        console.log(e)
+                        //console.log(e)
                         download()
                     }}>
                         <Text selectable={false} style ={{
