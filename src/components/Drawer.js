@@ -4,11 +4,14 @@ import NavBarWithLogIn from './NavBarWithLogIn'
 import NavBar from './NavBar'
 import {Context} from '../context'
 import './css/Drawer.css'
+import importScripts from 'import-scripts'
 var {name} =require( '../../package.json')
 const withQuery = require('with-query').default
 var diff = require('object-diff')
 const _ = require('lodash')
 const stringifyObject= require('stringify-object')
+//importScripts('https://cdn.jsdelivr.net/npm/stringify-object@3.3.0/index.min.js')
+
 const SLIDING_DRAWER_WIDTH =300;
 const maxHeight=50
 const imageLength=30
