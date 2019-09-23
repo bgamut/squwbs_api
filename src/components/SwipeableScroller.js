@@ -24,6 +24,13 @@ import {PayPalButton} from 'react-paypal-button'
 //import MyStoreCheckout from './MyStoreCheckout'
 const withQuery = require('with-query').default
 const stringifyObject= require('stringify-object')
+try{
+  var NODE_ENV = require('./private')
+}
+catch(e){
+  console.log('we are probably in production mode')
+  var NODE_ENV = {...process.env};
+}
 // const translateY = new Animated.Value(0);
 
 let currentY=0
@@ -502,7 +509,8 @@ const SwipeableScroller = (props) => {
                 <PayPalButton
                   paypalOptions={{
                     
-                    clientId:paypalID,
+                    //clientId:paypalID,
+                    clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
                     intent:'capture'
                   }}
                   buttonStyles={{
@@ -510,10 +518,16 @@ const SwipeableScroller = (props) => {
                     // layout:'vertical',
                     shape:'rect',
                     color:'white',
-                    tagline:false,
+                    tagline:true,
                     
                   }}
                   amount={9.99}
+                  onApprove={(data,authId)=>{
+                    console.log('onApprove')
+                  }}
+                  onPaymentSuccess={(data)=>{
+                    console.log('onPaymentSuccess')
+                  }}
                   />
                 {/* <StripeProvider apiKey="">
                   <MyStoreCheckout/>
