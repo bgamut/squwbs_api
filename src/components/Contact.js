@@ -140,8 +140,8 @@ const Contact = (props)=> {
                       },{...stylez.swing}]}className="material-icons large white-text">email</i> */}
                       {/* </StyleRoot> */}
                     <img 
-                     className="Wiggle Unselectable" 
-
+                    //  className="Wiggle Unselectable" 
+                        className="Unselectable"
                         src={envelope}
                         
                         unselectable='on'

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "./static/css/main.c2bad6a5.chunk.css",
+    "main.js": "./static/js/main.83683e62.chunk.js",
+    "runtime~main.js": "./static/js/runtime~main.588e96af.js",
+    "static/css/2.50567895.chunk.css": "./static/css/2.50567895.chunk.css",
+    "static/js/2.81ab8c4a.chunk.js": "./static/js/2.81ab8c4a.chunk.js",
+    "index.html": "./index.html",
+    "precache-manifest.d82865205ff3617e1966d31f93d896d6.js": "./precache-manifest.d82865205ff3617e1966d31f93d896d6.js",
+    "service-worker.js": "./service-worker.js",
+    "static/media/96x96.png": "./static/media/96x96.9a7fb416.png",
+    "static/media/Drawer.css": "./static/media/Alien-Encounters-Solid-Regular.8aeca3f0.ttf",
+    "static/media/Svg.css": "./static/media/Roboto-Regular.3e1af3ef.ttf",
+    "static/media/close-envelope.svg": "./static/media/close-envelope.e9419679.svg",
+    "static/media/iglogo.svg": "./static/media/iglogo.4c7ce1b0.svg",
+    "static/media/pointer.svg": "./static/media/pointer.27fa8f26.svg"
+  }
+}

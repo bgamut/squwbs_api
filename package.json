@@ -98,6 +98,7 @@
     "react-native-web-image": "0.0.6",
     "react-navigation": "^3.11.0",
     "react-p5-wrapper": "^2.0.0",
+    "react-paypal-button": "^4.1.1",
     "react-pdf-js": "^5.1.0",
     "react-redux": "^7.0.3",
     "react-responsive-carousel": "^3.1.50",

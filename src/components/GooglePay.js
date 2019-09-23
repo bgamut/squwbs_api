@@ -120,32 +120,52 @@ const GooglePay =(props)=> {
   const loadPaymentDataHandler = (paymentData) => {
     const paymentToken = paymentData.paymentMethodData.tokenizationData.token
   }
-  if (info!=null){
-    return (
-      <GPayButton
+  // if (info!=null){
+  //   return (
+  //     <GPayButton
  
+  //       totalPriceStatus={'FINAL'}
+  //       totalPrice={'49.99'}
+  //       currencyCode={'USD'}
+  //       countryCode={'US'}
+  //       allowedPaymentMethods={paymentMethods}
+  //       development={true}
+  //       merchantInfo={{
+  //         merchantName: info.googlepaymerchantname,
+          
+  //         //merchantName:'',
+  //         // A Google merchant identifier issued after your website is approved by Google ✅
+  //         merchantId: info.googlepaymerchantid
+         
+  //         //merchantId:''
+  //       }}
+  //       onLoadPaymentData={loadPaymentDataHandler}
+  //     />
+
+      
+  //   )
+  // }
+  // else{
+  //   return(null)
+  // }
+
+  //////////////////////////////////below is just a place holder please comment out for production. 
+  return(
+    <GPayButton
         totalPriceStatus={'FINAL'}
-        totalPrice={'49.99'}
+        totalPrice={'9.99'}
         currencyCode={'USD'}
         countryCode={'US'}
         allowedPaymentMethods={paymentMethods}
         development={true}
         merchantInfo={{
-          merchantName: info.googlepaymerchantname,
-          
-          //merchantName:'',
+          merchantName: '<YOUR MERCHANT NAME>',
           // A Google merchant identifier issued after your website is approved by Google ✅
-          merchantId: info.googlepaymerchantid
-         
-          //merchantId:''
+          merchantId: '<YOUR MERCHANT ID>'
         }}
         onLoadPaymentData={loadPaymentDataHandler}
       />
-    )
-  }
-  else{
-    return(null)
-  }
-  
+  )
+  /////////////////////////////////////////////////////////
 }
 export default GooglePay

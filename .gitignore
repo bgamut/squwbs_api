@@ -10,6 +10,8 @@ node_modules/*
 # !node_modules/rimraf/LICENSE
 # !node_modules/rimraf/README.md
 
+src/components/SwipeableScroller.js
+
 npm-debug.log
 squwbs-darwin-x64/
 
@@ -24,3 +26,4 @@ squwbs.component/Contents/PkgInfo
 squwbs.component/Contents/MacOS/squwbs
 squwbs.component/Contents/Resources/RecentFilesMenuTemplate.nib
 squwbs.component/Contents/Resources/squwbs.rsrc
+src/components/SwipeableScroller.js

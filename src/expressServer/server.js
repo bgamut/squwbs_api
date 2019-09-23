@@ -421,6 +421,7 @@ app.get('/logout',function(req,res){
 })
 app.get('/file',function(req,res){
   res.download(__dirname+'/squwbs.zip')
+  res.redirect('/')
 })
 app.get('/download', function (req, res) {
   var options = {

@@ -12,20 +12,22 @@ const withQuery = require('with-query');
 const DLLink = (props)=> {
 
     const download = () =>{
-            fetch(withQuery.default('https://squwbs.herokuapp.com/download', 
-            {
-                mode:'cors'
-            }))
-            .then(result=>{
-                console.log(result)
-                return result.json()
-            })
-            .then((json)=>{
-                console.log(json)
-            })
-            .catch((err)=>{
+            // fetch(withQuery.default('https://squwbs.herokuapp.com/download', 
+            // {
+            //     mode:'cors'
+            // }))
+            // .then(result=>{
+            //     console.log(result)
+            //     return result.json()
+            // })
+            // .then((json)=>{
+            //     console.log(json)
+            // })
+            // .catch((err)=>{
         
-            })
+            // })
+
+            //todo : create a popup that will open https://squwbs.herokuapp.com with jwt? uuid.v4 confirmation?
     }
 
   

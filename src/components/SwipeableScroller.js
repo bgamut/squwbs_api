@@ -17,8 +17,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
 import './css/Image.css'
 import Fade from 'react-reveal/Fade'
-//import { PayPalButton } from "react-paypal-button-v2"
-import GooglePay from './GooglePay'
+// import { PayPalButton } from "react-paypal-button-v2"
+import {PayPalButton} from 'react-paypal-button'
+//import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
 const withQuery = require('with-query').default
@@ -51,8 +52,8 @@ const SwipeableScroller = (props) => {
     })
     updateDimensions()
     //setHeight(Math.floor(Dimensions.get('window').height))
-    //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
-      fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+    fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
+      //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
       mode:'cors'
     }))
     .then(result=>{
@@ -477,26 +478,47 @@ const SwipeableScroller = (props) => {
                   >
                     SQUWBS VST & AU
                   </Text>
+                  {/* <GooglePay/> */}
+                  {/* <div
+                    style={{
+                      marginBottom:13
+                    }}
+                    /> */}
                 {/* <PayPalButton
-                  amount="49.99"
-                  options={{clientId: paypalID}}
+                  amount="9.99"
+                  options={{clientId: ''}}
                   onSuccess={(details, data) => {
                     alert("Transaction completed by " + details.payer.name.given_name);
           
                     // OPTIONAL: Call your server to save the transaction
-                    return fetch("/paypal-transaction-complete", {
-                      method: "post",
-                      body: JSON.stringify({
-                        orderID: data.orderID
-                      })
-                    });
+                    // return fetch("/paypal-transaction-complete", {
+                    //   method: "post",
+                    //   body: JSON.stringify({
+                    //     orderID: data.orderID
+                    //   })
+                    // });
                   }}
                 /> */}
-                {/* <StripeProvider apiKey="pk_test_hPMEl7P6bfdJfiYyaGwrgmPq">
+                <PayPalButton
+                  paypalOptions={{
+                    clientId:paypalID,
+                    intent:'capture'
+                  }}
+                  buttonStyles={{
+                    layout:'horizontal',
+                    // layout:'vertical',
+                    shape:'rect',
+                    color:'white',
+                    tagline:false,
+                    
+                  }}
+                  amount={9.99}
+                  />
+                {/* <StripeProvider apiKey="">
                   <MyStoreCheckout/>
                 </StripeProvider> */}
                   {/* <MyStoreCheckout/> */}
-                  <GooglePay/>
+                  
               </View>
             </View>
           </section>
