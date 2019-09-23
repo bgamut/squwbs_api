@@ -227,8 +227,31 @@ app.get('/login', function (req, res) {
 app.get('/getpaypalliveid',cors(),(req,res)=>{
   res.send({'paypalid':NODE_ENV.PAYPAL_LIVE_CLIENT_ID})
 })
+
 app.get('/getpaypalsandboxid',cors(),(req,res)=>{
   res.send({'paypalid':NODE_ENV.PAYPAL_SANDBOX_CLIENT_ID})
+})
+app.get('/getgooglepaysandboxready',cors(),(req,res)=>{
+  res.send(
+    {
+      'paypalid':NODE_ENV.PAYPAL_SANDBOX_CLIENT_ID,
+      'stripepublickey':NODE_ENV.STRIPE_PUBLISHABLE,
+      'googlepaymerchantid':NODE_ENV.GOOGLE_PAY_MERCHANT_ID,
+      'googlepaymerchantname':NODE_ENV.GOOGLE_PAY_MERCHANT_FIRST_NAME+' '+NODE_ENV.GOOGLE_PAY_MERCHANT_LAST_NAME
+
+    }
+  )
+})
+app.get('/getgooglepayliveready',cors(),(req,res)=>{
+  res.send(
+    {
+      'paypalid':NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
+      'stripepublickey':NODE_ENV.STRIPE_PUBLISHABLE,
+      'googlepaymerchantid':NODE_ENV.GOOGLE_PAY_MERCHANT_ID,
+      'googlepaymerchantname':NODE_ENV.GOOGLE_PAY_MERCHANT_FIRST_NAME+' '+NODE_ENV.GOOGLE_PAY_MERCHANT_LAST_NAME
+
+    }
+  )
 })
 app.get('/mapboxtoken',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)

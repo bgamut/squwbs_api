@@ -18,6 +18,9 @@ import { Carousel } from 'react-responsive-carousel'
 import './css/Image.css'
 import Fade from 'react-reveal/Fade'
 import { PayPalButton } from "react-paypal-button-v2"
+import GooglePay from './GooglePay'
+//import {StripeProvider} from 'react-stripe-elements'
+//import MyStoreCheckout from './MyStoreCheckout'
 const withQuery = require('with-query').default
 const stringifyObject= require('stringify-object')
 // const translateY = new Animated.Value(0);
@@ -474,7 +477,7 @@ const SwipeableScroller = (props) => {
                   >
                     SQUWBS VST & AU
                   </Text>
-                <PayPalButton
+                {/* <PayPalButton
                   amount="49.99"
                   options={{clientId: paypalID}}
                   onSuccess={(details, data) => {
@@ -488,7 +491,12 @@ const SwipeableScroller = (props) => {
                       })
                     });
                   }}
-                />
+                /> */}
+                {/* <StripeProvider apiKey="pk_test_hPMEl7P6bfdJfiYyaGwrgmPq">
+                  <MyStoreCheckout/>
+                </StripeProvider> */}
+                  {/* <MyStoreCheckout/> */}
+                  <GooglePay/>
               </View>
             </View>
           </section>
