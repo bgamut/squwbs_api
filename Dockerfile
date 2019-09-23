@@ -8,7 +8,7 @@ WORKDIR ./
 
 COPY package*.json ./
 # RUN npm install rimraf
-RUN npm install rimraf
+# RUN npm install rimraf
 
 RUN npm install
 # If you are building your code for production

@@ -6,7 +6,44 @@ const stringifyObject= require('stringify-object')
 
 const GooglePay =(props)=> {
   
-  const [paymentMethods,setPaymentMethods] = useState([])
+  const [paymentMethods,setPaymentMethods] = useState(
+    [
+      {
+        type: 'CARD',
+        parameters: {
+          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA']
+        },
+        tokenizationSpecification: {
+          type: 'PAYMENT_GATEWAY',
+          parameters: {
+            'gateway': 'stripe',
+            'stripe:version': '2019-03-14',
+            //'stripe:publishableKey': ''
+            //'stripe:publishableKey': info.stripepublickey
+            
+          }
+        }
+      },
+      {
+        type: 'PAYPAL',
+        parameters: {
+          'purchase_context': {
+            'purchase_units': [{
+              'payee': {
+                //'merchant_id':''
+                // 'merchant_id': info.paypalid
+                
+              }
+            }]
+          }
+        },
+        tokenizationSpecification: {
+          type: 'DIRECT'
+        }
+      }
+    ]
+  )
   const [info,setInfo]=useState(null)
   
   useEffect(()=>{
@@ -26,7 +63,8 @@ const GooglePay =(props)=> {
               parameters: {
                 'gateway': 'stripe',
                 'stripe:version': '2019-03-14',
-                'stripe:publishableKey': info.stripepublickey
+                'stripe:publishableKey':''
+                //'stripe:publishableKey': info.stripepublickey
                 
               }
             }
@@ -37,7 +75,8 @@ const GooglePay =(props)=> {
               'purchase_context': {
                 'purchase_units': [{
                   'payee': {
-                    'merchant_id': info.paypalid
+                    'merchant_id':''
+                    // 'merchant_id': info.paypalid
                     
                   }
                 }]
@@ -51,11 +90,12 @@ const GooglePay =(props)=> {
       )
       
     }
+    console.log(paymentMethods)
   },[info])
   
   useEffect(()=>{
-    //fetch(withQuery('https://squwbs.herokuapp.com/getgooglepayliveready', {
-    fetch(withQuery('https://squwbs.herokuapp.com/getgooglepaysandboxready', {
+    fetch(withQuery('https://squwbs.herokuapp.com/getgooglepayliveready', {
+    //fetch(withQuery('https://squwbs.herokuapp.com/getgooglepaysandboxready', {
     
       mode:'cors'
     }))
@@ -66,7 +106,7 @@ const GooglePay =(props)=> {
     .then((json)=>{
       //setState({...state,userData:{...json}})
       
-      console.log(stringifyObject(json))
+      //console.log(stringifyObject(json))
       //setpaypalID(json.paypalid)
       //return json
       setInfo(json)
@@ -83,6 +123,9 @@ const GooglePay =(props)=> {
   if (info!=null){
     return (
       <GPayButton
+        style={{
+          width:250
+        }}
         totalPriceStatus={'FINAL'}
         totalPrice={'49.99'}
         currencyCode={'USD'}
@@ -90,11 +133,13 @@ const GooglePay =(props)=> {
         allowedPaymentMethods={paymentMethods}
         development={true}
         merchantInfo={{
-          merchantName: info.googlepaymerchantname,
+          //merchantName: info.googlepaymerchantname,
           
+          merchantName:'',
           // A Google merchant identifier issued after your website is approved by Google ✅
-          merchantId: info.googlepaymerchantid
+          //merchantId: info.googlepaymerchantid
           
+          merchantId:''
         }}
         onLoadPaymentData={loadPaymentDataHandler}
       />

@@ -17,7 +17,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
 import './css/Image.css'
 import Fade from 'react-reveal/Fade'
-import { PayPalButton } from "react-paypal-button-v2"
+//import { PayPalButton } from "react-paypal-button-v2"
 import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
