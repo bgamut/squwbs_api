@@ -501,6 +501,7 @@ const SwipeableScroller = (props) => {
                 /> */}
                 <PayPalButton
                   paypalOptions={{
+                    
                     clientId:paypalID,
                     intent:'capture'
                   }}
