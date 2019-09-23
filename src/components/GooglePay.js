@@ -19,9 +19,9 @@ const GooglePay =(props)=> {
           parameters: {
             'gateway': 'stripe',
             'stripe:version': '2019-03-14',
-            //'stripe:publishableKey': ''
+            'stripe:publishableKey': ''
             //'stripe:publishableKey': info.stripepublickey
-            
+           
           }
         }
       },
@@ -31,7 +31,7 @@ const GooglePay =(props)=> {
           'purchase_context': {
             'purchase_units': [{
               'payee': {
-                //'merchant_id':''
+                'merchant_id':''
                 // 'merchant_id': info.paypalid
                 
               }
@@ -77,7 +77,7 @@ const GooglePay =(props)=> {
                   'payee': {
                     'merchant_id':''
                     // 'merchant_id': info.paypalid
-                    
+                   
                   }
                 }]
               }
@@ -123,9 +123,7 @@ const GooglePay =(props)=> {
   if (info!=null){
     return (
       <GPayButton
-        style={{
-          width:250
-        }}
+ 
         totalPriceStatus={'FINAL'}
         totalPrice={'49.99'}
         currencyCode={'USD'}
@@ -133,13 +131,13 @@ const GooglePay =(props)=> {
         allowedPaymentMethods={paymentMethods}
         development={true}
         merchantInfo={{
-          //merchantName: info.googlepaymerchantname,
+          merchantName: info.googlepaymerchantname,
           
-          merchantName:'',
+          //merchantName:'',
           // A Google merchant identifier issued after your website is approved by Google ✅
-          //merchantId: info.googlepaymerchantid
-          
-          merchantId:''
+          merchantId: info.googlepaymerchantid
+         
+          //merchantId:''
         }}
         onLoadPaymentData={loadPaymentDataHandler}
       />
