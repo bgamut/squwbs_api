@@ -10,7 +10,56 @@ const _ = require('lodash')
 const withQuery = require('with-query');
 
 const DLLink = (props)=> {
-
+    const getUserData=async(itemList)=>{
+        const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+        const userCookie = await responded.json()
+        console.log('userCookie : '+stringifyObject(userCookie))
+        if(Object.keys(userCookie).length>1){
+        console.log('user info sent to server')
+        // fetch(withQuery('https://squwbs.herokuapp.com/user', {
+        //     ...userCookie,
+        //     mode:'cors'
+        // }))
+        // .then(result=>{
+        //     console.log('got result from user fetch')
+        //     return result.json()
+        //     })
+        //     .then((json)=>{
+        //     //setState({...state,userData:{...json}})
+            
+        //     console.log(stringifyObject(json))
+        //     setUser(json)
+        //     })
+        //     .catch((err)=>{
+        //     console.error(err)
+        //     })
+        
+        // }
+        fetch(withQuery('https://squwbs.herokuapp.com/info', {
+        //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+            ...userCookie,
+            //itemList:[{kind:'beat',itemID:'00'},{kind:'plugin',itemID:'00'}],
+            itemList:itemList,
+            mode:'cors',
+        }))
+            .then(result=>{
+            console.log('got result from info/')
+            return result.json()
+            })
+            .then((json)=>{
+                //setState({...state,userData:{...json}})
+            
+                console.log(stringifyObject(json))
+            //setpaypalID(json)
+            //return json
+            
+            })
+            .catch((err)=>{
+                console.error(err)
+            })
+        }
+        
+    }
     const download = () =>{
             // fetch(withQuery.default('https://squwbs.herokuapp.com/download', 
             // {
@@ -28,6 +77,11 @@ const DLLink = (props)=> {
             // })
 
             //todo : create a popup that will open https://squwbs.herokuapp.com with jwt? uuid.v4 confirmation?
+
+            
+        getUserData([{kind:'plugin',id:'00'}])
+        var win = window.open('/download', "Title", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
+        win.document.body.innerHTML = "Downloading";
     }
 
   

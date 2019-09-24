@@ -30,30 +30,53 @@ const Drawer =(props)=>{
     var prevY=0
     var buffer=[0,0]
     
-    const getUserData=async()=>{
+    const getUserData=async(itemList)=>{
         const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
         const userCookie = await responded.json()
         console.log('userCookie : '+stringifyObject(userCookie))
         if(Object.keys(userCookie).length>1){
         console.log('user info sent to server')
-        fetch(withQuery('https://squwbs.herokuapp.com/user', {
+        // fetch(withQuery('https://squwbs.herokuapp.com/user', {
+        //     ...userCookie,
+        //     mode:'cors'
+        // }))
+        // .then(result=>{
+        //     console.log('got result from user fetch')
+        //     return result.json()
+        //     })
+        //     .then((json)=>{
+        //     //setState({...state,userData:{...json}})
+            
+        //     console.log(stringifyObject(json))
+        //     setUser(json)
+        //     })
+        //     .catch((err)=>{
+        //     console.error(err)
+        //     })
+        
+        // }
+        fetch(withQuery('https://squwbs.herokuapp.com/info', {
+        //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
             ...userCookie,
-            mode:'cors'
+            //itemList:[{kind:'beat',itemID:'00'},{kind:'plugin',itemID:'00'}],
+            itemList:itemList,
+            mode:'cors',
         }))
-        .then(result=>{
-            console.log('got result from user fetch')
+            .then(result=>{
+            console.log('got result from info/')
             return result.json()
             })
             .then((json)=>{
-            //setState({...state,userData:{...json}})
+                //setState({...state,userData:{...json}})
             
-            console.log(stringifyObject(json))
-            setUser(json)
+                console.log(stringifyObject(json))
+            //setpaypalID(json)
+            //return json
+            
             })
             .catch((err)=>{
-            console.error(err)
+                console.error(err)
             })
-        
         }
         
     }
@@ -186,7 +209,7 @@ const Drawer =(props)=>{
     
 
     useEffect(()=>{
-        getUserData()
+        getUserData([])
     },[])
 
     useEffect(()=>{

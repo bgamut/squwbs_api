@@ -85,26 +85,26 @@ const SwipeableScroller = (props) => {
     //   console.error(err)
     // })
 
-    fetch(withQuery('https://squwbs.herokuapp.com/info', {
-      //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
-      mode:'cors',
-      info:uuid.v4()
-    }))
-    .then(result=>{
-      console.log('got result from info/')
-      return result.json()
-    })
-    .then((json)=>{
-      //setState({...state,userData:{...json}})
+    // fetch(withQuery('https://squwbs.herokuapp.com/info', {
+    //   //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+    //   mode:'cors',
+    //   itemList:[{kind:'beat',itemID:'00'},{kind:'plugin',itemID:'00'}]
+    // }))
+    // .then(result=>{
+    //   console.log('got result from info/')
+    //   return result.json()
+    // })
+    // .then((json)=>{
+    //   //setState({...state,userData:{...json}})
       
-      console.log(stringifyObject(json.info))
-      //setpaypalID(json)
-      //return json
-      getUserData()
-    })
-    .catch((err)=>{
-      console.error(err)
-    })
+    //   console.log(stringifyObject(json))
+    //   //setpaypalID(json)
+    //   //return json
+    //   getUserData()
+    // })
+    // .catch((err)=>{
+    //   console.error(err)
+    // })
 
   },[])
   useEffect(()=>{

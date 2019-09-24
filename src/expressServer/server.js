@@ -160,7 +160,7 @@ app.get('/cookies',cors(),(req,res)=>{
     signed: true,// Indicates if the cookie should be signed
     secret:''
 }
-  res.cookie('name', 'bernard',options);
+  res.cookie('name', 'name',options);
   //console.log(req.signedCookies)
   res.redirect('/')
 })
@@ -424,17 +424,74 @@ app.get('/download',function(req,res){
   //console.log('file entered')
   //res.redirect('/')
 })
-app.get('/info/:i',function(req,res){
-  var i = req.query.info;
-  
-    //res.send(req.signedCookies)
-    let options = {
-      maxAge: 1000 * 60 * 15, // would expire after 15 minutes
-      httpOnly: true, // The cookie only accessible by the web server
-      signed: true,// Indicates if the cookie should be signed
-      secret:''
+app.get('/info/',function(req,res){
+
+  var obj = req.query
+  function buy(obj,func){
+    global.copy = Object.create(obj)
+    console.log(stringifyObject(copy))
+    var db = admin.database()
+    var ref = db.ref('sold')
+    var userStructure = {
+      provider:{
+        google:'',
+        facebook:''
+      },
+      names:{
+        google:'',
+        facebook:''
+      },
+      token:'',
+    }
+    var soldItemsStructure = {
+      owner:{},
+      items:[],
+      uuid:''
+    }
+    userStructure.provider[String(copy.provider)]=copy.providerid
+    userStructure.names[String(copy.provider)]=copy.userName
+    userStructure.token=copy['connect.sid']
+    soldItemsStructure.ownder=userStructure
+    for(var i =0; i<Object.keys(copy.itemList).length; i++){
+      soldItemStructure.items.push(copy.itemList[i])
+    }
+    soldItemStructure.uuid=copy.uuid
+    console.log(soldItemsStructure)
+    ref.once('value',function(snapshot){
+      var soldHistory=snapshot.val()
+      if(soldHistory==undefined){
+        soldHistory={
+          0:soldItemsStructure
+        } 
+      }
+      else{
+        var picked = soldHistory.find(sold=>sold.owner.provider[copy.provider]==copy.providerid)
+        if(picked==undefined){
+          soldHistory.push(userStructure)
+        }
+        else{
+          global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
+          for(var i =0; i<Object.keys(copy.itemList).length; i++){
+            soldHistory[index].items.push(copy.itemList[i])
+          }
+        }
+      }
+      ref.set(soldHistory,function(error){
+        if(error){
+          func(error)
+        }
+        else{
+          func(soldHistory[index])
+        }
+      })
+      delete global.copy
+      delete global.index
+    })
   }
-    res.cookie('info', info,options);
+  function sendObj(obj){
+    res.send(obj)
+  }
+  buy(obj,sendObj)
 })
 // app.get('/download', function (req, res) {
 //   var options = {
