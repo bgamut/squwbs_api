@@ -420,8 +420,9 @@ app.get('/logout',function(req,res){
   res.redirect('/')
 })
 app.get('/download',function(req,res){
-  res.render('download');
+  
   res.download(__dirname+'/squwbs.zip')
+  res.render('download');
   //console.log('file entered')
   //res.redirect('/')
 })
@@ -458,7 +459,7 @@ app.get('/info/',function(req,res){
     userStructure.provider[String(tempUUID.provider)]=tempUUID.providerid
     userStructure.names[String(tempUUID.provider)]=tempUUID.userName
     userStructure.token=tempUUID['connect.sid']
-    soldItemsStructure.ownder=userStructure
+    soldItemsStructure.owner=userStructure
     for(var i =0; i<Object.keys(tempUUID.itemList).length; i++){
       soldItemStructure.items.push(tempUUID.itemList[i])
     }
