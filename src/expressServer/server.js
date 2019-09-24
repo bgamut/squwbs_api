@@ -422,7 +422,7 @@ app.get('/logout',function(req,res){
 app.get('/download',function(req,res){
   
   res.download(__dirname+'/squwbs.zip')
-  res.render('download');
+  //res.render('download');
   //console.log('file entered')
   //res.redirect('/')
 })
@@ -457,17 +457,17 @@ app.get('/info/',function(req,res){
       items:[],
       uuid:''
     }
-    
+    console.log(stringifyObject(global[tempUUID]))
     userStructure.provider[String(global[tempUUID].provider)]=global[tempUUID].providerid
     userStructure.names[String(global[tempUUID].provider)]=global[tempUUID].userName
     userStructure.token=global[tempUUID]['connect.sid']
     soldItemsStructure.owner=userStructure
-    console.log(stringifyObject(soldItemsStructure))
-    for(var i =0; i<Object.keys(global[tempUUID].itemList).length; i++){
+    
+    for(var i =0; i<global[tempUUID].itemList.length; i++){
       soldItemStructure.items.push(global[tempUUID].itemList[i])
     }
     soldItemStructure.uuid=global[tempUUID].uuid
-    console.log(soldItemsStructure)
+    console.log(stringifyObject(soldItemsStructure))
     ref.once('value',function(snapshot){
       var soldHistory=snapshot.val()
       if(soldHistory==undefined){
