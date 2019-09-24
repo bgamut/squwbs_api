@@ -433,10 +433,10 @@ app.get('/info/',function(req,res){
   //console.log(stringifyObject(obj))
   function buy(obj,func){
     //global.copy = Object.create(obj)
-    console.log(obj)
+    console.log("raw object : ",obj)
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
-    console.log(stringifyObject(global[tempUUID]))
+    console.log("global element : ",stringifyObject(global[tempUUID]))
     // console.log(stringifyObject(global[tempUUID]))
 
     var db = admin.database()
@@ -500,7 +500,7 @@ app.get('/info/',function(req,res){
         }
         else{
           //func(soldHistory[index])
-          func(soldHistory[global[tempUUID].index])
+          func(userStructure)
         }
       })
       // delete global.copy
