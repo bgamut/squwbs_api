@@ -433,7 +433,7 @@ app.get('/info/',function(req,res){
   //console.log(stringifyObject(obj))
   function buy(obj,func){
     //global.copy = Object.create(obj)
-
+    console.log(obj)
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
     console.log(stringifyObject(global[tempUUID]))
@@ -462,11 +462,16 @@ app.get('/info/',function(req,res){
     userStructure.names[String(global[tempUUID].provider)]=global[tempUUID].userName
     userStructure.token=global[tempUUID]['connect.sid']
     soldItemsStructure.owner=userStructure
-    
-    for(var i =0; i<global[tempUUID].itemList.length; i++){
-      soldItemStructure.items.push(global[tempUUID].itemList[i])
+    if(global[tempUUID].itemList!=undefined&&global[tempUID].itemList!=null){
+      for(var i =0; i<global[tempUUID].itemList.length; i++){
+        soldItemStructure.items.push(global[tempUUID].itemList[i])
+      }
     }
-    soldItemStructure.uuid=global[tempUUID].uuid
+    
+    if(global[tempUUID].uuid!=undefined&&global[tempUUID].uuid!=null){
+      soldItemStructure.uuid=global[tempUUID].uuid
+    }
+    
     console.log(stringifyObject(soldItemsStructure))
     ref.once('value',function(snapshot){
       var soldHistory=snapshot.val()
