@@ -22,6 +22,7 @@ import {PayPalButton} from 'react-paypal-button'
 //import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
+var uuid = require('uuid')
 const withQuery = require('with-query').default
 const stringifyObject= require('stringify-object')
 try{
@@ -32,6 +33,12 @@ catch(e){
   var NODE_ENV = {...process.env};
 }
 // const translateY = new Animated.Value(0);
+
+const getUserData=async()=>{
+  const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+  const userCookie = await responded.json()
+  console.log('userCookie : '+stringifyObject(userCookie))
+}
 
 let currentY=0
 //const prevY=new Animated.Value(0)
@@ -59,24 +66,46 @@ const SwipeableScroller = (props) => {
     })
     updateDimensions()
     //setHeight(Math.floor(Dimensions.get('window').height))
-    fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
+    // fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
+    //   //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+    //   mode:'cors'
+    // }))
+    // .then(result=>{
+    //   console.log('got result from getPaypalID')
+    //   return result.json()
+    // })
+    // .then((json)=>{
+    //   //setState({...state,userData:{...json}})
+      
+    //   console.log(stringifyObject(json))
+    //   setpaypalID(json.paypalid)
+    //   //return json
+    // })
+    // .catch((err)=>{
+    //   console.error(err)
+    // })
+
+    fetch(withQuery('https://squwbs.herokuapp.com/info', {
       //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
-      mode:'cors'
+      mode:'cors',
+      info:uuid.v4()
     }))
     .then(result=>{
-      console.log('got result from getPaypalID')
+      console.log('got result from info/')
       return result.json()
     })
     .then((json)=>{
       //setState({...state,userData:{...json}})
       
-      console.log(stringifyObject(json))
-      setpaypalID(json.paypalid)
+      //console.log(stringifyObject(json.info))
+      //setpaypalID(json)
       //return json
+      getUserData()
     })
     .catch((err)=>{
       console.error(err)
     })
+
   },[])
   useEffect(()=>{
     //console.log('height changed!')

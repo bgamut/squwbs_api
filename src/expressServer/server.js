@@ -424,6 +424,18 @@ app.get('/download',function(req,res){
   //console.log('file entered')
   //res.redirect('/')
 })
+app.get('/info/:i',function(req,res){
+  var i = req.query.info;
+  
+    //res.send(req.signedCookies)
+    let options = {
+      maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+      httpOnly: true, // The cookie only accessible by the web server
+      signed: true,// Indicates if the cookie should be signed
+      secret:''
+  }
+    res.cookie('info', info,options);
+})
 // app.get('/download', function (req, res) {
 //   var options = {
 //     method: 'GET',
