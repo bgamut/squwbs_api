@@ -472,7 +472,7 @@ app.get('/info',function(req,res){
       soldItemStructure.uuid=global[tempUUID].uuid
     }
     
-    console.log(stringifyObject(soldItemsStructure))
+    console.log('soleItemsStructure : ',stringifyObject(soldItemsStructure))
     ref.once('value',function(snapshot){
       var soldHistory=snapshot.val()
       if(soldHistory==undefined){
@@ -487,7 +487,7 @@ app.get('/info',function(req,res){
         }
         else{
           //global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
-          global[tempUUID].index=soldHistory.findIndex(sold=>sold.ownder.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+          global[tempUUID].index=soldHistory.findIndex(sold=>sold.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           
           for(var i =0; i<Object.keys(global[tempUUID].itemList).length; i++){
             soldHistory[index].items.push(global[tempUUID].itemList[i])

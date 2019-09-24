@@ -7,7 +7,7 @@ import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
 const _ = require('lodash')
 
-const withQuery = require('with-query');
+const withQuery = require('with-query').default;
 
 const DLLink = (props)=> {
     const getUserData=async(itemList)=>{
