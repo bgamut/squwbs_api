@@ -420,18 +420,20 @@ app.get('/logout',function(req,res){
   res.redirect('/')
 })
 app.get('/download',function(req,res){
+  res.render('download');
   res.download(__dirname+'/squwbs.zip')
   //console.log('file entered')
   //res.redirect('/')
 })
 app.get('/info/',function(req,res){
-
-  var obj = req.query
-  console.log(stringifyObject(obj))
+  console.log('we in /info')
+  const tempUUID = uuidv4()
+  //var obj = req.query
+  //console.log(stringifyObject(obj))
   function buy(obj,func){
     //global.copy = Object.create(obj)
 
-    const tempUUID = uuidv4()
+    
     global[tempUUID] = Object.create(obj)
 
     console.log(stringifyObject(tempUUID))
@@ -500,7 +502,8 @@ app.get('/info/',function(req,res){
   function sendObj(obj){
     res.send(obj)
   }
-  buy(obj,sendObj)
+  //buy(obj,sendObj)
+  buy(req.query,sendObj)
 })
 // app.get('/download', function (req, res) {
 //   var options = {
