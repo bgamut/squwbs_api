@@ -428,15 +428,15 @@ app.get('/download',function(req,res){
 })
 app.get('/info/',function(req,res){
   console.log('we in /info')
-  const tempUUID = uuidv4()
+  
   //var obj = req.query
   //console.log(stringifyObject(obj))
   function buy(obj,func){
     //global.copy = Object.create(obj)
 
-    
+    const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
-
+    console.log(stringifyObject(global[tempUUID]))
     // console.log(stringifyObject(global[tempUUID]))
 
     var db = admin.database()
@@ -457,7 +457,7 @@ app.get('/info/',function(req,res){
       items:[],
       uuid:''
     }
-    console.log(stringifyObject(global[tempUUID]))
+    
     userStructure.provider[String(global[tempUUID].provider)]=global[tempUUID].providerid
     userStructure.names[String(global[tempUUID].provider)]=global[tempUUID].userName
     userStructure.token=global[tempUUID]['connect.sid']

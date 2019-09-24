@@ -55,6 +55,13 @@ const Drawer =(props)=>{
         //     })
         
         // }
+        console.log(stringifyObject(
+            {
+                ...userCookie,
+                itemList:itemList,
+                mode:'cors',
+            }
+        ))
         fetch(withQuery('https://squwbs.herokuapp.com/info', {
         //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
             ...userCookie,
