@@ -426,7 +426,7 @@ app.get('/download',function(req,res){
   //console.log('file entered')
   //res.redirect('/')
 })
-app.get('/info/',function(req,res){
+app.get('/info',function(req,res){
   console.log('we in /info')
   
   //var obj = req.query

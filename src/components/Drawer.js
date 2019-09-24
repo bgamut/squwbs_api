@@ -70,12 +70,12 @@ const Drawer =(props)=>{
             mode:'cors',
         }))
             .then(result=>{
-            console.log('got result from info/')
+            console.log('got result from info')
             return result.json()
             })
             .then((json)=>{
                 //setState({...state,userData:{...json}})
-            
+                setUser(json)
                 console.log(stringifyObject(json))
             //setpaypalID(json)
             //return json
