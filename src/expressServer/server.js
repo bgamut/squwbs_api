@@ -427,8 +427,13 @@ app.get('/download',function(req,res){
 app.get('/info/',function(req,res){
 
   var obj = req.query
+  console.log(stringifyObject(obj))
   function buy(obj,func){
-    global.copy = Object.create(obj)
+    //global.copy = Object.create(obj)
+
+    const tempUUID = uuidv4()
+    global[tempUUID] = Object.create(obj)
+
     console.log(stringifyObject(copy))
     var db = admin.database()
     var ref = db.ref('sold')
@@ -470,7 +475,9 @@ app.get('/info/',function(req,res){
           soldHistory.push(userStructure)
         }
         else{
-          global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
+          //global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
+          global[tempUUID].index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
+          
           for(var i =0; i<Object.keys(copy.itemList).length; i++){
             soldHistory[index].items.push(copy.itemList[i])
           }
@@ -481,11 +488,13 @@ app.get('/info/',function(req,res){
           func(error)
         }
         else{
-          func(soldHistory[index])
+          //func(soldHistory[index])
+          func(soldHistory[global[tempUUID].index])
         }
       })
-      delete global.copy
-      delete global.index
+      // delete global.copy
+      // delete global.index
+      delete global[tempUUID]
     })
   }
   function sendObj(obj){
@@ -529,7 +538,11 @@ app.get('/removeme',function(req,res){
   //function addUser({userName,userEmail},func){
   function removeuser(obj,func){
     //var copy = Object.create(obj)
-    global.copy = Object.create(obj)
+
+    //global.copy = Object.create(obj)
+    const tempUUID = uuidv4()
+    global[tempUUID] = Object.create(obj)
+
     console.log(stringifyObject(copy))
     var db = admin.database()
     var ref = db.ref('users')
@@ -581,7 +594,8 @@ app.get('/removeme',function(req,res){
         }
 
       })
-      delete global.copy
+      //delete global.copy
+      delete global[tempUUID]
     })
   }
   
@@ -634,7 +648,10 @@ app.get('/user',cors(),(req,res)=>{
   //function addUser({userName,userEmail},func){
   function user(obj,func){
     //var copy = Object.create(obj)
-    global.copy = Object.create(obj)
+    //global.copy = Object.create(obj)
+    const tempUUID = uuidv4()
+    global[tempUUID] = Object.create(obj)
+
     console.log(stringifyObject(copy))
     var db = admin.database()
     var ref = db.ref('users')
@@ -683,7 +700,9 @@ app.get('/user',cors(),(req,res)=>{
         }
 
       })
-      delete global.copy
+      //delete global.copy
+      
+      delete global[tempUUID]
     })
   }
   

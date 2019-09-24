@@ -83,7 +83,7 @@ const Home = () => {
   }
 
   useEffect(()=>{
-    getUserData()
+    //getUserData()
   },[])
 
   useEffect(()=>{
