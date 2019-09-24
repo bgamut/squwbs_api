@@ -434,7 +434,7 @@ app.get('/info/',function(req,res){
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
 
-    console.log(stringifyObject(copy))
+    console.log(stringifyObject(tempUUID))
     var db = admin.database()
     var ref = db.ref('sold')
     var userStructure = {
@@ -453,14 +453,14 @@ app.get('/info/',function(req,res){
       items:[],
       uuid:''
     }
-    userStructure.provider[String(copy.provider)]=copy.providerid
-    userStructure.names[String(copy.provider)]=copy.userName
-    userStructure.token=copy['connect.sid']
+    userStructure.provider[String(tempUUID.provider)]=tempUUID.providerid
+    userStructure.names[String(tempUUID.provider)]=tempUUID.userName
+    userStructure.token=tempUUID['connect.sid']
     soldItemsStructure.ownder=userStructure
-    for(var i =0; i<Object.keys(copy.itemList).length; i++){
-      soldItemStructure.items.push(copy.itemList[i])
+    for(var i =0; i<Object.keys(tempUUID.itemList).length; i++){
+      soldItemStructure.items.push(tempUUID.itemList[i])
     }
-    soldItemStructure.uuid=copy.uuid
+    soldItemStructure.uuid=tempUUID.uuid
     console.log(soldItemsStructure)
     ref.once('value',function(snapshot){
       var soldHistory=snapshot.val()
@@ -470,16 +470,16 @@ app.get('/info/',function(req,res){
         } 
       }
       else{
-        var picked = soldHistory.find(sold=>sold.owner.provider[copy.provider]==copy.providerid)
+        var picked = soldHistory.find(sold=>sold.owner.provider[tempUUID.provider]==tempUUID.providerid)
         if(picked==undefined){
           soldHistory.push(userStructure)
         }
         else{
           //global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
-          global[tempUUID].index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
+          global[tempUUID].index=soldHistory.findIndex(sold=>sold.ownder.provider[tempUUID.provider]==tempUUID.providerid)
           
-          for(var i =0; i<Object.keys(copy.itemList).length; i++){
-            soldHistory[index].items.push(copy.itemList[i])
+          for(var i =0; i<Object.keys(tempUUID.itemList).length; i++){
+            soldHistory[index].items.push(tempUUID.itemList[i])
           }
         }
       }
@@ -543,7 +543,7 @@ app.get('/removeme',function(req,res){
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
 
-    console.log(stringifyObject(copy))
+    console.log(stringifyObject(tempUUID))
     var db = admin.database()
     var ref = db.ref('users')
     // var userStructure = {
@@ -570,13 +570,13 @@ app.get('/removeme',function(req,res){
         usersList={0:userStructure}
       }
       else{
-        var picked = usersList.find(user=>user.provider[copy.provider]==copy.providerid)
+        var picked = usersList.find(user=>user.provider[tempUUID.provider]==tempUUID.providerid)
         if(picked==undefined){
           //usersList.push(userStructure)
           console.log('no such user')
         }
         else{
-          var index=usersList.findIndex(user=>user.provider[copy.provider]==copy.providerid)
+          var index=usersList.findIndex(user=>user.provider[tempUUID.provider]==tempUUID.providerid)
           //usersList[index]=userStructure
           usersList.splice(index,1)
         }
@@ -652,7 +652,7 @@ app.get('/user',cors(),(req,res)=>{
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
 
-    console.log(stringifyObject(copy))
+    console.log(stringifyObject(tempUUID))
     var db = admin.database()
     var ref = db.ref('users')
     var userStructure = {
@@ -667,9 +667,9 @@ app.get('/user',cors(),(req,res)=>{
       token:''
     }
     //var userStructure = {}
-    userStructure.provider[String(copy.provider)]=copy.providerid
-    userStructure.names[String(copy.provider)]=copy.userName
-    userStructure.token=copy['connect.sid']
+    userStructure.provider[String(tempUUID.provider)]=tempUUID.providerid
+    userStructure.names[String(tempUUID.provider)]=tempUUID.userName
+    userStructure.token=tempUUID['connect.sid']
     console.log(userStructure)
 
     ref.once('value',function(snapshot){
@@ -679,12 +679,12 @@ app.get('/user',cors(),(req,res)=>{
         usersList={0:userStructure}
       }
       else{
-        var picked = usersList.find(user=>user.provider[copy.provider]==copy.providerid)
+        var picked = usersList.find(user=>user.provider[tempUUID.provider]==tempUUID.providerid)
         if(picked==undefined){
           usersList.push(userStructure)
         }
         else{
-          var index=usersList.findIndex(user=>user.provider[copy.provider]==copy.providerid)
+          var index=usersList.findIndex(user=>user.provider[tempUUID.provider]==tempUUID.providerid)
           usersList[index]=userStructure
         }
         

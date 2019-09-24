@@ -80,9 +80,10 @@ const DLLink = (props)=> {
 
             
         getUserData([{kind:'plugin',id:'00'}])
-        var win = window.open('/download', "Download", "location=no toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
+        var win = window.open('https://squwbs.herokuapp.com/download', "Download", "location=no toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
         win.document.body.innerHTML = "Downloading";
-        win.close()
+        // setTimeout(function(){},15000)
+        // win.close()
     }
 
   
