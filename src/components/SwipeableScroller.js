@@ -97,7 +97,7 @@ const SwipeableScroller = (props) => {
     .then((json)=>{
       //setState({...state,userData:{...json}})
       
-      //console.log(stringifyObject(json.info))
+      console.log(stringifyObject(json.info))
       //setpaypalID(json)
       //return json
       getUserData()
