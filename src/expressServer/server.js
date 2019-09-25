@@ -462,7 +462,7 @@ app.get('/info',function(req,res){
     userStructure.names[String(global[tempUUID].provider)]=global[tempUUID].userName
     userStructure.token=global[tempUUID]['connect.sid']
     soldItemsStructure.owner=userStructure
-    if(global[tempUUID].itemList!=undefined&&global[tempUID].itemList!=null){
+    if(global[tempUUID].itemList!=undefined&&global[tempUUID].itemList!=null){
       for(var i =0; i<global[tempUUID].itemList.length; i++){
         soldItemStructure.items.push(global[tempUUID].itemList[i])
       }
@@ -472,7 +472,7 @@ app.get('/info',function(req,res){
       soldItemStructure.uuid=global[tempUUID].uuid
     }
     
-    console.log('soleItemsStructure : ',stringifyObject(soldItemsStructure))
+    console.log('soldItemsStructure : ',stringifyObject(soldItemsStructure))
     ref.once('value',function(snapshot){
       var soldHistory=snapshot.val()
       if(soldHistory==undefined){
@@ -483,14 +483,18 @@ app.get('/info',function(req,res){
       else{
         var picked = soldHistory.find(sold=>sold.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
-          soldHistory.push(userStructure)
+          soldHistory.push(soldItemsStructure)
         }
         else{
           //global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
-          global[tempUUID].index=soldHistory.findIndex(sold=>sold.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           
-          for(var i =0; i<Object.keys(global[tempUUID].itemList).length; i++){
-            soldHistory[index].items.push(global[tempUUID].itemList[i])
+          //var index=soldHistory.findIndex(sold=>sold.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+          
+          for(var i =0; i<Object.keys(soldItemsStructure.items).length; i++){
+            var index = picked.items.findIndex(item=>item.kind=soldItemsStructure.items[i].kind&&item.id==soldItemsStructure[i].items.id)
+            if(index==undefined){
+              soldHistory[index].items.push(soldItemsStructure.items[i])
+            }
           }
         }
       }
