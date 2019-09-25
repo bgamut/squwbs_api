@@ -624,7 +624,7 @@ app.get('/removeme',function(req,res){
         }
         else{
           //console.log('callback fired')
-          func(picked)
+          func({message:"removed"})
         }
 
       })
@@ -636,11 +636,10 @@ app.get('/removeme',function(req,res){
   function sendObj(obj){
     res.send(obj)
   }
-
-  removeuser(obj,sendObj)
   res.clearCookie('userName')
   res.clearCookie('providerid')
   res.clearCookie('provider')
+  removeuser(obj,sendObj)
   res.redirect('/')
 
   

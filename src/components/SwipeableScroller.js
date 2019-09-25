@@ -275,7 +275,9 @@ const SwipeableScroller = (props) => {
                     height:"100%",
                     backgroundColor:'transparent',
                     justifyContent:'center',
-                    alignItems:'center'
+                    alignItems:'center',
+                    // backgroundColor:'orange',
+                    padding:25,
                   }}
                 >
                 {/* <div
@@ -291,14 +293,15 @@ const SwipeableScroller = (props) => {
                 <Fade>
                 <a 
                   style={{
-                    textDecorationLine:'none'
+                    textDecorationLine:'none',
+                    
                   }}
                   href='#download'
                 >
                   <Text
                     //className='Unselectable'
                     style={{
-
+                      // backgroudColor:'purple',
                       textDecorationLine:'none',
                       color:'white',
                       fontWeight:'700',
@@ -311,6 +314,7 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       justifyContent:'center',
                       flexDirection:'row',
+                      
                     }}
                   >
                     Get the Sound You Want
@@ -340,7 +344,8 @@ const SwipeableScroller = (props) => {
                     height:"100%",
                     backgroundColor:'transparent',
                     justifyContent:'center',
-                    alignItems:'center'
+                    alignItems:'center',
+                    padding:25,
                   }}
                 >
                 {/* <div
@@ -403,7 +408,8 @@ const SwipeableScroller = (props) => {
                     height:"100%",
                     backgroundColor:'transparent',
                     justifyContent:'center',
-                    alignItems:'center'
+                    alignItems:'center',
+                    padding:25,
                   }}
                 >
                 {/* <div
