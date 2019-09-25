@@ -464,12 +464,12 @@ app.get('/info',function(req,res){
     soldItemsStructure.owner=userStructure
     if(global[tempUUID].itemList!=undefined&&global[tempUUID].itemList!=null){
       for(var i =0; i<global[tempUUID].itemList.length; i++){
-        soldItemStructure.items.push(global[tempUUID].itemList[i])
+        soldItemsStructure.items.push(global[tempUUID].itemList[i])
       }
     }
     
     if(global[tempUUID].uuid!=undefined&&global[tempUUID].uuid!=null){
-      soldItemStructure.uuid=global[tempUUID].uuid
+      soldItemsStructure.uuid=global[tempUUID].uuid
     }
     
     console.log('soldItemsStructure : ',stringifyObject(soldItemsStructure))
