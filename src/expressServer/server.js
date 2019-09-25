@@ -596,7 +596,7 @@ app.get('/removeme',function(req,res){
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
-      console,log('userlist function')
+      console.log('userlist function')
       if(usersList==undefined){
         //usersList={0:userStructure}
         console.log('userlist undefined')
