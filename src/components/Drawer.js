@@ -216,7 +216,7 @@ const Drawer =(props)=>{
     
 
     useEffect(()=>{
-        getUserData([{kind:'plugin',id:'00'}])
+        getUserData([{kind:'service',id:'00'}])
     },[])
 
     useEffect(()=>{

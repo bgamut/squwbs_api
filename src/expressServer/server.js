@@ -596,23 +596,23 @@ app.get('/removeme',function(req,res){
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
-      console.log('userlist function')
+      //console.log('userlist function')
       if(usersList==undefined){
         //usersList={0:userStructure}
-        console.log('userlist undefined')
+        //console.log('userlist undefined')
       }
       else{
         var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           //usersList.push(userStructure)
-          console.log('no such user')
+          //console.log('no such user')
         }
         else{
           var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           //usersList[index]=userStructure
-          console.log('index found', index)
+          //console.log('index found', index)
           usersList.splice(index,1)
-          console.log(usersList)
+          //console.log(usersList)
         }
 
         
@@ -664,7 +664,11 @@ app.get('/instagramuri',cors(),(req,res)=>{
   res.send({"instagramuri":NODE_ENV.INSTAGRAM_URI})
 
 })
+app.get('/favicon.ico',cors(),(req,res)=>{
+  //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
+  res.sendFile(path.join(__dirname,'../../build','favicon.ico'))
 
+})
 app.get('/api',cors(),(req,res)=>{
   
   res.send(req.query)
