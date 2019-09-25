@@ -491,9 +491,20 @@ app.get('/info',function(req,res){
           //var index=soldHistory.findIndex(sold=>sold.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           
           for(var i =0; i<Object.keys(soldItemsStructure.items).length; i++){
-            var index = picked.items.findIndex(item=>item.kind=soldItemsStructure.items[i].kind&&item.id==soldItemsStructure[i].items.id)
+            // var index = picked.items.findIndex(item=>item.kind=soldItemsStructure.items[i].kind&&item.id==soldItemsStructure[i].items.id)
+            var index=undefined
+            for(var j = 0; j<Object.keys(picked.items).length; j++){
+              if(soldItemsStructure.items[i].kind==picked.items[j].kind){
+                if(soldItemsStructure.items[i].id==picked.items[j].id){
+                  index=j
+                }
+              }
+              
+              
+            }
             if(index==undefined){
-              soldHistory[index].items.push(soldItemsStructure.items[i])
+              //soldHistory[index].items.push(soldItemsStructure.items[i])
+              picked.items.push(soldItemsStructure.items[i])
             }
           }
         }
