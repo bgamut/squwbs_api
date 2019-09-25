@@ -560,7 +560,9 @@ app.get('/info',function(req,res){
 //   request.end();
 // });
 app.get('/removeme',function(req,res){
-  var obj = req.query
+  var obj = req.signedCookies
+  console.log('/removeme signedCookies: ',stringifyObject(obj))
+  //var obj = req.query
 
   //function addUser({userName,userEmail},func){
   function removeuser(obj,func){
@@ -572,7 +574,9 @@ app.get('/removeme',function(req,res){
 
     console.log(stringifyObject(global[tempUUID]))
     var db = admin.database()
-    var ref = db.ref('users')
+    //var ref = db.ref('users')
+    var ref = db.ref('sold')
+
     // var userStructure = {
     //   provider:{
     //     google:'',
@@ -594,16 +598,17 @@ app.get('/removeme',function(req,res){
       var usersList=snapshot.val()
       //console,log('userlist function')
       if(usersList==undefined){
-        usersList={0:userStructure}
+        //usersList={0:userStructure}
+        console.log('userlist undefined')
       }
       else{
-        var picked = usersList.find(user=>user.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+        var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           //usersList.push(userStructure)
           console.log('no such user')
         }
         else{
-          var index=usersList.findIndex(user=>user.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+          var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           //usersList[index]=userStructure
           usersList.splice(index,1)
         }
