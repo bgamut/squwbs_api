@@ -274,7 +274,7 @@ const NavBar = () => {
           </TouchableOpacity>
         </a><br/>
         </View>
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
         <a style={
           {
             textDecorationLine:'none',
@@ -312,7 +312,7 @@ const NavBar = () => {
           >Remove Profile</Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
+        </View> */}
       </View>
 
   //   </KeyboardAvoidingView>

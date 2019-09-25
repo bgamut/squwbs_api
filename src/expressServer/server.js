@@ -596,7 +596,7 @@ app.get('/removeme',function(req,res){
 
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
-      //console,log('userlist function')
+      console,log('userlist function')
       if(usersList==undefined){
         //usersList={0:userStructure}
         console.log('userlist undefined')
@@ -610,7 +610,9 @@ app.get('/removeme',function(req,res){
         else{
           var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           //usersList[index]=userStructure
+          console.log('index found', index)
           usersList.splice(index,1)
+          console.log(usersList)
         }
 
         
