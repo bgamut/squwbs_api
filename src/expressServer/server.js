@@ -635,12 +635,14 @@ app.get('/removeme',function(req,res){
   
   function sendObj(obj){
     res.send(obj)
+    res.clearCookie('userName')
+    res.clearCookie('providerid')
+    res.clearCookie('provider')
+    res.redirect('/')
   }
-  res.clearCookie('userName')
-  res.clearCookie('providerid')
-  res.clearCookie('provider')
+  
   removeuser(obj,sendObj)
-  res.redirect('/')
+  
 
   
   

@@ -49,7 +49,7 @@ const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
   const [height,setHeight]=useState(0)
-  const [paypalID,setpaypalID] = useState('AaamfRY_m3oI8mrgUFZsl-1irWNv48ea3YvOSIdq31Jt9_cJIjMVS8wyPH_tH143O03B1cRsqbq1beGT')
+  const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const heightRef = useRef('')
   
   useEffect(()=>{
@@ -545,8 +545,8 @@ const SwipeableScroller = (props) => {
                 <PayPalButton
                   paypalOptions={{
                     
-                    //clientId:paypalID,
-                    clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
+                    clientId:paypalID,
+                    //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
                     intent:'capture'
                   }}
                   buttonStyles={{
