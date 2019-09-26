@@ -62,7 +62,7 @@ const Home = () => {
   const [overlaySwitch,setOverlaySwitch]=useState(false)
   const [fade, setFade] =useState('true')
   const overlay=useRef('')
-  const duration=300
+  const duration=270
   var animatedOpacity = new Animated.Value(0)
   const overlayToggle=()=>{
     //console.log('popLogin from HOME')
