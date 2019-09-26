@@ -319,6 +319,7 @@ const SwipeableScroller = (props) => {
                   >
                     Get the Sound You Want
                   </Text>
+                  
                 </a>
                   </Fade>
                 </View>

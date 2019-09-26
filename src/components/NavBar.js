@@ -13,8 +13,8 @@ import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,Toucha
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 //var facebookLogo = require('../svgs/brands/facebook-f.svg')
 //var googleLogo = require('../svgs/brands/google.svg')
-const NavBar = () => {
-
+const NavBar = (props) => {
+  
     return(
       <View style={{
               backgroundColor:'#666666',

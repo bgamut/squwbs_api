@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useState,useRef,useEffect} from 'react'
+import ReactDOM from 'react-dom'
 //import { Link } from 'react-router-dom'
 import { BrowserRouter,HashRouter, Route, Link,Router,Switch } from "react-router-dom";
 import {ScrollView,Image} from 'react-native'
@@ -13,7 +14,159 @@ import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,Toucha
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 //var facebookLogo = require('../svgs/brands/facebook-f.svg')
 //var googleLogo = require('../svgs/brands/google.svg')
-const NavBarWithLogIn = () => {
+const NavBarWithLogIn = (props) => {
+  const [overlaySwitch,setOverlaySwitch]=useState(true)
+  const overlay=useRef('')
+  const overlayToggle=()=>{
+    console.log(overlay.current.props.style.zIndex)
+    if(overlay.current.props.style.zIndex==100){
+        overlay.current.props.style.zIndex=1
+        overlay.current.props.style.display='none'
+        setOverlaySwitch(false)
+        console.log('block to none')
+    }
+    else{
+        overlay.current.props.style.zIndex=100
+        overlay.current.props.style.display='block'
+        setOverlaySwitch(true)
+        console.log('none to block')
+    }
+    
+  }
+  const loginOverlay = ()=>{
+    return(
+      <View
+          ref={overlay}
+          style={{
+              position:'fixed',
+              height:'100%',
+              width:'100%',
+              top:0,
+              left:0,
+              backgroundColor:'rgba(0,0,0,0.4)',
+              justifyContent:'center',
+              alignItems:'center',
+              zIndex:100,
+              //display:'block',
+          }}
+        >
+          
+          <View
+          style={{
+              
+              height:'50vh',
+              width:'50vw',
+              //opacity:0.4,
+              //backgroundColor:'orange',
+              backgroundColor:'transparent',
+              //backgroundImage:'',
+              justifyContent:'center',
+              alignItems:'center',
+              textAlign:'center'
+          }}>
+              <TouchableOpacity
+              style={{
+                  position:'fixed',
+                  height:25,
+                  width:25,
+                  top:15,
+                  right:15,
+                  //backgroundColor:'white',
+                  zIndex:101
+              }}
+              onPress={
+                  overlayToggle
+              }
+          >
+              <Text
+                  style={{
+                      fontSize:16,
+                      fontWeight:'700',
+                      color:'white',
+                      
+                  }}
+              >
+                  X
+              </Text>
+          </TouchableOpacity>
+              <Text>this is showing somewhere I think</Text>
+          </View>
+      </View>
+    )
+  } 
+  useEffect(()=>{
+    console.log('overlaySwitch: true? ',overlaySwitch==true)
+    // if(overlaySwitch==true){
+    //   console.log('yo this is running')
+    //   ReactDOM.render(
+    //     <View
+    //       //ref={overlay}
+    //       style={{
+    //           position:'fixed',
+    //           height:'100%',
+    //           width:'100%',
+    //           top:0,
+    //           left:0,
+    //           backgroundColor:'rgba(0,0,0,0.4)',
+    //           justifyContent:'center',
+    //           alignItems:'center',
+    //           zIndex:100,
+    //           //display:'block',
+    //       }}
+    //     >
+          
+    //       <View
+    //       style={{
+              
+    //           height:'50vh',
+    //           width:'50vw',
+    //           //opacity:0.4,
+    //           //backgroundColor:'orange',
+    //           backgroundColor:'transparent',
+    //           //backgroundImage:'',
+    //           justifyContent:'center',
+    //           alignItems:'center',
+    //           textAlign:'center'
+    //       }}>
+    //           <TouchableOpacity
+    //           style={{
+    //               position:'fixed',
+    //               height:25,
+    //               width:25,
+    //               top:15,
+    //               right:15,
+    //               //backgroundColor:'white',
+    //               zIndex:101
+    //           }}
+    //           onPress={
+    //               overlayToggle
+    //           }
+    //       >
+    //           <Text
+    //               style={{
+    //                   fontSize:16,
+    //                   fontWeight:'700',
+    //                   color:'white',
+                      
+    //               }}
+    //           >
+    //               X
+    //           </Text>
+    //       </TouchableOpacity>
+    //           <Text>this is showing somewhere I think</Text>
+    //       </View>
+    //   </View>
+    //     ,
+    //     // this.overlay.current
+    //     document.getElementById('homeOverlay')
+    //   )
+    // }
+    // else{
+      
+    // }
+    console.log('overlaySwitch : ',overlaySwitch)
+  },[overlaySwitch])
+  
   // <SafeAreaView>
   //     <KeyboardAvoidingView             
   //     style={{
@@ -34,6 +187,9 @@ const NavBarWithLogIn = () => {
   //     }}
   //   >
   //console.log(faFacebookSquare.icon)
+  const popLogin=()=>{
+    console.log('popLogin is triggered')
+  }
     return(
       <View style={{
               //height:Dimensions.get('window').height/15,
@@ -52,8 +208,104 @@ const NavBarWithLogIn = () => {
               // shadowRadius: 20,
               backgroundColor:'transparent'
             }}>
-             
+            
+            {/* <View
+              ref={overlay}
+              style={{
+                width:'100%',
+                height:'100%',
+                backgroundColor:'orange'
+              }}
+            ></View> */}
+        {/* {overlaySwitch && 
+          <View
+          ref={overlay}
+          style={{
+              position:'fixed',
+              height:'100%',
+              width:'100%',
+              top:0,
+              left:0,
+              backgroundColor:'rgba(0,0,0,0.4)',
+              justifyContent:'center',
+              alignItems:'center',
+              zIndex:100,
+              //display:'block',
+          }}
+        >
+          
+          <View
+          style={{
+              
+              height:'50vh',
+              width:'50vw',
+              //opacity:0.4,
+              //backgroundColor:'orange',
+              backgroundColor:'transparent',
+              //backgroundImage:'',
+              justifyContent:'center',
+              alignItems:'center',
+              textAlign:'center'
+          }}>
+              <TouchableOpacity
+              style={{
+                  position:'fixed',
+                  height:25,
+                  width:25,
+                  top:15,
+                  right:15,
+                  //backgroundColor:'white',
+                  zIndex:101
+              }}
+              onPress={
+                  overlayToggle
+              }
+          >
+              <Text
+                  style={{
+                      fontSize:16,
+                      fontWeight:'700',
+                      color:'white',
+                      
+                  }}
+              >
+                  X
+              </Text>
+          </TouchableOpacity>
+              <Text>this is showing somewhere I think</Text>
+          </View>
+      </View>
+      }       */}
         <View style={styles.box}>
+        
+          <TouchableOpacity style={styles.touch}
+            // onPress={popLogin}
+            onPress={props.popLogin}
+          >
+    
+          <Text id="loginPop" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 17,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          >Login</Text>
+          </TouchableOpacity>
+
+        </View>
+
+
+        {/* <View style={styles.box}>
         <a style={
           {
             // flex:1,
@@ -137,7 +389,7 @@ const NavBarWithLogIn = () => {
           >Facebook Login</Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
+        </View> */}
          
          
         {/* <View style={styles.box}>

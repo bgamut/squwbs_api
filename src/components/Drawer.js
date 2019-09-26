@@ -12,7 +12,7 @@ const _ = require('lodash')
 const stringifyObject= require('stringify-object')
 //importScripts('https://cdn.jsdelivr.net/npm/stringify-object@3.3.0/index.min.js')
 
-const SLIDING_DRAWER_WIDTH =300;
+const SLIDING_DRAWER_WIDTH =250;
 const maxHeight=50
 const imageLength=30
 let currentHeight=maxHeight
@@ -23,8 +23,9 @@ const Drawer =(props)=>{
     const [user,setUser]=useState({})
     const [userName,setUserName]=useState('')
     const [height,setHeight]=useState(0)
+    // const [overlaySwitch,setOverlaySwitch]=useState(true)
     const scroller=useRef('')
-
+    // const overlay=useRef('')
     const yScroll = new Animated.Value(0)
     var currentY=0
     var prevY=0
@@ -185,6 +186,28 @@ const Drawer =(props)=>{
         console.log(Dimensions.get('window').height)
         //scroller.current.props.style.height=Dimensions.get('window').height-150
     }
+
+    const popLogin = () =>{
+        props.popLogin()
+        //console.log('coming to you live from the DRAWER!!')
+    }
+
+    // const overlayToggle=()=>{
+    //     console.log(overlay.current.props.style.zIndex)
+    //     if(overlay.current.props.style.zIndex==100){
+    //         overlay.current.props.style.zIndex=1
+    //         overlay.current.props.style.display='none'
+    //         setOverlaySwitch(false)
+    //         console.log('block to none')
+    //     }
+    //     else{
+    //         overlay.current.props.style.zIndex=100
+    //         overlay.current.props.style.display='block'
+    //         setOverlaySwitch(true)
+    //         console.log('none to block')
+    //     }
+        
+    // }
     useEffect(()=>{
         //console.log(state.translateY._parent)
         //setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
@@ -247,12 +270,14 @@ const Drawer =(props)=>{
                 // width:Dimensions.get('window').width,
                 width:"100vw",
                 backgroundColor:'transparent',
+                zIndex:99,
                 // transform:[{
                 //     translateX:0
                 // },{
                 //     translateY:-50+state.yscroll
                 // }]
             }}>
+                
                 <View style={{
                     backgroundColor:'#ffffff',
                     //borderColor:'#cfcfcf',
@@ -541,6 +566,66 @@ const Drawer =(props)=>{
                 //     translateY:-50+state.yscroll
                 // }]
             }}>
+                {/* {overlaySwitch && 
+                    <View
+                    ref={overlay}
+                    style={{
+                        position:'fixed',
+                        height:'100vh',
+                        width:'100vw',
+                        top:0,
+                        left:0,
+                        backgroundColor:'rgba(0,0,0,0.4)',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        zIndex:100,
+                        //display:'block',
+                    }}
+                  >
+                    
+                    <View
+                    style={{
+                        
+                        height:'50vh',
+                        width:'50vw',
+                        //opacity:0.4,
+                        //backgroundColor:'orange',
+                        backgroundColor:'transparent',
+                        //backgroundImage:'',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        textAlign:'center'
+                    }}>
+                        <TouchableOpacity
+                        style={{
+                            position:'fixed',
+                            height:25,
+                            width:25,
+                            top:15,
+                            right:15,
+                            //backgroundColor:'white',
+                            zIndex:101
+                        }}
+                        onPress={
+                            overlayToggle
+                        }
+                    >
+                        <Text
+                            style={{
+                                fontSize:16,
+                                fontWeight:'700',
+                                color:'white',
+                                
+                            }}
+                        >
+                            X
+                        </Text>
+                    </TouchableOpacity>
+                        <Text>this is showing somewhere I think</Text>
+                    </View>
+                </View>
+                } */}
+                
                 <View style={{
                     backgroundColor:'#ffffff',
                     //borderColor:'#cfcfcf',
@@ -611,6 +696,7 @@ const Drawer =(props)=>{
                     </View> 
                 </View> 
                 {props.children}
+                
                 <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
                     transform:[{
                         translateX:drawerInterp
@@ -648,7 +734,7 @@ const Drawer =(props)=>{
                             
                             borderRadius:2,
                             borderWidth:1,
-                            width:298,
+                            width:SLIDING_DRAWER_WIDTH-2,
                         }]
                     }>
                         <View style={{
@@ -713,7 +799,10 @@ const Drawer =(props)=>{
                                 scrollEventThrottle={16}
                                 showsVerticalScrollIndicator={false}
                             >
-                            <NavBarWithLogIn/>
+                            <NavBarWithLogIn 
+                                //popLogin={popLogin}
+                                popLogin={props.popLogin}
+                            />
                             </ScrollView>
                         </View>
                     <View
@@ -722,7 +811,7 @@ const Drawer =(props)=>{
                         top:height-maxHeight-53,
                         backgroundColor:'rgb(211,211,211)',
                         //backgroundColor:'purple',
-                        width:298,
+                        width:SLIDING_DRAWER_WIDTH-2,
                         height:maxHeight,
                         marginTop:0,
                         marginBottom:0,

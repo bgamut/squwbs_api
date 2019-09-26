@@ -1,6 +1,6 @@
 //import React, {memo} from 'react'
-import React,{Component,useContext,useState,useEffect,memo} from 'react';
-import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions} from 'react-native'
+import React,{Component,useContext,useState,useEffect,memo,useRef} from 'react';
+import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions,StyleSheet} from 'react-native'
 import HorizontalSwipeElements from './HorizontalSwipeElements'
 import SwipeableList from './SwipeableList'
 import SwipeableScroller from './SwipeableScroller'
@@ -54,6 +54,38 @@ const Home = () => {
   //run()
   const [state,setState]=useState(Context)
   const [user,setUser]=useState({})
+  const [overlaySwitch,setOverlaySwitch]=useState(true)
+  const overlay=useRef('')
+  const overlayToggle=()=>{
+    console.log('popLogin from HOME')
+    //console.log(overlay.current.props.style.zIndex)
+    // if(overlay.current.props.style.zIndex==100){
+    //     overlay.current.props.style.zIndex=1
+    //     overlay.current.props.style.display='none'
+    //     setOverlaySwitch(false)
+    //     console.log('block to none')
+    // }
+    // else{
+    //     overlay.current.props.style.zIndex=100
+    //     overlay.current.props.style.display='block'
+    //     setOverlaySwitch(true)
+    //     console.log('none to block')
+    // }
+    if(overlaySwitch==false){
+      setOverlaySwitch(true)
+    }
+    else{
+      setOverlaySwitch(false)
+    }
+    
+  }
+  const overlayOff=()=>{
+
+
+      setOverlaySwitch(false)
+    
+    
+  }
   const getUserData=async()=>{
     const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
     const userCookie = await responded.json()
@@ -98,6 +130,150 @@ const Home = () => {
 
  
       <View style={{height:Dimensions.get('window').height}}>
+        {overlaySwitch && 
+          <View
+          //ref={overlay}
+          style={{
+              position:'fixed',
+              height:'100%',
+              width:'100%',
+              top:0,
+              left:0,
+              backgroundColor:'rgba(0,0,0,0.4)',
+              justifyContent:'center',
+              alignItems:'center',
+              zIndex:100,
+              //display:'block',
+          }}
+        >
+          
+          <View
+          style={{
+              
+              height:'50vh',
+              width:'50vw',
+              //opacity:0.4,
+              //backgroundColor:'orange',
+              backgroundColor:'transparent',
+              //backgroundImage:'',
+              justifyContent:'center',
+              alignItems:'center',
+              textAlign:'center'
+          }}>
+              <TouchableOpacity
+              style={{
+                  position:'fixed',
+                  height:25,
+                  width:25,
+                  top:15,
+                  right:15,
+                  //backgroundColor:'white',
+                  zIndex:101
+              }}
+              onPress={
+                  overlayToggle
+                  //overlayOff
+              }
+          >
+              <Text
+                  style={{
+                      fontSize:16,
+                      fontWeight:'700',
+                      color:'white',
+                      
+                  }}
+              >
+                  <i class="fas fa-times"></i>
+              </Text>
+          </TouchableOpacity>
+          <View style={styles.box}>
+        <a style={
+          {
+            // flex:1,
+            textDecorationLine:'none',
+            //borderColor:'black',
+            //borderWidth:2,
+            backgroundColor:'transparent',
+            fontSize: 17,
+            fontWeight:700,
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/login/google">
+          <TouchableOpacity style={styles.touch}>
+          
+          <Text id="linkLoginGoogle" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 25,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          ><i class="fab fa-google"></i></Text>
+          </TouchableOpacity>
+        </a><br/>
+        </View>
+       
+        <View style={styles.box}>
+        <a style={
+          {
+            // flex:1,
+            textDecorationLine:'none',
+            //borderColor:'black',
+            //borderWidth:2,
+            backgroundColor:'transparent',
+            fontSize: 35,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center'
+          }
+        } href="/login/facebook">
+          <TouchableOpacity style={styles.touch}>
+    
+          <Text id="linkLoginFacebook" 
+          style={{
+            // color:'black', 
+            textDecorationLine:'none',
+            color:'white',
+            fontSize: 25,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            // flex:1,
+            textAlign:'center',
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+          }}
+          ><i class="fab fa-facebook"></i></Text>
+          </TouchableOpacity>
+        </a><br/>
+        </View>
+          </View>
+      </View>
+      }      
         {/* <AdSense.Google 
           client='NeM-xU1bQwBXyU8dz_MsINZX'
           slot='7806394673'
@@ -105,7 +281,9 @@ const Home = () => {
           layout='in-article'
           format='fluid'
         />   */}
-          <Drawer>
+          <Drawer 
+            popLogin={overlayToggle}
+          >
             <SwipeableScroller/>
           </Drawer>
           {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}
@@ -256,5 +434,46 @@ const Home = () => {
     )
   // }
   }
-
+  const styles = StyleSheet.create({
+  
+    box:{
+      margin:0,
+      //padding:1,
+      height:50,
+      backgroundColor:'transparent',
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      // flex:1,
+      //fontSize:12,
+      //borderColor:'black',
+      //borderRadius:2,
+      //fontWeight:'700',
+      //color:'black',
+      // textShadowColor: 'rgba(1, 1, 1, 1)',
+      // textShadowOffset: {width: 0, height: 0},
+      // textShadowRadius: 20,
+      //borderColor:'#cfcfcf',
+      //borderWidth:1,
+    },
+    touch:{
+      margin:0,
+      //padding:1,
+      //fontWeight:700,
+      height:22,
+      backgroundColor:'transparent',
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      // flex:1
+    },
+    link:{
+      fontWeight:'700',
+      color:'black', 
+      textDecorationLine:'none',
+      //borderColor:'black',
+      //borderWidth:1 
+    }
+        
+})
 export default Home
