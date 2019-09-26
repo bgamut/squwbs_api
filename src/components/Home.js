@@ -245,6 +245,7 @@ const Home = () => {
               alignItems:'center',
               //textAlign:'center'
           }}>
+            
               <TouchableOpacity
               style={{
                   position:'fixed',
