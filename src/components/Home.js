@@ -239,7 +239,7 @@ const Home = () => {
               width:'100vw',
               //opacity:0.4,
               //backgroundColor:'orange',
-              backgroundColor:'rgba(0,0,0,0.85)',
+              backgroundColor:'rgba(0,0,0,0.8)',
               //backgroundImage:'',
               justifyContent:'center',
               alignItems:'center',
