@@ -61,6 +61,7 @@ const Home = () => {
   const [user,setUser]=useState({})
   const [overlaySwitch,setOverlaySwitch]=useState(false)
   const [fade, setFade] =useState('true')
+  const [height,setHeight]=useState(0)
   const overlay=useRef('')
   const duration=270
   var animatedOpacity = new Animated.Value(0)
@@ -152,9 +153,18 @@ const Home = () => {
     }
     
   }
-
+  const updateDimensions=()=>{
+    setHeight(Math.floor(Dimensions.get('window').height))
+    //style.height=Math.floor(Dimensions.get('window').height)
+    //console.log('dimensions update')
+    
+  }
   useEffect(()=>{
     //getUserData()
+    Dimensions.addEventListener('change',(e)=>{
+      updateDimensions()
+    })
+    updateDimensions()
   },[])
 
   useEffect(()=>{
@@ -192,7 +202,7 @@ const Home = () => {
     return(
 
  
-      <View style={{height:Dimensions.get('window').height}}>
+      <View style={{height:height}}>
         {/* <div
           ref={overlay}
           className=
@@ -205,7 +215,7 @@ const Home = () => {
           // className={overlayClassName}
           style={{
               position:'fixed',
-              height:'100%',
+              height:height,
               width:'100%',
               top:0,
               left:0,
@@ -225,7 +235,7 @@ const Home = () => {
         <Fade
           style={{
             //backgroundColor:'orange',
-            height:'100vh',
+            height:height,
             width:'100vw',
           }}
           when={fade}
@@ -235,7 +245,7 @@ const Home = () => {
           <View
           style={{
               
-              height:'100vh',
+              height:height,
               width:'100vw',
               //opacity:0.4,
               //backgroundColor:'orange',
@@ -245,7 +255,7 @@ const Home = () => {
               alignItems:'center',
               //textAlign:'center'
           }}>
-            
+
               <TouchableOpacity
               style={{
                   position:'fixed',

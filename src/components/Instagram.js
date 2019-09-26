@@ -213,7 +213,11 @@ const Instagram = (props)=> {
       
     
       return (
-        <Fade when={show}>
+        <Fade 
+            when={show}
+            duration={270}
+            timeout={270}
+        >
             
               <View class="container"
                 style={{
