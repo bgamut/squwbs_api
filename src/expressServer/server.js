@@ -653,6 +653,7 @@ app.get('/removeme',function(req,res){
 //var corsOptions = {origin:'https://squwbs.herokuapp.com/'}
 app.get('/undefined',cors(),(req,res)=>{
   console.log('undefined reached')
+  res.send({message:'undefined'})
 })
 app.get('/mapboxtoken',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)

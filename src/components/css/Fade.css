@@ -1,0 +1,16 @@
+.fadein {
+    opacity: 1;
+    transition: opacity 3s ease-in-out;
+    -moz-transition: opacity 3s ease-in-out;
+    -webkit-transition: opacity 3s ease-in-out;
+    }
+ 
+.fadeout{
+    opacity:0;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+.invisible{
+    opacity:0
+}

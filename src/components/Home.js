@@ -12,14 +12,17 @@ import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
 //import xIcon from './icons/X.png'
+import Fade from 'react-reveal/Fade'
 import './css/x.css'
-
+import './css/Fade.css'
 //import AdSense from 'react-adsense';
 // import UploadWords from './UploadWords'
 // import SplitScreenV2 from './SplitScreenV2'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
+// import FadeInOut from 'react-native-fade-in-out';
+
 const withQuery = require('with-query').default
 
 
@@ -57,9 +60,12 @@ const Home = () => {
   const [state,setState]=useState(Context)
   const [user,setUser]=useState({})
   const [overlaySwitch,setOverlaySwitch]=useState(false)
+  const [fade, setFade] =useState('true')
   const overlay=useRef('')
+  const duration=300
+  var animatedOpacity = new Animated.Value(0)
   const overlayToggle=()=>{
-    console.log('popLogin from HOME')
+    //console.log('popLogin from HOME')
     //console.log(overlay.current.props.style.zIndex)
     // if(overlay.current.props.style.zIndex==100){
     //     overlay.current.props.style.zIndex=1
@@ -75,9 +81,40 @@ const Home = () => {
     // }
     if(overlaySwitch==false){
       setOverlaySwitch(true)
+      //setOverlayClassName('fadein')
+      
+      setFade(true)
+      // if(overlay.current!=null){
+      //   if(overlay.current.props!=undefined){
+      //     //overlay.current.props.style.opacity=value
+          
+      //     overlay.current.props.className='fadein'
+      //     console.log(overlay.current.props.className)
+      //     //console.log(overlay.current.props.style.opacity)
+      //   }
+        
+      // }
     }
     else{
-      setOverlaySwitch(false)
+      //setOverlayClassName('fadeout')
+      setFade(false)
+      //console.log('waiting')
+      setTimeout(function() {
+        //console.log('waited '+ duration+' milliseconds');
+        setOverlaySwitch(false)
+      }, duration);
+      
+      
+      // if(overlay.current!=null){
+      //   if(overlay.current.props!=undefined){
+      //     //overlay.current.props.style.opacity=value
+          
+      //     overlay.current.props.className='fadeout'
+      //     console.log(overlay.current.props.className)
+      //     //console.log(overlay.current.props.style.opacity)
+      //   }
+        
+      // }
     }
     
   }
@@ -123,8 +160,32 @@ const Home = () => {
   useEffect(()=>{
     //console.log(stringifyObject(user)=='{}')
     //console.log(user)
-  },[user])
-  
+    //console.log('fade changed')
+  },[fade])
+  animatedOpacity.addListener(({value})=>{
+    //console.log(value)
+    // if(overlay.current!=null){
+    //   if(overlay.current.props!=undefined){
+    //     //overlay.current.props.style.opacity=value
+        
+    //     overlay.current.props.style.backgroundColor='rgba(0,0,0,'+value+')'
+    //     console.log(overlay.current.props.style.backgroundColor)
+    //     //console.log(overlay.current.props.style.opacity)
+    //   }
+      
+    // }
+    
+    //overlay.current.props.style.opacity=value
+    //console.log(state.yscroll)
+    //global.headerHeight=value
+    //console.log(value)
+})
+  // useEffect(()=>{
+  //   //getUserData()
+  //   //console.log('what')
+  //   console.log(overlay.current)
+  // },[overlayClassName])
+
     const longpress=()=>{
       alert('longpress')
     }
@@ -132,31 +193,53 @@ const Home = () => {
 
  
       <View style={{height:Dimensions.get('window').height}}>
+        {/* <div
+          ref={overlay}
+          className=
+          'invisible'
+        > */}
         {overlaySwitch && 
+        
           <View
-          //ref={overlay}
+          
+          // className={overlayClassName}
           style={{
               position:'fixed',
               height:'100%',
               width:'100%',
               top:0,
               left:0,
-              backgroundColor:'rgba(0,0,0,0.4)',
+              //backgroundColor:'rgba(0,0,0,0.4)',
+              //
               justifyContent:'center',
               alignItems:'center',
               zIndex:100,
+              //opacity:0,
               //display:'block',
           }}
         >
-          
+        <Fade
+        duration={duration}
+        timeout={duration}
+        >
+        <Fade
+          style={{
+            //backgroundColor:'orange',
+            height:'100vh',
+            width:'100vw',
+          }}
+          when={fade}
+          duration={duration}
+          timeout={duration}
+        >
           <View
           style={{
               
-              height:'50vh',
-              width:'50vw',
+              height:'100vh',
+              width:'100vw',
               //opacity:0.4,
               //backgroundColor:'orange',
-              backgroundColor:'transparent',
+              backgroundColor:'rgba(0,0,0,0.85)',
               //backgroundImage:'',
               justifyContent:'center',
               alignItems:'center',
@@ -282,8 +365,12 @@ const Home = () => {
         </a><br/>
         </View>
           </View>
+        </Fade> 
+        </Fade>
       </View>
-      }      
+      
+      }   
+      {/* </div>    */}
         {/* <AdSense.Google 
           client='NeM-xU1bQwBXyU8dz_MsINZX'
           slot='7806394673'

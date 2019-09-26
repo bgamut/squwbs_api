@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
+require('babel-register')
+require('@babel/plugin-proposal-class-properties')
 
 module.exports = {
     entry: './src/index.js',
@@ -23,6 +25,14 @@ module.exports = {
 
         ]
     },
+    plugins: [
+        [
+          "@babel/plugin-proposal-class-properties",
+          {
+            "loose": true
+          }
+        ]
+      ],
     resolve: {
         alias: {
           'react-native-svg': 'react-native-svg-web-transform'
