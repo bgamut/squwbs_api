@@ -401,7 +401,8 @@ const Drawer =(props)=>{
                             
                             borderRadius:2,
                             borderWidth:1,
-                            width:298,
+                            //width:298,
+                            width:SLIDING_DRAWER_WIDTH-2,
                         }]
                     }>
                         <View style={{
@@ -476,7 +477,8 @@ const Drawer =(props)=>{
                         top:height-maxHeight-53,
                         backgroundColor:'rgb(211,211,211)',
                         //backgroundColor:'purple',
-                        width:298,
+                        //width:298,
+                        width:SLIDING_DRAWER_WIDTH-2,
                         height:maxHeight,
                         marginTop:0,
                         marginBottom:0,
