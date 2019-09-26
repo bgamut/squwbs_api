@@ -259,6 +259,7 @@ const Home = () => {
                   overlayToggle
                   //overlayOff
               }
+              activeOpacity={1}
           >
               <div
                 className='x'
