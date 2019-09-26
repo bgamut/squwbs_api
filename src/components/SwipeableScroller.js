@@ -29,7 +29,7 @@ try{
   var NODE_ENV = require('./private')
 }
 catch(e){
-  console.log('we are probably in production mode')
+  //console.log('we are probably in production mode')
   var NODE_ENV = {...process.env};
 }
 // const translateY = new Animated.Value(0);
