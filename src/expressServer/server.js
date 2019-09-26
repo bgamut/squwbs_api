@@ -638,7 +638,7 @@ app.get('/removeme',function(req,res){
     res.clearCookie('providerid')
     res.clearCookie('provider')
     res.redirect('/')
-    res.send(obj)
+    //res.send(obj)
     
   }
   
