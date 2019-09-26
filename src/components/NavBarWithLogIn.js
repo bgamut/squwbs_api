@@ -95,7 +95,7 @@ const NavBarWithLogIn = (props) => {
     )
   } 
   useEffect(()=>{
-    console.log('overlaySwitch: true? ',overlaySwitch==true)
+    //console.log('overlaySwitch: true? ',overlaySwitch==true)
     // if(overlaySwitch==true){
     //   console.log('yo this is running')
     //   ReactDOM.render(
@@ -164,7 +164,7 @@ const NavBarWithLogIn = (props) => {
     // else{
       
     // }
-    console.log('overlaySwitch : ',overlaySwitch)
+    // console.log('overlaySwitch : ',overlaySwitch)
   },[overlaySwitch])
   
   // <SafeAreaView>

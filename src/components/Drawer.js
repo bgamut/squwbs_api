@@ -183,7 +183,7 @@ const Drawer =(props)=>{
         setHeight(Dimensions.get('window').height)
         //style.height=Math.floor(Dimensions.get('window').height)
         //console.log(this.state)
-        console.log(Dimensions.get('window').height)
+        //console.log(Dimensions.get('window').height)
         //scroller.current.props.style.height=Dimensions.get('window').height-150
     }
 
@@ -243,8 +243,8 @@ const Drawer =(props)=>{
     },[])
 
     useEffect(()=>{
-        console.log(stringifyObject(user)=='{}')
-        console.log(stringifyObject(user))
+        //console.log(stringifyObject(user)=='{}')
+        //console.log(stringifyObject(user))
         if(stringifyObject(user)!=='{}'){ 
             if(user.provider!=undefined){
                 console.log(user.provider)
@@ -260,7 +260,7 @@ const Drawer =(props)=>{
 
     },[user])
     useEffect(()=>{
-        console.log(userName)
+     //console.log(userName)
     },[userName])
 
     if(stringifyObject(user)!=='{}'){

@@ -828,7 +828,6 @@ const SwipeableScroller = (props) => {
 export default SwipeableScroller
 
 
-
 // class SwipeableScroller extends Component {
 //   //static context = Context
 //   //const [state, setState] = useContext(Context);

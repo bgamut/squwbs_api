@@ -121,8 +121,8 @@ const Home = () => {
   },[])
 
   useEffect(()=>{
-    console.log(stringifyObject(user)=='{}')
-    console.log(user)
+    //console.log(stringifyObject(user)=='{}')
+    //console.log(user)
   },[user])
   
     const longpress=()=>{
@@ -160,7 +160,7 @@ const Home = () => {
               //backgroundImage:'',
               justifyContent:'center',
               alignItems:'center',
-              textAlign:'center'
+              //textAlign:'center'
           }}>
               <TouchableOpacity
               style={{
