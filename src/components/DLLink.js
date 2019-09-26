@@ -79,11 +79,22 @@ const DLLink = (props)=> {
             //todo : create a popup that will open https://squwbs.herokuapp.com with jwt? uuid.v4 confirmation?
 
             
-        getUserData([{kind:'plugin',id:'00'}])
-        var win = window.open('https://squwbs.herokuapp.com/download', "Download", "location=no toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
-        win.document.body.innerHTML = "Downloading";
-        // setTimeout(function(){},15000)
-        // win.close()
+        // getUserData([{kind:'plugin',id:'00'}])
+        // var win = window.open('https://squwbs.herokuapp.com/download', "Download", "location=no toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
+        // win.document.body.innerHTML = "Downloading";
+        
+        
+        var element = document.createElement('a');
+        element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
+        // element.setAttribute('download', filename);
+      
+        element.style.display = 'none';
+        document.body.appendChild(element);
+      
+        element.click();
+      
+        document.body.removeChild(element);
+
     }
 
   
