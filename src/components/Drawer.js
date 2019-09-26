@@ -435,7 +435,8 @@ const Drawer =(props)=>{
                             href = "/#slider" >
                                 <Text selectable={false} style ={styles.textStyle}>
                                     {/* Welcome */}
-                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text>
+                                    {/* <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text> */}
+                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
                                 </Text>
                             </a>
                         </View>

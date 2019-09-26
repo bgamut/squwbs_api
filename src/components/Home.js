@@ -1,6 +1,6 @@
 //import React, {memo} from 'react'
 import React,{Component,useContext,useState,useEffect,memo,useRef} from 'react';
-import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions,StyleSheet} from 'react-native'
+import {Animated,TouchableOpacity,TouchableHighlight,PanResponder,Text,View,KeyboardAvoidingView,ScrollView,Dimensions,StyleSheet,Image} from 'react-native'
 import HorizontalSwipeElements from './HorizontalSwipeElements'
 import SwipeableList from './SwipeableList'
 import SwipeableScroller from './SwipeableScroller'
@@ -11,6 +11,8 @@ import Header from './Header'
 import Drawer from './Drawer'
 import FileDrop from './FileDrop'
 import {Context} from '../context'
+//import xIcon from './icons/X.png'
+import './css/x.css'
 
 //import AdSense from 'react-adsense';
 // import UploadWords from './UploadWords'
@@ -54,7 +56,7 @@ const Home = () => {
   //run()
   const [state,setState]=useState(Context)
   const [user,setUser]=useState({})
-  const [overlaySwitch,setOverlaySwitch]=useState(true)
+  const [overlaySwitch,setOverlaySwitch]=useState(false)
   const overlay=useRef('')
   const overlayToggle=()=>{
     console.log('popLogin from HOME')
@@ -163,10 +165,10 @@ const Home = () => {
               <TouchableOpacity
               style={{
                   position:'fixed',
-                  height:25,
-                  width:25,
-                  top:15,
-                  right:15,
+                  height:16,
+                  width:16,
+                  top:26,
+                  right:21,
                   //backgroundColor:'white',
                   zIndex:101
               }}
@@ -175,7 +177,12 @@ const Home = () => {
                   //overlayOff
               }
           >
-              <Text
+              <div
+                className='x'
+              >
+        
+              </div>
+              {/* <Text
                   style={{
                       fontSize:16,
                       fontWeight:'700',
@@ -184,7 +191,10 @@ const Home = () => {
                   }}
               >
                   <i class="fas fa-times"></i>
-              </Text>
+                  
+
+                
+              </Text> */}
           </TouchableOpacity>
           <View style={styles.box}>
         <a style={
@@ -213,7 +223,7 @@ const Home = () => {
             // color:'black', 
             textDecorationLine:'none',
             color:'white',
-            fontSize: 25,
+            fontSize: 30,
             fontWeight:'700',
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
@@ -256,7 +266,7 @@ const Home = () => {
             // color:'black', 
             textDecorationLine:'none',
             color:'white',
-            fontSize: 25,
+            fontSize: 30,
             fontWeight:'700',
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},

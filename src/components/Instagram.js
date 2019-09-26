@@ -386,8 +386,8 @@ const Instagram = (props)=> {
                                         className="Wiggle Unselectable" 
                                             src={iglogo}
                                             style={{           
-                                            height:25,
-                                            width:25,
+                                            height:30,
+                                            width:30,
                                             color:'white',
                                             filter:'invert(0.8)',
                                         
