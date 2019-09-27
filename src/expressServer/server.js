@@ -425,8 +425,9 @@ app.get('/logout',function(req,res){
 app.get('/download',function(req,res){
   var userInfo=req.signedCookies
   //download list looks like var downloadList = [{kind:'beat',id:'00'},{kind:'service',id:'03'}]
+  console.log('428 : userInfo = ',stringifyObject(userInfo))
   var downloadList=req.query.downloadList
-  console.log('downloadList = ',stringifyObject(downloadList))
+  console.log('450 : downloadList = ',stringifyObject(downloadList))
   // if(userInfo){
   //   console.log("download got User Info : ",stringifyObject(userInfo))
   //   var providerid = userInfo.providerid
@@ -469,14 +470,17 @@ app.get('/download',function(req,res){
                   // todo: give users a way to see all of their owned products and download only checked files
                   console.log('470:',productMatrix[downloadList[i].kind])
                   console.log('471:',productMatrix[downloadList[i].kind][downloadList[i].id])
-                  res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
-                  confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
+                  console.log('472:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                  //res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
+                  //res.download(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                  //confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
+                  confirmedList.push(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
                 }
               }
             }
           }
         }
-        //sendObj(confirmedList)
+        downloadList(confirmedList)
       }
       // ref.set(usersList,function(error){
       //   if(error){
@@ -492,12 +496,16 @@ app.get('/download',function(req,res){
     })
   }
   
-  function sendObj(obj){
+  function downloadList(confirmedList){
     //res.clearCookie('userName')
     //res.clearCookie('providerid')
     //res.clearCookie('provider')
-    res.send(obj)
-    res.redirect('/')
+    //res.send(obj)
+    //res.redirect('/')
+    console.log('505 : ',stringifyObject(confirmedList))
+    for (var i=0; i<confirmedList.length; i++){
+      res.download(confirmedList[i])
+    }
     
     
   }
