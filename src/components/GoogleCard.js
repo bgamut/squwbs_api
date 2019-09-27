@@ -38,7 +38,35 @@ const GoogleCard = (props)=> {
         
     }
    
-
+    const createHashList = (props) =>{
+        let parent = []
+        props.hashs.map((hash)=>{
+            parent.push(
+            <TouchableOpacity
+                
+            >
+                <Text
+                    className='icon'
+                    selectable={true} 
+                    style ={{
+                        fontSize: 12,
+                        fontWeight:'700',
+                        textDecorationLine:'none',
+                        color:'rgb(196,196,196)',
+                        textAlign:'center',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        flexDirection:'row',
+                        margin:5,
+                    }}
+                >
+                    #{hash}
+                </Text>
+            </TouchableOpacity>
+            )
+        })
+        return parent;
+    }
   
       return (
         <Fade
@@ -101,7 +129,7 @@ const GoogleCard = (props)=> {
                 style={{
                     height:height-125,
                     width:width-30,
-                    backgroundColor:'rgb(196,196,196)',
+                    backgroundColor:'rgb(175,175,175)',
                     padding:15
                 }}
                 // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
@@ -151,7 +179,7 @@ const GoogleCard = (props)=> {
                     backgroundColor:'white',
                     //margin:'auto',
                     borderRadius:4,
-                    borderColor:'rgb(251,251,251)',
+                    borderColor:'rgb(175,175,175)',
                     borderWidth:2,
                     shadowColor:'#000',
                     shadowOpacity:0.85,
@@ -183,7 +211,7 @@ const GoogleCard = (props)=> {
                     style={{
                         height:80,
                         width:width-182,
-                        backgroundColor:'rgb(196,196,196)',
+                        backgroundColor:'rgb(175,175,175)',
                         margin:2,
                         borderRadius:4,
                         shadowColor:'#000',
@@ -245,6 +273,23 @@ const GoogleCard = (props)=> {
                     >
                         {props.writer}
                     </Text>
+                    <br></br>
+                    <Text
+                        selectable={true} 
+                        style ={{
+                            fontSize: 12,
+                            fontWeight:'700',
+                            textDecorationLine:'none',
+                            color:'rgb(196,196,196)',
+                            textAlign:'center',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            flexDirection:'row',
+                            margin:5,
+                        }}
+                    >
+                        {props.date}
+                    </Text>
                 </View>
                 </ScrollView>
             </View>
@@ -267,13 +312,33 @@ const GoogleCard = (props)=> {
                     >
                         {props.post}
                     </Text>
+                    
                     <br></br>
-                    <Text
+                    {/* <Text
                         selectable={true} 
                         style ={[styles.text]}
                     >
-                        {props.date}
-                    </Text>
+                        {props.hashs}
+                    </Text> */}
+                    <View
+                        style={{
+                            flexDirection:'column',
+                            justifyContent:'center',
+                            alignItems:'center'
+                        }}
+                    >
+                        <View
+                            style={{
+                                flexDirection:'row',
+                                alignItems:'center',
+                                justifyContent:'center'
+                                
+                            }}
+                        >
+                            {createHashList(props)}
+                        </View>
+                    </View>
+
                 
             </ScrollView> 
             <View
