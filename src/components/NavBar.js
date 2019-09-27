@@ -129,7 +129,10 @@ const NavBar = (props) => {
             textAlign:'center'
           }
         } href="/#sound">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            onPress={props.ShowSlidingDrawer}
+            style={styles.touch}
+          >
          
           <Text id="Sound" 
           style={{
@@ -170,7 +173,10 @@ const NavBar = (props) => {
             textAlign:'center'
           }
         } href="/#follow">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            onPress={props.ShowSlidingDrawer}
+            style={styles.touch}
+          >
          
           <Text id="instagram" 
           style={{
@@ -212,7 +218,10 @@ const NavBar = (props) => {
             textAlign:'center'
           }
         } href="/#contact">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            onPress={props.ShowSlidingDrawer}
+            style={styles.touch}
+          >
          
           <Text id="Contact" 
           style={{
@@ -253,7 +262,10 @@ const NavBar = (props) => {
             textAlign:'center'
           }
         } href="/logout">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            onPress={props.ShowSlidingDrawer}
+            style={styles.touch}
+          >
          
           <Text id="Contact" 
           style={{

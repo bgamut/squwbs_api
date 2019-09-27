@@ -33,6 +33,10 @@ const NavBarWithLogIn = (props) => {
     }
     
   }
+  // const loginAndCloseDrawer=(props)=>{
+  //   props.popLogin
+  //   props.ShowSlidingDrawer
+  // }
   const loginOverlay = ()=>{
     return(
       <View
@@ -280,7 +284,13 @@ const NavBarWithLogIn = (props) => {
         
           <TouchableOpacity style={styles.touch}
             // onPress={popLogin}
-            onPress={props.popLogin}
+            onPress={
+              // function(){
+              //   props.popLogin
+              //   props.ShowSlidingDrawer
+              // }
+              props.loginAndCloseDrawer
+            }
           >
     
           <Text id="loginPop" 
@@ -496,7 +506,10 @@ const NavBarWithLogIn = (props) => {
             textAlign:'center'
           }
         } href="/#sound">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            style={styles.touch}
+            onPress={props.ShowSlidingDrawer}
+          >
          
           <Text id="Sound" 
           style={{
@@ -537,7 +550,10 @@ const NavBarWithLogIn = (props) => {
             textAlign:'center'
           }
         } href="/#follow">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            onPress={props.ShowSlidingDrawer}
+            style={styles.touch}
+          >
          
           <Text id="instagram" 
           style={{
@@ -579,7 +595,10 @@ const NavBarWithLogIn = (props) => {
             textAlign:'center'
           }
         } href="/#contact">
-          <TouchableOpacity style={styles.touch}>
+          <TouchableOpacity 
+            onPress={props.ShowSlidingDrawer}
+            style={styles.touch}
+          >
          
           <Text id="Contact" 
           style={{

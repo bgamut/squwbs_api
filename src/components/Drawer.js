@@ -191,7 +191,12 @@ const Drawer =(props)=>{
         props.popLogin()
         //console.log('coming to you live from the DRAWER!!')
     }
-
+    
+    const loginAndCloseDrawer=()=>{
+        popLogin()
+        ShowSlidingDrawer()
+    }
+    
     // const overlayToggle=()=>{
     //     console.log(overlay.current.props.style.zIndex)
     //     if(overlay.current.props.style.zIndex==100){
@@ -468,7 +473,7 @@ const Drawer =(props)=>{
                                 scrollEventThrottle={16}
                                 showsVerticalScrollIndicator={false}
                             >
-                            <NavBar/>
+                            <NavBar ShowSlidingDrawer={ShowSlidingDrawer}/>
                             </ScrollView>
                         </View>
                     <View
@@ -805,6 +810,8 @@ const Drawer =(props)=>{
                             <NavBarWithLogIn 
                                 //popLogin={popLogin}
                                 popLogin={props.popLogin}
+                                ShowSlidingDrawer={ShowSlidingDrawer}
+                                loginAndCloseDrawer={loginAndCloseDrawer}
                             />
                             </ScrollView>
                         </View>

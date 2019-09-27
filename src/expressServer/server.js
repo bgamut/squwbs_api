@@ -436,12 +436,10 @@ app.get('/download',function(req,res){
       service:{
         '00':'squwbs.zip',
 
-      }
-      ,
+      },
       beat:{
 
       }
-
     } 
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
@@ -474,14 +472,8 @@ app.get('/download',function(req,res){
               }
             }
           }
-           
-          
-              
-            
-          
         }
         //sendObj(confirmedList)
-        
       }
       // ref.set(usersList,function(error){
       //   if(error){
