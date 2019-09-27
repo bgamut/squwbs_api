@@ -248,7 +248,7 @@ const SwipeableScroller = (props) => {
             infiniteLoop={true}
             autoPlay={true}
             interval={4500}
-            transitionTime={750}
+            transitionTime={500}
             //emulateTouch={true}
             stopOnHover={true}
             //swipeScrollTolerance={1}

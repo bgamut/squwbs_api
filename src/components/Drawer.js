@@ -180,7 +180,7 @@ const Drawer =(props)=>{
         }
     }
     const delayedSlidingDrawer=()=>{
-        setTimeout(ShowSlidingDrawer,250)
+        setTimeout(ShowSlidingDrawer,270)
     }
     const updateDimensions=()=>{
         setHeight(Dimensions.get('window').height)

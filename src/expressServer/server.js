@@ -426,6 +426,7 @@ app.get('/download',function(req,res){
   var userInfo=req.signedCookies
   //download list looks like var downloadList = [{kind:'beat',id:'00'},{kind:'service',id:'03'}]
   var downloadList=req.query.downloadList
+  console.log('downloadList = ',stringifyObject(downloadList))
   // if(userInfo){
   //   console.log("download got User Info : ",stringifyObject(userInfo))
   //   var providerid = userInfo.providerid
@@ -466,6 +467,8 @@ app.get('/download',function(req,res){
                 if(itemList[j].id==downloadList[i].id){
                   // res.download(__dirname+'/squwbs.zip')
                   // todo: give users a way to see all of their owned products and download only checked files
+                  console.log('470:',productMatrix[downloadList[i].kind])
+                  console.log('471:',productMatrix[downloadList[i].kind][downloadList[i].id])
                   res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
                   confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
                 }
