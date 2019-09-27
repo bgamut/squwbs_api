@@ -445,6 +445,7 @@ app.get('/download',function(req,res){
     } 
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
+    var confirmedList=[]
     var db = admin.database()
     var ref = db.ref('sold')
     ref.once('value',function(snapshot){
@@ -453,7 +454,7 @@ app.get('/download',function(req,res){
         console.log('userlist undefined')
       }
       else{
-        var confirmedList=[]
+        
         var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           console.log('no such user')
@@ -480,8 +481,9 @@ app.get('/download',function(req,res){
               }
             }
           }
+         
         }
-        downloadList(confirmedList)
+        
       }
       // ref.set(usersList,function(error){
       //   if(error){
@@ -493,8 +495,10 @@ app.get('/download',function(req,res){
 
       // })
       //delete global.copy
+      delete picked
       delete global[tempUUID]
     })
+    func(confirmedList)
   }
   
   function downloadList(confirmedList){
