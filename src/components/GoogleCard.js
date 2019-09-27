@@ -302,7 +302,7 @@ const GoogleCard = (props)=> {
             height:(width-30)*315/560,
             justifyContent:'center',
             alignItems:'center',
-            backgroundColor:'purple'
+            backgroundColor:'transparent'
         }}
         >
         
