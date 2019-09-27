@@ -115,6 +115,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "rimraf": "^3.0.0",
+    "serve-favicon": "^2.5.0",
     "stringify-object": "^3.3.0",
     "stripe": "^7.9.1",
     "styled-components": "^4.3.2",
@@ -154,7 +155,9 @@
     "preelectron-pack": "npm run build",
     "electron-package": "electron-packager . --productName=template --icon=./build/icons/favicon.icns --overwrite",
     "electron-repackage": "npm run preelectron-pack & electron-packager . --productName=template --icon=./build/icons/favicon.icns --overwrite && open ./template-darwin-x64/template.app",
-    "postinstall": "echo finished"
+    "postinstall": "echo finished",
+    "google": "npm run build && gcloud app deploy ",
+    "heroku": "heroku logs -t -a squwbs"
   },
   "browserslist": {
     "production": [

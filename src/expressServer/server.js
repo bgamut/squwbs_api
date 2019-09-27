@@ -21,6 +21,8 @@ var admin = require('firebase-admin')
 const stringifyObject= require('stringify-object')
 const uuidv4 = require('uuid/v4')
 const mongoose = require('mongoose');
+var favicon = require('serve-favicon')
+
 const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
 const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs.herokuapp.com/addwordlisttomongo'
@@ -121,6 +123,7 @@ app.set('views', __dirname + '/views');
 //app.engine('jsx',require('express-react-views').createEngine())
 app.set('view engine','ejs')
 //app.use(require('cookie-parser')());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
