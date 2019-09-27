@@ -444,9 +444,17 @@ app.get('/download',function(req,res){
 
       }
     } 
+    try{
+      delete picked
+      delete global[tempUUID]
+    }
+    catch{
+      console.log('nothing to delete')
+    }
+    
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
-    console.log('449 : ',global[tempUUI])
+    console.log('449 : ',global[tempUUID])
     var confirmedList=[]
     var confirmString = ''
     var db = admin.database()
@@ -469,25 +477,28 @@ app.get('/download',function(req,res){
           //todo check if the user have history of having bought the item.
           console.log('470 : ', stringifyObject(picked))
           var itemList = picked.items
-          for (var i =0; i<downloadList.length; i++){
-            for (var j =0; j<itemList.length; j++){
-              if(itemList[j].kind==downloadList[i].kind){
-                if(itemList[j].id==downloadList[i].id){
-                  // res.download(__dirname+'/squwbs.zip')
-                  // todo: give users a way to see all of their owned products and download only checked files
-                  //console.log('472:',productMatrix[downloadList[i].kind])
-                  //console.log('473:',productMatrix[downloadList[i].kind][downloadList[i].id])
-                  console.log('480:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
-                  //res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
-                  //res.download(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
-                  //confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
-                  //confirmedList.push(String(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])))
-                  confirmString = path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])
-                  break
+          if(downloadList!=undefined){
+            for (var i =0; i<downloadList.length; i++){
+              for (var j =0; j<itemList.length; j++){
+                if(itemList[j].kind==downloadList[i].kind){
+                  if(itemList[j].id==downloadList[i].id){
+                    // res.download(__dirname+'/squwbs.zip')
+                    // todo: give users a way to see all of their owned products and download only checked files
+                    //console.log('472:',productMatrix[downloadList[i].kind])
+                    //console.log('473:',productMatrix[downloadList[i].kind][downloadList[i].id])
+                    console.log('480:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                    //res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
+                    //res.download(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                    //confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
+                    //confirmedList.push(String(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])))
+                    confirmString = path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])
+                    break
+                  }
                 }
               }
             }
           }
+          
           delete picked
           delete global[tempUUID]
           res.download(confirmString)
