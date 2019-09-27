@@ -453,6 +453,7 @@ app.get('/download',function(req,res){
         console.log('userlist undefined')
       }
       else{
+        var confirmedList=[]
         var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           console.log('no such user')
@@ -468,6 +469,7 @@ app.get('/download',function(req,res){
                   // res.download(__dirname+'/squwbs.zip')
                   // todo: give users a way to see all of their owned products and download only checked files
                   res.download(__dirname+"/"+productMatrix[kind].id)
+                  confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
                 }
               }
             }
@@ -478,7 +480,7 @@ app.get('/download',function(req,res){
             
           
         }
-
+        //sendObj(confirmedList)
         
       }
       ref.set(usersList,function(error){
@@ -499,13 +501,13 @@ app.get('/download',function(req,res){
     //res.clearCookie('userName')
     //res.clearCookie('providerid')
     //res.clearCookie('provider')
-    //res.send(obj)
+    res.send(obj)
     res.redirect('/')
     
     
   }
   
-  userDownloadFile(userInfo,,sendObj)
+  userDownloadFile(userInfo,downloadList,sendObj)
   
   //todo if user info in database && payment info present. => download. 
   
