@@ -468,7 +468,7 @@ app.get('/download',function(req,res){
                 if(itemList[j].id==downloadList[i].id){
                   // res.download(__dirname+'/squwbs.zip')
                   // todo: give users a way to see all of their owned products and download only checked files
-                  res.download(__dirname+"/"+productMatrix[kind].id)
+                  res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
                   confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
                 }
               }

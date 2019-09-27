@@ -61,7 +61,7 @@ const DLLink = (props)=> {
         
     }
     const download = (downloadList) =>{
-            fetch(withQuery.default('https://squwbs.herokuapp.com/download', 
+            fetch(withQuery('https://squwbs.herokuapp.com/download', 
             {
                 downloadList:downloadList,
                 mode:'cors'
