@@ -91,9 +91,9 @@ const GoogleCard = (props)=> {
                 flexDirection:'column',
                 //justifyContent:'center',
                 //alignItems:'center',
-                borderRadius:2,
-                borderColor:'lightgrey',
-                borderStyle:'solid',
+                // borderRadius:2,
+                // borderColor:'lightgrey',
+                // borderStyle:'solid',
                 overflow:'hidden',
                 boxSizing:"border-box",
                 // shadowColor:'#000',
@@ -149,12 +149,13 @@ const GoogleCard = (props)=> {
         >
                    <View
             style={{
-                // position:'absolute',
+                position:'absolute',
                 flexDirection:'row',
                 width:width-60,
                 height:120,
                 //backgroundColor:'purple',
-                backgroundColor:'rgb(175,175,175)',
+                //backgroundColor:'rgb(175,175,175)',
+                backgroundColor:'white',
                 //padding:15,
                 borderRadius:0,
                 marginTop:0,
@@ -165,7 +166,7 @@ const GoogleCard = (props)=> {
                 top:0
             }}
         >
-            <View
+            {/* <View
                 style={{
                     width:120,
                     height:120,
@@ -199,7 +200,7 @@ const GoogleCard = (props)=> {
                     uri: props.picture
                 }}
             />
-            </View>
+            </View> */}
             <View
                 style={{
                     flexDirection:'column',
@@ -295,7 +296,15 @@ const GoogleCard = (props)=> {
                 </ScrollView>
             </View>
         </View>
-    
+        <View
+        style={{
+            width:width-60,
+            height:(width-30)*315/560,
+            justifyContent:'center',
+            alignItems:'center',
+            backgroundColor:'purple'
+        }}
+        >
         
             <iframe 
                 
@@ -311,11 +320,11 @@ const GoogleCard = (props)=> {
                 allowfullscreen>
 
             </iframe>
-        
+        </View>
         </View>  
         <View
             style={{
-                paddingTop:15
+                paddingTop:30
                 ,
                 //background:'rgb(175,175,175)',
                 background:'white',
