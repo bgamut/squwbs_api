@@ -446,24 +446,28 @@ app.get('/download',function(req,res){
     } 
     const tempUUID = uuidv4()
     global[tempUUID] = Object.create(obj)
+    console.log('449 : ',global[tempUUI])
     var confirmedList=[]
+    var confirmString = ''
     var db = admin.database()
     var ref = db.ref('sold')
     ref.once('value',function(snapshot){
       var usersList=snapshot.val()
       if(usersList==undefined){
         console.log('userlist undefined')
+        res.send({message:'user list undefined'})
       }
       else{
         
         var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           console.log('no such user')
+          res.send({message:'no such user'})
         }
         else{
           //var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           //todo check if the user have history of having bought the item.
-          console.log('464 : ', stringifyObject(picked))
+          console.log('470 : ', stringifyObject(picked))
           var itemList = picked.items
           for (var i =0; i<downloadList.length; i++){
             for (var j =0; j<itemList.length; j++){
@@ -471,18 +475,22 @@ app.get('/download',function(req,res){
                 if(itemList[j].id==downloadList[i].id){
                   // res.download(__dirname+'/squwbs.zip')
                   // todo: give users a way to see all of their owned products and download only checked files
-                  console.log('472:',productMatrix[downloadList[i].kind])
-                  console.log('473:',productMatrix[downloadList[i].kind][downloadList[i].id])
-                  console.log('474:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                  //console.log('472:',productMatrix[downloadList[i].kind])
+                  //console.log('473:',productMatrix[downloadList[i].kind][downloadList[i].id])
+                  console.log('480:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
                   //res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
                   //res.download(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
                   //confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
-                  confirmedList.push(String(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])))
+                  //confirmedList.push(String(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])))
+                  confirmString = path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])
+                  break
                 }
               }
             }
           }
-         
+          delete picked
+          delete global[tempUUID]
+          res.download(confirmString)
         }
         
       }
@@ -500,7 +508,7 @@ app.get('/download',function(req,res){
       delete global[tempUUID]
     })
     //func(confirmedList)
-    console.log('503 : ',stringifyObject(confirmedList))
+    console.log('511 : ',stringifyObject(confirmedList))
     for (var i=0; i<confirmedList.length; i++){
       res.download(confirmedList[i])
     }
@@ -512,7 +520,7 @@ app.get('/download',function(req,res){
     //res.clearCookie('provider')
     //res.send(obj)
     //res.redirect('/')
-    console.log('515 : ',stringifyObject(confirmedList))
+    console.log('523 : ',stringifyObject(confirmedList))
     for (var i=0; i<confirmedList.length; i++){
       res.download(confirmedList[i])
     }
