@@ -82,11 +82,59 @@ const GoogleCard = (props)=> {
             }} 
                 // {...getRootProps({refKey:'innerRef'})}
             >
+       
         <View
+            style={{
+                position:'absolute',
+                flexDirection:'column',
+                width:"100%",
+                alignItems:'center',
+                //justifyContent:'center',
+                //hegiht:(height),
+                backgroundColor:'white',
+                // padding:15,
+                top:0
+
+            }}
+        >
+            <ScrollView
+                style={{
+                    height:height-125,
+                    width:width-30,
+                    backgroundColor:'rgb(196,196,196)',
+                    padding:15
+                }}
+                // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
+                onScroll={(e)=>{
+                    //onScroll(e)
+                    //console.log(e)
+                    }
+                }
+                scrollEnabled={true}
+                scrollEventThrottle={16}
+                showsVerticalScrollIndicator={true}
+                //snapToInterval={height-50}
+                snapeToAlignment='end'
+                decelerationRate="fast"
+            > 
+                     <View
+            style={{
+                //position:'absolute',
+                width:width-60,
+                height:(width-30)*315/560,
+                justifyContent:'center',
+                //alignItems:'center',
+                
+                backgroundColor:'white',
+                padding:0,
+                top:0
+            }}
+        >
+                   <View
             style={{
                 // position:'absolute',
                 flexDirection:'row',
-                width:width-30,
+                width:width-60,
                 height:120,
                 backgroundColor:'white',
                 padding:15,
@@ -134,7 +182,7 @@ const GoogleCard = (props)=> {
                 <ScrollView
                     style={{
                         height:80,
-                        width:width-152,
+                        width:width-182,
                         backgroundColor:'rgb(196,196,196)',
                         margin:2,
                         borderRadius:4,
@@ -165,7 +213,7 @@ const GoogleCard = (props)=> {
                         [
                             {
                                 backgroundColor:'transparent',
-                                width:width-180,
+                                width:width-210,
                                 marginTop: 15,
                                 marginLeft:15,
                                 marginBottom:1
@@ -184,7 +232,7 @@ const GoogleCard = (props)=> {
                 <View
                     style ={[{
                         backgroundColor:'transparent',
-                        width:width-180,
+                        width:width-210,
                         marginTop: 11,
                         marginLeft:15,
                         marginBottom:15,
@@ -201,55 +249,7 @@ const GoogleCard = (props)=> {
                 </ScrollView>
             </View>
         </View>
-       
-        <View
-            style={{
-                position:'absolute',
-                flexDirection:'column',
-                width:"100%",
-                alignItems:'center',
-                //justifyContent:'center',
-                //hegiht:(height),
-                backgroundColor:'white',
-                // padding:15,
-                top:120
 
-            }}
-        >
-            <ScrollView
-                style={{
-                    height:height-245,
-                    width:width-30,
-                    backgroundColor:'rgb(196,196,196)',
-                    padding:15
-                }}
-                // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
-                onScroll={(e)=>{
-                    //onScroll(e)
-                    //console.log(e)
-                    }
-                }
-                scrollEnabled={true}
-                scrollEventThrottle={16}
-                showsVerticalScrollIndicator={true}
-                //snapToInterval={height-50}
-                snapeToAlignment='end'
-                decelerationRate="fast"
-            > 
-                     <View
-            style={{
-                //position:'absolute',
-                width:width-60,
-                height:(width-30)*315/560,
-                justifyContent:'center',
-                //alignItems:'center',
-                
-                backgroundColor:'white',
-                padding:0,
-                top:0
-            }}
-        >
-           
 
             <iframe 
                 width={width-60} 
