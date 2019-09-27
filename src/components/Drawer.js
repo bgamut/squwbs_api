@@ -179,6 +179,9 @@ const Drawer =(props)=>{
             })
         }
     }
+    const delayedSlidingDrawer=()=>{
+        setTimeout(ShowSlidingDrawer,250)
+    }
     const updateDimensions=()=>{
         setHeight(Dimensions.get('window').height)
         //style.height=Math.floor(Dimensions.get('window').height)
@@ -194,7 +197,8 @@ const Drawer =(props)=>{
     
     const loginAndCloseDrawer=()=>{
         popLogin()
-        ShowSlidingDrawer()
+        setTimeout(ShowSlidingDrawer(),720)
+        
     }
     
     // const overlayToggle=()=>{
@@ -473,7 +477,7 @@ const Drawer =(props)=>{
                                 scrollEventThrottle={16}
                                 showsVerticalScrollIndicator={false}
                             >
-                            <NavBar ShowSlidingDrawer={ShowSlidingDrawer}/>
+                            <NavBar ShowSlidingDrawer={delayedSlidingDrawer}/>
                             </ScrollView>
                         </View>
                     <View
@@ -810,7 +814,7 @@ const Drawer =(props)=>{
                             <NavBarWithLogIn 
                                 //popLogin={popLogin}
                                 popLogin={props.popLogin}
-                                ShowSlidingDrawer={ShowSlidingDrawer}
+                                ShowSlidingDrawer={delayedSlidingDrawer}
                                 loginAndCloseDrawer={loginAndCloseDrawer}
                             />
                             </ScrollView>
