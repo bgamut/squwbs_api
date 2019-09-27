@@ -19,6 +19,7 @@ import './css/Image.css'
 import Fade from 'react-reveal/Fade'
 // import { PayPalButton } from "react-paypal-button-v2"
 import {PayPalButton} from 'react-paypal-button'
+import GoogleCard from './GoogleCard'
 //import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
@@ -45,6 +46,7 @@ let currentY=0
 let prevY=0
 let buffer=[0,0]
 const yScroll = new Animated.Value(0)
+var date = new Date()
 const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
@@ -182,7 +184,7 @@ const SwipeableScroller = (props) => {
       showsVerticalScrollIndicator={true}
       snapToInterval={height-50}
       snapeToAlignment='end'
-      decelerationRate="fast"
+      decelerationRate="fast"goo
     >
     
       <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
@@ -574,7 +576,60 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
-           
+          
+          <section id="googleCard">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'rgb(211,211,211)',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  backgroundColor:'white',
+                  borderRadius:4,
+                  //borderBottom:2,
+                  //borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                <GoogleCard
+                  title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
+                  date={String(date)}
+                  picture={"./icons/256x256.png"}
+                  writer={'Sir Francis Dylan the 2nd'}
+                  youtubeID={"SkNB5AsgZOc"}
+                  post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                  stars={5}
+                  likes={2000}
+                />
+              </View>
+            </View>
+          </section>
+
           <section id="testDownloadLink">
             <View
               ref={heightRef}
