@@ -461,6 +461,7 @@ app.get('/download',function(req,res){
         else{
           //var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           //todo check if the user have history of having bought the item.
+          console.log('464 : ', stringifyObject(picked))
           var itemList = picked.items
           for (var i =0; i<downloadList.length; i++){
             for (var j =0; j<itemList.length; j++){
@@ -468,9 +469,9 @@ app.get('/download',function(req,res){
                 if(itemList[j].id==downloadList[i].id){
                   // res.download(__dirname+'/squwbs.zip')
                   // todo: give users a way to see all of their owned products and download only checked files
-                  console.log('470:',productMatrix[downloadList[i].kind])
-                  console.log('471:',productMatrix[downloadList[i].kind][downloadList[i].id])
-                  console.log('472:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                  console.log('472:',productMatrix[downloadList[i].kind])
+                  console.log('473:',productMatrix[downloadList[i].kind][downloadList[i].id])
+                  console.log('474:',path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
                   //res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
                   //res.download(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
                   //confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
@@ -502,7 +503,7 @@ app.get('/download',function(req,res){
     //res.clearCookie('provider')
     //res.send(obj)
     //res.redirect('/')
-    console.log('505 : ',stringifyObject(confirmedList))
+    console.log('506 : ',stringifyObject(confirmedList))
     for (var i=0; i<confirmedList.length; i++){
       res.download(confirmedList[i])
     }
@@ -510,7 +511,7 @@ app.get('/download',function(req,res){
     
   }
   
-  userDownloadFile(userInfo,downloadList,sendObj)
+  userDownloadFile(userInfo,downloadList,downloadList)
   
   //todo if user info in database && payment info present. => download. 
   
