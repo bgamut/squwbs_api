@@ -483,15 +483,15 @@ app.get('/download',function(req,res){
         //sendObj(confirmedList)
         
       }
-      ref.set(usersList,function(error){
-        if(error){
-          func(error)
-        }
-        else{
-          func({message:"removed"})
-        }
+      // ref.set(usersList,function(error){
+      //   if(error){
+      //     func(error)
+      //   }
+      //   else{
+      //     func({message:"download"})
+      //   }
 
-      })
+      // })
       //delete global.copy
       delete global[tempUUID]
     })
