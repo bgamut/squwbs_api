@@ -123,7 +123,7 @@ app.set('views', __dirname + '/views');
 //app.engine('jsx',require('express-react-views').createEngine())
 app.set('view engine','ejs')
 //app.use(require('cookie-parser')());
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')))
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
@@ -423,8 +423,92 @@ app.get('/logout',function(req,res){
   res.redirect('/')
 })
 app.get('/download',function(req,res){
+  var userInfo=req.signedCookies
+  //download list looks like var downloadList = [{kind:'beat',id:'00'},{kind:'service',id:'03'}]
+  var downloadList=req.query.downloadList
+  // if(userInfo){
+  //   console.log("download got User Info : ",stringifyObject(userInfo))
+  //   var providerid = userInfo.providerid
+  //   var provider=userInfo.provider
+  // }
+  function userDownloadFile(obj,downloadList,func){
+    const productMatrix={
+      service:{
+        '00':'squwbs.zip',
+
+      }
+      ,
+      beat:{
+
+      }
+
+    } 
+    const tempUUID = uuidv4()
+    global[tempUUID] = Object.create(obj)
+    var db = admin.database()
+    var ref = db.ref('sold')
+    ref.once('value',function(snapshot){
+      var usersList=snapshot.val()
+      if(usersList==undefined){
+        console.log('userlist undefined')
+      }
+      else{
+        var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+        if(picked==undefined){
+          console.log('no such user')
+        }
+        else{
+          //var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+          //todo check if the user have history of having bought the item.
+          var itemList = picked.items
+          for (var i =0; i<downloadList.length; i++){
+            for (var j =0; j<itemList.length; j++){
+              if(itemList[j].kind==downloadList[i].kind){
+                if(itemList[j].id==downloadList[i].id){
+                  // res.download(__dirname+'/squwbs.zip')
+                  // todo: give users a way to see all of their owned products and download only checked files
+                  res.download(__dirname+"/"+productMatrix[kind].id)
+                }
+              }
+            }
+          }
+           
+          
+              
+            
+          
+        }
+
+        
+      }
+      ref.set(usersList,function(error){
+        if(error){
+          func(error)
+        }
+        else{
+          func({message:"removed"})
+        }
+
+      })
+      //delete global.copy
+      delete global[tempUUID]
+    })
+  }
   
-  res.download(__dirname+'/squwbs.zip')
+  function sendObj(obj){
+    //res.clearCookie('userName')
+    //res.clearCookie('providerid')
+    //res.clearCookie('provider')
+    //res.send(obj)
+    res.redirect('/')
+    
+    
+  }
+  
+  userDownloadFile(userInfo,,sendObj)
+  
+  //todo if user info in database && payment info present. => download. 
+  
   //res.render('download');
   //console.log('file entered')
   //res.redirect('/')
@@ -602,18 +686,18 @@ app.get('/removeme',function(req,res){
       //console.log('userlist function')
       if(usersList==undefined){
         //usersList={0:userStructure}
-        //console.log('userlist undefined')
+        console.log('userlist undefined')
       }
       else{
         var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           //usersList.push(userStructure)
-          //console.log('no such user')
+          console.log('no such user to remove')
         }
         else{
           var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
           //usersList[index]=userStructure
-          //console.log('index found', index)
+          console.log('removing user index found', index)
           usersList.splice(index,1)
           //console.log(usersList)
         }

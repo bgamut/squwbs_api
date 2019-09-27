@@ -60,21 +60,24 @@ const DLLink = (props)=> {
         }
         
     }
-    const download = () =>{
-            // fetch(withQuery.default('https://squwbs.herokuapp.com/download', 
-            // {
-            //     mode:'cors'
-            // }))
-            // .then(result=>{
-            //     console.log(result)
-            //     return result.json()
-            // })
+    const download = (downloadList) =>{
+            fetch(withQuery.default('https://squwbs.herokuapp.com/download', 
+            {
+                downloadList:downloadList,
+                mode:'cors'
+            }))
+            //.then(result=>{
+            .then(()=>{
+                console.log('request sent')
+                //console.log(result)
+                //return result.json()
+            })
             // .then((json)=>{
             //     console.log(json)
             // })
-            // .catch((err)=>{
+            .catch((err)=>{
         
-            // })
+            })
 
             //todo : create a popup that will open https://squwbs.herokuapp.com with jwt? uuid.v4 confirmation?
 
@@ -84,16 +87,16 @@ const DLLink = (props)=> {
         // win.document.body.innerHTML = "Downloading";
         
         
-        var element = document.createElement('a');
-        element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
-        // element.setAttribute('download', filename);
+        // var element = document.createElement('a');
+        // element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
+        // // element.setAttribute('download', filename);
       
-        element.style.display = 'none';
-        document.body.appendChild(element);
+        // element.style.display = 'none';
+        // document.body.appendChild(element);
       
-        element.click();
+        // element.click();
       
-        document.body.removeChild(element);
+        // document.body.removeChild(element);
 
     }
 
@@ -138,7 +141,7 @@ const DLLink = (props)=> {
                     {/* <input {...getInputProps()} /> */}
                     <TouchableOpacity onPress={(e)=>{
                         //console.log(e)
-                        download()
+                        download([{kind:'service',id:'00'}])
                     }}>
                         <Text selectable={false} style ={{
                             fontSize: 11,
