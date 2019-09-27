@@ -433,7 +433,8 @@ app.get('/download',function(req,res){
   //   var providerid = userInfo.providerid
   //   var provider=userInfo.provider
   // }
-  function userDownloadFile(obj,downloadList,func){
+  // function userDownloadFile(obj,downloadList,func){
+  function userDownloadFile(obj,downloadList){
     const productMatrix={
       service:{
         '00':'squwbs.zip',
@@ -498,7 +499,11 @@ app.get('/download',function(req,res){
       delete picked
       delete global[tempUUID]
     })
-    func(confirmedList)
+    //func(confirmedList)
+    console.log('503 : ',stringifyObject(confirmedList))
+    for (var i=0; i<confirmedList.length; i++){
+      res.download(confirmedList[i])
+    }
   }
   
   function downloadListFunc(confirmedList){
@@ -507,7 +512,7 @@ app.get('/download',function(req,res){
     //res.clearCookie('provider')
     //res.send(obj)
     //res.redirect('/')
-    console.log('506 : ',stringifyObject(confirmedList))
+    console.log('515 : ',stringifyObject(confirmedList))
     for (var i=0; i<confirmedList.length; i++){
       res.download(confirmedList[i])
     }
@@ -515,7 +520,8 @@ app.get('/download',function(req,res){
     
   }
   
-  userDownloadFile(userInfo,downloadList,downloadListFunc)
+  //userDownloadFile(userInfo,downloadList,downloadListFunc)
+  userDownloadFile(userInfo,downloadList)
   
   //todo if user info in database && payment info present. => download. 
   
