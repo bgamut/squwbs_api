@@ -501,7 +501,7 @@ app.get('/download',function(req,res){
     func(confirmedList)
   }
   
-  function downloadList(confirmedList){
+  function downloadListFunc(confirmedList){
     //res.clearCookie('userName')
     //res.clearCookie('providerid')
     //res.clearCookie('provider')
@@ -515,7 +515,7 @@ app.get('/download',function(req,res){
     
   }
   
-  userDownloadFile(userInfo,downloadList,downloadList)
+  userDownloadFile(userInfo,downloadList,downloadListFunc)
   
   //todo if user info in database && payment info present. => download. 
   
