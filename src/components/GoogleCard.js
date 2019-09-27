@@ -5,6 +5,7 @@ import Dropzone, {useDropzone} from 'react-dropzone'
 import Fade from 'react-reveal/Fade'
 import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
+import './css/iconHover.css'
 //import YouTube from 'react-youtube';
 
 const _ = require('lodash')
@@ -87,7 +88,7 @@ const GoogleCard = (props)=> {
                 flexDirection:'row',
                 width:width-30,
                 height:120,
-                backgroundColor:'rgb(221,221,221)',
+                backgroundColor:'white',
                 padding:15,
                 borderRadius:0,
                 margin:0,
@@ -119,7 +120,7 @@ const GoogleCard = (props)=> {
                 }}
             >
             <Image
-                style={{width: 80, height: 80,borderRadius:4,top:0,margin:0}}
+                style={{width: 86, height: 86,borderRadius:4,top:0,margin:0}}
                 source={{uri: props.picture}}
             />
             </View>
@@ -134,7 +135,7 @@ const GoogleCard = (props)=> {
                     style={{
                         height:80,
                         width:width-152,
-                        backgroundColor:'white',
+                        backgroundColor:'rgb(196,196,196)',
                         margin:2,
                         borderRadius:4,
                         shadowColor:'#000',
@@ -163,7 +164,7 @@ const GoogleCard = (props)=> {
                     style ={
                         [
                             {
-                                backgroundColor:'white',
+                                backgroundColor:'transparent',
                                 width:width-180,
                                 marginTop: 15,
                                 marginLeft:15,
@@ -182,7 +183,7 @@ const GoogleCard = (props)=> {
                 
                 <View
                     style ={[{
-                        backgroundColor:'white',
+                        backgroundColor:'transparent',
                         width:width-180,
                         marginTop: 11,
                         marginLeft:15,
@@ -219,7 +220,7 @@ const GoogleCard = (props)=> {
                 style={{
                     height:height-245,
                     width:width-30,
-                    backgroundColor:'white',
+                    backgroundColor:'rgb(196,196,196)',
                     padding:15
                 }}
                 // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
@@ -297,11 +298,16 @@ const GoogleCard = (props)=> {
                         justifyContent:'center'
                     }}
                 >
+                    <TouchableOpacity>
                     <Text
-                        style ={styles.text}
+                        className='icon'
+                        style ={styles.icon}
                     >
-                        {props.stars} STARS 
+                        {/* {props.stars} <i class="fas fa-star"></i>  */}
+                        {/* Flip */}
+                        <i class="fas fa-edit"></i>
                     </Text>
+                    </TouchableOpacity>
                 </View>
                 <View
                     style={{
@@ -312,11 +318,17 @@ const GoogleCard = (props)=> {
                         justifyContent:'center'
                     }}
                 >
+                    <TouchableOpacity>
                     <Text
-                        style ={styles.text}
-                    >
-                        {props.likes} Likes 
+                        className='icon'
+                        style ={styles.icon}
+                    >   
+                    
+                        <i class="fab fa-slack-hash"></i>
+                    
+                        {/* {props.likes} Likes  */}
                     </Text>
+                    </TouchableOpacity>
                 </View>
                 <View
                     style={{
@@ -327,11 +339,19 @@ const GoogleCard = (props)=> {
                         justifyContent:'center'
                     }}
                 >
+                    <TouchableOpacity>
                     <Text
-                        style ={styles.text}
+                        className='icon'
+                        style ={[
+                            styles.icon,
+                            
+                        ]
+                            
+                        }
                     >
-                        heart
+                        <i class="fas fa-heart"></i>
                     </Text>
+                    </TouchableOpacity>
                 </View>
                 <View
                     style={{
@@ -342,11 +362,14 @@ const GoogleCard = (props)=> {
                         justifyContent:'center'
                     }}
                 >
+                    <TouchableOpacity>
                     <Text
-                        style ={styles.text}
+                        style ={styles.icon}
+                        className='icon'
                     >
-                        share
+                        <i class="fas fa-share-alt"></i>
                     </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -360,7 +383,7 @@ const GoogleCard = (props)=> {
 const styles = StyleSheet.create({
 
     text:{
-        fontSize: 12,
+        fontSize: 14,
         fontWeight:'700',
         textDecorationLine:'none',
         color:'white',
@@ -373,8 +396,18 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         flexDirection:'row',
         margin:5,
+    },
+    icon:{
+        textDecorationLine:'none',
+        color:'rgb(196,196,196)',
+        fontSize: 14,
+        fontWeight:'700',
+        
+        textAlign:'center',
+        alignItems:'center',
+        justifyContent:'center',
+        flexDirection:'row',
     }
-    
   });
 
 export default GoogleCard
