@@ -477,7 +477,7 @@ app.get('/download',function(req,res){
                   //res.download(__dirname+"/"+productMatrix[downloadList[i].kind][downloadList[i].id])
                   //res.download(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
                   //confirmedList.push({kind:downloadList[i].kind,id:downloadList[i].id})
-                  confirmedList.push(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id]))
+                  confirmedList.push(String(path.join(__dirname,productMatrix[downloadList[i].kind][downloadList[i].id])))
                 }
               }
             }
