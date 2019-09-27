@@ -61,23 +61,23 @@ const DLLink = (props)=> {
         
     }
     const download = (downloadList) =>{
-            fetch(withQuery('https://squwbs.herokuapp.com/download', 
-            {
-                downloadList:downloadList,
-                mode:'cors'
-            }))
-            //.then(result=>{
-            .then(()=>{
-                console.log('request sent')
-                //console.log(result)
-                //return result.json()
-            })
-            // .then((json)=>{
-            //     console.log(json)
+            // fetch(withQuery('https://squwbs.herokuapp.com/download', 
+            // {
+            //     downloadList:downloadList,
+            //     mode:'cors'
+            // }))
+            // //.then(result=>{
+            // .then(()=>{
+            //     console.log('request sent')
+            //     //console.log(result)
+            //     //return result.json()
             // })
-            .catch((err)=>{
+            // // .then((json)=>{
+            // //     console.log(json)
+            // // })
+            // .catch((err)=>{
         
-            })
+            // })
 
             //todo : create a popup that will open https://squwbs.herokuapp.com with jwt? uuid.v4 confirmation?
 
@@ -87,16 +87,16 @@ const DLLink = (props)=> {
         // win.document.body.innerHTML = "Downloading";
         
         
-        // var element = document.createElement('a');
-        // element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
-        // // element.setAttribute('download', filename);
+        var element = document.createElement('a');
+        element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
+        // element.setAttribute('download', filename);
       
-        // element.style.display = 'none';
-        // document.body.appendChild(element);
+        element.style.display = 'none';
+        document.body.appendChild(element);
       
-        // element.click();
+        element.click();
       
-        // document.body.removeChild(element);
+        document.body.removeChild(element);
 
     }
 
