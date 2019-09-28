@@ -42,6 +42,7 @@
     "fft-windowing": "^0.1.4",
     "firebase": "^6.3.3",
     "firebase-admin": "^8.3.0",
+    "gh-pages": "^2.1.1",
     "http2": "^3.3.7",
     "immer": "^3.1.3",
     "import-scripts": "^1.0.0",
@@ -157,7 +158,9 @@
     "electron-repackage": "npm run preelectron-pack & electron-packager . --productName=template --icon=./build/icons/favicon.icns --overwrite && open ./template-darwin-x64/template.app",
     "postinstall": "echo finished",
     "google": "npm run build && gcloud app deploy ",
-    "heroku": "heroku logs -t -a squwbs"
+    "heroku": "heroku logs -t -a squwbs",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -186,7 +189,7 @@
     "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.2.1"
   },
-  "homepage": "./",
+  "homepage": "https://bgamut.github.io/squwbs_api",
   "build": {
     "appId": "nonExistentID",
     "files": [
