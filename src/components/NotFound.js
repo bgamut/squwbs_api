@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import {View,Dimensions} from 'react-native'
 //import PageNotFound from '../../public/images/PageNotFound';
 class NotFound extends React.Component{
@@ -10,11 +10,13 @@ class NotFound extends React.Component{
             dimensions:{height:0,width:0}
         }
         this.imageHDRef=React.createRef();
+        this.linkRef=React.createRef();
         this.height=0
         this.width=0
     }
     componentDidMount(){
         this.imageHDRef.current.style.backgroundImage="url("+process.env.PUBLIC_URL+this.state.imgURL+")"
+        //this.linkRef.current.click()
     }
     UNSAFE_componentWillReceiveProps(nextProps){
         this.setState({
@@ -52,7 +54,7 @@ class NotFound extends React.Component{
                 height:'100vh',
                 width:'100vw',
                 
-                
+            
                 
             }}>
             <div 
@@ -82,6 +84,7 @@ class NotFound extends React.Component{
 
                 }}>
                         <Link 
+                            ref={this.linkRef}
                             style={{
                                 textAlign:"center",
                                 textDecorationLine:'none',
@@ -99,7 +102,9 @@ class NotFound extends React.Component{
                         </Link>
                     </p>
             </div>
+            
             </View>
+
          )   
             
           

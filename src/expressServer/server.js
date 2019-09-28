@@ -215,6 +215,9 @@ app.get('/', function (req, res) {
   else{
     res.render(path.join(__dirname, 'build', 'index.html'));
   }
+app.get('/squwbs_api',function(req,res){
+  res.redirect('/')
+})
 app.get('/login', function (req, res) {
     res.redirect('/')
     //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
@@ -422,6 +425,7 @@ app.get('/logout',function(req,res){
   res.clearCookie('provider')
   res.redirect('/')
 })
+
 app.get('/download',function(req,res){
 
   res.download(__dirname+'/squwbs.zip')
