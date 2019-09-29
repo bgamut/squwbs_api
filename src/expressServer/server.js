@@ -408,7 +408,8 @@ app.get('/profile',
     res.cookie('userName', req.user.displayName ,options);
     res.cookie('providerid',req.user.id,options)
     res.cookie('provider',req.user.provider,options)
-    console.log('411 : ',stringifyObject(req.user))
+    res.cookie('photo',req.user.photos[0].value)
+    //console.log('411 : ',stringifyObject(req.user))
     //res.cookie('photos',req.user.)
     res.redirect(url.format({
       pathname:"/"

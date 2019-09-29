@@ -22,6 +22,7 @@ const Drawer =(props)=>{
     const [state,setState]=useContext(Context)
     const [user,setUser]=useState({})
     const [userName,setUserName]=useState('')
+    const [userPhotoLink,setUserPhotoLink]=useState('')
     const [height,setHeight]=useState(0)
     // const [overlaySwitch,setOverlaySwitch]=useState(true)
     const scroller=useRef('')
@@ -34,7 +35,7 @@ const Drawer =(props)=>{
     const getUserData=async(itemList)=>{
         const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
         const userCookie = await responded.json()
-        console.log('userCookie : '+stringifyObject(userCookie))
+        //console.log('userCookie : '+stringifyObject(userCookie))
         if(Object.keys(userCookie).length>1){
         console.log('user info sent to server')
         // fetch(withQuery('https://squwbs.herokuapp.com/user', {
@@ -56,6 +57,7 @@ const Drawer =(props)=>{
         //     })
         
         // }
+        setUserPhotoLink(userCookie.photo)
         console.log(stringifyObject(
             {
                 ...userCookie,
@@ -440,14 +442,18 @@ const Drawer =(props)=>{
                                     marginbottom:2
                                     //Right:0
                                 }}/> */}
-                            <a  style ={{textDecorationLine:'none'}}
+                            <a style ={{textDecorationLine:'none'}}
                             
                             href = "/#slider" >
+                                <TouchableOpacity
+                                    onPress={delayedSlidingDrawer}
+                                >
                                 <Text selectable={false} style ={styles.textStyle}>
                                     {/* Welcome */}
                                     {/* <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text> */}
                                     <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
                                 </Text>
+                                </TouchableOpacity>
                             </a>
                         </View>
                         <View
