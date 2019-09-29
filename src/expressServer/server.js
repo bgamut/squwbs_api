@@ -701,16 +701,24 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 app.post('/linewebhook'
         ,
         linemiddleware({
-            channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
-            channelSecret:NODE_ENV.LINE_CHANNEL_SECRET
+            channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
+            channelSecret:"73354a544d842dfaf3bd347203eef7f6"
           })
         ,
-        (req,res)=>{
-          res.json(req.body.events)
-          //res.send(req.query)
-          //res.json(req.body.events)
-          //res.json(req.body.destination) //user id of the bot
-})
+        (req,res)=>
+          {
+            console.log(stringifyObject(req.body))
+            res.json(req.body.events)
+            .then(()=>{
+              console.log("then")
+            }).catch((error)=>{
+              console.log('error')
+            })
+            //res.send(req.query)
+            //res.json(req.body.events)
+            //res.json(req.body.destination) //user id of the bot
+          }
+)
 app.get('/linesendmessage',cors(),(req,res)=>{
   //console.log('682:',stringifyObject(req.query.text))
   client.pushMessage(
