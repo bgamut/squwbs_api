@@ -23,6 +23,11 @@ const uuidv4 = require('uuid/v4')
 const mongoose = require('mongoose');
 var favicon = require('serve-favicon')
 const line = require('@line/bot-sdk')
+const linemiddleware = require('@line/bot-sdk').middleware
+const JSONParseError = require('@line/bot-sdk').JSONParseError
+const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
+var https = require('https')
+var http = require('http')
 const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN})
 const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
 const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
@@ -114,6 +119,8 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var app = express();
+http.createServer(app).listen(80)
+https.createServer({}, app).listen(443)
 // require('express-engine-jsx').attachTo(app, {
 //   cache: path.join(__dirname, 'cache'), // required and should be absolute path to cache dir for compiled js files
 //   views: path.join(__dirname, 'views'), // required and should be absolute path to views dir with jsx files
@@ -125,6 +132,16 @@ app.set('views', __dirname + '/views');
 app.set('view engine','ejs')
 //app.use(require('cookie-parser')());
 //app.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')))
+app.use((err, req, res, next) => {
+  if (err instanceof SignatureValidationFailed) {
+    res.status(401).send(err.signature)
+    return
+  } else if (err instanceof JSONParseError) {
+    res.status(400).send(err.raw)
+    return
+  }
+  next(err) // will throw default 500
+})
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
