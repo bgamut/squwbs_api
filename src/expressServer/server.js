@@ -678,8 +678,8 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/message',cors(),(req,res)=>{
-  console.log(stringifyObject(req.text))
+app.get('/linemessage',cors(),(req,res)=>{
+  console.log('682:',stringifyObject(req.text))
   client.pushMessage(
     NODE_ENV.LINE_MY_USER_ID,
     {
