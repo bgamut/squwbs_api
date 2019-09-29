@@ -11,31 +11,25 @@ import stringifyObject from 'stringify-object'
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
-const line = require('@line/bot-sdk')
+
 //var client
-import './css/Wiggle.css'
-import './css/Image.css'
-// const SwingAnimation = keyframes'${Swing}';
-// const SwingDiv = styled.div'
-//   animation: infinite 5s ${SwingAnimation};';
-const styles={
-    swing:{
-        animation:'infinite 5s',
-        animationName:Radium.keyframes(swing,'swing')
-    }
-}
+
+import './css/iconHover.css'
+const line = require('@line/bot-sdk')
+const withQuery = require('with-query').default;
+
 
 const _ = require('lodash')
 
-const withQuery = require('with-query');
+
 
 
 const Message = (props)=> {
   
     const [height,setHeight]=useState(0)
     const [width,setWidth]=useState(0)
-    const [client,setClient]=userState(null)
-    const [botID,setBotID]=userState('')
+    const [client,setClient]=useState()
+    const [botID,setBotID]=useState('')
     const inputRef = useRef(null)
     
     const [show,setShow]=useState('Show')
@@ -47,8 +41,8 @@ const Message = (props)=> {
         
         setTextValue(e.target.value)
         
-        console.log(inputRef.current.value)
-        console.log(e.key)
+        //console.log(inputRef.current.value)
+        //console.log(e.key)
     }
     const handleChange=(e)=>{
         //console.log(e.target.value)
@@ -58,9 +52,20 @@ const Message = (props)=> {
     }
     const handleSend=(e)=>{
         console.log(textValue)
-        client.pushMessage(botID,textValue)
-            .then(()=>{console.log('message sent')})
-            .catch((err)=>{console.log(err)})
+        // client.pushMessage(botID,textValue)
+        //     .then(()=>{console.log('message sent')})
+        //     .catch((err)=>{console.log(err)})
+
+        fetch(withQuery('https://squwbs.herokuapp.com/message', {
+            text:textValue,
+            mode:'cors'
+        }))
+        .then(result=>{
+            console.log(stringifyObject(result))
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
     }
     const updateDimensions=()=>{
         setHeight(Dimensions.get('window').height)
@@ -69,7 +74,7 @@ const Message = (props)=> {
   
     useEffect(()=>{
         fetch(withQuery('https://squwbs.herokuapp.com/line', {
-            ...obj,
+           
             mode:'cors'
         }))
         .then(result=>{
@@ -186,12 +191,12 @@ const Message = (props)=> {
                                 paddingBottom:35,
                                 borderLeftWidth:1,
                                 borderLeftColor:'lightgrey',
-                                borderRightColor:'white',
-                                borderBottomColor:'white',
-                                borderTopColor:'white',
+                                borderRightColor:'lightgrey',
+                                borderBottomColor:'lightgrey',
+                                borderTopColor:'lightgrey',
                                 backgroundColor:'transparent',
                                 resize:'none',
-                                outlineColor: 'transparent',
+                                outlineColor: 'lightgrey',
                                 outlineStyle: 'none'
                             }} 
                             onKeyPress={handleKeyPress}
@@ -210,8 +215,26 @@ const Message = (props)=> {
                                 <TouchableOpacity
                                     onPress={handleSend}
                                 >
+                                    <Text
+                                        style ={
+                                            {
+                                                textDecorationLine:'none',
+                                                color:'rgb(196,196,196)',
+                                                fontSize: 14,
+                                                fontWeight:'700',
+
+                                                textAlign:'center',
+                                                alignItems:'center',
+                                                justifyContent:'center',
+                                                flexDirection:'row',
+                                            }
+                                        }
+                                        className='icon'
+                                    >
                                    <i class="fas fa-comment"></i>
+                                   </Text>
                                    </TouchableOpacity>
+                                
                             </View>
                         </View>
                         {/* </Animated.View> */}

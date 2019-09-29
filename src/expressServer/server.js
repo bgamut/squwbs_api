@@ -22,7 +22,8 @@ const stringifyObject= require('stringify-object')
 const uuidv4 = require('uuid/v4')
 const mongoose = require('mongoose');
 var favicon = require('serve-favicon')
-
+const line = require('@line/bot-sdk')
+const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN})
 const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
 const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs.herokuapp.com/addwordlisttomongo'
@@ -675,6 +676,24 @@ app.get('/undefined',cors(),(req,res)=>{
 app.get('/mapboxtoken',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
+
+})
+app.get('/message',cors(),(req,res)=>{
+  client.pushMessage(
+    NODE_ENV.LINE_MY_USER_ID,
+    {
+      type:'text',
+      text:req.text
+    }
+    )
+    .then(()=>{
+      res.send(
+        {message:'message sent'}
+      )
+    })
+    .catch((err)=>{
+      res.send({error:err})
+    })
 
 })
 app.get('/mongouri',cors(),(req,res)=>{

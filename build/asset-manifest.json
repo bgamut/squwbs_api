@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "./static/css/main.ae67cd2b.chunk.css",
-    "main.js": "./static/js/main.0ec39fbc.chunk.js",
+    "main.css": "./static/css/main.61439c43.chunk.css",
+    "main.js": "./static/js/main.ebe04351.chunk.js",
     "runtime~main.js": "./static/js/runtime~main.588e96af.js",
-    "static/css/2.50567895.chunk.css": "./static/css/2.50567895.chunk.css",
-    "static/js/2.4a182f21.chunk.js": "./static/js/2.4a182f21.chunk.js",
+    "static/css/2.1c7b198e.chunk.css": "./static/css/2.1c7b198e.chunk.css",
+    "static/js/2.341a3462.chunk.js": "./static/js/2.341a3462.chunk.js",
     "index.html": "./index.html",
-    "precache-manifest.c517b622d21e7e5571913687a68d6bbf.js": "./precache-manifest.c517b622d21e7e5571913687a68d6bbf.js",
+    "precache-manifest.924ef8f704e49b47269f832be08e4e85.js": "./precache-manifest.924ef8f704e49b47269f832be08e4e85.js",
     "service-worker.js": "./service-worker.js",
     "static/media/96x96.png": "./static/media/96x96.9a7fb416.png",
     "static/media/Drawer.css": "./static/media/Alien-Encounters-Solid-Regular.8aeca3f0.ttf",
