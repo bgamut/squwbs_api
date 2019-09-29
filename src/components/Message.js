@@ -50,7 +50,7 @@ const Message = (props)=> {
         //this.setState({value:e.target.value})
         setTextValue(e.target.value)
         
-        handleGet()
+        //handleGet()
     }
     const handleSend=(e)=>{
         console.log(textValue)
