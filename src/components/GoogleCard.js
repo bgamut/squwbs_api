@@ -45,7 +45,7 @@ const GoogleCard = (props)=> {
             <TouchableOpacity
                 
             >
-                <a
+                <Text
                     className='icon'
                     selectable={true} 
                     style ={{
@@ -61,7 +61,7 @@ const GoogleCard = (props)=> {
                     }}
                 >
                     #{hash}
-                </a>
+                </Text>
             </TouchableOpacity>
             )
         })
