@@ -698,15 +698,17 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/linewebhook',
+app.post('/linewebhook'
+        ,
         linemiddleware({
             channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
             channelSecret:NODE_ENV.LINE_CHANNEL_SECRET
           })
         ,
         (req,res)=>{
-          res.json(req.body)
-          //res.json(req.body.events)
+          //res.send(req.body)
+          //res.send(req.query)
+          res.json(req.body.events)
           //res.json(req.body.destination) //user id of the bot
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
