@@ -83,7 +83,7 @@ passport.use(new FBStrategy({
     clientID: NODE_ENV.FACEBOOK_CLIENT_ID
     ,clientSecret: NODE_ENV.FACEBOOK_CLIENT_SECRET
     ,callbackURL: NODE_ENV.FACEBOOK_CALLBACK_URL
-    ,profileFields: ['id', 'email', 'gender', 'link','locale','name','timezone','updated_time','verified','displayName']
+    ,profileFields: ['id', 'email', 'gender', 'link','locale','name','timezone','updated_time','verified','displayName','photos']
   },
   function(accessToken, refreshToken, profile, cb) {
 
@@ -408,6 +408,8 @@ app.get('/profile',
     res.cookie('userName', req.user.displayName ,options);
     res.cookie('providerid',req.user.id,options)
     res.cookie('provider',req.user.provider,options)
+    console.log('411 : ',stringifyObject(req.user))
+    //res.cookie('photos',req.user.)
     res.redirect(url.format({
       pathname:"/"
     }))
