@@ -32,6 +32,10 @@ const Drawer =(props)=>{
     var prevY=0
     var buffer=[0,0]
     
+    useEffect(()=>{
+        console.log(userPhotoLink)
+    },[userPhotoLink])
+
     const getUserData=async(itemList)=>{
         const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
         const userCookie = await responded.json()
