@@ -452,11 +452,22 @@ const Drawer =(props)=>{
                                 <TouchableOpacity
                                     onPress={delayedSlidingDrawer}
                                 >
-                                <Text selectable={false} style ={styles.textStyle}>
+                                {/* <Text selectable={false} style ={styles.textStyle}> */}
                                     {/* Welcome */}
                                     {/* <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text> */}
-                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
-                                </Text>
+                                    {/* <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text> */}
+                                {/* </Text> */}
+                                <Image
+                                    style={{
+                                        width: 30, 
+                                        height: 30,
+                                        borderRadius:4,
+                                        top:0,
+                                        margin:0}}
+                                    source={{
+                                        uri: userPhotoLink
+                                    }}
+                                />
                                 </TouchableOpacity>
                             </a>
                         </View>
