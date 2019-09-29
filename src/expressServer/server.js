@@ -362,7 +362,7 @@ app.get('/map', function (req, res) {
 });
 app.get('/desktop',
   function(req,res){
-    res.status(301).redirect('https://squwbs.com/desktop');
+    res.status(301).redirect('https://bgamut.github.io/desktop/');
   }
 )
 app.get('/profile',
@@ -399,19 +399,19 @@ app.get('/profile',
     secret:''
 }
   if(req.user==undefined){
-    // res.redirect(url.format({
-    //   pathname:"/"
-    // }))
-    res.redirect('https://squwbs.com');
+    res.redirect(url.format({
+      pathname:"/"
+    }))
+    //res.redirect('https://squwbs.com');
   }
   else{
     res.cookie('userName', req.user.displayName ,options);
     res.cookie('providerid',req.user.id,options)
     res.cookie('provider',req.user.provider,options)
-    // res.redirect(url.format({
-    //   pathname:"/"
-    // }))
-    res.redirect('https://squwbs.com');
+    res.redirect(url.format({
+      pathname:"/"
+    }))
+    //res.redirect('https://squwbs.com');
   }
   
   
