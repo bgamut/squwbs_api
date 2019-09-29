@@ -189,7 +189,7 @@
     "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.2.1"
   },
-  "homepage": "https://bgamut.github.io/squwbs_api",
+  "homepage": "./",
   "build": {
     "appId": "nonExistentID",
     "files": [
