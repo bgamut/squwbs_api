@@ -377,8 +377,8 @@ const Drawer =(props)=>{
                             </Text> */}
                             <Image
                                     style={{
-                                        width: 25, 
-                                        height: 25,
+                                        width: 35, 
+                                        height: 35,
                                         borderRadius:4,
                                         top:0,
                                         margin:0}}
