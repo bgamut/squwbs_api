@@ -55,21 +55,21 @@ const Message = (props)=> {
         // client.pushMessage(botID,textValue)
         //     .then(()=>{console.log('message sent')})
         //     .catch((err)=>{console.log(err)})
-        client.pushMessage(
-            NODE_ENV.LINE_MY_USER_ID,
-            {
-              type:'text',
-              text:req.text
-            }
-            )
-            .then(()=>{
-              res.send(
-                {message:'message sent'}
-              )
-            })
-            .catch((err)=>{
-              res.send({error:err})
-            })
+        // client.pushMessage(
+        //     NODE_ENV.LINE_MY_USER_ID,
+        //     {
+        //       type:'text',
+        //       text:req.text
+        //     }
+        //     )
+        //     .then(()=>{
+        //       res.send(
+        //         {message:'message sent'}
+        //       )
+        //     })
+        //     .catch((err)=>{
+        //       res.send({error:err})
+        //     })
         fetch(withQuery('https://squwbs.herokuapp.com/linemessage', {
             text:textValue,
             mode:'cors'
