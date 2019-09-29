@@ -162,18 +162,21 @@ let allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Headers', "*");
   next();
 }
+var allowedOrigins = [
+  'http://squwbs.herokuapp.com',
+  'https://squwbs.herokuapp.com/',
+  'https://squwbs-252702.appspot.com/',
+  'http://squwbs-252702.appspot.com/',
+  'https://squwbs.com',
+  'http://squwbs.com'
+];
 app.use(allowCrossDomain);
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //  next();
 // });
-var allowedOrigins = [
-                      'http://squwbs.herokuapp.com',
-                      'https://squwbs.herokuapp.com/',
-                      'https://squwbs-252702.appspot.com/',
-                      'https://squwbs.com'
-                    ];
+
 app.get('/cookies',cors(),(req,res)=>{
 
   //res.send(req.signedCookies)
