@@ -197,7 +197,8 @@ const Message = (props)=> {
                                 backgroundColor:'transparent',
                                 resize:'none',
                                 outlineColor: 'lightgrey',
-                                outlineStyle: 'none'
+                                outlineStyle: 'none',
+                                borderRadius:4,
                             }} 
                             onKeyPress={handleKeyPress}
                             onChange={handleChange}
