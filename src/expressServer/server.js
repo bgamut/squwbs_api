@@ -119,8 +119,8 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var app = express();
-// http.createServer(app).listen(80)
-// https.createServer({}, app).listen(443)
+http.createServer(app).listen(80)
+https.createServer({}, app).listen(443)
 // require('express-engine-jsx').attachTo(app, {
 //   cache: path.join(__dirname, 'cache'), // required and should be absolute path to cache dir for compiled js files
 //   views: path.join(__dirname, 'views'), // required and should be absolute path to views dir with jsx files
@@ -695,13 +695,15 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/linewebhook',linemiddleware({
-            channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
-            channelSecret:NODE_ENV.LINE_CHANNEL_SECRET
-          })
+app.get('/linewebhook',
+        // linemiddleware({
+        //     channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
+        //     channelSecret:NODE_ENV.LINE_CHANNEL_SECRET
+        //   })
         ,
         (req,res)=>{
-            res.json(req.body.events)
+          res.json({})
+            //res.json(req.body.events)
             //req.body.destination //user id of the bot
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
