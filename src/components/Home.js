@@ -310,7 +310,7 @@ const Home = () => {
             flexDirection:'row',
             textAlign:'center'
           }
-        } href="/login/google">
+        } href="https://squwbs-252702.appspot.com/login/google">
           <TouchableOpacity style={styles.touch}>
           
           <Text id="linkLoginGoogle" 
@@ -375,7 +375,7 @@ const Home = () => {
             flexDirection:'row',
             textAlign:'center'
           }
-        } href="/login/facebook">
+        } href="https://squwbs-252702.appspot.com/login/facebook">
           <TouchableOpacity style={styles.touch}>
     
           <Text id="linkLoginFacebook" 

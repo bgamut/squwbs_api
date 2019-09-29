@@ -152,7 +152,9 @@ app.use(allowCrossDomain);
 // });
 var allowedOrigins = [
                       'http://squwbs.herokuapp.com',
-                      'https://squwbs.herokuapp.com/'
+                      'https://squwbs.herokuapp.com/',
+                      'https://squwbs-252702.appspot.com/',
+                      'https://squwbs.com'
                     ];
 app.get('/cookies',cors(),(req,res)=>{
 
@@ -358,6 +360,11 @@ app.get('/map', function (req, res) {
   // })
   //res.render('index',{ mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN })
 });
+app.get('/desktop',
+  function(req,res){
+    res.status(301).redirect('https://squwbs.com/desktop');
+  }
+)
 app.get('/profile',
 
   function(req, res){
@@ -392,17 +399,19 @@ app.get('/profile',
     secret:''
 }
   if(req.user==undefined){
-    res.redirect(url.format({
-      pathname:"/"
-    }))
+    // res.redirect(url.format({
+    //   pathname:"/"
+    // }))
+    res.redirect('https://squwbs.com');
   }
   else{
     res.cookie('userName', req.user.displayName ,options);
     res.cookie('providerid',req.user.id,options)
     res.cookie('provider',req.user.provider,options)
-    res.redirect(url.format({
-      pathname:"/"
-    }))
+    // res.redirect(url.format({
+    //   pathname:"/"
+    // }))
+    res.redirect('https://squwbs.com');
   }
   
   
