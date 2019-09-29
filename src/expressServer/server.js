@@ -123,7 +123,7 @@ app.set('views', __dirname + '/views');
 //app.engine('jsx',require('express-react-views').createEngine())
 app.set('view engine','ejs')
 //app.use(require('cookie-parser')());
-app.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')))
+//app.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')))
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
