@@ -364,7 +364,7 @@ const Drawer =(props)=>{
                             marginBottom:2
                             //Right:0
                         }}/> */}
-                            <Text
+                            {/* <Text
                                 style ={[
                                     styles.textStyle,
                                     {
@@ -374,7 +374,18 @@ const Drawer =(props)=>{
                                 ]}
                             >
                                 {userName}
-                            </Text>
+                            </Text> */}
+                            <Image
+                                    style={{
+                                        width: 25, 
+                                        height: 25,
+                                        borderRadius:4,
+                                        top:0,
+                                        margin:0}}
+                                    source={{
+                                        uri: userPhotoLink
+                                    }}
+                                />
                         </a>
                     </View> 
                 </View> 
@@ -453,7 +464,7 @@ const Drawer =(props)=>{
                                    
                                    onPress={delayedSlidingDrawer}
                                 >
-                                <Image
+                                {/* <Image
                                     style={{
                                         width: 25, 
                                         height: 25,
@@ -463,7 +474,7 @@ const Drawer =(props)=>{
                                     source={{
                                         uri: userPhotoLink
                                     }}
-                                />
+                                /> */}
                                 <Text selectable={false} style ={styles.textStyle}>
                                     {/* Welcome */}
                                     <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text>
