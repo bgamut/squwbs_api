@@ -70,7 +70,8 @@ const Message = (props)=> {
         //     .catch((err)=>{
         //       res.send({error:err})
         //     })
-        fetch(withQuery('https://squwbs.herokuapp.com/linemessage', {
+        
+        fetch(withQuery('https://squwbs.herokuapp.com/linesendmessage', {
             text:textValue,
             mode:'cors'
         }))
@@ -81,6 +82,39 @@ const Message = (props)=> {
             console.error(err)
         })
     }
+
+    const handleSend=(e)=>{
+        console.log(textValue)
+        // client.pushMessage(botID,textValue)
+        //     .then(()=>{console.log('message sent')})
+        //     .catch((err)=>{console.log(err)})
+        // client.pushMessage(
+        //     NODE_ENV.LINE_MY_USER_ID,
+        //     {
+        //       type:'text',
+        //       text:req.text
+        //     }
+        //     )
+        //     .then(()=>{
+        //       res.send(
+        //         {message:'message sent'}
+        //       )
+        //     })
+        //     .catch((err)=>{
+        //       res.send({error:err})
+        //     })
+        fetch(withQuery('https://squwbs.herokuapp.com/linegetmessage', {
+            mode:'cors'
+        }))
+        .then(result=>{
+            setContent(result.message)
+            console.log(stringifyObject(result))
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+    }
+
     const updateDimensions=()=>{
         setHeight(Dimensions.get('window').height)
         setWidth(Dimensions.get('window').width)
