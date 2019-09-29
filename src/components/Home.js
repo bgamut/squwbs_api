@@ -329,7 +329,29 @@ const Home = () => {
             justifyContent:'center',
             flexDirection:'row',
           }}
-          ><i class="fab fa-google"></i></Text>
+          ><i class="fab fa-google"></i>
+          </Text>
+          <Text
+            selectable={false} 
+            style ={{
+                fontSize: 25,
+                fontWeight:'700',
+                textDecorationLine:'none',
+                color:'white',
+                
+                textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                margin:11,
+                pointerEvents:'none'
+            }}
+          >
+            Google
+          </Text>
           </TouchableOpacity>
         </a><br/>
         </View>
@@ -373,6 +395,27 @@ const Home = () => {
             flexDirection:'row',
           }}
           ><i class="fab fa-facebook"></i></Text>
+          <Text
+            selectable={false} 
+            style ={{
+                fontSize: 25,
+                fontWeight:'700',
+                textDecorationLine:'none',
+                color:'white',
+                
+                textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                margin:11,
+                pointerEvents:'none'
+            }}
+          >
+            Facebook
+          </Text>
           </TouchableOpacity>
         </a><br/>
         </View>

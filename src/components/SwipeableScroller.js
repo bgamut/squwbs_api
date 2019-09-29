@@ -20,6 +20,7 @@ import Fade from 'react-reveal/Fade'
 // import { PayPalButton } from "react-paypal-button-v2"
 import {PayPalButton} from 'react-paypal-button'
 import GoogleCard from './GoogleCard'
+import './css/ClickOpacity.css'
 //import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
@@ -52,6 +53,7 @@ const SwipeableScroller = (props) => {
   const [state, setState] = useContext(Context);
   const [height,setHeight]=useState(0)
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
+  const paypalRef = useRef('')
   const heightRef = useRef('')
   
   useEffect(()=>{
@@ -168,6 +170,10 @@ const SwipeableScroller = (props) => {
     //setState
     prevY=currentY
     
+  }
+  const paypalPressed = ()=>{
+    //console.log('paypalPressed triggered')
+    //console.log(paypalRef.current.style)
   }
   return(
            
@@ -544,35 +550,185 @@ const SwipeableScroller = (props) => {
                     // });
                   }}
                 /> */}
-                <PayPalButton
-                  paypalOptions={{
+                
+                <View style={{
+                    height:33,
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundColor:'transparent',
                     
-                    //clientId:paypalID,
-                    //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
-                    clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
-                    intent:'capture'
-                  }}
-                  buttonStyles={{
-                    layout:'horizontal',
-                    // layout:'vertical',
-                    shape:'rect',
-                    color:'white',
-                    tagline:true,
+                }}>
+                    {/* <input {...getInputProps()} /> */}
                     
-                  }}
-                  amount={9.99}
-                  onApprove={(data,authId)=>{
-                    console.log('onApprove')
-                  }}
-                  onPaymentSuccess={(data)=>{
-                    console.log('onPaymentSuccess')
-                  }}
-                  />
                 {/* <StripeProvider apiKey="">
                   <MyStoreCheckout/>
                 </StripeProvider> */}
                   {/* <MyStoreCheckout/> */}
+                  <View 
                   
+                  style={{ 
+                    height:30,
+                    //width:(Dimensions.get('window').width-8),
+                    width:150,
+                    backgroundColor:'white',
+                    
+          
+                    flexDirection:'column',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    // marginRight:8,
+                    // marginLeft:8,
+                    // marginBottom:2,
+                    borderRadius:2,
+                    
+                    borderColor:'lightgrey',
+                    borderStyle:'solid',
+                    overflow:'hidden',
+                    boxSizing:"border-box",
+                    shadowColor:'#000',
+                    shadowOpacity:0.85,
+                    shadowRadius:2,
+                    shadowOffset:{
+                    width:0,
+                    height:0
+                    },
+                    elevation:2
+                }} 
+                    // {...getRootProps({refKey:'innerRef'})}
+                >
+                  <View
+                    className='ClickOpacity'
+                    style={{
+                      backgroundColor:'transparent'
+                      
+                    }}
+                  >
+                  <View
+                      
+                      style={{
+                        zIndex:2,
+                        display:'absolute',
+                        top:0,
+                        width:150,
+                        height:30,
+                        backgroundColor:'white',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        pointerEvents:'none'
+                      }}
+                    >
+                      {/* <TouchableOpacity 
+                          style={{
+                            pointerEvents:'auto'
+                          }}
+                          onPress={(e)=>{
+                          //console.log(e)
+                          
+                          console.log(document.getElementById('pb'))
+                          console.log(paypalRef)
+                      }}> */}
+                      <View
+                        //ref={paypalRef}
+                        style={{
+                          pointerEvents:'none',
+                          flexDirection:'row',
+                          justifyContest:'center',
+                          alignItems:'center'
+                        }}
+                      >
+                          <Text 
+                            
+                          selectable={false} 
+                          style ={{
+                              fontSize: 20,
+                              fontWeight:'700',
+                              textDecorationLine:'none',
+                              color:'rgb(196,196,196)',
+                              
+                              textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                              textShadowOffset: {width: 0, height: 0},
+                              textShadowRadius: 2,
+                              textAlign:'center',
+                              alignItems:'center',
+                              justifyContent:'center',
+                              flexDirection:'row',
+                              margin:5,
+                              pointerEvents:'none'
+                          }}>
+                              <i class="fab fa-paypal"></i>
+                             
+                            
+                              {/* <i class="fas fa-credit-card"></i> */}
+                              
+                          </Text>
+                          <Text
+                            selectable={false} 
+                            style ={{
+                                fontSize: 13,
+                                fontWeight:'700',
+                                textDecorationLine:'none',
+                                color:'white',
+                                
+                                textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                                textShadowOffset: {width: 0, height: 0},
+                                textShadowRadius: 2,
+                                textAlign:'center',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                flexDirection:'row',
+                                margin:5,
+                                pointerEvents:'none'
+                            }}
+                          >
+                            Paypal
+                          </Text>
+                        </View>
+                      {/* </TouchableOpacity> */}
+                    </View>
+                    <View
+                      
+                      style={{
+                        //display:'block',
+                        zIndex:'0',
+                        position:'absolute',
+                        top:0,
+                        pointerEvents:'auto'
+                      }}
+                    >
+                  
+                    <PayPalButton
+                      // ref={paypalRef}
+                      // id='pb'
+                      paypalOptions={{
+                        
+                        //clientId:paypalID,
+                        //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
+                        clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
+                        intent:'capture'
+                      }}
+                      buttonStyles={{
+                        layout:'horizontal',
+                        // layout:'vertical',
+                        shape:'rect',
+                        color:'white',
+                        tagline:true,
+                        
+                      }}
+                      amount={9.99}
+                      onApprove={(data,authId)=>{
+                        console.log('onApprove')
+                      }}
+                      onPaymentSuccess={(data)=>{
+                        console.log('onPaymentSuccess')
+                      }}
+                      />
+                    
+                    </View>
+
+                </View>
+                </View>
+            </View>  
+            
               </View>
             </View>
           </section>

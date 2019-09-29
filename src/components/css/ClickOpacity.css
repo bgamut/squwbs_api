@@ -1,0 +1,9 @@
+.ClickOpacity:active{
+    opacity:0.8
+}
+.ClickOpacity{
+    opacity:1
+}
+.ClickOpacity:hover{
+    opacity:0.8
+}
