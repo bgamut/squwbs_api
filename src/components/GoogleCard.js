@@ -399,7 +399,8 @@ const GoogleCard = (props)=> {
                         >
                             {/* {props.stars} <i class="fas fa-star"></i>  */}
                             {/* Flip */}
-                            <i class="fas fa-edit"></i>
+                            {/* <i class="fas fa-edit"></i> */}
+                            <i class="fas fa-server"></i>
                         </Text>
                         </TouchableOpacity>
                     </View>
@@ -443,7 +444,8 @@ const GoogleCard = (props)=> {
                                 
                             }
                         >
-                            <i class="fas fa-heart"></i>
+                            {/* <i class="fas fa-heart"></i> */}
+                            <i class="fas fa-star"></i> 
                         </Text>
                         </TouchableOpacity>
                     </View>
