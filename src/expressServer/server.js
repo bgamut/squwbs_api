@@ -700,7 +700,7 @@ app.get('/linewebhook',
         //     channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
         //     channelSecret:NODE_ENV.LINE_CHANNEL_SECRET
         //   })
-        ,
+        //,
         (req,res)=>{
           res.json({})
             //res.json(req.body.events)
