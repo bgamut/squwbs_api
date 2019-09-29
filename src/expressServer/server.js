@@ -679,6 +679,7 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 
 })
 app.get('/message',cors(),(req,res)=>{
+  console.log(stringifyObject(req.text))
   client.pushMessage(
     NODE_ENV.LINE_MY_USER_ID,
     {
