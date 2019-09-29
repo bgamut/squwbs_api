@@ -119,8 +119,8 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var app = express();
-http.createServer(app).listen(80)
-https.createServer({}, app).listen(443)
+// http.createServer(app).listen(80)
+// https.createServer({}, app).listen(443)
 // require('express-engine-jsx').attachTo(app, {
 //   cache: path.join(__dirname, 'cache'), // required and should be absolute path to cache dir for compiled js files
 //   views: path.join(__dirname, 'views'), // required and should be absolute path to views dir with jsx files
