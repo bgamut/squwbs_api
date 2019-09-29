@@ -679,7 +679,7 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
-  console.log('682:',stringifyObject(req.query))
+  //console.log('682:',stringifyObject(req.query.text))
   client.pushMessage(
     NODE_ENV.LINE_MY_USER_ID,
     {

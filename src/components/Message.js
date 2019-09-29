@@ -30,6 +30,7 @@ const Message = (props)=> {
     const [width,setWidth]=useState(0)
     const [client,setClient]=useState()
     const [botID,setBotID]=useState('')
+    const [content,setContent]=useState({})
     const inputRef = useRef(null)
     
     const [show,setShow]=useState('Show')
@@ -49,6 +50,7 @@ const Message = (props)=> {
         //this.setState({value:e.target.value})
         setTextValue(e.target.value)
         
+        handleGet()
     }
     const handleSend=(e)=>{
         console.log(textValue)
@@ -76,15 +78,16 @@ const Message = (props)=> {
             mode:'cors'
         }))
         .then(result=>{
-            console.log(stringifyObject(result))
+            setTextValue('')
+            console.log(stringifyObject(result.message))
         })
         .catch((err)=>{
             console.error(err)
         })
     }
 
-    const handleSend=(e)=>{
-        console.log(textValue)
+    const handleGet=(e)=>{
+        //console.log(textValue)
         // client.pushMessage(botID,textValue)
         //     .then(()=>{console.log('message sent')})
         //     .catch((err)=>{console.log(err)})
@@ -107,7 +110,7 @@ const Message = (props)=> {
             mode:'cors'
         }))
         .then(result=>{
-            setContent(result.message)
+            setContent({...content,...result.message})
             console.log(stringifyObject(result))
         })
         .catch((err)=>{
@@ -149,7 +152,10 @@ const Message = (props)=> {
         
     },[])
 
-    
+    useEffect(()=>{
+
+        console.log(content)
+    },[content])
       
     
       return (
@@ -229,7 +235,7 @@ const Message = (props)=> {
                             style={{
                                 // height:height-70,
                                 // width:width/2-50,
-                                height:"88%",
+                                height:39,
                                 width:"97%",
                                 fontSize:13,
                                 lineHeight:'2em',
