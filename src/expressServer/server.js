@@ -119,8 +119,8 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var app = express();
-http.createServer(app).listen(80)
-https.createServer({}, app).listen(443)
+//http.createServer(app).listen(80)
+//https.createServer({}, app).listen(443)
 // require('express-engine-jsx').attachTo(app, {
 //   cache: path.join(__dirname, 'cache'), // required and should be absolute path to cache dir for compiled js files
 //   views: path.join(__dirname, 'views'), // required and should be absolute path to views dir with jsx files
@@ -700,10 +700,12 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 })
 app.post('/linewebhook'
         ,
+        [
+        cors(),
         linemiddleware({
             channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
             channelSecret:"73354a544d842dfaf3bd347203eef7f6"
-          })
+          })]
         ,
         (req,res)=>
           {
