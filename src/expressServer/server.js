@@ -710,16 +710,17 @@ app.post('/linewebhook'
         ,
         (req,res)=>
           {
-            console.log(stringifyObject(req.body))
-            res.json(req.body.events)
-            .then(()=>{
-              console.log("then")
-            }).catch((error)=>{
-              console.log('error')
-            })
+            // console.log(stringifyObject(req.body))
+            // res.json(req.body.events)
+            // .then(()=>{
+            //   console.log("then")
+            // }).catch((error)=>{
+            //   console.log('error')
+            // })
             //res.send(req.query)
             //res.json(req.body.events)
             //res.json(req.body.destination) //user id of the bot
+            res.send(200)
           }
 )
 app.get('/linesendmessage',cors(),(req,res)=>{
