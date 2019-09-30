@@ -26,17 +26,17 @@ const GoogleCard = (props)=> {
         updateDimensions()
       },[])
     const duration =270
-    const getPosts=async()=>{
-        const responded= await fetch('https://squwbs.herokuapp.com/getPosts',{mode:'cors'})
-        const posts = await responded.json()
+    // const getPosts=async()=>{
+    //     const responded= await fetch('https://squwbs.herokuapp.com/getPosts',{mode:'cors'})
+    //     const posts = await responded.json()
         
-        if(Object.keys(posts).length>1){
+    //     if(Object.keys(posts).length>1){
        
        
 
-        }
+    //     }
         
-    }
+    // }
    
     const createHashList = (props) =>{
         let parent = []
@@ -190,7 +190,7 @@ const GoogleCard = (props)=> {
                     }
                     scrollEnabled={true}
                     scrollEventThrottle={16}
-                    showsVerticalScrollIndicator={true}
+                    showsVerticalScrollIndicator={false}
                     //snapToInterval={height-50}
                     snapeToAlignment='end'
                     decelerationRate="fast"

@@ -19,7 +19,8 @@ import './css/Image.css'
 import Fade from 'react-reveal/Fade'
 // import { PayPalButton } from "react-paypal-button-v2"
 import {PayPalButton} from 'react-paypal-button'
-import GoogleCard from './GoogleCard'
+import GoogleCardV2 from './GoogleCardV2'
+import GoogleDeck from './GoogleDeck'
 import Message from './Message'
 import './css/ClickOpacity.css'
 //import GooglePay from './GooglePay'
@@ -182,6 +183,7 @@ const SwipeableScroller = (props) => {
     <ScrollView 
       // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
       style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
+      
       onScroll={(e)=>{
           onScroll(e)
         }
@@ -191,7 +193,7 @@ const SwipeableScroller = (props) => {
       showsVerticalScrollIndicator={true}
       snapToInterval={height-50}
       snapeToAlignment='end'
-      decelerationRate="fast"goo
+      decelerationRate="fast"
     >
     
       <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
@@ -774,7 +776,8 @@ const SwipeableScroller = (props) => {
                   elevation:2
                 }}
               >
-                <GoogleCard
+                <GoogleDeck/>
+                {/* <GoogleCardV2
                   title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
                   date={String(date)}
                   //picture={"./icons/256x256.png"}
@@ -785,7 +788,7 @@ const SwipeableScroller = (props) => {
                   stars={5}
                   likes={2000}
                   hashs={['k-pop','dean']}
-                />
+                /> */}
               </View>
             </View>
           </section>

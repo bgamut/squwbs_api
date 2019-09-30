@@ -1,7 +1,7 @@
 
 
 import React, {Component,useCallback,useState,useRef,useEffect} from 'react'
-import {Text,View,Dimensions,TouchableOpacity,Image,Animated,Easing} from 'react-native'
+import {Text,View,Dimensions,TouchableOpacity,Image,Animated,Easing,ScrollView} from 'react-native'
 import Dropzone, {useDropzone} from 'react-dropzone'
 //import {Context} from '../context'
 import Fade from 'react-reveal/Fade'
@@ -43,7 +43,13 @@ const Message = (props)=> {
         setTextValue(e.target.value)
         
         //console.log(inputRef.current.value)
-        //console.log(e.key)
+        
+        if(e.key=='Enter'){
+            e.preventDefault()
+            handleSend()
+        }
+        // console.log(e.key)
+        
     }
     const handleChange=(e)=>{
         //console.log(e.target.value)
@@ -215,44 +221,114 @@ const Message = (props)=> {
                         {/* <Animated.View  */}
                         <View
                             style={{
+                                backgroundColor:'white',
+                                height:height-175,
+                                width:width-30,
+                                //justifyContent:'center',
+                                alignItems:'center'
+                            }}
+                        >
+                        <View
+                            style={{
+                                display:'absolute',
+                                backgroundColor:'white',
+                                height:height-181,
+                                width:width-30,
+                                top:0,
+                                justifyContent:'center',
+                                alignItems:'center'
+                            }}
+                        >
+                        <ScrollView
+                            style={{
+                                backgroundColor:'white',
+                                borderLeftColor:'lightgrey',
+                                borderRightColor:'lightgrey',
+                                borderBottomColor:'lightgrey',
+                                borderTopColor:'lightgrey',
+                                outlineColor: 'lightgrey',
+                                borderWidth:1,
+                                borderRadius:4,
+                                height:height-400,
+                                width:width-60,
+
+                            }}
+      
+                            onScroll={(e)=>{
+                                //onScroll(e)
+                              }
+                            }
+                            scrollEnabled={true}
+                            scrollEventThrottle={16}
+                            showsVerticalScrollIndicator={true}
+                            snapToInterval={height-50}
+                            snapeToAlignment='end'
+                            decelerationRate="fast"
+                        >
+                        </ScrollView>
+                        </View>
+                        </View>
+                        <View
+                            style={{
 
                                 justifyContent:"center",
                                 alignItems:"center",
                                 backgroundColor:'transparent',
-                                height:height-150,
-                                width:width-150,
+                                height:50,
+                                width:width-60,
                                 //opacity:opacity
                                 //maxWidth:width-600
                                 //paddingTop:0,
+                                backgroundColor:'white',
+                                flexDirection:'row'
                             }}
                         >
-   
+                        <View
+                            style={{
+                                backgroundColor:'white',
+                                borderLeftColor:'lightgrey',
+                                borderRightColor:'lightgrey',
+                                borderBottomColor:'lightgrey',
+                                borderTopColor:'lightgrey',
+                                outlineColor: 'lightgrey',
+                                borderWidth:1,
+                                borderRadius:4,
+                                height:59,
+                                width:width-60,
+                                flexDirection:'row',
+                                justifyContent:'center',
+                                overflow:'hidden'
+                            }}
+                        >
+
+
+                        
                             
-   <textarea id='text-input'type='text' spellCheck="false" 
+                        <textarea id='text-input'type='text' spellCheck="false" 
                             ref={inputRef}
                             value={textValue}
 
                             style={{
                                 // height:height-70,
                                 // width:width/2-50,
+                                caretColor:'lightgrey',
                                 height:39,
-                                width:"97%",
-                                fontSize:13,
+                                width:width-100,
+                                fontSize:16,
                                 lineHeight:'2em',
-                                paddingTop:35,
-                                paddingLeft: 25,
-                                paddingRight: 25,
-                                paddingBottom:35,
+                                paddingTop:8,
+                                paddingLeft: 8,
+                                paddingRight: 8,
+                                paddingBottom:8,
                                 borderLeftWidth:1,
-                                borderLeftColor:'lightgrey',
-                                borderRightColor:'lightgrey',
-                                borderBottomColor:'lightgrey',
-                                borderTopColor:'lightgrey',
+                                borderColor:'transparent',
                                 backgroundColor:'transparent',
                                 resize:'none',
                                 outlineColor: 'lightgrey',
                                 outlineStyle: 'none',
                                 borderRadius:4,
+                                color:'grey'
+                                // marginRight:5
                             }} 
                             onKeyPress={handleKeyPress}
                             onChange={handleChange}
@@ -262,10 +338,19 @@ const Message = (props)=> {
                         
                             <View      
                                 style={{
-                                    height:39,
+                                    height:59,
                                     justifyContent:'center',
                                     alignItems:'center',
-                                    backgroundColor:'transparent'
+                                    //backgroundColor:'transparent'
+                                    backgroundColor:'rgb(251,251,251)',
+                                    borderColor:'rgb(251,251,251)',
+                                    outlineColor: 'lightgrey',
+                                    //borderWidth:1,
+                                    borderRadius:2,
+                                    height:57,
+                                   
+                                    
+                                    justifyContent:'center',
                                 }}>
                                 <TouchableOpacity
                                     onPress={handleSend}
@@ -277,7 +362,8 @@ const Message = (props)=> {
                                                 color:'rgb(196,196,196)',
                                                 fontSize: 14,
                                                 fontWeight:'700',
-
+                                                marginLeft:5,
+                                                marginRight:5,
                                                 textAlign:'center',
                                                 alignItems:'center',
                                                 justifyContent:'center',
@@ -290,6 +376,7 @@ const Message = (props)=> {
                                    </Text>
                                    </TouchableOpacity>
                                 
+                            </View>
                             </View>
                         </View>
                         {/* </Animated.View> */}

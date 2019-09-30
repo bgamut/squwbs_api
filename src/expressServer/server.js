@@ -701,11 +701,12 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
 app.post('/linewebhook'
         ,
         [
-        cors(),
-        linemiddleware({
-            channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
-            channelSecret:"73354a544d842dfaf3bd347203eef7f6"
-          })]
+          cors(),
+          // linemiddleware({
+          //     channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
+          //     channelSecret:"73354a544d842dfaf3bd347203eef7f6"
+          //   })
+        ]
         ,
         (req,res)=>
           {
