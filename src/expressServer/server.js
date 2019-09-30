@@ -763,40 +763,40 @@ app.get('/linesendmessage',cors(),(req,res)=>{
 
 })
 app.get('/linegetmessage',cors(),(req,res)=>{
-  // var headers = {"Content-Type": "application/json",
-  //           "Access-Control-Allow-Origin": "*",
-  //           mode:'no-cors'
-  //       };
-  // var token = NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN
-  // var bearer = 'Bearer' +token
-  // headers["Authorization"]=bearer
-  // fetch('https://api.line.me/v2/bot/message', {
-  //     headers
-  // })
-  // .then(result=>{
-  //     //setContent({...content,...result.message})
-  //     console.log('143:',stringifyObject(result.json()))
-  // })
-  // .catch((err)=>{
-  //     console.error(err)
-  // })
+  var headers = {"Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            mode:'cors'
+        };
+  var token = NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN
+  var bearer = 'Bearer' +token
+  headers["Authorization"]=bearer
+  fetch('https://api.line.me/v2/bot/message/{messageId}/content', {
+      headers
+  })
+  .then(result=>{
+      //setContent({...content,...result.message})
+      console.log('143:',stringifyObject(result.json()))
+  })
+  .catch((err)=>{
+      console.error(err)
+  })
   //console.log('701:',stringifyObject(req.query.text))
-  client.getMessageContent(NODE_ENV.LINE_MY_USER_ID)
-    .then((stream)=>{
-      stream.on('data',(chunk)=>{
-        res.send(
-          {message:chunk}
-        )
-      })
-      stream.on('data',(err)=>{
-        console.log(err)
-        //res.send({error:err})
-      })
-    })
-    .catch((err)=>{
-      console.log(err)
-      //res.send({error:err})
-    })
+  // client.getMessageContent(NODE_ENV.LINE_MY_USER_ID)
+  //   .then((stream)=>{
+  //     stream.on('data',(chunk)=>{
+  //       res.send(
+  //         {message:chunk}
+  //       )
+  //     })
+  //     stream.on('data',(err)=>{
+  //       console.log(err)
+  //       //res.send({error:err})
+  //     })
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //     //res.send({error:err})
+  //   })
 
 })
 app.get('/mongouri',cors(),(req,res)=>{
