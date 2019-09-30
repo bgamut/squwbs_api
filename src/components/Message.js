@@ -12,6 +12,8 @@ import stringifyObject from 'stringify-object'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
 
+
+
 //var client
 
 import './css/iconHover.css'
@@ -47,6 +49,7 @@ const Message = (props)=> {
         if(e.key=='Enter'){
             e.preventDefault()
             handleSend()
+            handleGet()
         }
         // console.log(e.key)
         
@@ -56,7 +59,7 @@ const Message = (props)=> {
         //this.setState({value:e.target.value})
         setTextValue(e.target.value)
         
-        //handleGet()
+        handleGet()
     }
     const handleSend=(e)=>{
         console.log(textValue)
@@ -117,7 +120,7 @@ const Message = (props)=> {
         }))
         .then(result=>{
             setContent({...content,...result.message})
-            console.log(stringifyObject(result))
+            console.log('Message.js 122:',stringifyObject(result))
         })
         .catch((err)=>{
             console.error(err)
