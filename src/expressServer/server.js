@@ -702,16 +702,16 @@ app.post('/linewebhook'
         ,
         [
           cors(),
-          // linemiddleware({
-          //     channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
-          //     channelSecret:"73354a544d842dfaf3bd347203eef7f6"
-          //   })
+          linemiddleware({
+              channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
+              channelSecret:"73354a544d842dfaf3bd347203eef7f6"
+            })
         ]
         ,
         (req,res)=>
           {
-            // console.log(stringifyObject(req.body))
-            // res.json(req.body.events)
+            console.log(stringifyObject(req.body))
+            res.json(req.body)
             // .then(()=>{
             //   console.log("then")
             // }).catch((error)=>{
@@ -720,7 +720,7 @@ app.post('/linewebhook'
             //res.send(req.query)
             //res.json(req.body.events)
             //res.json(req.body.destination) //user id of the bot
-            res.send(200)
+            
           }
 )
 app.get('/linesendmessage',cors(),(req,res)=>{
@@ -743,7 +743,24 @@ app.get('/linesendmessage',cors(),(req,res)=>{
 
 })
 app.get('/linegetmessage',cors(),(req,res)=>{
-  console.log('701:',stringifyObject(req.query.text))
+  // var headers = {"Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //           mode:'no-cors'
+  //       };
+  // var token = NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN
+  // var bearer = 'Bearer' +token
+  // headers["Authorization"]=bearer
+  // fetch('https://api.line.me/v2/bot/message', {
+  //     headers
+  // })
+  // .then(result=>{
+  //     //setContent({...content,...result.message})
+  //     console.log('143:',stringifyObject(result.json()))
+  // })
+  // .catch((err)=>{
+  //     console.error(err)
+  // })
+  //console.log('701:',stringifyObject(req.query.text))
   client.getMessageContent(NODE_ENV.LINE_MY_USER_ID)
     .then((stream)=>{
       stream.on('data',(chunk)=>{
