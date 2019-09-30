@@ -698,6 +698,20 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
+function handleEvent(event) {
+  // if (event.type !== 'message' || event.message.type !== 'text') {
+  //   // ignore non-text-message event
+  //   return Promise.resolve(null);
+  // }
+
+  // // create a echoing text message
+  // const echo = { type: 'text', text: event.message.text };
+
+  // // use reply API
+  // return client.replyMessage(event.replyToken, echo);
+  console.log(stringifyObject(event))
+}
+
 app.post('/linewebhook'
         ,
         [
@@ -710,8 +724,8 @@ app.post('/linewebhook'
         ,
         (req,res)=>
           {
-            console.log(stringifyObject(req.body))
-            res.json(req.body)
+            // console.log(stringifyObject(req.body))
+            // res.json(req.body)
             // .then(()=>{
             //   console.log("then")
             // }).catch((error)=>{
@@ -720,7 +734,13 @@ app.post('/linewebhook'
             //res.send(req.query)
             //res.json(req.body.events)
             //res.json(req.body.destination) //user id of the bot
-            
+            Promise
+            .all(req.body.events.map(handleEvent))
+            .then((result) => res.json(result))
+            .catch((err) => {
+              console.error(err);
+              res.status(500).end();
+            });
           }
 )
 app.get('/linesendmessage',cors(),(req,res)=>{
