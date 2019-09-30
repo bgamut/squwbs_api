@@ -115,16 +115,32 @@ const Message = (props)=> {
         //     .catch((err)=>{
         //       res.send({error:err})
         //     })
-        fetch(withQuery('https://squwbs.herokuapp.com/linegetmessage', {
-            mode:'cors'
-        }))
-        .then(result=>{
-            setContent({...content,...result.message})
-            console.log('Message.js 122:',stringifyObject(result))
-        })
-        .catch((err)=>{
-            console.error(err)
-        })
+        // fetch(withQuery('https://squwbs.herokuapp.com/linegetmessage', {
+        //     mode:'cors'
+        // }))
+        // .then(result=>{
+        //     setContent({...content,...result.message})
+        //     console.log('Message.js 122:',stringifyObject(result))
+        // })
+        // .catch((err)=>{
+        //     console.error(err)
+        // })
+        const line = require('@line/bot-sdk');
+
+        const client = new line.Client({
+        channelAccessToken: 'JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU='
+        });
+
+        client.getMessageContent('<messageId>')
+        .then((stream) => {
+            stream.on('data', (chunk) => {
+            console.log(chunk)
+            });
+            stream.on('error', (err) => {
+            // error handling
+            });
+        });
+        Get 
     }
 
     const updateDimensions=()=>{
