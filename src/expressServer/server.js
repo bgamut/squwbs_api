@@ -456,6 +456,8 @@ app.get('/logout',function(req,res){
   res.clearCookie('userName')
   res.clearCookie('providerid')
   res.clearCookie('provider')
+  res.clearCookie('photo')
+  res.clearCookie('messagingToken')
   res.redirect('/')
 })
 
@@ -675,6 +677,8 @@ app.get('/removeme',function(req,res){
     res.clearCookie('userName')
     res.clearCookie('providerid')
     res.clearCookie('provider')
+    res.clearCookie('photo')
+    res.clearCookie('messagingToken')
     res.redirect('/')
     //res.send(obj)
     
@@ -1077,7 +1081,17 @@ app.get('/user',cors(),(req,res)=>{
 
 // res.send(deleteUser(obj.userEmail))
 // })
-
+app.post('/setMessagingToken',cors(),(req,res)=>{
+  var obj = req.body
+  console.log(req.body.token)
+  let options = {
+    maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+    httpOnly: true, // The cookie only accessible by the web server
+    signed: true,// Indicates if the cookie should be signed
+    secret:''
+}
+  res.cookie('messagingToken', req.body.token ,options);
+})
 app.get('/addwordtomongo',cors(),(req,res)=>{
   var obj = req.query
   function addWordToMongo({word,meaning,example,pronunciation},callback){
@@ -1753,7 +1767,7 @@ app.get('/verifytoken',cors(),(req,res)=>{
     }
   }
 }) 
-console.log(admin.messaging.getToken())
+
 console.log('server started in port number : '+String(portnumber))
 app.listen(process.env['PORT'] || portnumber);
 
