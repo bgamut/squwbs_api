@@ -4,7 +4,7 @@ import NavBarWithLogIn from './NavBarWithLogIn'
 import NavBar from './NavBar'
 import {Context} from '../context'
 import './css/Drawer.css'
-//import importScripts from 'import-scripts'
+import importScripts from 'import-scripts'
 var {name} =require( '../../package.json')
 const withQuery = require('with-query').default
 var diff = require('object-diff')
