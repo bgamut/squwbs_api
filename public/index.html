@@ -76,13 +76,9 @@
                             'Content-Type': 'application/json;'
                           },
                           body:JSON.stringify({token:token})
-                        }).then(function(response){
-                          let result = response.json()
-                          console.log(result)
-                        }).catch(function(err){
-                          console.log('messaging : ',err)
                         })
-                        
+                        let result = await response.json()
+                        console.log(result)
                     })
                     .catch(function (err) {
                        // errorElement.innerHTML = "Error: " + err;
