@@ -11,19 +11,15 @@ import stringifyObject from 'stringify-object'
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
+import './css/iconHover.css'
+//require(process.env.PUBLIC_URL+'/firebase-messaging-sw.js')
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-const simpleDbFunction = functions.database.ref('/chat')
-.onCreate((snap,context)=>{ 
-    const original = snapshot.val()
-    console.log(snapshot.val())
-})
 
 
 
 //var client
 
-import './css/iconHover.css'
 const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
 
@@ -49,6 +45,21 @@ const Message = (props)=> {
 
     const [textValue,setTextValue] = useState('')
     
+    const chatUpdated = functions.database.ref('/chat')
+    // .onWrite(async(change,context)=>{ 
+    //     const originalValue = change.before.val()
+    //     const updatedValue= change.after.val()
+    //     setScreenContent(screenContent.push(updatedValue))
+    //     console.log(updatedValue)
+    //     await(change.after.ref.update({}))
+    // })
+    .onWrite((change,context)=>{ 
+        const originalValue = change.before.val()
+        const updatedValue= change.after.val()
+        setScreenContent(screenContent.push(updatedValue))
+        console.log(updatedValue)
+        //return(change.after.ref.update({}))
+    })
     const handleKeyPress=(e)=>{
         
         setTextValue(e.target.value)
@@ -58,7 +69,7 @@ const Message = (props)=> {
         if(e.key=='Enter'){
             e.preventDefault()
             handleSend()
-            handleGet()
+            //handleGet()
         }
         // console.log(e.key)
         
@@ -194,13 +205,13 @@ const Message = (props)=> {
         })
         
         updateDimensions()
-        handleGet()
+        //handleGet()
+        //chatUpdated()
     },[])
 
     useEffect(()=>{
-
-        console.log(content)
-    },[content])
+        console.log(screenContent)
+    },[screenContent])
       
     
       return (

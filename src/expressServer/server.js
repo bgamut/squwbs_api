@@ -32,7 +32,7 @@ const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_T
 const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
 const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs.herokuapp.com/addwordlisttomongo'
-
+var functions = require('firebase-functions')
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
     ,authDomain:NODE_ENV.FIREBASE_AUTH_DOMAIN
@@ -1441,7 +1441,28 @@ app.get('/chat',cors(),(req,res)=>{
         console.log('callback fired in /chat')
         //func(words)
         res.setHeader('Content-Type','application/json')
-        res.send({message:chatlist})
+        var payload={
+          notification:{
+            title:'chatlist',
+            body:chatlist
+          }
+        }
+        var options ={
+          priority:'high',
+          timeToLive:60*60*24
+        }
+        //admin.messageing().sendToDevice(registrationToken,payload,options)
+        admin.messageing().sendToTopic('chat',payload,options)
+        .then(function(response){
+          res.send({
+            message:'success!',
+            response:response
+          })
+        })
+        .catch(function(error){
+          res.send({message:error})
+        })
+        
       }
 
     })
@@ -1732,6 +1753,7 @@ app.get('/verifytoken',cors(),(req,res)=>{
     }
   }
 }) 
+console.log(admin.messaging.getToken())
 console.log('server started in port number : '+String(portnumber))
 app.listen(process.env['PORT'] || portnumber);
 
