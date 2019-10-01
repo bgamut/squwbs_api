@@ -148,17 +148,17 @@ const Message = (props)=> {
         //     .catch((err)=>{
         //       res.send({error:err})
         //     })
-        // fetch(withQuery('https://squwbs.herokuapp.com/linegetmessage', {
-        //     mode:'cors'
-        // }))
-        // .then(result=>{
-        //     setContent({...content,...result.message})
-        //     console.log('Message.js 123:',stringifyObject(result))
-        // })
-        // .catch((err)=>{
-        //     console.error(err)
-        // })
-        // const line = require('@line/bot-sdk');
+        fetch(withQuery('https://squwbs.herokuapp.com/linegetmessage', {
+            mode:'cors'
+        }))
+        .then(result=>{
+            setContent({...content,...result.message})
+            console.log('Message.js 123:',stringifyObject(result))
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+        const line = require('@line/bot-sdk');
 
         
         
@@ -180,26 +180,26 @@ const Message = (props)=> {
     }
   
     useEffect(()=>{
-        // fetch(withQuery('https://squwbs.herokuapp.com/line', {
+        fetch(withQuery('https://squwbs.herokuapp.com/line', {
            
-        //     mode:'cors'
-        // }))
-        // .then(result=>{
-        //     console.log('got result from user fetch')
-        //     return result.json()
-        //     })
-        //     .then((json)=>{
-        //     //setState({...state,userData:{...json}})
-        //     setClient(new line.Client({
-        //         channelAccessToken:json.token
-        //     }))
-        //     setBotID(json.id)
-        //     console.log(stringifyObject(json))
-        //     return json
-        //     })
-        //     .catch((err)=>{
-        //     console.error(err)
-        //     })
+            mode:'cors'
+        }))
+        .then(result=>{
+            console.log('got result from user fetch')
+            return result.json()
+            })
+            .then((json)=>{
+            //setState({...state,userData:{...json}})
+            setClient(new line.Client({
+                channelAccessToken:json.token
+            }))
+            setBotID(json.id)
+            console.log(stringifyObject(json))
+            return json
+            })
+            .catch((err)=>{
+            console.error(err)
+            })
         Dimensions.addEventListener('change',(e)=>{
             updateDimensions()
         })
