@@ -97,22 +97,17 @@
                 messaging.getToken()
                     .then(function (refreshedToken) {
                         console.log('Token refreshed.');
-                        fetch('/setMessagingToken',{
+                        let response= fetch('/setMessagingToken',{
                           method:'POST',
                           headers:{
                             'Content-Type': 'application/json;'
                           },
-                          body:JSON.stringify({token:refreshedToken})
+                          body:JSON.stringify({token:token})
                         })
-                      .then(function(response){
-                        let result = response.json()
+                        let result = await response.json()
                         console.log(result)
-                      })
-                      .catch(function(err){
-                        console.log('Unable to set refreshed token ', err);
-                      })}  
                         
-                    ).catch(function (err) {
+                    }).catch(function (err) {
                         //errorElement.innerHTML = "Error: " + err;
                         console.log('Unable to retrieve refreshed token ', err);
                     });
@@ -142,11 +137,9 @@
             window.addEventListener('beforeunload',function(e){
               
               console.log('closing')
-              let response = fetch('/logout').then((response)=>{
-                let result = response.json()
+              let response = fetch('/logout')
+              let result = await response.json()
               console.log(result)
-              })
-              
             })
            
             

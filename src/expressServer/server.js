@@ -1428,7 +1428,7 @@ app.get('/addword',cors(),(req,res)=>{
   
 })
 
-app.get('/',cors(),(req,res)=>{
+app.get('/chat',cors(),(req,res)=>{
   var chat = req.query.chat
   console.log(chat)
   var db = admin.database()
