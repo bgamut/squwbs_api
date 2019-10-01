@@ -63,22 +63,13 @@
                 messaging
                     .requestPermission()
                     .then(function () {
-                        
+                        //messageElement.innerHTML = "Got notification permission";
                         console.log("Got notification permission");
                         return messaging.getToken();
                     })
                     .then(function (token) {
-                        
+                        //document.cookie=JSON.stringify({messagingToken:token})
                         //todo send the token to herokuapp.com/tokenlist
-                        let response= fetch('/setMessagingToken',{
-                          method:'POST',
-                          headers:{
-                            'Content-Type': 'application/json;'
-                          },
-                          body:JSON.stringify({token:token})
-                        })
-                        let result = await response.json()
-                        console.log(result)
                     })
                     .catch(function (err) {
                        // errorElement.innerHTML = "Error: " + err;
@@ -93,16 +84,8 @@
                 messaging.getToken()
                     .then(function (refreshedToken) {
                         console.log('Token refreshed.');
-                        let response= fetch('/setMessagingToken',{
-                          method:'POST',
-                          headers:{
-                            'Content-Type': 'application/json;'
-                          },
-                          body:JSON.stringify({token:token})
-                        })
-                        let result = await response.json()
-                        console.log(result)
-                        
+                        //tokenElement.innerHTML = "Token is " + refreshedToken;
+                        //document.cookie='messagingToken='+refreshedToken
                     }).catch(function (err) {
                         //errorElement.innerHTML = "Error: " + err;
                         console.log('Unable to retrieve refreshed token ', err);
@@ -133,14 +116,9 @@
             window.addEventListener('beforeunload',function(e){
               
               console.log('closing')
-              let response = fetch('/logout')
-              let result = await response.json()
-              console.log(result)
-            })
-           
-            
+              //todo request removeal of token from the heroku.com/tokenlist
              
-            
+            })
         </script>
 
     </head>
