@@ -1414,6 +1414,39 @@ app.get('/addword',cors(),(req,res)=>{
   
 })
 
+app.get('/chat',cors(),(req,res)=>{
+  var chat = req.query.chat
+  console.log(chat)
+  var db = admin.database()
+  var ref = db.ref('chat')
+  ref.once('value',function(snapshot){
+    var chatlist=snapshot.val()
+    if(chat!=undefined){
+      if(chatlist == undefined){
+        chatlist = []
+        chatlist[0]=chat
+      }
+      else{
+        chatlist.push(chat)
+      }
+    }
+    ref.set(chatlist,function(error){
+      if(error){
+        console.log(error)
+        res.setHeader('Content-Type','application/json')
+        res.send({message:error})
+        //func(error)
+      }
+      else{
+        console.log('callback fired in /chat')
+        //func(words)
+        res.setHeader('Content-Type','application/json')
+        res.send({message:chatlist})
+      }
+
+    })
+  })
+})
 
 app.get('/addwordlist',cors(),(req,res)=>{
   var list = req.query.list

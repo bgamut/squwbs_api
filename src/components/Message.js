@@ -11,6 +11,13 @@ import stringifyObject from 'stringify-object'
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
+const simpleDbFunction = functions.database.ref('/chat')
+.onCreate((snap,context)=>{ 
+    const original = snapshot.val()
+    console.log(snapshot.val())
+})
 
 
 
@@ -33,7 +40,9 @@ const Message = (props)=> {
     const [client,setClient]=useState()
     const [botID,setBotID]=useState('')
     const [content,setContent]=useState({})
+    const [screenContent, setScreenContent]=useState([])
     const inputRef = useRef(null)
+
     
     const [show,setShow]=useState('Show')
    
@@ -82,13 +91,26 @@ const Message = (props)=> {
         //       res.send({error:err})
         //     })
         
-        fetch(withQuery('https://squwbs.herokuapp.com/linesendmessage', {
+        // fetch(withQuery('https://squwbs.herokuapp.com/linesendmessage', {
+        //     text:textValue,
+        //     mode:'cors'
+        // }))
+        // .then(result=>{
+        //     setTextValue('')
+        //     console.log(stringifyObject(result.message))
+        // })
+        // .catch((err)=>{
+        //     console.error(err)
+        // })
+
+        fetch(withQuery('https://squwbs.herokuapp.com/chat', {
             text:textValue,
             mode:'cors'
         }))
         .then(result=>{
             setTextValue('')
             console.log(stringifyObject(result.message))
+            setScreenContent([...screenContent,...result.message])
         })
         .catch((err)=>{
             console.error(err)
