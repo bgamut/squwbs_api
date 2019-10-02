@@ -61,9 +61,11 @@ messaging.requestPermission()
   var body={}
   var url = 'https://squwbs.herokuapp.com/firebaseToken'
   body.token=token
+  //console.log(body)
   fetch(url,{
     method:"post",
-    body:JSON.stringify(body)
+    mode:'cors',
+    body:body
   }).then((res)=>{
     return res.json();
   })

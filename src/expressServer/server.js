@@ -194,6 +194,10 @@ app.get('/readCookies',function(req, res){
   //res.send(req.signedCookies);
   res.json(req.signedCookies)
 });
+app.post('/readCookies',function(req, res){
+  //res.send(req.signedCookies);
+  res.json(req.signedCookies)
+});
 // var conf={
 //   originUndefined: function (req, res, next) {
  
