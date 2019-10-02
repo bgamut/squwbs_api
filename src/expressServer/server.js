@@ -753,7 +753,7 @@ app.post('/firebaseToken',cors(),(req,res)=>{
     secret:''
 }
   res.cookie('firebaseToken', req.body.token ,options);
-  res.json({token:req.body.token})
+  //res.json({token:req.body.token})
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
   //console.log('682:',stringifyObject(req.query.text))

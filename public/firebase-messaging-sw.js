@@ -1,4 +1,4 @@
-importScripts("https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js");
+importScripts("https://www.gstatic.com/fibasejs/7.0.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/7.0.0/firebase-messaging.js");
 var firebaseConfig = {
     messagingSenderId:'404719977912'

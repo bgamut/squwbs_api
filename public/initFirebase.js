@@ -57,14 +57,24 @@ messaging.requestPermission()
   //event listener need to be implemented in the react code
   document.dispatchEvent(firebaseTokenReceived(token))
   var headers = {"Content-Type": "application/json"};
+
+  var body={}
   var url = 'https://squwbs.herokuapp.com/firebaseToken'
-  headers.token=token
-  fetch(url,[headers])
-  .then((res)=>{
+  body.token=token
+  fetch(url,{
+    method:"post",
+    body:JSON.stringify(body)
+  }).then((res)=>{
     return res.json();
   })
-  .then((json)=>{
-    console.log(json)
+  .then(()=>{
+    fetch('https://squwbs.herokuapp.com/readCookies')
+    .then(res=>{
+      return res.json()
+    }).then((json)=>{
+      console.log(json)
+    })
+    //console.log()
   })
   .catch((err)=>{
     console.log(err)

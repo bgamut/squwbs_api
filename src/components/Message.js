@@ -175,6 +175,7 @@ const Message = (props)=> {
         //handleGet()
         console.log('fcm addEventListener test')
         document.addEventListener('firebaseMessageReceived',function(event){
+            //below code was tested.
             console.log("fcm from message.js 177: ",event.detail.message)
         })
         // document.addEventListener('firebaseTokenReceived',function(event){
