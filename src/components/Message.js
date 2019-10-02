@@ -82,7 +82,7 @@ const Message = (props)=> {
         //       res.send({error:err})
         //     })
         
-        fetch(withQuery('https://squwbs.herokuapp.com/linesendmessage', {
+        fetch(withQuery('https://squwbs-252702.appspot.com/linesendmessage', {
             text:textValue,
             mode:'cors'
         }))
@@ -115,7 +115,7 @@ const Message = (props)=> {
         //     .catch((err)=>{
         //       res.send({error:err})
         //     })
-        fetch(withQuery('https://squwbs.herokuapp.com/linegetmessage', {
+        fetch(withQuery('https://squwbs-252702.appspot.com/linegetmessage', {
             mode:'cors'
         }))
         .then(result=>{
@@ -147,7 +147,7 @@ const Message = (props)=> {
     }
   
     useEffect(()=>{
-        fetch(withQuery('https://squwbs.herokuapp.com/line', {
+        fetch(withQuery('https://squwbs-252702.appspot.com/line', {
            
             mode:'cors'
         }))

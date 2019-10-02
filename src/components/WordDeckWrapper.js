@@ -9,7 +9,7 @@ const WordDeckWrapper = () => {
   //run()
     //const [state,setState]=useState(Context)
     const getUserData=async()=>{
-        // const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+        // const responded= await fetch('https://squwbs-252702.appspot.com/readCookies',{mode:'cors'})
         // const jsonObj = await responded.json()
         // console.log(JSON.stringify(jsonObj))
 

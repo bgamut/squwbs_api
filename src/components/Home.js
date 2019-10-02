@@ -36,7 +36,7 @@ const stringifyObject= require('stringify-object')
 const addUserToServer = (obj)=>{
   
   console.log('user add function entered')
-  fetch(withQuery('https://squwbs.herokuapp.com/user', {
+  fetch(withQuery('https://squwbs-252702.appspot.com/user', {
     ...obj,
     mode:'cors'
   }))
@@ -127,12 +127,12 @@ const Home = () => {
     
   }
   const getUserData=async()=>{
-    const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+    const responded= await fetch('https://squwbs-252702.appspot.com/readCookies',{mode:'cors'})
     const userCookie = await responded.json()
     console.log('userCookie : '+stringifyObject(userCookie))
     if(Object.keys(userCookie).length>1){
       console.log('user info sent to server')
-      fetch(withQuery('https://squwbs.herokuapp.com/user', {
+      fetch(withQuery('https://squwbs-252702.appspot.com/user', {
         ...userCookie,
         mode:'cors'
       }))

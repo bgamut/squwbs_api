@@ -27,7 +27,7 @@ const GoogleCard = (props)=> {
       },[])
     const duration =270
     // const getPosts=async()=>{
-    //     const responded= await fetch('https://squwbs.herokuapp.com/getPosts',{mode:'cors'})
+    //     const responded= await fetch('https://squwbs-252702.appspot.com/getPosts',{mode:'cors'})
     //     const posts = await responded.json()
         
     //     if(Object.keys(posts).length>1){

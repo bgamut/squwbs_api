@@ -37,12 +37,12 @@ const Drawer =(props)=>{
     },[userPhotoLink])
 
     const getUserData=async(itemList)=>{
-        const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+        const responded= await fetch('https://squwbs-252702.appspot.com/readCookies',{mode:'cors'})
         const userCookie = await responded.json()
-        //console.log('userCookie : '+stringifyObject(userCookie))
-        if(Object.keys(userCookie).length>1){
+        console.log('Drawer 42 userCookie : '+stringifyObject(userCookie))
+        if(userCookie.userName!=''&&userCookie.userName!=undefined){
         console.log('user info sent to server')
-        // fetch(withQuery('https://squwbs.herokuapp.com/user', {
+        // fetch(withQuery('https://squwbs-252702.appspot.com/user', {
         //     ...userCookie,
         //     mode:'cors'
         // }))
@@ -69,8 +69,8 @@ const Drawer =(props)=>{
                 mode:'cors',
             }
         ))
-        fetch(withQuery('https://squwbs.herokuapp.com/info', {
-        //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+        fetch(withQuery('https://squwbs-252702.appspot.com/info', {
+        //fetch(withQuery('https://squwbs-252702.appspot.com/getpaypalsandboxid', {
             ...userCookie,
             //itemList:[{kind:'beat',itemID:'00'},{kind:'plugin',itemID:'00'}],
             itemList:itemList,

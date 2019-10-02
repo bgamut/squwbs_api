@@ -94,8 +94,8 @@ const GooglePay =(props)=> {
   },[info])
   
   useEffect(()=>{
-    fetch(withQuery('https://squwbs.herokuapp.com/getgooglepayliveready', {
-    //fetch(withQuery('https://squwbs.herokuapp.com/getgooglepaysandboxready', {
+    fetch(withQuery('https://squwbs-252702.appspot.com/getgooglepayliveready', {
+    //fetch(withQuery('https://squwbs-252702.appspot.com/getgooglepaysandboxready', {
     
       mode:'cors'
     }))

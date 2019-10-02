@@ -11,12 +11,12 @@ const withQuery = require('with-query').default;
 
 const DLLink = (props)=> {
     const getUserData=async(itemList)=>{
-        const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+        const responded= await fetch('https://squwbs-252702.appspot.com/readCookies',{mode:'cors'})
         const userCookie = await responded.json()
         console.log('userCookie : '+stringifyObject(userCookie))
         if(Object.keys(userCookie).length>1){
         console.log('user info sent to server')
-        // fetch(withQuery('https://squwbs.herokuapp.com/user', {
+        // fetch(withQuery('https://squwbs-252702.appspot.com/user', {
         //     ...userCookie,
         //     mode:'cors'
         // }))
@@ -35,8 +35,8 @@ const DLLink = (props)=> {
         //     })
         
         // }
-        fetch(withQuery('https://squwbs.herokuapp.com/info', {
-        //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+        fetch(withQuery('https://squwbs-252702.appspot.com/info', {
+        //fetch(withQuery('https://squwbs-252702.appspot.com/getpaypalsandboxid', {
             ...userCookie,
             //itemList:[{kind:'beat',itemID:'00'},{kind:'plugin',itemID:'00'}],
             itemList:itemList,
@@ -61,7 +61,7 @@ const DLLink = (props)=> {
         
     }
     const download = (downloadList) =>{
-            // fetch(withQuery('https://squwbs.herokuapp.com/download', 
+            // fetch(withQuery('https://squwbs-252702.appspot.com/download', 
             // {
             //     downloadList:downloadList,
             //     mode:'cors'
@@ -79,16 +79,16 @@ const DLLink = (props)=> {
         
             // })
 
-            //todo : create a popup that will open https://squwbs.herokuapp.com with jwt? uuid.v4 confirmation?
+            //todo : create a popup that will open https://squwbs-252702.appspot.com with jwt? uuid.v4 confirmation?
 
             
         // getUserData([{kind:'plugin',id:'00'}])
-        // var win = window.open('https://squwbs.herokuapp.com/download', "Download", "location=no toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
+        // var win = window.open('https://squwbs-252702.appspot.com/download', "Download", "location=no toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=250,height=250,top="+(window.screen.height/2-125)+",left="+(window.screen.width/2-125));
         // win.document.body.innerHTML = "Downloading";
         
         
         var element = document.createElement('a');
-        element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
+        element.setAttribute('href', 'https://squwbs-252702.appspot.com/download');
         // element.setAttribute('download', filename);
       
         element.style.display = 'none';

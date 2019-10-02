@@ -122,7 +122,7 @@ class GoogleDeck extends Component {
   }
   
   requestPosts=()=>{
-    // fetch('https://squwbs.herokuapp.com/getPosts',[{mode:'cors'},{signal:this.abortController.signal}])
+    // fetch('https://squwbs-252702.appspot.com/getPosts',[{mode:'cors'},{signal:this.abortController.signal}])
     // .then((res)=>{
     //   console.log(stringifyObject(res))
     //   return(res.json())

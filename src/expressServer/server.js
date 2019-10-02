@@ -29,9 +29,9 @@ const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFa
 var https = require('https')
 var http = require('http')
 const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN})
-const mongourlStringExpress='https://squwbs.herokuapp.com/mongouri'
-const mongoURLAddWord='https://squwbs.herokuapp.com/addwordtomongo'
-const mongoURLAddWordList='https://squwbs.herokuapp.com/addwordlisttomongo'
+const mongourlStringExpress='https://squwbs-252702.appspot.com/mongouri'
+const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
+const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
@@ -434,7 +434,7 @@ app.get('/profile',
     res.cookie('providerid',req.user.id,options)
     res.cookie('provider',req.user.provider,options)
     res.cookie('photo',req.user.photos[0].value,options)
-    console.log('411 : ',stringifyObject(req.user.photos))
+    //console.log('411 : ',stringifyObject(req.user.photos))
     //res.cookie('photos',req.user.)
     res.redirect(url.format({
       pathname:"/"
@@ -460,6 +460,7 @@ app.get('/logout',function(req,res){
   res.clearCookie('userName')
   res.clearCookie('providerid')
   res.clearCookie('provider')
+  res.clearCookie('photo')
   res.redirect('/')
 })
 
@@ -747,7 +748,21 @@ app.post('/linewebhook'
             });
           }
 )
-app.post('/firebaseToken',cors(),(req,res)=>{
+// app.post('/firebaseToken',cors(),(req,res)=>{
+//   //res.send(req.body)
+ 
+//   let options = {
+//     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+//     httpOnly: true, // The cookie only accessible by the web server
+//     signed: true,// Indicates if the cookie should be signed
+//     secret:''
+// }
+//   //todo register token to list of devices
+//   console.log('firebaseToken received', stringifyObject(req.body.token))
+//   res.cookie('firebaseToken', req.body.token ,options);
+//   //res.json({token:req.body.token})
+// })
+app.get('/firebaseToken',cors(),(req,res)=>{
   //res.send(req.body)
  
   let options = {
@@ -756,8 +771,11 @@ app.post('/firebaseToken',cors(),(req,res)=>{
     signed: true,// Indicates if the cookie should be signed
     secret:''
 }
-  res.cookie('firebaseToken', req.body.token ,options);
-  //res.json({token:req.body.token})
+  //todo register token to list of devices
+  //console.log('get firebaseToken body', stringifyObject(req.body.token))
+  console.log('get firebaseToken query', stringifyObject(req.query))
+  res.cookie('firebaseToken', req.query.token ,options);
+  //res.json({token:req.query.token})
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
   //console.log('682:',stringifyObject(req.query.text))
@@ -1649,7 +1667,7 @@ app.get('/getwordlist',cors(),(req,res)=>{
   
 
 app.get('/ebay',cors(),(req,res)=>{
-    fetch(withQuery('https://squwbs.herokuapp.com/api'
+    fetch(withQuery('https://squwbs-252702.appspot.com/api'
     ,req.query
     ))
     .then(result=>{

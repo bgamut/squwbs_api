@@ -18,7 +18,7 @@ const withQuery = require('with-query');
 // const addWordListToServer = (list)=>{
     
 //     //console.log(word,meaning,example,pronunciation)
-//     fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+//     fetch(withQuery.default('https://squwbs-252702.appspot.com/addWordList', {
 //       list:list,
 //       mode:'cors'
 //     }))
@@ -38,7 +38,7 @@ const withQuery = require('with-query');
 const addWordListToServer = (list)=>{
     
     //console.log(word,meaning,example,pronunciation)
-    // fetch(withQuery.default('https://squwbs.herokuapp.com/addWordList', {
+    // fetch(withQuery.default('https://squwbs-252702.appspot.com/addWordList', {
     //   list:list,
     //   mode:'cors'
     // }))
@@ -51,10 +51,10 @@ const addWordListToServer = (list)=>{
     //   .catch((err)=>{
   
     //   })
-    //const mongoURLAddWordList='https://squwbs.herokuapp.com/addlist'
+    //const mongoURLAddWordList='https://squwbs-252702.appspot.com/addlist'
 
     // const addWordListToMongoViaServer = (list)=>{
-    //     fetch(withQuery.default('https://squwbs.herokuapp.com/addlist', { 
+    //     fetch(withQuery.default('https://squwbs-252702.appspot.com/addlist', { 
     //         list:list,
     //         mode:'cors'
     //     }))
@@ -71,7 +71,7 @@ const addWordListToServer = (list)=>{
     // addWordListToMongoViaServer(list)
 
     const addWordListToViaServer = (list)=>{
-        fetch(withQuery.default('https://squwbs.herokuapp.com/addlist', { 
+        fetch(withQuery.default('https://squwbs-252702.appspot.com/addlist', { 
             list:list,
             mode:'cors'
         }))
@@ -103,7 +103,7 @@ const addWordToServer = ({word,meaning,example,pronunciation})=>{
     example=a.example
     pronunciation=a.pronunciation
     console.log(word,meaning,example,pronunciation)
-    fetch(withQuery.default('https://squwbs.herokuapp.com/user', {
+    fetch(withQuery.default('https://squwbs-252702.appspot.com/user', {
       word:word,
       meaning:meaning,
       example:example,

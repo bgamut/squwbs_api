@@ -39,7 +39,7 @@ catch(e){
 // const translateY = new Animated.Value(0);
 
 const getUserData=async()=>{
-  const responded= await fetch('https://squwbs.herokuapp.com/readCookies',{mode:'cors'})
+  const responded= await fetch('https://squwbs-252702.appspot.com/readCookies',{mode:'cors'})
   const userCookie = await responded.json()
   console.log('userCookie : '+stringifyObject(userCookie))
 }
@@ -72,8 +72,8 @@ const SwipeableScroller = (props) => {
     })
     updateDimensions()
     //setHeight(Math.floor(Dimensions.get('window').height))
-    // fetch(withQuery('https://squwbs.herokuapp.com/getpaypalliveid', {
-    //   //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+    // fetch(withQuery('https://squwbs-252702.appspot.com/getpaypalliveid', {
+    //   //fetch(withQuery('https://squwbs-252702.appspot.com/getpaypalsandboxid', {
     //   mode:'cors'
     // }))
     // .then(result=>{
@@ -91,8 +91,8 @@ const SwipeableScroller = (props) => {
     //   console.error(err)
     // })
 
-    // fetch(withQuery('https://squwbs.herokuapp.com/info', {
-    //   //fetch(withQuery('https://squwbs.herokuapp.com/getpaypalsandboxid', {
+    // fetch(withQuery('https://squwbs-252702.appspot.com/info', {
+    //   //fetch(withQuery('https://squwbs-252702.appspot.com/getpaypalsandboxid', {
     //   mode:'cors',
     //   itemList:[{kind:'beat',itemID:'00'},{kind:'plugin',itemID:'00'}]
     // }))
@@ -781,7 +781,7 @@ const SwipeableScroller = (props) => {
                   title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
                   date={String(date)}
                   //picture={"./icons/256x256.png"}
-                  picture={'http://squwbs.herokuapp.com/favicon.ico'}
+                  picture={'http://squwbs-252702.appspot.com/favicon.ico'}
                   writer={'Sir Francis Dylan the 2nd'}
                   youtubeID={"SkNB5AsgZOc"}
                   post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}

@@ -149,7 +149,7 @@ class WordDeck extends Component {
 
   }
   requestWords=()=>{
-    fetch('https://squwbs.herokuapp.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
+    fetch('https://squwbs-252702.appspot.com/getwordlist',[{mode:'cors'},{signal:this.abortController.signal}])
     .then((res)=>{
       console.log(stringifyObject(res))
       return(res.json())
@@ -169,7 +169,7 @@ class WordDeck extends Component {
     .catch((err) => {
       console.error(err);
     });
-    // const mongoURLGetWordList='https://squwbs.herokuapp.com/getwordlistfrommongo'
+    // const mongoURLGetWordList='https://squwbs-252702.appspot.com/getwordlistfrommongo'
     // const getWordListFromMongoViaServer = ()=>{
     //   fetch(mongoURLGetWordList, {
     //     mode:'cors'
