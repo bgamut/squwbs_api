@@ -743,8 +743,8 @@ app.post('/linewebhook'
             });
           }
 )
-app.post('/firebaseToken',cors(),(res,req)=>{
-  res.send(req.body)
+app.post('/firebaseToken',cors(),(req,res)=>{
+  //res.send(req.body)
  
   let options = {
     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
@@ -753,6 +753,7 @@ app.post('/firebaseToken',cors(),(res,req)=>{
     secret:''
 }
   res.cookie('firebaseToken', req.body.token ,options);
+  res.json({token:req.body.token})
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
   //console.log('682:',stringifyObject(req.query.text))

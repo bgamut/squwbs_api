@@ -1,4 +1,4 @@
-import { EventEmitter } from "events";
+//import { EventEmitter } from "events";
 
 var firebaseConfig = {
     messagingSenderId:'404719977912'
@@ -58,7 +58,8 @@ messaging.requestPermission()
   document.dispatchEvent(firebaseTokenReceived(token))
   var headers = {"Content-Type": "application/json"};
   var url = 'https://squwbs.herokuapp.com/firebaseToken'
-  fetch(url,{headers})
+  headers.token=token
+  fetch(url,[headers])
   .then((res)=>{
     return res.json();
   })
@@ -77,5 +78,5 @@ messaging.requestPermission()
 messaging.onMessage(function(payload){
   console.log('onMessage:',payload)
   //event listener need to be implemented in the react code
-  document.dispatchEvent(firebaseMessageReceived(token))
+  document.dispatchEvent(firebaseMessageReceived(payload))
 })
