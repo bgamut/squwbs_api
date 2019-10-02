@@ -172,7 +172,15 @@ const Message = (props)=> {
         })
         
         updateDimensions()
-        handleGet()
+        //handleGet()
+        console.log('fcm addEventListener test')
+        document.addEventListener('firebaseMessageReceived',function(event){
+            console.log("fcm from message.js 177: ",event.detail.message)
+        })
+        // document.addEventListener('firebaseTokenReceived',function(event){
+        //     console.log("Token from message.js 180: ",event.detail.message)
+        // })
+        
     },[])
 
     useEffect(()=>{
