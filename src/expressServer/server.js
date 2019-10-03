@@ -32,7 +32,8 @@ const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_T
 const mongourlStringExpress='https://squwbs-252702.appspot.com/mongouri'
 const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
-
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
     ,authDomain:NODE_ENV.FIREBASE_AUTH_DOMAIN
@@ -145,7 +146,7 @@ app.use((err, req, res, next) => {
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
-app.use(require('express-session')(
+app.use(session(
   { 
     secret: 'keyboard cat',
     resave:true,
