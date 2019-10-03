@@ -43,7 +43,10 @@ const Instagram = (props)=> {
     opacity.addListener(({value}) => {
         //value;
         //console.log(value)
-        imgRef1.current.style.opacity=value
+        if(imgRef1.current!=null){
+            imgRef1.current.style.opacity=value
+        }
+        
 
     })
     const opacityAnimationToOne=()=>{
@@ -121,7 +124,9 @@ const Instagram = (props)=> {
                 var imageurl=json.data[0].images.standard_resolution.url;
                 //console.log(imageurl)
                 setUri(imageurl)
-                imgRef1.current.src=imageurl
+                if(imgRef1.current!=null){
+                    imgRef1.current.src=imageurl
+                }
                 var temp = []
                 for (var i =0; i<20; i++){
                     temp[i]=json.data[i].images.standard_resolution.url
@@ -203,7 +208,10 @@ const Instagram = (props)=> {
             setShow('Hide')
             setIndex(index+1)
             opacityAnimationToZero()
-            imgRef1.current.src=uriList[index%20]
+            if(imgRef1.current!=null){
+                imgRef1.current.src=uriList[index%20]
+            }
+            
         }
         //opacityAnimation()
        
@@ -294,6 +302,7 @@ const Instagram = (props)=> {
                             
                                 <img ref={imgRef1}
                                     className="Unselectable"
+                                    //src={uri}
                                     style={{
                                         //top:0,
                                         //display:"inline-block",
