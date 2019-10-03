@@ -145,6 +145,24 @@ const Message = (props)=> {
         setHeight(Dimensions.get('window').height)
         setWidth(Dimensions.get('window').width)
     }
+    const handleLoad=()=>{
+        document.addEventListener('firebaseMessageReceived',function(event){
+            //below code was tested.
+            console.log("fcm from message.js 177: ",event.detail.message)
+        })
+        // document.addEventListener('firebaseTokenReceived',function(event){
+        //     console.log("Token from message.js 180: ",event.detail.message)
+        // })
+        document.addEventlistener("beforeunload",function(e){
+            fetch('https://squwbs-252702.appspot.com/logout')
+            .then(()=>{
+                console.log('successfully logged out')
+            })
+            .catch((err)=>{
+                console.log('logout error : ',err)
+            })
+        })
+    }
   
     useEffect(()=>{
         fetch(withQuery('https://squwbs-252702.appspot.com/line', {
@@ -174,22 +192,8 @@ const Message = (props)=> {
         updateDimensions()
         //handleGet()
         console.log('fcm addEventListener test')
-        // document.addEventListener('firebaseMessageReceived',function(event){
-        //     //below code was tested.
-        //     console.log("fcm from message.js 177: ",event.detail.message)
-        // })
-        // document.addEventListener('firebaseTokenReceived',function(event){
-        //     console.log("Token from message.js 180: ",event.detail.message)
-        // })
-        // document.addEventlistener("beforeunload",function(e){
-        //     fetch('https://squwbs-252702.appspot.com/logout')
-        //     .then(()=>{
-        //         console.log('successfully logged out')
-        //     })
-        //     .catch((err)=>{
-        //         console.log('logout error : ',err)
-        //     })
-        // })
+        window.addEventListener('load',handleLoad())
+        
         
     },[])
 
