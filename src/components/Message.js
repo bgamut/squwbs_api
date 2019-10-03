@@ -174,22 +174,22 @@ const Message = (props)=> {
         updateDimensions()
         //handleGet()
         console.log('fcm addEventListener test')
-        document.addEventListener('firebaseMessageReceived',function(event){
-            //below code was tested.
-            console.log("fcm from message.js 177: ",event.detail.message)
-        })
+        // document.addEventListener('firebaseMessageReceived',function(event){
+        //     //below code was tested.
+        //     console.log("fcm from message.js 177: ",event.detail.message)
+        // })
         // document.addEventListener('firebaseTokenReceived',function(event){
         //     console.log("Token from message.js 180: ",event.detail.message)
         // })
-        document.addEventlistener("beforeunload",function(e){
-            fetch('https://squwbs-252702.appspot.com/logout')
-            .then(()=>{
-                console.log('successfully logged out')
-            })
-            .catch((err)=>{
-                console.log('logout error : ',err)
-            })
-        })
+        // document.addEventlistener("beforeunload",function(e){
+        //     fetch('https://squwbs-252702.appspot.com/logout')
+        //     .then(()=>{
+        //         console.log('successfully logged out')
+        //     })
+        //     .catch((err)=>{
+        //         console.log('logout error : ',err)
+        //     })
+        // })
         
     },[])
 
