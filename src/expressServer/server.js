@@ -457,10 +457,20 @@ app.get('/logout',function(req,res){
   //res.cookie('userName', undefined ,options);
   //res.cookie('providerid',undefined,options)
   //res.cookie('provider',undefined,options)
+  if (req.signedCookies.firebaseToken!=undefined){
+    admin.messaging().unsubscribeFromTopic(req.signedCookies.firebaseToken,'chat')
+    .then(function(res){
+      console.log('successfully unsubscribed from chat', res)
+    })
+    .catch(function(err){
+      console.log('error unsubscribing from topic : ',err )
+    })
+  }
   res.clearCookie('userName')
   res.clearCookie('providerid')
   res.clearCookie('provider')
   res.clearCookie('photo')
+  res.clearCookie('firebaseToken')
   res.redirect('/')
 })
 
@@ -762,7 +772,26 @@ app.post('/linewebhook'
 //   res.cookie('firebaseToken', req.body.token ,options);
 //   //res.json({token:req.body.token})
 // })
-app.get('/firebaseToken',cors(),(req,res)=>{
+app.get('/firebaseMessage',cors(),(req,res)=>{
+  var message=req.query.message
+  var topic = req.query.topic
+  var payload = {
+    data:{
+      message:message,
+      topic:topic
+    },
+    // token:NODE_ENV.FIREBASE_KEY_PAIR
+  }
+  admin.messaging().send(message)
+    .then((response)=>{
+      res.send({message:'successfully sent message', message})
+    })
+    .catch((err)=>{
+      res.send({message:'error sending message:',err})
+    })
+})
+
+app.get('/firebaseToken',(req,res)=>{
   //res.send(req.body)
  
   let options = {
@@ -774,8 +803,17 @@ app.get('/firebaseToken',cors(),(req,res)=>{
   //todo register token to list of devices
   //console.log('get firebaseToken body', stringifyObject(req.body.token))
   console.log('get firebaseToken query', stringifyObject(req.query))
+  var deviceTokens=[]
+  deviceTokens.push(req.query.token)
+  admin.messaging().subscribeToTopic(deviceTokens,'chat')
+    .then(function(res){
+      console.log('server.js 784 Successfully subscribed to topic:', res);
+    })
+    .catch(function(err){
+      console.log('server.js 787 error subscribing to topic:',err)
+    })
   res.cookie('firebaseToken', req.query.token ,options);
-  //res.json({token:req.query.token})
+  res.json({token:req.query.token})
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
   //console.log('682:',stringifyObject(req.query.text))

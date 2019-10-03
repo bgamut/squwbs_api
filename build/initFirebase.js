@@ -53,8 +53,8 @@ messaging.requestPermission()
   return messaging.getToken()
 
 }).then(function(token){
-  console.log('push token : ',token)
-  window.messagingToken = token
+  //console.log('push token : ',token)
+  //window.messagingToken = token
   //event listener need to be implemented in the react code
   //document.dispatchEvent(firebaseTokenReceived(token))
   var headers = {"Content-Type": "application/json"};
