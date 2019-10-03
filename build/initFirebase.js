@@ -45,7 +45,8 @@ const firebaseMessageReceived =(message)=> {
 
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging()
-document.firebaseMessaging=messaging
+//following needs to be consumed by the component
+//document.firebaseMessaging=messaging
 console.log("this is firebase in action",messaging)
 messaging.requestPermission()
 .then(()=>{
