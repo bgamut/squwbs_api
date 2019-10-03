@@ -1179,7 +1179,7 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
       //mongouri=jsongmongouri
       var mongouri=json.mongouri
       console.log(mongouri)
-      mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology: true })
+      mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true})
       .catch((err)=>{
         console.log(err)
       })
@@ -1391,7 +1391,7 @@ app.get('/getwordlistfrommongo',cors(),(req,res)=>{
   const getWordList =(wordList,mongouri,callback)=>{
     //const ObjectId=uuidv4()
     callbackList=[]
-    mongoose.connect(mongouri,{useNewUrlParser:true, useUnifiedTopology: true })
+    mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true })
       .catch((err)=>{
         console.log(err)
         callbackList.push({message:err})
