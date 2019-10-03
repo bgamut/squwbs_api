@@ -145,7 +145,22 @@ app.use((err, req, res, next) => {
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
-app.use(require('express-session')({ secret: 'keyboard cat',resave:true,saveUninitialized:true }));
+app.use(require('express-session')(
+  { 
+    secret: 'keyboard cat',
+    resave:true,
+    saveUninitialized:true,
+    store: new MongoStore(
+      {
+        url:NODE_ENV.MONGO_URI, 
+        ttl:3600, 
+        secret:'squirrel',
+        autoRemove:'interval', 
+        autoRemoveInterval:60
+      }
+    )
+  }
+));
 app.use(express.static(path.join(__dirname, '../../build')));
 app.use(express.static(path.join(__dirname, 'html/*/*')));
 // app.use(cookieSession({
