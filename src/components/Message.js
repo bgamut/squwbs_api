@@ -82,6 +82,7 @@ const Message = (props)=> {
         .catch(function(error){
             console.log('message 82 err:',error)
         })
+        
         setTextValue('')
         //return ()=>cancel()
 
