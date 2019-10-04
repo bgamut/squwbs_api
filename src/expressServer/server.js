@@ -128,7 +128,7 @@ passport.deserializeUser(function(obj, cb) {
 var app = express();
 
 const ioserver = http.Server(app)
-const io = require('socket.io')(http)
+const io = require('socket.io')(ioserver)
 io.on('connection',socket => {
   socket.emit('chat-message','hello world')
 })
