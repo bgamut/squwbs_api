@@ -12,13 +12,13 @@ import stringifyObject from 'stringify-object'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
 
-
-
 //var client
 
 import './css/iconHover.css'
+
 const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
+const axios = require('axios')
 
 
 const _ = require('lodash')
@@ -49,7 +49,7 @@ const Message = (props)=> {
         if(e.key=='Enter'){
             e.preventDefault()
             handleSend()
-            handleGet()
+            //handleGet()
         }
         // console.log(e.key)
         
@@ -61,8 +61,29 @@ const Message = (props)=> {
         
         
     }
-    const handleSend=(e)=>{
+    const handleSend=()=>{
+        let message=textValue
+        let topic='chat'
         console.log(textValue)
+        // let cancel
+        axios({
+            method:'GET',
+            url:'https://squwbs-252702.appspot.com/firebaseMessage',
+            params:{
+                message:message,
+                topic:topic
+            },
+            // cancelToken: new axios.CancelToken((c)=>{cancel=c})
+        })
+        .then(function(response){
+            console.log('message 79 response:',response)
+        })
+        .catch(function(error){
+            console.log('message 82 err:',error)
+        })
+        setTextValue('')
+        //return ()=>cancel()
+
         // client.pushMessage(botID,textValue)
         //     .then(()=>{console.log('message sent')})
         //     .catch((err)=>{console.log(err)})
@@ -82,17 +103,19 @@ const Message = (props)=> {
         //       res.send({error:err})
         //     })
         
-        fetch(withQuery('https://squwbs-252702.appspot.com/linesendmessage', {
-            text:textValue,
-            mode:'cors'
-        }))
-        .then(result=>{
-            setTextValue('')
-            console.log(stringifyObject(result.message))
-        })
-        .catch((err)=>{
-            console.error(err)
-        })
+        // fetch(withQuery('https://squwbs-252702.appspot.com/linesendmessage', {
+        //     text:textValue,
+        //     mode:'cors'
+        // }))
+        // .then(result=>{
+        //     setTextValue('')
+        //     console.log(stringifyObject(result.message))
+        // })
+        // .catch((err)=>{
+        //     console.error(err)
+        // })
+
+        
     }
 
     const handleGet=(e)=>{
@@ -115,17 +138,17 @@ const Message = (props)=> {
         //     .catch((err)=>{
         //       res.send({error:err})
         //     })
-        fetch(withQuery('https://squwbs-252702.appspot.com/linegetmessage', {
-            mode:'cors'
-        }))
-        .then(result=>{
-            setContent({...content,...result.message})
-            console.log('Message.js 123:',stringifyObject(result))
-        })
-        .catch((err)=>{
-            console.error(err)
-        })
-        const line = require('@line/bot-sdk');
+        // fetch(withQuery('https://squwbs-252702.appspot.com/linegetmessage', {
+        //     mode:'cors'
+        // }))
+        // .then(result=>{
+        //     setContent({...content,...result.message})
+        //     console.log('Message.js 123:',stringifyObject(result))
+        // })
+        // .catch((err)=>{
+        //     console.error(err)
+        // })
+        // const line = require('@line/bot-sdk');
 
         
         
@@ -138,6 +161,8 @@ const Message = (props)=> {
         //     // error handling
         //     });
         // });
+
+        
          
     }
 
@@ -146,19 +171,22 @@ const Message = (props)=> {
         setWidth(Dimensions.get('window').width)
     }
     const handleLoad=()=>{
-        const attachit=()=>{
-            if(!document){
+        console.log('message.js 174 handleLoad function fired')
+        const attachit=()=>{ 
+            if(!window){
+                console.log('message.js 177 document not loaded..')
                 window.requestAnimationFrame(attachit);
-            }  
+            } 
             else{
-                document.addEventListener('firebaseMessageReceived',function(event){
+                console.log('message.js 181 document not loaded adding event listeners')
+                window.addEventListener('firebaseMessageReceived',function(event){
                     //below code was tested.
                     console.log("fcm from message.js 177: ",event.detail.message)
                 })
                 // document.addEventListener('firebaseTokenReceived',function(event){
                 //     console.log("Token from message.js 180: ",event.detail.message)
                 // })
-                document.addEventlistener("beforeunload",function(e){
+                window.addEventlistener("beforeunload",function(e){
                     fetch('https://squwbs-252702.appspot.com/logout')
                     .then(()=>{
                         console.log('successfully logged out')
@@ -168,8 +196,9 @@ const Message = (props)=> {
                     })
                 })
             } 
-
+            
         }
+        attachit()
         
     }
   

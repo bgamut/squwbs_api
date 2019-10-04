@@ -92,5 +92,5 @@ messaging.requestPermission()
 messaging.onMessage(function(payload){
   console.log('onMessage:',payload)
   //event listener need to be implemented in the react code
-  document.dispatchEvent(firebaseMessageReceived(payload))
+  window.dispatchEvent(firebaseMessageReceived(payload))
 })

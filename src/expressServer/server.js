@@ -34,6 +34,7 @@ const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+var flash = require('connect-flash')
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
     ,authDomain:NODE_ENV.FIREBASE_AUTH_DOMAIN
@@ -58,8 +59,10 @@ var firebaseServiceKey = {
 
 admin.initializeApp({
   credential:admin.credential.cert(firebaseServiceKey),
+  //credential:admin.credential.applicationDefault()
   databaseURL:firebaseConfig.databaseURL
 })
+
 
 
 module.exports.expressServer = function (portnumber){
@@ -134,6 +137,7 @@ app.set('view engine','ejs')
 //app.use(require('cookie-parser')());
 //app.use(favicon(path.join(__dirname, '../../build', 'favicon.ico')))
 app.use((err, req, res, next) => {
+  res.locals.session = req.session
   if (err instanceof SignatureValidationFailed) {
     res.status(401).send(err.signature)
     return
@@ -154,7 +158,7 @@ app.use(session(
     store: new MongoStore(
       {
         url:NODE_ENV.MONGO_URI, 
-        ttl:3600, 
+        ttl:900, 
         secret:'squirrel',
         autoRemove:'interval', 
         autoRemoveInterval:60
@@ -162,6 +166,7 @@ app.use(session(
     )
   }
 ));
+app.use(flash())
 app.use(express.static(path.join(__dirname, '../../build')));
 app.use(express.static(path.join(__dirname, 'html/*/*')));
 // app.use(cookieSession({
@@ -789,22 +794,63 @@ app.post('/linewebhook'
 //   //res.json({token:req.body.token})
 // })
 app.get('/firebaseMessage',cors(),(req,res)=>{
+  // function getGoogleAccessToken(){
+  //   return new Promise(function(resolve, reject) {
+  //     var key = require('./service-account.json');
+  //     var jwtClient = new google.auth.JWT(
+  //       key.client_email,
+  //       null,
+  //       key.private_key,
+  //       SCOPES,
+  //       null
+  //     );
+  //     jwtClient.authorize(function(err, tokens) {
+  //       if (err) {
+  //         reject(err);
+  //         return;
+  //       }
+  //       resolve(tokens.access_token);
+  //     });
+  //   });
+  // }
+  // getGoogleAccessToken()
+  // .then((accessToken)=>{
+  //   var message=req.query.message
+  //   var topic = req.query.topic
+  //   var payload = {
+  //     data:{
+  //       message:message
+  //     },
+  //     topic:topic
+  //     // token:NODE_ENV.FIREBASE_KEY_PAIR
+  //   }
+  //   //admin.messaging().send(payload)
+  //   admin.messagingToTopic(topic,payload)
+  //     .then((response)=>{
+  //       res.send({success:response, payload:payload})
+  //     })
+  // })
+  // .catch((err)=>{
+  //   res.send({error:err})
+  // })
   var message=req.query.message
   var topic = req.query.topic
   var payload = {
     data:{
-      message:message,
-      topic:topic
+      message:message
     },
+    topic:topic
     // token:NODE_ENV.FIREBASE_KEY_PAIR
   }
-  admin.messaging().send(message)
+  //admin.messaging().send(payload)
+  admin.messaging.sendToTopic(topic,payload)
     .then((response)=>{
-      res.send({message:'successfully sent message', message})
+      res.send({success:response, payload:payload})
     })
     .catch((err)=>{
-      res.send({message:'error sending message:',err})
+      res.send({error:err})
     })
+
 })
 
 app.get('/firebaseToken',(req,res)=>{
@@ -822,14 +868,15 @@ app.get('/firebaseToken',(req,res)=>{
   var deviceTokens=[]
   deviceTokens.push(req.query.token)
   admin.messaging().subscribeToTopic(deviceTokens,'chat')
-    .then(function(res){
-      console.log('server.js 784 Successfully subscribed to topic:', res);
+    .then(function(result){
+      console.log('server.js 826 Successfully subscribed to topic:', result);
+      //res.json({result:result})
     })
     .catch(function(err){
-      console.log('server.js 787 error subscribing to topic:',err)
+      console.log('server.js 829 error subscribing to topic:',err)
     })
   res.cookie('firebaseToken', req.query.token ,options);
-  res.json({token:req.query.token})
+  
 })
 app.get('/linesendmessage',cors(),(req,res)=>{
   //console.log('682:',stringifyObject(req.query.text))
