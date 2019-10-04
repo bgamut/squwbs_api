@@ -16,11 +16,12 @@ import iglogo from './icons/iglogo.svg'
 
 import './css/iconHover.css'
 
+import openSocket from 'socket.io-client';
 const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
 const axios = require('axios')
 const io = require('socket.io')
-import openSocket from 'socket.io-client';
+
 
 const _ = require('lodash')
 
@@ -82,7 +83,7 @@ const Message = (props)=> {
         .catch(function(error){
             console.log('message 82 err:',error)
         })
-        
+
         setTextValue('')
         //return ()=>cancel()
 
