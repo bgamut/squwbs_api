@@ -56,7 +56,7 @@ const Message = (props)=> {
    
 
     const [textValue,setTextValue] = useState('')
-    
+    var refreshInterval
     const handleKeyPress=(e)=>{
         
         setTextValue(e.target.value)
@@ -227,6 +227,7 @@ const Message = (props)=> {
                         console.log('logout error : ',err)
                     })
                     //tcpClient.destroy()
+                    clearInterval(refreshInterval)
                 })
             } 
             
@@ -325,7 +326,8 @@ const Message = (props)=> {
                 //console.error(err)
             })
         }
-        setInterval(updateMessages,15000)
+        refreshInterval = setInterval(updateMessages,15000)
+        
     },[])
 
     useEffect(()=>{
