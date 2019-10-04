@@ -186,7 +186,7 @@ const Message = (props)=> {
                 // document.addEventListener('firebaseTokenReceived',function(event){
                 //     console.log("Token from message.js 180: ",event.detail.message)
                 // })
-                window.addEventlistener("beforeunload",function(e){
+                window.addEventListener("beforeunload",function(e){
                     fetch('https://squwbs-252702.appspot.com/logout')
                     .then(()=>{
                         console.log('successfully logged out')
