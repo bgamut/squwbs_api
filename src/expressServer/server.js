@@ -839,16 +839,23 @@ app.get('/firebaseMessage',cors(),(req,res)=>{
     data:{
       message:message
     },
-    topic:topic
+    // notification:{
+    //   title:'test title from server.js',
+    //   body:message
+    // }
+    //topic:topic
     // token:NODE_ENV.FIREBASE_KEY_PAIR
   }
   //admin.messaging().send(payload)
-  admin.messaging.sendToTopic(topic,payload)
+  admin.messaging().sendToTopic(topic,payload)
     .then((response)=>{
       res.send({success:response, payload:payload})
+      console.log('messaging successful', response)
     })
     .catch((err)=>{
+
       res.send({error:err})
+      console.log('error messaging')
     })
 
 })
