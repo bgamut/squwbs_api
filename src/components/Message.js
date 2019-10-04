@@ -11,19 +11,34 @@ import stringifyObject from 'stringify-object'
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
+import * as firebase from 'firebase/app'
+//import * as functions from 'firebase-functions'
+//import * as admin from 'firebase-admin'
+//import 'firebase/functions'
+//import 'firebase/auth'
+//import 'firebase/firestore'
+//import * as functions from 'firebase-functions'
 
 //var client
 
 import './css/iconHover.css'
 
-import openSocket from 'socket.io-client';
+//import openSocket from 'socket.io-client';
+// var net = require('node-net')
+// var tcpClient = new net()
+// console.log('Message.js 28:',tcpClient)
+
 const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
 const axios = require('axios')
-const io = require('socket.io')
-
-
+//const io = require('socket.io')
+//var admin = require('firebase-admin')
+//const functions = require('firebase-functions');
 const _ = require('lodash')
+
+
+
+
 
 
 
@@ -68,20 +83,34 @@ const Message = (props)=> {
         let topic='chat'
         console.log(textValue)
         // let cancel
+        // axios({
+        //     method:'GET',
+        //     url:'https://squwbs-252702.appspot.com/firebaseMessage',
+        //     params:{
+        //         message:message,
+        //         topic:topic
+        //     },
+        //     // cancelToken: new axios.CancelToken((c)=>{cancel=c})
+        // })
+        // .then(function(response){
+        //     console.log('message 79 response:',response)
+        // })
+        // .catch(function(error){
+        //     console.log('message 82 err:',error)
+        // })
         axios({
             method:'GET',
-            url:'https://squwbs-252702.appspot.com/firebaseMessage',
+            url:'https://squwbs-252702.appspot.com/saysomething',
             params:{
                 message:message,
-                topic:topic
             },
             // cancelToken: new axios.CancelToken((c)=>{cancel=c})
         })
         .then(function(response){
-            console.log('message 79 response:',response)
+            console.log('message 120 response:',response)
         })
         .catch(function(error){
-            console.log('message 82 err:',error)
+            console.log('message 123 err:',error)
         })
 
         setTextValue('')
@@ -197,6 +226,7 @@ const Message = (props)=> {
                     .catch((err)=>{
                         console.log('logout error : ',err)
                     })
+                    //tcpClient.destroy()
                 })
             } 
             
@@ -214,18 +244,18 @@ const Message = (props)=> {
             console.log('got result from user fetch')
             return result.json()
             })
-            .then((json)=>{
-            //setState({...state,userData:{...json}})
-            setClient(new line.Client({
-                channelAccessToken:json.token
-            }))
-            setBotID(json.id)
-            console.log(stringifyObject(json))
-            return json
-            })
-            .catch((err)=>{
-            console.error(err)
-            })
+        .then((json)=>{
+        //setState({...state,userData:{...json}})
+        setClient(new line.Client({
+            channelAccessToken:json.token
+        }))
+        setBotID(json.id)
+        console.log(stringifyObject(json))
+        return json
+        })
+        .catch((err)=>{
+        console.error(err)
+        })
         Dimensions.addEventListener('change',(e)=>{
             updateDimensions()
         })
@@ -234,13 +264,68 @@ const Message = (props)=> {
         //handleGet()
         console.log('fcm addEventListener test')
         window.addEventListener('load',handleLoad())
+       
         
-       // const socket = openSocket('https://squwbs-252702.appspot.com/8080');
+        //const socket = openSocket('https://squwbs-252702.appspot.com/8080');
         //const socket = io('https://squwbs-252702.appspot.com/8080')
-        const socket = io()
-        socket.on('chat-message',data=>{
-            console.log(data)
-        })
+        //const socket = io()
+        // socket.on('chat-message',data=>{
+        //     console.log("message.js 242:",data)
+        // })
+        //socket.emit('chat message','first message from message.js!')
+        // admin.initializeApp({
+        //     //credential:admin.credential.cert(firebaseServiceKey),
+        //     credential:admin.credential.applicationDefault(),
+        //     databaseURL:'https://assistant-569a2.firebaseio.com'
+        //   })
+        //   functions.database 
+        //     .ref('/chat')
+        //     .onWrite((change,context)=>{
+        //     console.log('firebase function fired from message.js 258',change.after.val())
+        //   })
+
+        //var defaultProject = firebase.initializeApp(firebaseConfig)
+        //defaultProject.firestore().onUpdate(change=>)
+        //console.log('ready to be disappointed',defaultProject.functions())
+
+        // var defaultFunctions= defaultProject.functions()
+        // admin.initializeApp()
+        // functions.database 
+        //     .ref('/chat/{pushId}/chat')
+        //     .onUpdate((change,context)=>{
+        //     console.log('firebase function fired from message.js 298',change.after.val())
+        // })
+        // functions.database
+        //     .ref('chat/{pushId}/chat')
+        //     .onCreate((snapshot,context)=>{
+        //         const original = snapshot.val()
+        //         console.log('firebase function fired from message.js 304',original)
+        //     })
+        
+        // tcpClient.connect(1337,'https://squwbs-252702.appspot.com/',function(){
+        //     console.log('message.js 303 : connected net.Socket()' )
+        //     tcpClient.write('hello, server!')
+        // })
+        // tcpClient.on('data',function(data){
+        //     console.log('Received data from server! : ' + data)
+        // })
+        function updateMessages(){
+            fetch(withQuery('https://squwbs-252702.appspot.com/socket.io', {
+                mode:'cors'
+            }))
+            .then(result=>{
+                //console.log('Message.js 317 got result from socket.io fetch')
+                return result.json()
+            })
+            .then((json)=>{
+                console.log(json)
+                //console.log('Message.js 317 :',json)
+            })
+            .catch((err)=>{
+                //console.error(err)
+            })
+        }
+        setInterval(updateMessages,15000)
     },[])
 
     useEffect(()=>{

@@ -45,6 +45,14 @@ const firebaseMessageReceived =(message)=> {
 
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging()
+// const functions = firebase.functions()
+
+// const onMessageCreate = functions.database 
+// .ref('chat')
+// .onCreate((snapshot,context)=>{
+//   console.log('firebase function fired from initFirebase.js',snapshot.val())
+// })
+
 messaging.usePublicVapidKey('BJKrJ_yZxUsiW1CJR0DB-5pJrKG7VzWtrSp6a0C-OTx1IQrV0KcW8xLIjuB5pMRo5aiV6xDw0wt3Q45TT7bB_CI')
 //following needs to be consumed in 
 //document.firebaseMessaging=messaging

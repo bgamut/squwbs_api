@@ -27,15 +27,25 @@ const linemiddleware = require('@line/bot-sdk').middleware
 const JSONParseError = require('@line/bot-sdk').JSONParseError
 const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
 var https = require('https')
-var http = require('http')
+//var http = require('http')
 const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN})
 const mongourlStringExpress='https://squwbs-252702.appspot.com/mongouri'
 const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const functions = require('firebase-functions');
+
 
 var flash = require('connect-flash')
+var net = require('net')
+
+var server = net.createServer(function(socket){
+  socket.write('Echo server\r\n')
+  socket.pipe(socket)
+})
+server.listen(1337)
+
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
     ,authDomain:NODE_ENV.FIREBASE_AUTH_DOMAIN
@@ -65,8 +75,16 @@ admin.initializeApp({
   //credential:admin.credential.applicationDefault()
   databaseURL:firebaseConfig.databaseURL
 })
-
-
+functions.database 
+  .ref('chat')
+  .onWrite((change,context)=>{
+  console.log('firebase function fired from message.js 75',change.after.val())
+})
+functions.database 
+    .ref('chat')
+    .onUpdate((change,context)=>{
+    console.log('firebase function fired from message.js 80',change.after.val())
+})
 
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
@@ -127,11 +145,19 @@ passport.deserializeUser(function(obj, cb) {
 
 var app = express();
 
-const ioserver = http.Server(app)
-const io = require('socket.io')(ioserver)
-io.on('connection',socket => {
-  socket.emit('chat-message','hello world')
-})
+//const http = require('http').createServer(app)
+// const io = require('socket.io')(http)
+// io.on('connection',function(socket){
+//   console.log('there was a connection by socket io')
+//   // socket.emit('chat-message','hello world')
+//   socket.on('chat message', function(msg){
+//     console.log('message: ' + msg);
+//   });
+//   socket.on('disconnet',function(){
+//     console.log('user disconnected')
+//   })
+// })
+
 
 //http.createServer(app).listen(80)
 //https.createServer({}, app).listen(443)
@@ -870,6 +896,19 @@ app.get('/firebaseMessage',cors(),(req,res)=>{
     })
 
 })
+app.get('/firebaseclientcredential',(req,res)=>{
+  var clientFirebaseConfig = {
+    apiKey: NODE_ENV.FIREBASE_API_KEY,
+    authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    appId: NODE_ENV.FIREBASE_APP_ID,
+    measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.json(clientFirebaseConfig)
+})
 
 app.get('/firebaseToken',(req,res)=>{
   //res.send(req.body)
@@ -1515,6 +1554,48 @@ app.get('/getwordlistfrommongo',cors(),(req,res)=>{
   
 })
 
+app.get('/saysomething',cors(),(req,res)=>{
+  var obj = req.query
+  function saysomething(chatInput,func){
+    
+    var db = admin.database()
+    var ref = db.ref('chat')
+    ref.once('value',function(snapshot){
+        var chathistory=snapshot.val()
+        console.log(chathistory)
+        if(chathistory==undefined){
+            chathistory={0:{chat:chatInput.message}}
+        }
+        else{
+            chathistory.push({chat:chatInput.message})
+        }
+        ref.set(chathistory,function(error){
+          if(error){
+            console.log(error)
+            res.setHeader('Content-Type','application/json')
+            //res.send({message:message})
+            //func(error)
+            func(error)
+          }
+          else{
+            console.log('callback fired in /saysomething')
+            //func(words)
+            res.setHeader('Content-Type','application/json')
+            //res.send({message:message})
+            func(chatInput)
+          }
+
+        })
+    })
+}
+  function sendSuccess(message){
+  res.send({message:message})
+}
+  saysomething(obj,sendSuccess)
+  
+})
+
+
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
   function addWord({word,meaning,pronunciation,example},func){
@@ -1801,7 +1882,16 @@ app.get('/ebay',cors(),(req,res)=>{
     })
 
 })
-
+app.get('/socket.io',cors(),(req,res)=>{
+  const timestamp=new Date()
+  res.send({time:timestamp})
+  //console.log('server.js 1806 : ', req.query)
+})
+app.post('/socket.io',cors(),(req,res)=>{
+  const timestamp=new Date()
+  res.send({time:timestamp})
+  //console.log('server.js 1806 : ', req.query)
+})
 app.get('/mobileCheck',cors(),(req,res)=>{
   //the following doesn't really give us any useful info besides the fact that it gives us maxwidth
   var md = new mobileDetect(req.headers['user-agent'])
