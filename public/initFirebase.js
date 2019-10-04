@@ -45,6 +45,7 @@ const firebaseMessageReceived =(message)=> {
 
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging()
+messaging.usePublicVapidKey('BJKrJ_yZxUsiW1CJR0DB-5pJrKG7VzWtrSp6a0C-OTx1IQrV0KcW8xLIjuB5pMRo5aiV6xDw0wt3Q45TT7bB_CI')
 //following needs to be consumed in 
 //document.firebaseMessaging=messaging
 console.log("this is firebase in action",messaging)
@@ -88,9 +89,39 @@ messaging.requestPermission()
 .catch((e)=>{
   console.log('permission denied',e)
 })
+messaging.onTokenRefresh(() => {
+  messaging.getToken().then((refreshedToken) => {
+    console.log('Token refreshed.');
+    // Indicate that the new Instance ID token has not yet been sent to the
+    // app server.
+    //setTokenSentToServer(false);
+    // Send Instance ID token to app server.
+    //sendTokenToServer(refreshedToken);
+    firebaseTokenReceived(refreshedToken)
+    // ...
+  }).catch((err) => {
+    console.log('Unable to retrieve refreshed token ', err);
+    showToken('Unable to retrieve refreshed token ', err);
+  });
+});
 
 messaging.onMessage(function(payload){
   console.log('onMessage:',payload)
   //event listener need to be implemented in the react code
   window.dispatchEvent(firebaseMessageReceived(payload))
 })
+
+// messaging.setBackgroundMessageHandler(function(payload) {
+//   console.log('[firebase-messaging-sw.js] Received background message ', payload);
+//   // Customize notification here
+//   // const notificationTitle = 'Background Message Title';
+//   // const notificationOptions = {
+//   //   body: 'Background Message body.',
+//   //   icon: '/firebase-logo.png'
+//   // };
+//   const notificationTitle=payload.notification.title
+//   const notificationOptionss=payload.notification.body
+
+//   return self.registration.showNotification(notificationTitle,
+//     notificationOptions);
+// });

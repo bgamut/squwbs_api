@@ -34,6 +34,7 @@ const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+
 var flash = require('connect-flash')
 var firebaseConfig = {
     apiKey:NODE_ENV.FIREBASE_API_KEY
@@ -56,6 +57,8 @@ var firebaseServiceKey = {
     "auth_provider_x509_cert_url": NODE_ENV.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url": NODE_ENV.FIREBASE_CLIENT_x509_CERT_URL,
 }
+
+
 
 admin.initializeApp({
   credential:admin.credential.cert(firebaseServiceKey),
@@ -123,6 +126,13 @@ passport.deserializeUser(function(obj, cb) {
 
 
 var app = express();
+
+const ioserver = http.Server(app)
+const io = require('socket.io')(http)
+io.on('connection',socket => {
+  socket.emit('chat-message','hello world')
+})
+
 //http.createServer(app).listen(80)
 //https.createServer({}, app).listen(443)
 // require('express-engine-jsx').attachTo(app, {
@@ -836,18 +846,19 @@ app.get('/firebaseMessage',cors(),(req,res)=>{
   var message=req.query.message
   var topic = req.query.topic
   var payload = {
-    data:{
-      message:message
-    },
-    // notification:{
-    //   title:'test title from server.js',
-    //   body:message
-    // }
+    // data:{
+    //   message:message
+    // },
+    notification:{
+      title:'test title from server.js',
+      body:message
+    }
     //topic:topic
     // token:NODE_ENV.FIREBASE_KEY_PAIR
   }
   //admin.messaging().send(payload)
   admin.messaging().sendToTopic(topic,payload)
+ 
     .then((response)=>{
       res.send({success:response, payload:payload})
       console.log('messaging successful', response)
@@ -874,6 +885,7 @@ app.get('/firebaseToken',(req,res)=>{
   console.log('get firebaseToken query', stringifyObject(req.query))
   var deviceTokens=[]
   deviceTokens.push(req.query.token)
+  
   admin.messaging().subscribeToTopic(deviceTokens,'chat')
     .then(function(result){
       console.log('server.js 826 Successfully subscribed to topic:', result);

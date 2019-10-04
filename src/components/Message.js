@@ -19,7 +19,8 @@ import './css/iconHover.css'
 const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
 const axios = require('axios')
-
+const io = require('socket.io')
+import openSocket from 'socket.io-client';
 
 const _ = require('lodash')
 
@@ -27,7 +28,7 @@ const _ = require('lodash')
 
 
 const Message = (props)=> {
-  
+    
     const [height,setHeight]=useState(0)
     const [width,setWidth]=useState(0)
     const [client,setClient]=useState()
@@ -232,7 +233,12 @@ const Message = (props)=> {
         console.log('fcm addEventListener test')
         window.addEventListener('load',handleLoad())
         
-        
+       // const socket = openSocket('https://squwbs-252702.appspot.com/8080');
+        //const socket = io('https://squwbs-252702.appspot.com/8080')
+        const socket = io()
+        socket.on('chat-message',data=>{
+            console.log(data)
+        })
     },[])
 
     useEffect(()=>{
