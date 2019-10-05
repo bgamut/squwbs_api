@@ -18,6 +18,7 @@ const fs =require('fs')
 var cookieParser = require('cookie-parser')
 var mobileDetect = require('mobile-detect')
 var admin = require('firebase-admin')
+const functions = require('firebase-functions');
 const stringifyObject= require('stringify-object')
 const uuidv4 = require('uuid/v4')
 const mongoose = require('mongoose');
@@ -34,7 +35,7 @@ const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const functions = require('firebase-functions');
+
 
 
 var flash = require('connect-flash')
@@ -81,9 +82,9 @@ functions.database
   console.log('firebase function fired from message.js 75',change.after.val())
 })
 functions.database 
-    .ref('chat')
-    .onUpdate((change,context)=>{
-    console.log('firebase function fired from message.js 80',change.after.val())
+  .ref('chat')
+  .onUpdate((change,context)=>{
+  console.log('firebase function fired from message.js 80',change.after.val())
 })
 
 module.exports.expressServer = function (portnumber){
@@ -536,6 +537,7 @@ app.get('/download',function(req,res){
   res.download(__dirname+'/squwbs.zip')
 
 })
+
 app.get('/info',function(req,res){
   console.log('we in /info')
   
@@ -594,6 +596,7 @@ app.get('/info',function(req,res){
         var picked = soldHistory.find(sold=>sold.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
         if(picked==undefined){
           soldHistory.push(soldItemsStructure)
+          
         }
         else{
           //global.index=soldHistory.findIndex(sold=>sold.ownder.provider[copy.provider]==copy.providerid)
@@ -615,9 +618,12 @@ app.get('/info',function(req,res){
             if(index==undefined){
               //soldHistory[index].items.push(soldItemsStructure.items[i])
               picked.items.push(soldItemsStructure.items[i])
+              
             }
           }
         }
+        var storeHistory = store.doc('data/users/'+String(global[tempUUID].provider)+'/'+String(global[tempUUID].providerid))
+        storeHistory.set(soldItemsStructure)
       }
       ref.set(soldHistory,function(error){
         if(error){
@@ -907,7 +913,111 @@ app.get('/firebaseclientcredential',(req,res)=>{
     appId: NODE_ENV.FIREBASE_APP_ID,
     measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
   };
-  res.json(clientFirebaseConfig)
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccapikey',(req,res)=>{
+  var clientFirebaseConfig = {
+    apiKey: NODE_ENV.FIREBASE_API_KEY,
+    // authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    // databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    // projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    // storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    // messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    // appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccauthdomain',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    // databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    // projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    // storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    // messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    // appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccdatabaseurl',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    //authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    // projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    // storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    // messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    // appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccprojectid',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    //authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    //databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    // storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    // messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    // appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccstorageucket',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    //authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    //databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    //projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    // messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    // appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccmessagingsenderid',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    //authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    //databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    //projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    //storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    // appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccappid',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    //authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    //databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    //projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    //storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    //messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    appId: NODE_ENV.FIREBASE_APP_ID,
+    // measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
+})
+app.get('/fccmeasurementid',(req,res)=>{
+  var clientFirebaseConfig = {
+    //apiKey: NODE_ENV.FIREBASE_API_KEY,
+    //authDomain: NODE_ENV.FIREBASE_AUTH_DOMAIN,
+    //databaseUrl:NODE_ENV.FIREBASE_DATABASE_URL,
+    //projectId: NODE_ENV.FIREBASE_PROJECT_ID,
+    //storageBucket: NODE_ENV.FIREBASE_STORAGE_BUCKET,
+    //messagingSenderId: NODE_ENV.FIREBASE_MESSAGING_SENDER_ID,
+    //appId: NODE_ENV.FIREBASE_APP_ID,
+    measurementId: NODE_ENV.FIREBASE_MEASUREMENT_ID,
+  };
+  res.send(clientFirebaseConfig)
 })
 
 app.get('/firebaseToken',(req,res)=>{

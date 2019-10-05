@@ -11,7 +11,7 @@ import stringifyObject from 'stringify-object'
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
-import * as firebase from 'firebase/app'
+//import * as firebase from 'firebase/app'
 //import * as functions from 'firebase-functions'
 //import * as admin from 'firebase-admin'
 //import 'firebase/functions'
@@ -32,9 +32,12 @@ const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
 const axios = require('axios')
 //const io = require('socket.io')
-//var admin = require('firebase-admin')
+
 //const functions = require('firebase-functions');
 const _ = require('lodash')
+const firebase = require('firebase')
+var admin = require('firebase-admin')
+const functions = require('firebase-functions')
 
 
 
@@ -310,11 +313,31 @@ const Message = (props)=> {
         // tcpClient.on('data',function(data){
         //     console.log('Received data from server! : ' + data)
         // })
+        fetch('https://squwbs-252702.appspot.com/fccapikey')
+            .then((result)=>{
+                console.log('message.js 317', result.json)
+                return result.json
+            })
+            .then((json)=>{
+                firebase.initializeApp(json)
+                console.log('this is from firebase initialized message.js 322:',json)
+                //var functions = firebase.functions()
+                console.log(functions)
+                functions.firestore.document('/data/user').onUpdate((change)=>{
+                    const after = change.after.data()
+                    console.log('message.js 328 : ', after)
+                })
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        
+        
         function updateMessages(){
             fetch(withQuery('https://squwbs-252702.appspot.com/socket.io', {
                 mode:'cors'
             }))
-            .then(result=>{
+            .then((result)=>{
                 //console.log('Message.js 317 got result from socket.io fetch')
                 return result.json()
             })
