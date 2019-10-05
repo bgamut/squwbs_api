@@ -35,9 +35,10 @@ const axios = require('axios')
 
 //const functions = require('firebase-functions');
 const _ = require('lodash')
-const firebase = require('firebase')
-var admin = require('firebase-admin')
-const functions = require('firebase-functions')
+
+// const firebase = require('firebase')
+// var admin = require('firebase-admin')
+// const functions = require('firebase-functions')
 
 
 
@@ -319,14 +320,14 @@ const Message = (props)=> {
                 return result.json
             })
             .then((json)=>{
-                firebase.initializeApp(json)
-                console.log('this is from firebase initialized message.js 322:',json)
-                //var functions = firebase.functions()
-                console.log(functions)
-                functions.firestore.document('/data/user').onUpdate((change)=>{
-                    const after = change.after.data()
-                    console.log('message.js 328 : ', after)
-                })
+                // firebase.initializeApp(json)
+                // console.log('this is from firebase initialized message.js 322:',json)
+                
+                // console.log(functions)
+                // functions.firestore.document('/data/user').onUpdate((change)=>{
+                //     const after = change.after.data()
+                //     console.log('message.js 328 : ', after)
+                // })
             })
             .catch((err)=>{
                 console.log(err)
