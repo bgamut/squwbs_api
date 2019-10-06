@@ -1773,7 +1773,9 @@ app.get('/getwordlistfrommongo',cors(),(req,res)=>{
 
 app.get('/saysomething',cors(),(req,res)=>{
   var obj = req.query
-  function saysomething(chatInput,func){
+  var cookies= req.signedCookies
+  console.log('server 1777:', cookies)
+  function saysomething(chatInput,cookies,func){
     
     var db = admin.database()
     var ref = db.ref('chat')
@@ -1781,10 +1783,22 @@ app.get('/saysomething',cors(),(req,res)=>{
         var chathistory=snapshot.val()
         console.log(chathistory)
         if(chathistory==undefined){
-            chathistory={0:{chat:chatInput.message}}
+            chathistory={0:
+              {
+                userProvier:cookies.provider,
+                userProvierID:cookies.providerid,
+                chat:chatInput.message,
+              }
+            }
         }
         else{
-            chathistory.push({chat:chatInput.message})
+            chathistory.push(
+                              {
+                                userProvier:cookies.provider,
+                                userProvierID:cookies.providerid,
+                                chat:chatInput.message,
+                              }
+                            )
         }
         ref.set(chathistory,function(error){
           if(error){
@@ -1792,27 +1806,32 @@ app.get('/saysomething',cors(),(req,res)=>{
             res.setHeader('Content-Type','application/json')
             //res.send({message:message})
             //func(error)
-            func(error)
+            //func(error)
+            res.send(error)
           }
           else{
             console.log('callback fired in /saysomething')
             //func(words)
             res.setHeader('Content-Type','application/json')
             //res.send({message:message})
-            func(chatInput)
+            func({
+              userProvier:cookies.provider,
+              userProvierID:cookies.providerid,
+              chat:chatInput.message,
+            })
           }
 
         })
     })
 }
-  function sendSuccess(message){
+  function sendSuccess(object){
   if (chatHistory.length>=100){
     chatHistory.splice(0,1)
   }
-    chatHistory.push(message)
-  res.send({message:message})
+    chatHistory.push(object)
+    res.send(object)
 }
-  saysomething(obj,sendSuccess)
+  saysomething(obj,cookies,sendSuccess)
   
 })
 

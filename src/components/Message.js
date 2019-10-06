@@ -104,14 +104,23 @@ const Message = (props)=> {
         // .catch(function(error){
         //     console.log('message 82 err:',error)
         // })
-        axios({
-            method:'GET',
-            url:'https://squwbs-252702.appspot.com/saysomething',
-            params:{
-                message:message,
-            },
-            // cancelToken: new axios.CancelToken((c)=>{cancel=c})
-        })
+        // axios({
+        //     method:'GET',
+        //     url:'https://squwbs-252702.appspot.com/saysomething',
+        //     params:{
+        //         message:message,
+        //     },
+        //     // cancelToken: new axios.CancelToken((c)=>{cancel=c})
+        // })
+        var body={message:message}
+        fetch(
+            withQuery('https://squwbs-252702.appspot.com/saysomething'
+                ,{
+                    message:message,
+                    mode:'cors'
+                }   
+            )
+        )
         .then(function(response){
             console.log('message 120 response:',response)
         })
@@ -368,6 +377,7 @@ const Message = (props)=> {
           //console.log(sentence)
           //if(i==length){
             parent.push(
+            <View>
               <Text
                   style ={
                     {
@@ -387,6 +397,7 @@ const Message = (props)=> {
               >
                   {chat.message}
               </Text>
+            </View>
           )
          
         })
