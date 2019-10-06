@@ -15,6 +15,7 @@ import {Context} from '../context'
 import Fade from 'react-reveal/Fade'
 import './css/x.css'
 import './css/Fade.css'
+import './css/terms.css'
 //import AdSense from 'react-adsense';
 // import UploadWords from './UploadWords'
 // import SplitScreenV2 from './SplitScreenV2'
@@ -59,13 +60,16 @@ const Home = () => {
   //run()
   const [state,setState]=useState(Context)
   const [user,setUser]=useState({})
-  const [overlaySwitch,setOverlaySwitch]=useState(false)
+  const [loginOverlaySwitch,setLoginOverlaySwitch]=useState(false)
+  const [termsOverlaySwitch,setTermsOverlaySwitch]=useState(false)
   const [fade, setFade] =useState('true')
   const [height,setHeight]=useState(0)
-  const overlay=useRef('')
+  const [width,setWidth]=useState(0)
+  const loginOverlay=useRef('')
+  const termsOverlay=useRef('')
   const duration=270
   var animatedOpacity = new Animated.Value(0)
-  const overlayToggle=()=>{
+  const loginOverlayToggle=()=>{
     //console.log('popLogin from HOME')
     //console.log(overlay.current.props.style.zIndex)
     // if(overlay.current.props.style.zIndex==100){
@@ -80,8 +84,8 @@ const Home = () => {
     //     setOverlaySwitch(true)
     //     console.log('none to block')
     // }
-    if(overlaySwitch==false){
-      setOverlaySwitch(true)
+    if(loginOverlaySwitch==false){
+      setLoginOverlaySwitch(true)
       //setOverlayClassName('fadein')
       
       setFade(true)
@@ -102,7 +106,7 @@ const Home = () => {
       //console.log('waiting')
       setTimeout(function() {
         //console.log('waited '+ duration+' milliseconds');
-        setOverlaySwitch(false)
+        setLoginOverlaySwitch(false)
       }, duration);
       
       
@@ -119,11 +123,23 @@ const Home = () => {
     }
     
   }
+  const termsOverlayToggle=()=>{
+    if(loginOverlaySwitch==false){
+      setTermsOverlaySwitch(true)
+      setFade(true)
+    }
+    else{
+      setFade(false)
+      setTimeout(function() {
+        setTermsOverlaySwitch(false)
+      }, duration);
+    }  
+  }
   const overlayOff=()=>{
 
 
-      setOverlaySwitch(false)
-    
+      setLoginOverlaySwitch(false)
+      setTermsOverlaySwitch(false)
     
   }
   const getUserData=async()=>{
@@ -155,6 +171,7 @@ const Home = () => {
   }
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height))
+    setWidth(Math.floor(Dimensions.get('window').width))
     //style.height=Math.floor(Dimensions.get('window').height)
     //console.log('dimensions update')
     
@@ -215,7 +232,7 @@ const Home = () => {
           className=
           'invisible'
         > */}
-        {overlaySwitch && 
+        {loginOverlaySwitch && 
         
           <View
           
@@ -274,7 +291,7 @@ const Home = () => {
                   zIndex:101
               }}
               onPress={
-                  overlayToggle
+                  loginOverlayToggle
                   //overlayOff
               }
               activeOpacity={1}
@@ -426,12 +443,250 @@ const Home = () => {
           </TouchableOpacity>
         </a><br/>
         </View>
-          </View>
-        </Fade> 
-        </Fade>
+  
+
+      <View style={styles.box}>
+      <a style={
+        {
+          // flex:1,
+          textDecorationLine:'none',
+          //borderColor:'black',
+          //borderWidth:2,
+          backgroundColor:'transparent',
+          fontSize: 35,
+          fontWeight:'700',
+          textShadowColor: 'rgba(0, 0, 0, 0.5)',
+          textShadowOffset: {width: 0, height: 0},
+          textShadowRadius: 2,
+          // flex:1,
+          alignItems:'center',
+          justifyContent:'center',
+          flexDirection:'row',
+          textAlign:'center'
+        }
+      } href="https://app.termly.io/document/privacy-policy/2c6fc9b1-4ce8-4c04-b2df-e9c49d33e6c1">
+        <TouchableOpacity style={styles.touch}>
+
+        
+        <Text
+          selectable={false} 
+          style ={{
+              fontSize: 13,
+              fontWeight:'700',
+              textDecorationLine:'none',
+              color:'white',
+              
+              textShadowColor: 'rgba(0, 0, 0, 0.85)',
+              textShadowOffset: {width: 0, height: 0},
+              textShadowRadius: 2,
+              textAlign:'center',
+              alignItems:'center',
+              justifyContent:'center',
+              flexDirection:'row',
+              margin:11,
+              pointerEvents:'none'
+          }}
+        >
+          Privacy Policy
+        </Text>
+        </TouchableOpacity>
+      </a><br/>
+      </View>
+        </View>
+      </Fade> 
+      </Fade>
       </View>
       
-      }   
+      }  
+      {termsOverlaySwitch && 
+       <View
+          
+       // className={overlayClassName}
+       style={{
+           position:'fixed',
+           height:height,
+           width:'100%',
+           top:0,
+           left:0,
+           //backgroundColor:'rgba(0,0,0,0.4)',
+           //
+           
+           justifyContent:'center',
+           alignItems:'center',
+           zIndex:100,
+           //opacity:0,
+           //display:'block',
+          backgroundColor:'rgba(0,0,0,0.8)',
+       }}
+     >
+     <Fade
+     duration={duration}
+     timeout={duration}
+     >
+     <Fade
+       style={{
+         //backgroundColor:'orange',
+         height:height,
+         width:'100vw',
+       }}
+       when={fade}
+       duration={duration}
+       timeout={duration}
+     >
+       <View
+        style={{
+          height:50
+        }}
+       >
+        <TouchableOpacity
+              style={{
+                  position:'fixed',
+                  height:16,
+                  width:16,
+                  top:26,
+                  right:21,
+                  //backgroundColor:'white',
+                  zIndex:101
+              }}
+              onPress={
+                  //loginOverlayToggle
+                  overlayOff
+              }
+              activeOpacity={1}
+          >
+              <div
+                className='x'
+              >
+        
+              </div>
+              {/* <Text
+                  style={{
+                      fontSize:16,
+                      fontWeight:'700',
+                      color:'white',
+                      
+                  }}
+              >
+                  <i class="fas fa-times"></i>
+                  
+
+                
+              </Text> */}
+          </TouchableOpacity>
+         </View>
+         <ScrollView
+         // ref={ref=>this.myRef=ref}
+         style={{
+             // display:'absolute',f
+             // left:0,
+             height:height-50,
+             width:width,
+             //backgroundColor:'black',
+             backgroundColor:'rgb(0,0,0,0.99)',
+             margin:0,
+             flexDirection:'row',
+             padding:15
+             // paddingBottom:15,
+             // paddingRight:15,
+         }}
+
+         horizontal={false}
+     
+         showsHorizontalScrollIndicator={true}
+         snapeToAlignment='end'
+         decelerationRate="fast"
+     >
+       <View
+        style={{
+          height:'100%',
+          width:width-30,
+          backgroundColor:'transparent',
+          //backgroundColor:'rgb(175,175,175)',
+          margin:0,
+          flexDirection:'column',
+          padding:15
+        }}
+       >
+         <h1 >Terms and Conditions for squwbs</h1>
+
+         <h2>Introduction</h2> 
+         
+         <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, squwbs.com accessible at squwbs.com.</p>
+
+         <p>These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions. These Terms and Conditions have been generated with the help of the <a href="https://www.termsandcondiitionssample.com">Terms And Conditions Template</a>.</p>
+
+         <p>Minors or people below 18 years old are not allowed to use this Website.</p>
+
+         <h2>Intellectual Property Rights</h2>
+
+         <p>Other than the content you own, under these Terms, squwbs and/or its licensors own all the intellectual property rights and materials contained in this Website.</p>
+
+         <p>You are granted limited license only for purposes of viewing the material contained on this Website.</p>
+
+         <h2>Restrictions</h2>
+
+         <p>You are specifically restricted from all of the following:</p>
+
+         <ul>
+             <li>publishing any Website material in any other media;</li>
+             <li>selling, sublicensing and/or otherwise commercializing any Website material;</li>
+             <li>publicly performing and/or showing any Website material;</li>
+             <li>using this Website in any way that is or may be damaging to this Website;</li>
+             <li>using this Website in any way that impacts user access to this Website;</li>
+             <li>using this Website contrary to applicable laws and regulations, or in any way may cause harm to the Website, or to any person or business entity;</li>
+             <li>engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Website;</li>
+             <li>using this Website to engage in any advertising or marketing.</li>
+         </ul>
+
+         <p>Certain areas of this Website are restricted from being access by you and squwbs may further restrict access by you to any areas of this Website, at any time, in absolute discretion. Any user ID and password you may have for this Website are confidential and you must maintain confidentiality as well.</p>
+
+         <h2>Your Content</h2>
+
+         <p>In these Website Standard Terms and Conditions, "Your Content" shall mean any audio, video text, images or other material you choose to display on this Website. By displaying Your Content, you grant squwbs a non-exclusive, worldwide irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.</p>
+
+         <p>Your Content must be your own and must not be invading any third-party’s rights. squwbs reserves the right to remove any of Your Content from this Website at any time without notice.</p>
+
+         <h2>Your Privacy</h2>
+
+         <p>Please read Privacy Policy.</p>
+
+         <h2>No warranties</h2>
+
+         <p>This Website is provided "as is," with all faults, and squwbs express no representations or warranties, of any kind related to this Website or the materials contained on this Website. Also, nothing contained on this Website shall be interpreted as advising you.</p>
+
+         <h2>Limitation of liability</h2>
+
+         <p>In no event shall squwbs, nor any of its officers, directors and employees, shall be held liable for anything arising out of or in any way connected with your use of this Website whether such liability is under contract.  squwbs, including its officers, directors and employees shall not be held liable for any indirect, consequential or special liability arising out of or in any way related to your use of this Website.</p>
+
+         <h2>Indemnification</h2>
+
+         <p>You hereby indemnify to the fullest extent squwbs from and against any and/or all liabilities, costs, demands, causes of action, damages and expenses arising in any way related to your breach of any of the provisions of these Terms.</p>
+
+         <h2>Severability</h2>
+
+         <p>If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+
+         <h2>Variation of Terms</h2>
+
+         <p>squwbs is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected to review these Terms on a regular basis.</p>
+
+         <h2>Assignment</h2>
+
+         <p>The squwbs is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these Terms.</p>
+
+         <h2>Entire Agreement</h2>
+             
+         <p>These Terms constitute the entire agreement between squwbs and you in relation to your use of this Website, and supersede all prior agreements and understandings.</p>
+
+         <h2>Governing Law & Jurisdiction</h2>
+
+         <p>These Terms will be governed by and interpreted in accordance with the laws of the State of kr, and you submit to the non-exclusive jurisdiction of the state and federal courts located in kr for the resolution of any disputes.</p>
+        </View>  
+     </ScrollView>  
+     </Fade> 
+        </Fade>
+      </View> 
+      } 
       {/* </div>    */}
         {/* <AdSense.Google 
           client='NeM-xU1bQwBXyU8dz_MsINZX'
@@ -441,7 +696,8 @@ const Home = () => {
           format='fluid'
         />   */}
           <Drawer 
-            popLogin={overlayToggle}
+            popLogin={loginOverlayToggle}
+            popTerms={termsOverlayToggle}
           >
             <SwipeableScroller/>
           </Drawer>
@@ -594,7 +850,10 @@ const Home = () => {
   // }
   }
   const styles = StyleSheet.create({
-  
+    textH1:{
+      color:'white',
+      fontSize:25
+    },
     box:{
       margin:0,
       //padding:1,

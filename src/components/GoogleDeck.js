@@ -79,36 +79,72 @@ class GoogleDeck extends Component {
   }
   createPostsList = () =>{
     let parent = []
-    this.state.posts.map((post)=>{
+    //var length=this.state.posts.length
+    this.state.posts.map((post,i,arr)=>{
+      //console.log(arr)
+      //if(i==length){
         parent.push(
-            <View
-                style={{
-                    height:this.state.height-80,
-                    width:this.state.width-30,
-                    backgroundColor:'white',
-                    borderColor:'purple',
-                    borderWidth:'2',
-                    borderStyle:'solid',
-                    justifyContent:'center',
-                    alignItems:'center'
+          <View
+              id='lastPost'
+              style={{
+                  height:this.state.height-80,
+                  width:this.state.width-30,
+                  backgroundColor:'white',
+                  borderColor:'purple',
+                  borderWidth:'2',
+                  borderStyle:'solid',
+                  justifyContent:'center',
+                  alignItems:'center'
 
-                    // marginLeft:15,
-                    // mariginRight:15
-                }}
-            >
-                <GoogleCard
-                    title={post.title}
-                    date={post.date}
-                    picture={post.picture}
-                    writer={post.writer}
-                    youtubeID={post.youtubeID}
-                    post={post.post}
-                    stars={post.stars}
-                    comments={post.comments}
-                    hashs={post.hashs}
-                />
-            </View>
-        )
+                  // marginLeft:15,
+                  // mariginRight:15
+              }}
+          >
+              <GoogleCard
+                  title={post.title}
+                  date={post.date}
+                  picture={post.picture}
+                  writer={post.writer}
+                  youtubeID={post.youtubeID}
+                  post={post.post}
+                  stars={post.stars}
+                  comments={post.comments}
+                  hashs={post.hashs}
+              />
+          </View>
+      )
+      // }
+      // else{
+      //   parent.push(
+      //       <View
+      //           style={{
+      //               height:this.state.height-80,
+      //               width:this.state.width-30,
+      //               backgroundColor:'white',
+      //               borderColor:'purple',
+      //               borderWidth:'2',
+      //               borderStyle:'solid',
+      //               justifyContent:'center',
+      //               alignItems:'center'
+
+      //               // marginLeft:15,
+      //               // mariginRight:15
+      //           }}
+      //       >
+      //           <GoogleCard
+      //               title={post.title}
+      //               date={post.date}
+      //               picture={post.picture}
+      //               writer={post.writer}
+      //               youtubeID={post.youtubeID}
+      //               post={post.post}
+      //               stars={post.stars}
+      //               comments={post.comments}
+      //               hashs={post.hashs}
+      //           />
+      //       </View>
+      //   )
+      // }
     })
     return parent;
 }
@@ -163,7 +199,15 @@ class GoogleDeck extends Component {
       
     // this.requestWords()
     console.log(this.state)
-
+    var observerOptions ={
+      root: document.querySelector('#scrollArea'),
+      rootMargin: '0px',
+      threshold: 0.5
+    }
+    var observerCallback = function (entreis,observer){
+      console.log('GoogleDeck.js 206 : observer callback fired')
+    }
+    var observer = new IntersectionObserver(observerCallback,observerOptions)
   }
   componentDidUpdate(){
     

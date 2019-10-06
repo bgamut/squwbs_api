@@ -7,7 +7,8 @@ import {ScrollView,Image} from 'react-native'
 //import Catalogue from './screens/CatalogueScreen'
 //import Category from './screens/CategoryScreen'
 //import Product from './screens/ProductScreen'
-import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity} from 'react-native'
+//import A from 'react-native-a'
+import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity,Linking} from 'react-native'
 //import Icon from 'react-native-vector-icons/FontAwesome'
 //import {faFacebookSquare,faGoogle} from '@fortawesome/free-brands-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -37,6 +38,10 @@ const NavBarWithLogIn = (props) => {
   //   props.popLogin
   //   props.ShowSlidingDrawer
   // }
+  const toHash =(destination)=>{
+    Linking.openURL('/#'+destination)
+    props.ShowSlidingDrawer()
+  }
   const loginOverlay = ()=>{
     return(
       <View
@@ -280,7 +285,10 @@ const NavBarWithLogIn = (props) => {
           </View>
       </View>
       }       */}
-        <View style={styles.box}>
+        <View style={[styles.box,{
+          // justifyContent:'top',
+          alignItems:'top'
+        }]}>
         
           <TouchableOpacity style={styles.touch}
             // onPress={popLogin}
@@ -489,28 +497,28 @@ const NavBarWithLogIn = (props) => {
         </View> */}
         
         <View style={styles.box}>
-        <a style={
-          {
-            textDecorationLine:'none',
-  
-            backgroundColor:'transparent',
-            fontSize: 17,
-            fontWeight:700,
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-            textAlign:'center'
-          }
-        } href="/#sound">
+        
           <TouchableOpacity 
             style={styles.touch}
             onPress={props.ShowSlidingDrawer}
+            //onPress={toHash('sound') }
           >
-         
+         <a style={{
+          textDecorationLine:'none',
+      margin:0,
+      padding:0,
+      backgroundColor:'transparent',
+      fontSize: 17,
+      fontWeight:'700',
+      textShadowColor: 'rgba(0, 0, 0, 0.5)',
+      textShadowOffset: {width: 0, height: 0},
+      textShadowRadius: 2,
+      height:45,
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      textAlign:'center'
+        }} href="/#sound">
           <Text id="Sound" 
           style={{
 
@@ -528,28 +536,28 @@ const NavBarWithLogIn = (props) => {
             flexDirection:'row',
           }}
           >Sound</Text>
+          </a>
           </TouchableOpacity>
-        </a><br/>
+        
         </View>
         
         <View style={styles.box}>
-        <a style={
-          {
-            textDecorationLine:'none',
-  
-            backgroundColor:'transparent',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-            textAlign:'center'
-          }
-        } href="/#follow">
+        <a style={{
+          textDecorationLine:'none',
+      margin:0,
+      padding:0,
+      backgroundColor:'transparent',
+      fontSize: 17,
+      fontWeight:'700',
+      textShadowColor: 'rgba(0, 0, 0, 0.5)',
+      textShadowOffset: {width: 0, height: 0},
+      textShadowRadius: 2,
+      height:45,
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      textAlign:'center'
+        }} href="/#follow">
           <TouchableOpacity 
             onPress={props.ShowSlidingDrawer}
             style={styles.touch}
@@ -573,33 +581,32 @@ const NavBarWithLogIn = (props) => {
           }}
           >Follow</Text>
           </TouchableOpacity>
-        </a><br/>
+        </a>
         </View>
           
         
         <View style={styles.box}>
-        <a style={
-          {
-            textDecorationLine:'none',
-  
-            backgroundColor:'transparent',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-            textAlign:'center'
-          }
-        } href="/#contact">
+        <a style={{ 
+          textDecorationLine:'none',
+      margin:0,
+      padding:0,
+      backgroundColor:'transparent',
+      fontSize: 17,
+      fontWeight:'700',
+      textShadowColor: 'rgba(0, 0, 0, 0.5)',
+      textShadowOffset: {width: 0, height: 0},
+      textShadowRadius: 2,
+      height:45,
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      textAlign:'center'
+        }} href="/#contact">
           <TouchableOpacity 
             onPress={props.ShowSlidingDrawer}
             style={styles.touch}
           >
-         
+      
           <Text id="Contact" 
           style={{
 
@@ -610,15 +617,15 @@ const NavBarWithLogIn = (props) => {
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
-
             textAlign:'center',
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
           }}
           >Contact</Text>
+          
           </TouchableOpacity>
-        </a><br/>
+        </a>
         </View>
       
       </View>
@@ -631,8 +638,8 @@ const styles = StyleSheet.create({
   
     box:{
       margin:0,
-      //padding:1,
-      height:50,
+      padding:0,
+      height:45,
       backgroundColor:'transparent',
       alignItems:'center',
       justifyContent:'center',
@@ -646,8 +653,24 @@ const styles = StyleSheet.create({
       // textShadowColor: 'rgba(1, 1, 1, 1)',
       // textShadowOffset: {width: 0, height: 0},
       // textShadowRadius: 20,
-      //borderColor:'#cfcfcf',
-      //borderWidth:1,
+      // borderColor:'#cfcfcf',
+      // borderWidth:1,
+    },
+    link:{
+      textDecorationLine:'none',
+      margin:0,
+      padding:0,
+      backgroundColor:'transparent',
+      fontSize: 17,
+      fontWeight:'700',
+      textShadowColor: 'rgba(0, 0, 0, 0.5)',
+      textShadowOffset: {width: 0, height: 0},
+      textShadowRadius: 2,
+      height:45,
+      alignItems:'center',
+      justifyContent:'center',
+      flexDirection:'row',
+      textAlign:'center'
     },
     touch:{
       margin:0,

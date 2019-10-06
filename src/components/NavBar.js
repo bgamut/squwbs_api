@@ -115,14 +115,15 @@ const NavBar = (props) => {
         <a style={
           {
             textDecorationLine:'none',
-  
+            margin:0,
+            padding:0,
             backgroundColor:'transparent',
             fontSize: 17,
-            fontWeight:700,
+            fontWeight:'700',
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
-
+            height:45,
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
@@ -152,21 +153,22 @@ const NavBar = (props) => {
           }}
           >Sound</Text>
           </TouchableOpacity>
-        </a><br/>
+        </a>
         </View>
         
         <View style={styles.box}>
         <a style={
           {
             textDecorationLine:'none',
-  
+            margin:0,
+            padding:0,
             backgroundColor:'transparent',
             fontSize: 17,
             fontWeight:'700',
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
-
+            height:45,
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
@@ -196,7 +198,7 @@ const NavBar = (props) => {
           }}
           >Follow</Text>
           </TouchableOpacity>
-        </a><br/>
+        </a>
         </View>
           
         
@@ -204,14 +206,15 @@ const NavBar = (props) => {
         <a style={
           {
             textDecorationLine:'none',
-  
+            margin:0,
+            padding:0,
             backgroundColor:'transparent',
             fontSize: 17,
             fontWeight:'700',
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
-
+            height:45,
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
@@ -241,21 +244,22 @@ const NavBar = (props) => {
           }}
           >Contact</Text>
           </TouchableOpacity>
-        </a><br/>
+        </a>
         </View>
       
         <View style={styles.box}>
         <a style={
           {
             textDecorationLine:'none',
-  
+            margin:0,
+            padding:0,
             backgroundColor:'transparent',
             fontSize: 17,
             fontWeight:'700',
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
-
+            height:45,
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
@@ -284,7 +288,7 @@ const NavBar = (props) => {
           }}
           >Log Out</Text>
           </TouchableOpacity>
-        </a><br/>
+        </a>
         </View>
         {/* <View style={styles.box}>
         <a style={
@@ -336,7 +340,7 @@ const styles = StyleSheet.create({
     box:{
       margin:0,
       //padding:1,
-      height:50,
+      height:45,
       backgroundColor:'transparent',
       alignItems:'center',
       justifyContent:'center',
@@ -374,3 +378,4 @@ const styles = StyleSheet.create({
         
 })
 export default NavBar
+

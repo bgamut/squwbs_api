@@ -206,7 +206,13 @@ const Drawer =(props)=>{
         setTimeout(ShowSlidingDrawer(),720)
         
     }
-    
+    const popTerms = ()=>{
+        props.popTerms()
+    }
+    const termsAndCloseDrawer=()=>{
+        popTerms()
+        setTimeout(ShowSlidingDrawer(),720)
+    }
     // const overlayToggle=()=>{
     //     console.log(overlay.current.props.style.zIndex)
     //     if(overlay.current.props.style.zIndex==100){
@@ -716,7 +722,9 @@ const Drawer =(props)=>{
                     <View style={{
                         alignItems:'center',
                         zIndex:0,
-                        userSelect:'none'
+                        userSelect:'none',
+                        backgroundColor:'transparent',
+                        justifyContent:'center'
                     }}
                     //pointerEvents='none'
                     >
@@ -724,6 +732,12 @@ const Drawer =(props)=>{
                             {name}
                         </Text> */}
                         <a  href = "/#slider" >
+                            <View
+                                style={{
+                                    top:8,
+                                    backgroundColor:'transparent'
+                                }}
+                            >
                          <Image 
                            
                             source={require('./icons/96x96.png')} style={{
@@ -738,6 +752,7 @@ const Drawer =(props)=>{
                             marginBottom:2
                             //Right:0
                         }}/>
+                        </View>
                         </a>
                     </View> 
                 </View> 
@@ -860,7 +875,7 @@ const Drawer =(props)=>{
                         backgroundColor:'rgb(211,211,211)',
                         //backgroundColor:'purple',
                         width:SLIDING_DRAWER_WIDTH-2,
-                        height:maxHeight,
+                        height:100,
                         marginTop:0,
                         marginBottom:0,
                         marginLeft:0,
@@ -882,7 +897,7 @@ const Drawer =(props)=>{
                         alignItems:'center'
                     }}
                     >
-                       <Text
+                       {/* <Text
                         style ={[
                             styles.textStyle,
                             {
@@ -892,7 +907,24 @@ const Drawer =(props)=>{
                         ]}
                        >
                            {new Date().getFullYear()}
-                        </Text>
+                        </Text> */}
+                        <TouchableOpacity
+                            onPress={termsAndCloseDrawer}
+                        >
+                            <Text
+                                style ={[
+                                    styles.textStyle,
+                                    {
+                                        fontSize:14,
+        
+                                    }
+                                ]}
+                            >
+                            Terms & Conditions
+                            </Text>
+                            
+                        </TouchableOpacity>
+
                     </View>
                     </View>
                     

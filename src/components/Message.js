@@ -11,6 +11,7 @@ import stringifyObject from 'stringify-object'
 //import styled, { keyframes } from 'styled-components'
 import Radium, {StyleRoot} from 'radium'
 import iglogo from './icons/iglogo.svg'
+import P5Wrapper from 'react-p5-wrapper'
 //import * as firebase from 'firebase/app'
 //import * as functions from 'firebase-functions'
 //import * as admin from 'firebase-admin'
@@ -54,6 +55,7 @@ const Message = (props)=> {
     const [client,setClient]=useState()
     const [botID,setBotID]=useState('')
     const [content,setContent]=useState({})
+    const [chatHistory,setChatHistory]=useState([])
     const inputRef = useRef(null)
     
     const [show,setShow]=useState('Show')
@@ -239,7 +241,7 @@ const Message = (props)=> {
         attachit()
         
     }
-  
+    useEffect(()=>{},[chatHistory])
     useEffect(()=>{
         fetch(withQuery('https://squwbs-252702.appspot.com/line', {
            
@@ -343,7 +345,8 @@ const Message = (props)=> {
                 return result.json()
             })
             .then((json)=>{
-                console.log(json)
+                //console.log(json.chatHistory)
+                setChatHistory(json.chatHistory)
                 //console.log('Message.js 317 :',json)
             })
             .catch((err)=>{
@@ -358,7 +361,37 @@ const Message = (props)=> {
 
         console.log(content)
     },[content])
-      
+    const createChatList = () =>{
+        let parent = []
+        //var length=this.state.posts.length
+        chatHistory.map((chat)=>{
+          //console.log(sentence)
+          //if(i==length){
+            parent.push(
+              <Text
+                  style ={
+                    {
+                        textDecorationLine:'none',
+                        color:'rgb(0,0,0)',
+                        backgroundColor:'transparent',
+                        fontSize: 14,
+                        fontWeight:'700',
+                        marginLeft:5,
+                        marginRight:5,
+                        textAlign:'left',
+                        alignItems:'center',
+                        justifyContent:'flex-start',
+                        flexDirection:'row',
+                    }
+                }
+              >
+                  {chat.message}
+              </Text>
+          )
+         
+        })
+        return parent;
+    } 
     
       return (
         <Fade 
@@ -366,7 +399,7 @@ const Message = (props)=> {
             duration={5}
             timeout={5}
         >
-            
+            {/* <P5Wrapper /> */}
               <View class="container"
                 style={{
                     width:width-50,
@@ -461,6 +494,10 @@ const Message = (props)=> {
                             snapeToAlignment='end'
                             decelerationRate="fast"
                         >
+                            {/* <Text>
+                                {chatHistory}
+                            </Text> */}
+                            {createChatList()}
                         </ScrollView>
                         </View>
                         </View>

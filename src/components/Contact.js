@@ -39,15 +39,15 @@ const Contact = (props)=> {
                     backgroundColor:"transparent",
                     justifyContent:'center',
                     alignItems:'center',
-                    flexDirection:'row'
+                    flexDirection:'column'
                 }}
             >
                 <View 
                 style={{ 
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
-                width:"100%",
-                height:"100%",
+                width:500,
+                height:250,
                 flexDirection:'column',
                 padding:15,
                 backgroundColor:'transparent',
@@ -81,7 +81,8 @@ const Contact = (props)=> {
                             textDecorationLine:'none',
                             textDecorationStyle:'none',
                             height:"100%",
-                            width:"100%"
+                            width:"100%",
+                            
                           }} href="mailto:bernardahn@squwbs.com" >
                       
                       
@@ -90,7 +91,8 @@ const Contact = (props)=> {
 
                             justifyContent:"center",
                             alignItems:"center",
-                            backgroundColor:'transparent'
+                            //backgroundColor:'transparent',
+                            backgroundColor:'transparent',
                         }}
                     >
                    
@@ -109,7 +111,7 @@ const Contact = (props)=> {
                     >
                         Contact
                     </Text> */}
-               
+                    
                     <View    
                         style={{
                             height:'100%',
@@ -139,7 +141,22 @@ const Contact = (props)=> {
                         textShadowRadius: 8,
                       },{...stylez.swing}]}className="material-icons large white-text">email</i> */}
                       {/* </StyleRoot> */}
-                    <img 
+                      {/* <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                        bernardahn@squwbs.com
+                    </Text>  */}
+                    {/* <img 
                     //  className="Wiggle Unselectable" 
                         className="Unselectable"
                         src={envelope}
@@ -172,26 +189,251 @@ const Contact = (props)=> {
                      
                       //backgroundRepeat:"no-repeat",
                     }}
-                      />
-                    
-                    </View>
-                    </View>
-                        <View 
+                      /> */}
+                    <View
+                     style={{
+                         flexDirection:'column',
+                         backgroundColor:'transparent',
+                         alignItems:'center',
+                         justifyContent:'center'
+                     }}
+                    >
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    > 
+                        <View
                             style={{
-                                justifyContent:"center",
-                                alignItems:"center",
-                                
-                                maxHeight:33,
-                                maxWidth:"100%",
-                                width:'auto',
-                                height:'auto'
-                                
+                                justifyContent:'center',
+                                alignItems:'center',
+                                backgroundColor:'transparent'
                             }}
                         >
-        
-                    </View>
-                    </a>
+                            <i class="fas fa-envelope"></i>
+                        </View>
+                        
+                    </Text>
+                    <View
+                        style={{
+                            height:'100%',
+                            weight:330,
+                            justifyContent:'center',
+                            alignItems:'center',
+                            backgroundColor:'transparent'
+                        }}
+                    >
                     
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                        bernardahn@squwbs.com
+                    </Text> 
+                    </View>
+                </View>
+                </View>
+                    </View>
+                    
+
+                    </a>
+                    <a
+                        style={{
+                            textDecorationLine:'none',
+                            textDecorationStyle:'none',
+                            height:"100%",
+                            width:"100%"
+                        }}
+                    href="tel:821055981367">
+                    <View
+                     style={{
+                        flexDirection:'column',
+                        backgroundColor:'transparent',
+                        alignItems:'center',
+                        justifyContent:'center'
+                     }}
+                    >
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    > 
+                        <View
+                            style={{
+                                justifyContent:'center',
+                                alignItems:'center',
+                                backgroundColor:'transparent'
+                            }}
+                        >
+                            <i class="fas fa-phone"></i>
+                        </View>
+                        
+                    </Text>
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                        821055981367
+                    </Text> 
+                </View>
+                </a>
+                <a style={{           
+                            textDecorationLine:'none',
+                            textDecorationStyle:'none',
+                            height:"100%",
+                            width:"100%"
+                          }} href="https://goo.gl/maps/wovCEykLbfhgtTQz8" >
+                      
+                      
+                    <View 
+                        style={{
+
+                            justifyContent:"center",
+                            alignItems:"center",
+                            backgroundColor:'transparent'
+                        }}
+                    >
+                   
+                  
+                    
+                    <View    
+                        style={{
+                            height:'100%',
+                            width:'100%',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            backgroundColor:'transparent'
+                        }}>
+                   
+                    <View
+                     style={{
+                         flexDirection:'column',
+                         backgroundColor:'transparent',
+                         alignItems:'center',
+                         justifyContent:'center'
+                     }}
+                    >
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    > 
+                        <View
+                            style={{
+                                justifyContent:'center',
+                                alignItems:'center',
+                                backgroundColor:'transparent'
+                            }}
+                        >
+                            <i class="fas fa-home"></i>
+                        </View>
+                        
+                    </Text>
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                       302-1302 213 bungil 5 
+                    </Text>
+                    <Text
+                        style={{
+                           
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                        Jeongjail-ro Bundang-gu
+                        </Text>
+                        <Text
+                            style={{
+                            
+                                fontWeight:700,
+                                textDecorationLine:'none',
+                                color:'white',
+                                fontSize: 13,
+                                marginLeft:5,
+                                // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                                // textShadowOffset: {width: 0, height: 0},
+                                // textShadowRadius: 3,
+                            }}
+                        >
+                        Seongnam-si Gyeonggi-do
+                        </Text>
+                        <Text
+                            style={{
+                            
+                                fontWeight:700,
+                                textDecorationLine:'none',
+                                color:'white',
+                                fontSize: 13,
+                                marginLeft:5,
+                                // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                                // textShadowOffset: {width: 0, height: 0},
+                                // textShadowRadius: 3,
+                            }}
+                        >
+                         R.O.K 13556
+                    </Text> 
+                </View>
+                </View>
+                    </View>
+                    
+
+                    </a>
                 </View>
               </View>
             

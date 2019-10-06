@@ -76,16 +76,107 @@ admin.initializeApp({
   //credential:admin.credential.applicationDefault()
   databaseURL:firebaseConfig.databaseURL
 })
-functions.database 
-  .ref('chat')
-  .onWrite((change,context)=>{
-  console.log('firebase function fired from message.js 75',change.after.val())
-})
-functions.database 
-  .ref('chat')
-  .onUpdate((change,context)=>{
-  console.log('firebase function fired from message.js 80',change.after.val())
-})
+// functions.database 
+//   .ref('chat')
+//   .onWrite((change,context)=>{
+//   console.log('firebase function fired from message.js 75',change.after.val())
+// })
+// functions.database 
+//   .ref('chat')
+//   .onUpdate((change,context)=>{
+//   console.log('firebase function fired from message.js 80',change.after.val())
+// })
+// functions.firestore.document('data/users').onUpdate(change=>{
+//   const after = change.after.data()
+//   console.log('server 91: onUpdate fired')
+//   console.log(after)
+//   const payload={
+//     data:{
+//       temp:String(after)
+//     }
+//   }
+//   admin.messaging().sendToTopic('chat',payload)
+// })
+// functions.firestore.document('data/users').onDelete((snap,context )=>{
+//   const data = snap.data()
+//   console.log('server 102: onDelete fired')
+//   console.log(data)
+//   const payload={
+//     data:{
+//       temp:String(after)
+//     }
+//   }
+//   admin.messaging().sendToTopic('chat',payload)
+// })
+// functions.firestore.document('data/users').onCreate((snap,context )=>{
+//   const data = snap.data()
+//   console.log('server 102: onCreate fired')
+//   console.log(data)
+//   const payload={
+//     data:{
+//       temp:String(after)
+//     }
+//   }
+//   admin.messaging().sendToTopic('chat',payload)
+// })
+// functions.firestore.document('data/users').onWrite(change=>{
+//   const after = change.after.data()
+//   console.log('server 91: onWrite fired')
+//   console.log(after)
+//   const payload={
+//     data:{
+//       temp:String(after)
+//     }
+//   }
+//   admin.messaging().sendToTopic('chat',payload)
+// })
+
+var chatHistory = []
+
+functions.firestore.document('data/users').onUpdate(change=>{
+    const after = change.after.data()
+    console.log('server 91: onUpdate fired')
+    console.log(after)
+    const payload={
+      data:{
+        temp:String(after)
+      }
+    }
+    admin.messaging().sendToTopic('chat',payload)
+  })
+  functions.database.ref('sold').onDelete((snap,context )=>{
+    const data = snap.data()
+    console.log('server 102: onDelete fired')
+    console.log(data)
+    const payload={
+      data:{
+        temp:String(after)
+      }
+    }
+    admin.messaging().sendToTopic('chat',payload)
+  })
+  functions.database.ref('sold').onCreate((snap,context )=>{
+    const data = snap.data()
+    console.log('server 102: onCreate fired')
+    console.log(data)
+    const payload={
+      data:{
+        temp:String(after)
+      }
+    }
+    admin.messaging().sendToTopic('chat',payload)
+  })
+  functions.database.ref('sold').onWrite(change=>{
+    const after = change.after.data()
+    console.log('server 91: onWrite fired')
+    console.log(after)
+    const payload={
+      data:{
+        temp:String(after)
+      }
+    }
+    admin.messaging().sendToTopic('chat',payload)
+  })
 
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
@@ -622,8 +713,19 @@ app.get('/info',function(req,res){
             }
           }
         }
-        var storeHistory = store.doc('data/users/'+String(global[tempUUID].provider)+'/'+String(global[tempUUID].providerid))
+        var storeHistory = admin.firestore().doc('data/users/'+String(global[tempUUID].provider)+'/'+String(global[tempUUID].providerid))
+        //console.log('server.js 626 admin.firestore',admin.firestore)
+        //console.log('server.js 627 admin.firestore.Firestore',admin.firestore.Firestore)
+        
         storeHistory.set(soldItemsStructure)
+        .then((data)=>{
+          console.log('firestore function fired')
+          console.log(data)
+        })
+        .catch(err=>{
+          console.log(err)
+
+        })
       }
       ref.set(soldHistory,function(error){
         if(error){
@@ -876,6 +978,11 @@ app.get('/firebaseMessage',cors(),(req,res)=>{
   //   res.send({error:err})
   // })
   var message=req.query.message
+  
+  if (chatHistory.length>=100){
+    chatHistory.splice(0,1)
+  }
+  chatHistory.push(message)
   var topic = req.query.topic
   var payload = {
     // data:{
@@ -1699,6 +1806,10 @@ app.get('/saysomething',cors(),(req,res)=>{
     })
 }
   function sendSuccess(message){
+  if (chatHistory.length>=100){
+    chatHistory.splice(0,1)
+  }
+    chatHistory.push(message)
   res.send({message:message})
 }
   saysomething(obj,sendSuccess)
@@ -1994,12 +2105,13 @@ app.get('/ebay',cors(),(req,res)=>{
 })
 app.get('/socket.io',cors(),(req,res)=>{
   const timestamp=new Date()
-  res.send({time:timestamp})
+  res.send({time:timestamp,chatHistory:chatHistory})
+
   //console.log('server.js 1806 : ', req.query)
 })
 app.post('/socket.io',cors(),(req,res)=>{
   const timestamp=new Date()
-  res.send({time:timestamp})
+  res.send({time:timestamp,chatHistory:chatHistory})
   //console.log('server.js 1806 : ', req.query)
 })
 app.get('/mobileCheck',cors(),(req,res)=>{
