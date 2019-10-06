@@ -76,6 +76,13 @@ admin.initializeApp({
   //credential:admin.credential.applicationDefault()
   databaseURL:firebaseConfig.databaseURL
 })
+var chatHistory
+var ref = admin.database().ref('chat')
+ref.once('value',function(snapshot){
+  if (snapshot!=undefiend){
+    chatHistory=snapshot
+  }
+})
 // functions.database 
 //   .ref('chat')
 //   .onWrite((change,context)=>{
@@ -131,7 +138,7 @@ admin.initializeApp({
 //   admin.messaging().sendToTopic('chat',payload)
 // })
 
-var chatHistory = []
+
 
 functions.firestore.document('data/users').onUpdate(change=>{
     const after = change.after.data()
