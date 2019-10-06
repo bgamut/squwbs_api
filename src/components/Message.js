@@ -250,7 +250,9 @@ const Message = (props)=> {
         attachit()
         
     }
-    useEffect(()=>{},[chatHistory])
+    useEffect(()=>{
+        console.log('chatHistory updated')
+    },[chatHistory])
     useEffect(()=>{
         fetch(withQuery('https://squwbs-252702.appspot.com/line', {
            
@@ -354,7 +356,7 @@ const Message = (props)=> {
                 return result.json()
             })
             .then((json)=>{
-                //console.log(json.chatHistory)
+                console.log(json)
                 setChatHistory(json.chatHistory)
                 //console.log('Message.js 317 :',json)
             })
@@ -395,7 +397,8 @@ const Message = (props)=> {
                     }
                 }
               >
-                  {chat.message}
+                  {/* chat.userProvier && chat.user */}
+                  {chat.chat}
               </Text>
             </View>
           )

@@ -1785,8 +1785,8 @@ app.get('/saysomething',cors(),(req,res)=>{
         if(chathistory==undefined){
             chathistory={0:
               {
-                userProvier:cookies.provider,
-                userProvierID:cookies.providerid,
+                userProvider:cookies.provider,
+                userProviderID:cookies.providerid,
                 chat:chatInput.message,
               }
             }
@@ -1794,8 +1794,8 @@ app.get('/saysomething',cors(),(req,res)=>{
         else{
             chathistory.push(
                               {
-                                userProvier:cookies.provider,
-                                userProvierID:cookies.providerid,
+                                userProvider:cookies.provider,
+                                userProviderID:cookies.providerid,
                                 chat:chatInput.message,
                               }
                             )
@@ -1815,8 +1815,8 @@ app.get('/saysomething',cors(),(req,res)=>{
             res.setHeader('Content-Type','application/json')
             //res.send({message:message})
             func({
-              userProvier:cookies.provider,
-              userProvierID:cookies.providerid,
+              userProvider:cookies.provider,
+              userProviderID:cookies.providerid,
               chat:chatInput.message,
             })
           }
@@ -1828,7 +1828,9 @@ app.get('/saysomething',cors(),(req,res)=>{
   if (chatHistory.length>=100){
     chatHistory.splice(0,1)
   }
+    console.log(object)
     chatHistory.push(object)
+    console.log(chatHistory)
     res.send(object)
 }
   saysomething(obj,cookies,sendSuccess)

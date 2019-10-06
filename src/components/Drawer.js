@@ -341,9 +341,11 @@ const Drawer =(props)=>{
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
+                        top:8,
                         alignItems:'center',
                         zIndex:0,
                         userSelect:'none'
+
                     }}
                     //pointerEvents='none'
                     
@@ -354,6 +356,7 @@ const Drawer =(props)=>{
                         <a  href = "/#slider"
                             style={{
                                 textDecorationLine:'none'
+                                
                             }}
                         >
                          {/* <Image 
@@ -731,13 +734,14 @@ const Drawer =(props)=>{
                         {/* <Text selectable = {false} style ={[styles.textStyle,{fontFamily:'alienEncounters'}]} >
                             {name}
                         </Text> */}
-                        <a  href = "/#slider" >
+                        
                             <View
                                 style={{
                                     top:8,
                                     backgroundColor:'transparent'
                                 }}
                             >
+                        <a  href = "/#slider" >
                          <Image 
                            
                             source={require('./icons/96x96.png')} style={{
@@ -752,8 +756,9 @@ const Drawer =(props)=>{
                             marginBottom:2
                             //Right:0
                         }}/>
-                        </View>
                         </a>
+                        </View>
+                        
                     </View> 
                 </View> 
                 {props.children}
