@@ -372,7 +372,7 @@ const Message = (props)=> {
 
         console.log(content)
     },[content])
-    const createChatList = () =>{
+    const createChatList = (chatHistory) =>{
         let parent = []
         //var length=this.state.posts.length
         chatHistory.map((chat)=>{
@@ -511,7 +511,7 @@ const Message = (props)=> {
                             {/* <Text>
                                 {chatHistory}
                             </Text> */}
-                            {createChatList()}
+                            {createChatList(this.state.chatHistory)}
                         </ScrollView>
                         </View>
                         </View>

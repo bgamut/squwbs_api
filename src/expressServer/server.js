@@ -76,13 +76,13 @@ admin.initializeApp({
   //credential:admin.credential.applicationDefault()
   databaseURL:firebaseConfig.databaseURL
 })
-var chatHistory
-var ref = admin.database().ref('chat')
-ref.once('value',function(snapshot){
-  if (snapshot!=undefiend){
-    chatHistory=snapshot
-  }
-})
+global.chatHistory=[]
+// var ref = admin.database().ref('chat')
+// ref.once('value',function(snapshot){
+//   if (snapshot!=undefiend){
+//     global.chatHistory=snapshot
+//   }
+// })
 // functions.database 
 //   .ref('chat')
 //   .onWrite((change,context)=>{
@@ -1782,7 +1782,7 @@ app.get('/saysomething',cors(),(req,res)=>{
   var obj = req.query
   var cookies= req.signedCookies
   console.log('server 1777:', cookies)
-  function saysomething(chatInput,cookies,func){
+  function saysomething(chatInput,cookies){
     
     var db = admin.database()
     var ref = db.ref('chat')
@@ -1807,6 +1807,14 @@ app.get('/saysomething',cors(),(req,res)=>{
                               }
                             )
         }
+        global.chatHistory.push(
+          {
+            userProvider:cookies.provider,
+            userProviderID:cookies.providerid,
+            chat:chatInput.message,
+          }
+        )
+        //global.chatHistory=chathistory
         ref.set(chathistory,function(error){
           if(error){
             console.log(error)
@@ -1814,17 +1822,15 @@ app.get('/saysomething',cors(),(req,res)=>{
             //res.send({message:message})
             //func(error)
             //func(error)
-            res.send(error)
+            res.send({message:error})
           }
           else{
             console.log('callback fired in /saysomething')
             //func(words)
-            res.setHeader('Content-Type','application/json')
+            //res.setHeader('Content-Type','application/json')
             //res.send({message:message})
-            func({
-              userProvider:cookies.provider,
-              userProviderID:cookies.providerid,
-              chat:chatInput.message,
+            res.send({
+              message:global.chatHistory
             })
           }
 
@@ -2133,13 +2139,13 @@ app.get('/ebay',cors(),(req,res)=>{
 })
 app.get('/socket.io',cors(),(req,res)=>{
   const timestamp=new Date()
-  res.send({time:timestamp,chatHistory:chatHistory})
+  res.send({time:timestamp,chatHistory:global.chatHistory})
 
   //console.log('server.js 1806 : ', req.query)
 })
 app.post('/socket.io',cors(),(req,res)=>{
   const timestamp=new Date()
-  res.send({time:timestamp,chatHistory:chatHistory})
+  res.send({time:timestamp,chatHistory:global.chatHistory})
   //console.log('server.js 1806 : ', req.query)
 })
 app.get('/mobileCheck',cors(),(req,res)=>{
