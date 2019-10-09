@@ -390,6 +390,15 @@ app.post('/readCookies',function(req, res){
 app.get('/', function (req, res) {
   // res.locals.lang = 'en';
   // res.locals.name='template'
+  let options = {
+    maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+    httpOnly: true, // The cookie only accessible by the web server
+    signed: true,// Indicates if the cookie should be signed
+    secret:''
+}
+  if(req.query.code != undefined){
+    res.cookie('kakao_code',req.query.code,options)
+  }
   console.log(req.signedCookies)
   if(req.signedCookies.name!==undefined)
   {
@@ -500,7 +509,54 @@ app.get('/login/twitter/profile',
 
   res.redirect('/profile');
 });
+app.get('/kakao',function(req,res){
+  
+  // var headers = {
+  //   'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+  //     // 'Cache-Control':'no-cache'
+  // }
+  // var body = {}
+  //   body.grant_type ='authorization_code'
+  //   body.client_id=NODE_ENV.KAKAO_REST_API_KEY
+  //   body.redirect_uri='https://squwbs-252702.appspot.com'
+  //   body.code=req.query.code
+  
+  // fetch('https://kauth.kakao.com/oauth/token',{
+  //     method:'post',
+  //     headers:headers,
+  //     body:JSON.stringify(body)
+  // })
 
+  // fetch(withQuery('https://kauth.kakao.com/oauth/token'),{
+  //     headers:headers,
+  //     grant_type :'authorization_code',
+  //     client_id:'3f8eaabc9161b6f392c0999b7fce6026',
+  //     redirect_uri:'https://squwbs-252702.appspot.com',
+  //     //body.code = kakaoCode
+  //     code:params[i].replace('code=','')
+  // })
+  var headers = {
+    'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+    'Cache-Control':'no-cache'
+  }
+  var token= req.query.token
+  var url = "https://kapi.kakao.com/v1/api/talk/friends"
+  var bearer = 'Bearer '+token
+  headers["Authorization"]=bearer
+  fetch(url,{headers})
+
+  .then((res)=>{
+      return res.json()
+  })
+  .then((json)=>{
+      res.send({json:json})
+  })
+  .catch((err)=>{
+      //console.log('kakao.js 312 : ',err)
+      res.send({error:err})
+  })
+  //res.send({code:req.query.code})
+})
 app.get('/cards',function(req,res){
   res.redirect('/')
 })
@@ -1784,58 +1840,66 @@ app.get('/saysomething',cors(),(req,res)=>{
   console.log('server 1777:', cookies)
   function saysomething(chatInput,cookies){
     
-    var db = admin.database()
-    var ref = db.ref('chat')
-    ref.once('value',function(snapshot){
-        var chathistory=snapshot.val()
-        console.log(chathistory)
-        if(chathistory==undefined){
-            chathistory={0:
-              {
-                userProvider:cookies.provider,
-                userProviderID:cookies.providerid,
-                chat:chatInput.message,
-              }
-            }
-        }
-        else{
-            chathistory.push(
-                              {
-                                userProvider:cookies.provider,
-                                userProviderID:cookies.providerid,
-                                chat:chatInput.message,
-                              }
-                            )
-        }
-        global.chatHistory.push(
-          {
-            userProvider:cookies.provider,
-            userProviderID:cookies.providerid,
-            chat:chatInput.message,
-          }
-        )
-        //global.chatHistory=chathistory
-        ref.set(chathistory,function(error){
-          if(error){
-            console.log(error)
-            res.setHeader('Content-Type','application/json')
-            //res.send({message:message})
-            //func(error)
-            //func(error)
-            res.send({message:error})
-          }
-          else{
-            console.log('callback fired in /saysomething')
-            //func(words)
-            //res.setHeader('Content-Type','application/json')
-            //res.send({message:message})
-            res.send({
-              message:global.chatHistory
-            })
-          }
+    global.chatHistory.push(
+      {
+        userProvider:cookies.provider,
+        userProviderID:cookies.providerid,
+        chat:chatInput.message,
+      }
+    )
 
-        })
-    })
+    // var db = admin.database()
+    // var ref = db.ref('chat')
+    // ref.once('value',function(snapshot){
+    //     var chathistory=snapshot.val()
+    //     console.log(chathistory)
+    //     if(chathistory==undefined){
+    //         chathistory={0:
+    //           {
+    //             userProvider:cookies.provider,
+    //             userProviderID:cookies.providerid,
+    //             chat:chatInput.message,
+    //           }
+    //         }
+    //     }
+    //     else{
+    //         chathistory.push(
+    //                           {
+    //                             userProvider:cookies.provider,
+    //                             userProviderID:cookies.providerid,
+    //                             chat:chatInput.message,
+    //                           }
+    //                         )
+    //     }
+    //     // global.chatHistory.push(
+    //     //   {
+    //     //     userProvider:cookies.provider,
+    //     //     userProviderID:cookies.providerid,
+    //     //     chat:chatInput.message,
+    //     //   }
+    //     // )
+    //     //global.chatHistory=chathistory
+    //     ref.set(chathistory,function(error){
+    //       if(error){
+    //         console.log(error)
+    //         res.setHeader('Content-Type','application/json')
+    //         //res.send({message:message})
+    //         //func(error)
+    //         //func(error)
+    //         res.send({message:error})
+    //       }
+    //       else{
+    //         console.log('callback fired in /saysomething')
+    //         //func(words)
+    //         //res.setHeader('Content-Type','application/json')
+    //         //res.send({message:message})
+    //         res.send({
+    //           message:global.chatHistory
+    //         })
+    //       }
+
+    //     })
+    // })
 }
   function sendSuccess(object){
   if (chatHistory.length>=100){

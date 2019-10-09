@@ -574,7 +574,7 @@ const Drawer =(props)=>{
                             textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             textShadowOffset: {width: 0, height: 0},
                             textShadowRadius: 2,
-                            paddingTop:8,
+                            paddingTop:10,
                             alignItems:'center',
                             justifyContent:'center',
                             flexDirection:'row',

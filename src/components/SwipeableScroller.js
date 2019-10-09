@@ -22,6 +22,7 @@ import {PayPalButton} from 'react-paypal-button'
 import GoogleCardV2 from './GoogleCardV2'
 import GoogleDeck from './GoogleDeck'
 import Message from './MessageV2'
+import Kakao from './Kakao'
 import './css/ClickOpacity.css'
 //import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
@@ -938,6 +939,51 @@ const SwipeableScroller = (props) => {
               </View>
             </View>
           </section>
+          <section id="kakao">
+            <View
+              ref={heightRef}
+              style={{
+                //height:"100vh",
+                height:height-50,
+                width:"100%",
+                padding:15,
+                
+                backgroundColor:'white',
+                justifyContent:'center',
+                alignItems:'center',
+              }}
+            >
+              <View 
+                style={{
+                  height:"100%",
+                  width:"100%",
+                  justifyContent:'center',
+                  alignItems:'center',
+                  zIndex:0,
+                  //backgroundColor:'rgb(211,211,211)',
+                  backgroundColor:'white',
+                  borderRadius:4,
+                  //borderBottom:2,
+                  //borderTop:1,
+                  borderColor:'#aaa',
+                  borderStyle:'solid',
+                  overflow:'hidden',
+                  boxSizing:"border-box",
+                  shadowColor:'black',
+                  shadowOpacity:0.25,
+                  shadowRadius:2,
+                  shadowOffset:{
+                    width:0,
+                    height:0
+                  },
+                  elevation:2
+                }}
+              >
+                {/* <Message/> */}
+                <Kakao/>
+              </View>
+            </View>
+          </section>
           <section id="message">
             <View
               ref={heightRef}
@@ -979,6 +1025,7 @@ const SwipeableScroller = (props) => {
                 }}
               >
                 <Message/>
+                {/* <Kakao/> */}
               </View>
             </View>
           </section>
