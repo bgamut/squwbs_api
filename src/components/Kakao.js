@@ -380,7 +380,8 @@ class Kakao extends Component{
                                 // var bearer = 'Bearer '+token
                                 // headers["Authorization"]=bearer
                                 // fetch(url,{headers})
-                                fetch(withQuery('https://squwbs-252702.appspot.com/kakao',{
+                                // fetch(withQuery('https://squwbs-252702.appspot.com/kakao',{
+                                fetch(withQuery('http://squwbs.herokuapp.com/kakao',{
                                     token:this.state.kakaoJSON.access_token
                                 }))
                                 .then((result)=>{
