@@ -58,17 +58,26 @@ const addUserToServer = (obj)=>{
 
 const Home = () => {
   //run()
-  const [state,setState]=useState(Context)
+  const [state,setState]=useContext(Context)
   const [user,setUser]=useState({})
   const [loginOverlaySwitch,setLoginOverlaySwitch]=useState(false)
   const [termsOverlaySwitch,setTermsOverlaySwitch]=useState(false)
   const [fade, setFade] =useState('true')
   const [height,setHeight]=useState(0)
   const [width,setWidth]=useState(0)
+  const [headerOpenState,setHeaderOpenState]=useState(true)
+
   const loginOverlay=useRef('')
   const termsOverlay=useRef('')
   const duration=270
+
+
   var animatedOpacity = new Animated.Value(0)
+  var animatedHeader = new Animated.Value(0)
+  var interpolatedHeader = animatedHeader.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -50],
+  })
   const loginOverlayToggle=()=>{
     //console.log('popLogin from HOME')
     //console.log(overlay.current.props.style.zIndex)
@@ -196,6 +205,59 @@ const Home = () => {
     //console.log(user)
     //console.log('fade changed')
   },[fade])
+  // useEffect(()=>{
+  //   console.log('context changed! headerOpen = ',state.headerOpen)
+  //   if(state.headerOpen==false){
+  //     //"close" (translate) the header
+      
+  //   }
+  //   else{
+  //     //"open"  the header
+  //   }
+
+  // },[...Object.values(state)])
+  const headerOpen=(booleanValue)=>{
+    
+    setHeaderOpenState(booleanValue)
+    
+
+  }
+  useEffect(()=>{
+    //console.log("header Open has been toggled to ", headerOpenState)
+    if(headerOpenState==true)
+        {
+            Animated.timing(
+                //this.Animation,
+                animatedHeader,
+                {
+                    duration:500,
+                    toValue:0,
+                }
+            ).start(()=>
+            {
+                setState({...state,headerOpen:true})
+                
+            })
+        }
+        else
+        {
+            Animated.timing(
+                animatedHeader,
+                {
+                    duration:500,
+                    toValue:-50, 
+                }
+            ).start(()=>
+            {
+                setState({...state,headerOpen:false})
+            })
+        }
+  },[headerOpenState])
+  // animatedHeader.addListener(({value})=>{
+  //   console.log(
+  //   'animated header value is ', value
+  //   )
+  // })
   animatedOpacity.addListener(({value})=>{
     //console.log(value)
     // if(overlay.current!=null){
@@ -694,12 +756,25 @@ const Home = () => {
           layout='in-article'
           format='fluid'
         />   */}
+        <Animated.View
+          style={
+            {
+              transform:[{
+                  translateX:0
+              },{
+                  translateY:animatedHeader
+              }]
+              }
+          }
+        >
           <Drawer 
             popLogin={loginOverlayToggle}
             popTerms={termsOverlayToggle}
+            
           >
-            <SwipeableScroller/>
+            <SwipeableScroller headerOpen={headerOpen}/>
           </Drawer>
+          </Animated.View>
           {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}
           {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,position:'absolute',height:Dimensions.get('window').height*5/30-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:Dimensions.get('window').width,padding:0}} behavior="padding" enabled >
           

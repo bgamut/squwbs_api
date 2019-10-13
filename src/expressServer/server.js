@@ -23,13 +23,13 @@ const stringifyObject= require('stringify-object')
 const uuidv4 = require('uuid/v4')
 const mongoose = require('mongoose');
 var favicon = require('serve-favicon')
-const line = require('@line/bot-sdk')
-const linemiddleware = require('@line/bot-sdk').middleware
-const JSONParseError = require('@line/bot-sdk').JSONParseError
-const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
+//const line = require('@line/bot-sdk')
+//const linemiddleware = require('@line/bot-sdk').middleware
+//const JSONParseError = require('@line/bot-sdk').JSONParseError
+//const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
 var https = require('https')
 //var http = require('http')
-const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN})
+//const client= new line.Client({channelAccessToken:NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN})
 const mongourlStringExpress='https://squwbs-252702.appspot.com/mongouri'
 const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
@@ -955,37 +955,37 @@ function handleEvent(event) {
   console.log(stringifyObject(event))
 }
 
-app.post('/linewebhook'
-        ,
-        [
-          cors(),
-          linemiddleware({
-              channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
-              channelSecret:"73354a544d842dfaf3bd347203eef7f6"
-            })
-        ]
-        ,
-        (req,res)=>
-          {
-            // console.log(stringifyObject(req.body))
-            // res.json(req.body)
-            // .then(()=>{
-            //   console.log("then")
-            // }).catch((error)=>{
-            //   console.log('error')
-            // })
-            //res.send(req.query)
-            //res.json(req.body.events)
-            //res.json(req.body.destination) //user id of the bot
-            Promise
-            .all(req.body.events.map(handleEvent))
-            .then((result) => res.json(result))
-            .catch((err) => {
-              console.error(err);
-              res.status(500).end();
-            });
-          }
-)
+// app.post('/linewebhook'
+//         ,
+//         [
+//           cors(),
+//           linemiddleware({
+//               channelAccessToken:"JGMd3CQl+ouQjxwCR1LluhuclDFMiUdKqVXq8nrJmHk8BpHWiraHqSiie6QW3qKdcaCEo+Hc4SctGP3jfkLhnwCbEM7nwDOwnRX4gImAgWisQlBy1oo4NaBAeQk2MYNO/L9kA3OBUAVDIqBX6zg75QdB04t89/1O/w1cDnyilFU=",
+//               channelSecret:"73354a544d842dfaf3bd347203eef7f6"
+//             })
+//         ]
+//         ,
+//         (req,res)=>
+//           {
+//             // console.log(stringifyObject(req.body))
+//             // res.json(req.body)
+//             // .then(()=>{
+//             //   console.log("then")
+//             // }).catch((error)=>{
+//             //   console.log('error')
+//             // })
+//             //res.send(req.query)
+//             //res.json(req.body.events)
+//             //res.json(req.body.destination) //user id of the bot
+//             Promise
+//             .all(req.body.events.map(handleEvent))
+//             .then((result) => res.json(result))
+//             .catch((err) => {
+//               console.error(err);
+//               res.status(500).end();
+//             });
+//           }
+// )
 // app.post('/firebaseToken',cors(),(req,res)=>{
 //   //res.send(req.body)
  
@@ -1216,73 +1216,73 @@ app.get('/firebaseToken',(req,res)=>{
   res.cookie('firebaseToken', req.query.token ,options);
   
 })
-app.get('/linesendmessage',cors(),(req,res)=>{
-  //console.log('682:',stringifyObject(req.query.text))
-  client.pushMessage(
-    NODE_ENV.LINE_MY_USER_ID,
-    {
-      type:'text',
-      text:req.query.text
-    }
-    )
-    .then(()=>{
-      res.send(
-        {message:'message sent'}
-      )
-    })
-    .catch((err)=>{
-      res.send({error:err})
-    })
+// app.get('/linesendmessage',cors(),(req,res)=>{
+//   //console.log('682:',stringifyObject(req.query.text))
+//   client.pushMessage(
+//     NODE_ENV.LINE_MY_USER_ID,
+//     {
+//       type:'text',
+//       text:req.query.text
+//     }
+//     )
+//     .then(()=>{
+//       res.send(
+//         {message:'message sent'}
+//       )
+//     })
+//     .catch((err)=>{
+//       res.send({error:err})
+//     })
 
-})
-app.get('/linegetmessage',cors(),(req,res)=>{
-  var headers = {"Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            mode:'cors'
-        };
-  var token = NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN
-  var bearer = 'Bearer' +token
-  headers["Authorization"]=bearer
-  fetch('https://api.line.me/v2/bot/message/{messageId}/content', {
-      headers
-  })
-  .then(result=>{
-      //setContent({...content,...result.message})
-      console.log('143:',stringifyObject(result.json()))
-  })
-  .catch((err)=>{
-      console.error(err)
-  })
-  //console.log('701:',stringifyObject(req.query.text))
-  // client.getMessageContent(NODE_ENV.LINE_MY_USER_ID)
-  //   .then((stream)=>{
-  //     stream.on('data',(chunk)=>{
-  //       res.send(
-  //         {message:chunk}
-  //       )
-  //     })
-  //     stream.on('data',(err)=>{
-  //       console.log(err)
-  //       //res.send({error:err})
-  //     })
-  //   })
-  //   .catch((err)=>{
-  //     console.log(err)
-  //     //res.send({error:err})
-  //   })
+// })
+// app.get('/linegetmessage',cors(),(req,res)=>{
+//   var headers = {"Content-Type": "application/json",
+//             "Access-Control-Allow-Origin": "*",
+//             mode:'cors'
+//         };
+//   var token = NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN
+//   var bearer = 'Bearer' +token
+//   headers["Authorization"]=bearer
+//   fetch('https://api.line.me/v2/bot/message/{messageId}/content', {
+//       headers
+//   })
+//   .then(result=>{
+//       //setContent({...content,...result.message})
+//       console.log('143:',stringifyObject(result.json()))
+//   })
+//   .catch((err)=>{
+//       console.error(err)
+//   })
+//   //console.log('701:',stringifyObject(req.query.text))
+//   // client.getMessageContent(NODE_ENV.LINE_MY_USER_ID)
+//   //   .then((stream)=>{
+//   //     stream.on('data',(chunk)=>{
+//   //       res.send(
+//   //         {message:chunk}
+//   //       )
+//   //     })
+//   //     stream.on('data',(err)=>{
+//   //       console.log(err)
+//   //       //res.send({error:err})
+//   //     })
+//   //   })
+//   //   .catch((err)=>{
+//   //     console.log(err)
+//   //     //res.send({error:err})
+//   //   })
 
-})
+// })
 app.get('/mongouri',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"mongouri":NODE_ENV.MONGO_URI})
 
 })
-app.get('/line',cors(),(req,res)=>{
-  res.send({
-    'token':NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
-    'id':NODE_ENV.LINE_MY_USER_ID
-  })
-})
+// app.get('/line',cors(),(req,res)=>{
+//   res.send({
+//     'token':NODE_ENV.LINE_CHANNEL_ACCESS_TOKEN,
+//     'id':NODE_ENV.LINE_MY_USER_ID
+//   })
+// })
 app.get('/instagramuri',cors(),(req,res)=>{
   //console.log(NODE_ENV.MAPBOX_ACCESS_TOKEN)
   res.send({"instagramuri":NODE_ENV.INSTAGRAM_URI})

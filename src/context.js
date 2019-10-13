@@ -31,6 +31,8 @@ export function ContextController({ children }) {
     spinValue:new Animated.Value(0),
     words:[],
     sheet:{},
+    headerOpen:true,
+    headerTranslation:new Animated.Value(0)
   };
 
   const [state, setState] = useState(intialState);

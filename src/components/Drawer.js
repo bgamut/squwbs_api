@@ -335,9 +335,9 @@ const Drawer =(props)=>{
                                 width:imageLength,
                                 //Right:0
                             }}/> */}
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
@@ -412,7 +412,7 @@ const Drawer =(props)=>{
                     width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
                     backgroundColor:'white',
-                    borderColor:'rgb(200,200,200)',
+                    borderColor:'rgb(135,135,135)',
                     justifyContent:'center',
 
                     padding:0,
@@ -429,10 +429,10 @@ const Drawer =(props)=>{
                             margin:0,
                             marginRight:2,
                             marginLeft:2,
-                            backgroundColor:'rgb(211,211,211)',
+                            backgroundColor:'rgb(135,135,135)',
                             //backgroundColor:'purple',
-                            //borderColor:"rgb(211,211,211)",
-                            borderColor:'rgb(200,200,200)',
+                            //borderColor:"rgb(135,135,135)",
+                            borderColor:'rgb(135,135,135)',
                             
                             borderRadius:2,
                             borderWidth:1,
@@ -527,7 +527,7 @@ const Drawer =(props)=>{
                     style={{
                         position:'absolute',
                         top:height-maxHeight-53,
-                        backgroundColor:'rgb(211,211,211)',
+                        backgroundColor:'rgb(135,135,135)',
                         //backgroundColor:'purple',
                         //width:298,
                         width:SLIDING_DRAWER_WIDTH-2,
@@ -541,8 +541,8 @@ const Drawer =(props)=>{
                         borderWidth:1,
                         
                         //backgroundColor:'purple',
-                        //borderColor:"rgb(211,211,211)",
-                        borderColor:'rgb(200,200,200)',
+                        //borderColor:"rgb(135,135,135)",
+                        borderColor:'rgb(135,135,135)',
                         //borderColor:'transparent',
                         
                         borderRadius:2,
@@ -717,9 +717,9 @@ const Drawer =(props)=>{
                                 width:imageLength,
                                 //Right:0
                             }}/> */}
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(211,211,211)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
+                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
@@ -776,7 +776,7 @@ const Drawer =(props)=>{
                     width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
                     backgroundColor:'white',
-                    borderColor:'rgb(200,200,200)',
+                    borderColor:'rgb(135,135,135)',
                     justifyContent:'center',
 
                     padding:0,
@@ -793,10 +793,10 @@ const Drawer =(props)=>{
                             margin:0,
                             marginRight:2,
                             marginLeft:2,
-                            backgroundColor:'rgb(211,211,211)',
+                            backgroundColor:'rgb(135,135,135)',
                             //backgroundColor:'purple',
-                            //borderColor:"rgb(211,211,211)",
-                            borderColor:'rgb(200,200,200)',
+                            //borderColor:"rgb(135,135,135)",
+                            borderColor:'rgb(135,135,135)',
                             
                             borderRadius:2,
                             borderWidth:1,
@@ -877,7 +877,7 @@ const Drawer =(props)=>{
                     style={{
                         position:'absolute',
                         top:height-maxHeight-53,
-                        backgroundColor:'rgb(211,211,211)',
+                        backgroundColor:'rgb(135,135,135)',
                         //backgroundColor:'purple',
                         width:SLIDING_DRAWER_WIDTH-2,
                         height:100,
@@ -890,8 +890,8 @@ const Drawer =(props)=>{
                         borderWidth:1,
                         
                         //backgroundColor:'purple',
-                        //borderColor:"rgb(211,211,211)",
-                        borderColor:'rgb(200,200,200)',
+                        //borderColor:"rgb(135,135,135)",
+                        borderColor:'rgb(135,135,135)',
                         //borderColor:'transparent',
                         
                         borderRadius:2,

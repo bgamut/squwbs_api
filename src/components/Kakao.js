@@ -348,6 +348,7 @@ class Kakao extends Component{
                             'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
                             'Cache-Control':'no-cache'
                         }
+                        
                         fetch(withQuery('https://kauth.kakao.com/oauth/token',{
                             headers:headers,
                             grant_type :'authorization_code',
@@ -368,7 +369,8 @@ class Kakao extends Component{
                             return res.json()
                         })
                         .then((json)=>{
-                            this.setState({kakaoJSON:json},()=>{
+                            console.log('kakao.js 309 : ',json)
+                            //this.setState({kakaoJSON:json},()=>{
                                 
                                 console.log('kakaoJSON updated!')
                                 // var headers = {
@@ -381,8 +383,11 @@ class Kakao extends Component{
                                 // headers["Authorization"]=bearer
                                 // fetch(url,{headers})
                                 // fetch(withQuery('https://squwbs-252702.appspot.com/kakao',{
-                                fetch(withQuery('http://squwbs.herokuapp.com/kakao',{
-                                    token:this.state.kakaoJSON.access_token
+                                // fetch(withQuery('http://squwbs.herokuapp.com/kakao',{
+                                console.log('Kakao.js 386 JSON TOKEN : ',json.access_token)
+                                fetch(withQuery('https://squwbs.pythonanywhere.com/kakao',{
+                                    //token:this.state.kakaoJSON.access_token
+                                    token:json.access_token
                                 }))
                                 .then((result)=>{
                                     return result.json()
@@ -391,12 +396,12 @@ class Kakao extends Component{
                                     console.log('Kakao.js 386 friends list : ',stringifyObject(json))
                                 })
                                 .catch((err)=>{
-                                    console.log(err)
+                                    console.log('kakao.js 396 returns error : ',err)
                                 })
 
-                            })
+                            //})
                             
-                            console.log('kakao.js 309 : ',json)
+                            
                         })
                         .catch((err)=>{
                             console.log('kakao.js 312 : ',err)

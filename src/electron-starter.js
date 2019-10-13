@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain
 const path = require('path');
 const url = require('url');
-var expressServer=require('./expressServer/server').expressServer;
+//var expressServer=require('./expressServer/server').expressServer;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -17,17 +17,17 @@ function setupWindow(freeport){
     //mainWindow = new BrowserWindow({width: 420, height: 400,frame:false,resizable:true,titleBarStyle:'hidden'});
     mainWindow = new BrowserWindow({width: 420, height: 400,resizable:true,title:'reader'});
     //and load the index.html of the app.
-    var pathname= path.join(__dirname, '/../build/index.html')
-    mainWindow.loadURL(`file://${pathname}`);
-    mainWindow.loadURL('http://localhost:'+String(freeport));
-    mainWindow.focus()
+    //var pathname= path.join(__dirname, '/../build/index.html')
+    //mainWindow.loadURL(`file://${pathname}`);
+    //mainWindow.loadURL('http://localhost:'+String(freeport));
+    //mainWindow.focus()
     
-    // const startUrl = process.env.ELECTRON_START_URL || url.format({
-    //     pathname: path.join(__dirname, '/../build/index.html'),
-    //     protocol: 'file:',
-    //     slashes: true
-    // });
-    // mainWindow.loadURL(startUrl);
+    const startUrl = process.env.ELECTRON_START_URL || url.format({
+        pathname: path.join(__dirname, '/../build/index.html'),
+        protocol: 'file:',
+        slashes: true
+    });
+    mainWindow.loadURL(startUrl);
     
     // Open the DevTools.
     //mainWindow.webContents.openDevTools();
@@ -60,35 +60,36 @@ function checkNConnect (port){
 }
 
 
-function createWindow() {
-    //start express app
-    var freeport=null
-    pf.getPortPromise()
-    .then((port)=>{
-        freeport=port
-        expressServer(freeport);
-        //setupWindow(freeport);
-        checkNConnect(freeport);
-    })
-    .catch((err)=>{
-    })
-}
-
 // function createWindow() {
 //     //start express app
-//     //var freeport=null
-//     var freeport=8080
-//     // pf.getPortPromise()
-//     // .then((port)=>{
-//     //     freeport=port
-    
+//     var freeport=null
+//     pf.getPortPromise()
+//     .then((port)=>{
+//         freeport=port
 //         expressServer(freeport);
-//         setupWindow(freeport);
-//         //checkNConnect(freeport);
-//     // })
-//     // .catch((err)=>{
-//     // })
+//         //setupWindow(freeport);
+//         checkNConnect(freeport);
+//     })
+//     .catch((err)=>{
+//     })
 // }
+
+function createWindow() {
+    //start express app
+    //var freeport=null
+    var freeport=8080
+    
+    // pf.getPortPromise()
+    // .then((port)=>{
+    //     freeport=port
+    
+        //expressServer(freeport);
+        setupWindow(freeport);
+        //checkNConnect(freeport);
+    // })
+    // .catch((err)=>{
+    // })
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

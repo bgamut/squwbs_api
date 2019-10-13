@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     margin:0,
   },
   flipCard: {
-    backgroundColor:'rgb(211,211,211)',
+    backgroundColor:'rgb(135,135,135)',
     borderWidth:1,
     borderColor: 'rgba(128,128,128,0)',
     paddingTop:2,
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25
   },
   flipCardBack: {
-    backgroundColor:'rgb(211,211,211)',
+    backgroundColor:'rgb(135,135,135)',
     height: Dimensions.get('window').height-15,
     position: "absolute",
     backfaceVisibility: 'hidden',

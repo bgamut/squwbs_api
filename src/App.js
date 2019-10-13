@@ -27,6 +27,11 @@ import async from 'express-async-await'
 //const cookies = new Cookies();
 //import cookie from 'react-cookies'
 //import {Cookies, CookiesProvider, useCookies,withCookies }from 'react-cookie'
+//import {Provider} from 'react-redux'
+//import {createStore,applyMiddleware} from 'redux'
+
+//const store=createStore(()=>{},{},applyMiddleware())
+//import store from './store'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -127,7 +132,7 @@ const App = (props,context)=>{
       
     }
     return(
-  
+    // <Provider store={store}>
       <ContextController>
       
         <SafeAreaView>
@@ -140,7 +145,7 @@ const App = (props,context)=>{
         </SafeAreaView>
       
       </ContextController>
-    
+    // </Provider>
     )
   // }
 }

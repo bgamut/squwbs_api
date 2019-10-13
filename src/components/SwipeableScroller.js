@@ -58,7 +58,7 @@ const SwipeableScroller = (props) => {
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const paypalRef = useRef('')
   const heightRef = useRef('')
-  
+  var animatedHeaderHeight = new Animated.Value(height)
   useEffect(()=>{
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
@@ -117,7 +117,45 @@ const SwipeableScroller = (props) => {
   useEffect(()=>{
     //console.log('height changed!')
     //console.log(Dimensions.get('window').height)
+    
   },[height])
+  useEffect(()=>{
+    if(state.headerOpen==true)
+        {
+            Animated.timing(
+                //this.Animation,
+                animatedHeaderHeight,
+                {
+                    duration:500,
+                    toValue:height-50,
+                }
+            ).start(()=>
+            {
+                
+                //console.log("Animated header Open has been toggled to ", interpolatedHeader)
+                console.log("header Open has been toggled to ", state.headerOpen)
+                //interpolatedHeader
+            })
+        }
+        else
+        {
+            Animated.timing(
+                animatedHeaderHeight,
+                {
+                    duration:500,
+                    toValue:height, 
+                }
+            ).start(()=>
+            {
+                
+                console.log("header Open has been toggled to ", state.headerOpen)
+            })
+        }
+  },[...Object.values(state)])
+  // useEffect(()=>{
+  //   console.log('context changed! headerOpen = ',state.headerOpen)
+  // },[...Object.values(state)])
+
   const updateDimensions=()=>{
     setHeight(Math.floor(Dimensions.get('window').height))
     //style.height=Math.floor(Dimensions.get('window').height)
@@ -129,49 +167,20 @@ const SwipeableScroller = (props) => {
     
     //console.log(e.nativeEvent.contentOffset.y)
     currentY=(e.nativeEvent.contentOffset.y)
-    
-    //
-    //console.log(currentY-prevY)
-    buffer=buffer.splice(-1)
-    buffer.push(currentY-prevY)
-    var average=0
-    for (var i=0; i<buffer.length; i++){
-      average+=buffer[i]
-    }
-    //console.log('average : '+average)
-    if(average<0){
-      Animated.spring(yScroll,
-        {
-          toValue: 50,
-          overshootClamping:true,
-          stiffness:100
-         //speed:12,
-        
-         }
-      ).start()
-    }
-    else{
-      Animated.spring(yScroll,
-        {
-          toValue: 0,
-          overshootClamping:true,
-          stiffness:100
-         //speed:12,
-        
-         }
-      ).start()
-    }
-
-    let translateYInterp = yScroll.interpolate(
-      {
-          inputRange:[0,50,51,100],
-          outputRange:[0,50,50,50]
+      if(currentY>prevY){
+        //console.log('currentY is bigger')
+        //close
+        //setState({...state,headerOpen:false})
+        props.headerOpen(false)
       }
-    )
-    //setState({...state,translateY:translateYInterp})
-    //setState({...state,yscroll:yScroll})
-    //setState
+      else if (currentY<prevY){
+        //console.log('prevY is bigger')
+        //open
+        //setState({...state,headerOpen:true})
+        props.headerOpen(true)
+      }
     prevY=currentY
+    
     
   }
   const paypalPressed = ()=>{
@@ -181,9 +190,14 @@ const SwipeableScroller = (props) => {
   return(
            
   <View>
-    <ScrollView 
+    <Animated.ScrollView 
       // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
-      style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
+      style={{
+        backgroundColor:'transparent',
+        //height:height-50,
+        height:animatedHeaderHeight,
+        zIndex:98
+    }}
       
       onScroll={(e)=>{
           onScroll(e)
@@ -276,7 +290,7 @@ const SwipeableScroller = (props) => {
               width:"100vw",
               backgroundSize: '100% 100%',
               //backgroundColor:'rgb(250,250,250)',
-              backgroundColor:'rgb(211,211,211)',
+              backgroundColor:'rgb(135,135,135)',
               textAlign:'center',
               
               backgroundRepeat:"no-repeat",
@@ -483,7 +497,7 @@ const SwipeableScroller = (props) => {
                 width:"100%",
                 padding:15,
                 
-                backgroundColor:'rgb(211,211,211)',
+                backgroundColor:'rgb(135,135,135)',
                 justifyContent:'center',
                 alignItems:'center',
               }}
@@ -758,7 +772,7 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   alignItems:'center',
                   zIndex:0,
-                  //backgroundColor:'rgb(211,211,211)',
+                  //backgroundColor:'rgb(135,135,135)',
                   backgroundColor:'white',
                   borderRadius:4,
                   //borderBottom:2,
@@ -815,7 +829,7 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   alignItems:'center',
                   zIndex:0,
-                  backgroundColor:'rgb(211,211,211)',
+                  backgroundColor:'rgb(135,135,135)',
                   borderRadius:4,
                   //borderBottom:2,
                   //borderTop:1,
@@ -862,7 +876,7 @@ const SwipeableScroller = (props) => {
                 width:"100%",
                 padding:15,
                 
-                backgroundColor:'rgb(211,211,211)',
+                backgroundColor:'rgb(135,135,135)',
                 justifyContent:'center',
                 alignItems:'center',
               }}
@@ -917,7 +931,7 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   alignItems:'center',
                   zIndex:0,
-                  backgroundColor:'rgb(211,211,211)',
+                  backgroundColor:'rgb(135,135,135)',
                   borderRadius:4,
                   //borderBottom:2,
                   //borderTop:1,
@@ -960,7 +974,7 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   alignItems:'center',
                   zIndex:0,
-                  //backgroundColor:'rgb(211,211,211)',
+                  //backgroundColor:'rgb(135,135,135)',
                   backgroundColor:'white',
                   borderRadius:4,
                   //borderBottom:2,
@@ -1005,7 +1019,7 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   alignItems:'center',
                   zIndex:0,
-                  //backgroundColor:'rgb(211,211,211)',
+                  //backgroundColor:'rgb(135,135,135)',
                   backgroundColor:'white',
                   borderRadius:4,
                   //borderBottom:2,
@@ -1032,7 +1046,7 @@ const SwipeableScroller = (props) => {
           {/* <View
             style={{
               height:125,
-              // backgroundColor:'rgb(211,211,211)'
+              // backgroundColor:'rgb(135,135,135)'
               backgroundColor:'white'
             }}
           >
@@ -1043,7 +1057,7 @@ const SwipeableScroller = (props) => {
           {/* <View
             style={{
               height:125,
-              // backgroundColor:'rgb(211,211,211)'
+              // backgroundColor:'rgb(135,135,135)'
               backgroundColor:'white'
             }}
           >
@@ -1076,7 +1090,7 @@ const SwipeableScroller = (props) => {
               justifyContent:'center',
               overflow:'hidden',
               // borderWidth:1,
-              // borderColor:'rgb(211,211,211)',
+              // borderColor:'rgb(135,135,135)',
           }}>
               <WordDeckWrapper/>
             </View>
@@ -1090,7 +1104,7 @@ const SwipeableScroller = (props) => {
                 width:"100%",
                 padding:15,
                 
-                backgroundColor:'rgb(211,211,211)',
+                backgroundColor:'rgb(135,135,135)',
                 justifyContent:'center',
                 alignItems:'center',
               }}
@@ -1127,7 +1141,7 @@ const SwipeableScroller = (props) => {
         </View>
       
     </View>
-  </ScrollView>
+  </Animated.ScrollView>
 </View>
 )
      
