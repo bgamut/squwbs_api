@@ -58,7 +58,9 @@ const SwipeableScroller = (props) => {
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const paypalRef = useRef('')
   const heightRef = useRef('')
+  const [partHeight,setPartHeight] = useState(Dimensions.get('window').height-50)
   var animatedHeaderHeight = new Animated.Value(height)
+  
   useEffect(()=>{
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
@@ -68,6 +70,7 @@ const SwipeableScroller = (props) => {
     })
     //window.addEventListener("resize", updateDimensions);
     //window.addEventListener('orientationchange', updateDimensions)
+
     Dimensions.addEventListener('change',(e)=>{
       updateDimensions()
     })
@@ -122,6 +125,7 @@ const SwipeableScroller = (props) => {
   useEffect(()=>{
     if(state.headerOpen==true)
         {
+          setPartHeight(height-50)
             Animated.timing(
                 //this.Animation,
                 animatedHeaderHeight,
@@ -135,10 +139,12 @@ const SwipeableScroller = (props) => {
                 //console.log("Animated header Open has been toggled to ", interpolatedHeader)
                 console.log("header Open has been toggled to ", state.headerOpen)
                 //interpolatedHeader
+                
             })
         }
         else
         {
+          setPartHeight(height)
             Animated.timing(
                 animatedHeaderHeight,
                 {
@@ -149,6 +155,7 @@ const SwipeableScroller = (props) => {
             {
                 
                 console.log("header Open has been toggled to ", state.headerOpen)
+                
             })
         }
   },[...Object.values(state)])
@@ -195,7 +202,7 @@ const SwipeableScroller = (props) => {
       style={{
         backgroundColor:'transparent',
         //height:height-50,
-        height:animatedHeaderHeight,
+        height:partHeight,
         zIndex:98
     }}
       
@@ -207,7 +214,7 @@ const SwipeableScroller = (props) => {
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={true}
       //snapToInterval={height-50}
-      snapToInterval = {animatedHeaderHeight}
+      snapToInterval = {partHeight}
       snapeToAlignment='end'
       decelerationRate="fast"
     >
@@ -269,7 +276,7 @@ const SwipeableScroller = (props) => {
         >
           <Animated.View
             style={{
-              height:animatedHeaderHeight,
+              height:partHeight,
                 width:"100vw",
                 //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
                 // textAlign:'center',
@@ -313,7 +320,7 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   style={{
                     width:"100%",
-                    height:animatedHeaderHeight,
+                    height:partHeight,
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -383,7 +390,7 @@ const SwipeableScroller = (props) => {
               <Animated.View
                   style={{
                     width:"100%",
-                    height:animatedHeaderHeight,
+                    height:partHeight,
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -447,7 +454,7 @@ const SwipeableScroller = (props) => {
               <Animated.View
                   style={{
                     width:"100%",
-                    height:animatedHeaderHeight,
+                    height:partHeight,
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -510,7 +517,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -773,7 +780,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -830,7 +837,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -872,7 +879,7 @@ const SwipeableScroller = (props) => {
             <Animated.View 
             ref={heightRef}
             style={{
-              height:animatedHeaderHeight,
+              height:partHeight,
               zIndex:0,
               alignContent:'center',
               justifyContent:'center',
@@ -889,7 +896,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -932,7 +939,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -975,7 +982,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1020,7 +1027,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1084,7 +1091,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 zIndex:0,
                 backgroundColor:'transparent',
                 alignItems:'center',
@@ -1100,7 +1107,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
               //height:"100vh",
-              height:animatedHeaderHeight,
+              height:partHeight,
               zIndex:0,
               backgroundColor:'white',
               alignContent:'center',
@@ -1117,7 +1124,7 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:animatedHeaderHeight,
+                height:partHeight,
                 width:"100%",
                 padding:15,
                 
