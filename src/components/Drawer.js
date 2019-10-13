@@ -24,9 +24,11 @@ const Drawer =(props)=>{
     const [userName,setUserName]=useState('')
     const [userPhotoLink,setUserPhotoLink]=useState('')
     const [height,setHeight]=useState(0)
+    const [drawerToggle, setDrawerToggle]=useState(true)
     // const [overlaySwitch,setOverlaySwitch]=useState(true)
     const scroller=useRef('')
     // const overlay=useRef('')
+    var drawerAnimation = new Animated.Value(0)
     const yScroll = new Animated.Value(0)
     var currentY=0
     var prevY=0
@@ -142,7 +144,8 @@ const Drawer =(props)=>{
         prevY=currentY
         
       }
-    const drawerInterp =state.drawerAnimation.interpolate(
+    //const drawerInterp =state.drawerAnimation.interpolate(
+    const drawerInterp =drawerAnimation.interpolate(
         {
             inputRange:[0,1],
             outputRange:[-SLIDING_DRAWER_WIDTH,0]
@@ -156,32 +159,37 @@ const Drawer =(props)=>{
     // )
     const ShowSlidingDrawer = ()=>
     {
-        if(state.drawerToggle==true)
+        //if(state.drawerToggle==true)
+        if(drawerToggle==true)
         {
             Animated.timing(
                 //this.Animation,
-                state.drawerAnimation,
+                //state.drawerAnimation,
+                drawerAnimation,
                 {
                     duration:500,
                     toValue:1,
                 }
             ).start(()=>
             {
-                setState({...state,drawerToggle:false})
+                //setState({...state,drawerToggle:false})
+                setDrawerToggle(false)
                 
             })
         }
-        else
+        else if(drawerToggle==false)
         {
             Animated.timing(
-                state.drawerAnimation,
+                //state.drawerAnimation,
+                drawerAnimation,
                 {
                     duration:500,
                     toValue:0, 
                 }
             ).start(()=>
             {
-                setState({...state,drawerToggle:true})
+                //setState({...state,drawerToggle:true})
+                setDrawerToggle(true)
             })
         }
     }
@@ -232,12 +240,12 @@ const Drawer =(props)=>{
     useEffect(()=>{
         //console.log(state.translateY._parent)
         //setHeight(Math.floor(Dimensions.get('window').height)-maxHeight)
-        Animated.timing(state.spinValue,
-            {
-                toValue:360,
-                duration:3000,
-                easing:Easing.linear
-            }).start()
+        // Animated.timing(state.spinValue,
+        //     {
+        //         toValue:360,
+        //         duration:3000,
+        //         easing:Easing.linear
+        //     }).start()
         //window.addEventListener("resize", updateDimensions);
         Dimensions.addEventListener('change',(e)=>{
             updateDimensions()
@@ -251,8 +259,18 @@ const Drawer =(props)=>{
     },[])
     useEffect(()=>{
         //console.log(state)
+        console.log('drawer can hear the state change')
+        if(state.headerOpen==false)
+        {
+            //if(state.drawerToggle==true)
+           
+            if(drawerToggle==false)
+            {
+                ShowSlidingDrawer()
+            }
+        }
     }
-    ,[state])
+    ,[...Object.values(state)])
     // const spin = state.spinValue.interpolate({
     //     inputRange:[0,1],
     //     ouputRange:['0deg','360deg']

@@ -206,7 +206,8 @@ const SwipeableScroller = (props) => {
       scrollEnabled={true}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={true}
-      snapToInterval={height-50}
+      //snapToInterval={height-50}
+      snapToInterval = {animatedHeaderHeight}
       snapeToAlignment='end'
       decelerationRate="fast"
     >
@@ -255,16 +256,30 @@ const SwipeableScroller = (props) => {
             </Swiper> */}
       
         {/* </View> */}
+        <View>
         <section id="slider"
           ref={heightRef}
           style={{
             //height:"38vh",
-            height:height-50,
+            
             width:"100vw",
             backgroundColor:'white',
             textAlign:'center'
           }}
         >
+          <Animated.View
+            style={{
+              height:animatedHeaderHeight,
+                width:"100vw",
+                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
+                // textAlign:'center',
+                backgroundSize: '100% 100%',
+                backgroundColor:'red',
+                textAlign:'center',
+               //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
+                backgroundRepeat:"no-repeat",
+            }}
+          >
           <Carousel 
             
             showArrows={true} 
@@ -286,8 +301,8 @@ const SwipeableScroller = (props) => {
             style={{
               //height:"38vh",
               
-              height:height-50,
-              width:"100vw",
+              height:'100%',
+              width:"100%",
               backgroundSize: '100% 100%',
               //backgroundColor:'rgb(250,250,250)',
               backgroundColor:'rgb(135,135,135)',
@@ -295,10 +310,10 @@ const SwipeableScroller = (props) => {
               
               backgroundRepeat:"no-repeat",
               }}>
-                <View
+                <Animated.View
                   style={{
                     width:"100%",
-                    height:"100%",
+                    height:animatedHeaderHeight,
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -348,13 +363,13 @@ const SwipeableScroller = (props) => {
                   
                 </a>
                   </Fade>
-                </View>
+                </Animated.View>
             </div>
             <div 
               ref={heightRef}
               style={{
                 //height:"38vh",
-                height:height-50,
+                height:"100%",
                 width:"100vw",
                 //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
                 // textAlign:'center',
@@ -365,10 +380,10 @@ const SwipeableScroller = (props) => {
                 backgroundRepeat:"no-repeat",
               }}
             >
-              <View
+              <Animated.View
                   style={{
                     width:"100%",
-                    height:"100%",
+                    height:animatedHeaderHeight,
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -414,7 +429,7 @@ const SwipeableScroller = (props) => {
                     </Text>
                   </a>
                 </Fade>
-                </View>
+                </Animated.View>
                 {/* <img src="assets/2.jpeg" /> */}
                 {/* <p className="legend">2</p> */}
             </div>
@@ -422,17 +437,17 @@ const SwipeableScroller = (props) => {
               ref={heightRef}
               style={{
                 //height:"38vh",
-                height:height-50,
+                height:"100%",
                 width:"100vw",
                 
                 backgroundColor:'rgb(255,255,255)',
                 textAlign:'center'
               }}
             >
-              <View
+              <Animated.View
                   style={{
                     width:"100%",
-                    height:"100%",
+                    height:animatedHeaderHeight,
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -479,21 +494,23 @@ const SwipeableScroller = (props) => {
                   </Text>
                   </a>
                   </Fade>
-                </View>
+                </Animated.View>
                 {/* <img src="assets/3.jpeg" /> */}
                 {/* <p className="legend">3</p> */}
             </div>
           </Carousel>
+          </Animated.View>
         </section>
+        </View>
         <View style={{flexDirection:'column'}}>
           
           
           <section id="download">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -748,15 +765,15 @@ const SwipeableScroller = (props) => {
             </View>  
             
               </View>
-            </View>
+            </Animated.View>
           </section>
           
           <section id="googleCard">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -805,15 +822,15 @@ const SwipeableScroller = (props) => {
                   hashs={['k-pop','dean']}
                 /> */}
               </View>
-            </View>
+            </Animated.View>
           </section>
 
           <section id="testDownloadLink">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -849,13 +866,13 @@ const SwipeableScroller = (props) => {
               >
                 <DLLink/>
               </View>
-            </View>
+            </Animated.View>
           </section>
           <section id="sound">
-            <View 
+            <Animated.View 
             ref={heightRef}
             style={{
-              height:height-50,
+              height:animatedHeaderHeight,
               zIndex:0,
               alignContent:'center',
               justifyContent:'center',
@@ -864,15 +881,15 @@ const SwipeableScroller = (props) => {
             >
               {/* <SwipeableList/> */}
               <Sound/>
-            </View>
+            </Animated.View>
           </section>
          
           <section id="follow">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -908,14 +925,14 @@ const SwipeableScroller = (props) => {
               >
                 <Instagram/>
               </View>
-            </View>
+            </Animated.View>
           </section>
           <section id="contact">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -951,14 +968,14 @@ const SwipeableScroller = (props) => {
               >
                 <Contact/>
               </View>
-            </View>
+            </Animated.View>
           </section>
           <section id="kakao">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -996,14 +1013,14 @@ const SwipeableScroller = (props) => {
                 {/* <Message/> */}
                 <Kakao/>
               </View>
-            </View>
+            </Animated.View>
           </section>
           <section id="message">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1041,7 +1058,7 @@ const SwipeableScroller = (props) => {
                 <Message/>
                 {/* <Kakao/> */}
               </View>
-            </View>
+            </Animated.View>
           </section>
           {/* <View
             style={{
@@ -1063,11 +1080,11 @@ const SwipeableScroller = (props) => {
           >
           </View> */}
           <section id="PDF">
-            <View 
+            <Animated.View 
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 zIndex:0,
                 backgroundColor:'transparent',
                 alignItems:'center',
@@ -1076,14 +1093,14 @@ const SwipeableScroller = (props) => {
             }}>
               
               <ReadPDF/>
-            </View>
+            </Animated.View>
           </section>
           <section id="cards">
-            <View 
+            <Animated.View 
               ref={heightRef}
               style={{
               //height:"100vh",
-              height:height-50,
+              height:animatedHeaderHeight,
               zIndex:0,
               backgroundColor:'white',
               alignContent:'center',
@@ -1093,14 +1110,14 @@ const SwipeableScroller = (props) => {
               // borderColor:'rgb(135,135,135)',
           }}>
               <WordDeckWrapper/>
-            </View>
+            </Animated.View>
           </section>
           <section id="uploadwords">
-            <View
+            <Animated.View
               ref={heightRef}
               style={{
                 //height:"100vh",
-                height:height-50,
+                height:animatedHeaderHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1136,7 +1153,7 @@ const SwipeableScroller = (props) => {
               >
                 <UploadWords/>
               </View>
-            </View>
+            </Animated.View>
           </section>
         </View>
       
