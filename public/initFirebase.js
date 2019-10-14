@@ -53,50 +53,50 @@ const messaging = firebase.messaging()
 //   console.log('firebase function fired from initFirebase.js',snapshot.val())
 // })
 
-messaging.usePublicVapidKey('BJKrJ_yZxUsiW1CJR0DB-5pJrKG7VzWtrSp6a0C-OTx1IQrV0KcW8xLIjuB5pMRo5aiV6xDw0wt3Q45TT7bB_CI')
-//following needs to be consumed in 
-//document.firebaseMessaging=messaging
-console.log("this is firebase in action",messaging)
-messaging.requestPermission()
-.then(()=>{
-  console.log('permission granted')
-  return messaging.getToken()
+// messaging.usePublicVapidKey('BJKrJ_yZxUsiW1CJR0DB-5pJrKG7VzWtrSp6a0C-OTx1IQrV0KcW8xLIjuB5pMRo5aiV6xDw0wt3Q45TT7bB_CI')
+// //following needs to be consumed in 
+// //document.firebaseMessaging=messaging
+// console.log("this is firebase in action",messaging)
+// messaging.requestPermission()
+// .then(()=>{
+//   console.log('permission granted')
+//   return messaging.getToken()
 
-}).then(function(token){
-  //console.log('push token : ',token)
-  //window.messagingToken = token
-  //event listener need to be implemented in the react code
-  //document.dispatchEvent(firebaseTokenReceived(token))
-  var headers = {"Content-Type": "application/json"};
+// }).then(function(token){
+//   //console.log('push token : ',token)
+//   //window.messagingToken = token
+//   //event listener need to be implemented in the react code
+//   //document.dispatchEvent(firebaseTokenReceived(token))
+//   var headers = {"Content-Type": "application/json"};
 
-  var body={}
-  var url = new URL('https://squwbs-252702.appspot.com/firebaseToken')
-  //body.token=token
-  //console.log(body)
-  var params={token:token}
-  url.search=new URLSearchParams(params)
-  fetch(url)
-  // .then((res)=>{
-  //   return res.json();
-  // })
-  .then(()=>{
-     //console.log(json)
-    fetch('https://squwbs-252702.appspot.com/readCookies')
-    .then(res=>{
-      return res.json()
-    }).then((json)=>{
-      console.log('initFirebase.js 78:',json)
-    })
-    //console.log()
-  })
-  .catch((err)=>{
-    console.log(err)
-  })
-})
+//   var body={}
+//   var url = new URL('https://squwbs-252702.appspot.com/firebaseToken')
+//   //body.token=token
+//   //console.log(body)
+//   var params={token:token}
+//   url.search=new URLSearchParams(params)
+//   fetch(url)
+//   // .then((res)=>{
+//   //   return res.json();
+//   // })
+//   .then(()=>{
+//      //console.log(json)
+//     fetch('https://squwbs-252702.appspot.com/readCookies')
+//     .then(res=>{
+//       return res.json()
+//     }).then((json)=>{
+//       console.log('initFirebase.js 78:',json)
+//     })
+//     //console.log()
+//   })
+//   .catch((err)=>{
+//     console.log(err)
+//   })
+// })
 
-.catch((e)=>{
-  console.log('permission denied',e)
-})
+// .catch((e)=>{
+//   console.log('permission denied',e)
+// })
 messaging.onTokenRefresh(() => {
   messaging.getToken().then((refreshedToken) => {
     console.log('Token refreshed.');

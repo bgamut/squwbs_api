@@ -309,6 +309,7 @@ const SwipeableScroller = (props) => {
                 textAlign:'center',
                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
                 backgroundRepeat:"no-repeat",
+                
             }}
           >
           <Carousel 
@@ -340,6 +341,7 @@ const SwipeableScroller = (props) => {
               textAlign:'center',
               
               backgroundRepeat:"no-repeat",
+              //backgroundImage: 'radial-gradient(farthest-corner at 150% -50%,purple,rgb(137,137,137))'
               }}>
                 <Animated.View
                   style={{
@@ -410,6 +412,7 @@ const SwipeableScroller = (props) => {
                 textAlign:'center',
                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
                 backgroundRepeat:"no-repeat",
+                //backgroundImage: 'radial-gradient(farthest-corner at 150% -50%,purple,white)'
               }}
             >
               <Animated.View
@@ -551,6 +554,7 @@ const SwipeableScroller = (props) => {
                 backgroundColor:'rgb(135,135,135)',
                 justifyContent:'center',
                 alignItems:'center',
+                backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
               }}
             >
               <View 
@@ -814,6 +818,7 @@ const SwipeableScroller = (props) => {
                 backgroundColor:'white',
                 justifyContent:'center',
                 alignItems:'center',
+                backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
               }}
             >
               <View 
@@ -895,7 +900,8 @@ const SwipeableScroller = (props) => {
                     width:0,
                     height:0
                   },
-                  elevation:2
+                  elevation:2,
+                  backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
                 }}
               >
                 <DLLink/>
@@ -931,6 +937,7 @@ const SwipeableScroller = (props) => {
                 backgroundColor:'rgb(135,135,135)',
                 justifyContent:'center',
                 alignItems:'center',
+                backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
               }}
             >
               <View 
@@ -955,7 +962,8 @@ const SwipeableScroller = (props) => {
                     width:0,
                     height:0
                   },
-                  elevation:2
+                  elevation:2,
+                  //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
                 }}
               >
                 <Instagram/>
@@ -998,7 +1006,8 @@ const SwipeableScroller = (props) => {
                     width:0,
                     height:0
                   },
-                  elevation:2
+                  elevation:2,
+                  backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
                 }}
               >
                 <Contact/>

@@ -18,17 +18,24 @@ import P5Wrapper from 'react-p5-wrapper'
 //import 'firebase/functions'
 //import 'firebase/auth'
 //import 'firebase/firestore'
+
 //import * as functions from 'firebase-functions'
 
 //var client
 
 import './css/iconHover.css'
+import { send } from 'q'
 
 //import openSocket from 'socket.io-client';
 // var net = require('node-net')
 // var tcpClient = new net()
 // console.log('Message.js 28:',tcpClient)
-
+import firebase from 'firebase'
+const initializeFirebase =()=>{
+    firebase.initializeApp({
+        messagingSenderId:'404719977912'
+    })
+}
 const line = require('@line/bot-sdk')
 const withQuery = require('with-query').default;
 const axios = require('axios')
@@ -36,7 +43,7 @@ const axios = require('axios')
 
 //const functions = require('firebase-functions');
 const _ = require('lodash')
-
+var createWebNotification = require('web-notification')
 // const firebase = require('firebase')
 // var admin = require('firebase-admin')
 // const functions = require('firebase-functions')
@@ -65,7 +72,7 @@ class Message extends Component{
             
         }
         this.inputRef = React.createRef()
-        
+        this.randomRef= React.createRef()
 
     }
     
@@ -154,6 +161,80 @@ class Message extends Component{
                 //     //tcpClient.destroy()
                 //     clearInterval(this.refreshInterval())
                 // })
+                
+                function urlBase64ToUint8Array(base64String) {
+                    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+                    const base64 = (base64String + padding)
+                      .replace(/-/g, '+')
+                      .replace(/_/g, '/');
+                  
+                    const rawData = window.atob(base64);
+                    const outputArray = new Uint8Array(rawData.length);
+                  
+                    for (let i = 0; i < rawData.length; ++i) {
+                      outputArray[i] = rawData.charCodeAt(i);
+                    }
+                    return outputArray;
+                  }
+                // fetch('https://squwbs-252702.appspot.com/vapidkey')
+                //     .then((result)=>{
+                //         return result.json()
+                //     })
+                //     .then((json)=>{
+                //         //var pubKey=urlBase64ToUint8Array(json.key)
+                //         var pubKey = json.key
+                //         var register
+                //         console.log("pubKey = ",pubKey)
+                //         async function send(publicKey) {
+                //             console.log('Registering service workder ..')
+                //             // register = await navigator.serviceWorker.register('./worker.js',
+                //             // {
+                //             //     scope:'/'
+                //             // })
+                //             addEventListener('push',function(event){
+                //                 //below code was tested.
+                //                 const data= event.data.json()
+                //                 console.log("push recieved: ",data)
+                //                 navigator.serviceWorker.ready.then(function(registration){
+                //                     registration.showNotification(data,title,{
+                //                         body:'Notified',
+                                        
+                //                     })
+                //                 })
+                            
+                //             })
+                //             console.log('Service worker registered')
+                //         console.log('Registering push...')
+                //         const subscription = await register.pushmanager.subscribe({
+                //             userVisibileOnly:true,
+                //             applicationServerKey:publicKey
+                //         })
+                //         console.log('sending push')
+                //         await fetch('https://squwbs-252702.appspot.com/subscribe',
+                //             {
+                //                 method:'POST',
+                //                 body:JSON.stringify(subscription),
+                //                 // headers:{
+                //                 //     'content-type':'application/json'
+                //                 // }
+                //             })
+                //         console.log('push sent')
+                                                
+                        
+                            
+
+                //         }
+                //         send(pubKey)
+                // })
+                //     .catch((err)=>{
+                //         console.log(err)
+                //     })
+              
+                // var myNotification = createWebNotification({
+                //     title:'my title',
+                //     body: 'my body'
+                // })
+                // document.body.appendChild(myNotification)
             } 
             
         }
@@ -185,6 +266,7 @@ class Message extends Component{
                 //var newParent = this.state.parent.slice()
                 newParent.push(
                 <View
+                    
                     style={{
                         //height:50,
                         width:"100%",
@@ -237,6 +319,63 @@ class Message extends Component{
         
     }
     componentDidMount(){
+        initializeFirebase()
+        const askForPermissioToReceiveNotifications = async () => {
+ 
+            try {
+                const messaging = firebase.messaging();
+                await messaging.requestPermission();
+                const token = await messaging.getToken();
+                console.log('token do usuário:', token);
+                var url ="https://fcm.googleapis.com/fcm/send"
+                var headers = {
+                    "Content-Type": "application/json",
+                    "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
+                }
+                var body ={
+                    "notification": {
+                        "title":"Welcome",
+                        "body":"We'll try to be descrete about it",
+                        "click_action": "http://localhost:3000/",
+                        "icon":"https://squwbs.com/favicon.ico"
+                    },
+                    "to":String(token)
+                }
+                fetch(url,{
+                    method:"POST",
+                    headers:headers,
+                    body:JSON.stringify(body)
+                  }).then((res)=>{
+                    console.log(res)
+                  }).catch((err)=>{
+                      console.log(err)
+                  })
+                return token;
+            } catch (error) {
+            console.error(error);
+          }
+        }
+        askForPermissioToReceiveNotifications()
+        //document.getElementById('notificationEl1').notify();
+        //console.log("randomRef")
+        // const notification = ()=>{
+        // return(
+        //     <web-notification 
+        //         id="notificationEl1"
+        //         title="Notification 1"
+        //         body="Hello World"
+        //         //icon="homer-simpson.jpg"
+        //         timeout="3000"
+        //     />
+        // )
+        // }
+        // var element = document.createElement('web-notification')
+        // element.setAttribute('id','notificationEl1')
+        // element.setAttribute('title','notification 1')
+        // element.setAttribute('body','Hellow World')
+        // element.setAttribute('timeout','3000')
+        // document.body.appendChild(element)
+        // document.getElementById('notificationEl1').notify();
         Dimensions.addEventListener('change',(e)=>{
             this.updateDimensions()
         })
@@ -298,7 +437,9 @@ class Message extends Component{
             timeout={5}
         >
             {/* <P5Wrapper /> */}
+            
               <View class="container"
+                ref={this.randomRef}
                 style={{
                     width:this.state.width-50,
                     height:this.state.height,
@@ -347,6 +488,7 @@ class Message extends Component{
                       
                         {/* <Animated.View  */}
                         <View
+                        
                             style={{
                                 backgroundColor:'white',
                                 height:this.state.height-175,

@@ -35,8 +35,29 @@ const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const webpush=require('web-push')
+const vapidKeys = webpush.generateVAPIDKeys()
+webpush.setGCMAPIKey(NODE_ENV.FIREBASE_API_KEY)
+webpush.setVapidDetails(
+  'mailto:bernardahn@squwbs.com',
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+)
 
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
 
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
 
 var flash = require('connect-flash')
 var net = require('net')
@@ -354,6 +375,20 @@ app.post('/readCookies',function(req, res){
   //res.send(req.signedCookies);
   res.json(req.signedCookies)
 });
+app.post('/subscribe',function(req,res){
+  //get push subscription
+  const  subscription = req.body
+  res.status(201).json({})
+  const payload = JSON.stringify({title: 'push test'})
+  webpush
+  .sendNotification(subscription, payload)
+  .catch((err)=>console.error(err))
+})
+app.get('/vapidkey',function(req,res){
+  //var key =urlBase64ToUint8Array(vapidKeys.publicKey)
+  var key = vapidKeys.publicKey
+  res.send({key:key})
+})
 // var conf={
 //   originUndefined: function (req, res, next) {
  
