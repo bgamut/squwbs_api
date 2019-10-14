@@ -771,7 +771,7 @@ const Home = () => {
           <Drawer 
             popLogin={loginOverlayToggle}
             popTerms={termsOverlayToggle}
-            
+            headerOpen={headerOpen}
           >
             <SwipeableScroller headerOpen={headerOpen}/>
           </Drawer>
