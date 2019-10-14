@@ -34,6 +34,12 @@ import firebase from 'firebase'
 const initializeFirebase =()=>{
     firebase.initializeApp({
         messagingSenderId:'404719977912'
+        ,apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14'
+        ,authDomain:'assistant-569a2.firebaseapp.com'
+        ,databaseURL:'https://assistant-569a2.firebaseio.com'
+        ,projectId:'assistant-569a2'
+        ,storageBucket:'assistant-569a2.appspot.com'
+        ,appId:'1:404719977912:web:04d0a42a3242d6c2'
     })
 }
 const line = require('@line/bot-sdk')
@@ -146,6 +152,16 @@ class Message extends Component{
                 window.addEventListener('firebaseMessageReceived',function(event){
                     //below code was tested.
                     console.log("fcm from message.js 177: ",event.detail.message)
+                    var element = document.createElement('web-notification')
+                    element.setAttribute('id','notificationEl1')
+                    element.setAttribute('title',event.detail.message.notification.title)
+                    element.setAttribute('body',event.detail.message.notification.body)
+                    element.setAttribute('icon',event.detail.message.notification.icon)
+                    element.setAttribute('click_action',event.detail.message.notification.click_action)
+                    element.setAttribute('notify-on-load',true)
+                    element.setAttribute('timeout','15000')
+                    document.body.appendChild(element)
+                    document.getElementById('notificationEl1').notify()
                 })
                 // document.addEventListener('firebaseTokenReceived',function(event){
                 //     console.log("Token from message.js 180: ",event.detail.message)
@@ -319,43 +335,8 @@ class Message extends Component{
         
     }
     componentDidMount(){
-        initializeFirebase()
-        const askForPermissioToReceiveNotifications = async () => {
- 
-            try {
-                const messaging = firebase.messaging();
-                await messaging.requestPermission();
-                const token = await messaging.getToken();
-                console.log('token do usuário:', token);
-                var url ="https://fcm.googleapis.com/fcm/send"
-                var headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
-                }
-                var body ={
-                    "notification": {
-                        "title":"Welcome",
-                        "body":"We'll try to be descrete about it",
-                        "click_action": "http://localhost:3000/",
-                        "icon":"https://squwbs.com/favicon.ico"
-                    },
-                    "to":String(token)
-                }
-                fetch(url,{
-                    method:"POST",
-                    headers:headers,
-                    body:JSON.stringify(body)
-                  }).then((res)=>{
-                    console.log(res)
-                  }).catch((err)=>{
-                      console.log(err)
-                  })
-                return token;
-            } catch (error) {
-            console.error(error);
-          }
-        }
-        askForPermissioToReceiveNotifications()
+        //initializeFirebase()
+        
         //document.getElementById('notificationEl1').notify();
         //console.log("randomRef")
         // const notification = ()=>{

@@ -45,6 +45,45 @@ const firebaseMessageReceived =(message)=> {
 
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging()
+const askForPermissioToReceiveNotifications = async () => {
+ 
+  try {
+      //const messaging = firebase.messaging();
+      await messaging.requestPermission();
+      const token = await messaging.getToken();
+      
+      
+      console.log('token do usuário:', token);
+      var url ="https://fcm.googleapis.com/fcm/send"
+      var headers = {
+          "Content-Type": "application/json",
+          "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
+      }
+      var body ={
+          "notification": {
+              "title":"Welcome",
+              "body":"We'll try to be descrete about it",
+              "click_action": "http://localhost:3000/",
+              "icon":"https://squwbs.com/favicon.ico"
+          },
+          "to":String(token)
+          
+      }
+      fetch(url,{
+          method:"POST",
+          headers:headers,
+          body:JSON.stringify(body)
+        }).then((res)=>{
+          console.log(res)
+        }).catch((err)=>{
+            console.log(err)
+        })
+      return token;
+  } catch (error) {
+  console.error(error);
+}
+}
+askForPermissioToReceiveNotifications()
 // const functions = firebase.functions()
 
 // const onMessageCreate = functions.database 
@@ -117,7 +156,14 @@ messaging.onMessage(function(payload){
   console.log('onMessage:',payload)
   //event listener need to be implemented in the react code
   window.dispatchEvent(firebaseMessageReceived(payload))
+  // window.registration.showNotification(
+  //   payload.notification.title,
+  //   payload.notification.body
+  //   )
 })
+
+//firebase.initializeApp(firebaseConfig);
+//const messaging = firebase.messaging()
 
 // messaging.setBackgroundMessageHandler(function(payload) {
 //   console.log('[firebase-messaging-sw.js] Received background message ', payload);
@@ -130,6 +176,6 @@ messaging.onMessage(function(payload){
 //   const notificationTitle=payload.notification.title
 //   const notificationOptionss=payload.notification.body
 
-//   return self.registration.showNotification(notificationTitle,
+//   window.registration.showNotification(notificationTitle,
 //     notificationOptions);
 // });
