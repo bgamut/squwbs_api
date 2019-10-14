@@ -167,7 +167,7 @@ const Drawer =(props)=>{
                 //state.drawerAnimation,
                 drawerAnimation,
                 {
-                    duration:500,
+                    duration:7,
                     toValue:1,
                 }
             ).start(()=>
@@ -183,7 +183,7 @@ const Drawer =(props)=>{
                 //state.drawerAnimation,
                 drawerAnimation,
                 {
-                    duration:500,
+                    duration:7,
                     toValue:0, 
                 }
             ).start(()=>
@@ -194,6 +194,7 @@ const Drawer =(props)=>{
         }
     }
     const delayedSlidingDrawer=()=>{
+        //ShowSlidingDrawer()
         //setTimeout(ShowSlidingDrawer,270)
     }
     const updateDimensions=()=>{

@@ -226,11 +226,12 @@ const Home = () => {
     //console.log("header Open has been toggled to ", headerOpenState)
     if(headerOpenState==true)
         {
+          
             Animated.timing(
                 //this.Animation,
                 animatedHeader,
                 {
-                    duration:500,
+                    duration:7,
                     toValue:0,
                 }
             ).start(()=>
@@ -244,7 +245,7 @@ const Home = () => {
             Animated.timing(
                 animatedHeader,
                 {
-                    duration:500,
+                    duration:7,
                     toValue:-50, 
                 }
             ).start(()=>

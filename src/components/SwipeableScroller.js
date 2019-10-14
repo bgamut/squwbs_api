@@ -48,7 +48,7 @@ const getUserData=async()=>{
 let currentY=0
 //const prevY=new Animated.Value(0)
 let prevY=0
-let buffer=[0,0]
+let buffer=[0,0,0,0,0,0,0,0]
 const yScroll = new Animated.Value(0)
 var date = new Date()
 const SwipeableScroller = (props) => {
@@ -58,7 +58,7 @@ const SwipeableScroller = (props) => {
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const paypalRef = useRef('')
   const heightRef = useRef('')
-  const [partHeight,setPartHeight] = useState(Dimensions.get('window').height-50)
+  const [partHeight,setPartHeight] = useState(Dimensions.get('window').height)
   var animatedHeaderHeight = new Animated.Value(height)
   
   useEffect(()=>{
@@ -125,12 +125,13 @@ const SwipeableScroller = (props) => {
   useEffect(()=>{
     if(state.headerOpen==true)
         {
-          setPartHeight(height-50)
+          //setPartHeight(height-50)
+          //setPartHeight(height)
             Animated.timing(
                 //this.Animation,
                 animatedHeaderHeight,
                 {
-                    duration:500,
+                    duration:7,
                     toValue:height-50,
                 }
             ).start(()=>
@@ -144,11 +145,11 @@ const SwipeableScroller = (props) => {
         }
         else
         {
-          setPartHeight(height)
+          //setPartHeight(height)
             Animated.timing(
                 animatedHeaderHeight,
                 {
-                    duration:500,
+                    duration:7,
                     toValue:height, 
                 }
             ).start(()=>
@@ -174,18 +175,36 @@ const SwipeableScroller = (props) => {
     
     //console.log(e.nativeEvent.contentOffset.y)
     currentY=(e.nativeEvent.contentOffset.y)
+    buffer.splice(0,1)
       if(currentY>prevY){
         //console.log('currentY is bigger')
         //close
         //setState({...state,headerOpen:false})
-        props.headerOpen(false)
+        
+        //props.headerOpen(false)
+        buffer.push(-1)
       }
       else if (currentY<prevY){
         //console.log('prevY is bigger')
         //open
         //setState({...state,headerOpen:true})
-        props.headerOpen(true)
+        
+        //props.headerOpen(true)
+        buffer.push(1)
       }
+      const average = (arr)=>arr.reduce((a,b)=>a+b,0)/arr.length
+      if(isNaN(average(buffer))==false){
+        //console.log(average(buffer))
+        if(average(buffer)<=0){
+          //console.log('close')
+          props.headerOpen(false)
+        }
+        else{
+          //console.log('open')
+          props.headerOpen(true)
+        }
+      }
+      
     prevY=currentY
     
     
