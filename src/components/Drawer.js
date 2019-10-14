@@ -172,7 +172,7 @@ const Drawer =(props)=>{
                 }
             ).start(()=>
             {
-                //setState({...state,drawerToggle:false})
+                setState({...state,drawerToggle:false})
                 setDrawerToggle(false)
                 
             })
@@ -188,7 +188,7 @@ const Drawer =(props)=>{
                 }
             ).start(()=>
             {
-                //setState({...state,drawerToggle:true})
+                setState({...state,drawerToggle:true})
                 setDrawerToggle(true)
             })
         }

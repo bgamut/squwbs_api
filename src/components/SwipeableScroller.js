@@ -175,6 +175,9 @@ const SwipeableScroller = (props) => {
     
     //console.log(e.nativeEvent.contentOffset.y)
     currentY=(e.nativeEvent.contentOffset.y)
+    if(state.drawerToggle==true){
+
+   
     buffer.splice(0,1)
       if(currentY>prevY){
         //console.log('currentY is bigger')
@@ -206,7 +209,7 @@ const SwipeableScroller = (props) => {
       }
       
     prevY=currentY
-    
+  }
     
   }
   const paypalPressed = ()=>{
