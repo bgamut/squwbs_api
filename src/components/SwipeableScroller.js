@@ -224,7 +224,8 @@ const SwipeableScroller = (props) => {
       style={{
         backgroundColor:'transparent',
         //height:height-50,
-        height:partHeight,
+        //height:partHeight,
+        height:'100vh',
         zIndex:98
     }}
       
@@ -236,7 +237,7 @@ const SwipeableScroller = (props) => {
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={true}
       //snapToInterval={height-50}
-      snapToInterval = {partHeight}
+      //snapToInterval = {partHeight}
       snapeToAlignment='end'
       decelerationRate="fast"
     >
@@ -298,7 +299,8 @@ const SwipeableScroller = (props) => {
         >
           <Animated.View
             style={{
-              height:partHeight,
+              //height:partHeight,
+              height:'100vh',
                 width:"100vw",
                 //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
                 // textAlign:'center',
@@ -342,7 +344,8 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   style={{
                     width:"100%",
-                    height:partHeight,
+                    //height:partHeight,
+                    height:'100vh',
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -412,7 +415,8 @@ const SwipeableScroller = (props) => {
               <Animated.View
                   style={{
                     width:"100%",
-                    height:partHeight,
+                    //height:partHeight,
+                    height:'100vh',
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -476,7 +480,8 @@ const SwipeableScroller = (props) => {
               <Animated.View
                   style={{
                     width:"100%",
-                    height:partHeight,
+                    //height:partHeight,
+                    height:'100vh',
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
@@ -538,8 +543,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -801,8 +806,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -858,8 +863,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -901,7 +906,8 @@ const SwipeableScroller = (props) => {
             <Animated.View 
             ref={heightRef}
             style={{
-              height:partHeight,
+              height:'100vh',
+              //height:partHeight,
               zIndex:0,
               alignContent:'center',
               justifyContent:'center',
@@ -917,8 +923,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -960,8 +966,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1003,8 +1009,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1048,8 +1054,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
@@ -1112,8 +1118,8 @@ const SwipeableScroller = (props) => {
             <Animated.View 
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 zIndex:0,
                 backgroundColor:'transparent',
                 alignItems:'center',
@@ -1128,8 +1134,8 @@ const SwipeableScroller = (props) => {
             <Animated.View 
               ref={heightRef}
               style={{
-              //height:"100vh",
-              height:partHeight,
+              height:"100vh",
+              //height:partHeight,
               zIndex:0,
               backgroundColor:'white',
               alignContent:'center',
@@ -1145,8 +1151,8 @@ const SwipeableScroller = (props) => {
             <Animated.View
               ref={heightRef}
               style={{
-                //height:"100vh",
-                height:partHeight,
+                height:"100vh",
+                //height:partHeight,
                 width:"100%",
                 padding:15,
                 
