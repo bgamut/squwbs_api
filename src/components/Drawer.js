@@ -213,7 +213,7 @@ const Drawer =(props)=>{
     
     const loginAndCloseDrawer=()=>{
         popLogin()
-        setTimeout(ShowSlidingDrawer(),720)
+        //setTimeout(ShowSlidingDrawer(),720)
         
     }
     const popTerms = ()=>{
@@ -221,7 +221,7 @@ const Drawer =(props)=>{
     }
     const termsAndCloseDrawer=()=>{
         popTerms()
-        setTimeout(ShowSlidingDrawer(),720)
+        //setTimeout(ShowSlidingDrawer(),720)
     }
     // const overlayToggle=()=>{
     //     console.log(overlay.current.props.style.zIndex)
