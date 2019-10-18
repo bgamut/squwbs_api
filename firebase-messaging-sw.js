@@ -67,7 +67,8 @@ messaging.setBackgroundMessageHandler(function(payload){
         body:payload.data.status
     }
     //return self.registration.showNotification(title,options)
-    window.registration.showNotification(title,options)
+    //window.registration.showNotification(title,options)
+    window.ServiceWorkerRegistration.showNotification(title,options)
 })
 // messaging.onMessage(function(payload){
 //     console.log('this is from messaging : ',payload)
