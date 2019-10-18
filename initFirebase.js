@@ -22,6 +22,24 @@ var firebaseConfig = {
 
 const firebaseTokenReceived =(message)=> {
   console.log('firebasetoken event fired')
+  fetch('https://squwbs-252702.appspot.com/register',{
+            method:'post',
+            headers:{
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+              token:message
+            })
+          })
+          .then((result)=>{
+              return result.json()
+          })
+          .then((json)=>{
+              console.log('initFirebase.js 32 register list : ',stringifyObject(json))
+          })
+          .catch((err)=>{
+              console.log('initFirebase.js 41 register error : ',err)
+          })
   window.firebaseToken=message
   //document.getElementById("messager").setAttribute('firebaseToken',message)
   return(
@@ -176,24 +194,7 @@ const askForPermissioToReceiveNotifications = async () => {
           //     console.log('initFirebase.js 132 : ',err)
           // })
 
-          fetch('https://squwbs-252702.appspot.com/register',{
-            method:'post',
-            headers:{
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-              token:token
-            })
-          })
-          .then((result)=>{
-              return result.json()
-          })
-          .then((json)=>{
-              console.log('initFirebase.js 192 register list : ',stringifyObject(json))
-          })
-          .catch((err)=>{
-              console.log('initFirebase.js 195 register error : ',err)
-          })
+          
 
       return token;
     }
