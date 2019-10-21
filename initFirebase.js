@@ -23,23 +23,23 @@ var firebaseConfig = {
 const firebaseTokenReceived =(message)=> {
   console.log('firebasetoken event fired')
   fetch('https://squwbs-252702.appspot.com/register',{
-            method:'post',
-            headers:{
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-              token:message
-            })
-          })
-          .then((result)=>{
-              return result.json()
-          })
-          .then((json)=>{
-              console.log('initFirebase.js 32 register list : ',stringifyObject(json))
-          })
-          .catch((err)=>{
-              console.log('initFirebase.js 41 register error : ',err)
-          })
+      method:'post',
+      headers:{
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        token:message
+      })
+    })
+    .then((result)=>{
+        return result.json()
+    })
+    .then((json)=>{
+        console.log('initFirebase.js 32 register list : ',stringifyObject(json))
+    })
+    .catch((err)=>{
+        console.log('initFirebase.js 41 register error : ',err)
+    })
   window.firebaseToken=message
   //document.getElementById("messager").setAttribute('firebaseToken',message)
   return(
@@ -87,19 +87,63 @@ const askForPermissioToReceiveNotifications = async () => {
 
 
       console.log('token do usuário:', token);
-      var url ="https://fcm.googleapis.com/fcm/send"
+      // var url ="https://fcm.googleapis.com/fcm/send"
+      // var headers = {
+      //     "Content-Type": "application/json",
+      //     "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
+      // }
+      // var body ={
+      //     "notification": {
+      //         "title":"Welcome",
+      //         "body":"We'll try to be descrete about it",
+      //         "click_action": "http://localhost:3000/",
+      //         "icon":"https://squwbs.com/favicon.ico"
+      //     },
+      //     "to":String(token)
+          
+      // }
+      // fetch(url,{
+      //     method:"POST",
+      //     headers:headers,
+      //     body:JSON.stringify(body)
+      //   }).then((res)=>{
+      //     console.log(res)
+      //   }).catch((err)=>{
+      //       console.log(err)
+      //   })
+      // var message = {
+      //   to: token,
+      //   collapse_key:'do_not_collapse',
+      //   notification:{
+      //     title:'welcome to squwbs',
+      //     body:'test body'
+      //   },
+      // }
+
+      // fcm.send(message,function(err,res){
+      //   if(err){
+      //     console.log(err)
+      //   }
+      //   else{
+      //     console.log(res)
+      //   }
+      // })
+
+
+      var url ="https://squwbs-252702.appspot.com/sendfcm"
       var headers = {
           "Content-Type": "application/json",
-          "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
+          
       }
       var body ={
+          "to": String(token),
+          "collapse_key":"do_not_collapse",
           "notification": {
               "title":"Welcome",
-              "body":"We'll try to be descrete about it",
-              "click_action": "http://localhost:3000/",
-              "icon":"https://squwbs.com/favicon.ico"
+              "body":"this is fired via sendfcm",
+              // "click_action": "http://localhost:3000/",
+              // "icon":"https://squwbs.com/favicon.ico"
           },
-          "to":String(token)
           
       }
       fetch(url,{
@@ -111,7 +155,7 @@ const askForPermissioToReceiveNotifications = async () => {
         }).catch((err)=>{
             console.log(err)
         })
-      
+
 
         // fetch('https://squwbs-252702.appspot.com/kakaoadminkey')
         //   .then((res)=>{
