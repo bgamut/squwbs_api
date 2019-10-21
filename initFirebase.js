@@ -30,16 +30,119 @@ const firebaseTokenReceived =(message)=> {
       body: JSON.stringify({
         token:message
       })
+      // body:{
+      //   token:message
+      // }
     })
     .then((result)=>{
+      console.log('register result initFirebase 38 : ',result)
         return result.json()
     })
     .then((json)=>{
         console.log('initFirebase.js 32 register list : ',stringifyObject(json))
+        var url ="https://squwbs-252702.appspot.com/sendfcmall"
+      // var headers = {
+      //     "Content-Type": "application/json",
+          
+      // }
+      // var body ={
+      //     //"to": String(token),
+      //     "collapse_key":"do_not_collapse",
+      //     "notification": {
+      //         "title":"Welcome",
+      //         "body":"this is fired via sendfcmall",
+      //         // "click_action": "http://localhost:3000/",
+      //         // "icon":"https://squwbs.com/favicon.ico"
+      //     },
+          
+      // }
+      // fetch(url,{
+      //     method:"POST",
+      //     headers:headers,
+      //     body:JSON.stringify(body)
+      //   }).then((res)=>{
+      //     console.log(res)
+      //     // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+      //     // var newBody ={
+            
+      //     //   "collapse_key":"do_not_collapse",
+      //     //   "notification": {
+      //     //       "title":"Welcome",
+      //     //       "body":"this is fired via sendfcmall",
+      //     //       // "click_action": "http://localhost:3000/",
+      //     //       // "icon":"https://squwbs.com/favicon.ico"
+      //     //   },
+            
+      //     // }
+      //     // fetch(newUrl,{
+      //     //   method:"POST",
+      //     //   headers:headers,
+      //     //   body:JSON.stringify(newBody)
+      //     // }).then((res)=>{
+      //     //   console.log(res)
+      //     // }).catch((err)=>{
+      //     //   console.log(err)
+      //     // })
+
+
+
+      //   }).catch((err)=>{
+      //       console.log(err)
+      //   })
     })
     .catch((err)=>{
         console.log('initFirebase.js 41 register error : ',err)
+        
     })
+    var url ="https://squwbs-252702.appspot.com/sendfcmall"
+    var headers = {
+        "Content-Type": "application/json",
+        
+    }
+    var body ={
+        //"to": String(token),
+        "collapse_key":"do_not_collapse",
+        "notification": {
+            "title":"Welcome",
+            "body":"this is fired via sendfcmall",
+            // "click_action": "http://localhost:3000/",
+            // "icon":"https://squwbs.com/favicon.ico"
+        },
+        
+    }
+    fetch(url,{
+        method:"POST",
+        headers:headers,
+        body:JSON.stringify(body)
+      }).then((res)=>{
+        console.log(res)
+        // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+        // var newBody ={
+          
+        //   "collapse_key":"do_not_collapse",
+        //   "notification": {
+        //       "title":"Welcome",
+        //       "body":"this is fired via sendfcmall",
+        //       // "click_action": "http://localhost:3000/",
+        //       // "icon":"https://squwbs.com/favicon.ico"
+        //   },
+          
+        // }
+        // fetch(newUrl,{
+        //   method:"POST",
+        //   headers:headers,
+        //   body:JSON.stringify(newBody)
+        // }).then((res)=>{
+        //   console.log(res)
+        // }).catch((err)=>{
+        //   console.log(err)
+        // })
+
+
+
+      }).catch((err)=>{
+          console.log(err)
+      })
   window.firebaseToken=message
   //document.getElementById("messager").setAttribute('firebaseToken',message)
   return(
@@ -130,31 +233,55 @@ const askForPermissioToReceiveNotifications = async () => {
       // })
 
 
-      var url ="https://squwbs-252702.appspot.com/sendfcm"
-      var headers = {
-          "Content-Type": "application/json",
+      // var url ="https://squwbs-252702.appspot.com/sendfcmall"
+      // var headers = {
+      //     "Content-Type": "application/json",
           
-      }
-      var body ={
-          "to": String(token),
-          "collapse_key":"do_not_collapse",
-          "notification": {
-              "title":"Welcome",
-              "body":"this is fired via sendfcm",
-              // "click_action": "http://localhost:3000/",
-              // "icon":"https://squwbs.com/favicon.ico"
-          },
+      // }
+      // var body ={
+      //     //"to": String(token),
+      //     "collapse_key":"do_not_collapse",
+      //     "notification": {
+      //         "title":"Welcome",
+      //         "body":"this is fired via sendfcmall",
+      //         // "click_action": "http://localhost:3000/",
+      //         // "icon":"https://squwbs.com/favicon.ico"
+      //     },
           
-      }
-      fetch(url,{
-          method:"POST",
-          headers:headers,
-          body:JSON.stringify(body)
-        }).then((res)=>{
-          console.log(res)
-        }).catch((err)=>{
-            console.log(err)
-        })
+      // }
+      // fetch(url,{
+      //     method:"POST",
+      //     headers:headers,
+      //     body:JSON.stringify(body)
+      //   }).then((res)=>{
+      //     console.log(res)
+      //     // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+      //     // var newBody ={
+            
+      //     //   "collapse_key":"do_not_collapse",
+      //     //   "notification": {
+      //     //       "title":"Welcome",
+      //     //       "body":"this is fired via sendfcmall",
+      //     //       // "click_action": "http://localhost:3000/",
+      //     //       // "icon":"https://squwbs.com/favicon.ico"
+      //     //   },
+            
+      //     // }
+      //     // fetch(newUrl,{
+      //     //   method:"POST",
+      //     //   headers:headers,
+      //     //   body:JSON.stringify(newBody)
+      //     // }).then((res)=>{
+      //     //   console.log(res)
+      //     // }).catch((err)=>{
+      //     //   console.log(err)
+      //     // })
+
+
+
+      //   }).catch((err)=>{
+      //       console.log(err)
+      //   })
 
 
         // fetch('https://squwbs-252702.appspot.com/kakaoadminkey')
