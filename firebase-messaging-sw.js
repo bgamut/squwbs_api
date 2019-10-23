@@ -22,45 +22,45 @@ const messaging = firebase.messaging()
 //     }
 //     return document.registration.showNotification(title,options)
 // })
-// const askForPermissioToReceiveNotifications = async () => {
+const askForPermissioToReceiveNotifications = async () => {
  
-//     try {
-//         //const messaging = firebase.messaging();
-//         await messaging.requestPermission();
-//         const token = await messaging.getToken();
+    try {
+        //const messaging = firebase.messaging();
+        await messaging.requestPermission();
+        const token = await messaging.getToken();
         
         
-//         console.log('token do usuário:', token);
-//         var url ="https://fcm.googleapis.com/fcm/send"
-//         var headers = {
-//             "Content-Type": "application/json",
-//             "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
-//         }
-//         var body ={
-//             "notification": {
-//                 "title":"Welcome",
-//                 "body":"We'll try to be descrete about it",
-//                 "click_action": "http://localhost:3000/",
-//                 "icon":"https://squwbs.com/favicon.ico"
-//             },
-//             "to":String(token)
+        console.log('token do usuário:', token);
+        var url ="https://fcm.googleapis.com/fcm/send"
+        var headers = {
+            "Content-Type": "application/json",
+            "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
+        }
+        var body ={
+            "notification": {
+                "title":"Welcome",
+                "body":"We'll try to be descrete about it",
+                "click_action": "http://localhost:3000/",
+                "icon":"https://squwbs.com/favicon.ico"
+            },
+            "to":String(token)
             
-//         }
-//         fetch(url,{
-//             method:"POST",
-//             headers:headers,
-//             body:JSON.stringify(body)
-//           }).then((res)=>{
-//             console.log(res)
-//           }).catch((err)=>{
-//               console.log(err)
-//           })
-//         return token;
-//     } catch (error) {
-//     console.error(error);
-//   }
-// }
-// askForPermissioToReceiveNotifications()
+        }
+        fetch(url,{
+            method:"POST",
+            headers:headers,
+            body:JSON.stringify(body)
+          }).then((res)=>{
+            console.log(res)
+          }).catch((err)=>{
+              console.log(err)
+          })
+        return token;
+    } catch (error) {
+    console.error(error);
+  }
+}
+askForPermissioToReceiveNotifications()
 messaging.setBackgroundMessageHandler(function(payload){
     const title="squwbs notification"
     const options={
