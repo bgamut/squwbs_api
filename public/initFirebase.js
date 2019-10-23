@@ -1,5 +1,13 @@
-//import { EventEmitter } from "events";
+//import withQuery from "with-query/dist";
 
+//import { EventEmitter } from "events";
+//const uuidv4 = require('uuid/v4')
+// function uuidv4() {
+//   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+//     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+//     return v.toString(16);
+//   });
+// }
 var firebaseConfig = {
     messagingSenderId:'404719977912'
     ,apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14'
@@ -11,7 +19,132 @@ var firebaseConfig = {
   };
 
 //custom event definitions
+
 const firebaseTokenReceived =(message)=> {
+  console.log('firebasetoken event fired')
+  fetch('https://squwbs-252702.appspot.com/register',{
+      method:'post',
+      headers:{
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        token:message
+      })
+      // body:{
+      //   token:message
+      // }
+    })
+    .then((result)=>{
+      console.log('register result initFirebase 38 : ',result)
+        return result.json()
+    })
+    .then((json)=>{
+        console.log('initFirebase.js 32 register list : ',stringifyObject(json))
+        var url ="https://squwbs-252702.appspot.com/sendfcmall"
+      // var headers = {
+      //     "Content-Type": "application/json",
+          
+      // }
+      // var body ={
+      //     //"to": String(token),
+      //     "collapse_key":"do_not_collapse",
+      //     "notification": {
+      //         "title":"Welcome",
+      //         "body":"this is fired via sendfcmall",
+      //         // "click_action": "http://localhost:3000/",
+      //         // "icon":"https://squwbs.com/favicon.ico"
+      //     },
+          
+      // }
+      // fetch(url,{
+      //     method:"POST",
+      //     headers:headers,
+      //     body:JSON.stringify(body)
+      //   }).then((res)=>{
+      //     console.log(res)
+      //     // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+      //     // var newBody ={
+            
+      //     //   "collapse_key":"do_not_collapse",
+      //     //   "notification": {
+      //     //       "title":"Welcome",
+      //     //       "body":"this is fired via sendfcmall",
+      //     //       // "click_action": "http://localhost:3000/",
+      //     //       // "icon":"https://squwbs.com/favicon.ico"
+      //     //   },
+            
+      //     // }
+      //     // fetch(newUrl,{
+      //     //   method:"POST",
+      //     //   headers:headers,
+      //     //   body:JSON.stringify(newBody)
+      //     // }).then((res)=>{
+      //     //   console.log(res)
+      //     // }).catch((err)=>{
+      //     //   console.log(err)
+      //     // })
+
+
+
+      //   }).catch((err)=>{
+      //       console.log(err)
+      //   })
+    })
+    .catch((err)=>{
+        console.log('initFirebase.js 41 register error : ',err)
+        
+    })
+    var url ="https://squwbs-252702.appspot.com/sendfcmall"
+    var headers = {
+        "Content-Type": "application/json",
+        
+    }
+    var body ={
+        //"to": String(token),
+        "collapse_key":"do_not_collapse",
+        "notification": {
+            "title":"Welcome",
+            "body":"this is fired via sendfcmall",
+            // "click_action": "http://localhost:3000/",
+            // "icon":"https://squwbs.com/favicon.ico"
+        },
+        
+    }
+    fetch(url,{
+        method:"POST",
+        headers:headers,
+        body:JSON.stringify(body)
+      }).then((res)=>{
+        console.log(res)
+        // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+        // var newBody ={
+          
+        //   "collapse_key":"do_not_collapse",
+        //   "notification": {
+        //       "title":"Welcome",
+        //       "body":"this is fired via sendfcmall",
+        //       // "click_action": "http://localhost:3000/",
+        //       // "icon":"https://squwbs.com/favicon.ico"
+        //   },
+          
+        // }
+        // fetch(newUrl,{
+        //   method:"POST",
+        //   headers:headers,
+        //   body:JSON.stringify(newBody)
+        // }).then((res)=>{
+        //   console.log(res)
+        // }).catch((err)=>{
+        //   console.log(err)
+        // })
+
+
+
+      }).catch((err)=>{
+          console.log(err)
+      })
+  window.firebaseToken=message
+  //document.getElementById("messager").setAttribute('firebaseToken',message)
   return(
     new CustomEvent(
       "firebaseTokenReceived", 
@@ -52,36 +185,193 @@ const askForPermissioToReceiveNotifications = async () => {
       await messaging.requestPermission();
       const token = await messaging.getToken();
       
+      firebaseTokenReceived(token)
       
+
+
       console.log('token do usuário:', token);
-      var url ="https://fcm.googleapis.com/fcm/send"
-      var headers = {
-          "Content-Type": "application/json",
-          "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
-      }
-      var body ={
-          "notification": {
-              "title":"Welcome",
-              "body":"We'll try to be descrete about it",
-              "click_action": "http://localhost:3000/",
-              "icon":"https://squwbs.com/favicon.ico"
-          },
-          "to":String(token)
+      // var url ="https://fcm.googleapis.com/fcm/send"
+      // var headers = {
+      //     "Content-Type": "application/json",
+      //     "Authorization": "key=AAAAXjswxbg:APA91bEpU8908It6G_CrMx8W5DpY2MBK5G3k0VNoJw0Aku-o43HjFnc36F_SB9cT3TrHXOA4gztiJ8xgF6lukf8EHbSdYUe3DUNjOmWd-QHZL6GTrtETkRs2Rh-69rphLlFDUdb5VqEa"
+      // }
+      // var body ={
+      //     "notification": {
+      //         "title":"Welcome",
+      //         "body":"We'll try to be descrete about it",
+      //         "click_action": "http://localhost:3000/",
+      //         "icon":"https://squwbs.com/favicon.ico"
+      //     },
+      //     "to":String(token)
           
-      }
-      fetch(url,{
-          method:"POST",
-          headers:headers,
-          body:JSON.stringify(body)
-        }).then((res)=>{
-          console.log(res)
-        }).catch((err)=>{
-            console.log(err)
-        })
+      // }
+      // fetch(url,{
+      //     method:"POST",
+      //     headers:headers,
+      //     body:JSON.stringify(body)
+      //   }).then((res)=>{
+      //     console.log(res)
+      //   }).catch((err)=>{
+      //       console.log(err)
+      //   })
+      // var message = {
+      //   to: token,
+      //   collapse_key:'do_not_collapse',
+      //   notification:{
+      //     title:'welcome to squwbs',
+      //     body:'test body'
+      //   },
+      // }
+
+      // fcm.send(message,function(err,res){
+      //   if(err){
+      //     console.log(err)
+      //   }
+      //   else{
+      //     console.log(res)
+      //   }
+      // })
+
+
+      // var url ="https://squwbs-252702.appspot.com/sendfcmall"
+      // var headers = {
+      //     "Content-Type": "application/json",
+          
+      // }
+      // var body ={
+      //     //"to": String(token),
+      //     "collapse_key":"do_not_collapse",
+      //     "notification": {
+      //         "title":"Welcome",
+      //         "body":"this is fired via sendfcmall",
+      //         // "click_action": "http://localhost:3000/",
+      //         // "icon":"https://squwbs.com/favicon.ico"
+      //     },
+          
+      // }
+      // fetch(url,{
+      //     method:"POST",
+      //     headers:headers,
+      //     body:JSON.stringify(body)
+      //   }).then((res)=>{
+      //     console.log(res)
+      //     // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+      //     // var newBody ={
+            
+      //     //   "collapse_key":"do_not_collapse",
+      //     //   "notification": {
+      //     //       "title":"Welcome",
+      //     //       "body":"this is fired via sendfcmall",
+      //     //       // "click_action": "http://localhost:3000/",
+      //     //       // "icon":"https://squwbs.com/favicon.ico"
+      //     //   },
+            
+      //     // }
+      //     // fetch(newUrl,{
+      //     //   method:"POST",
+      //     //   headers:headers,
+      //     //   body:JSON.stringify(newBody)
+      //     // }).then((res)=>{
+      //     //   console.log(res)
+      //     // }).catch((err)=>{
+      //     //   console.log(err)
+      //     // })
+
+
+
+      //   }).catch((err)=>{
+      //       console.log(err)
+      //   })
+
+
+        // fetch('https://squwbs-252702.appspot.com/kakaoadminkey')
+        //   .then((res)=>{
+        //       return res.json()
+        //   }).then((json)=>{
+        //     var newKey = json.key
+        //     console.log("yo1:",json.key)
+        //     console.log("yo2:",token)
+        //     // fetch(withQuery('https://squwbs-252702.appspot.com/kakaopushregister',{
+        //     //   mode:'cors',
+        //     //   key:key,
+        //     //   token:token
+        //     // }))
+        //     var url = new URL('https://squwbs-252702.appspot.com/kakaopushregister')
+        //     // var params = {
+        //     //   mode:'cors',
+        //     //   key:newKey,
+        //     //   token:token
+        //     // }
+        //     // Object.keys(params).forEach(oneOfTheKeys=>url.searchParams.append(oneOfTheKeys,params[oneOfTheKeys]))
+        //     var headers = {"Content-Type": "application/json"}
+        //     var newBody = {
+        //       "key":String(newKey),
+        //       "token":String(token)
+        //     }
+        //     //fetch(url)
+        //     fetch(url,{
+        //       "method":"post",
+        //       // headers:headers,
+        //       "body":JSON.stringify(newBody)
+        //     })
+        //       .then((res)=>{
+        //         return res.json()
+        //       }).then((json)=>{
+        //         console.log(json)
+        //       }).catch((err)=>{
+        //         console.log(err)
+        //       })
+              // var headers = {
+              //     'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+              //     'Cache-Control':'no-cache',
+              //     'Authorization': 'KakaoAK '+json.key
+              // }
+              // fetch('https://kapi.kakao.com/v1/push/register',{
+              //     headers:headers,
+              //     method:"post",
+              //     uuid:Math.floor(Math.random()*(Math.pow(2,63)-1)+1),
+              //     device_id:uuidv4(),
+              //     push_type:'gcm',
+              //     push_token:token
+              // })
+
+              // .then((res)=>{
+              //     return res.json()
+              // })
+              // .then((json)=>{
+              //     console.log('initFirebase.js 109 : ',json)
+              //     //console.log('kakaoJSON updated!')
+              //     console.log('initFirebase 386 JSON TOKEN : ',json.access_token)
+              //     // fetch('https://squwbs.pythonanywhere.com/kakao',{
+              //     //     //token:this.state.kakaoJSON.access_token
+              //     //     token:json.access_token
+              //     // })
+              //     // .then((result)=>{
+              //     //     return result.json()
+              //     // })
+              //     // .then((json)=>{
+              //     //     console.log('initFirebase.js 120 friends list : ',stringifyObject(json))
+              //     // })
+              //     // .catch((err)=>{
+              //     //     console.log('initFirebase.js 123 returns error : ',err)
+              //     // })
+
+              //     //})
+                  
+                  
+              // })
+          // })
+          // .catch((err)=>{
+          //     console.log('initFirebase.js 132 : ',err)
+          // })
+
+          
+
       return token;
-  } catch (error) {
-  console.error(error);
-}
+    }
+    catch (error) {
+      console.error(error);
+    }
 }
 askForPermissioToReceiveNotifications()
 // const functions = firebase.functions()

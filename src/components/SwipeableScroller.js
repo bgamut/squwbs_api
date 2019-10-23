@@ -54,6 +54,7 @@ var date = new Date()
 const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
+  const [user,setUser]=useState(undefined)
   const [height,setHeight]=useState(0)
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const paypalRef = useRef('')
@@ -122,6 +123,7 @@ const SwipeableScroller = (props) => {
     //console.log(Dimensions.get('window').height)
     
   },[height])
+ 
   useEffect(()=>{
     if(state.headerOpen==true)
         {
@@ -143,7 +145,7 @@ const SwipeableScroller = (props) => {
                 
             })
         }
-        else
+    else
         {
           //setPartHeight(height)
             Animated.timing(
@@ -159,6 +161,18 @@ const SwipeableScroller = (props) => {
                 
             })
         }
+    console.log("eyo!!!!!!!!!!!!!!!!!! user data ==undefined returns",stringifyObject(state.userData)=='undefined')
+    console.log('swipeablescroller.js userData:',stringifyObject(state.userData))
+    if(stringifyObject(state.userData)=='undefined'){
+      console.log("swipeablescroller.js userData is ",stringifyObject(state.userData))
+      console.log("swipeablescroller.js user is ",stringifyObject(user))
+      
+    }
+    else{
+      console.log("swipeablescroller.js userData is ",stringifyObject(state.userData))
+      console.log("swipeablescroller.js user is ",stringifyObject(user))
+      setUser(state.userData)
+    }
   },[...Object.values(state)])
   // useEffect(()=>{
   //   console.log('context changed! headerOpen = ',state.headerOpen)
@@ -216,995 +230,1551 @@ const SwipeableScroller = (props) => {
     //console.log('paypalPressed triggered')
     //console.log(paypalRef.current.style)
   }
-  return(
-           
-  <View>
-    <Animated.ScrollView 
-      // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
-      style={{
-        backgroundColor:'transparent',
-        //height:height-50,
-        //height:partHeight,
-        height:'100vh',
-        zIndex:98
-    }}
-      
-      onScroll={(e)=>{
-          onScroll(e)
-        }
-      }
-      scrollEnabled={true}
-      scrollEventThrottle={16}
-      showsVerticalScrollIndicator={true}
-      //snapToInterval={height-50}
-      //snapToInterval = {partHeight}
-      snapeToAlignment='end'
-      decelerationRate="fast"
-    >
-    
-      <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
-        {/* <View style={{backgroundColor:'transparent',height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}> */}
-          {/* <View  style={{height:"38vh",width:Dimensions.get('window').width-2}}> */}
-            {/* <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='row'>
-
-              <View style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgb(20,20,20)",
-                textAlaign:'center',
-                borderRadius:4,
-                
-                overflow:'hidden',
-                
-              }}>
-              </View>
-              <View style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgb(110,110,110)",
-                
-                borderRadius:4,
-                overflow:'hidden',
-                
-              }}>
-
-              </View>
-              <View style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "rgb(200,200,200)",
-                borderRadius:4,
-                
-                overflow:'hidden',
-                
-              }}>
-
-              </View>
-            </Swiper> */}
-      
-        {/* </View> */}
-        <View>
-        <section id="slider"
-          ref={heightRef}
+  if(stringifyObject(user)=='undefined'){
+    return(
+            
+      <View>
+        <Animated.ScrollView 
+          // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
           style={{
-            //height:"38vh",
-            
-            width:"100vw",
-            backgroundColor:'white',
-            textAlign:'center'
-          }}
-        >
-          <Animated.View
-            style={{
-              //height:partHeight,
-              height:'100vh',
-                width:"100vw",
-                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
-                // textAlign:'center',
-                backgroundSize: '100% 100%',
-                backgroundColor:'red',
-                textAlign:'center',
-               //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
-                backgroundRepeat:"no-repeat",
-                
-            }}
-          >
-          <Carousel 
-            
-            showArrows={true} 
-            showStatus={false} 
-            showIndicators={false}
-            showThumbs={false}
-            infiniteLoop={true}
-            autoPlay={true}
-            interval={4500}
-            transitionTime={500}
-            //emulateTouch={true}
-            stopOnHover={true}
-            //swipeScrollTolerance={1}
-            useKeyboardArrows={true}
-            //centerSlidePercentage={10}
-          >
-            <div 
-            ref={heightRef}
-            style={{
-              //height:"38vh",
-              
-              height:'100%',
-              width:"100%",
-              backgroundSize: '100% 100%',
-              //backgroundColor:'rgb(250,250,250)',
-              backgroundColor:'rgb(135,135,135)',
-              textAlign:'center',
-              
-              backgroundRepeat:"no-repeat",
-              //backgroundImage: 'radial-gradient(farthest-corner at 150% -50%,purple,rgb(137,137,137))'
-              }}>
-                <Animated.View
-                  style={{
-                    width:"100%",
-                    //height:partHeight,
-                    height:'100vh',
-                    backgroundColor:'transparent',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    // backgroundColor:'orange',
-                    padding:25,
-                  }}
-                >
-                {/* <div
-                  style={{
-                    height:'100%',
-                    width:'100%',
-                    
-                  }}
-                >
-                </div> */}
-                {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
-                {/* <p className="legend">1</p> */}
-                <Fade>
-                <a 
-                  style={{
-                    textDecorationLine:'none',
-                    
-                  }}
-                  href='#download'
-                >
-                  <Text
-                    //className='Unselectable'
-                    style={{
-                      // backgroudColor:'purple',
-                      textDecorationLine:'none',
-                      color:'white',
-                      fontWeight:'700',
-                      fontSize: 25,
-                      textShadowColor: 'rgba(0, 0, 0, 1)',
-                      textShadowOffset: {width: 0, height: 0},
-                      textShadowRadius: 2,
+            backgroundColor:'transparent',
+            //height:height-50,
+            //height:partHeight,
+            height:'100vh',
+            zIndex:98
+        }}
           
-                      textAlign:'center',
-                      alignItems:'center',
-                      justifyContent:'center',
-                      flexDirection:'row',
-                      
-                    }}
-                  >
-                    Get the Sound You Want
-                  </Text>
-                  
-                </a>
-                  </Fade>
-                </Animated.View>
-            </div>
-            <div 
-              ref={heightRef}
-              style={{
-                //height:"38vh",
-                height:"100%",
-                width:"100vw",
-                //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
-                // textAlign:'center',
-                backgroundSize: '100% 100%',
-                backgroundColor:'rgb(250,250,250)',
-                textAlign:'center',
-               //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
-                backgroundRepeat:"no-repeat",
-                //backgroundImage: 'radial-gradient(farthest-corner at 150% -50%,purple,white)'
-              }}
-            >
-              <Animated.View
-                  style={{
-                    width:"100%",
-                    //height:partHeight,
-                    height:'100vh',
-                    backgroundColor:'transparent',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    padding:25,
-                  }}
-                >
-                {/* <div
-                  style={{
-                    height:'100%',
-                    width:'100%',
-                    
-                  }}
-                >
-                </div> */}
-                {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
-                {/* <p className="legend">1</p> */}
-                <Fade>
-                  <a 
-                     style={{
-                      textDecorationLine:'none'
-                    }}
-                    href='#download'
-                  >
-                    <Text
-                      //className='Unselectable'
-                      style={{
+          onScroll={(e)=>{
+              onScroll(e)
+            }
+          }
+          scrollEnabled={true}
+          scrollEventThrottle={16}
+          showsVerticalScrollIndicator={true}
+          //snapToInterval={height-50}
+          //snapToInterval = {partHeight}
+          snapeToAlignment='end'
+          decelerationRate="fast"
+        >
+        
+          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
+            {/* <View style={{backgroundColor:'transparent',height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}> */}
+              {/* <View  style={{height:"38vh",width:Dimensions.get('window').width-2}}> */}
+                {/* <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='row'>
 
-                        textDecorationLine:'none',
-                        color:'white',
-                        fontWeight:'700',
-                        fontSize: 25,
-                        textShadowColor: 'rgba(0, 0, 0, 1)',
-                        textShadowOffset: {width: 0, height: 0},
-                        textShadowRadius: 2,
-            
-                        textAlign:'center',
-                        alignItems:'center',
-                        justifyContent:'center',
-                        flexDirection:'row',
-                      }}
-                    >
-                    Your Idea To A Song In Minutes  
-                    </Text>
-                  </a>
-                </Fade>
-                </Animated.View>
-                {/* <img src="assets/2.jpeg" /> */}
-                {/* <p className="legend">2</p> */}
-            </div>
-            <div 
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgb(20,20,20)",
+                    textAlaign:'center',
+                    borderRadius:4,
+                    
+                    overflow:'hidden',
+                    
+                  }}>
+                  </View>
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgb(110,110,110)",
+                    
+                    borderRadius:4,
+                    overflow:'hidden',
+                    
+                  }}>
+
+                  </View>
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgb(200,200,200)",
+                    borderRadius:4,
+                    
+                    overflow:'hidden',
+                    
+                  }}>
+
+                  </View>
+                </Swiper> */}
+          
+            {/* </View> */}
+            <View>
+            <section id="slider"
               ref={heightRef}
               style={{
                 //height:"38vh",
-                height:"100%",
-                width:"100vw",
                 
-                backgroundColor:'rgb(255,255,255)',
+                width:"100vw",
+                backgroundColor:'white',
                 textAlign:'center'
               }}
             >
               <Animated.View
-                  style={{
-                    width:"100%",
-                    //height:partHeight,
-                    height:'100vh',
-                    backgroundColor:'transparent',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    padding:25,
-                  }}
-                >
-                {/* <div
-                  style={{
-                    height:'100%',
-                    width:'100%',
-                    
-                  }}
-                >
-                </div> */}
-                {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
-                {/* <p className="legend">1</p> */}
-                  <Fade>
-                  <a 
-                    style={{
-                      textDecorationLine:'none'
-                    }}
-                    href='#download'
-                  >
-                  <Text
-                    //className='Unselectable'
-                    style={{
-
-                      textDecorationLine:'none',
-                      color:'white',
-                      fontWeight:'700',
-                      fontSize: 25,
-                      textShadowColor: 'rgba(0, 0, 0, 1)',
-                      textShadowOffset: {width: 0, height: 0},
-                      textShadowRadius: 2,
-          
-                      textAlign:'center',
-                      alignItems:'center',
-                      justifyContent:'center',
-                      flexDirection:'row',
-                    }}
-                  >
-                    
-                    Available in Mac & PC
-                  </Text>
-                  </a>
-                  </Fade>
-                </Animated.View>
-                {/* <img src="assets/3.jpeg" /> */}
-                {/* <p className="legend">3</p> */}
-            </div>
-          </Carousel>
-          </Animated.View>
-        </section>
-        </View>
-        <View style={{flexDirection:'column'}}>
-          
-          
-          <section id="download">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'rgb(135,135,135)',
-                justifyContent:'center',
-                alignItems:'center',
-                backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-              }}
-            >
-              <View 
                 style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
+                  //height:partHeight,
+                  height:'100vh',
+                    width:"100vw",
+                    //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
+                    // textAlign:'center',
+                    backgroundSize: '100% 100%',
+                    backgroundColor:'transparent',
+                    textAlign:'center',
+                  //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
+                    backgroundRepeat:"no-repeat",
+                    
                 }}
               >
-                <Text
-                    //className='Unselectable'
-                    style={{
-
-                      textDecorationLine:'none',
-                      color:'white',
-                      fontWeight:'700',
-                      fontSize: 15,
-                      textShadowColor: 'rgba(0, 0, 0, 1)',
-                      textShadowOffset: {width: 0, height: 0},
-                      textShadowRadius: 2,
-                      margin:15,
-                      textAlign:'center',
-                      alignItems:'center',
-                      justifyContent:'center',
-                      flexDirection:'row',
-                    }}
-                  >
-                    SQUWBS VST & AU
-                  </Text>
-                  {/* <GooglePay/> */}
-                  {/* <div
-                    style={{
-                      marginBottom:13
-                    }}
-                    /> */}
-                {/* <PayPalButton
-                  amount="9.99"
-                  options={{clientId: ''}}
-                  onSuccess={(details, data) => {
-                    alert("Transaction completed by " + details.payer.name.given_name);
-          
-                    // OPTIONAL: Call your server to save the transaction
-                    // return fetch("/paypal-transaction-complete", {
-                    //   method: "post",
-                    //   body: JSON.stringify({
-                    //     orderID: data.orderID
-                    //   })
-                    // });
-                  }}
-                /> */}
+              <Carousel 
                 
-                <View style={{
-                    height:33,
-                    justifyContent:'center',
-                    alignItems:'center',
-                    backgroundColor:'transparent',
-                    
-                }}>
-                    {/* <input {...getInputProps()} /> */}
-                    
-                {/* <StripeProvider apiKey="">
-                  <MyStoreCheckout/>
-                </StripeProvider> */}
-                  {/* <MyStoreCheckout/> */}
-                  <View 
+                showArrows={true} 
+                showStatus={false} 
+                showIndicators={false}
+                showThumbs={false}
+                infiniteLoop={true}
+                autoPlay={true}
+                interval={4500}
+                transitionTime={500}
+                //emulateTouch={true}
+                stopOnHover={true}
+                //swipeScrollTolerance={1}
+                useKeyboardArrows={true}
+                //centerSlidePercentage={10}
+              >
+                <div 
+                ref={heightRef}
+                style={{
+                  //height:"38vh",
                   
-                  style={{ 
-                    height:30,
-                    //width:(Dimensions.get('window').width-8),
-                    width:150,
-                    backgroundColor:'white',
-                    
-          
-                    flexDirection:'column',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    // marginRight:8,
-                    // marginLeft:8,
-                    // marginBottom:2,
-                    borderRadius:2,
-                    
-                    borderColor:'lightgrey',
-                    borderStyle:'solid',
-                    overflow:'hidden',
-                    boxSizing:"border-box",
-                    shadowColor:'#000',
-                    shadowOpacity:0.85,
-                    shadowRadius:2,
-                    shadowOffset:{
-                    width:0,
-                    height:0
-                    },
-                    elevation:2
-                }} 
-                    // {...getRootProps({refKey:'innerRef'})}
-                >
-                  <View
-                    className='ClickOpacity'
-                    style={{
-                      backgroundColor:'transparent'
-                      
-                    }}
-                  >
-                  <View
-                      
+                  height:'100%',
+                  width:"100%",
+                  backgroundSize: '100% 100%',
+                  //backgroundColor:'rgb(250,250,250)',
+                  backgroundColor:'rgb(135,135,135)',
+                  textAlign:'center',
+                  
+                  backgroundRepeat:"no-repeat",
+                  //backgroundImage: 'radial-gradient(farthest-corner at 150% -50%,purple,rgb(137,137,137))'
+                  }}>
+                    <Animated.View
                       style={{
-                        zIndex:2,
-                        display:'absolute',
-                        top:0,
-                        width:150,
-                        height:30,
-                        backgroundColor:'white',
+                        width:"100%",
+                        //height:partHeight,
+                        height:'100vh',
+                        backgroundColor:'transparent',
                         justifyContent:'center',
                         alignItems:'center',
-                        pointerEvents:'none'
+                        // backgroundColor:'orange',
+                        padding:25,
                       }}
                     >
-                      {/* <TouchableOpacity 
-                          style={{
-                            pointerEvents:'auto'
-                          }}
-                          onPress={(e)=>{
-                          //console.log(e)
-                          
-                          console.log(document.getElementById('pb'))
-                          console.log(paypalRef)
-                      }}> */}
-                      <View
-                        //ref={paypalRef}
+                    {/* <div
+                      style={{
+                        height:'100%',
+                        width:'100%',
+                        
+                      }}
+                    >
+                    </div> */}
+                    {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
+                    {/* <p className="legend">1</p> */}
+                    <Fade>
+                    <a 
+                      style={{
+                        textDecorationLine:'none',
+                        
+                      }}
+                      href='#download'
+                    >
+                      <Text
+                        //className='Unselectable'
                         style={{
-                          pointerEvents:'none',
+                          // backgroudColor:'purple',
+                          textDecorationLine:'none',
+                          color:'white',
+                          fontWeight:'700',
+                          fontSize: 25,
+                          textShadowColor: 'rgba(0, 0, 0, 1)',
+                          textShadowOffset: {width: 0, height: 0},
+                          textShadowRadius: 2,
+              
+                          textAlign:'center',
+                          alignItems:'center',
+                          justifyContent:'center',
                           flexDirection:'row',
-                          justifyContest:'center',
-                          alignItems:'center'
+                          
                         }}
                       >
-                          <Text 
-                            
-                          selectable={false} 
-                          style ={{
-                              fontSize: 20,
-                              fontWeight:'700',
-                              textDecorationLine:'none',
-                              color:'rgb(196,196,196)',
-                              
-                              textShadowColor: 'rgba(0, 0, 0, 0.85)',
-                              textShadowOffset: {width: 0, height: 0},
-                              textShadowRadius: 2,
-                              textAlign:'center',
-                              alignItems:'center',
-                              justifyContent:'center',
-                              flexDirection:'row',
-                              margin:5,
-                              pointerEvents:'none'
-                          }}>
-                              <i class="fab fa-paypal"></i>
-                             
-                            
-                              {/* <i class="fas fa-credit-card"></i> */}
-                              
-                          </Text>
-                          <Text
-                            selectable={false} 
-                            style ={{
-                                fontSize: 13,
-                                fontWeight:'700',
-                                textDecorationLine:'none',
-                                color:'white',
-                                
-                                textShadowColor: 'rgba(0, 0, 0, 0.85)',
-                                textShadowOffset: {width: 0, height: 0},
-                                textShadowRadius: 2,
-                                textAlign:'center',
-                                alignItems:'center',
-                                justifyContent:'center',
-                                flexDirection:'row',
-                                margin:5,
-                                pointerEvents:'none'
-                            }}
-                          >
-                            Paypal
-                          </Text>
-                        </View>
-                      {/* </TouchableOpacity> */}
-                    </View>
-                    <View
+                        Get the Sound You Want
+                      </Text>
                       
+                    </a>
+                      </Fade>
+                    </Animated.View>
+                </div>
+                <div 
+                  ref={heightRef}
+                  style={{
+                    //height:"38vh",
+                    height:"100%",
+                    width:"100vw",
+                    //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
+                    // textAlign:'center',
+                    backgroundSize: '100% 100%',
+                    backgroundColor:'rgb(250,250,250)',
+                    textAlign:'center',
+                  //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
+                    backgroundRepeat:"no-repeat",
+                    //backgroundImage: 'radial-gradient(farthest-corner at 150% -50%,purple,white)'
+                  }}
+                >
+                  <Animated.View
                       style={{
-                        //display:'block',
-                        zIndex:'0',
-                        position:'absolute',
-                        top:0,
-                        pointerEvents:'auto'
+                        width:"100%",
+                        //height:partHeight,
+                        height:'100vh',
+                        backgroundColor:'transparent',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        padding:25,
                       }}
                     >
-                  
-                    <PayPalButton
-                      // ref={paypalRef}
-                      // id='pb'
-                      paypalOptions={{
-                        
-                        //clientId:paypalID,
-                        //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
-                        clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
-                        intent:'capture'
-                      }}
-                      buttonStyles={{
-                        layout:'horizontal',
-                        // layout:'vertical',
-                        shape:'rect',
-                        color:'white',
-                        tagline:true,
+                    {/* <div
+                      style={{
+                        height:'100%',
+                        width:'100%',
                         
                       }}
-                      amount={9.99}
-                      onApprove={(data,authId)=>{
-                        console.log('onApprove')
-                      }}
-                      onPaymentSuccess={(data)=>{
-                        console.log('onPaymentSuccess')
-                      }}
-                      />
+                    >
+                    </div> */}
+                    {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
+                    {/* <p className="legend">1</p> */}
+                    <Fade>
+                      <a 
+                        style={{
+                          textDecorationLine:'none'
+                        }}
+                        href='#download'
+                      >
+                        <Text
+                          //className='Unselectable'
+                          style={{
+
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontWeight:'700',
+                            fontSize: 25,
+                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowOffset: {width: 0, height: 0},
+                            textShadowRadius: 2,
+                
+                            textAlign:'center',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            flexDirection:'row',
+                          }}
+                        >
+                        Your Idea To A Song In Minutes  
+                        </Text>
+                      </a>
+                    </Fade>
+                    </Animated.View>
+                    {/* <img src="assets/2.jpeg" /> */}
+                    {/* <p className="legend">2</p> */}
+                </div>
+                <div 
+                  ref={heightRef}
+                  style={{
+                    //height:"38vh",
+                    height:"100%",
+                    width:"100vw",
                     
-                    </View>
+                    backgroundColor:'rgb(255,255,255)',
+                    textAlign:'center'
+                  }}
+                >
+                  <Animated.View
+                      style={{
+                        width:"100%",
+                        //height:partHeight,
+                        height:'100vh',
+                        backgroundColor:'transparent',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        padding:25,
+                      }}
+                    >
+                    {/* <div
+                      style={{
+                        height:'100%',
+                        width:'100%',
+                        
+                      }}
+                    >
+                    </div> */}
+                    {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
+                    {/* <p className="legend">1</p> */}
+                      <Fade>
+                      <a 
+                        style={{
+                          textDecorationLine:'none'
+                        }}
+                        href='#download'
+                      >
+                      <Text
+                        //className='Unselectable'
+                        style={{
 
-                </View>
-                </View>
-            </View>  
-            
-              </View>
-            </Animated.View>
-          </section>
-          
-          <section id="googleCard">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'white',
-                justifyContent:'center',
-                alignItems:'center',
-                backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  //backgroundColor:'rgb(135,135,135)',
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                <GoogleDeck/>
-                {/* <GoogleCardV2
-                  title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
-                  date={String(date)}
-                  //picture={"./icons/256x256.png"}
-                  picture={'http://squwbs-252702.appspot.com/favicon.ico'}
-                  writer={'Sir Francis Dylan the 2nd'}
-                  youtubeID={"SkNB5AsgZOc"}
-                  post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
-                  stars={5}
-                  likes={2000}
-                  hashs={['k-pop','dean']}
-                /> */}
-              </View>
-            </Animated.View>
-          </section>
-
-          <section id="testDownloadLink">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'white',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'rgb(135,135,135)',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2,
-                  backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
-                }}
-              >
-                <DLLink/>
-              </View>
-            </Animated.View>
-          </section>
-          <section id="sound">
-            <Animated.View 
-            ref={heightRef}
-            style={{
-              height:'100vh',
-              //height:partHeight,
-              zIndex:0,
-              alignContent:'center',
-              justifyContent:'center',
-              overflow:'hidden',
-              }}
-            >
-              {/* <SwipeableList/> */}
-              <Sound/>
-            </Animated.View>
-          </section>
-         
-          <section id="follow">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'rgb(135,135,135)',
-                justifyContent:'center',
-                alignItems:'center',
-                backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'#000',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2,
-                  //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                }}
-              >
-                <Instagram/>
-              </View>
-            </Animated.View>
-          </section>
-          <section id="contact">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'transparent',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  backgroundColor:'rgb(135,135,135)',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2,
-                  backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                }}
-              >
-                <Contact/>
-              </View>
-            </Animated.View>
-          </section>
-          <section id="kakao">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'white',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  //backgroundColor:'rgb(135,135,135)',
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                {/* <Message/> */}
-                <Kakao/>
-              </View>
-            </Animated.View>
-          </section>
-          <section id="message">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
-                
-                backgroundColor:'white',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
-                style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
-                  zIndex:0,
-                  //backgroundColor:'rgb(135,135,135)',
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
-                  overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
-                }}
-              >
-                <Message/>
-                {/* <Kakao/> */}
-              </View>
-            </Animated.View>
-          </section>
-          {/* <View
-            style={{
-              height:125,
-              // backgroundColor:'rgb(135,135,135)'
-              backgroundColor:'white'
-            }}
-          >
-          </View> */}
-        
-        
-          
-          {/* <View
-            style={{
-              height:125,
-              // backgroundColor:'rgb(135,135,135)'
-              backgroundColor:'white'
-            }}
-          >
-          </View> */}
-          <section id="PDF">
-            <Animated.View 
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                zIndex:0,
-                backgroundColor:'transparent',
-                alignItems:'center',
-                justifyContent:'center',
-                
-            }}>
+                          textDecorationLine:'none',
+                          color:'white',
+                          fontWeight:'700',
+                          fontSize: 25,
+                          textShadowColor: 'rgba(0, 0, 0, 1)',
+                          textShadowOffset: {width: 0, height: 0},
+                          textShadowRadius: 2,
               
-              <ReadPDF/>
-            </Animated.View>
-          </section>
-          <section id="cards">
-            <Animated.View 
-              ref={heightRef}
-              style={{
-              height:"100vh",
-              //height:partHeight,
-              zIndex:0,
-              backgroundColor:'white',
-              alignContent:'center',
-              justifyContent:'center',
-              overflow:'hidden',
-              // borderWidth:1,
-              // borderColor:'rgb(135,135,135)',
-          }}>
-              <WordDeckWrapper/>
-            </Animated.View>
-          </section>
-          <section id="uploadwords">
-            <Animated.View
-              ref={heightRef}
-              style={{
-                height:"100vh",
-                //height:partHeight,
-                width:"100%",
-                padding:15,
+                          textAlign:'center',
+                          alignItems:'center',
+                          justifyContent:'center',
+                          flexDirection:'row',
+                        }}
+                      >
+                        
+                        Available in Mac & PC
+                      </Text>
+                      </a>
+                      </Fade>
+                    </Animated.View>
+                    {/* <img src="assets/3.jpeg" /> */}
+                    {/* <p className="legend">3</p> */}
+                </div>
+              </Carousel>
+              </Animated.View>
+            </section>
+            </View>
+            <View style={{flexDirection:'column'}}>
+              
+              
+              <section id="download">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'rgb(135,135,135)',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <Text
+                        //className='Unselectable'
+                        style={{
+
+                          textDecorationLine:'none',
+                          color:'white',
+                          fontWeight:'700',
+                          fontSize: 15,
+                          textShadowColor: 'rgba(0, 0, 0, 1)',
+                          textShadowOffset: {width: 0, height: 0},
+                          textShadowRadius: 2,
+                          margin:15,
+                          textAlign:'center',
+                          alignItems:'center',
+                          justifyContent:'center',
+                          flexDirection:'row',
+                        }}
+                      >
+                        SQUWBS VST & AU
+                      </Text>
+                      {/* <GooglePay/> */}
+                      {/* <div
+                        style={{
+                          marginBottom:13
+                        }}
+                        /> */}
+                    {/* <PayPalButton
+                      amount="9.99"
+                      options={{clientId: ''}}
+                      onSuccess={(details, data) => {
+                        alert("Transaction completed by " + details.payer.name.given_name);
+              
+                        // OPTIONAL: Call your server to save the transaction
+                        // return fetch("/paypal-transaction-complete", {
+                        //   method: "post",
+                        //   body: JSON.stringify({
+                        //     orderID: data.orderID
+                        //   })
+                        // });
+                      }}
+                    /> */}
+                    
+                    <View style={{
+                        height:33,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        backgroundColor:'transparent',
+                        
+                    }}>
+                        {/* <input {...getInputProps()} /> */}
+                        
+                    {/* <StripeProvider apiKey="">
+                      <MyStoreCheckout/>
+                    </StripeProvider> */}
+                      {/* <MyStoreCheckout/> */}
+                      <View 
+                      
+                      style={{ 
+                        height:30,
+                        //width:(Dimensions.get('window').width-8),
+                        width:150,
+                        backgroundColor:'white',
+                        
+              
+                        flexDirection:'column',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        // marginRight:8,
+                        // marginLeft:8,
+                        // marginBottom:2,
+                        borderRadius:2,
+                        
+                        borderColor:'lightgrey',
+                        borderStyle:'solid',
+                        overflow:'hidden',
+                        boxSizing:"border-box",
+                        shadowColor:'#000',
+                        shadowOpacity:0.85,
+                        shadowRadius:2,
+                        shadowOffset:{
+                        width:0,
+                        height:0
+                        },
+                        elevation:2
+                    }} 
+                        // {...getRootProps({refKey:'innerRef'})}
+                    >
+                      <View
+                        className='ClickOpacity'
+                        style={{
+                          backgroundColor:'transparent'
+                          
+                        }}
+                      >
+                      <View
+                          
+                          style={{
+                            zIndex:2,
+                            display:'absolute',
+                            top:0,
+                            width:150,
+                            height:30,
+                            backgroundColor:'white',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            pointerEvents:'none'
+                          }}
+                        >
+                          {/* <TouchableOpacity 
+                              style={{
+                                pointerEvents:'auto'
+                              }}
+                              onPress={(e)=>{
+                              //console.log(e)
+                              
+                              console.log(document.getElementById('pb'))
+                              console.log(paypalRef)
+                          }}> */}
+                          <View
+                            //ref={paypalRef}
+                            style={{
+                              pointerEvents:'none',
+                              flexDirection:'row',
+                              justifyContest:'center',
+                              alignItems:'center'
+                            }}
+                          >
+                              <Text 
+                                
+                              selectable={false} 
+                              style ={{
+                                  fontSize: 20,
+                                  fontWeight:'700',
+                                  textDecorationLine:'none',
+                                  color:'rgb(196,196,196)',
+                                  
+                                  textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                                  textShadowOffset: {width: 0, height: 0},
+                                  textShadowRadius: 2,
+                                  textAlign:'center',
+                                  alignItems:'center',
+                                  justifyContent:'center',
+                                  flexDirection:'row',
+                                  margin:5,
+                                  pointerEvents:'none'
+                              }}>
+                                  <i class="fab fa-paypal"></i>
+                                
+                                
+                                  {/* <i class="fas fa-credit-card"></i> */}
+                                  
+                              </Text>
+                              <Text
+                                selectable={false} 
+                                style ={{
+                                    fontSize: 13,
+                                    fontWeight:'700',
+                                    textDecorationLine:'none',
+                                    color:'white',
+                                    
+                                    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                                    textShadowOffset: {width: 0, height: 0},
+                                    textShadowRadius: 2,
+                                    textAlign:'center',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    flexDirection:'row',
+                                    margin:5,
+                                    pointerEvents:'none'
+                                }}
+                              >
+                                Paypal
+                              </Text>
+                            </View>
+                          {/* </TouchableOpacity> */}
+                        </View>
+                        <View
+                          
+                          style={{
+                            //display:'block',
+                            zIndex:'0',
+                            position:'absolute',
+                            top:0,
+                            pointerEvents:'auto'
+                          }}
+                        >
+                      
+                        <PayPalButton
+                          // ref={paypalRef}
+                          // id='pb'
+                          paypalOptions={{
+                            
+                            //clientId:paypalID,
+                            //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
+                            clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
+                            intent:'capture'
+                          }}
+                          buttonStyles={{
+                            layout:'horizontal',
+                            // layout:'vertical',
+                            shape:'rect',
+                            color:'white',
+                            tagline:true,
+                            
+                          }}
+                          amount={9.99}
+                          onApprove={(data,authId)=>{
+                            console.log('onApprove')
+                          }}
+                          onPaymentSuccess={(data)=>{
+                            console.log('onPaymentSuccess')
+                          }}
+                          />
+                        
+                        </View>
+
+                    </View>
+                    </View>
+                </View>  
                 
-                backgroundColor:'rgb(135,135,135)',
-                justifyContent:'center',
-                alignItems:'center',
-              }}
-            >
-              <View 
+                  </View>
+                </Animated.View>
+              </section>
+              
+              <section id="googleCard">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'white',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      //backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <GoogleDeck/>
+                    {/* <GoogleCardV2
+                      title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
+                      date={String(date)}
+                      //picture={"./icons/256x256.png"}
+                      picture={'http://squwbs-252702.appspot.com/favicon.ico'}
+                      writer={'Sir Francis Dylan the 2nd'}
+                      youtubeID={"SkNB5AsgZOc"}
+                      post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                      stars={5}
+                      likes={2000}
+                      hashs={['k-pop','dean']}
+                    /> */}
+                  </View>
+                </Animated.View>
+              </section>
+
+              {/* <section id="testDownloadLink">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'white',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'rgb(135,135,135)',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
+                      backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
+                    }}
+                  >
+                    <DLLink/>
+                  </View>
+                </Animated.View>
+              </section> */}
+              {/* <section id="sound">
+                <Animated.View 
+                ref={heightRef}
                 style={{
-                  height:"100%",
-                  width:"100%",
-                  justifyContent:'center',
-                  alignItems:'center',
+                  height:'100vh',
+                  //height:partHeight,
                   zIndex:0,
-                  backgroundColor:'white',
-                  borderRadius:4,
-                  //borderBottom:2,
-                  //borderTop:1,
-                  borderColor:'#aaa',
-                  borderStyle:'solid',
+                  alignContent:'center',
+                  justifyContent:'center',
                   overflow:'hidden',
-                  boxSizing:"border-box",
-                  shadowColor:'black',
-                  shadowOpacity:0.25,
-                  shadowRadius:2,
-                  shadowOffset:{
-                    width:0,
-                    height:0
-                  },
-                  elevation:2
+                  }}
+                >
+                  
+                  <Sound/>
+                </Animated.View>
+              </section> */}
+            
+              <section id="follow">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'rgb(135,135,135)',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'#000',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
+                      //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    }}
+                  >
+                    <Instagram/>
+                  </View>
+                </Animated.View>
+              </section>
+              <section id="contact">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'transparent',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'rgb(135,135,135)',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
+                      backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    }}
+                  >
+                    <Contact/>
+                  </View>
+                </Animated.View>
+              </section>
+              
+            </View>
+          
+        </View>
+      </Animated.ScrollView>
+    </View>
+    )
+  }
+  else{
+    return(
+      <View>
+        <Animated.ScrollView 
+          // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
+          style={{
+            backgroundColor:'transparent',
+            //height:height-50,
+            //height:partHeight,
+            height:'100vh',
+            zIndex:98
+        }}
+          
+          onScroll={(e)=>{
+              onScroll(e)
+            }
+          }
+          scrollEnabled={true}
+          scrollEventThrottle={16}
+          showsVerticalScrollIndicator={true}
+          //snapToInterval={height-50}
+          //snapToInterval = {partHeight}
+          snapeToAlignment='end'
+          decelerationRate="fast"
+        >
+        
+          <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
+            {/* <View style={{backgroundColor:'transparent',height:Dimensions.get('window').height*2/3,flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}> */}
+              {/* <View  style={{height:"38vh",width:Dimensions.get('window').width-2}}> */}
+                {/* <Swiper buttonsEnabled={false} loop={true} autoplayTimeout={5} direction='row'>
+
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgb(20,20,20)",
+                    textAlaign:'center',
+                    borderRadius:4,
+                    
+                    overflow:'hidden',
+                    
+                  }}>
+                  </View>
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgb(110,110,110)",
+                    
+                    borderRadius:4,
+                    overflow:'hidden',
+                    
+                  }}>
+
+                  </View>
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "rgb(200,200,200)",
+                    borderRadius:4,
+                    
+                    overflow:'hidden',
+                    
+                  }}>
+
+                  </View>
+                </Swiper> */}
+          
+            {/* </View> */}
+           
+            <View style={{flexDirection:'column'}}>
+              
+              
+              <section id="download">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'rgb(135,135,135)',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <Text
+                        //className='Unselectable'
+                        style={{
+
+                          textDecorationLine:'none',
+                          color:'white',
+                          fontWeight:'700',
+                          fontSize: 15,
+                          textShadowColor: 'rgba(0, 0, 0, 1)',
+                          textShadowOffset: {width: 0, height: 0},
+                          textShadowRadius: 2,
+                          margin:15,
+                          textAlign:'center',
+                          alignItems:'center',
+                          justifyContent:'center',
+                          flexDirection:'row',
+                        }}
+                      >
+                        SQUWBS VST & AU
+                      </Text>
+                      {/* <GooglePay/> */}
+                      {/* <div
+                        style={{
+                          marginBottom:13
+                        }}
+                        /> */}
+                    {/* <PayPalButton
+                      amount="9.99"
+                      options={{clientId: ''}}
+                      onSuccess={(details, data) => {
+                        alert("Transaction completed by " + details.payer.name.given_name);
+              
+                        // OPTIONAL: Call your server to save the transaction
+                        // return fetch("/paypal-transaction-complete", {
+                        //   method: "post",
+                        //   body: JSON.stringify({
+                        //     orderID: data.orderID
+                        //   })
+                        // });
+                      }}
+                    /> */}
+                    
+                    <View style={{
+                        height:33,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        backgroundColor:'transparent',
+                        
+                    }}>
+                        {/* <input {...getInputProps()} /> */}
+                        
+                    {/* <StripeProvider apiKey="">
+                      <MyStoreCheckout/>
+                    </StripeProvider> */}
+                      {/* <MyStoreCheckout/> */}
+                      <View 
+                      
+                      style={{ 
+                        height:30,
+                        //width:(Dimensions.get('window').width-8),
+                        width:150,
+                        backgroundColor:'white',
+                        
+              
+                        flexDirection:'column',
+                        justifyContent:'center',
+                        alignItems:'center',
+                        // marginRight:8,
+                        // marginLeft:8,
+                        // marginBottom:2,
+                        borderRadius:2,
+                        
+                        borderColor:'lightgrey',
+                        borderStyle:'solid',
+                        overflow:'hidden',
+                        boxSizing:"border-box",
+                        shadowColor:'#000',
+                        shadowOpacity:0.85,
+                        shadowRadius:2,
+                        shadowOffset:{
+                        width:0,
+                        height:0
+                        },
+                        elevation:2
+                    }} 
+                        // {...getRootProps({refKey:'innerRef'})}
+                    >
+                      <View
+                        className='ClickOpacity'
+                        style={{
+                          backgroundColor:'transparent'
+                          
+                        }}
+                      >
+                      <View
+                          
+                          style={{
+                            zIndex:2,
+                            display:'absolute',
+                            top:0,
+                            width:150,
+                            height:30,
+                            backgroundColor:'white',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            pointerEvents:'none'
+                          }}
+                        >
+                          {/* <TouchableOpacity 
+                              style={{
+                                pointerEvents:'auto'
+                              }}
+                              onPress={(e)=>{
+                              //console.log(e)
+                              
+                              console.log(document.getElementById('pb'))
+                              console.log(paypalRef)
+                          }}> */}
+                          <View
+                            //ref={paypalRef}
+                            style={{
+                              pointerEvents:'none',
+                              flexDirection:'row',
+                              justifyContest:'center',
+                              alignItems:'center'
+                            }}
+                          >
+                              <Text 
+                                
+                              selectable={false} 
+                              style ={{
+                                  fontSize: 20,
+                                  fontWeight:'700',
+                                  textDecorationLine:'none',
+                                  color:'rgb(196,196,196)',
+                                  
+                                  textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                                  textShadowOffset: {width: 0, height: 0},
+                                  textShadowRadius: 2,
+                                  textAlign:'center',
+                                  alignItems:'center',
+                                  justifyContent:'center',
+                                  flexDirection:'row',
+                                  margin:5,
+                                  pointerEvents:'none'
+                              }}>
+                                  <i class="fab fa-paypal"></i>
+                                
+                                
+                                  {/* <i class="fas fa-credit-card"></i> */}
+                                  
+                              </Text>
+                              <Text
+                                selectable={false} 
+                                style ={{
+                                    fontSize: 13,
+                                    fontWeight:'700',
+                                    textDecorationLine:'none',
+                                    color:'white',
+                                    
+                                    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+                                    textShadowOffset: {width: 0, height: 0},
+                                    textShadowRadius: 2,
+                                    textAlign:'center',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    flexDirection:'row',
+                                    margin:5,
+                                    pointerEvents:'none'
+                                }}
+                              >
+                                Paypal
+                              </Text>
+                            </View>
+                          {/* </TouchableOpacity> */}
+                        </View>
+                        <View
+                          
+                          style={{
+                            //display:'block',
+                            zIndex:'0',
+                            position:'absolute',
+                            top:0,
+                            pointerEvents:'auto'
+                          }}
+                        >
+                      
+                        <PayPalButton
+                          // ref={paypalRef}
+                          // id='pb'
+                          paypalOptions={{
+                            
+                            //clientId:paypalID,
+                            //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
+                            clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
+                            intent:'capture'
+                          }}
+                          buttonStyles={{
+                            layout:'horizontal',
+                            // layout:'vertical',
+                            shape:'rect',
+                            color:'white',
+                            tagline:true,
+                            
+                          }}
+                          amount={9.99}
+                          onApprove={(data,authId)=>{
+                            console.log('onApprove')
+                          }}
+                          onPaymentSuccess={(data)=>{
+                            console.log('onPaymentSuccess')
+                          }}
+                          />
+                        
+                        </View>
+
+                    </View>
+                    </View>
+                </View>  
+                
+                  </View>
+                </Animated.View>
+              </section>
+               <section id="testDownloadLink">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'white',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'rgb(135,135,135)',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
+                      backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
+                    }}
+                  >
+                    <DLLink/>
+                  </View>
+                </Animated.View>
+              </section>
+              <section id="sound">
+                <Animated.View 
+                ref={heightRef}
+                style={{
+                  height:'100vh',
+                  //height:partHeight,
+                  zIndex:0,
+                  alignContent:'center',
+                  justifyContent:'center',
+                  overflow:'hidden',
+                  }}
+                >
+                  
+                  <Sound/>
+                </Animated.View>
+              </section>
+              <section id="googleCard">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'white',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      //backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <GoogleDeck/>
+                    {/* <GoogleCardV2
+                      title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
+                      date={String(date)}
+                      //picture={"./icons/256x256.png"}
+                      picture={'http://squwbs-252702.appspot.com/favicon.ico'}
+                      writer={'Sir Francis Dylan the 2nd'}
+                      youtubeID={"SkNB5AsgZOc"}
+                      post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
+                      stars={5}
+                      likes={2000}
+                      hashs={['k-pop','dean']}
+                    /> */}
+                  </View>
+                </Animated.View>
+              </section>
+
+         
+              <section id="follow">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'rgb(135,135,135)',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'#000',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
+                      //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    }}
+                  >
+                    <Instagram/>
+                  </View>
+                </Animated.View>
+              </section>
+              <section id="contact">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'transparent',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'rgb(135,135,135)',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
+                      backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    }}
+                  >
+                    <Contact/>
+                  </View>
+                </Animated.View>
+              </section>
+              {/* <section id="kakao">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'white',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      //backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    
+                    <Kakao/>
+                  </View>
+                </Animated.View>
+              </section> */}
+              {/* <section id="message">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'white',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      //backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <Message/>
+                    
+                  </View>
+                </Animated.View>
+              </section> */}
+              {/* <View
+                style={{
+                  height:125,
+                  // backgroundColor:'rgb(135,135,135)'
+                  backgroundColor:'white'
                 }}
               >
-                <UploadWords/>
-              </View>
-            </Animated.View>
-          </section>
+              </View> */}
+            
+            
+              
+              {/* <View
+                style={{
+                  height:125,
+                  // backgroundColor:'rgb(135,135,135)'
+                  backgroundColor:'white'
+                }}
+              >
+              </View> */}
+              {/* <section id="PDF">
+                <Animated.View 
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    zIndex:0,
+                    backgroundColor:'transparent',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    
+                }}>
+                  
+                  <ReadPDF/>
+                </Animated.View>
+              </section> */}
+              {/* <section id="cards">
+                <Animated.View 
+                  ref={heightRef}
+                  style={{
+                  height:"100vh",
+                  //height:partHeight,
+                  zIndex:0,
+                  backgroundColor:'white',
+                  alignContent:'center',
+                  justifyContent:'center',
+                  overflow:'hidden',
+                  // borderWidth:1,
+                  // borderColor:'rgb(135,135,135)',
+              }}>
+                  <WordDeckWrapper/>
+                </Animated.View>
+              </section> */}
+              {/* <section id="uploadwords">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    //height:partHeight,
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'rgb(135,135,135)',
+                    justifyContent:'center',
+                    alignItems:'center',
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'white',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <UploadWords/>
+                  </View>
+                </Animated.View>
+              </section> */}
+            </View>
+          
         </View>
-      
+      </Animated.ScrollView>
     </View>
-  </Animated.ScrollView>
-</View>
-)
+    )
+  }
+
      
 
 }

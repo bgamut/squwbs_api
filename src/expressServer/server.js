@@ -61,7 +61,8 @@ function urlBase64ToUint8Array(base64String) {
 
 var flash = require('connect-flash')
 var net = require('net')
-
+var FCM = require('push-fcm')
+var fcm = new FCM(NODE_ENV.FIREBASE_SERVER_KEY)
 var server = net.createServer(function(socket){
   socket.write('Echo server\r\n')
   socket.pipe(socket)
@@ -377,17 +378,150 @@ app.post('/readCookies',function(req, res){
 });
 app.post('/subscribe',function(req,res){
   //get push subscription
-  const  subscription = req.body
+  const subscription = req.body
   res.status(201).json({})
   const payload = JSON.stringify({title: 'push test'})
   webpush
   .sendNotification(subscription, payload)
   .catch((err)=>console.error(err))
 })
+app.post('/sendfcm',function(req,res){
+  var message = req.body
+  console.log("???????????????????")
+  console.log(message)
+  console.log("??????????????????")
+  fcm.send(message,function(err,result){
+    if(err){
+      res.send({error:err})
+    }
+    else{
+      res.send({message:result})
+    }
+  })
+})
+app.post('/sendfcmall',function(req,res){
+  var message = req.body
+  var ids=[]
+  // message.registration_ids=[]
+  var db = admin.database()
+  var ref = db.ref('registerd')
+  ref.once('value',function(snapshot){
+    var subscribers=snapshot.val()
+    //console,log('userlist function')
+    if(subscribers!==undefined){
+        // for (var i = 0; i<Object.keys(subscribers).length; i++){
+        for (var i = 0; i<subscribers.length; i++){
+          ids.push(subscribers[i].key)
+        }
+      }       
+    })
+  // message.registration_ids=ids
+  // console.log("???????????????????")
+  // console.log(message)
+  // console.log("??????????????????")
+  // fcm.send(message,function(err,result){
+  //   if(err){
+  //     res.send({error:err})
+  //   }
+  //   else{
+  //     res.send({message:result})
+  //   }
+  // })
+  for (var i =0; i<ids.length;i++){
+    message.to=ids[i]
+    fcm.send(message,function(err,result){
+      if(err){
+        console.log(err)
+      }
+      else{
+        console.log(result)
+      }
+    })
+  }
+  
+})
+app.post('/sendNotification',function(req,res){
+  const subscription = req.body.subscription
+  const payload = req.body.payload
+  const options={
+    TTL:req.body.ttl
+  }
+  setTimeout(function() {
+    webPush.sendNotification(subscription, payload, options)
+    .then(function() {
+      res.sendStatus(201);
+    })
+    .catch(function(error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+  }, req.body.delay * 1000);
+})
 app.get('/vapidkey',function(req,res){
   //var key =urlBase64ToUint8Array(vapidKeys.publicKey)
   var key = vapidKeys.publicKey
   res.send({key:key})
+})
+app.post('/register',function(req,res){
+  //maybe keep a list of subscription models here. but not now
+  //res.sendStatus(201)
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("register got -> ",req.body.token)
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+  var tokenStructure= {key:req.body.token}
+  var db = admin.database()
+  var ref = db.ref('registerd')
+  ref.once('value',function(snapshot){
+    var subscribers=snapshot.val()
+    //console,log('userlist function')
+    if(subscribers==undefined){
+      subscribers={0:tokenStructure}
+    }
+    else{
+      var picked = subscribers.find(subscriber=>subscriber['key']==req.body.token)
+      if(picked==undefined){
+        subscribers.push(tokenStructure)
+      }       
+    }
+    ref.set(subscribers,function(error){
+      if(error){
+        console.log(error)
+        
+      }
+      else{
+        console.log('callback fired')
+      }
+
+    })
+  res.send(req.body.token)
+})
+})
+app.post('/unregister',function(req,res){
+  //maybe keep a list of subscription models here. but not now
+  //res.sendStatus(201)
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("unregister got -> ",req.body.token)
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+  var tokenStructure= {key:req.body.token}
+  var db = admin.database()
+  var ref = db.ref('registerd')
+  ref.once('value',function(snapshot){
+  var subscribers=snapshot.val()
+  var picked = subscribers.findIndex(subscriber=>subscriber['key']==req.body.token)
+  if(picked!==undefined){
+    
+    subscribers.splice(index,1)
+  }       
+  ref.set(subscribers,function(error){
+    if(error){
+      console.log(error)
+    }
+    else{
+      console.log('callback fired')
+    }
+  })
+  res.send(req.body.token)
+})
 })
 // var conf={
 //   originUndefined: function (req, res, next) {
@@ -591,6 +725,38 @@ app.get('/kakao',function(req,res){
       res.send({error:err})
   })
   //res.send({code:req.query.code})
+})
+app.get('/kakaoadminkey',function(req,res){
+  res.send({key:NODE_ENV.KAKAO_ADMIN_KEY})
+})
+app.post('pushregister',function(req,res){
+  console.log('pushregister : ',req.body)
+})
+app.post('kakaopushregister',function(req,res){
+  console.log('server.js 599 kakaopushregister : ',req.body)
+  var headers = {
+    'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+    'Cache-Control':'no-cache',
+    'Authorization': 'KakaoAK '+req.body.key
+  }
+  fetch('https://kapi.kakao.com/v1/push/register',{
+      headers:headers,
+      method:"post",
+      uuid:Math.floor(Math.random()*(Math.pow(2,63)-1)+1),
+      device_id:uuidv4(),
+      push_type:'gcm',
+      push_token:req.body.token
+  })
+  .then((res)=>{
+    return res.json()
+  })
+  .then((json)=>{
+    console.log('initFirebase.js 109 : ',json)
+    console.log('initFirebase 386 JSON TOKEN : ',json.access_token)
+
+    
+    
+  })
 })
 app.get('/cards',function(req,res){
   res.redirect('/')

@@ -83,7 +83,7 @@ const Drawer =(props)=>{
             return result.json()
             })
             .then((json)=>{
-                //setState({...state,userData:{...json}})
+                setState({...state,userData:{...json}})
                 setUser(json)
                 console.log(stringifyObject(json))
             //setpaypalID(json)
