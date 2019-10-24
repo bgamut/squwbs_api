@@ -43,6 +43,7 @@
     "express-engine-jsx": "^2.0.3",
     "express-react-views": "^0.11.0",
     "express-session": "^1.16.1",
+    "fcm-push": "^1.1.3",
     "fft-js": "0.0.12",
     "fft-windowing": "^0.1.4",
     "firebase": "^6.3.3",

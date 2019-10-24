@@ -59,9 +59,12 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
+
+
 var flash = require('connect-flash')
 var net = require('net')
-var FCM = require('push-fcm')
+//var FCM = require('push-fcm')
+var FCM = require('fcm-push')
 var fcm = new FCM(NODE_ENV.FIREBASE_SERVER_KEY)
 var server = net.createServer(function(socket){
   socket.write('Echo server\r\n')
@@ -385,7 +388,7 @@ app.post('/subscribe',function(req,res){
   .sendNotification(subscription, payload)
   .catch((err)=>console.error(err))
 })
-app.post('/sendfcm',function(req,res){
+app.post('/sendfcm',cors(),function(req,res){
   var message = req.body
   console.log("???????????????????")
   console.log(message)
@@ -399,7 +402,7 @@ app.post('/sendfcm',function(req,res){
     }
   })
 })
-app.post('/sendfcmall',function(req,res){
+app.post('/sendfcmall',cors(),function(req,res){
   var message = req.body
   var ids=[]
   // message.registration_ids=[]
@@ -476,11 +479,45 @@ app.post('/register',function(req,res){
     //console,log('userlist function')
     if(subscribers==undefined){
       subscribers={0:tokenStructure}
+      var message = {
+        
+        collapse_key:'do_not_collapse',
+        notification:{
+          title:'Welcome to Squwbs',
+          body:'Thank You For Your Permission'
+        },
+        to: req.body.token,
+      }
+      fcm.send(message,function(err,result){
+        if(err){
+          res.send({error:err})
+        }
+        else{
+          res.send({message:result})
+        }
+      })
+      
     }
     else{
-      var picked = subscribers.find(subscriber=>subscriber['key']==req.body.token)
+      var picked = subscribers.find(subscriber=>subscriber.key==String(req.body.token))
       if(picked==undefined){
         subscribers.push(tokenStructure)
+        var message = {
+          to: req.body.token,
+          collapse_key:'do_not_collapse',
+          notification:{
+            title:'Welcome to Squwbs',
+            body:'Thank You For Your Permission'
+          },
+        }
+        fcm.send(message,function(err,result){
+          if(err){
+            res.send({error:err})
+          }
+          else{
+            res.send({message:result})
+          }
+        })
       }       
     }
     ref.set(subscribers,function(error){
@@ -495,6 +532,7 @@ app.post('/register',function(req,res){
     })
   res.send(req.body.token)
 })
+
 })
 app.post('/unregister',function(req,res){
   //maybe keep a list of subscription models here. but not now
@@ -1499,7 +1537,9 @@ app.get('/api',cors(),(req,res)=>{
   res.send(req.query)
 
 })
-
+// app.get('/service-worker.js',(req,res)=>{
+//   res.sendFile(path.join(__dirname,'../../build','service-worker.js'))
+// })
 app.post('/api',cors(),(req,res)=>{
 
   res.send(req.body)
