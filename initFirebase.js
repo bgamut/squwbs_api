@@ -77,7 +77,7 @@ window.addEventListener('firebaseMessageReceived',function(event){
         // ]
       }
       registration.showNotification(title, options);
-      alert(event.detail.message.notification.body)
+      //alert(event.detail.message.notification.body)
     })
     .catch(function(err){
       alert(err)
