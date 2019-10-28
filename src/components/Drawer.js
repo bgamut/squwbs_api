@@ -4,6 +4,8 @@ import NavBarWithLogIn from './NavBarWithLogIn'
 import NavBar from './NavBar'
 import {Context} from '../context'
 import './css/Drawer.css'
+import './css/iconHover.css'
+
 import importScripts from 'import-scripts'
 var {name} =require( '../../package.json')
 const withQuery = require('with-query').default
@@ -343,6 +345,7 @@ const Drawer =(props)=>{
                         
                     }}>
                         <TouchableOpacity 
+                            className='icon'
                             onPress = {ShowSlidingDrawer}
                             style={{
                                 backgroundColor:'transparent',
@@ -355,9 +358,18 @@ const Drawer =(props)=>{
                                 width:imageLength,
                                 //Right:0
                             }}/> */}
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
+                            {/* <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
+                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
+                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div> */}
+                            <Text
+                                className='icon'
+                                style={{
+                                    color:'rgb(196,196,196)',
+                                    fontSize:20
+                                }}
+                            >
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </Text>
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
@@ -725,8 +737,10 @@ const Drawer =(props)=>{
                         
                     }}>
                         <TouchableOpacity 
+                            className='icon'
                             onPress = {ShowSlidingDrawer}
                             style={{
+                                
                                 backgroundColor:'transparent',
                             }}>
                             {/* <Image source={require('./icons/96x96.png')} style={{
@@ -737,9 +751,18 @@ const Drawer =(props)=>{
                                 width:imageLength,
                                 //Right:0
                             }}/> */}
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
-                            <div style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(135,135,135)',}}></div>
+                            {/* <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
+                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
+                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div> */}
+                            <Text
+                                className='icon'
+                                style={{
+                                    color:'rgb(196,196,196)',
+                                    fontSize:20
+                                }}
+                            >
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </Text>
                         </TouchableOpacity>
                     </Animated.View>
                     <View style={{
