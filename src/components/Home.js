@@ -22,6 +22,9 @@ import './css/terms.css'
 // import ReadPDF from './ReadPDF'
 
 import {Rnd} from 'react-rnd'
+import { InboxStream, CommentStream, SubmissionStream } from "snoostorm";
+import Snoowrap from "snoowrap";
+
 // import FadeInOut from 'react-native-fade-in-out';
 
 const withQuery = require('with-query').default
@@ -30,6 +33,31 @@ const withQuery = require('with-query').default
 var diff = require('object-diff')
 const _ = require('lodash')
 const stringifyObject= require('stringify-object')
+const client = new Snoowrap({
+  userAgent:'reddit-bot',
+  clientId:'CiO2G81f6z7yWw',
+  clientSecret:'MhzcwrwmIKbol9B882rf6j8Zlww',
+  username:'squwbs',
+  password:'90-=op[]'
+})
+
+// //const comments= client.CommentStream(streamOpts)
+// const comments = new CommentStream(client, { subreddit: "tipofmytongue", limit: 1, pollTime: 20000 });
+// comments.on('item',(comment)=>console.log('this is the comment from reddit : ',comment))
+// comments.on('item',(comment)=>console.log('this is the link from reddit : ',comment.link_permalink))
+
+// const submissions = new SubmissionStream(client, { subreddit: "tipofmytongue", limit: 1, pollTime: 20000 });
+// submissions.on('item',(comment)=>console.log('this is the submission link from reddit : ',comment.link_permalink))
+
+client.getSubreddit('tipofmytongue').getControversial({time:'all'}).then(stuff=>{
+  console.log("this is from reddit.js main title" ,stuff[0].title);
+  console.log("this is from reddit.js main text" ,stuff[0].selftext); 
+  stuff[0].comments.fetchAll().then(commentsObject=>{
+    for(var i =0; i<commentsObject.length; i++){
+      console.log('This is comment #'+i+" : "+commentsObject[i].body+" written by "+commentsObject[i].author.name)
+    }
+  })
+})
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 // const firebase = require('firebase')
 // firebase.initializeApp(
@@ -80,9 +108,23 @@ const Home = () => {
   const [height,setHeight]=useState(0)
   const [width,setWidth]=useState(0)
   const [headerOpenState,setHeaderOpenState]=useState(true)
-
+  const [starRating, setStarRating]=useState(0)
+  const [shineOne, setShineOne]=useState(0.3)
+  const [shineTwo, setShineTwo]=useState(0.3)
+  const [shineThree, setShineThree]=useState(0.3)
+  const [shineFour, setShineFour]=useState(0.3)
+  const [shineFive, setShineFive]=useState(0.3)
+  const [slackHashTextValue,setSlackHashTextValue]=useState('')
   const loginOverlay=useRef('')
   const termsOverlay=useRef('')
+  const starOne = useRef('')
+  const starTwo = useRef('')
+  const starThree = useRef('')
+  const starFour = useRef('')
+  const starFive = useRef('')
+  const slackHashInputRef = useRef(null)
+  const slackHashTextRef = useRef('')
+  
   const duration=270
 
 
@@ -171,11 +213,13 @@ const Home = () => {
       }, duration);
     }  
   }
+
   const slackHashOverlayToggle=()=>{
     console.log('home.js : slackHash toggled!')
     if(slackHashOverlaySwitch==false){
       setSlackHashOverlaySwitch(true)
       setFade(true)
+      
     }
     else{
       setFade(false)
@@ -184,6 +228,38 @@ const Home = () => {
       }, duration);
     }  
   }
+
+  const handleSlackHashKeyPress=(e)=>{
+    console.log(e.key)
+    if(e.shiftKey){
+        if(e.keyCode==13){
+            e.preventDefault();
+            console.log('prev page load function goes here')
+        }
+        else if(e.keyCode==39){
+            e.preventDefault();
+            console.log('next page load function goes here')
+        }
+        else if(e.keyCode==37){
+            e.preventDefault();
+            console.log('previous page load function goes here')
+        }
+        console.log(e.key)
+        console.log(e.button)
+    }
+    //this.setState({value:e.target.value})
+    setSlackHashTextValue(e.target.value)
+    
+    console.log(slackHashInputRef.current.value)
+    console.log(slackHashInputRef.current)
+    console.log(e.key)
+}
+  const handleSlackHashChange=(e)=>{
+
+      setSlackHashTextValue(e.target.value)
+     
+  }
+
   const shareOverlayToggle=()=>{
     console.log('home.js : share toggled!')
     if(shareOverlaySwitch==false){
@@ -364,7 +440,12 @@ const Home = () => {
     // }
     // askForPermissioToReceiveNotifications()
   },[])
-
+  useEffect(()=>{
+    if(slackHashInputRef.current!=null){
+      slackHashInputRef.current.focus()
+    }
+    
+  },[slackHashOverlaySwitch])
   useEffect(()=>{
     //console.log(stringifyObject(user)=='{}')
     //console.log(user)
@@ -381,6 +462,44 @@ const Home = () => {
   //   }
 
   // },[...Object.values(state)])
+  
+  useEffect(()=>{
+    if(starRating==1){
+      setShineOne(1)
+      setShineTwo(0.3)
+      setShineThree(0.3)
+      setShineFour(0.3)
+      setShineFive(0.3)
+    }
+    else if(starRating==2){
+      setShineOne(1)
+      setShineTwo(1)
+      setShineThree(0.3)
+      setShineFour(0.3)
+      setShineFive(0.3)
+    }
+    else if(starRating==3){
+      setShineOne(1)
+      setShineTwo(1)
+      setShineThree(1)
+      setShineFour(0.3)
+      setShineFive(0.3)
+    }
+    else if(starRating==4){
+      setShineOne(1)
+      setShineTwo(1)
+      setShineThree(1)
+      setShineFour(1)
+      setShineFive(0.3)
+    }
+    else if(starRating==5){
+      setShineOne(1)
+      setShineTwo(1)
+      setShineThree(1)
+      setShineFour(1)
+      setShineFive(1)
+    }
+  },[starRating])
   const headerOpen=(booleanValue)=>{
     
     setHeaderOpenState(booleanValue)
@@ -447,7 +566,57 @@ const Home = () => {
   //   //console.log('what')
   //   console.log(overlay.current)
   // },[overlayClassName])
+  const onMouseEnterStarOne = ()=>{
+    console.log('start one')
+    
+    // starOne.current.props.style.opacity=1
+    // starTwo.current.props.style.opacity=0.8
+    // starThree.current.props.style.opacity=0.8
+    // starFour.current.props.style.opacity=0.8
+    // starFive.current.props.style.opacity=0.8
 
+    setStarRating(1)
+  }
+  const onMouseEnterStarTwo = ()=>{
+    console.log('start two')
+    setStarRating(2)
+    // starOne.current.props.style.opacity=1
+    // starTwo.current.props.style.opacity=1
+    // starThree.current.props.style.opacity=0.8
+    // starFour.current.props.style.opacity=0.8
+    // starFive.current.props.style.opacity=0.8
+  }
+  const onMouseEnterStarThree = ()=>{
+    console.log('start three')
+    setStarRating(3)
+    // starOne.current.props.style.opacity=1
+    // starTwo.current.props.style.opacity=1
+    // starThree.current.props.style.opacity=1
+    // starFour.current.props.style.opacity=0.8
+    // starFive.current.props.style.opacity=0.8
+  }
+  const onMouseEnterStarFour = ()=>{
+    console.log('start four')
+    setStarRating(4)
+    // starOne.current.props.style.opacity=1
+    // starTwo.current.props.style.opacity=1
+    // starThree.current.props.style.opacity=1
+    // starFour.current.props.style.opacity=1
+    // starFive.current.props.style.opacity=0.8
+  }
+  const onMouseEnterStarFive = ()=>{
+    console.log('start five')
+    setStarRating(5)
+    // starOne.current.props.style.opacity=1
+    // starTwo.current.props.style.opacity=1
+    // starThree.current.props.style.opacity=1
+    // starFour.current.props.style.opacity=1
+    // starFive.current.props.style.opacity=1
+  }
+  const onPressStar=()=>{
+    console.log('pressed star')
+    starOverlayToggle()
+  }
     const longpress=()=>{
       alert('longpress')
     }
@@ -507,30 +676,35 @@ const Home = () => {
                 alignItems:'center',
                 //textAlign:'center'
             }}>
-
-                <TouchableOpacity
+              <View
                 style={{
-                    position:'fixed',
-                    height:16,
-                    width:16,
-                    top:26,
-                    right:21,
-                    //backgroundColor:'white',
-                    zIndex:101
+                  height:50
                 }}
-                onPress={
-                    commentOverlayToggle
-                    //overlayOff
-                }
-                activeOpacity={1}
-            >
+              >
+                <TouchableOpacity
+                  style={{
+                      position:'fixed',
+                      height:16,
+                      width:16,
+                      top:26,
+                      right:21,
+                      //backgroundColor:'white',
+                      zIndex:101
+                  }}
+                  onPress={
+                      commentOverlayToggle
+                      //overlayOff
+                  }
+                  activeOpacity={1}
+              >
                 <div
                   className='x'
                 >
           
                 </div>
                 
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
           </View>
         </Fade> 
         </Fade>
@@ -585,6 +759,13 @@ const Home = () => {
                 //textAlign:'center'
             }}>
 
+              <View
+                style={{
+                  height:"100%",
+                  width:"100%"
+                }}
+              >
+              
                 <TouchableOpacity
                 style={{
                     position:'fixed',
@@ -608,6 +789,106 @@ const Home = () => {
                 </div>
                 
             </TouchableOpacity>
+            <View 
+                        //id = 'place-holder2' 
+                        style={{
+                            height:'100%',
+                            width:'100%',
+                            // paddingTop:2,
+                            // paddingBottom:2,
+                            // paddingLeft:2,
+                            // paddingRight:2,
+                            //backgroundColor:'yellow'
+                        }}
+                     >
+                    <View
+                      style={{
+                        
+                        height:52,
+                        width:'100%',
+                        //backgroundColor:'purple'
+                        alignItems:'center',
+                        justifyContent:'center'
+                      }}
+                    >
+                    <View
+                    style={{
+                      
+                      height:52,
+                      width:width-100,
+                      //backgroundColor:'purple'
+                      alignItems:'center',
+                      justifyContent:'center'
+                    }}
+                    >
+                      <Text
+                      style={{
+                        fontSize: 12,
+                        fontWeight:'700',
+                        textDecorationLine:'none',
+                        color:'rgb(196,196,196)',
+                        boxSizing:'borderBox',
+                        textAlign:'center',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        flexDirection:'row',
+                        margin:5,
+                      }}
+                      >
+                        WRITE ANYTHING THAT DESCRIBES THE POST
+                      </Text>
+                    </View>
+                  </View>
+                        <textarea type='text' spellCheck="false" 
+                            ref={slackHashInputRef}
+                            value={slackHashTextValue}
+                            autoFocus={true}
+                            style={{
+                                
+                                height:height-52,
+                                width:width-30,
+                                //height:height-20,
+                                //width:width-20,
+                                //fontSize:13,
+                                lineHeight:'2em',
+                                // paddingTop:55,
+                                // paddingLeft: 55,
+                                paddingRight: 45,
+                                // paddingBottom:55,
+                                marginLeft:15,
+                                marginRight:0,
+                                //marginTop:50,
+                                marginTop:15,
+                                marginBottom:15,
+                                // borderLeftWidth:1,
+                                borderLeftColor:'transparent',
+                                borderRightColor:'transparent',
+                                borderBottomColor:'transparent',
+                                borderTopColor:'transparent',
+                                backgroundColor:'transparent',
+                                resize:'none',
+                                outlineColor: 'transparent',
+                                outlineStyle: 'none',
+                                caretColor:'white',
+                                fontSize: 12,
+                                fontWeight:'700',
+                                textDecorationLine:'none',
+                                color:'rgb(196,196,196)',
+                                boxSizing:'borderBox',
+                                // textAlign:'center',
+                                // alignItems:'center',
+                                // justifyContent:'center',
+                                // flexDirection:'row',
+                                // margin:5,
+                            }} 
+                            onKeyPress={handleSlackHashKeyPress}
+                            onChange={handleSlackHashChange}
+
+                            >
+                        </textarea> 
+                       
+                     </View> 
+            </View>
           </View>
         </Fade> 
         </Fade>
@@ -661,7 +942,11 @@ const Home = () => {
                 alignItems:'center',
                 //textAlign:'center'
             }}>
-
+              <View
+                style={{
+                  height:50
+                }}
+              >
                 <TouchableOpacity
                 style={{
                     position:'fixed',
@@ -685,6 +970,7 @@ const Home = () => {
                 </div>
                 
             </TouchableOpacity>
+          </View>
           </View>
         </Fade> 
         </Fade>
@@ -738,7 +1024,15 @@ const Home = () => {
                 alignItems:'center',
                 //textAlign:'center'
             }}>
-
+              <View
+                style={{
+                  height:50,
+                  width:'100vw',
+                  backgroundColor:'transparent',
+                  justifyContent:'center',
+                  alignItems:'center'
+                }}
+              >
                 <TouchableOpacity
                 style={{
                     position:'fixed',
@@ -762,6 +1056,100 @@ const Home = () => {
                 </div>
                 
             </TouchableOpacity>
+            <View
+              style={{
+                backgroundColor:'transparent',
+                height:'100%',
+                weight:'100%',
+                justifyContent:'center',
+              }}
+            >
+              <Text
+                style={{
+                  fontSize:25,
+                  color:'white',
+                }}
+              >
+              <View
+                
+              >
+                <Text
+                  ref={starOne}
+                  style={{
+                    margin:5,
+                    opacity:shineOne
+                  }}
+                  onMouseEnter={onMouseEnterStarOne}
+                  onPress={onPressStar}
+                >
+                  <i class="fas fa-star"
+                    
+                  ></i>
+                </Text>
+              </View> 
+              <View
+                
+              >
+                <Text
+                  ref={starTwo}
+                  style={{
+                    margin:5,
+                    opacity:shineTwo
+                  }}
+                  onMouseEnter={onMouseEnterStarTwo}
+                  onPress={onPressStar}
+                >
+                  <i class="fas fa-star"></i>
+                </Text>
+              </View>
+              <View
+                
+              >
+                <Text
+                  ref={starThree}
+                  style={{
+                    margin:5,
+                    opacity:shineThree
+                  }}
+                  onMouseEnter={onMouseEnterStarThree}
+                  onPress={onPressStar}
+                >
+                  <i class="fas fa-star"></i>
+                </Text>
+              </View>
+              <View
+              >
+                <Text
+                  ref={starFour}
+                  style={{
+                    margin:5,
+                    opacity:shineFour
+                  }}
+                  onMouseEnter={onMouseEnterStarFour}
+                  onPress={onPressStar}
+                >
+                  <i class="fas fa-star"></i>
+                </Text> 
+              </View>
+              <View
+
+              >
+                <Text
+                  ref={starFive}
+                  style={{
+                    margin:5,
+                    opacity:shineFive
+                  }}                 
+                  onMouseEnter={onMouseEnterStarFive}
+                  onPress={onPressStar}
+                >
+                  <i class="fas fa-star"></i>
+                </Text>
+              </View>
+              </Text>
+            </View>
+          </View>
+            
           </View>
         </Fade> 
         </Fade>
