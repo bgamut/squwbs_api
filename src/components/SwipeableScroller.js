@@ -352,7 +352,8 @@ const SwipeableScroller = (props) => {
                   width:"100%",
                   backgroundSize: '100% 100%',
                   //backgroundColor:'rgb(250,250,250)',
-                  backgroundColor:'rgb(135,135,135)',
+                  //backgroundColor:'rgb(135,135,135)',
+                  backgroundColor:'rgb(180,164,242)',
                   textAlign:'center',
                   
                   backgroundRepeat:"no-repeat",
@@ -423,7 +424,8 @@ const SwipeableScroller = (props) => {
                     //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/wbgf.gif"+")",
                     // textAlign:'center',
                     backgroundSize: '100% 100%',
-                    backgroundColor:'rgb(250,250,250)',
+                    //backgroundColor:'rgb(250,250,250)',
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))',
                     textAlign:'center',
                   //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
                     backgroundRepeat:"no-repeat",
@@ -491,7 +493,8 @@ const SwipeableScroller = (props) => {
                     height:"100%",
                     width:"100vw",
                     
-                    backgroundColor:'rgb(255,255,255)',
+                    //backgroundColor:'rgb(255,255,255)',
+                    backgroundColor:'rgb(222,146,186)',
                     textAlign:'center'
                   }}
                 >
@@ -569,7 +572,8 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'rgb(135,135,135)',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -833,7 +837,8 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
+                    //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
+                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -958,7 +963,8 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'rgb(135,135,135)',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -1028,7 +1034,8 @@ const SwipeableScroller = (props) => {
                         height:0
                       },
                       elevation:2,
-                      backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                      //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
                     }}
                   >
                     <Contact/>
@@ -1129,7 +1136,8 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'rgb(135,135,135)',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1417,7 +1425,8 @@ const SwipeableScroller = (props) => {
                         height:0
                       },
                       elevation:2,
-                      backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
+                      //backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
+                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
                     }}
                   >
                     <DLLink/>
@@ -1452,7 +1461,8 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
+                    //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
+                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1516,7 +1526,8 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'rgb(135,135,135)',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -1586,7 +1597,8 @@ const SwipeableScroller = (props) => {
                         height:0
                       },
                       elevation:2,
-                      backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                      //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
+                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
                     }}
                   >
                     <Contact/>
