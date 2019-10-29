@@ -444,16 +444,14 @@ const Drawer =(props)=>{
                     width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
                     backgroundColor:'white',
-                    borderColor:'rgb(196,196,196)',
+                    borderColor:'rgb(135,135,135)',
                     justifyContent:'center',
 
                     padding:0,
                     // borderColor:'transparent',
                     borderRadius:4,
                     borderWidth:1,}]}>
-                    <View 
-                        className='icon'
-                        style = {[
+                    <View style = {[
                         styles.MAIN_SLIDING_DRAWER_CONTAINER,
                         {
                             height:50,
@@ -463,10 +461,10 @@ const Drawer =(props)=>{
                             margin:0,
                             marginRight:2,
                             marginLeft:2,
-                            backgroundColor:'rgb(196,196,196)',
+                            backgroundColor:'rgb(135,135,135)',
                             //backgroundColor:'purple',
-                            //borderColor:"rgb(196,196,196)",
-                            borderColor:'rgb(196,196,196)',
+                            //borderColor:"rgb(135,135,135)",
+                            borderColor:'rgb(135,135,135)',
                             
                             borderRadius:2,
                             borderWidth:1,
@@ -558,11 +556,10 @@ const Drawer =(props)=>{
                             </ScrollView>
                         </View>
                     <View
-                    className='icon'
                     style={{
                         position:'absolute',
                         top:height-maxHeight-53,
-                        backgroundColor:'rgb(196,196,196)',
+                        backgroundColor:'rgb(135,135,135)',
                         //backgroundColor:'purple',
                         //width:298,
                         width:SLIDING_DRAWER_WIDTH-2,
@@ -576,8 +573,8 @@ const Drawer =(props)=>{
                         borderWidth:1,
                         
                         //backgroundColor:'purple',
-                        //borderColor:"rgb(196,196,196)",
-                        borderColor:'rgb(196,196,196)',
+                        //borderColor:"rgb(135,135,135)",
+                        borderColor:'rgb(135,135,135)',
                         //borderColor:'transparent',
                         
                         borderRadius:2,
@@ -822,16 +819,14 @@ const Drawer =(props)=>{
                     width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
                     backgroundColor:'white',
-                    borderColor:'rgb(196,196,196)',
+                    borderColor:'rgb(135,135,135)',
                     justifyContent:'center',
 
                     padding:0,
                     // borderColor:'transparent',
                     borderRadius:4,
                     borderWidth:1,}]}>
-                    <View
-                    className='icon'
-                    style = {[
+                    <View style = {[
                         styles.MAIN_SLIDING_DRAWER_CONTAINER,
                         {
                             height:50,
@@ -841,10 +836,10 @@ const Drawer =(props)=>{
                             margin:0,
                             marginRight:2,
                             marginLeft:2,
-                            backgroundColor:'rgb(196,196,196)',
+                            backgroundColor:'rgb(135,135,135)',
                             //backgroundColor:'purple',
-                            //borderColor:"rgb(196,196,196)",
-                            borderColor:'rgb(196,196,196)',
+                            //borderColor:"rgb(135,135,135)",
+                            borderColor:'rgb(135,135,135)',
                             
                             borderRadius:2,
                             borderWidth:1,
@@ -922,11 +917,10 @@ const Drawer =(props)=>{
                             </ScrollView>
                         </View>
                     <View
-                    className='icon'
                     style={{
                         position:'absolute',
                         top:height-maxHeight-53,
-                        backgroundColor:'rgb(196,196,196)',
+                        backgroundColor:'rgb(135,135,135)',
                         //backgroundColor:'purple',
                         width:SLIDING_DRAWER_WIDTH-2,
                         height:100,
@@ -939,8 +933,8 @@ const Drawer =(props)=>{
                         borderWidth:1,
                         
                         //backgroundColor:'purple',
-                        //borderColor:"rgb(196,196,196)",
-                        borderColor:'rgb(196,196,196)',
+                        //borderColor:"rgb(135,135,135)",
+                        borderColor:'rgb(135,135,135)',
                         //borderColor:'transparent',
                         
                         borderRadius:2,
