@@ -862,13 +862,7 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
-                    
-                    <GoogleDeck 
-                      shareButtonPressed={props.shareOverlayToggle}
-                      slackHashButtonPressed={props.slackHashOverlayToggle}
-                      commentButtonPressed={props.commentOverlayToggle}
-                      starButtonPressed={props.starOverlayToggle}
-                    />
+                    <GoogleDeck/>
                     {/* <GoogleCardV2
                       title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
                       date={String(date)}
@@ -1481,12 +1475,7 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
-                    <GoogleDeck 
-                      shareButtonPressed={props.shareOverlayToggle}
-                      slackHashButtonPressed={props.slackHashOverlayToggle}
-                      commentButtonPressed={props.commentOverlayToggle}
-                      starButtonPressed={props.starOverlayToggle}
-                    />
+                    <GoogleDeck/>
                     {/* <GoogleCardV2
                       title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
                       date={String(date)}

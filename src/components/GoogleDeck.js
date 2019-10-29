@@ -137,9 +137,9 @@ class GoogleDeck extends Component {
                   stars={post.stars}
                   comments={post.comments}
                   hashs={post.hashs}
-                  // commentButtonPressed={post.commentButtonPressed}
-                  // slackButtonPressed={post.slackButtonPressed}
-                  // starButtonPressed={post.startButtonPressed}
+                  commentButtonPressed={post.commentButtonPressed}
+                  slackButtonPressed={post.slackButtonPressed}
+                  starButtonPressed={post.startButtonPressed}
               />
           </View>
       )
@@ -189,19 +189,7 @@ class GoogleDeck extends Component {
   componentDidUpdate(prevProps,prevState){
     console.log("GoogleDeck.js This is the currentEntry : ",this.state.currentEntry)
   }
-  commentButtonPressed=()=>{
-    this.props.commentButtonPressed()
-  }
-
-  slackHashButtonPressed=()=>{
-    this.props.slackHashButtonPressed()
-  }
-  starButtonPressed=()=>{
-    this.props.starButtonPressed()
-  }
-  shareButtonPressed=()=>{
-    this.props.shareButtonPressed()
-  }
+  
   requestPosts=()=>{
     // fetch('https://squwbs-252702.appspot.com/getPosts',[{mode:'cors'},{signal:this.abortController.signal}])
     // .then((res)=>{
@@ -370,8 +358,7 @@ class GoogleDeck extends Component {
                           }}
                       >
                           <TouchableOpacity
-                            //onPress={this.props.commentButtonPressed}
-                            onPress={this.commentButtonPressed}
+                            onPress={this.props.commentButtonPressed}
                           >
                           
                           <Text
@@ -395,8 +382,7 @@ class GoogleDeck extends Component {
                           }}
                       >
                           <TouchableOpacity
-                            //onPress={this.props.slackHashButtonPressed}
-                            onPress={this.slackHashButtonPressed}
+                            onPress={this.props.slackHashButtonPressed}
                           >
                           <Text
                               className='icon'
@@ -419,8 +405,7 @@ class GoogleDeck extends Component {
                           }}
                       >
                           <TouchableOpacity
-                            //onPress={this.props.starButtonPressed}
-                            onPress={this.starButtonPressed}
+                            onPress={this.props.starButtonPressed}
                           >
                           <Text
                               className='icon'
@@ -446,8 +431,7 @@ class GoogleDeck extends Component {
                           }}
                       >
                           <TouchableOpacity
-                            //onPress={this.props.shareButtonPressed}
-                            onPress={this.shareButtonPressed}
+                            onPress={this.props.shareButtonPresse}
                           >
                           <Text
                               style ={styles.icon}

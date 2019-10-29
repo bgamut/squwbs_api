@@ -72,10 +72,8 @@ const Home = () => {
   const [user,setUser]=useState({})
   const [loginOverlaySwitch,setLoginOverlaySwitch]=useState(false)
   const [termsOverlaySwitch,setTermsOverlaySwitch]=useState(false)
-  const [slackHashOverlaySwitch,setSlackHashOverlaySwitch]=useState(false)
-  const [commentOverlaySwitch,setCommentOverlaySwitch]=useState(false)
+  const [disqusOverlaySwitch,setDisqusOverlaySwitch]=useState(true)
   const [shareOverlaySwitch,setShareOverlaySwitch]=useState(false)
-  const [starOverlaySwitch,setStarOverlaySwitch]=useState(false)
   const [fade, setFade] =useState('true')
   const [height,setHeight]=useState(0)
   const [width,setWidth]=useState(0)
@@ -158,35 +156,20 @@ const Home = () => {
       }, duration);
     }  
   }
-  const commentOverlayToggle=()=>{
-    console.log('home.js : disques toggled!')
-    if(commentOverlaySwitch==false){
-      setCommentOverlaySwitch(true)
+  const disqusOverlayToggle=()=>{
+    if(loginOverlaySwitch==false){
+      setDisqusOverlaySwitch(true)
       setFade(true)
     }
     else{
       setFade(false)
       setTimeout(function() {
-        setCommentOverlaySwitch(false)
-      }, duration);
-    }  
-  }
-  const slackHashOverlayToggle=()=>{
-    console.log('home.js : slackHash toggled!')
-    if(slackHashOverlaySwitch==false){
-      setSlackHashOverlaySwitch(true)
-      setFade(true)
-    }
-    else{
-      setFade(false)
-      setTimeout(function() {
-        setSlackHashOverlaySwitch(false)
+        setDisqusOverlaySwitch(false)
       }, duration);
     }  
   }
   const shareOverlayToggle=()=>{
-    console.log('home.js : share toggled!')
-    if(shareOverlaySwitch==false){
+    if(loginOverlaySwitch==false){
       setShareOverlaySwitch(true)
       setFade(true)
     }
@@ -194,19 +177,6 @@ const Home = () => {
       setFade(false)
       setTimeout(function() {
         setShareOverlaySwitch(false)
-      }, duration);
-    }  
-  }
-  const starOverlayToggle=()=>{
-    console.log('home.js : star toggled!')
-    if(starOverlaySwitch==false){
-      setStarOverlaySwitch(true)
-      setFade(true)
-    }
-    else{
-      setFade(false)
-      setTimeout(function() {
-        setStarOverlaySwitch(false)
       }, duration);
     }  
   }
@@ -460,314 +430,6 @@ const Home = () => {
           className=
           'invisible'
         > */}
-        {commentOverlaySwitch && 
-        
-            <View
-            
-            // className={overlayClassName}
-            style={{
-                position:'fixed',
-                height:height,
-                width:'100%',
-                top:0,
-                left:0,
-                //backgroundColor:'rgba(0,0,0,0.4)',
-                //
-                justifyContent:'center',
-                alignItems:'center',
-                zIndex:100,
-                //opacity:0,
-                //display:'block',
-            }}
-          >
-          <Fade
-          duration={duration}
-          timeout={duration}
-          >
-          <Fade
-            style={{
-              //backgroundColor:'orange',
-              height:height,
-              width:'100vw',
-            }}
-            when={fade}
-            duration={duration}
-            timeout={duration}
-          >
-            <View
-            style={{
-                
-                height:height,
-                width:'100vw',
-                //opacity:0.4,
-                //backgroundColor:'orange',
-                backgroundColor:'rgba(0,0,0,0.8)',
-                //backgroundImage:'',
-                justifyContent:'center',
-                alignItems:'center',
-                //textAlign:'center'
-            }}>
-
-                <TouchableOpacity
-                style={{
-                    position:'fixed',
-                    height:16,
-                    width:16,
-                    top:26,
-                    right:21,
-                    //backgroundColor:'white',
-                    zIndex:101
-                }}
-                onPress={
-                    commentOverlayToggle
-                    //overlayOff
-                }
-                activeOpacity={1}
-            >
-                <div
-                  className='x'
-                >
-          
-                </div>
-                
-            </TouchableOpacity>
-          </View>
-        </Fade> 
-        </Fade>
-        </View>
-        
-        }  
-        {slackHashOverlaySwitch && 
-          
-          <View
-          
-            // className={overlayClassName}
-            style={{
-                position:'fixed',
-                height:height,
-                width:'100%',
-                top:0,
-                left:0,
-                //backgroundColor:'rgba(0,0,0,0.4)',
-                //
-                justifyContent:'center',
-                alignItems:'center',
-                zIndex:100,
-                //opacity:0,
-                //display:'block',
-            }}
-          >
-          <Fade
-          duration={duration}
-          timeout={duration}
-          >
-          <Fade
-            style={{
-              //backgroundColor:'orange',
-              height:height,
-              width:'100vw',
-            }}
-            when={fade}
-            duration={duration}
-            timeout={duration}
-          >
-            <View
-            style={{
-                
-                height:height,
-                width:'100vw',
-                //opacity:0.4,
-                //backgroundColor:'orange',
-                backgroundColor:'rgba(0,0,0,0.8)',
-                //backgroundImage:'',
-                justifyContent:'center',
-                alignItems:'center',
-                //textAlign:'center'
-            }}>
-
-                <TouchableOpacity
-                style={{
-                    position:'fixed',
-                    height:16,
-                    width:16,
-                    top:26,
-                    right:21,
-                    //backgroundColor:'white',
-                    zIndex:101
-                }}
-                onPress={
-                    slackHashOverlayToggle
-                    //overlayOff
-                }
-                activeOpacity={1}
-            >
-                <div
-                  className='x'
-                >
-          
-                </div>
-                
-            </TouchableOpacity>
-          </View>
-        </Fade> 
-        </Fade>
-        </View>
-        
-        } 
-        {shareOverlaySwitch && 
-          
-          <View
-          
-            // className={overlayClassName}
-            style={{
-                position:'fixed',
-                height:height,
-                width:'100%',
-                top:0,
-                left:0,
-                //backgroundColor:'rgba(0,0,0,0.4)',
-                //
-                justifyContent:'center',
-                alignItems:'center',
-                zIndex:100,
-                //opacity:0,
-                //display:'block',
-            }}
-          >
-          <Fade
-          duration={duration}
-          timeout={duration}
-          >
-          <Fade
-            style={{
-              //backgroundColor:'orange',
-              height:height,
-              width:'100vw',
-            }}
-            when={fade}
-            duration={duration}
-            timeout={duration}
-          >
-            <View
-            style={{
-                
-                height:height,
-                width:'100vw',
-                //opacity:0.4,
-                //backgroundColor:'orange',
-                backgroundColor:'rgba(0,0,0,0.8)',
-                //backgroundImage:'',
-                justifyContent:'center',
-                alignItems:'center',
-                //textAlign:'center'
-            }}>
-
-                <TouchableOpacity
-                style={{
-                    position:'fixed',
-                    height:16,
-                    width:16,
-                    top:26,
-                    right:21,
-                    //backgroundColor:'white',
-                    zIndex:101
-                }}
-                onPress={
-                    shareOverlayToggle
-                    //overlayOff
-                }
-                activeOpacity={1}
-            >
-                <div
-                  className='x'
-                >
-          
-                </div>
-                
-            </TouchableOpacity>
-          </View>
-        </Fade> 
-        </Fade>
-        </View>
-        
-        } 
-        {starOverlaySwitch && 
-          
-          <View
-          
-            // className={overlayClassName}
-            style={{
-                position:'fixed',
-                height:height,
-                width:'100%',
-                top:0,
-                left:0,
-                //backgroundColor:'rgba(0,0,0,0.4)',
-                //
-                justifyContent:'center',
-                alignItems:'center',
-                zIndex:100,
-                //opacity:0,
-                //display:'block',
-            }}
-          >
-          <Fade
-          duration={duration}
-          timeout={duration}
-          >
-          <Fade
-            style={{
-              //backgroundColor:'orange',
-              height:height,
-              width:'100vw',
-            }}
-            when={fade}
-            duration={duration}
-            timeout={duration}
-          >
-            <View
-            style={{
-                
-                height:height,
-                width:'100vw',
-                //opacity:0.4,
-                //backgroundColor:'orange',
-                backgroundColor:'rgba(0,0,0,0.8)',
-                //backgroundImage:'',
-                justifyContent:'center',
-                alignItems:'center',
-                //textAlign:'center'
-            }}>
-
-                <TouchableOpacity
-                style={{
-                    position:'fixed',
-                    height:16,
-                    width:16,
-                    top:26,
-                    right:21,
-                    //backgroundColor:'white',
-                    zIndex:101
-                }}
-                onPress={
-                    starOverlayToggle
-                    //overlayOff
-                }
-                activeOpacity={1}
-            >
-                <div
-                  className='x'
-                >
-          
-                </div>
-                
-            </TouchableOpacity>
-          </View>
-        </Fade> 
-        </Fade>
-        </View>
-        
-        } 
         {loginOverlaySwitch && 
         
           <View
@@ -1249,9 +911,7 @@ const Home = () => {
             <SwipeableScroller 
               headerOpen={headerOpen}
               shareOverlayToggle={shareOverlayToggle}
-              slackHashOverlayToggle={slackHashOverlayToggle}
-              starOverlayToggle={starOverlayToggle}
-              commentOverlayToggle={commentOverlayToggle}
+              disqusOverlayToggle={disqusOverlayToggle}
             />
           </Drawer>
           </Animated.View>
