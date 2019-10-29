@@ -130,8 +130,6 @@
     "redux-thunk": "^2.3.0",
     "rimraf": "^3.0.0",
     "serve-favicon": "^2.5.0",
-    "snoostorm": "^1.2.2",
-    "snoowrap": "^1.20.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "stringify-object": "^3.3.0",
