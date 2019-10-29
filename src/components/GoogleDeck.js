@@ -191,20 +191,16 @@ class GoogleDeck extends Component {
   }
   commentButtonPressed=()=>{
     this.props.commentButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
   }
 
   slackHashButtonPressed=()=>{
     this.props.slackHashButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
   }
   starButtonPressed=()=>{
     this.props.starButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
   }
   shareButtonPressed=()=>{
     this.props.shareButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
   }
   requestPosts=()=>{
     // fetch('https://squwbs-252702.appspot.com/getPosts',[{mode:'cors'},{signal:this.abortController.signal}])
@@ -268,7 +264,6 @@ class GoogleDeck extends Component {
     //this.myRef.showsHorizontalScrollIndicator=true
     this.setState({indicatorState:true})
     //console.log(this.myRef.current.offsetWidth)
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
   }
 
   onMouseLeave=()=>{
@@ -280,22 +275,22 @@ class GoogleDeck extends Component {
     var maxNum=e.nativeEvent.contentSize.width-(this.state.width-30)
     //console.log(e.nativeEvent.contentOffset.x+'/'+maxNum)
     if(e.nativeEvent.contentOffset.x%(this.state.width-30)<(this.state.width-30)/2){
-      // if (this.state.currentEntry!==Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))){
+      if (this.state.currentEntry!==Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))){
         this.setState({
           currentEntry:Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))
         })
-        //console.log(Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30)))
-      // }
+        console.log(Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30)))
+      }
       
       
     }
     else if (e.nativeEvent.contentOffset.x%(this.state.width-30)>=(this.state.width-30)/2){
-      // if (this.state.currentEntry!==Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))){
+      if (this.state.currentEntry!==Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))){
         this.setState({
           currentEntry:Math.ceil(e.nativeEvent.contentOffset.x/(this.state.width-30))
         })
-        //console.log(Math.ceil(e.nativeEvent.contentOffset.x/(this.state.width-30)))
-      // }
+        console.log(Math.ceil(e.nativeEvent.contentOffset.x/(this.state.width-30)))
+      }
     }
   }
  
