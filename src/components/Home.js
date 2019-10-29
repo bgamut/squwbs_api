@@ -72,8 +72,6 @@ const Home = () => {
   const [user,setUser]=useState({})
   const [loginOverlaySwitch,setLoginOverlaySwitch]=useState(false)
   const [termsOverlaySwitch,setTermsOverlaySwitch]=useState(false)
-  const [disqusOverlaySwitch,setDisqusOverlaySwitch]=useState(true)
-  const [shareOverlaySwitch,setShareOverlaySwitch]=useState(false)
   const [fade, setFade] =useState('true')
   const [height,setHeight]=useState(0)
   const [width,setWidth]=useState(0)
@@ -153,30 +151,6 @@ const Home = () => {
       setFade(false)
       setTimeout(function() {
         setTermsOverlaySwitch(false)
-      }, duration);
-    }  
-  }
-  const disqusOverlayToggle=()=>{
-    if(loginOverlaySwitch==false){
-      setDisqusOverlaySwitch(true)
-      setFade(true)
-    }
-    else{
-      setFade(false)
-      setTimeout(function() {
-        setDisqusOverlaySwitch(false)
-      }, duration);
-    }  
-  }
-  const shareOverlayToggle=()=>{
-    if(loginOverlaySwitch==false){
-      setShareOverlaySwitch(true)
-      setFade(true)
-    }
-    else{
-      setFade(false)
-      setTimeout(function() {
-        setShareOverlaySwitch(false)
       }, duration);
     }  
   }
@@ -908,11 +882,7 @@ const Home = () => {
             popTerms={termsOverlayToggle}
             headerOpen={headerOpen}
           >
-            <SwipeableScroller 
-              headerOpen={headerOpen}
-              shareOverlayToggle={shareOverlayToggle}
-              disqusOverlayToggle={disqusOverlayToggle}
-            />
+            <SwipeableScroller headerOpen={headerOpen}/>
           </Drawer>
           </Animated.View>
           {/* <KeyboardAvoidingView style={{display:'absolute',bottom:0,flex:1,position:'absolute',height:hp('16%')-30,backgroundColor:'transparent',flexDirection:'column',margin:0,width:wp('100%'),padding:0}} behavior="padding" enabled > */}

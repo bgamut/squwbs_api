@@ -26,7 +26,6 @@ class GoogleDeck extends Component {
     this.state = {
         height:0,
         width:0,
-        currentEntry:0,
       posts:[
           {
             title:'random 1',
@@ -34,7 +33,7 @@ class GoogleDeck extends Component {
             picture:null,
             writer:'json example',
             youtubeID:null,
-            post:"Sometimes I forget to say thank youMost times I forget to say how I appreciate youDon't ever want to make you feel unwanted So baby, this is what I'm gonna do I'm gonna turn off the lights, you sit tight (oh na oh nanana) While I turn the music loud, lay you down (oh na oh nanana) Girl, I'm gonna pop this bottle, love my saddle (oh na oh nanana) Sometimes I forget to say thank youMost times I forget to say how I appreciate youDon't ever want to make you feel unwanted So baby, this is what I'm gonna do I'm gonna turn off the lights, you sit tight (oh na oh nanana) While I turn the music loud, lay you down (oh na oh nanana) Girl, I'm gonna pop this bottle, love my saddle (oh na oh nanana) Sometimes I forget to say thank youMost times I forget to say how I appreciate youDon't ever want to make you feel unwanted So baby, this is what I'm gonna do I'm gonna turn off the lights, you sit tight (oh na oh nanana) While I turn the music loud, lay you down (oh na oh nanana) Girl, I'm gonna pop this bottle, love my saddle (oh na oh nanana) Sometimes I forget to say thank youMost times I forget to say how I appreciate youDon't ever want to make you feel unwanted So baby, this is what I'm gonna do I'm gonna turn off the lights, you sit tight (oh na oh nanana) While I turn the music loud, lay you down (oh na oh nanana) Girl, I'm gonna pop this bottle, love my saddle (oh na oh nanana)",
+            post:'hope this works',
             stars:3.5,
             comments:[
 
@@ -64,35 +63,11 @@ class GoogleDeck extends Component {
             ],
             hashs:['second','mirror','more','examples'],
           },
-          {
-            title:'third',
-            date:'2001/2/6',
-            picture:null,
-            writer:'json',
-            youtubeID:'R5J1Ykj0U8o',
-            post:"Sometimes I forget to say thank youMost times I forget to say how I appreciate youDon't ever want to make you feel unwanted So baby, this is what I'm gonna do I'm gonna turn off the lights, you sit tight (oh na oh nanana) While I turn the music loud, lay you down (oh na oh nanana) Girl, I'm gonna pop this bottle, love my saddle (oh na oh nanana) Sometimes I forget to say thank youMost times I forget to say how I appreciate youDon't ever want to make you feel unwanted So baby, this is what I'm gonna do I'm gonna turn off the lights, you sit tight (oh na oh nanana) While I turn the music loud, lay you down (oh na oh nanana) Girl, I'm gonna pop this bottle, love my saddle (oh na oh nanana)",
-            stars:4.5,
-            comments:[
-                {
-                    title:'random 3',
-                    date:'2001/2/6',
-                    picture:null,
-                    writer:'commentor',
-                    youtubeID:'pNfTK39k55U',
-                    post:'comment one',
-                    stars:2.5,
-                    comments:[],
-                    hashs:['third'],
-                  },
-            ],
-            hashs:['second','mirror','more','examples'],
-          }
 
       ],
       currentIndex:0,
       endIndex:1,
-      next:true,
-      indicatorState:true
+      next:true
     };
     this.myRef=React.createRef();
   
@@ -112,15 +87,13 @@ class GoogleDeck extends Component {
           <View
               id='lastPost'
               style={{
-                  //height:this.state.height-80,
-                  //width:this.state.width-30,
-                  height:this.state.height-30,
+                  height:this.state.height-80,
                   width:this.state.width-30,
-                  backgroundColor:'transparent',
-                  borderColor:'transparent',
+                  backgroundColor:'white',
+                  borderColor:'purple',
                   borderWidth:'2',
                   borderStyle:'solid',
-                  //justifyContent:'center',
+                  justifyContent:'center',
                   alignItems:'center'
 
                   // marginLeft:15,
@@ -137,9 +110,6 @@ class GoogleDeck extends Component {
                   stars={post.stars}
                   comments={post.comments}
                   hashs={post.hashs}
-                  commentButtonPressed={post.commentButtonPressed}
-                  slackButtonPressed={post.slackButtonPressed}
-                  starButtonPressed={post.startButtonPressed}
               />
           </View>
       )
@@ -185,9 +155,6 @@ class GoogleDeck extends Component {
   abortController= new AbortController()
   UNSAFE_componentWillUnmount(){
     this.abortController.abort()
-  }
-  componentDidUpdate(prevProps,prevState){
-    console.log("GoogleDeck.js This is the currentEntry : ",this.state.currentEntry)
   }
   
   requestPosts=()=>{
@@ -247,48 +214,17 @@ class GoogleDeck extends Component {
     
     
 }
-  onMouseEnter=()=>{
-    console.log('googledeck.js fired on mouse enter')
-    //this.myRef.showsHorizontalScrollIndicator=true
-    this.setState({indicatorState:true})
-    //console.log(this.myRef.current.offsetWidth)
-  }
+  
 
-  onMouseLeave=()=>{
-    console.log('googledeck.js fired on mouse leave')
-    //this.myRef.showsHorizontalScrollIndicator=false
-    this.setState({indicatorState:false})
-  }
-  onScroll = (e)=>{
-    var maxNum=e.nativeEvent.contentSize.width-(this.state.width-30)
-    //console.log(e.nativeEvent.contentOffset.x+'/'+maxNum)
-    if(e.nativeEvent.contentOffset.x%(this.state.width-30)<(this.state.width-30)/2){
-      if (this.state.currentEntry!==Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))){
-        this.setState({
-          currentEntry:Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))
-        })
-        console.log(Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30)))
-      }
-      
-      
-    }
-    else if (e.nativeEvent.contentOffset.x%(this.state.width-30)>=(this.state.width-30)/2){
-      if (this.state.currentEntry!==Math.floor(e.nativeEvent.contentOffset.x/(this.state.width-30))){
-        this.setState({
-          currentEntry:Math.ceil(e.nativeEvent.contentOffset.x/(this.state.width-30))
-        })
-        console.log(Math.ceil(e.nativeEvent.contentOffset.x/(this.state.width-30)))
-      }
-    }
-  }
+
+ 
  
   render(){
       
       
         return (
-          <View>
             <ScrollView
-                ref={ref=>this.myRef=ref}
+                // ref={ref=>this.myRef=ref}
                 style={{
                     // display:'absolute',
                     // left:0,
@@ -298,17 +234,13 @@ class GoogleDeck extends Component {
                     //backgroundColor:'rgb(175,175,175)',
                     margin:0,
                     flexDirection:'row',
-                    
                     // paddingBottom:15,
                     // paddingRight:15,
                 }}
-                onScroll={this.onScroll}
-                scrollEventThrottle={16}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
+    
                 horizontal={true}
-                //showsHorizontalScrollIndicator={false}
-                showsHorizontalScrollIndicator={this.state.indicatorState}
+            
+                showsHorizontalScrollIndicator={true}
                 snapeToAlignment='end'
                 decelerationRate="fast"
             >
@@ -323,129 +255,9 @@ class GoogleDeck extends Component {
             keyExtractor={() => uuidv4()}
         /> */}
       
-            {this.createPostsList()}
-        
-          </ScrollView> 
-          <View
-                  style={{
-                      justifyContent:'center',
-                      alignItems:'center',
-                      backgroundColor:'transparent',
-                      width:this.state.width-30,
-                      height:50
-                  }}
-              >
-                  <View
-                      style={{
-                          //position:'absolute',
-                          flexDirection:'row',
-                          width:this.state.width-60,
-                          height:45,
-                          backgroundColor:'transparent',
-                          alignItems:'center',
-                          justifyContent:'center',
-                          bottom:0,
-                          overflow:'hidden'
-                      }}
-                  >
-                      <View
-                          style={{
-                              flexDirection:'row',
-                              width:(this.state.width-35)/4,
-                              backgroundColor:'transparent',
-                              alignItems:'center',
-                              justifyContent:'center'
-                          }}
-                      >
-                          <TouchableOpacity
-                            onPress={this.props.commentButtonPressed}
-                          >
-                          
-                          <Text
-                              className='icon'
-                              style ={styles.icon}
-                          >
-                              {/* {props.stars} <i class="fas fa-star"></i>  */}
-                              {/* Flip */}
-                              {/* <i class="fas fa-edit"></i> */}
-                              <i class="fas fa-server"></i>
-                          </Text>
-                          </TouchableOpacity>
-                      </View>
-                      <View
-                          style={{
-                              flexDirection:'row',
-                              width:(this.state.width-35)/4,
-                              backgroundColor:'transparent',
-                              alignItems:'center',
-                              justifyContent:'center'
-                          }}
-                      >
-                          <TouchableOpacity
-                            onPress={this.props.slackHashButtonPressed}
-                          >
-                          <Text
-                              className='icon'
-                              style ={styles.icon}
-                          >   
-                          
-                              <i class="fab fa-slack-hash"></i>
-                          
-                              {/* {props.likes} Likes  */}
-                          </Text>
-                          </TouchableOpacity>
-                      </View>
-                      <View
-                          style={{
-                              flexDirection:'row',
-                              width:(this.state.width-35)/4,
-                              backgroundColor:'transparent',
-                              alignItems:'center',
-                              justifyContent:'center'
-                          }}
-                      >
-                          <TouchableOpacity
-                            onPress={this.props.starButtonPressed}
-                          >
-                          <Text
-                              className='icon'
-                              style ={[
-                                  styles.icon,
-                                  
-                              ]
-                                  
-                              }
-                          >
-                              {/* <i class="fas fa-heart"></i> */}
-                              <i class="fas fa-star"></i> 
-                          </Text>
-                          </TouchableOpacity>
-                      </View>
-                      <View
-                          style={{
-                              flexDirection:'row',
-                              width:(this.state.width-35)/4,
-                              backgroundColor:'transparent',
-                              alignItems:'center',
-                              justifyContent:'center'
-                          }}
-                      >
-                          <TouchableOpacity
-                            onPress={this.props.shareButtonPresse}
-                          >
-                          <Text
-                              style ={styles.icon}
-                              className='icon'
-                          >
-                              <i class="fas fa-share-alt"></i>
-                          </Text>
-                          </TouchableOpacity>
-                      </View>
-                  </View>
-          
-                  </View>
-               
-        </View>      
+        {this.createPostsList()}
+       
+        </ScrollView>        
               
           
               
@@ -454,36 +266,6 @@ class GoogleDeck extends Component {
 
 
 }
-
-const styles = StyleSheet.create({
-
-  text:{
-      fontSize: 14,
-      fontWeight:'700',
-      textDecorationLine:'none',
-      color:'white',
-      
-      textShadowColor: 'rgba(0, 0, 0, 0.85)',
-      textShadowOffset: {width: 0, height: 0},
-      textShadowRadius: 2,
-      textAlign:'center',
-      alignItems:'center',
-      justifyContent:'center',
-      flexDirection:'row',
-      margin:5,
-  },
-  icon:{
-      textDecorationLine:'none',
-      color:'rgb(196,196,196)',
-      fontSize: 14,
-      fontWeight:'700',
-      
-      textAlign:'center',
-      alignItems:'center',
-      justifyContent:'center',
-      flexDirection:'row',
-  }
-});
 
 export default GoogleDeck;
 

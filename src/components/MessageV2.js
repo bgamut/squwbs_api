@@ -66,7 +66,7 @@ const axios = require('axios')
 
 //const functions = require('firebase-functions');
 const _ = require('lodash')
-//var createWebNotification = require('web-notification')
+var createWebNotification = require('web-notification')
 // var PushNotification = require('react-native-push-notification')
 // PushNotification.configure({
 //     onRegister:function(token){
