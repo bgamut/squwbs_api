@@ -312,7 +312,7 @@ class GoogleCardV2 extends Component {
             >
                 
             
-            <View
+            {/* <View
                 style={{
                     width:120,
                     height:120,
@@ -340,7 +340,7 @@ class GoogleCardV2 extends Component {
                 <View
                     style={{
                         height:90,
-                        backgroundColor:'transparent'
+                        backgroundColor:'white'
                     }}
                 >
                     <Image
@@ -355,7 +355,7 @@ class GoogleCardV2 extends Component {
                         }}
                     />
                 </View>
-            </View>
+            </View> */}
                 <ScrollView
                     style={{
                         height:90,

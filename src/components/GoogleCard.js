@@ -98,7 +98,7 @@ const GoogleCard = (props)=> {
         >
          <View style={{ 
                 height:height-82,
-                width:width-32,
+                width:width-30,
                 //backgroundColor:'rgb(175,175,175)',
                 backgroundColor:'transparent',
                 flexDirection:'column',
@@ -129,12 +129,12 @@ const GoogleCard = (props)=> {
                     flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'center',
-                    backgroundColor:'transparent'
+                    backgroundColor:'white'
                 }}
             >
                 
             
-            <View
+            {/* <View
                 style={{
                     width:120,
                     height:120,
@@ -162,7 +162,7 @@ const GoogleCard = (props)=> {
                 <View
                     style={{
                         height:90,
-                        backgroundColor:'transparent'
+                        backgroundColor:'white'
                     }}
                 >
                     <Image
@@ -177,11 +177,14 @@ const GoogleCard = (props)=> {
                         }}
                     />
                 </View>
-            </View>
+            </View> */}
                 <ScrollView
                     style={{
                         height:90,
-                        width:width-182,
+                        //width:width-182,
+                        //width:'100vw',
+                        //width:width-62,
+                        width:iframeWidth,
                         backgroundColor:'transparent',
                         //backgroundColor:'rgb(175,175,175)',
                         margin:0,
@@ -194,6 +197,7 @@ const GoogleCard = (props)=> {
                         //     height:0
                         // },
                         // elevation:2,
+                        
                     }}
                     // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
                     onScroll={(e)=>{
@@ -212,11 +216,14 @@ const GoogleCard = (props)=> {
                 <View
                     style ={[{
                         backgroundColor:'transparent',
-                        width:width-180,
+                        //width:width-180,
+                        width:width-32,
+                        //width:iframeWidth,
                         // marginTop: 11,
                         // marginLeft:15,
                         // marginBottom:15,
-                        alignItems:'center'
+                        alignItems:'center',
+                        justifyContent:'center'
                     }]}
                 >
                     <View
@@ -224,7 +231,9 @@ const GoogleCard = (props)=> {
                         [
                             {
                                 backgroundColor:'transparent',
-                                width:width-210,
+                                //width:width-210,
+                                //width:width-92,
+                                width:iframeWidth,
                                 marginTop: 15,
                                 // marginLeft:15,
                                 // marginBottom:0
@@ -238,7 +247,7 @@ const GoogleCard = (props)=> {
                     >
                         {props.title}
                     </Text>
-                </View>
+                
                     <Text
                         selectable={false} 
                         style ={styles.text}
@@ -262,13 +271,15 @@ const GoogleCard = (props)=> {
                     >
                         {props.date}
                     </Text>
+                    </View>
                 </View>
                 </ScrollView>
             </View> 
             <View
                 style={{
-                    height:height-215,
-                    backgroundColor:'transparent'
+                    height:height-185,
+                    backgroundColor:'transparent',
+                    paddingTop:15
                 }}
             >  
             <ScrollView
@@ -433,7 +444,7 @@ const GoogleCard = (props)=> {
         >
          <View style={{ 
                 height:height-82,
-                width:width-32,
+                width:width-30,
                 //backgroundColor:'rgb(175,175,175)',
                 backgroundColor:'transparent',
                 flexDirection:'column',
@@ -464,12 +475,12 @@ const GoogleCard = (props)=> {
                     flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'center',
-                    backgroundColor:'transparent'
+                    backgroundColor:'white'
                 }}
             >
                 
             
-            <View
+            {/* <View
                 style={{
                     width:120,
                     height:120,
@@ -512,11 +523,13 @@ const GoogleCard = (props)=> {
                         }}
                     />
                 </View>
-            </View>
+            </View> */}
                 <ScrollView
                     style={{
                         height:90,
-                        width:width-182,
+                        //width:width-182,
+                        //width:width-62,
+                        width:iframeWidth,
                         backgroundColor:'transparent',
                         //backgroundColor:'rgb(175,175,175)',
                         margin:0,
@@ -547,7 +560,9 @@ const GoogleCard = (props)=> {
                 <View
                     style ={[{
                         backgroundColor:'transparent',
-                        width:width-180,
+                        //width:width-180,
+                        //width:width-62,
+                        width:width-32,
                         // marginTop: 11,
                         // marginLeft:15,
                         // marginBottom:15,
@@ -559,7 +574,9 @@ const GoogleCard = (props)=> {
                         [
                             {
                                 backgroundColor:'transparent',
-                                width:width-210,
+                                //width:width-210,
+                                //width:width-92,
+                                width:iframeWidth,
                                 marginTop: 15,
                                 // marginLeft:15,
                                 // marginBottom:0
@@ -573,7 +590,7 @@ const GoogleCard = (props)=> {
                     >
                         {props.title}
                     </Text>
-                </View>
+                
                     <Text
                         selectable={false} 
                         style ={styles.text}
@@ -597,13 +614,15 @@ const GoogleCard = (props)=> {
                     >
                         {props.date}
                     </Text>
+                    </View>
                 </View>
                 </ScrollView>
             </View> 
             <View
                 style={{
-                    height:height-215,
-                    backgroundColor:'transparent'
+                    height:height-185,
+                    backgroundColor:'transparent',
+                    paddingTop:15,
                 }}
             >  
             <ScrollView

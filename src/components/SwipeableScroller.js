@@ -337,7 +337,7 @@ const SwipeableScroller = (props) => {
                 autoPlay={true}
                 interval={4500}
                 transitionTime={500}
-                //emulateTouch={true}
+                emulateTouch={true}
                 stopOnHover={true}
                 //swipeScrollTolerance={1}
                 useKeyboardArrows={true}
@@ -353,7 +353,7 @@ const SwipeableScroller = (props) => {
                   backgroundSize: '100% 100%',
                   //backgroundColor:'rgb(250,250,250)',
                   //backgroundColor:'rgb(135,135,135)',
-                  backgroundColor:'rgb(180,164,242)',
+                  backgroundColor:'rgb(192,164,242)',
                   textAlign:'center',
                   
                   backgroundRepeat:"no-repeat",
@@ -405,7 +405,7 @@ const SwipeableScroller = (props) => {
                           alignItems:'center',
                           justifyContent:'center',
                           flexDirection:'row',
-                          
+                          userSelection:'none',
                         }}
                       >
                         Get the Sound You Want
@@ -476,6 +476,7 @@ const SwipeableScroller = (props) => {
                             alignItems:'center',
                             justifyContent:'center',
                             flexDirection:'row',
+                            userSelection:'none',
                           }}
                         >
                         Your Idea To A Song In Minutes  
@@ -494,7 +495,7 @@ const SwipeableScroller = (props) => {
                     width:"100vw",
                     
                     //backgroundColor:'rgb(255,255,255)',
-                    backgroundColor:'rgb(222,146,186)',
+                    backgroundColor:'rgb(229,154,198)',
                     textAlign:'center'
                   }}
                 >
@@ -542,6 +543,7 @@ const SwipeableScroller = (props) => {
                           alignItems:'center',
                           justifyContent:'center',
                           flexDirection:'row',
+                          userSelection:'none',
                         }}
                       >
                         
