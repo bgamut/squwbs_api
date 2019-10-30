@@ -191,25 +191,40 @@ class GoogleDeck extends Component {
     console.log("GoogleDeck.js This is the currentEntry : ",this.state.currentEntry)
   }
   touchedPost=()=>{
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
-    this.props.XAlign()
+    setTimeout(()=>{
+      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    },720)
+    
+    //this.props.XAlign()
   }
   commentButtonPressed=()=>{
     this.props.commentButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    //this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    setTimeout(()=>{
+      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    },720)
   }
 
   slackHashButtonPressed=()=>{
     this.props.slackHashButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    //this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    setTimeout(()=>{
+      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    },720)
   }
   starButtonPressed=()=>{
     this.props.starButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    //this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    setTimeout(()=>{
+      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    },720)
   }
   shareButtonPressed=()=>{
     this.props.shareButtonPressed()
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    //this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    setTimeout(()=>{
+      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    },720)
   }
   requestPosts=()=>{
     // fetch('https://squwbs-252702.appspot.com/getPosts',[{mode:'cors'},{signal:this.abortController.signal}])
