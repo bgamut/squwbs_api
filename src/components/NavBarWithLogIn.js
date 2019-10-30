@@ -544,6 +544,50 @@ const NavBarWithLogIn = (props) => {
         </TouchableOpacity>
       
       </View>
+      <View style={styles.box}>
+        
+        <TouchableOpacity 
+          style={styles.touch}
+          //onPress={props.ShowSlidingDrawer}
+          //onPress={toHash('sound') }
+        >
+       <a style={{
+        textDecorationLine:'none',
+    margin:0,
+    padding:0,
+    backgroundColor:'transparent',
+    fontSize: 17,
+    fontWeight:'700',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 2,
+    height:45,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'row',
+    textAlign:'center'
+      }} href="/#blog">
+        <Text id="blog" 
+        style={{
+
+          textDecorationLine:'none',
+          color:'white',
+          fontWeight:'700',
+          fontSize: 17,
+          textShadowColor: 'rgba(0, 0, 0, 0.5)',
+          textShadowOffset: {width: 0, height: 0},
+          textShadowRadius: 2,
+
+          textAlign:'center',
+          alignItems:'center',
+          justifyContent:'center',
+          flexDirection:'row',
+        }}
+        >Blog</Text>
+        </a>
+        </TouchableOpacity>
+      
+      </View>
         <View style={styles.box}>
         
           <TouchableOpacity 

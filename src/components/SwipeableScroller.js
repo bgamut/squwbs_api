@@ -647,7 +647,7 @@ const SwipeableScroller = (props) => {
 
               <section id="download">
               
-              <a style={{
+              {/* <a style={{
                 textDecorationLine:'none',
                 margin:0,
                 padding:0,
@@ -664,7 +664,7 @@ const SwipeableScroller = (props) => {
                 textAlign:'center',
                 height:"100%",
                 width:'100%'
-              }} href="/#download">
+              }} href="/#download"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -928,7 +928,7 @@ const SwipeableScroller = (props) => {
                 
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -938,9 +938,9 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >   */}
-              <section id="googleCard">
+              <section id="blog">
               
-              <a style={{
+              {/* <a style={{
                 textDecorationLine:'none',
                 margin:0,
                 padding:0,
@@ -957,7 +957,7 @@ const SwipeableScroller = (props) => {
                 textAlign:'center',
                 height:"100%",
                 width:'100%'
-              }} href="/#googleCard">
+              }} href="/#googleCard"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1026,7 +1026,7 @@ const SwipeableScroller = (props) => {
                     /> */}
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
               {/* <section id="testDownloadLink">
@@ -1081,7 +1081,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >   */}
               <section id="sound">
-              <a style={{
+              {/* <a style={{
                 textDecorationLine:'none',
                 margin:0,
                 padding:0,
@@ -1098,7 +1098,7 @@ const SwipeableScroller = (props) => {
                 textAlign:'center',
                 height:"100%",
                 width:'100%'
-              }} href="/#sound">
+              }} href="/#sound"> */}
                 <Animated.View 
                 ref={heightRef}
                 style={{
@@ -1114,7 +1114,7 @@ const SwipeableScroller = (props) => {
                   
                   <Sound/>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1125,7 +1125,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >   */}
               <section id="follow">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1142,7 +1142,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#follow">
+                }} href="/#follow"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1187,7 +1187,7 @@ const SwipeableScroller = (props) => {
                     <Instagram/>
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
               {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1198,7 +1198,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >    */}
               <section id="contact">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1215,7 +1215,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#contact">
+                }} href="/#contact"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1259,7 +1259,7 @@ const SwipeableScroller = (props) => {
                     <Contact/>
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
               {/* </TouchableOpacity>  */}
               
@@ -1356,7 +1356,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >    */}
               <section id="download">
-              <a style={{
+              {/* <a style={{
                 textDecorationLine:'none',
                 margin:0,
                 padding:0,
@@ -1373,7 +1373,7 @@ const SwipeableScroller = (props) => {
                 textAlign:'center',
                 height:"100%",
                 width:'100%'
-              }} href="/#download">
+              }} href="/#download"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1636,7 +1636,7 @@ const SwipeableScroller = (props) => {
                 
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1647,7 +1647,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >  */}
               <section id="testDownloadLink">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1664,7 +1664,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#testDownloadLink">
+                }} href="/#testDownloadLink"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1708,7 +1708,7 @@ const SwipeableScroller = (props) => {
                     <DLLink/>
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1719,7 +1719,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >  */}
               <section id="sound">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1736,7 +1736,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#sound">
+                }} href="/#sound"> */}
                 <Animated.View 
                 ref={heightRef}
                 style={{
@@ -1751,7 +1751,7 @@ const SwipeableScroller = (props) => {
                   
                   <Sound/>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1762,7 +1762,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >  */}
               <section id="googleCard">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1779,7 +1779,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#googleCard">
+                }} href="/#googleCard"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1841,7 +1841,7 @@ const SwipeableScroller = (props) => {
                     /> */}
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1852,7 +1852,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >  */}
               <section id="follow">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1869,7 +1869,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#follow">
+                }} href="/#follow"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1914,7 +1914,7 @@ const SwipeableScroller = (props) => {
                     <Instagram/>
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
@@ -1925,7 +1925,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >  */}
               <section id="contact">
-                <a style={{
+                {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
                   padding:0,
@@ -1942,7 +1942,7 @@ const SwipeableScroller = (props) => {
                   textAlign:'center',
                   height:"100%",
                   width:'100%'
-                }} href="/#contact">
+                }} href="/#contact"> */}
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1986,7 +1986,7 @@ const SwipeableScroller = (props) => {
                     <Contact/>
                   </View>
                 </Animated.View>
-                </a>
+                {/* </a> */}
               </section>
             {/* </TouchableOpacity>  */}
             
