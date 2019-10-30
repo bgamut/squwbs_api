@@ -97,7 +97,10 @@ const Drawer =(props)=>{
                 console.error(err)
             })
         }
-        
+    }
+    const signalAlignment=()=>{
+        //setState({...state,alignmentFunction:true})
+        console.log('align')
     }
     const onScroll=(e)=>{
     
@@ -835,7 +838,14 @@ backgroundColor:'transparent',
                                     backgroundColor:'transparent'
                                 }}
                             >
-                        <a  href = "/#slider" >
+                        <a  
+                            // href = "/#slider" 
+                        >
+                        {/* <TouchableOpacity
+                            onPress={
+                                signalAlignment()
+                            }
+                        > */}
                          <Image 
                            
                             source={require('./icons/96x96.png')} style={{
@@ -850,6 +860,7 @@ backgroundColor:'transparent',
                             marginBottom:2
                             //Right:0
                         }}/>
+                        {/* </TouchableOpacity> */}
                         </a>
                         </View>
                         

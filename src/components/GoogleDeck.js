@@ -114,7 +114,8 @@ class GoogleDeck extends Component {
               style={{
                   //height:this.state.height-80,
                   //width:this.state.width-30,
-                  height:this.state.height-30,
+                  //height:this.state.height-30,
+                  height:'100%',
                   width:this.state.width-30,
                   backgroundColor:'transparent',
                   borderColor:'transparent',
@@ -309,7 +310,8 @@ class GoogleDeck extends Component {
                 style={{
                     // display:'absolute',
                     // left:0,
-                    height:this.state.height-80,
+                    //height:this.state.height-80,
+                    height:'100%',
                     width:this.state.width-30,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',

@@ -32,7 +32,8 @@ export function ContextController({ children }) {
     words:[],
     sheet:{},
     headerOpen:true,
-    headerTranslation:new Animated.Value(0)
+    headerTranslation:new Animated.Value(0),
+    alignmentFunction:false,
   };
 
   const [state, setState] = useState(intialState);

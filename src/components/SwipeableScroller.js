@@ -59,7 +59,11 @@ const SwipeableScroller = (props) => {
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const paypalRef = useRef('')
   const heightRef = useRef('')
+  const scrollerRef = useRef('')
   const [partHeight,setPartHeight] = useState(Dimensions.get('window').height)
+  const [currentEntry,setCurrentEntry] = useState(0)
+  //const [mouseEnterFunction,setMouseEnterFunction]=useState(false)
+  var mouseEnterFunction=false
   var animatedHeaderHeight = new Animated.Value(height)
   
   useEffect(()=>{
@@ -123,7 +127,19 @@ const SwipeableScroller = (props) => {
     //console.log(Dimensions.get('window').height)
     
   },[height])
- 
+  const XAlign=()=>{
+    if(mouseEnterFunction==false){
+      mouseEnterFunction=true
+      scrollerRef.current.getNode().scrollTo({x:0,y:currentEntry*height,animated:true})
+      setTimeout(
+        ()=>{
+          mouseEnterFunction=false
+          props.headerOpen(false)
+        },720
+      )
+      //setState({...state,alignmentFunction:false})
+    }
+  }
   useEffect(()=>{
     if(state.headerOpen==true)
         {
@@ -173,6 +189,10 @@ const SwipeableScroller = (props) => {
       console.log("swipeablescroller.js user is ",stringifyObject(user))
       setUser(state.userData)
     }
+    // if(state.alignmentFunction==true){
+    //   XAlign()
+      
+    // }
   },[...Object.values(state)])
   // useEffect(()=>{
   //   console.log('context changed! headerOpen = ',state.headerOpen)
@@ -184,47 +204,63 @@ const SwipeableScroller = (props) => {
     //console.log('dimensions update')
     
   }
- 
+  
+  const onMouseEnter=(e)=>{
+    
+    XAlign()
+
+  }
   const onScroll=(e)=>{
     
     //console.log(e.nativeEvent.contentOffset.y)
-    currentY=(e.nativeEvent.contentOffset.y)
-    if(state.drawerToggle==true){
-
-   
-    buffer.splice(0,1)
-      if(currentY>prevY){
-        //console.log('currentY is bigger')
-        //close
-        //setState({...state,headerOpen:false})
-        
-        //props.headerOpen(false)
-        buffer.push(-1)
-      }
-      else if (currentY<prevY){
-        //console.log('prevY is bigger')
-        //open
-        //setState({...state,headerOpen:true})
-        
-        //props.headerOpen(true)
-        buffer.push(1)
-      }
-      const average = (arr)=>arr.reduce((a,b)=>a+b,0)/arr.length
-      if(isNaN(average(buffer))==false){
-        //console.log(average(buffer))
-        if(average(buffer)<=0){
-          //console.log('close')
-          props.headerOpen(false)
+    if(mouseEnterFunction==false){
+      currentY=(e.nativeEvent.contentOffset.y)
+      if(state.drawerToggle==true){
+      buffer.splice(0,1)
+        if(currentY>prevY){
+          //console.log('currentY is bigger')
+          //close
+          //setState({...state,headerOpen:false})
+          
+          //props.headerOpen(false)
+          buffer.push(-1)
         }
-        else{
-          //console.log('open')
-          props.headerOpen(true)
+        else if (currentY<prevY){
+          //console.log('prevY is bigger')
+          //open
+          //setState({...state,headerOpen:true})
+          
+          //props.headerOpen(true)
+          buffer.push(1)
         }
+        const average = (arr)=>arr.reduce((a,b)=>a+b,0)/arr.length
+        if(isNaN(average(buffer))==false){
+          //console.log(average(buffer))
+          if(average(buffer)<=0){
+            //console.log('close')
+            props.headerOpen(false)
+          }
+          else{
+            //console.log('open')
+            props.headerOpen(true)
+          }
+        }
+        
+      prevY=currentY
+    }
+    var maxNum=e.nativeEvent.contentSize.height-(height-30)
+      //console.log(e.nativeEvent.contentOffset.x+'/'+maxNum)
+      if(e.nativeEvent.contentOffset.y%(height)<(height-30)/2){
+        
+          setCurrentEntry(Math.floor(e.nativeEvent.contentOffset.y/(height)))
+        
       }
-      
-    prevY=currentY
-  }
-    
+      else if (e.nativeEvent.contentOffset.y%(height)>=(height)/2){
+        
+          setCurrentEntry(Math.ceil(e.nativeEvent.contentOffset.y/(height)))
+        
+      }
+    }
   }
   const paypalPressed = ()=>{
     //console.log('paypalPressed triggered')
@@ -236,6 +272,7 @@ const SwipeableScroller = (props) => {
       <View>
         <Animated.ScrollView 
           // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
+          ref={scrollerRef}
           style={{
             backgroundColor:'transparent',
             //height:height-50,
@@ -243,7 +280,12 @@ const SwipeableScroller = (props) => {
             height:'100vh',
             zIndex:98
         }}
-          
+          onMouseEnter={(e)=>{
+            console.log('current entry is ', currentEntry)
+            console.log(scrollerRef.current)
+            onMouseEnter()
+            //scrollerRef.scrollTo({x:0,y:currentEntry*height})
+          }}
           onScroll={(e)=>{
               onScroll(e)
             }
@@ -302,6 +344,13 @@ const SwipeableScroller = (props) => {
           
             {/* </View> */}
             <View>
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            >
             <section id="slider"
               ref={heightRef}
               style={{
@@ -326,6 +375,7 @@ const SwipeableScroller = (props) => {
                     backgroundRepeat:"no-repeat",
                     
                 }}
+                
               >
               <Carousel 
                 
@@ -370,6 +420,7 @@ const SwipeableScroller = (props) => {
                         // backgroundColor:'orange',
                         padding:25,
                       }}
+                      
                     >
                     {/* <div
                       style={{
@@ -558,10 +609,17 @@ const SwipeableScroller = (props) => {
               </Carousel>
               </Animated.View>
             </section>
+            </TouchableOpacity>
             </View>
             <View style={{flexDirection:'column'}}>
               
-              
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            > 
               <section id="download">
                 <Animated.View
                   ref={heightRef}
@@ -827,7 +885,14 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
-              
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            >  
               <section id="googleCard">
                 <Animated.View
                   ref={heightRef}
@@ -893,7 +958,7 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
-
+            </TouchableOpacity> 
               {/* <section id="testDownloadLink">
                 <Animated.View
                   ref={heightRef}
@@ -938,6 +1003,13 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section> */}
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            >  
               <section id="sound">
                 <Animated.View 
                 ref={heightRef}
@@ -955,7 +1027,14 @@ const SwipeableScroller = (props) => {
                   <Sound/>
                 </Animated.View>
               </section>
-            
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            >  
               <section id="follow">
                 <Animated.View
                   ref={heightRef}
@@ -1002,6 +1081,14 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
+              </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            >   
               <section id="contact">
                 <Animated.View
                   ref={heightRef}
@@ -1047,6 +1134,7 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
+              </TouchableOpacity> 
               
             </View>
           
@@ -1060,6 +1148,7 @@ const SwipeableScroller = (props) => {
       <View>
         <Animated.ScrollView 
           // style={{backgroundColor:'transparent',height:(Dimensions.get('window').height*13/15-60),zIndex:98}}
+          ref={scrollerRef}
           style={{
             backgroundColor:'transparent',
             //height:height-50,
@@ -1072,6 +1161,10 @@ const SwipeableScroller = (props) => {
               onScroll(e)
             }
           }
+          onMouseEnter={(e)=>{
+            //scrollerRef.scrollTo({x:0,y:currentEntry*height})
+            
+          }}
           scrollEnabled={true}
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={true}
@@ -1128,7 +1221,13 @@ const SwipeableScroller = (props) => {
            
             <View style={{flexDirection:'column'}}>
               
-              
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            >   
               <section id="download">
                 <Animated.View
                   ref={heightRef}
@@ -1393,7 +1492,15 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
-               <section id="testDownloadLink">
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            > 
+              <section id="testDownloadLink">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1438,6 +1545,14 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            > 
               <section id="sound">
                 <Animated.View 
                 ref={heightRef}
@@ -1454,6 +1569,14 @@ const SwipeableScroller = (props) => {
                   <Sound/>
                 </Animated.View>
               </section>
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            > 
               <section id="googleCard">
                 <Animated.View
                   ref={heightRef}
@@ -1517,8 +1640,14 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
-
-         
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            > 
               <section id="follow">
                 <Animated.View
                   ref={heightRef}
@@ -1565,6 +1694,14 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
+            </TouchableOpacity> 
+            <TouchableOpacity
+              onPress={()=>{
+                //console.log('carousel pressed')
+                XAlign()
+              }}
+              activeOpacity={1}
+            > 
               <section id="contact">
                 <Animated.View
                   ref={heightRef}
@@ -1610,6 +1747,8 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section>
+            </TouchableOpacity> 
+            
               {/* <section id="kakao">
                 <Animated.View
                   ref={heightRef}

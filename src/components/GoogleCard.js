@@ -55,9 +55,8 @@ const GoogleCard = (props)=> {
         let parent = []
         props.hashs.map((hash)=>{
             parent.push(
-            <TouchableOpacity
-                
-            >
+            
+            // <TouchableOpacity>
                 <Text
                     className='icon'
                     selectable={true} 
@@ -75,7 +74,7 @@ const GoogleCard = (props)=> {
                 >
                     #{hash}
                 </Text>
-            </TouchableOpacity>
+            // </TouchableOpacity>
             )
         })
         return parent;
@@ -395,28 +394,57 @@ const GoogleCard = (props)=> {
                     >
                         {props.hashs}
                     </Text> */}
-            <View
+            <ScrollView
                 style={{
                     margin:0,
                     padding:0,
                     flexDirection:'column',
-                    justifyContent:'center',
-                    alignItems:'center'
+                    // justifyContent:'center',
+                    // alignItems:'center',
+                    backgroundColor:'transparent',
+                    width:iframeWidth
                 }}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
             >
                 <View
                     style={{
                         margin:0,
                         padding:0,
+                        backgroundColor:'transparent',
                         flexDirection:'row',
                         alignItems:'center',
-                        justifyContent:'center'
+                        //justifyContent:'center',
+                        width:"100%",
+                    }}
+                >
+                <View
+                    style={{
+                        margin:0,
+                        padding:0,
+                        backgroundColor:'transparent',
+                        flexDirection:'row',
+                        //alignItems:'center',
+                        justifyContent:'center',
                         
                     }}
                 >
-                    {createHashList(props)}
+                    <View
+                    style={{
+                        margin:0,
+                        padding:0,
+                        backgroundColor:'transparent',
+                        flexDirection:'row',
+                        //alignItems:'center',
+                        justifyContent:'center',
+                        alignSelf:'flex-end'
+                    }}
+                    >
+                        {createHashList(props)}
+                    </View>
                 </View>
-            </View>
+                </View>
+            </ScrollView>
 
                 
         </ScrollView> 
@@ -738,28 +766,46 @@ const GoogleCard = (props)=> {
                     >
                         {props.hashs}
                     </Text> */}
-            <View
+            <ScrollView
                 style={{
                     margin:0,
                     padding:0,
                     flexDirection:'column',
-                    justifyContent:'center',
-                    alignItems:'center'
+                    // justifyContent:'center',
+                    // alignItems:'center',
+                    backgroundColor:'transparent',
+                    width:iframeWidth
                 }}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
             >
                 <View
                     style={{
                         margin:0,
                         padding:0,
+                        backgroundColor:'transparent',
                         flexDirection:'row',
                         alignItems:'center',
-                        justifyContent:'center'
+                        //justifyContent:'center',
+                        width:"100%",
+                    }}
+                >
+                <View
+                    style={{
+                        margin:0,
+                        padding:0,
+                        backgroundColor:'transparent',
+                        flexDirection:'row',
+                        //alignItems:'center',
+                        justifyContent:'center',
+                        alignSelf:'flex-end'
                         
                     }}
                 >
                     {createHashList(props)}
                 </View>
-            </View>
+                </View>
+            </ScrollView>
 
                 
         </ScrollView> 
