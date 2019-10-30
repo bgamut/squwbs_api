@@ -66,7 +66,7 @@ const axios = require('axios')
 
 //const functions = require('firebase-functions');
 const _ = require('lodash')
-var createWebNotification = require('web-notification')
+//var createWebNotification = require('web-notification')
 // var PushNotification = require('react-native-push-notification')
 // PushNotification.configure({
 //     onRegister:function(token){
@@ -260,6 +260,7 @@ class Message extends Component{
                     element.setAttribute('timeout','15000')
                     document.body.appendChild(element)
                     document.getElementById('notificationEl1').notify()
+                    //delete element
                 })
                 window.addEventListener('firebaseTokenReceived',function(event){
                     console.log('token received from message.js 188')

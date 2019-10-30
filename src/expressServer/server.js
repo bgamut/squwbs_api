@@ -59,9 +59,12 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
+
+
 var flash = require('connect-flash')
 var net = require('net')
-var FCM = require('push-fcm')
+//var FCM = require('push-fcm')
+var FCM = require('fcm-push')
 var fcm = new FCM(NODE_ENV.FIREBASE_SERVER_KEY)
 var server = net.createServer(function(socket){
   socket.write('Echo server\r\n')
@@ -320,12 +323,20 @@ app.use(session(
         autoRemove:'interval', 
         autoRemoveInterval:60
       }
-    )
+    ),
+    cookie:
+      {
+        httpOnly: true,
+        secure:true,
+        sameSite:false
+      },
+    
+
   }
 ));
 app.use(flash())
-app.use(express.static(path.join(__dirname, '../../build')));
-app.use(express.static(path.join(__dirname, 'html/*/*')));
+app.use(express.static(path.join(__dirname, '/../../build')));
+app.use(express.static(path.join(__dirname, '/html/*/*')));
 // app.use(cookieSession({
 //   maxAge:100000,
 //   keys:["keyboard cat"]
@@ -362,7 +373,9 @@ app.get('/cookies',cors(),(req,res)=>{
     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
     httpOnly: true, // The cookie only accessible by the web server
     signed: true,// Indicates if the cookie should be signed
-    secret:''
+    secret:'',
+    secure:true,
+    sameSite:'strict'
 }
   res.cookie('name', 'name',options);
   //console.log(req.signedCookies)
@@ -385,7 +398,7 @@ app.post('/subscribe',function(req,res){
   .sendNotification(subscription, payload)
   .catch((err)=>console.error(err))
 })
-app.post('/sendfcm',function(req,res){
+app.post('/sendfcm',cors(),function(req,res){
   var message = req.body
   console.log("???????????????????")
   console.log(message)
@@ -399,7 +412,7 @@ app.post('/sendfcm',function(req,res){
     }
   })
 })
-app.post('/sendfcmall',function(req,res){
+app.post('/sendfcmall',cors(),function(req,res){
   var message = req.body
   var ids=[]
   // message.registration_ids=[]
@@ -440,7 +453,7 @@ app.post('/sendfcmall',function(req,res){
   }
   
 })
-app.post('/sendNotification',function(req,res){
+app.post('/sendNotification',cors(),function(req,res){
   const subscription = req.body.subscription
   const payload = req.body.payload
   const options={
@@ -457,12 +470,12 @@ app.post('/sendNotification',function(req,res){
     });
   }, req.body.delay * 1000);
 })
-app.get('/vapidkey',function(req,res){
+app.get('/vapidkey',cors(),function(req,res){
   //var key =urlBase64ToUint8Array(vapidKeys.publicKey)
   var key = vapidKeys.publicKey
   res.send({key:key})
 })
-app.post('/register',function(req,res){
+app.post('/register',cors(),function(req,res){
   //maybe keep a list of subscription models here. but not now
   //res.sendStatus(201)
   console.log("!!!!!!!!!!!!!!!!!!!!!!!")
@@ -476,11 +489,45 @@ app.post('/register',function(req,res){
     //console,log('userlist function')
     if(subscribers==undefined){
       subscribers={0:tokenStructure}
+      var message = {
+        
+        collapse_key:'do_not_collapse',
+        notification:{
+          title:'Welcome to Squwbs',
+          body:'Thank You For Your Permission'
+        },
+        to: req.body.token,
+      }
+      fcm.send(message,function(err,result){
+        if(err){
+          res.send({error:err})
+        }
+        else{
+          res.send({message:result})
+        }
+      })
+      
     }
     else{
-      var picked = subscribers.find(subscriber=>subscriber['key']==req.body.token)
+      var picked = subscribers.find(subscriber=>subscriber.key==String(req.body.token))
       if(picked==undefined){
         subscribers.push(tokenStructure)
+        var message = {
+          to: req.body.token,
+          collapse_key:'do_not_collapse',
+          notification:{
+            title:'Welcome to Squwbs',
+            body:'Thank You For Your Permission'
+          },
+        }
+        fcm.send(message,function(err,result){
+          if(err){
+            res.send({error:err})
+          }
+          else{
+            res.send({message:result})
+          }
+        })
       }       
     }
     ref.set(subscribers,function(error){
@@ -495,8 +542,9 @@ app.post('/register',function(req,res){
     })
   res.send(req.body.token)
 })
+
 })
-app.post('/unregister',function(req,res){
+app.post('/unregister',cors(),function(req,res){
   //maybe keep a list of subscription models here. but not now
   //res.sendStatus(201)
   console.log("!!!!!!!!!!!!!!!!!!!!!!!")
@@ -556,14 +604,16 @@ app.post('/unregister',function(req,res){
 // };
 // app.use(cors(conf.cors))
 // Define routes.
-app.get('/', function (req, res) {
+app.get('/',cors(), function (req, res) {
   // res.locals.lang = 'en';
   // res.locals.name='template'
   let options = {
     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
     httpOnly: true, // The cookie only accessible by the web server
     signed: true,// Indicates if the cookie should be signed
-    secret:''
+    secret:'',
+    secure:true,
+    sameSite:'strict'
 }
   if(req.query.code != undefined){
     res.cookie('kakao_code',req.query.code,options)
@@ -576,13 +626,13 @@ app.get('/', function (req, res) {
   else{
     res.render(path.join(__dirname, 'build', 'index.html'));
   }
-app.get('/squwbs_api',function(req,res){
+app.get('/squwbs_api',cors(),function(req,res){
   res.redirect('/')
 })
-app.get('/login', function (req, res) {
+app.get('/login',cors(), function (req, res) {
     res.redirect('/')
     //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
-    res.render('login');
+    //res.render('login');
     // fs.readFile(path.join(__dirname, '../../build', 'index.html'),(err,data)=>{
     //   let htmlPlusData = data.toString().replace("MAPBOX_ACCESS_TOKEN_STRING",String(NODE_ENV.MAPBOX_ACCESS_TOKEN))
     //   res.send( htmlPlusData)
@@ -625,7 +675,7 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/home',
+app.get('/home',cors(),
   function(req, res) {
     if(req.user==undefined){
       res.render('home', { user: undefined });
@@ -648,27 +698,27 @@ app.get('/home',
 //     }
 //   });
 
-app.get('/login/facebook',
+app.get('/login/facebook',cors(),
   passport.authenticate('facebook'
   ,{ scope: ['email'] }
   
   ));
-app.get('/login/facebook/profile', 
+app.get('/login/facebook/profile',cors(), 
 
   passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/login'})
 
 )
-app.get('/login/google',
+app.get('/login/google',cors(),
   passport.authenticate('google'
     ,{scope:['profile']}
   ));
 
-app.get('/login/google/profile',  
+app.get('/login/google/profile',cors(),  
   passport.authenticate('google',{failureRedirect:'/login'}),
   function(req, res) {
   res.redirect('/profile');
 });
-app.get('/login/twitter',
+app.get('/login/twitter',cors(),
   passport.authenticate('twitter')
 );
 app.get('/login/twitter/profile', 
@@ -678,7 +728,7 @@ app.get('/login/twitter/profile',
 
   res.redirect('/profile');
 });
-app.get('/kakao',function(req,res){
+app.get('/kakao',cors(),function(req,res){
   
   // var headers = {
   //   'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -726,13 +776,13 @@ app.get('/kakao',function(req,res){
   })
   //res.send({code:req.query.code})
 })
-app.get('/kakaoadminkey',function(req,res){
+app.get('/kakaoadminkey',cors(),function(req,res){
   res.send({key:NODE_ENV.KAKAO_ADMIN_KEY})
 })
-app.post('pushregister',function(req,res){
+app.post('pushregister',cors(),function(req,res){
   console.log('pushregister : ',req.body)
 })
-app.post('kakaopushregister',function(req,res){
+app.post('kakaopushregister',cors(),function(req,res){
   console.log('server.js 599 kakaopushregister : ',req.body)
   var headers = {
     'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -758,37 +808,37 @@ app.post('kakaopushregister',function(req,res){
     
   })
 })
-app.get('/cards',function(req,res){
+app.get('/cards',cors(),function(req,res){
   res.redirect('/')
 })
-app.get('/PDF',function(req,res){
+app.get('/PDF',cors(),function(req,res){
   res.redirect('/')
 })
-app.get('/sound',function(req,res){
+app.get('/sound',cors(),function(req,res){
   res.redirect('/')
 })
 
-app.get('/todo', function (req, res) {
+app.get('/todo',cors(), function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
 
-app.get('/catalogue', function (req, res) {
+app.get('/catalogue',cors(), function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
 
-app.get('/category', function (req, res) {
+app.get('/category', cors(),function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
 
-app.get('/product', function (req, res) {
+app.get('/product', cors(),function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
 
-app.get('/map', function (req, res) {
+app.get('/map', cors(),function (req, res) {
   res.redirect('/')
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   //res.render('Map', { mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN });
@@ -798,12 +848,12 @@ app.get('/map', function (req, res) {
   // })
   //res.render('index',{ mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN })
 });
-app.get('/desktop',
+app.get('/desktop',cors(),
   function(req,res){
     res.status(301).redirect('https://bgamut.github.io/desktop/');
   }
 )
-app.get('/profile',
+app.get('/profile',cors(),
 
   function(req, res){
   // if(req.user==undefined){
@@ -834,7 +884,9 @@ app.get('/profile',
     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
     httpOnly: true, // The cookie only accessible by the web server
     signed: true,// Indicates if the cookie should be signed
-    secret:''
+    secret:'',
+    secure:true,
+    sameSite:'strict'
 }
   if(req.user==undefined){
     res.redirect(url.format({
@@ -847,6 +899,7 @@ app.get('/profile',
     res.cookie('providerid',req.user.id,options)
     res.cookie('provider',req.user.provider,options)
     res.cookie('photo',req.user.photos[0].value,options)
+    //res.cookie('SameSite','Lax')
     //console.log('411 : ',stringifyObject(req.user.photos))
     //res.cookie('photos',req.user.)
     res.redirect(url.format({
@@ -857,14 +910,16 @@ app.get('/profile',
   
   
 });
-app.get('/logout',function(req,res){
+app.get('/logout',cors(),function(req,res){
   //req.logout()
   //req.signedCookies = null
   let options = {
     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
     httpOnly: true, // The cookie only accessible by the web server
     signed: true,// Indicates if the cookie should be signed
-    secret:''
+    secret:'',
+    secure:true,
+    sameSite:'strict'
   }
   
   //res.cookie('userName', undefined ,options);
@@ -887,13 +942,13 @@ app.get('/logout',function(req,res){
   res.redirect('/')
 })
 
-app.get('/download',function(req,res){
+app.get('/download',cors(),function(req,res){
 
   res.download(__dirname+'/squwbs.zip')
 
 })
 
-app.get('/info',function(req,res){
+app.get('/info',cors(),function(req,res){
   console.log('we in /info')
   
   //var obj = req.query
@@ -1041,7 +1096,7 @@ app.get('/info',function(req,res){
 
 //   request.end();
 // });
-app.get('/removeme',function(req,res){
+app.get('/removeme',cors(),function(req,res){
   var obj = req.signedCookies
   console.log('/removeme signedCookies: ',stringifyObject(obj))
   //var obj = req.query
@@ -1076,7 +1131,7 @@ app.get('/removeme',function(req,res){
     // userStructure.token=copy['connect.sid']
     //console.log(userStructure)
 
-    ref.once('value',function(snapshot){
+    ref.once('value',cors(),function(snapshot){
       var usersList=snapshot.val()
       //console.log('userlist function')
       if(usersList==undefined){
@@ -1391,14 +1446,16 @@ app.get('/firebaseclientcredential',cors(),(req,res)=>{
 //   res.send(clientFirebaseConfig)
 // })
 
-app.get('/firebaseToken',(req,res)=>{
+app.get('/firebaseToken',cors(),(req,res)=>{
   //res.send(req.body)
  
   let options = {
     maxAge: 1000 * 60 * 15, // would expire after 15 minutes
     httpOnly: true, // The cookie only accessible by the web server
     signed: true,// Indicates if the cookie should be signed
-    secret:''
+    secret:'',
+    secure:true,
+    sameSite:'strict'
 }
   //todo register token to list of devices
   //console.log('get firebaseToken body', stringifyObject(req.body.token))
@@ -1499,7 +1556,9 @@ app.get('/api',cors(),(req,res)=>{
   res.send(req.query)
 
 })
-
+// app.get('/service-worker.js',(req,res)=>{
+//   res.sendFile(path.join(__dirname,'../../build','service-worker.js'))
+// })
 app.post('/api',cors(),(req,res)=>{
 
   res.send(req.body)
