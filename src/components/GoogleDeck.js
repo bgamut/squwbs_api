@@ -311,7 +311,7 @@ class GoogleDeck extends Component {
                     // left:0,
                     height:this.state.height-80,
                     width:this.state.width-30,
-                    backgroundColor:'white',
+                    backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     margin:0,
                     flexDirection:'row',
@@ -347,7 +347,7 @@ class GoogleDeck extends Component {
                   style={{
                       justifyContent:'center',
                       alignItems:'center',
-                      backgroundColor:'transparent',
+                      backgroundColor:'white',
                       width:this.state.width-30,
                       height:50
                   }}

@@ -584,6 +584,7 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       backgroundColor:'white',
+                      backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -849,7 +850,8 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       //backgroundColor:'rgb(135,135,135)',
-                      backgroundColor:'white',
+                      //backgroundColor:'white',
+                      backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -934,7 +936,7 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section> */}
-              {/* <section id="sound">
+              <section id="sound">
                 <Animated.View 
                 ref={heightRef}
                 style={{
@@ -944,12 +946,13 @@ const SwipeableScroller = (props) => {
                   alignContent:'center',
                   justifyContent:'center',
                   overflow:'hidden',
+                  backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                   }}
                 >
                   
                   <Sound/>
                 </Animated.View>
-              </section> */}
+              </section>
             
               <section id="follow">
                 <Animated.View

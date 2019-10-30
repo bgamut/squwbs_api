@@ -228,7 +228,7 @@ class GoogleCardV2 extends Component {
       return (
         <View ref={this.myRef}
             style={{
-                backgroundColor:'white'
+                backgroundColor:'transparent'
             }}
         >
         <Fade
@@ -237,7 +237,7 @@ class GoogleCardV2 extends Component {
         >
         <Fade
           style={{
-            backgroundColor:'white',
+            backgroundColor:'transparent',
             
             width:this.state.width-30,
           }}
@@ -247,7 +247,7 @@ class GoogleCardV2 extends Component {
         >
         
          <Animated.View
-                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'white',margin:1,}} 
+                 style={{alignItems:'center',transform: [{translateX: this.dragPos.x}],backgroundColor:'transparent',margin:1,}} 
                  {...this._panResponder.panHandlers}
             >
             {/* <TouchableHighlight onPress={this.flip} underlayColor={'white'}> */}
@@ -278,7 +278,7 @@ class GoogleCardV2 extends Component {
                 height:this.state.height-82,
                 width:this.state.width-32,
                 //backgroundColor:'rgb(175,175,175)',
-                backgroundColor:'white',
+                backgroundColor:'transparent',
                 flexDirection:'column',
                 //justifyContent:'center',
                 //alignItems:'center',
@@ -307,7 +307,7 @@ class GoogleCardV2 extends Component {
                     flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'center',
-                    backgroundColor:'white'
+                    backgroundColor:'transparent'
                 }}
             >
                 
@@ -316,7 +316,7 @@ class GoogleCardV2 extends Component {
                 style={{
                     width:120,
                     height:120,
-                    backgroundColor:'white',
+                    backgroundColor:'transparent',
                     //margin:'auto',
                     //borderRadius:4,
                     //borderColor:'rgb(255,255,255)',
@@ -340,7 +340,7 @@ class GoogleCardV2 extends Component {
                 <View
                     style={{
                         height:90,
-                        backgroundColor:'white'
+                        backgroundColor:'transparent'
                     }}
                 >
                     <Image
@@ -360,7 +360,7 @@ class GoogleCardV2 extends Component {
                     style={{
                         height:90,
                         width:this.state.width-180,
-                        backgroundColor:'white',
+                        backgroundColor:'transparent',
                         //backgroundColor:'rgb(175,175,175)',
                         margin:0,
                         //borderRadius:4,
@@ -373,7 +373,7 @@ class GoogleCardV2 extends Component {
                         // },
                         // elevation:2,
                     }}
-                    // style={{backgroundColor:'white',height:height-50,zIndex:98}}
+                    // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
                     onScroll={(e)=>{
                         //onScroll(e)
                         //console.log(e)
@@ -389,7 +389,7 @@ class GoogleCardV2 extends Component {
                                
                 <View
                     style ={[{
-                        backgroundColor:'white',
+                        backgroundColor:'transparent',
                         width:this.state.width-180,
                         // marginTop: 11,
                         // marginLeft:15,
@@ -401,7 +401,7 @@ class GoogleCardV2 extends Component {
                         style ={
                         [
                             {
-                                backgroundColor:'white',
+                                backgroundColor:'transparent',
                                 width:this.state.width-210,
                                 marginTop: 15,
                                 // marginLeft:15,
@@ -447,11 +447,11 @@ class GoogleCardV2 extends Component {
                 style={{
                     height:this.state.height-130,
                     width:this.state.width-32,
-                    backgroundColor:'white',
+                    backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     padding:15
                 }}
-                // style={{backgroundColor:'white',height:height-50,zIndex:98}}
+                // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
                 onScroll={(e)=>{
                     //onScroll(e)
                     //console.log(e)
@@ -472,7 +472,7 @@ class GoogleCardV2 extends Component {
                 justifyContent:'center',
                 //alignItems:'center',
                 
-                backgroundColor:'white',
+                backgroundColor:'transparent',
                 padding:0,
                 //top:0
             }}
@@ -484,7 +484,7 @@ class GoogleCardV2 extends Component {
             height:(this.state.width-30)*315/560,
             justifyContent:'center',
             alignItems:'center',
-            backgroundColor:'white'
+            backgroundColor:'transparent'
         }}
         >
         
@@ -556,7 +556,7 @@ class GoogleCardV2 extends Component {
                 style={{
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundColor:'white',
+                    backgroundColor:'transparent',
                     width:this.state.width-30
                 }}
             >
@@ -566,7 +566,7 @@ class GoogleCardV2 extends Component {
                         flexDirection:'row',
                         width:this.state.width-60,
                         height:45,
-                        backgroundColor:'white',
+                        backgroundColor:'transparent',
                         alignItems:'center',
                         justifyContent:'center',
                         bottom:0,
@@ -577,7 +577,7 @@ class GoogleCardV2 extends Component {
                         style={{
                             flexDirection:'row',
                             width:(this.state.width-35)/4,
-                            backgroundColor:'white',
+                            backgroundColor:'transparent',
                             alignItems:'center',
                             justifyContent:'center'
                         }}
@@ -603,7 +603,7 @@ class GoogleCardV2 extends Component {
                         style={{
                             flexDirection:'row',
                             width:(this.state.width-35)/4,
-                            backgroundColor:'white',
+                            backgroundColor:'transparent',
                             alignItems:'center',
                             justifyContent:'center'
                         }}
@@ -624,7 +624,7 @@ class GoogleCardV2 extends Component {
                         style={{
                             flexDirection:'row',
                             width:(this.state.width-35)/4,
-                            backgroundColor:'white',
+                            backgroundColor:'transparent',
                             alignItems:'center',
                             justifyContent:'center'
                         }}
@@ -648,7 +648,7 @@ class GoogleCardV2 extends Component {
                         style={{
                             flexDirection:'row',
                             width:(this.state.width-35)/4,
-                            backgroundColor:'white',
+                            backgroundColor:'transparent',
                             alignItems:'center',
                             justifyContent:'center'
                         }}
@@ -693,11 +693,11 @@ class GoogleCardV2 extends Component {
                 style={{
                     height:this.state.height-130,
                     width:this.state.width-32,
-                    backgroundColor:'white',
+                    backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     padding:15
                 }}
-                // style={{backgroundColor:'white',height:height-50,zIndex:98}}
+                // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
                 onScroll={(e)=>{
                     //onScroll(e)
                     //console.log(e)
@@ -734,7 +734,7 @@ class GoogleCardV2 extends Component {
                         flexDirection:'row',
                         width:this.state.width-60,
                         height:45,
-                        backgroundColor:'white',
+                        backgroundColor:'transparent',
                         alignItems:'center',
                         justifyContent:'center',
                         bottom:0,

@@ -27,6 +27,7 @@ const Drawer =(props)=>{
     const [userPhotoLink,setUserPhotoLink]=useState('')
     const [height,setHeight]=useState(0)
     const [drawerToggle, setDrawerToggle]=useState(true)
+    const [middleOfDrawerAnimation,setMiddleOfDrawerAnimation]=useState(false)
     // const [overlaySwitch,setOverlaySwitch]=useState(true)
     const scroller=useRef('')
     // const overlay=useRef('')
@@ -162,40 +163,82 @@ const Drawer =(props)=>{
     const ShowSlidingDrawer = ()=>
     {
         //if(state.drawerToggle==true)
-        if(drawerToggle==true)
-        {
-            Animated.timing(
-                //this.Animation,
-                //state.drawerAnimation,
-                drawerAnimation,
-                {
-                    duration:7,
-                    toValue:1,
-                }
-            ).start(()=>
-            {
-                setState({...state,drawerToggle:false})
-                setDrawerToggle(false)
+        if(middleOfDrawerAnimation==false){
+            setMiddleOfDrawerAnimation(true)
+            // if(drawerToggle==true)
+            // {
+            //     Animated.timing(
+            //         //this.Animation,
+            //         //state.drawerAnimation,
+            //         drawerAnimation,
+            //         {
+            //             duration:7,
+            //             toValue:1,
+            //         }
+            //     ).start(()=>
+            //     {
+            //         setState({...state,drawerToggle:false})
+            //         setDrawerToggle(false)
+            //         setMiddleOfDrawerAnimation(false)
+            //     })
+            // }
+            // else if(drawerToggle==false)
+            // {
                 
-            })
-        }
-        else if(drawerToggle==false)
-        {
-            Animated.timing(
-                //state.drawerAnimation,
-                drawerAnimation,
-                {
-                    duration:7,
-                    toValue:0, 
-                }
-            ).start(()=>
-            {
-                setState({...state,drawerToggle:true})
-                setDrawerToggle(true)
-                props.headerOpen(false)
-            })
+            //     Animated.timing(
+            //         //state.drawerAnimation,
+            //         drawerAnimation,
+            //         {
+            //             duration:7,
+            //             toValue:0, 
+            //         }
+            //     ).start(()=>
+            //     {
+            //         setState({...state,drawerToggle:true})
+            //         setDrawerToggle(true)
+            //         props.headerOpen(false)
+            //         setMiddleOfDrawerAnimation(false)
+            //     })
+            // }
         }
     }
+    useEffect(()=>{
+        if(middleOfDrawerAnimation==true){
+            if(drawerToggle==true){
+                Animated.timing(
+                    //this.Animation,
+                    //state.drawerAnimation,
+                    drawerAnimation,
+                    {
+                        duration:7,
+                        toValue:1,
+                    }
+                ).start(()=>
+                {
+                    setState({...state,drawerToggle:false})
+                    setDrawerToggle(false)
+                    setMiddleOfDrawerAnimation(false)
+                })
+            }
+            else if(drawerToggle==false){
+                
+                Animated.timing(
+                    //state.drawerAnimation,
+                    drawerAnimation,
+                    {
+                        duration:7,
+                        toValue:0, 
+                    }
+                ).start(()=>
+                {
+                    setState({...state,drawerToggle:true})
+                    setDrawerToggle(true)
+                    //props.headerOpen(false)
+                    setMiddleOfDrawerAnimation(false)
+                })
+            }
+        }
+    },[middleOfDrawerAnimation])
     const delayedSlidingDrawer=()=>{
         //ShowSlidingDrawer()
         //setTimeout(ShowSlidingDrawer,270)
@@ -443,8 +486,9 @@ const Drawer =(props)=>{
                     height:height-50,
                     width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
-                    backgroundColor:'white',
-                    borderColor:'rgb(196,196,196)',
+                    backgroundColor:'transparent',
+                    //borderColor:'rgb(196,196,196)',
+borderColor:'transparent',
                     justifyContent:'center',
 
                     padding:0,
@@ -463,10 +507,12 @@ const Drawer =(props)=>{
                             margin:0,
                             marginRight:2,
                             marginLeft:2,
-                            backgroundColor:'rgb(196,196,196)',
+                            //backgroundColor:'rgb(196,196,196)',
+backgroundColor:'transparent',
                             //backgroundColor:'purple',
                             //borderColor:"rgb(196,196,196)",
-                            borderColor:'rgb(196,196,196)',
+                            //borderColor:'rgb(196,196,196)',
+borderColor:'transparent',
                             
                             borderRadius:2,
                             borderWidth:1,
@@ -562,7 +608,8 @@ const Drawer =(props)=>{
                     style={{
                         position:'absolute',
                         top:height-maxHeight-53,
-                        backgroundColor:'rgb(196,196,196)',
+                        //backgroundColor:'rgb(196,196,196)',
+backgroundColor:'transparent',
                         //backgroundColor:'purple',
                         //width:298,
                         width:SLIDING_DRAWER_WIDTH-2,
@@ -577,7 +624,8 @@ const Drawer =(props)=>{
                         
                         //backgroundColor:'purple',
                         //borderColor:"rgb(196,196,196)",
-                        borderColor:'rgb(196,196,196)',
+                        //borderColor:'rgb(196,196,196)',
+                        borderColor:'transparent',
                         //borderColor:'transparent',
                         
                         borderRadius:2,
@@ -821,14 +869,17 @@ const Drawer =(props)=>{
                     height:height-50,
                     width:SLIDING_DRAWER_WIDTH,
                     //backgroundColor:'white',
-                    backgroundColor:'white',
-                    borderColor:'rgb(196,196,196)',
+                    backgroundColor:'rgb(196,166,230)',
+                    //borderColor:'rgb(196,196,196)',
+borderColor:'white',
                     justifyContent:'center',
-
+                    //flexDirection:'row',
                     padding:0,
                     // borderColor:'transparent',
-                    borderRadius:4,
-                    borderWidth:1,}]}>
+                    //borderRadius:2,
+                    borderWidth:1,
+                    //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                    }]}>
                     <View
                     className='icon'
                     style = {[
@@ -841,59 +892,69 @@ const Drawer =(props)=>{
                             margin:0,
                             marginRight:2,
                             marginLeft:2,
-                            backgroundColor:'rgb(196,196,196)',
+                            //backgroundColor:'rgb(196,196,196)',
+backgroundColor:'white',
                             //backgroundColor:'purple',
                             //borderColor:"rgb(196,196,196)",
-                            borderColor:'rgb(196,196,196)',
+                            //borderColor:'rgb(196,196,196)',
+//borderColor:'blue',
                             
-                            borderRadius:2,
-                            borderWidth:1,
+                            //borderRadius:2,
+                            //borderWidth:1,
                             width:SLIDING_DRAWER_WIDTH-2,
+                            backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                         }]
                     }>
-                        <View style={{
-                            flexDirection:'row',
-                            alignItems:'center',
-                            justifyContent:'center',
-                            marginBottom:6,
-                            paddingTop:8,
-                            paddingBottom:8,
-                            paddingRight:25,
-                            paddingLeft:25,
-                            backgroundColor:'transparent',
-                            zIndex:0,
-                            
-                            
-                        }}>
-                            {/* <Image source={require('./icons/96x96.png')} style={{
-                                    // Top:(maxHeight-imageLength)/2,
-                                    // position:'absolue',
-                                    height:25,
-                                    resizeMode:'contain',
-                                    width:25,
-                                    justifyContent:'center',
-                                    alignItems:'center',
-                                    marginRight:5,
-                                    marginbottom:2
-                                    //Right:0
-                                }}/> */}
-                            <a  style ={{textDecorationLine:'none'}}
-                            
-                            href = "/#slider" >
-                                <Text selectable={false} style ={styles.textStyle}>
-                                    {/* Welcome to  */}
-                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
-                                </Text>
-                            </a>
-                        </View>
+                            <View style={{
+                                flexDirection:'row',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                //marginBottom:6,
+                                paddingTop:8,
+                                paddingBottom:8,
+                                paddingRight:25,
+                                paddingLeft:25,
+                                backgroundColor:'transparent',
+                                zIndex:0,
+                                marginBottom:0
+                                
+                            }}>
+                                {/* <Image source={require('./icons/96x96.png')} style={{
+                                        // Top:(maxHeight-imageLength)/2,
+                                        // position:'absolue',
+                                        height:25,
+                                        resizeMode:'contain',
+                                        width:25,
+                                        justifyContent:'center',
+                                        alignItems:'center',
+                                        marginRight:5,
+                                        marginbottom:2
+                                        //Right:0
+                                    }}/> */}
+                                <a  style ={{textDecorationLine:'none'}}
+                                
+                                href = "/#slider" >
+                                    <Text selectable={false} style ={styles.textStyle}>
+                                        {/* Welcome to  */}
+                                        <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
+                                    </Text>
+                                </a>
+                            </View>
                         <View
                             style={{
-                                backgroundColor:'trarensparent',
+                                backgroundColor:'rgb(196,166,230)',
                                 width:'100%',
+                                //height:height-450,
                                 borderColor:'transparent',
-                                borderRadius:2,
-                                borderWidth:1,
-                               // height:height,
+                                //borderRadius:2,
+                                //borderWidth:1,
+                                transform:([{
+                                    translateY:-9
+                                }]),
+                                // height:height,
+                                marginTop:0,
+                                paddingTop:0,
+                                paddingBottom:0
                             }}
                         >
                             <ScrollView
@@ -901,9 +962,12 @@ const Drawer =(props)=>{
                                 scrollIndicatorInsets={300,300,300,300}
                                 indicatorStyle='white'
                                 style={{
-                                    backgroundColor:'transparent',
+                                    backgroundColor:'rgb(196,166,230)',
                                     zIndex:98,
                                     height:height-150,
+                                    paddingTop:10,
+                                    paddingBottom:10,
+                                    
                                 }}
                                 onScroll={(e)=>{
                                     // onScroll(e)
@@ -926,7 +990,8 @@ const Drawer =(props)=>{
                     style={{
                         position:'absolute',
                         top:height-maxHeight-53,
-                        backgroundColor:'rgb(196,196,196)',
+                        //backgroundColor:'rgb(196,196,196)',
+                        backgroundColor:'transparent',
                         //backgroundColor:'purple',
                         width:SLIDING_DRAWER_WIDTH-2,
                         height:100,
@@ -935,20 +1000,22 @@ const Drawer =(props)=>{
                         marginLeft:0,
                         marginRight:0,
                         
-                        borderRadius:2,
-                        borderWidth:1,
+                        //borderRadius:2,
+                        //borderWidth:1,
                         
                         //backgroundColor:'purple',
                         //borderColor:"rgb(196,196,196)",
-                        borderColor:'rgb(196,196,196)',
+                        //borderColor:'rgb(196,196,196)',
+borderColor:'orange',
                         //borderColor:'transparent',
                         
-                        borderRadius:2,
-                        borderWidth:1,
+                        //borderRadius:2,
+                        //borderWidth:1,
                         paddingBottom:0,
                         height:maxHeight,
                         justifyContent:'center',
-                        alignItems:'center'
+                        alignItems:'center',
+                        backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                     }}
                     >
                        {/* <Text
@@ -994,9 +1061,9 @@ const styles=StyleSheet.create(
     {
         MAIN_SLIDING_DRAWER_CONTAINER:{
             backgroundColor:'#cfcfcf',
-            borderColor:"transparent",
-            borderRadius:2,
-            borderWidth:1,
+            //borderColor:"transparent",
+            //borderRadius:2,
+            //borderWidth:1,
             // flex:1,
             paddingHorizontal:0,
             zIndex:1,
@@ -1015,7 +1082,7 @@ const styles=StyleSheet.create(
             top:(Platform.OS==='ios')? 20:0,
             width:SLIDING_DRAWER_WIDTH,
             zIndex:99,
-            backgroundColor:'red'
+            backgroundColor:'transparent'
         },
         textStyle:{
             color:'white',
