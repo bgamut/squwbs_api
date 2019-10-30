@@ -9,7 +9,7 @@ import stringifyObject from 'stringify-object'
 //import {swing} from "react-animations"
 //import styled, { keyframes } from 'styled-components'
 //import Radium, {StyleRoot} from 'radium'
-
+import Fade from 'react-reveal/Fade'
 //the following svg is downloaded from fontawesome
 //https://fontawesome.com/license
 import pointer from './icons/pointer.svg'
@@ -131,10 +131,10 @@ class GoogleDeck extends Component {
                   //height:this.state.height-30,
                   height:'100%',
                   width:this.state.width-30,
-                  backgroundColor:'transparent',
-                  borderColor:'transparent',
-                  borderWidth:'2',
-                  borderStyle:'solid',
+                  // backgroundColor:'transparent',
+                  // borderColor:'transparent',
+                  // borderWidth:'2',
+                  // borderStyle:'solid',
                   //justifyContent:'center',
                   alignItems:'center'
 
@@ -332,7 +332,32 @@ class GoogleDeck extends Component {
       
       
         return (
-          <View>
+          <Fade
+                    duration={270}
+                    timeout={270}
+                >
+          <View
+            style={{
+              borderWidth:4,
+              borderColor:'transparent',
+              backgroundColor:'transparent',
+              paddingTop:0,
+              paddingLeft:0,
+              paddingRight:0,
+              margin:0,
+              width:this.state.width-18,
+              zIndex:99,
+              transform:[{
+                translateX:-6,
+              },
+              {
+                translateY:-5,
+              }
+            ]
+            }
+            }
+          >
+         
             <TouchableOpacity
               onPress={this.touchedPost}
               activeOpacity={1}
@@ -342,16 +367,26 @@ class GoogleDeck extends Component {
                 style={{
                     // display:'absolute',
                     // left:0,
-                    //height:this.state.height-80,
-                    height:'100%',
-                    width:this.state.width-30,
+                    
+                  
+                    height:this.state.height-70,
+                    //height:'100%',
+                    width:this.state.width-18,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     margin:0,
                     flexDirection:'row',
-                    
+                    paddingTop:0,
+                    paddingLeft:0,
+                    paddingRight:0,
+                    paddingBottom:0,
                     // paddingBottom:15,
                     // paddingRight:15,
+                    //backgroundColor:'transparent',
+                    borderColor:'transparent',
+                    borderWidth:4,
+                    borderStyle:'solid',
+                    padding:0
                 }}
                 onScroll={this.onScroll}
                 scrollEventThrottle={16}
@@ -377,22 +412,35 @@ class GoogleDeck extends Component {
             {this.createPostsList()}
         
           </ScrollView> 
-          <View
-                  style={{
+                
+                  <View
+                    style={{
+                      transform:[{
+                          translateX:0,
+                        },
+                        {
+                          translateY:0,
+                        }
+                      ],
                       justifyContent:'center',
                       alignItems:'center',
                       backgroundColor:'white',
-                      width:this.state.width-30,
-                      height:50
-                  }}
-              >
+                      width:this.state.width-18,
+                      height:50,
+                      //borderWidth:4,
+                      //borderRadius:4,
+                      //borderColor:'transparent',
+
+                    }}
+                  >
+                  
                   <View
                       style={{
                           //position:'absolute',
                           flexDirection:'row',
                           width:this.state.width-60,
                           height:45,
-                          backgroundColor:'transparent',
+                          backgroundColor:'white',
                           alignItems:'center',
                           justifyContent:'center',
                           bottom:0,
@@ -497,10 +545,12 @@ class GoogleDeck extends Component {
                           </TouchableOpacity>
                       </View>
                   </View>
-          
+                
                   </View>
+                
                 </TouchableOpacity>
-        </View>      
+        </View>    
+        </Fade>  
               
           
               

@@ -504,7 +504,7 @@ const NavBarWithLogIn = (props) => {
         
         <TouchableOpacity 
           style={styles.touch}
-          onPress={props.ShowSlidingDrawer}
+          //onPress={props.ShowSlidingDrawer}
           //onPress={toHash('sound') }
         >
        <a style={{
@@ -548,7 +548,7 @@ const NavBarWithLogIn = (props) => {
         
           <TouchableOpacity 
             style={styles.touch}
-            onPress={props.ShowSlidingDrawer}
+            //onPress={props.ShowSlidingDrawer}
             //onPress={toHash('sound') }
           >
          <a style={{
@@ -607,7 +607,7 @@ const NavBarWithLogIn = (props) => {
       textAlign:'center'
         }} href="/#follow">
           <TouchableOpacity 
-            onPress={props.ShowSlidingDrawer}
+            //onPress={props.ShowSlidingDrawer}
             style={styles.touch}
           >
          
@@ -651,7 +651,7 @@ const NavBarWithLogIn = (props) => {
       textAlign:'center'
         }} href="/#contact">
           <TouchableOpacity 
-            onPress={props.ShowSlidingDrawer}
+            //onPress={props.ShowSlidingDrawer}
             style={styles.touch}
           >
       

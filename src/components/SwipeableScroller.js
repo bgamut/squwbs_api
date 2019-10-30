@@ -354,7 +354,7 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             > */}
           
-          <a style={{
+          {/* <a style={{
             textDecorationLine:'none',
             margin:0,
             padding:0,
@@ -371,7 +371,7 @@ const SwipeableScroller = (props) => {
             textAlign:'center',
             height:"100%",
             width:'100%'
-          }} href="/#slider">
+          }} href="/#slider"> */}
             <section id="slider"
               ref={heightRef}
               style={{
@@ -630,7 +630,7 @@ const SwipeableScroller = (props) => {
               </Carousel>
               </Animated.View>
             </section>
-          </a>
+          {/* </a> */}
           
             {/* </TouchableOpacity> */}
             </View>
@@ -981,11 +981,15 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       //backgroundColor:'rgb(135,135,135)',
-                      //backgroundColor:'white',
-                      backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                      backgroundColor:'transparent',
+                      //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
+                      paddingTop:0,
+                      paddingLeft:0,
+                      paddingRight:0,
+                      paddingBottom:0,
                       borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',

@@ -81,20 +81,20 @@ const GoogleCard = (props)=> {
     }
     if(props.youtubeID!==null){
         return (
-            <Fade
-        duration={duration}
-        timeout={duration}
-        >
-        <Fade
-          style={{
-            //backgroundColor:'transparent',
+        // <Fade
+        //     duration={duration}
+        //     timeout={duration}
+        // >
+        // <Fade
+        //   style={{
+        //     //backgroundColor:'transparent',
             
-            width:width-30,
-          }}
-          //when={fade}
-          duration={duration}
-          timeout={duration}
-        >
+        //     width:width-18,
+        //   }}
+        //   //when={fade}
+        //   duration={duration}
+        //   timeout={duration}
+        // >
         <TouchableOpacity
             onPress={
                 props.touchedPost
@@ -102,16 +102,18 @@ const GoogleCard = (props)=> {
             activeOpacity={1}
         >
          <View style={{ 
-                height:height-82,
-                width:width-30,
+                height:height-80,
+                width:width-18,
                 //backgroundColor:'rgb(175,175,175)',
+                //backgroundColor:'rgba(0,0,0,0.3)',
                 backgroundColor:'transparent',
+                zIndex:98,
                 flexDirection:'column',
                 //justifyContent:'center',
                 //alignItems:'center',
-                // borderRadius:2,
-                // borderColor:'lightgrey',
-                // borderStyle:'solid',
+                borderRadius:4,
+                borderColor:'transparent',
+                borderStyle:'solid',
                 overflow:'hidden',
                 boxSizing:"border-box",
                 // shadowColor:'#000',
@@ -134,7 +136,7 @@ const GoogleCard = (props)=> {
                     flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'center',
-                    backgroundColor:'white'
+                    backgroundColor:'transparent'
                 }}
             >
                 
@@ -189,8 +191,9 @@ const GoogleCard = (props)=> {
                         //width:width-182,
                         //width:'100vw',
                         //width:width-62,
-                        width:iframeWidth,
-                        backgroundColor:'transparent',
+                        //width:iframeWidth,
+                        width:"100%",
+                        backgroundColor:'white',
                         //backgroundColor:'rgb(175,175,175)',
                         margin:0,
                         //borderRadius:4,
@@ -222,7 +225,7 @@ const GoogleCard = (props)=> {
                     style ={[{
                         backgroundColor:'transparent',
                         //width:width-180,
-                        width:width-32,
+                        width:width-18,
                         //width:iframeWidth,
                         // marginTop: 11,
                         // marginLeft:15,
@@ -244,38 +247,38 @@ const GoogleCard = (props)=> {
                                 // marginBottom:0
                             }
                         ]
-                    }
-                >
-                    <Text
-                        selectable={false} 
-                        style ={[styles.text]}
+                         }
                     >
-                        {props.title}
-                    </Text>
-                
-                    <Text
-                        selectable={false} 
-                        style ={styles.text}
-                    >
-                        {props.writer}
-                    </Text>
-                    <br></br>
-                    <Text
-                        selectable={true} 
-                        style ={{
-                            fontSize: 12,
-                            fontWeight:'700',
-                            textDecorationLine:'none',
-                            color:'rgb(196,196,196)',
-                            textAlign:'center',
-                            alignItems:'center',
-                            justifyContent:'center',
-                            flexDirection:'row',
-                            margin:5,
-                        }}
-                    >
-                        {props.date}
-                    </Text>
+                        <Text
+                            selectable={false} 
+                            style ={[styles.text]}
+                        >
+                            {props.title}
+                        </Text>
+                    
+                        <Text
+                            selectable={false} 
+                            style ={styles.text}
+                        >
+                            {props.writer}
+                        </Text>
+                        <br></br>
+                        <Text
+                            selectable={true} 
+                            style ={{
+                                fontSize: 12,
+                                fontWeight:'700',
+                                textDecorationLine:'none',
+                                color:'rgb(196,196,196)',
+                                textAlign:'center',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                flexDirection:'row',
+                                margin:5,
+                            }}
+                        >
+                            {props.date}
+                        </Text>
                     </View>
                 </View>
                 </ScrollView>
@@ -290,7 +293,7 @@ const GoogleCard = (props)=> {
             <ScrollView
                 style={{
                     //height:height-252,
-                    width:width-32,
+                    width:width-18,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     padding:15
@@ -378,7 +381,8 @@ const GoogleCard = (props)=> {
                     style={{
                         //paddingTop:30,
                         //background:'rgb(175,175,175)',
-                        background:'transparent',
+                        backgroundColor:'transparent',
+                        //backgroundColor:'rgba(0,0,0,0.8)',
                         paddingBottom:15,
                         //width:width-60
                         width:iframeWidth,
@@ -457,26 +461,26 @@ const GoogleCard = (props)=> {
         </View>           
             </View>
         </TouchableOpacity>
-        </Fade>
-    </Fade>
+    //     </Fade>
+    // </Fade>
         )
     }     
     else if(props.youtubeID==null){
         return (
-            <Fade
-        duration={duration}
-        timeout={duration}
-        >
-        <Fade
-          style={{
-            //backgroundColor:'transparent',
+        //     <Fade
+        // duration={duration}
+        // timeout={duration}
+        // >
+        // <Fade
+        //   style={{
+        //     //backgroundColor:'transparent',
             
-            width:width-30,
-          }}
-          //when={fade}
-          duration={duration}
-          timeout={duration}
-        >
+        //     width:width-18,
+        //   }}
+        //   //when={fade}
+        //   duration={duration}
+        //   timeout={duration}
+        // >
         <TouchableOpacity
             onPress={
                 props.touchedPost
@@ -485,15 +489,18 @@ const GoogleCard = (props)=> {
         >
          <View style={{ 
                 height:height-82,
-                width:width-30,
+                width:width-18,
+                zIndex:98,
                 //backgroundColor:'rgb(175,175,175)',
+                //backgroundColor:'transparent',
+                //backgroundColor:'rgba(0,0,0,0.3)',
                 backgroundColor:'transparent',
                 flexDirection:'column',
                 //justifyContent:'center',
                 //alignItems:'center',
-                // borderRadius:2,
-                // borderColor:'lightgrey',
-                // borderStyle:'solid',
+                borderRadius:4,
+                borderColor:'tansparent',
+                borderStyle:'solid',
                 overflow:'hidden',
                 boxSizing:"border-box",
                 // shadowColor:'#000',
@@ -516,7 +523,7 @@ const GoogleCard = (props)=> {
                     flexDirection:'row',
                     alignItems:'center',
                     justifyContent:'center',
-                    backgroundColor:'white'
+                    backgroundColor:'transparent'
                 }}
             >
                 
@@ -570,8 +577,9 @@ const GoogleCard = (props)=> {
                         height:90,
                         //width:width-182,
                         //width:width-62,
-                        width:iframeWidth,
-                        backgroundColor:'transparent',
+                        //width:iframeWidth,
+                        width:'100%',
+                        backgroundColor:'white',
                         //backgroundColor:'rgb(175,175,175)',
                         margin:0,
                         //borderRadius:4,
@@ -603,7 +611,7 @@ const GoogleCard = (props)=> {
                         backgroundColor:'transparent',
                         //width:width-180,
                         //width:width-62,
-                        width:width-32,
+                        width:width-18,
                         // marginTop: 11,
                         // marginLeft:15,
                         // marginBottom:15,
@@ -669,7 +677,7 @@ const GoogleCard = (props)=> {
             <ScrollView
                 style={{
                     //height:height-252,
-                    width:width-32,
+                    width:width-18,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     padding:15
@@ -757,7 +765,8 @@ const GoogleCard = (props)=> {
                     style={{
                         //paddingTop:30,
                         //background:'rgb(175,175,175)',
-                        background:'transparent',
+                        backgroundColor:'transparent',
+                        //background:'rgba(0,0,0,0.8)',
                         paddingBottom:15,
                         //width:width-60
                         width:iframeWidth,
@@ -825,8 +834,8 @@ const GoogleCard = (props)=> {
         </View>           
         </View>
         </TouchableOpacity>
-        </Fade>
-    </Fade>
+    //     </Fade>
+    // </Fade>
         )
     }
     
