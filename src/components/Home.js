@@ -31,18 +31,8 @@ var diff = require('object-diff')
 const _ = require('lodash')
 const stringifyObject= require('stringify-object')
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-// const firebase = require('firebase')
-// firebase.initializeApp(
-//   {
-//     messagingSenderId:'404719977912'
-//     ,apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14'
-//     ,authDomain:'assistant-569a2.firebaseapp.com'
-//     ,databaseURL:'https://assistant-569a2.firebaseio.com'
-//     ,projectId:'assistant-569a2'
-//     ,storageBucket:'assistant-569a2.appspot.com'
-//     ,appId:'1:404719977912:web:04d0a42a3242d6c2'
-//   }
-// )
+
+
 
 const addUserToServer = (obj)=>{
   
@@ -196,76 +186,6 @@ const Home = () => {
     
   }
   useEffect(()=>{
-
-    
-    // const messaging = firebase.messaging()
-    // const firebaseTokenReceived =(message)=> {
-    //   console.log('firebasetoken event fired')
-    //   // fetch('https://squwbs-252702.appspot.com/register',{
-    //   //     method:'post',
-    //   //     headers:{
-    //   //       'Content-type': 'application/json'
-    //   //     },
-    //   //     body: JSON.stringify({
-    //   //       token:message
-    //   //     })
-    //   //     // body:{
-    //   //     //   token:message
-    //   //     // }
-    //   //   })
-    //   //   .then((result)=>{
-    //   //     console.log('register result initFirebase 38 : ',result)
-    //   //       return result.json()
-    //   //   })
-    //   //   .then((json)=>{
-    //   //       console.log('initFirebase.js 32 register list : ',stringifyObject(json))
-    //   //       var url ="https://squwbs-252702.appspot.com/sendfcmall"
-    //   //   })
-    //   //   .catch((err)=>{
-    //   //       console.log('initFirebase.js 41 register error : ',err)
-            
-    //   //   })
-    //   //   var url ="https://squwbs-252702.appspot.com/sendfcmall"
-    //   //   var headers = {
-    //   //       "Content-Type": "application/json",
-            
-    //   //   }
-    //   //   var body ={
-    //   //       //"to": String(token),
-    //   //       "collapse_key":"do_not_collapse",
-    //   //       "notification": {
-    //   //           "title":"Welcome",
-    //   //           "body":"this is fired via sendfcmall",
-    //   //           // "click_action": "http://localhost:3000/",
-    //   //           // "icon":"https://squwbs.com/favicon.ico"
-    //   //       },
-            
-    //   //   }
-    //   //   fetch(url,{
-    //   //       method:"POST",
-    //   //       headers:headers,
-    //   //       body:JSON.stringify(body)
-    //   //     }).then((res)=>{
-    //   //       console.log(res)
-    //   //     }).catch((err)=>{
-    //   //         console.log(err)
-    //   //     })
-    //   window.firebaseToken=message
-    //   return(
-    //     new CustomEvent(
-    //       "firebaseTokenReceived", 
-    //       {
-    //         detail: {
-    //           message: message,
-    //           time: new Date(),
-    //         },
-    //         bubbles: true,
-    //         cancelable: true
-    //       }
-    //     )
-    //   )
-    // }
-    
     //getUserData()
     Dimensions.addEventListener('change',(e)=>{
       updateDimensions()
@@ -278,35 +198,6 @@ const Home = () => {
       //document.location.href="https://squwbs-252702.appspot.com/"
       console.log('this is a desktop environment')
     }
-    // window.addEventListener('firebaseTokenReceived',function(e){
-    //   alert('token:'+e.detail.message)
-    // })
-    // const askForPermissioToReceiveNotifications = async () => {
-    //   console.log('asking for permission')
-    //   try {
-    //       //const messaging = firebase.messaging();
-    //       //await messaging.requestPermission();
-    //       // const token = await messaging.getToken();
-          
-    //       // firebaseTokenReceived(token)
-          
-    //       // console.log('token do usuário:', token);
-        
-    //       // return token;
-    //       messaging.requestPermission()
-    //       .then((token)=>{
-    //         console.log('token do usuário:', token);
-    //       })
-    //       .catch((err)=>{
-    //         console.log('error in getting permission' , err)
-    //       })
-    //     }
-    //     catch (error) {
-    //       console.log('permission error',error);
-    //       setTimeout(askForPermissioToReceiveNotifications(),3000)
-    //     }
-    // }
-    // askForPermissioToReceiveNotifications()
   },[])
 
   useEffect(()=>{

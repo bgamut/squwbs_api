@@ -260,7 +260,6 @@ class Message extends Component{
                     element.setAttribute('timeout','15000')
                     document.body.appendChild(element)
                     document.getElementById('notificationEl1').notify()
-                    //delete element
                 })
                 window.addEventListener('firebaseTokenReceived',function(event){
                     console.log('token received from message.js 188')
