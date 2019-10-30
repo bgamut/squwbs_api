@@ -95,6 +95,12 @@ const GoogleCard = (props)=> {
           duration={duration}
           timeout={duration}
         >
+        <TouchableOpacity
+            onPress={
+                props.touchedPost
+            }
+            activeOpacity={1}
+        >
          <View style={{ 
                 height:height-82,
                 width:width-30,
@@ -449,7 +455,8 @@ const GoogleCard = (props)=> {
                 
         </ScrollView> 
         </View>           
-        </View>
+            </View>
+        </TouchableOpacity>
         </Fade>
     </Fade>
         )
@@ -469,6 +476,12 @@ const GoogleCard = (props)=> {
           //when={fade}
           duration={duration}
           timeout={duration}
+        >
+        <TouchableOpacity
+            onPress={
+                props.touchedPost
+            }
+            activeOpacity={1}
         >
          <View style={{ 
                 height:height-82,
@@ -811,6 +824,7 @@ const GoogleCard = (props)=> {
         </ScrollView> 
         </View>           
         </View>
+        </TouchableOpacity>
         </Fade>
     </Fade>
         )

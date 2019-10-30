@@ -102,7 +102,21 @@ class GoogleDeck extends Component {
   shuffle=(a)=>{
     
   }
+  touchedPost=()=>{
+    setTimeout(()=>{
+      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    },720)
+    
+    //this.props.XAlign()
+  }
   createPostsList = () =>{
+    const touchedPost=()=>{
+      setTimeout(()=>{
+        this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+      },720)
+      
+      //this.props.XAlign()
+    }
     let parent = []
     //var length=this.state.posts.length
     this.state.posts.map((post,i,arr)=>{
@@ -138,6 +152,7 @@ class GoogleDeck extends Component {
                   stars={post.stars}
                   comments={post.comments}
                   hashs={post.hashs}
+                  touchedPost={touchedPost}
                   // commentButtonPressed={post.commentButtonPressed}
                   // slackButtonPressed={post.slackButtonPressed}
                   // starButtonPressed={post.startButtonPressed}
@@ -190,13 +205,7 @@ class GoogleDeck extends Component {
   componentDidUpdate(prevProps,prevState){
     console.log("GoogleDeck.js This is the currentEntry : ",this.state.currentEntry)
   }
-  touchedPost=()=>{
-    setTimeout(()=>{
-      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
-    },720)
-    
-    //this.props.XAlign()
-  }
+  
   commentButtonPressed=()=>{
     this.props.commentButtonPressed()
     //this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
