@@ -190,6 +190,10 @@ class GoogleDeck extends Component {
   componentDidUpdate(prevProps,prevState){
     console.log("GoogleDeck.js This is the currentEntry : ",this.state.currentEntry)
   }
+  touchedPost=()=>{
+    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    this.props.XAlign()
+  }
   commentButtonPressed=()=>{
     this.props.commentButtonPressed()
     this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
@@ -305,6 +309,10 @@ class GoogleDeck extends Component {
       
         return (
           <View>
+            <TouchableOpacity
+              onPress={this.touchedPost}
+              activeOpacity={1}
+            >
             <ScrollView
                 ref={ref=>this.myRef=ref}
                 style={{
@@ -467,7 +475,7 @@ class GoogleDeck extends Component {
                   </View>
           
                   </View>
-               
+                </TouchableOpacity>
         </View>      
               
           

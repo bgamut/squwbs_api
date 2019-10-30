@@ -130,7 +130,9 @@ const SwipeableScroller = (props) => {
   const XAlign=()=>{
     if(mouseEnterFunction==false){
       mouseEnterFunction=true
-      scrollerRef.current.getNode().scrollTo({x:0,y:currentEntry*height,animated:true})
+      //scrollerRef.current.getNode().scrollTo({x:0,y:currentEntry*height,animated:true})
+      scrollerRef.current.getNode().scrollTo({x:0,y:currentEntry*Dimensions.get('window').height,animated:true})
+      
       setTimeout(
         ()=>{
           mouseEnterFunction=false
@@ -344,13 +346,32 @@ const SwipeableScroller = (props) => {
           
             {/* </View> */}
             <View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            >
+            > */}
+          
+          <a style={{
+            textDecorationLine:'none',
+            margin:0,
+            padding:0,
+            backgroundColor:'transparent',
+            fontSize: 17,
+            fontWeight:'700',
+            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+            textShadowOffset: {width: 0, height: 0},
+            textShadowRadius: 2,
+            height:45,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            textAlign:'center',
+            height:"100%",
+            width:'100%'
+          }} href="/#slider">
             <section id="slider"
               ref={heightRef}
               style={{
@@ -609,18 +630,41 @@ const SwipeableScroller = (props) => {
               </Carousel>
               </Animated.View>
             </section>
-            </TouchableOpacity>
+          </a>
+          
+            {/* </TouchableOpacity> */}
             </View>
+            
             <View style={{flexDirection:'column'}}>
               
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            > 
+            >  */}
+
               <section id="download">
+              
+              <a style={{
+                textDecorationLine:'none',
+                margin:0,
+                padding:0,
+                backgroundColor:'transparent',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                height:45,
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                textAlign:'center',
+                height:"100%",
+                width:'100%'
+              }} href="/#download">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -884,16 +928,36 @@ const SwipeableScroller = (props) => {
                 
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            >  
+            >   */}
               <section id="googleCard">
+              
+              <a style={{
+                textDecorationLine:'none',
+                margin:0,
+                padding:0,
+                backgroundColor:'transparent',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                height:45,
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                textAlign:'center',
+                height:"100%",
+                width:'100%'
+              }} href="/#googleCard">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -942,6 +1006,7 @@ const SwipeableScroller = (props) => {
                       slackHashButtonPressed={props.slackHashOverlayToggle}
                       commentButtonPressed={props.commentOverlayToggle}
                       starButtonPressed={props.starOverlayToggle}
+                      XAlign={XAlign}
                     />
                     {/* <GoogleCardV2
                       title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
@@ -957,8 +1022,9 @@ const SwipeableScroller = (props) => {
                     /> */}
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
+            {/* </TouchableOpacity>  */}
               {/* <section id="testDownloadLink">
                 <Animated.View
                   ref={heightRef}
@@ -1003,14 +1069,32 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section> */}
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            >  
+            >   */}
               <section id="sound">
+              <a style={{
+                textDecorationLine:'none',
+                margin:0,
+                padding:0,
+                backgroundColor:'transparent',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                height:45,
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                textAlign:'center',
+                height:"100%",
+                width:'100%'
+              }} href="/#sound">
                 <Animated.View 
                 ref={heightRef}
                 style={{
@@ -1026,16 +1110,35 @@ const SwipeableScroller = (props) => {
                   
                   <Sound/>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            >  
+            >   */}
               <section id="follow">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#follow">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1080,16 +1183,35 @@ const SwipeableScroller = (props) => {
                     <Instagram/>
                   </View>
                 </Animated.View>
+                </a>
               </section>
-              </TouchableOpacity> 
-            <TouchableOpacity
+              {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            >   
+            >    */}
               <section id="contact">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#contact">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1133,8 +1255,9 @@ const SwipeableScroller = (props) => {
                     <Contact/>
                   </View>
                 </Animated.View>
+                </a>
               </section>
-              </TouchableOpacity> 
+              {/* </TouchableOpacity>  */}
               
             </View>
           
@@ -1221,14 +1344,32 @@ const SwipeableScroller = (props) => {
            
             <View style={{flexDirection:'column'}}>
               
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            >   
+            >    */}
               <section id="download">
+              <a style={{
+                textDecorationLine:'none',
+                margin:0,
+                padding:0,
+                backgroundColor:'transparent',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                height:45,
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                textAlign:'center',
+                height:"100%",
+                width:'100%'
+              }} href="/#download">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1491,16 +1632,35 @@ const SwipeableScroller = (props) => {
                 
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            > 
+            >  */}
               <section id="testDownloadLink">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#testDownloadLink">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1544,16 +1704,35 @@ const SwipeableScroller = (props) => {
                     <DLLink/>
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            > 
+            >  */}
               <section id="sound">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#sound">
                 <Animated.View 
                 ref={heightRef}
                 style={{
@@ -1568,16 +1747,35 @@ const SwipeableScroller = (props) => {
                   
                   <Sound/>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            > 
+            >  */}
               <section id="googleCard">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#googleCard">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1639,16 +1837,35 @@ const SwipeableScroller = (props) => {
                     /> */}
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            > 
+            >  */}
               <section id="follow">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#follow">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1693,16 +1910,35 @@ const SwipeableScroller = (props) => {
                     <Instagram/>
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
-            <TouchableOpacity
+            {/* </TouchableOpacity>  */}
+            {/* <TouchableOpacity
               onPress={()=>{
                 //console.log('carousel pressed')
                 XAlign()
               }}
               activeOpacity={1}
-            > 
+            >  */}
               <section id="contact">
+                <a style={{
+                  textDecorationLine:'none',
+                  margin:0,
+                  padding:0,
+                  backgroundColor:'transparent',
+                  fontSize: 17,
+                  fontWeight:'700',
+                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                  textShadowOffset: {width: 0, height: 0},
+                  textShadowRadius: 2,
+                  height:45,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  textAlign:'center',
+                  height:"100%",
+                  width:'100%'
+                }} href="/#contact">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1746,8 +1982,9 @@ const SwipeableScroller = (props) => {
                     <Contact/>
                   </View>
                 </Animated.View>
+                </a>
               </section>
-            </TouchableOpacity> 
+            {/* </TouchableOpacity>  */}
             
               {/* <section id="kakao">
                 <Animated.View

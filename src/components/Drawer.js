@@ -236,7 +236,7 @@ const Drawer =(props)=>{
                 {
                     setState({...state,drawerToggle:true})
                     setDrawerToggle(true)
-                    //props.headerOpen(false)
+                    props.headerOpen(false)
                     setMiddleOfDrawerAnimation(false)
                 })
             }
