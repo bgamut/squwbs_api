@@ -768,16 +768,19 @@ backgroundColor:'transparent',
                 } */}
                 
                 <View style={{
-                    backgroundColor:'#ffffff',
+
+          
+                    //backgroundColor:'#ffffff',
                     //borderColor:'#cfcfcf',
-                    borderColor:'transparent',
-                    borderRadius:2,
-                    borderWidth:1,
+                    // borderColor:'transparent',
+                    // borderRadius:2,
+                    // borderWidth:1,
                     height:maxHeight,
                     justifyContent:'center',
                     marginBottom :0,
                     //opacity:state.opacity
                     // backgroundColor:'orange'
+                    backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                 }}>  
                     <Animated.View style={{
                         alignItems:'center',
@@ -877,18 +880,18 @@ backgroundColor:'transparent',
                     },
                     {
                     // height:300,
-                    height:height-50,
-                    width:SLIDING_DRAWER_WIDTH,
+                    height:height-48,
+                    width:SLIDING_DRAWER_WIDTH-2,
                     //backgroundColor:'white',
                     backgroundColor:'rgb(196,166,230)',
                     //borderColor:'rgb(196,196,196)',
-borderColor:'white',
+//borderColor:'white',
                     justifyContent:'center',
                     //flexDirection:'row',
                     padding:0,
                     // borderColor:'transparent',
                     //borderRadius:2,
-                    borderWidth:1,
+//borderWidth:1,
                     //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                     }]}>
                     <View
@@ -901,8 +904,8 @@ borderColor:'white',
                             padding:0,
                             paddingTop:3,
                             margin:0,
-                            marginRight:2,
-                            marginLeft:2,
+                            //marginRight:2,
+                            //marginLeft:2,
                             //backgroundColor:'rgb(196,196,196)',
 backgroundColor:'white',
                             //backgroundColor:'purple',
@@ -975,7 +978,7 @@ backgroundColor:'white',
                                 style={{
                                     backgroundColor:'rgb(196,166,230)',
                                     zIndex:98,
-                                    height:height-150,
+                                    height:height-148,
                                     paddingTop:10,
                                     paddingBottom:10,
                                     
@@ -1000,7 +1003,7 @@ backgroundColor:'white',
                     className='icon'
                     style={{
                         position:'absolute',
-                        top:height-maxHeight-53,
+                        top:height-maxHeight-50,
                         //backgroundColor:'rgb(196,196,196)',
                         backgroundColor:'transparent',
                         //backgroundColor:'purple',

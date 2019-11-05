@@ -175,40 +175,40 @@ functions.firestore.document('data/users').onUpdate(change=>{
       }
     }
     admin.messaging().sendToTopic('chat',payload)
-  })
-  functions.database.ref('sold').onDelete((snap,context )=>{
-    const data = snap.data()
-    console.log('server 102: onDelete fired')
-    console.log(data)
-    const payload={
-      data:{
-        temp:String(after)
-      }
+})
+functions.database.ref('sold').onDelete((snap,context )=>{
+  const data = snap.data()
+  console.log('server 102: onDelete fired')
+  console.log(data)
+  const payload={
+    data:{
+      temp:String(after)
     }
-    admin.messaging().sendToTopic('chat',payload)
-  })
-  functions.database.ref('sold').onCreate((snap,context )=>{
-    const data = snap.data()
-    console.log('server 102: onCreate fired')
-    console.log(data)
-    const payload={
-      data:{
-        temp:String(after)
-      }
+  }
+  admin.messaging().sendToTopic('chat',payload)
+})
+functions.database.ref('sold').onCreate((snap,context )=>{
+  const data = snap.data()
+  console.log('server 102: onCreate fired')
+  console.log(data)
+  const payload={
+    data:{
+      temp:String(after)
     }
-    admin.messaging().sendToTopic('chat',payload)
-  })
-  functions.database.ref('sold').onWrite(change=>{
-    const after = change.after.data()
-    console.log('server 91: onWrite fired')
-    console.log(after)
-    const payload={
-      data:{
-        temp:String(after)
-      }
+  }
+  admin.messaging().sendToTopic('chat',payload)
+})
+functions.database.ref('sold').onWrite(change=>{
+  const after = change.after.data()
+  console.log('server 91: onWrite fired')
+  console.log(after)
+  const payload={
+    data:{
+      temp:String(after)
     }
-    admin.messaging().sendToTopic('chat',payload)
-  })
+  }
+  admin.messaging().sendToTopic('chat',payload)
+})
 
 module.exports.expressServer = function (portnumber){
 if (process.env.DYNO) {
@@ -310,8 +310,7 @@ app.use((err, req, res, next) => {
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
-app.use(session(
-  { 
+app.use(session({ 
     secret: 'keyboard cat',
     resave:true,
     saveUninitialized:true,
@@ -332,8 +331,7 @@ app.use(session(
       },
     
 
-  }
-));
+}));
 app.use(flash())
 app.use(express.static(path.join(__dirname, '/../../build')));
 app.use(express.static(path.join(__dirname, '/html/*/*')));
@@ -375,7 +373,8 @@ app.get('/cookies',cors(),(req,res)=>{
     signed: true,// Indicates if the cookie should be signed
     secret:'',
     secure:true,
-    sameSite:'strict'
+    sameSite:true
+
 }
   res.cookie('name', 'name',options);
   //console.log(req.signedCookies)
@@ -613,7 +612,7 @@ app.get('/',cors(), function (req, res) {
     signed: true,// Indicates if the cookie should be signed
     secret:'',
     secure:true,
-    sameSite:'strict'
+    sameSite:true
 }
   if(req.query.code != undefined){
     res.cookie('kakao_code',req.query.code,options)
@@ -626,6 +625,7 @@ app.get('/',cors(), function (req, res) {
   else{
     res.render(path.join(__dirname, 'build', 'index.html'));
   }
+})
 app.get('/squwbs_api',cors(),function(req,res){
   res.redirect('/')
 })
@@ -638,7 +638,7 @@ app.get('/login',cors(), function (req, res) {
     //   res.send( htmlPlusData)
     // })
     //res.render('index',{ mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN })
-  });  
+  //});  
   //res.render(path.join(__dirname, 'src', 'components','NoMatch.js'),{name:'Tobi'})
 });
 app.get('/getpaypalliveid',cors(),(req,res)=>{
@@ -675,8 +675,7 @@ app.get('/mapboxtoken',cors(),(req,res)=>{
   res.send({"MAPBOX_ACCESS_TOKEN":NODE_ENV.MAPBOX_ACCESS_TOKEN})
 
 })
-app.get('/home',cors(),
-  function(req, res) {
+app.get('/home',cors(),function(req, res) {
     if(req.user==undefined){
       res.render('home', { user: undefined });
     }
@@ -684,7 +683,7 @@ app.get('/home',cors(),
       res.render('home', { user: req.user.displayName });
     }
     
-  });
+});
 
 // app.get('/login',
 //   function(req, res){
@@ -698,34 +697,17 @@ app.get('/home',cors(),
 //     }
 //   });
 
-app.get('/login/facebook',cors(),
-  passport.authenticate('facebook'
-  ,{ scope: ['email'] }
-  
-  ));
-app.get('/login/facebook/profile',cors(), 
+app.get('/login/facebook',cors(),passport.authenticate('facebook',{ scope: ['email'] }));
+app.get('/login/facebook/profile',cors(), passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/'}))
+app.get('/login/google',cors(),passport.authenticate('google',{scope:['profile']}));
 
-  passport.authenticate('facebook',{successRedirect:'/profile',failureRedirect:'/login'})
-
-)
-app.get('/login/google',cors(),
-  passport.authenticate('google'
-    ,{scope:['profile']}
-  ));
-
-app.get('/login/google/profile',cors(),  
-  passport.authenticate('google',{failureRedirect:'/login'}),
-  function(req, res) {
+app.get('/login/google/profile',cors(),passport.authenticate('google',{failureRedirect:'/'}),function(req, res) {
   res.redirect('/profile');
 });
 app.get('/login/twitter',cors(),
   passport.authenticate('twitter')
 );
-app.get('/login/twitter/profile', 
-
-  passport.authenticate('twitter',{failureRedirect:'/login'}),
-  function(req, res) {
-
+app.get('/login/twitter/profile', passport.authenticate('twitter',{failureRedirect:'/'}),function(req, res) {
   res.redirect('/profile');
 });
 app.get('/kakao',cors(),function(req,res){
@@ -817,27 +799,22 @@ app.get('/PDF',cors(),function(req,res){
 app.get('/sound',cors(),function(req,res){
   res.redirect('/')
 })
-
 app.get('/todo',cors(), function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
-
 app.get('/catalogue',cors(), function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
-
 app.get('/category', cors(),function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
-
 app.get('/product', cors(),function (req, res) {
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
   res.redirect('/')
 });
-
 app.get('/map', cors(),function (req, res) {
   res.redirect('/')
   //res.sendFile(path.join(__dirname, '../../build', 'index.html'));
@@ -848,14 +825,10 @@ app.get('/map', cors(),function (req, res) {
   // })
   //res.render('index',{ mapbox_access_token: NODE_ENV.MAPBOX_ACCESS_TOKEN })
 });
-app.get('/desktop',cors(),
-  function(req,res){
+app.get('/desktop',cors(),function(req,res){
     res.status(301).redirect('https://bgamut.github.io/desktop/');
-  }
-)
-app.get('/profile',cors(),
-
-  function(req, res){
+})
+app.get('/profile',cors(),function(req, res){
   // if(req.user==undefined){
   //   res.redirect(url.format({
   //     pathname:"/"
@@ -886,7 +859,7 @@ app.get('/profile',cors(),
     signed: true,// Indicates if the cookie should be signed
     secret:'',
     secure:true,
-    sameSite:'strict'
+    sameSite:true
 }
   if(req.user==undefined){
     res.redirect(url.format({
@@ -941,13 +914,11 @@ app.get('/logout',cors(),function(req,res){
   res.clearCookie('firebaseToken')
   res.redirect('/')
 })
-
 app.get('/download',cors(),function(req,res){
 
   res.download(__dirname+'/squwbs.zip')
 
 })
-
 app.get('/info',cors(),function(req,res){
   console.log('we in /info')
   
@@ -1185,7 +1156,6 @@ app.get('/removeme',cors(),function(req,res){
   
   
 })
-
 //app.options('*', cors())
 //var corsOptions = {origin:'https://squwbs.herokuapp.com/'}
 app.get('/undefined',cors(),(req,res)=>{
@@ -1455,7 +1425,7 @@ app.get('/firebaseToken',cors(),(req,res)=>{
     signed: true,// Indicates if the cookie should be signed
     secret:'',
     secure:true,
-    sameSite:'strict'
+    sameSite:true
 }
   //todo register token to list of devices
   //console.log('get firebaseToken body', stringifyObject(req.body.token))
@@ -2028,8 +1998,7 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
 //     sendObj({error:err})
 //   })
   
-// })
-    
+// })   
 app.get('/getwordlistfrommongo',cors(),(req,res)=>{
   var wordList = req.query.list
   
@@ -2093,7 +2062,6 @@ app.get('/getwordlistfrommongo',cors(),(req,res)=>{
   })
   
 })
-
 app.get('/saysomething',cors(),(req,res)=>{
   var obj = req.query
   var cookies= req.signedCookies
@@ -2173,8 +2141,6 @@ app.get('/saysomething',cors(),(req,res)=>{
   saysomething(obj,cookies,sendSuccess)
   
 })
-
-
 app.get('/addword',cors(),(req,res)=>{
   var obj = req.query
   function addWord({word,meaning,pronunciation,example},func){
@@ -2227,8 +2193,6 @@ app.get('/addword',cors(),(req,res)=>{
   addWord(obj,sendSuccess)
   
 })
-
-
 app.get('/addwordlist',cors(),(req,res)=>{
   var list = req.query.list
   function addWordList(list){
@@ -2400,7 +2364,6 @@ app.get('/addwordlist',cors(),(req,res)=>{
   addWordList(list)
   
 })
-
 app.get('/getwordlist',cors(),(req,res)=>{
 
   var getWordList = new Promise(
@@ -2444,8 +2407,6 @@ app.get('/getwordlist',cors(),(req,res)=>{
   // })
   
 })
-  
-
 app.get('/ebay',cors(),(req,res)=>{
     fetch(withQuery('https://squwbs-252702.appspot.com/api'
     ,req.query

@@ -13,6 +13,8 @@ import FileDrop from './FileDrop'
 import {Context} from '../context'
 //import xIcon from './icons/X.png'
 import Fade from 'react-reveal/Fade'
+import FirebaseLoginGoogle from './FirebaseLoginGoogle'
+import FirebaseLoginFacebook from './FirebaseLoginFacebook'
 import './css/x.css'
 import './css/Fade.css'
 import './css/terms.css'
@@ -1239,7 +1241,7 @@ const Home = () => {
                 
               </Text> */}
           </TouchableOpacity>
-          <View style={styles.box}>
+          {/* <View style={styles.box}>
         <a style={
           {
             // flex:1,
@@ -1302,9 +1304,9 @@ const Home = () => {
           </Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
-       
-        <View style={styles.box}>
+        </View> */}
+        <FirebaseLoginGoogle/>
+        {/* <View style={styles.box}>
         <a style={
           {
             // flex:1,
@@ -1366,8 +1368,8 @@ const Home = () => {
           </Text>
           </TouchableOpacity>
         </a><br/>
-        </View>
-  
+        </View> */}
+        <FirebaseLoginFacebook/>
 
       <View style={styles.box}>
       <a style={

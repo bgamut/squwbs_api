@@ -15,6 +15,7 @@ import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,Toucha
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 //var facebookLogo = require('../svgs/brands/facebook-f.svg')
 //var googleLogo = require('../svgs/brands/google.svg')
+//import firebaseLogin from  './firebaseLogin'
 const NavBarWithLogIn = (props) => {
   const [overlaySwitch,setOverlaySwitch]=useState(true)
   const overlay=useRef('')
@@ -289,7 +290,7 @@ const NavBarWithLogIn = (props) => {
 
 {/* LOGIN ERROR NEED TO BE FIGURED OUT ON SERVER*/}
 
-{/* 
+
         <View style={[styles.box,{
           // justifyContent:'top',
           alignItems:'top'
@@ -325,7 +326,7 @@ const NavBarWithLogIn = (props) => {
           >Login</Text>
           </TouchableOpacity>
 
-        </View> */}
+        </View> 
 
 
         {/* <View style={styles.box}>
@@ -500,6 +501,7 @@ const NavBarWithLogIn = (props) => {
           </TouchableOpacity>
         </a><br/>
         </View> */}
+        
         <View style={styles.box}>
         
         <TouchableOpacity 

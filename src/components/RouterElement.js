@@ -50,7 +50,7 @@ class RouterElement extends Component {
                     <Route exact path="/Category" component={Category}/>
                     <Route exact path="/Product" component={Product}/>
                     <Route component={NoMatch} /> */}
-                    <Route path="*" component={NotFound} />
+                    {/* <Route path="*" component={NotFound} /> */}
                     
                 </Switch>
 
