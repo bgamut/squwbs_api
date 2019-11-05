@@ -24,7 +24,7 @@ import GoogleDeck from './GoogleDeck'
 import Message from './MessageV2'
 import Kakao from './Kakao'
 import './css/ClickOpacity.css'
-import Login from './FirebaseLoginGoogle' 
+
 //import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
@@ -939,79 +939,6 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >   */}
-
-
-
-<section id="download">
-              
-              {/* <a style={{
-                textDecorationLine:'none',
-                margin:0,
-                padding:0,
-                backgroundColor:'transparent',
-                fontSize: 17,
-                fontWeight:'700',
-                textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                textShadowOffset: {width: 0, height: 0},
-                textShadowRadius: 2,
-                height:45,
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row',
-                textAlign:'center',
-                height:"100%",
-                width:'100%'
-              }} href="/#download"> */}
-                <Animated.View
-                  ref={heightRef}
-                  style={{
-                    height:"100vh",
-                    //height:partHeight,
-                    width:"100%",
-                    padding:15,
-                    
-                    backgroundColor:'rgb(135,135,135)',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
-                  }}
-                >
-                  <View 
-                    style={{
-                      height:"100%",
-                      width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
-                      zIndex:0,
-                      backgroundColor:'white',
-                      backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
-                      borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
-                      borderColor:'#aaa',
-                      borderStyle:'solid',
-                      overflow:'hidden',
-                      boxSizing:"border-box",
-                      shadowColor:'black',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2
-                    }}
-                  >
-                 
-                   <Login/> 
-                
-                  </View>
-                </Animated.View>
-                {/* </a> */}
-              </section>
-
-
 
 
 
