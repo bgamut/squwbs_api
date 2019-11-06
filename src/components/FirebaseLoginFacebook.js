@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity,Linking} from 'react-native'
 import {Context} from '../context'
+const withQuery = require('with-query').default
 // const firebaseApp=firebase.initializeApp({
 //     apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14',
 //     authDomain:'assistant-569a2.firebaseapp.com',
@@ -70,9 +71,25 @@ const FirebaseLoginFacebook=() =>{
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
+      user.provider='facebook'
       console.log('firebase Login user info',user)
       setState({...state,userData:user})
       // ...
+      
+      fetch(withQuery('https://squwbs-252702.appspot.com/info',{
+          provider:user.provider,
+          providerid:user.email,
+          token:user.refreshToken,
+          userName:user.displayName
+      }))
+    .then((result)=>{
+      console.log('user result firebaseloginfacebook: ',result)
+        return result.json()
+    })
+    .catch((err)=>{
+        console.log('firebaseLoginfacebook.js register error : ',err)
+        
+    })
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

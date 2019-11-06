@@ -23,7 +23,7 @@ const messaging = firebase.messaging()
 //     return document.registration.showNotification(title,options)
 // })
 const askForPermissioToReceiveNotifications = async () => {
- 
+    console.log("permission ask fired")
     try {
         //const messaging = firebase.messaging();
         await messaging.requestPermission();

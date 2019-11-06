@@ -449,7 +449,7 @@ messaging.onMessage(function(payload){
   // window.registration.showNotification(
   //   payload.notification.title,
   //   payload.notification.body
-  //   )
+  // )
 })
 
 //firebase.initializeApp(firebaseConfig);

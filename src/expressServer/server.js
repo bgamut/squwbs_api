@@ -1068,7 +1068,8 @@ app.get('/info',cors(),function(req,res){
 //   request.end();
 // });
 app.get('/removeme',cors(),function(req,res){
-  var obj = req.signedCookies
+  //var obj = req.signedCookies
+  var obj = req.query
   console.log('/removeme signedCookies: ',stringifyObject(obj))
   //var obj = req.query
 

@@ -270,6 +270,20 @@ const Drawer =(props)=>{
     }
     const removeme = ()=>{
         console.log(state.userData)
+        fetch(withQuery('https://squwbs-252702.appspot.com/removeme',{
+          provider:state.userData.provider,
+          providerid:state.userData.email,
+          token:state.userData.refreshToken,
+          userName:state.userData.displayName
+      }))
+        .then((result)=>{
+        console.log('user result firebaseloginfacebook: ',result)
+            return result.json()
+        })
+        .catch((err)=>{
+            console.log('firebaseLoginfacebook.js register error : ',err)
+            
+        })
     }
     const termsAndCloseDrawer=()=>{
         popTerms()
@@ -847,7 +861,7 @@ borderColor:'orange',
                     marginBottom :0,
                     //opacity:state.opacity
                     // backgroundColor:'orange'
-                    backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                    backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
                 }}>  
                     <Animated.View style={{
                         alignItems:'center',
