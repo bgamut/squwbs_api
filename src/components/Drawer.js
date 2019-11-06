@@ -273,7 +273,7 @@ const Drawer =(props)=>{
         fetch(withQuery('https://squwbs-252702.appspot.com/removeme',{
           provider:state.userData.provider,
           providerid:state.userData.email,
-          token:state.userData.refreshToken,
+          token:'state.userData',
           userName:state.userData.displayName
       }))
         .then((result)=>{

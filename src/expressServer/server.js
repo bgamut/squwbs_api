@@ -953,7 +953,8 @@ app.get('/info',cors(),function(req,res){
     
     userStructure.provider[String(global[tempUUID].provider)]=global[tempUUID].providerid
     userStructure.names[String(global[tempUUID].provider)]=global[tempUUID].userName
-    userStructure.token=global[tempUUID]['connect.sid']
+    //userStructure.token=global[tempUUID]['connect.sid']
+    userStructure.token=global[tempUUID].token
     soldItemsStructure.owner=userStructure
     if(global[tempUUID].itemList!=undefined&&global[tempUUID].itemList!=null){
       for(var i =0; i<global[tempUUID].itemList.length; i++){
@@ -962,7 +963,8 @@ app.get('/info',cors(),function(req,res){
     }
     
     if(global[tempUUID].uuid!=undefined&&global[tempUUID].uuid!=null){
-      soldItemsStructure.uuid=global[tempUUID].uuid
+    //soldItemsStructure.uuid=global[tempUUID].uuid
+      soldItemsStructure.uuid=uuidv4()
     }
     
     console.log('soldItemsStructure : ',stringifyObject(soldItemsStructure))
