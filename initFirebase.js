@@ -446,10 +446,10 @@ messaging.onMessage(function(payload){
   console.log('onMessage:',payload)
   //event listener need to be implemented in the react code
   window.dispatchEvent(firebaseMessageReceived(payload))
-  // window.registration.showNotification(
-  //   payload.notification.title,
-  //   payload.notification.body
-  //   )
+  window.registration.showNotification(
+    payload.notification.title,
+    payload.notification.body
+  )
 })
 
 //firebase.initializeApp(firebaseConfig);
