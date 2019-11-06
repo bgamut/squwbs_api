@@ -13,6 +13,7 @@ import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,Toucha
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 //var facebookLogo = require('../svgs/brands/facebook-f.svg')
 //var googleLogo = require('../svgs/brands/google.svg')
+import FirebaseLogout from './FirebaseLogout'
 const NavBar = (props) => {
   
     return(
@@ -111,7 +112,9 @@ const NavBar = (props) => {
         </a><br/>
         </View> */}
         
-        <View style={styles.box}>
+        <View style={styles.box}
+        
+        >
         <a style={
           {
             textDecorationLine:'none',
@@ -247,7 +250,7 @@ const NavBar = (props) => {
         </a>
         </View>
       
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
         <a style={
           {
             textDecorationLine:'none',
@@ -289,6 +292,12 @@ const NavBar = (props) => {
           >Log Out</Text>
           </TouchableOpacity>
         </a>
+        </View> */}
+        <View style={[styles.box,{
+          // justifyContent:'top',
+          alignItems:'top'
+        }]}>
+          <FirebaseLogout/>
         </View>
         {/* <View style={styles.box}>
         <a style={

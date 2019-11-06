@@ -194,7 +194,6 @@ const Instagram = (props)=> {
                     opacityAnimationToOne()
                     sleep(3000).then(
                         function(){
-                        // console.log('hi')
                             setDummy(dummy+1)
                         }
                     )

@@ -4,15 +4,15 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity,Linking} from 'react-native'
 import {Context} from '../context'
-const firebaseApp=firebase.initializeApp({
-    apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14',
-    authDomain:'assistant-569a2.firebaseapp.com',
-    databaseURL:'https://assistant-569a2.firebaseio.com',
-    projectId:'assistant-569a2',
-    storageBucket:'assistant-569a2.appspot.com',
-    messagingSenderId:'404719977912',
+// const firebaseApp=firebase.initializeApp({
+//     apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14',
+//     authDomain:'assistant-569a2.firebaseapp.com',
+//     databaseURL:'https://assistant-569a2.firebaseio.com',
+//     projectId:'assistant-569a2',
+//     storageBucket:'assistant-569a2.appspot.com',
+//     messagingSenderId:'404719977912',
 
-})
+// })
 var provider = new firebase.auth.GoogleAuthProvider()
 //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 firebase.auth().languageCode = 'eng';
@@ -50,6 +50,7 @@ firebase.auth().languageCode = 'eng';
 //   }
 //   // The signed-in user info.
 //   var user = result.user;
+//   setState({...state,userData:user})
 //   console.log('firebase Login user info',user)
 // }).catch(function(error) {
 //   // Handle Errors here.
@@ -75,6 +76,7 @@ const FirebaseLoginGoogle=() =>{
       // ...
     }).catch(function(error) {
       // Handle Errors here.
+      console.log('firebaselogin error',error)
       var errorCode = error.code;
       var errorMessage = error.message;
       // The email of the user's account used.

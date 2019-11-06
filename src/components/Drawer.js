@@ -268,6 +268,9 @@ const Drawer =(props)=>{
     const popTerms = ()=>{
         props.popTerms()
     }
+    const removeme = ()=>{
+        console.log(state.userData)
+    }
     const termsAndCloseDrawer=()=>{
         popTerms()
         //setTimeout(ShowSlidingDrawer(),720)
@@ -363,11 +366,18 @@ const Drawer =(props)=>{
             setUserPhotoLink(user.photoURL)
 
         }
+        else{
+            setUserName(null)
+            setUserPhotoLink(null)
+        }
 
     },[user])
     useEffect(()=>{
         if(state.userData!==undefined){
             setUser(state.userData)
+        }
+        else{
+            setUser(undefined)
         }
     },[...Object.values(state)])
     useEffect(()=>{
@@ -677,7 +687,7 @@ borderColor:'orange',
                         
                         
 
-                        <a style={
+                        {/* <a style={
                         {
                             textDecorationLine:'none',
                 
@@ -714,7 +724,31 @@ borderColor:'orange',
                         }}
                         >Remove My Profile</Text>
                         </TouchableOpacity>
-                        </a>
+                        </a> */}
+                        
+                        <TouchableOpacity 
+                            onPress={removeme}
+                            style={styles.touch}
+                        >
+                        
+                        <Text id="Contact" 
+                        style={{
+
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontWeight:'700',
+                            fontSize: 17,
+                            textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            textShadowOffset: {width: 0, height: 0},
+                            textShadowRadius: 2,
+                            textAlign:'center',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            flexDirection:'row',
+                        }}
+                        >Remove My Profile</Text>
+                        </TouchableOpacity>
+                        
                     </View>
                     </View>
                     
