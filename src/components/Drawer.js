@@ -22,7 +22,8 @@ let currentHeight=maxHeight
 const Drawer =(props)=>{
 
     const [state,setState]=useContext(Context)
-    const [user,setUser]=useState({})
+    //const [user,setUser]=useState({})
+    const [user,setUser]=useState(undefined)
     const [userName,setUserName]=useState('')
     const [userPhotoLink,setUserPhotoLink]=useState('')
     const [height,setHeight]=useState(0)
@@ -333,26 +334,48 @@ const Drawer =(props)=>{
 
     useEffect(()=>{
         //console.log(stringifyObject(user)=='{}')
-        //console.log(stringifyObject(user))
-        if(stringifyObject(user)!=='{}'){ 
-            if(user.provider!=undefined){
-                console.log(user.provider)
-                for (var i =0; i<Object.keys(user.provider).length; i++){
-                    console.log(user.names[Object.keys(user.provider)[i]])
-                    if(user.names[Object.keys(user.provider)[i]]!==''&&user.names[Object.keys(user.provider)[i]]!=='undefined'){
-                        setUserName(user.names[Object.keys(user.provider)[i]])
-                        break
-                    }
-                }
-            }
+        //console.log('Drawer 337:',stringifyObject(user))
+        // if(stringifyObject(user)!=='{}'){ 
+
+        //     if(user.provider!=undefined){
+        //         console.log(user.provider)
+        //         for (var i =0; i<Object.keys(user.provider).length; i++){
+        //             console.log(user.names[Object.keys(user.provider)[i]])
+        //             if(user.names[Object.keys(user.provider)[i]]!==''&&user.names[Object.keys(user.provider)[i]]!=='undefined'){
+        //                 setUserName(user.names[Object.keys(user.provider)[i]])
+        //                 break
+        //             }
+        //         }
+        //     }
+        // }
+        if(user!==undefined){ 
+           // if(user.provider!=undefined){
+                // console.log(user.provider)
+                // for (var i =0; i<Object.keys(user.provider).length; i++){
+                //     console.log(user.names[Object.keys(user.provider)[i]])
+                //     if(user.names[Object.keys(user.provider)[i]]!==''&&user.names[Object.keys(user.provider)[i]]!=='undefined'){
+                //         setUserName(user.names[Object.keys(user.provider)[i]])
+                //         break
+                //     }
+                //}
+            //}
+            setUserName(user.displayName)
+            setUserPhotoLink(user.photoURL)
+
         }
 
     },[user])
     useEffect(()=>{
+        if(state.userData!==undefined){
+            setUser(state.userData)
+        }
+    },[...Object.values(state)])
+    useEffect(()=>{
      //console.log(userName)
     },[userName])
 
-    if(stringifyObject(user)!=='{}'){
+    //if(stringifyObject(user)!=='{}'){
+    if(user!==undefined){
         return(
             <Animated.View style={{            
                 height:150,
@@ -477,6 +500,9 @@ const Drawer =(props)=>{
                     </View> 
                 </View> 
                 {props.children}
+               
+
+                
                 <Animated.View style={[styles.ROOT_SLIDING_DRAWER_CONTAINER, {
                     transform:[{
                         translateX:drawerInterp
@@ -486,21 +512,23 @@ const Drawer =(props)=>{
                     },
                     {
                     // height:300,
-                    height:height-50,
-                    width:SLIDING_DRAWER_WIDTH,
+                    height:height-48,
+                    width:SLIDING_DRAWER_WIDTH-2,
                     //backgroundColor:'white',
-                    backgroundColor:'transparent',
+                    backgroundColor:'rgb(196,166,230)',
                     //borderColor:'rgb(196,196,196)',
-borderColor:'transparent',
+//borderColor:'white',
                     justifyContent:'center',
-
+                    //flexDirection:'row',
                     padding:0,
                     // borderColor:'transparent',
-                    borderRadius:4,
-                    borderWidth:1,}]}>
-                    <View 
-                        className='icon'
-                        style = {[
+                    //borderRadius:2,
+//borderWidth:1,
+                    //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                    }]}>
+                    <View
+                    className='icon'
+                    style = {[
                         styles.MAIN_SLIDING_DRAWER_CONTAINER,
                         {
                             height:50,
@@ -508,82 +536,71 @@ borderColor:'transparent',
                             padding:0,
                             paddingTop:3,
                             margin:0,
-                            marginRight:2,
-                            marginLeft:2,
+                            //marginRight:2,
+                            //marginLeft:2,
                             //backgroundColor:'rgb(196,196,196)',
-backgroundColor:'transparent',
+backgroundColor:'rgb(180,166,255)',
                             //backgroundColor:'purple',
                             //borderColor:"rgb(196,196,196)",
                             //borderColor:'rgb(196,196,196)',
-borderColor:'transparent',
+//borderColor:'blue',
                             
-                            borderRadius:2,
-                            borderWidth:1,
-                            //width:298,
+                            //borderRadius:2,
+                            //borderWidth:1,
                             width:SLIDING_DRAWER_WIDTH-2,
+                            backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                         }]
                     }>
-                        <View style={{
-                            flexDirection:'row',
-                            alignItems:'center',
-                            justifyContent:'center',
-                            marginBottom:6,
-                            paddingTop:8,
-                            paddingBottom:8,
-                            paddingRight:25,
-                            paddingLeft:25,
-                            backgroundColor:'transparent',
-                            zIndex:0,
-                            
-                            
-                        }}>
-                            {/* <Image source={require('./icons/96x96.png')} style={{
-                                    // Top:(maxHeight-imageLength)/2,
-                                    // position:'absolue',
-                                    height:25,
-                                    resizeMode:'contain',
-                                    width:25,
-                                    justifyContent:'center',
-                                    alignItems:'center',
-                                    marginRight:5,
-                                    marginbottom:2
-                                    //Right:0
-                                }}/> */}
-                            <a style ={{textDecorationLine:'none'}}
-                            
-                            href = "/#slider" >
-                                <TouchableOpacity
-                                   
-                                   onPress={delayedSlidingDrawer}
-                                >
-                                {/* <Image
-                                    style={{
-                                        width: 25, 
-                                        height: 25,
-                                        borderRadius:4,
-                                        top:0,
-                                        margin:0}}
-                                    source={{
-                                        uri: userPhotoLink
-                                    }}
-                                /> */}
-                                <Text selectable={false} style ={styles.textStyle}>
-                                    {/* Welcome */}
-                                    <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text>
-                                    {/* <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text> */}
-                                </Text>
+                            <View style={{
+                                flexDirection:'row',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                //marginBottom:6,
+                                paddingTop:8,
+                                paddingBottom:8,
+                                paddingRight:25,
+                                paddingLeft:25,
+                                backgroundColor:'transparent',
+                                zIndex:0,
+                                marginBottom:0
                                 
-                                </TouchableOpacity>
-                            </a>
-                        </View>
+                            }}>
+                                {/* <Image source={require('./icons/96x96.png')} style={{
+                                        // Top:(maxHeight-imageLength)/2,
+                                        // position:'absolue',
+                                        height:25,
+                                        resizeMode:'contain',
+                                        width:25,
+                                        justifyContent:'center',
+                                        alignItems:'center',
+                                        marginRight:5,
+                                        marginbottom:2
+                                        //Right:0
+                                    }}/> */}
+                                <a  style ={{textDecorationLine:'none'}}
+                                
+                                href = "/#slider" >
+                                    <Text selectable={false} style ={styles.textStyle}>
+                                        {/* Welcome to  */}
+                                        <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text>
+                                    </Text>
+                                </a>
+                            </View>
                         <View
                             style={{
-                                backgroundColor:'trarensparent',
+                                backgroundColor:'rgb(196,166,230)',
                                 width:'100%',
+                                //height:height-450,
                                 borderColor:'transparent',
-                                borderRadius:2,
-                                borderWidth:1,
-                               // height:height,
+                                //borderRadius:2,
+                                //borderWidth:1,
+                                transform:([{
+                                    translateY:-9
+                                }]),
+                                // height:height,
+                                marginTop:0,
+                                paddingTop:0,
+                                paddingBottom:0
                             }}
                         >
                             <ScrollView
@@ -591,9 +608,14 @@ borderColor:'transparent',
                                 scrollIndicatorInsets={300,300,300,300}
                                 indicatorStyle='white'
                                 style={{
-                                    backgroundColor:'transparent',
+                                    //backgroundColor:'rgb(196,166,230)',
+                                    //backgroundColor:'white',
+                                    backgroundColor:'rgb(180,166,255)',
                                     zIndex:98,
-                                    height:height-150,
+                                    height:height-148,
+                                    paddingTop:10,
+                                    paddingBottom:10,
+                                    
                                 }}
                                 onScroll={(e)=>{
                                     // onScroll(e)
@@ -603,40 +625,42 @@ borderColor:'transparent',
                                 scrollEventThrottle={16}
                                 showsVerticalScrollIndicator={false}
                             >
-                            <NavBar ShowSlidingDrawer={delayedSlidingDrawer}/>
+                            <NavBar
+                                ShowSlidingDrawer={delayedSlidingDrawer}
+                            />
                             </ScrollView>
                         </View>
                     <View
                     className='icon'
                     style={{
                         position:'absolute',
-                        top:height-maxHeight-53,
+                        top:height-maxHeight-50,
                         //backgroundColor:'rgb(196,196,196)',
-backgroundColor:'transparent',
+                        backgroundColor:'transparent',
                         //backgroundColor:'purple',
-                        //width:298,
                         width:SLIDING_DRAWER_WIDTH-2,
-                        height:maxHeight,
+                        height:100,
                         marginTop:0,
                         marginBottom:0,
                         marginLeft:0,
                         marginRight:0,
                         
-                        borderRadius:2,
-                        borderWidth:1,
+                        //borderRadius:2,
+                        //borderWidth:1,
                         
                         //backgroundColor:'purple',
                         //borderColor:"rgb(196,196,196)",
                         //borderColor:'rgb(196,196,196)',
-                        borderColor:'transparent',
+borderColor:'orange',
                         //borderColor:'transparent',
                         
-                        borderRadius:2,
-                        borderWidth:1,
+                        //borderRadius:2,
+                        //borderWidth:1,
                         paddingBottom:0,
                         height:maxHeight,
                         justifyContent:'center',
-                        alignItems:'center'
+                        alignItems:'center',
+                        backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                     }}
                     >
                        {/* <Text
@@ -648,13 +672,17 @@ backgroundColor:'transparent',
                             }
                         ]}
                        >
-                           2019
+                           {new Date().getFullYear()}
                         </Text> */}
+                        
+                        
+
                         <a style={
                         {
                             textDecorationLine:'none',
                 
                             backgroundColor:'transparent',
+                           // backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                             fontSize: 17,
                             fontWeight:'700',
                             textShadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -691,6 +719,11 @@ backgroundColor:'transparent',
                     </View>
                     
                 </Animated.View> 
+
+
+
+
+
             </Animated.View>     
         ) 
     }
@@ -780,7 +813,7 @@ backgroundColor:'transparent',
                     marginBottom :0,
                     //opacity:state.opacity
                     // backgroundColor:'orange'
-                    backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                    backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                 }}>  
                     <Animated.View style={{
                         alignItems:'center',
@@ -907,7 +940,7 @@ backgroundColor:'transparent',
                             //marginRight:2,
                             //marginLeft:2,
                             //backgroundColor:'rgb(196,196,196)',
-backgroundColor:'white',
+backgroundColor:'rgb(180,166,255)',
                             //backgroundColor:'purple',
                             //borderColor:"rgb(196,196,196)",
                             //borderColor:'rgb(196,196,196)',
@@ -916,7 +949,7 @@ backgroundColor:'white',
                             //borderRadius:2,
                             //borderWidth:1,
                             width:SLIDING_DRAWER_WIDTH-2,
-                            backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                            backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                         }]
                     }>
                             <View style={{
@@ -976,7 +1009,9 @@ backgroundColor:'white',
                                 scrollIndicatorInsets={300,300,300,300}
                                 indicatorStyle='white'
                                 style={{
-                                    backgroundColor:'rgb(196,166,230)',
+                                    //backgroundColor:'rgb(196,166,230)',
+                                    //backgroundColor:'white',
+                                    backgroundColor:'rgb(180,166,255)',
                                     zIndex:98,
                                     height:height-148,
                                     paddingTop:10,
@@ -1029,7 +1064,7 @@ borderColor:'orange',
                         height:maxHeight,
                         justifyContent:'center',
                         alignItems:'center',
-                        backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                        backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                     }}
                     >
                        {/* <Text

@@ -180,18 +180,27 @@ const SwipeableScroller = (props) => {
                 
             })
         }
-    console.log("eyo!!!!!!!!!!!!!!!!!! user data ==undefined returns",stringifyObject(state.userData)=='undefined')
-    console.log('swipeablescroller.js userData:',stringifyObject(state.userData))
-    if(stringifyObject(state.userData)=='undefined'){
-      console.log("swipeablescroller.js userData is ",stringifyObject(state.userData))
-      console.log("swipeablescroller.js user is ",stringifyObject(user))
+      if(state.userData!==undefined){
+        props.overlayOff()
+        //props.headerOpen()
+        setUser(state.userData)
+        //setState({...state,headerOpen:false})
+      }
+    //console.log("eyo!!!!!!!!!!!!!!!!!! user data ==undefined returns",stringifyObject(state.userData)=='undefined')
+    //console.log('swipeablescroller.js userData:',stringifyObject(state.userData))
+
+    // if(stringifyObject(state.userData)=='undefined'){
+    //   console.log("swipeablescroller.js userData is ",stringifyObject(state.userData))
+    //   console.log("swipeablescroller.js user is ",stringifyObject(user))
       
-    }
-    else{
-      console.log("swipeablescroller.js userData is ",stringifyObject(state.userData))
-      console.log("swipeablescroller.js user is ",stringifyObject(user))
-      setUser(state.userData)
-    }
+    // }
+    // else{
+    //   console.log("swipeablescroller.js userData is ",stringifyObject(state.userData))
+    //   console.log("swipeablescroller.js user is ",stringifyObject(user))
+    //   setUser(state.userData)
+    // }
+
+
     // if(state.alignmentFunction==true){
     //   XAlign()
       
@@ -269,7 +278,8 @@ const SwipeableScroller = (props) => {
     //console.log('paypalPressed triggered')
     //console.log(paypalRef.current.style)
   }
-  if(stringifyObject(user)=='undefined'){
+  //if(stringifyObject(user)=='undefined'){
+  if(user==undefined){
     return(
             
       <View>
@@ -425,7 +435,8 @@ const SwipeableScroller = (props) => {
                   backgroundSize: '100% 100%',
                   //backgroundColor:'rgb(250,250,250)',
                   //backgroundColor:'rgb(135,135,135)',
-                  backgroundColor:'rgb(192,164,242)',
+                  //backgroundColor:'rgb(192,164,242)',
+                  backgroundColor:'rgb(180,166,255)',
                   textAlign:'center',
                   
                   backgroundRepeat:"no-repeat",
@@ -498,7 +509,8 @@ const SwipeableScroller = (props) => {
                     // textAlign:'center',
                     backgroundSize: '100% 100%',
                     //backgroundColor:'rgb(250,250,250)',
-                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))',
+                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))',
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
                     textAlign:'center',
                   //backgroundImage:"url("+process.env.PUBLIC_URL+"/images/highlightcamo.gif"+")",
                     backgroundRepeat:"no-repeat",
@@ -568,7 +580,8 @@ const SwipeableScroller = (props) => {
                     width:"100vw",
                     
                     //backgroundColor:'rgb(255,255,255)',
-                    backgroundColor:'rgb(229,154,198)',
+                    //backgroundColor:'rgb(229,154,198)',
+                    backgroundColor:'white',
                     textAlign:'center'
                   }}
                 >
@@ -678,7 +691,8 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -689,7 +703,8 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       backgroundColor:'white',
-                      backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
+                      //backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
+                      backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -974,7 +989,8 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1112,7 +1128,8 @@ const SwipeableScroller = (props) => {
                   alignContent:'center',
                   justifyContent:'center',
                   overflow:'hidden',
-                  backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                  //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                  backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                   }}
                 >
                   
@@ -1159,7 +1176,7 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -1257,7 +1274,7 @@ const SwipeableScroller = (props) => {
                       },
                       elevation:2,
                       //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     }}
                   >
                     <Contact/>
@@ -1293,8 +1310,10 @@ const SwipeableScroller = (props) => {
             }
           }
           onMouseEnter={(e)=>{
+            console.log('current entry is ', currentEntry)
+            console.log(scrollerRef.current)
+            onMouseEnter()
             //scrollerRef.scrollTo({x:0,y:currentEntry*height})
-            
           }}
           scrollEnabled={true}
           scrollEventThrottle={16}
@@ -1390,7 +1409,7 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1706,7 +1725,7 @@ const SwipeableScroller = (props) => {
                       },
                       elevation:2,
                       //backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
-                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     }}
                   >
                     <DLLink/>
@@ -1796,7 +1815,7 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1886,7 +1905,7 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -1984,7 +2003,7 @@ const SwipeableScroller = (props) => {
                       },
                       elevation:2,
                       //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     }}
                   >
                     <Contact/>

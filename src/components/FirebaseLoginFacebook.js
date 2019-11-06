@@ -1,8 +1,9 @@
-import * as React from 'react'
+import React,{Component,useContext,useState,useEffect,memo,useRef} from 'react'
 import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import {SafeAreaView,KeyboardAvoidingView,Text,View,StyleSheet,Dimensions,TouchableOpacity,Linking} from 'react-native'
+import {Context} from '../context'
 // const firebaseApp=firebase.initializeApp({
 //     apiKey:'AIzaSyA9VVBgegATYGan6PGuvCjsuG0JL2OIX14',
 //     authDomain:'assistant-569a2.firebaseapp.com',
@@ -19,7 +20,7 @@ firebase.auth().languageCode = 'eng';
 // provider.setCustomParameters({
 //   'login_hint': 'user@example.com'
 // });
-// const popup = firebase.auth().signInWithRedirect(provider) 
+// const popup = ()=>{firebase.auth().signInWithRedirect(provider) 
 // firebase.auth().getRedirectResult().then(function(result){
 //   if (result.credential) {
 //     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -28,6 +29,28 @@ firebase.auth().languageCode = 'eng';
 //   }
 //   // The signed-in user info.
 //   var user = result.user;
+//   console.log('firebase Login user info',user)
+// }).catch(function(error) {
+//   // Handle Errors here.
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   // The email of the user's account used.
+//   var email = error.email;
+//   // The firebase.auth.AuthCredential type that was used.
+//   var credential = error.credential;
+//   // ...
+// });}
+
+
+// firebase.auth().getRedirectResult().then(function(result) {
+//   if (result.credential) {
+//     // This gives you a Google Access Token. You can use it to access the Google API.
+//     var token = result.credential.accessToken;
+//     // ...
+//   }
+//   // The signed-in user info.
+//   var user = result.user;
+//   console.log('firebase Login user info',user)
 // }).catch(function(error) {
 //   // Handle Errors here.
 //   var errorCode = error.code;
@@ -39,49 +62,31 @@ firebase.auth().languageCode = 'eng';
 //   // ...
 // });
 
-const popup =()=> {
-  // firebase.auth().signInWithPopup(provider).then(function(result) {
-  //   // This gives you a Google Access Token. You can use it to access the Google API.
-  //   var token = result.credential.accessToken;
-  //   // The signed-in user info.
-  //   var user = result.user;
-  //   console.log('firebase Login user info',user)
-  //   // ...
-  // }).catch(function(error) {
-  //   // Handle Errors here.
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   // The email of the user's account used.
-  //   var email = error.email;
-  //   // The firebase.auth.AuthCredential type that was used.
-  //   var credential = error.credential;
-  //   // ...
-  // });
-  firebase.auth().signInWithRedirect(provider);
-
-
-}
-firebase.auth().getRedirectResult().then(function(result) {
-  if (result.credential) {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    // ...
-  }
-  // The signed-in user info.
-  var user = result.user;
-  console.log('firebase Login user info',user)
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-
 const FirebaseLoginFacebook=() =>{
+  const [state,setState]=useContext(Context)
+  const popup =()=> {
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      console.log('firebase Login user info',user)
+      setState({...state,userData:user})
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+    //firebase.auth().signInWithRedirect(provider);
+  
+  
+  }
   return (
     // <View>
       

@@ -540,6 +540,12 @@ const Home = () => {
             })
         }
   },[headerOpenState])
+  // useEffect(()=>{
+  //   if(state.userData!==undefined){
+  //     overlayOff()
+  //   }
+  // },[...Object.values(state)])
+
   // animatedHeader.addListener(({value})=>{
   //   console.log(
   //   'animated header value is ', value
@@ -1642,6 +1648,7 @@ const Home = () => {
               slackHashOverlayToggle={slackHashOverlayToggle}
               starOverlayToggle={starOverlayToggle}
               commentOverlayToggle={commentOverlayToggle}
+              overlayOff={overlayOff}
             />
           </Drawer>
           </Animated.View>
