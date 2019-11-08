@@ -380,6 +380,22 @@ app.get('/cookies',cors(),(req,res)=>{
   //console.log(req.signedCookies)
   res.redirect('/')
 })
+app.get('/disqus',function(req,res){
+  fetch('https://disqus.com/api/oauth/2.0/access_token')
+  .then(result=>{
+      //console.log('disqus fetch')
+      return result.json()
+    })
+    .then((json)=>{
+     
+      console.log('/disqus',stringifyObject(json))
+      return json
+      res.json(json)
+    })
+    .catch((err)=>{
+      console.error(err)
+    })
+})
 app.get('/readCookies',function(req, res){
   //res.send(req.signedCookies);
   res.json(req.signedCookies)
@@ -1072,7 +1088,7 @@ app.get('/info',cors(),function(req,res){
 app.get('/removeme',cors(),function(req,res){
   //var obj = req.signedCookies
   var obj = req.query
-  console.log('/removeme signedCookies: ',stringifyObject(obj))
+  console.log('/removeme obj: ',stringifyObject(obj))
   //var obj = req.query
 
   //function addUser({userName,userEmail},func){
@@ -1080,10 +1096,10 @@ app.get('/removeme',cors(),function(req,res){
     //var copy = Object.create(obj)
 
     //global.copy = Object.create(obj)
-    const tempUUID = uuidv4()
-    global[tempUUID] = Object.create(obj)
+    //const tempUUID = uuidv4()
+    //global[tempUUID] = Object.create(obj)
 
-    console.log(stringifyObject(global[tempUUID]))
+    //console.log(stringifyObject(global[tempUUID]))
     var db = admin.database()
     //var ref = db.ref('users')
     var ref = db.ref('sold')
@@ -1105,7 +1121,7 @@ app.get('/removeme',cors(),function(req,res){
     // userStructure.token=copy['connect.sid']
     //console.log(userStructure)
 
-    ref.once('value',cors(),function(snapshot){
+    ref.once('value',function(snapshot){
       var usersList=snapshot.val()
       //console.log('userlist function')
       if(usersList==undefined){
@@ -1113,13 +1129,17 @@ app.get('/removeme',cors(),function(req,res){
         console.log('userlist undefined')
       }
       else{
-        var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+        //var picked = usersList.find(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+        var picked = usersList.find(user=>user.owner.provider[obj.provider]==obj.providerid)
+    
         if(picked==undefined){
           //usersList.push(userStructure)
           console.log('no such user to remove')
         }
         else{
-          var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+          //var index=usersList.findIndex(user=>user.owner.provider[global[tempUUID].provider]==global[tempUUID].providerid)
+          var index=usersList.findIndex(user=>user.owner.provider[obj.provider]==obj.providerid)
+          
           //usersList[index]=userStructure
           console.log('removing user index found', index)
           usersList.splice(index,1)
@@ -1140,7 +1160,7 @@ app.get('/removeme',cors(),function(req,res){
 
       })
       //delete global.copy
-      delete global[tempUUID]
+      //delete global[tempUUID]
     })
   }
   

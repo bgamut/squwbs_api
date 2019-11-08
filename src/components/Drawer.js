@@ -277,7 +277,8 @@ const Drawer =(props)=>{
           userName:state.userData.displayName
       }))
         .then((result)=>{
-        console.log('user result firebaseloginfacebook: ',result)
+        console.log('user result firebaselogout: ',result)
+            setState({...state,userData:undefined})
             return result.json()
         })
         .catch((err)=>{

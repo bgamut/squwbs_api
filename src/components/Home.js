@@ -26,6 +26,8 @@ import './css/terms.css'
 import {Rnd} from 'react-rnd'
 import { InboxStream, CommentStream, SubmissionStream } from "snoostorm";
 import Snoowrap from "snoowrap";
+import Disqus from 'disqus-react'
+
 
 // import FadeInOut from 'react-native-fade-in-out';
 
@@ -35,6 +37,9 @@ const withQuery = require('with-query').default
 var diff = require('object-diff')
 const _ = require('lodash')
 const stringifyObject= require('stringify-object')
+
+const uuidv4= require('uuid/v4')
+
 const client = new Snoowrap({
   userAgent:'reddit-bot',
   clientId:'CiO2G81f6z7yWw',
@@ -42,6 +47,12 @@ const client = new Snoowrap({
   username:'squwbs',
   password:'90-=op[]'
 })
+
+// var disqusConfig={
+//   url:'https://squwbs.com',
+//   title:'temporary title',
+//   identifier:uuidv4()
+// }
 
 // //const comments= client.CommentStream(streamOpts)
 // const comments = new CommentStream(client, { subreddit: "tipofmytongue", limit: 1, pollTime: 20000 });
@@ -60,6 +71,32 @@ client.getSubreddit('tipofmytongue').getControversial({time:'all'}).then(stuff=>
     }
   })
 })
+
+// var Disqus = require ('disqus')
+// var disqus=null
+// //fetch('https://disqus.com/api/oauth/2.0/access_token')
+// fetch('https://squwbs-252702.appspot.com/disqus')
+//   .then(result=>{
+//       //console.log('disqus fetch')
+//       return result.json()
+//     })
+//     .then((json)=>{
+     
+//       console.log('disqus fetch',stringifyObject(json))
+//       return json
+//       disqus = new Disqus({
+//         api_secret:'THJJ2cdl2UTy4D6IvXuUKoaTw5wooaXie0ADcaQkxmlozTiWBywOOdotYshKfzqr',
+//         api_key:'SNc2gCWRSwgpqhl2n0usNBCfRl6mwCye0tfC1aFNkR539djIUEgsUgYrXfXeLqLF',
+//         access_token:json
+//       })
+//     })
+//     .catch((err)=>{
+//       console.error(err)
+//     })
+
+
+
+
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 // const firebase = require('firebase')
 // firebase.initializeApp(
@@ -106,6 +143,8 @@ const Home = () => {
   const [commentOverlaySwitch,setCommentOverlaySwitch]=useState(false)
   const [shareOverlaySwitch,setShareOverlaySwitch]=useState(false)
   const [starOverlaySwitch,setStarOverlaySwitch]=useState(false)
+  const [disqusConfigTitle,setDisqusConfigTitle]=useState('othertitle')
+  const [disqusConfigIdentifier,setDisqusConfigIdentifier]=useState('')
   const [fade, setFade] =useState('true')
   const [height,setHeight]=useState(0)
   const [width,setWidth]=useState(0)
@@ -117,6 +156,7 @@ const Home = () => {
   const [shineFour, setShineFour]=useState(0.3)
   const [shineFive, setShineFive]=useState(0.3)
   const [slackHashTextValue,setSlackHashTextValue]=useState('')
+  const [disqusComments,setDisqusComments]=useState([])
   const loginOverlay=useRef('')
   const termsOverlay=useRef('')
   const starOne = useRef('')
@@ -202,11 +242,55 @@ const Home = () => {
       }, duration);
     }  
   }
+
+  const createDisqusComments = () =>{
+   
+    let parent = []
+    
+    //var random_title=['kanye','beats','new']
+    // var title=random_title[Math.floor(Math.random() * 3)]
+    // var identifier=uuidv4()
+    // const disqusConfig={
+    //   url:'https://squwbs.com',
+    //   title:title,
+    //   identifier:identifier
+    // }
+    const disqusConfig={
+      url:'https://squwbs.com',
+      title:'squwbs',
+      identifer:uuidv4()
+    }
+    parent.push(
+      <Disqus.DiscussionEmbed shortname={'squwbs'} config={disqusConfig} />
+      //<Disqus.DiscussionEmbed shortname={'squwbs'} url={'https://squwbs.com'} title={disqusConfigTitle} identifier={disqusConfigIdentifier}/>
+    )
+      
+    
+    return parent;
+}
+
   const commentOverlayToggle=()=>{
-    console.log('home.js : disques toggled!')
+    console.log('home.js : disqus toggled!')
     if(commentOverlaySwitch==false){
+      var random_title=['kanye','beats','new']
+      // disqusConfig.title=random_title[Math.floor(Math.random() * 3)]
+      // disqusConfig.identifier=uuidv4()
+      //setDisqusConfigTitle(random_title[Math.floor(Math.random() * 3)])
+      //setDisqusConfigIdentifier(uuidv4())
+      //console.log("disqus title should be",disqusConfig.title)
+      //console.log('disqus identifier should be',disqusConfig.identifier)
+      const disqusConfig={
+        url:'https://squwbs.com',
+        title:random_title[Math.floor(Math.random() * 3)],
+        identifer:uuidv4()
+      }
+      setDisqusComments(
+        <Disqus.DiscussionEmbed shortname={'squwbs'} config={disqusConfig} />
+        //<Disqus.DiscussionEmbed shortname={'squwbs'} url={'https://squwbs.com'} title={disqusConfigTitle} identifier={disqusConfigIdentifier}/>
+      )
       setCommentOverlaySwitch(true)
       setFade(true)
+
     }
     else{
       setFade(false)
@@ -680,8 +764,8 @@ const Home = () => {
                 //backgroundColor:'orange',
                 backgroundColor:'rgba(0,0,0,0.8)',
                 //backgroundImage:'',
-                justifyContent:'center',
-                alignItems:'center',
+                //justifyContent:'center',
+                //alignItems:'center',
                 //textAlign:'center'
             }}>
               <View
@@ -712,6 +796,35 @@ const Home = () => {
                 </div>
                 
               </TouchableOpacity>
+              <View
+                style={{
+                  position:'fixed',
+                  height:height-50,
+                  width:width-30,
+                  top:50,
+                  right:15,
+                  //backgroundColor:'white',
+                  zIndex:100
+              }}
+              >
+                {/* <Disqus.CommentCount shortname={'squwbs'} config={disqusConfig}>
+                    Comments
+                </Disqus.CommentCount> */}
+                {/* <Disqus.CommentEmbed 
+                    commentId={this.props.article.featuredComment}
+                    showMedia={true}
+                    height={160}
+                /> */}
+                <View>
+                  {/* <Disqus.DiscussionEmbed shortname={'squwbs'} config={disqusConfig} /> */}
+                  {/* <Disqus.DiscussionEmbed shortname={'squwbs'} config={{
+                    url:'https://squwbs.com',
+                    title:'another title'
+                  }} /> */}
+                  {/* {createDisqusComments()} */}
+                  {disqusComments}
+                </View>
+              </View>
             </View>
           </View>
         </Fade> 
