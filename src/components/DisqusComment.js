@@ -138,9 +138,11 @@ const waitForGlobal = (name,interval=3000)=>{
 class DisqusComment extends Component {
     constructor(props) {
         super(props);
+        this.myRef = React.createRef();
         this.state={
             height:Dimensions.get('window').height,
-            width:Dimensions.get('window').width
+            width:Dimensions.get('window').width,
+            loading:true
         }
     }
     codeStringOne = 
@@ -257,6 +259,7 @@ class DisqusComment extends Component {
         this.setState({
             height:Math.floor(Dimensions.get('window').height),
             width:Math.floor(Dimensions.get('window').width),
+            //loading:false
         })      
         this.forceUpdate()
         // waitForGlobal('loadDisqus')
@@ -353,7 +356,15 @@ class DisqusComment extends Component {
         //     console.log("DISQUS LOADED")
         waitForGlobal('loadDisqus')
             .then(()=>{
+                
                 console.log('loadDisqus() Loaded')
+                //var spinner =document.getElementById('spinner')
+                //spinner.parentNode.removeChild(spinner)
+                this.setState({loading:false})
+                //this.myRef.current.props.style.display='none'
+                //this.myRef.current.props.style.visibility='hidden'
+                //console.log(this.myRef.current.props.style.display)
+                //console.log(this.myRef.current.props.style.visibility)
                 var disqus_shortname  = 'gamutcomma'
                 var disqus_identifier = 'default'
                 var disqus_title      = 'I Heart Chocolate'
@@ -404,9 +415,7 @@ class DisqusComment extends Component {
         this.updateDimensions()
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-
-    }
+    
 
     componentWillUpdate(nextProps, nextState) {
 
@@ -421,6 +430,7 @@ class DisqusComment extends Component {
     }
 
     render() {
+        if(this.state.loading==true){
         return (
             <View
                 style={{
@@ -450,13 +460,16 @@ class DisqusComment extends Component {
                             backgroundColor:'transparent'
                         }}
                     >
+                       
                         <View
+                            //id='spinner'
+                            ref={this.myRef}
                             style={{
                                 height:'100%',
                                 width:'100%',
                                 backgroundColor:'transparent',
                                 alignItems:'center',
-                                justifyContent:'center'
+                                //justifyContent:'center'
                             }}
                         >
                             <View
@@ -470,7 +483,8 @@ class DisqusComment extends Component {
                                         translateX:0,
                                       },
                                       {
-                                        translateY:-55,
+                                       // translateY:-55,
+                                        translateY:-30
                                       }
                                     ]
                                 }}
@@ -491,10 +505,86 @@ class DisqusComment extends Component {
                                 </Text>
                             </View>
                         </View>
+                        
                     </div>
                 </div>
             </View>
         )
+    }
+    else if (this.state.loading==false){
+        return(
+            <View
+            style={{
+                // height:'100%',
+                // width:'100%',
+                height:this.props.height,
+                width:this.props.width,
+                backgroundColor:'transparent'
+            }}
+        >
+            <div 
+                id="disqusComment"
+                style={{
+                    //height:'100%',
+                    //width:'100%',
+                    height:this.props.height,
+                    width:this.props.width,
+                    backgroundColor:'transparent'
+                }}
+            >
+                <div id="disqus_thread"
+                    style={{
+                        // height:this.props.height,
+                        // width:this.props.width,
+                        height:this.props.height,
+                        width:this.props.width,
+                        backgroundColor:'transparent'
+                    }}
+                >
+                   
+                    
+                </div>
+            </div>
+        </View>
+        )
+    }
+    else{
+        return(
+            <View
+            style={{
+                // height:'100%',
+                // width:'100%',
+                height:this.props.height,
+                width:this.props.width,
+                backgroundColor:'transparent'
+            }}
+        >
+            <div 
+                id="disqusComment"
+                style={{
+                    //height:'100%',
+                    //width:'100%',
+                    height:this.props.height,
+                    width:this.props.width,
+                    backgroundColor:'transparent'
+                }}
+            >
+                <div id="disqus_thread"
+                    style={{
+                        // height:this.props.height,
+                        // width:this.props.width,
+                        height:this.props.height,
+                        width:this.props.width,
+                        backgroundColor:'transparent'
+                    }}
+                >
+                   
+                    
+                </div>
+            </div>
+        </View>
+        )
+    }
     }
 }
 
