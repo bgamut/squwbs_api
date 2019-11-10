@@ -20,6 +20,7 @@ import {ContextController} from './context'
 //import { Context } from "./context";
 import {View,Text,ScrollView,Dimensions,Platform,SafeAreaView,StyleSheet,KeyboardAvoidingView} from 'react-native'
 import async from 'express-async-await'
+import DisqusComment from './components/DisqusComment'
 // import Reanimate from './components/Reanimate'
 //import {CookiesProvider, useCookies} from 'react-cookie'
 //import Cookies from 'js-cookie'
@@ -147,6 +148,9 @@ const App = (props,context)=>{
       </ContextController>
     // </Provider>
     )
+    // return(
+    //   <DisqusComment/>
+    // )
   // }
 }
 

@@ -27,7 +27,7 @@ import {Rnd} from 'react-rnd'
 import { InboxStream, CommentStream, SubmissionStream } from "snoostorm";
 import Snoowrap from "snoowrap";
 import Disqus from 'disqus-react'
-
+import DisqusComment from './DisqusComment'
 
 // import FadeInOut from 'react-native-fade-in-out';
 
@@ -272,22 +272,7 @@ const Home = () => {
   const commentOverlayToggle=()=>{
     console.log('home.js : disqus toggled!')
     if(commentOverlaySwitch==false){
-      var random_title=['kanye','beats','new']
-      // disqusConfig.title=random_title[Math.floor(Math.random() * 3)]
-      // disqusConfig.identifier=uuidv4()
-      //setDisqusConfigTitle(random_title[Math.floor(Math.random() * 3)])
-      //setDisqusConfigIdentifier(uuidv4())
-      //console.log("disqus title should be",disqusConfig.title)
-      //console.log('disqus identifier should be',disqusConfig.identifier)
-      const disqusConfig={
-        url:'https://squwbs.com',
-        title:random_title[Math.floor(Math.random() * 3)],
-        identifer:uuidv4()
-      }
-      setDisqusComments(
-        <Disqus.DiscussionEmbed shortname={'squwbs'} config={disqusConfig} />
-        //<Disqus.DiscussionEmbed shortname={'squwbs'} url={'https://squwbs.com'} title={disqusConfigTitle} identifier={disqusConfigIdentifier}/>
-      )
+
       setCommentOverlaySwitch(true)
       setFade(true)
 
@@ -722,7 +707,7 @@ const Home = () => {
           'invisible'
         > */}
         {commentOverlaySwitch && 
-        
+         
             <View
             
             // className={overlayClassName}
@@ -740,7 +725,7 @@ const Home = () => {
                 //opacity:0,
                 //display:'block',
             }}
-          >
+          > 
           <Fade
           duration={duration}
           timeout={duration}
@@ -816,13 +801,41 @@ const Home = () => {
                     height={160}
                 /> */}
                 <View>
+                <ScrollView
+                    // ref={ref=>this.myRef=ref}
+                    style={{
+                        // display:'absolute',f
+                        // left:0,
+                        position:'fixed',
+                        top:50,
+                        left:0,
+                        height:height-50,
+                        width:width,
+                        //backgroundColor:'black',
+                        backgroundColor:'rgb(0,0,0,0.99)',
+                        margin:0,
+                        flexDirection:'row',
+                        padding:15,
+                        zIndex:100,
+                        // paddingBottom:15,
+                        // paddingRight:15,
+                    }}
+          
+                    horizontal={false}
+                
+                    showsHorizontalScrollIndicator={true}
+                    snapeToAlignment='end'
+                    decelerationRate="fast"
+                >
                   {/* <Disqus.DiscussionEmbed shortname={'squwbs'} config={disqusConfig} /> */}
                   {/* <Disqus.DiscussionEmbed shortname={'squwbs'} config={{
                     url:'https://squwbs.com',
                     title:'another title'
                   }} /> */}
                   {/* {createDisqusComments()} */}
-                  {disqusComments}
+                  {/* {disqusComments} */}
+                  <DisqusComment height={height-50} width={width-30}/>
+                </ScrollView>
                 </View>
               </View>
             </View>
@@ -830,6 +843,7 @@ const Home = () => {
         </Fade> 
         </Fade>
         </View>
+        
         
         }  
         {slackHashOverlaySwitch && 

@@ -103,9 +103,9 @@ class GoogleDeck extends Component {
     
   }
   touchedPost=()=>{
-    setTimeout(()=>{
-      this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
-    },720)
+    // setTimeout(()=>{
+    //   this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+    // },720)
     
     //this.props.XAlign()
   }
@@ -345,7 +345,7 @@ class GoogleDeck extends Component {
               paddingLeft:0,
               paddingRight:0,
               margin:0,
-              width:this.state.width-18,
+              width:this.state.width-30,
               zIndex:99,
               transform:[{
                 translateX:-6,
@@ -364,6 +364,7 @@ class GoogleDeck extends Component {
             >
             <ScrollView
                 ref={ref=>this.myRef=ref}
+                //ref={this.myRef}
                 style={{
                     // display:'absolute',
                     // left:0,
@@ -371,7 +372,8 @@ class GoogleDeck extends Component {
                   
                     height:this.state.height-70,
                     //height:'100%',
-                    width:this.state.width-18,
+                    //width:this.state.width-18,
+                    width:this.state.width-30,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     margin:0,
@@ -425,7 +427,7 @@ class GoogleDeck extends Component {
                       justifyContent:'center',
                       alignItems:'center',
                       backgroundColor:'white',
-                      width:this.state.width-18,
+                      width:this.state.width-28,
                       height:50,
                       //borderWidth:4,
                       //borderRadius:4,
@@ -580,7 +582,7 @@ const styles = StyleSheet.create({
   icon:{
       textDecorationLine:'none',
       color:'rgb(196,196,196)',
-      fontSize: 14,
+      fontSize: 20,
       fontWeight:'700',
       
       textAlign:'center',

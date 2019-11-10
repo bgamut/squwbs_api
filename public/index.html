@@ -67,6 +67,27 @@
         <!-- <script src="http://wzrd.in/standalone/uuid%2Fv4@latest"></script> -->
         <script src="./firebase-messaging-sw.js"></script>
         <script defer src="./initFirebase.js"></script>
+        <!-- <script>
+          /**
+           *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+           *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+           */
+          
+          var disqus_config = function () {
+              this.page.url = 'http://squwbs.com/identifier';  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = '/identifier'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          
+          (function() {  // DON'T EDIT BELOW THIS LINE
+              var d = document, s = d.createElement('script');
+              
+              s.src = 'https://gamutcomma.disqus.com/embed.js';
+              
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+          })();
+      </script> -->
+
         <!-- <script defer src="./service-worker.js"></script> -->
     </head>
   <!-- <head> -->
@@ -111,6 +132,125 @@
     -->
     
   </body>
+  <script id="dsq-count-scr" src="http://gamutcomma.disqus.com/count.js" async></script>
+  <script type="text/javascript">
+  //  var waitForGlobal = function(name, callback,interval = 3000) {
+  //     // return new Promise(function(resolve, reject){
+  //     //   var waited = 0
+  //     //   console.log('waitForGlobal in html')
+  //     //   var wait=function(interval) {
+  //     //     var connected = false
+  //     //     setInterval(function(){
+  //     //       waited += interval
+  //     //       // some logic to check if script is loaded
+  //     //       // usually it something global in window object 
+            
+  //     //       console.log(name+window[name])
+  //     //       console.log(this)
+  //     //       if (window[name] !== undefined) {
+  //     //         console.log('window name resolved')
+  //     //         clearInterval(wait)
+  //     //         connected=true
+  //     //         return resolve()
+  //     //       }
+  //     //       if (waited >= timeout * 1000) {
+  //     //         return reject({ message: 'Timeout' })
+  //     //       }
+  //     //       //wait(interval * 2)
+  //     //     }, interval)
+  //     //   }
+    
+  //     //   wait(3000)
+  //     // })
+  //     var waited = 0
+  //     console.log('waitForGlobal in html')
+  //     var waiting= function(){
+  //       setInterval(function(){
+  //       // waited += interval
+  //       // some logic to check if script is loaded
+  //       // usually it something global in window object 
+  //       console.log('waiting')
+  //       console.log(name+window[name])
+  //       //console.log(this)
+  //       if (window[name] !== undefined) {
+  //         console.log('window name resolved')
+  //         clearInterval(waiting)
+  //         connected=true
+  //         callback()
+  //       }
+  //       //wait(interval * 2)
+  //       }, interval)
+  //     }
+  
+  //     waiting()
+      
+  //  }
+  const waitForGlobal = (name,interval=3000)=>{
+    var waited = 0  
+    return new Promise(function(resolve,reject){
+        const waiting = function(){
+            setTimeout(
+                function(){
+                    waited+=1
+                    console.log(waited)
+                    if (waited>50) {
+                        return reject({message:'Timeout'})
+                    }
+                    else{
+                        if(window[name] !== undefined){
+                            console.log(name,' defined in html')
+                            return resolve()
+                        }
+                        else{
+                            waiting()
+                        } 
+                    }
+            }, interval)
+        }
+        waiting()
+    })
+}
+    var disqus_shortname  = 'gamutcomma',
+        disqus_identifier = 'let_me_in',
+        disqus_title      = 'let_me_in',
+        disqus_url = "http://squwbs.com/"+disqus_identifier
+        disqus_config     = function(){
+            this.language = 'en';
+            this.page.title=disqus_title;
+            this.page.identifier=disqus_identifier;
+            this.page.url=disqus_url
+        };
+    
+    
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    var loadDisqus=undefined
+    waitForGlobal('DISQUS')
+    .then(function(){
+      console.log('disqus in HTML')
+      loadDisqus=function( identifier, url, title )
+      {
+        DISQUS.reset({
+              reload: true,
+              config: function ()
+              {
+                  this.page.identifier = identifier;
+                  this.page.url        = url;
+                  this.page.title      = title;
+                  this.language        = 'en';
+              }
+          });
+      }
+      console.log('loadDisqus defined in HTML')
+    })
+    .catch(function(e){
+      console.log(e)
+    })
+    //loadDisqus(disqus_config,disqus_url,disqus_title)
+  </script>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     

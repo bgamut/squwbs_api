@@ -12,6 +12,7 @@ import iglogo from './icons/iglogo.svg'
 
 import './css/Wiggle.css'
 import './css/Image.css'
+import './css/iconHover.css'
 // const SwingAnimation = keyframes'${Swing}';
 // const SwingDiv = styled.div'
 //   animation: infinite 5s ${SwingAnimation};';
@@ -19,6 +20,18 @@ const styles={
     swing:{
         animation:'infinite 5s',
         animationName:Radium.keyframes(swing,'swing')
+    }
+    ,
+    icon:{
+        textDecorationLine:'none',
+        color:'rgb(196,196,196)',
+        fontSize: 20,
+        fontWeight:'700',
+        
+        textAlign:'center',
+        alignItems:'center',
+        justifyContent:'center',
+        flexDirection:'row',
     }
 }
 
@@ -394,7 +407,7 @@ const Instagram = (props)=> {
                                         
                                         </i>
                                     </StyleRoot> */}
-                                    <img 
+                                    {/* <img 
                                         className="Wiggle Unselectable" 
                                             src={iglogo}
                                             style={{           
@@ -408,7 +421,39 @@ const Instagram = (props)=> {
                                         
                                         
                                         }}
-                                        />
+                                        /> */}
+                                        <Text
+                                            className='icon'
+                                            style ={{
+                                                textDecorationLine:'none',
+                                                color:'rgb(196,196,196)',
+                                                fontSize: 30,
+                                                fontWeight:'700',
+                                                textAlign:'center',
+                                                alignItems:'center',
+                                                justifyContent:'center',
+                                                flexDirection:'row',
+                                            }}
+                                        >
+                                            <i 
+                                                // style={{           
+                                                //     height:33,
+                                                //     color:'grey',
+                                                //     display:'block',
+                                                //     margin:3,
+                                                //     shadowColor:'#000',
+                                                //     shadowOpacity:0.25,
+                                                //     shadowRadius:2,
+                                                //     shadowOffset:{
+                                                //     width:0,
+                                                //     height:0
+                                                //     },
+                                                //     elevation:2
+                                                // }}
+                                                className="fab fa-instagram">
+                                            
+                                            </i>
+                                        </Text>
                                 </a>
                             </View>
                         </View>
