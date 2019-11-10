@@ -88,9 +88,9 @@ const DLLink = (props)=> {
         
         
         var element = document.createElement('a');
-        element.setAttribute('href', 'https://squwbs-252702.appspot.com/download');
+        //element.setAttribute('href', 'https://squwbs-252702.appspot.com/download');
         // element.setAttribute('download', filename);
-      
+        element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
         element.style.display = 'none';
         document.body.appendChild(element);
       

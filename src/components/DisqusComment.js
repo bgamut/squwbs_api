@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {View} from 'react-native';
+import {View,Text,Dimensions} from 'react-native';
+
 //import helper from './DisqusHelper'
 // function waitForGlobal(name, interval = 300) {
 //     return new Promise((resolve, reject) => {
@@ -137,7 +138,10 @@ const waitForGlobal = (name,interval=3000)=>{
 class DisqusComment extends Component {
     constructor(props) {
         super(props);
-
+        this.state={
+            height:Dimensions.get('window').height,
+            width:Dimensions.get('window').width
+        }
     }
     codeStringOne = 
     `
@@ -248,17 +252,55 @@ class DisqusComment extends Component {
     componentWillMount() {
 
     }
+    updateDimensions(){
+        console.log("disquscomment resize")
+        this.setState({
+            height:Math.floor(Dimensions.get('window').height),
+            width:Math.floor(Dimensions.get('window').width),
+        })      
+        this.forceUpdate()
+        // waitForGlobal('loadDisqus')
+        //     .then(()=>{
+        //         console.log('loadDisqus() Loaded')
+        //         var disqus_shortname  = 'gamutcomma'
+        //         var disqus_identifier = 'default'
+        //         var disqus_title      = 'I Heart Chocolate'
+        //         var disqus_url = "http://squwbs.com/"+disqus_identifier
+        //         var disqus_config = function(){
+        //             this.language = 'en';
+        //             this.page.title=disqus_title;
+        //             this.page.identifier=disqus_identifier;
+        //             this.page.url=disqus_url
+        //         };
+        //         console.log('loadDisqus firing')
+        //         window.loadDisqus(disqus_config,disqus_url,disqus_title)
+        //         console.log('loadDisqus fired')
+        //     })
+        //     .catch((e)=>{
+        //         console.log(e)
+        //     })
+        
+        // var a = document.getElementById('disqus_thread')
+        // a.parentNode.removeChild(a)
+       
 
+    }
     componentDidMount() {
         //const node = ReactDOM.findDOMNode(this)
-        ReactDOM.render(
-        <div id="disqus_thread"
-            style={{
-                height:this.props.height,
-                width:this.props.width,
-                backgroundColor:'transparent'
-            }}
-        ></div>,document.getElementById('disqusComment'))
+        Dimensions.addEventListener('change',(e)=>{
+            this.updateDimensions()
+          })
+        this.updateDimensions()
+        // ReactDOM.render(
+        // <div id="disqus_thread"
+        //     style={{
+        //         // height:this.props.height,
+        //         // width:this.props.width,
+        //         height:this.state.height-50,
+        //         width:this.state.width-30,
+        //         backgroundColor:'transparent'
+        //     }}
+        // ></div>,document.getElementById('disqusComment'))
         //console.log('helper string',helper.toString())
         // this.appendScript(this.codeStringOne)
         // .then(()=>{
@@ -359,7 +401,7 @@ class DisqusComment extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        this.updateDimensions()
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -382,19 +424,75 @@ class DisqusComment extends Component {
         return (
             <View
                 style={{
-                    height:'100%',
-                    width:'100%',
+                    // height:'100%',
+                    // width:'100%',
+                    height:this.props.height,
+                    width:this.props.width,
                     backgroundColor:'transparent'
                 }}
             >
                 <div 
                     id="disqusComment"
                     style={{
-                        height:'100%',
-                        width:'100%',
+                        //height:'100%',
+                        //width:'100%',
+                        height:this.props.height,
+                        width:this.props.width,
                         backgroundColor:'transparent'
                     }}
-                ></div>
+                >
+                    <div id="disqus_thread"
+                        style={{
+                            // height:this.props.height,
+                            // width:this.props.width,
+                            height:this.props.height,
+                            width:this.props.width,
+                            backgroundColor:'transparent'
+                        }}
+                    >
+                        <View
+                            style={{
+                                height:'100%',
+                                width:'100%',
+                                backgroundColor:'transparent',
+                                alignItems:'center',
+                                justifyContent:'center'
+                            }}
+                        >
+                            <View
+                                style={{
+                                    height:120,
+                                    width:120,
+                                    backgroundColor:'transparent',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    transform:[{
+                                        translateX:0,
+                                      },
+                                      {
+                                        translateY:-55,
+                                      }
+                                    ]
+                                }}
+                            >
+                                <Text
+                                    style ={{
+                                        textDecorationLine:'none',
+                                        color:'rgb(196,196,196)',
+                                        fontSize: 60,
+                                        fontWeight:'700',
+                                        textAlign:'center',
+                                        alignItems:'center',
+                                        justifyContent:'center',
+                                        flexDirection:'row',
+                                    }}
+                                >
+                                    <i class="fas fa-cog fa-spin"></i>
+                                </Text>
+                            </View>
+                        </View>
+                    </div>
+                </div>
             </View>
         )
     }

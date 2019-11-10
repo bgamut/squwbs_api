@@ -427,7 +427,7 @@ const Instagram = (props)=> {
                                             style ={{
                                                 textDecorationLine:'none',
                                                 color:'rgb(196,196,196)',
-                                                fontSize: 30,
+                                                fontSize: 45,
                                                 fontWeight:'700',
                                                 textAlign:'center',
                                                 alignItems:'center',

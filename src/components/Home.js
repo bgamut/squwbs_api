@@ -834,7 +834,10 @@ const Home = () => {
                   }} /> */}
                   {/* {createDisqusComments()} */}
                   {/* {disqusComments} */}
-                  <DisqusComment height={height-50} width={width-30}/>
+                  <DisqusComment 
+                    height={height-50} 
+                    width={width-30}
+                  />
                 </ScrollView>
                 </View>
               </View>
