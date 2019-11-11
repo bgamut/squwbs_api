@@ -255,7 +255,7 @@ class DisqusComment extends Component {
 
     }
     updateDimensions(){
-        console.log("disquscomment resize")
+        //console.log("disquscomment resize")
         this.setState({
             height:Math.floor(Dimensions.get('window').height),
             width:Math.floor(Dimensions.get('window').width),
