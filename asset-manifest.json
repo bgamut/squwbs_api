@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "./static/css/main.0995d57c.chunk.css",
-    "main.js": "./static/js/main.198ef190.chunk.js",
+    "main.js": "./static/js/main.c36acd66.chunk.js",
     "runtime~main.js": "./static/js/runtime~main.588e96af.js",
     "static/css/2.1c7b198e.chunk.css": "./static/css/2.1c7b198e.chunk.css",
     "static/js/2.20edd637.chunk.js": "./static/js/2.20edd637.chunk.js",
     "index.html": "./index.html",
-    "precache-manifest.ddb72d67bd9fef446a71a2a4e6029fac.js": "./precache-manifest.ddb72d67bd9fef446a71a2a4e6029fac.js",
+    "precache-manifest.3111ab5fa696ab842f6f468f9fc72eea.js": "./precache-manifest.3111ab5fa696ab842f6f468f9fc72eea.js",
     "service-worker.js": "./service-worker.js",
     "static/media/96x96.png": "./static/media/96x96.9a7fb416.png",
     "static/media/Drawer.css": "./static/media/Alien-Encounters-Solid-Regular.8aeca3f0.ttf",
