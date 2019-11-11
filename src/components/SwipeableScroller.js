@@ -310,6 +310,8 @@ const SwipeableScroller = (props) => {
           //snapToInterval = {partHeight}
           snapeToAlignment='end'
           decelerationRate="fast"
+          alwaysBounceVertial={false}
+          bounces={false}
         >
         
           <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>
@@ -1322,6 +1324,8 @@ const SwipeableScroller = (props) => {
           //snapToInterval = {partHeight}
           snapeToAlignment='end'
           decelerationRate="fast"
+          alwaysBounceVertial={false}
+          bounces={false}
         >
         
           <View style={{backgroundColor:'transparent',flexDirection:'column',margin:0,paddingRight:0,paddingLeft:0}}>

@@ -345,7 +345,8 @@ class GoogleDeck extends Component {
               paddingLeft:0,
               paddingRight:0,
               margin:0,
-              width:this.state.width-30,
+              //width:this.state.width-30,
+              width:this.state.width-18,
               zIndex:99,
               transform:[{
                 translateX:-6,
@@ -369,11 +370,17 @@ class GoogleDeck extends Component {
                     // display:'absolute',
                     // left:0,
                     
-                  
+                    transform:[{
+                      translateX:4,
+                    },
+                    {
+                      translateY:0,
+                    }
+                  ],
                     height:this.state.height-70,
                     //height:'100%',
-                    //width:this.state.width-18,
-                    width:this.state.width-30,
+                    width:this.state.width-18,
+                    //width:this.state.width-30,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     margin:0,
@@ -395,10 +402,11 @@ class GoogleDeck extends Component {
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}
                 horizontal={true}
-                //showsHorizontalScrollIndicator={false}
-                showsHorizontalScrollIndicator={this.state.indicatorState}
+                showsHorizontalScrollIndicator={false}
+                //showsHorizontalScrollIndicator={this.state.indicatorState}
                 snapeToAlignment='end'
                 decelerationRate="fast"
+                scrollIndicatorInsets={1000,240,500,24}
             >
         {/* <FlatList 
             horizontal ={true}
@@ -427,7 +435,7 @@ class GoogleDeck extends Component {
                       justifyContent:'center',
                       alignItems:'center',
                       backgroundColor:'white',
-                      width:this.state.width-28,
+                      width:this.state.width-18,
                       height:50,
                       //borderWidth:4,
                       //borderRadius:4,
@@ -442,7 +450,7 @@ class GoogleDeck extends Component {
                           flexDirection:'row',
                           width:this.state.width-60,
                           height:45,
-                          backgroundColor:'white',
+                          backgroundColor:'transparent',
                           alignItems:'center',
                           justifyContent:'center',
                           bottom:0,
@@ -452,7 +460,7 @@ class GoogleDeck extends Component {
                       <View
                           style={{
                               flexDirection:'row',
-                              width:(this.state.width-35)/4,
+                              width:(this.state.width-30)/4,
                               backgroundColor:'transparent',
                               alignItems:'center',
                               justifyContent:'center'
@@ -477,7 +485,7 @@ class GoogleDeck extends Component {
                       <View
                           style={{
                               flexDirection:'row',
-                              width:(this.state.width-35)/4,
+                              width:(this.state.width-30)/4,
                               backgroundColor:'transparent',
                               alignItems:'center',
                               justifyContent:'center'
@@ -501,7 +509,7 @@ class GoogleDeck extends Component {
                       <View
                           style={{
                               flexDirection:'row',
-                              width:(this.state.width-35)/4,
+                              width:(this.state.width-30)/4,
                               backgroundColor:'transparent',
                               alignItems:'center',
                               justifyContent:'center'
@@ -528,7 +536,7 @@ class GoogleDeck extends Component {
                       <View
                           style={{
                               flexDirection:'row',
-                              width:(this.state.width-35)/4,
+                              width:(this.state.width-30)/4,
                               backgroundColor:'transparent',
                               alignItems:'center',
                               justifyContent:'center'

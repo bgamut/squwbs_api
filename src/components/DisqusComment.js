@@ -109,14 +109,14 @@ import {View,Text,Dimensions} from 'react-native';
 // }
 // testPromise().then(function(){console.log('resolve')}).catch(function(e){console.log(e)})
   
-const waitForGlobal = (name,interval=3000)=>{
+const waitForGlobal = (name,interval=15000)=>{
     var waited = 0  
     return new Promise(function(resolve,reject){
         const waiting = function(){
             setTimeout(
                 function(){
                     waited+=1
-                    console.log(waited)
+                    //console.log(waited)
                     if (waited>50) {
                         return reject({message:'Timeout'})
                     }
@@ -142,7 +142,7 @@ class DisqusComment extends Component {
         this.state={
             height:Dimensions.get('window').height,
             width:Dimensions.get('window').width,
-            loading:true
+            loading:false
         }
     }
     codeStringOne = 
