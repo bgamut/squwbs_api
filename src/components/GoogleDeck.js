@@ -18,6 +18,9 @@ import pointer from './icons/pointer.svg'
 //import './css/Zoom.css'
 
 import './css/Pointer.css'
+
+const isMobile = require('react-device-detect').isMobile
+//const isMobile=false
 const uuidv4 = require('uuid/v4');
 
 class GoogleDeck extends Component {
@@ -126,10 +129,10 @@ class GoogleDeck extends Component {
           <View
               id='lastPost'
               style={{
-                  //height:this.state.height-80,
+                  height:this.state.height-80,
                   //width:this.state.width-30,
                   //height:this.state.height-30,
-                  height:'100%',
+                  //height:'100%',
                   width:this.state.width-30,
                   // backgroundColor:'transparent',
                   // borderColor:'transparent',
@@ -263,10 +266,19 @@ class GoogleDeck extends Component {
     // this.myRef.scrollToEnd({animated:true})
     
     const updateDimensions=()=>{
+      
+      // if(isMobile==true){
+      //   this.setState({
+      //     height:Math.floor(Dimensions.get('screen').height),
+      //     width:Math.floor(Dimensions.get('screen').width)
+      //   })
+      // }
+      // else{
         this.setState({
-            height:Math.floor(Dimensions.get('window').height),
-            width:Math.floor(Dimensions.get('window').width)
+          height:Math.floor(Dimensions.get('window').height),
+          width:Math.floor(Dimensions.get('window').width)
         })
+      // }
         
     }
     
@@ -286,6 +298,7 @@ class GoogleDeck extends Component {
       console.log('GoogleDeck.js 206 : observer callback fired')
     }
     var observer = new IntersectionObserver(observerCallback,observerOptions)
+    
   }
   componentDidUpdate(){
     
@@ -330,7 +343,8 @@ class GoogleDeck extends Component {
  
   render(){
       
-      
+      if(isMobile){
+      //if(true){
         return (
           <Fade
                     duration={270}
@@ -349,12 +363,11 @@ class GoogleDeck extends Component {
               width:this.state.width-18,
               zIndex:99,
               transform:[{
-                translateX:-6,
+                translateX:-8,
               },
               {
-                translateY:-5,
-              }
-            ]
+                translateY:-10,
+              }]
             }
             }
           >
@@ -370,14 +383,14 @@ class GoogleDeck extends Component {
                     // display:'absolute',
                     // left:0,
                     
-                    transform:[{
-                      translateX:4,
-                    },
-                    {
-                      translateY:0,
-                    }
-                  ],
-                    height:this.state.height-70,
+                  //   transform:[{
+                  //     translateX:4,
+                  //   },
+                  //   {
+                  //     translateY:0,
+                  //   }
+                  // ],
+                    height:this.state.height-74,
                     //height:'100%',
                     width:this.state.width-18,
                     //width:this.state.width-30,
@@ -395,7 +408,8 @@ class GoogleDeck extends Component {
                     borderColor:'transparent',
                     borderWidth:4,
                     borderStyle:'solid',
-                    padding:0
+                    padding:0,
+                    zIndex:98
                 }}
                 onScroll={this.onScroll}
                 scrollEventThrottle={16}
@@ -425,18 +439,19 @@ class GoogleDeck extends Component {
                 
                   <View
                     style={{
-                      transform:[{
-                          translateX:0,
-                        },
-                        {
-                          translateY:0,
-                        }
-                      ],
+                      // transform:[{
+                      //     translateX:0,
+                      //   },
+                      //   {
+                      //     translateY:-4,
+                      //   }
+                      // ],
                       justifyContent:'center',
                       alignItems:'center',
                       backgroundColor:'white',
                       width:this.state.width-18,
                       height:50,
+                      zIndex:99,
                       //borderWidth:4,
                       //borderRadius:4,
                       //borderColor:'transparent',
@@ -466,7 +481,7 @@ class GoogleDeck extends Component {
                               justifyContent:'center'
                           }}
                       >
-                          <TouchableOpacity
+                          {/* <TouchableOpacity
                             //onPress={this.props.commentButtonPressed}
                             onPress={this.commentButtonPressed}
                           >
@@ -475,12 +490,60 @@ class GoogleDeck extends Component {
                               className='icon'
                               style ={styles.icon}
                           >
-                              {/* {props.stars} <i class="fas fa-star"></i>  */}
-                              {/* Flip */}
-                              {/* <i class="fas fa-edit"></i> */}
+                              
                               <i class="fas fa-server"></i>
                           </Text>
-                          </TouchableOpacity>
+                          </TouchableOpacity> */}
+                      </View>
+                      
+                      <View
+                          style={{
+                              flexDirection:'row',
+                              width:(this.state.width-30)/4,
+                              backgroundColor:'transparent',
+                              alignItems:'center',
+                              justifyContent:'center'
+                          }}
+                      >
+                          {/* <TouchableOpacity
+                            //onPress={this.props.shareButtonPressed}
+                            onPress={this.shareButtonPressed}
+                          >
+                          <Text
+                              style ={styles.icon}
+                              className='icon'
+                          >
+                              <i class="fas fa-share-alt"></i>
+                          </Text>
+                          </TouchableOpacity> */}
+                      </View>
+                      
+                      <View
+                          style={{
+                              flexDirection:'row',
+                              width:(this.state.width-30)/4,
+                              backgroundColor:'transparent',
+                              alignItems:'center',
+                              justifyContent:'center'
+                          }}
+                      >
+                          {/* <TouchableOpacity
+                            //onPress={this.props.starButtonPressed}
+                            onPress={this.starButtonPressed}
+                          >
+                          <Text
+                              className='icon'
+                              style ={[
+                                  styles.icon,
+                                  
+                              ]
+                                  
+                              }
+                          >
+                              
+                              <i class="fas fa-star"></i> 
+                          </Text>
+                          </TouchableOpacity> */}
                       </View>
                       <View
                           style={{
@@ -506,6 +569,148 @@ class GoogleDeck extends Component {
                           </Text>
                           </TouchableOpacity>
                       </View>
+                  </View>
+                
+                  </View>
+                
+                </TouchableOpacity>
+        </View>    
+        </Fade>  
+              
+          
+              
+        );
+      }
+      else{
+        return (
+          <Fade
+                    duration={270}
+                    timeout={270}
+                >
+          <View
+            style={{
+              borderWidth:4,
+              borderColor:'transparent',
+              backgroundColor:'transparent',
+              paddingTop:0,
+              paddingLeft:0,
+              paddingRight:0,
+              margin:0,
+              //width:this.state.width-30,
+              width:this.state.width-18,
+              zIndex:99,
+              transform:[{
+                translateX:-8,
+              },
+              {
+                translateY:-10,
+              }]
+            }
+            }
+          >
+         
+            <TouchableOpacity
+              onPress={this.touchedPost}
+              activeOpacity={1}
+            >
+            <ScrollView
+                ref={ref=>this.myRef=ref}
+                //ref={this.myRef}
+                style={{
+                    // display:'absolute',
+                    // left:0,
+                    
+                  //   transform:[{
+                  //     translateX:4,
+                  //   },
+                  //   {
+                  //     translateY:0,
+                  //   }
+                  // ],
+                    //height:this.state.height-70,
+                    height:this.state.height-74,
+                    //height:'100%',
+                    width:this.state.width-18,
+                    //width:this.state.width-30,
+                    backgroundColor:'transparent',
+                    //backgroundColor:'rgb(175,175,175)',
+                    margin:0,
+                    flexDirection:'row',
+                    paddingTop:0,
+                    paddingLeft:0,
+                    paddingRight:0,
+                    paddingBottom:0,
+                    // paddingBottom:15,
+                    // paddingRight:15,
+                    //backgroundColor:'transparent',
+                    borderColor:'transparent',
+                    borderWidth:4,
+                    borderStyle:'solid',
+                    padding:0,
+                    zIndex:98
+                }}
+                onScroll={this.onScroll}
+                scrollEventThrottle={16}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                //showsHorizontalScrollIndicator={this.state.indicatorState}
+                snapeToAlignment='end'
+                decelerationRate="fast"
+                scrollIndicatorInsets={1000,240,500,24}
+            >
+        {/* <FlatList 
+            horizontal ={true}
+            scrollEnabled={true}
+            pagingEnabled={true}
+            showsHorizontalScrollIndicator={true}
+            legacyImplementation={false}
+            data={this.state.posts}
+            renderItem={() => this.createPostsList()}
+            keyExtractor={() => uuidv4()}
+        /> */}
+      
+            {this.createPostsList()}
+        
+          </ScrollView> 
+                
+                  <View
+                    style={{
+                      // transform:[{
+                      //     translateX:0,
+                      //   },
+                      //   {
+                      //     translateY:-4,
+                      //   }
+                      // ],
+                      justifyContent:'center',
+                      alignItems:'center',
+                      backgroundColor:'white',
+                      width:this.state.width-18,
+                      height:50,
+                      //borderWidth:4,
+                      //borderRadius:4,
+                      //borderColor:'transparent',
+                      zIndex:99,
+
+                    }}
+                  >
+                  
+                  <View
+                      style={{
+                          //position:'absolute',
+                          flexDirection:'row',
+                          width:this.state.width-60,
+                          height:45,
+                          backgroundColor:'transparent',
+                          alignItems:'center',
+                          justifyContent:'center',
+                          bottom:0,
+                          overflow:'hidden'
+                      }}
+                  >
+                      
                       <View
                           style={{
                               flexDirection:'row',
@@ -515,7 +720,31 @@ class GoogleDeck extends Component {
                               justifyContent:'center'
                           }}
                       >
-                          <TouchableOpacity
+                          {/* <TouchableOpacity
+                            //onPress={this.props.slackHashButtonPressed}
+                            onPress={this.slackHashButtonPressed}
+                          >
+                          <Text
+                              className='icon'
+                              style ={styles.icon}
+                          >   
+                          
+                              <i class="fab fa-slack-hash"></i>
+                          
+                              
+                          </Text>
+                          </TouchableOpacity> */}
+                      </View>
+                      <View
+                          style={{
+                              flexDirection:'row',
+                              width:(this.state.width-30)/4,
+                              backgroundColor:'transparent',
+                              alignItems:'center',
+                              justifyContent:'center'
+                          }}
+                      >
+                          {/* <TouchableOpacity
                             //onPress={this.props.starButtonPressed}
                             onPress={this.starButtonPressed}
                           >
@@ -528,10 +757,31 @@ class GoogleDeck extends Component {
                                   
                               }
                           >
-                              {/* <i class="fas fa-heart"></i> */}
+                              
                               <i class="fas fa-star"></i> 
                           </Text>
-                          </TouchableOpacity>
+                          </TouchableOpacity> */}
+                      </View>
+                      <View
+                          style={{
+                              flexDirection:'row',
+                              width:(this.state.width-30)/4,
+                              backgroundColor:'transparent',
+                              alignItems:'center',
+                              justifyContent:'center'
+                          }}
+                      >
+                          {/* <TouchableOpacity
+                            //onPress={this.props.shareButtonPressed}
+                            onPress={this.shareButtonPressed}
+                          >
+                          <Text
+                              style ={styles.icon}
+                              className='icon'
+                          >
+                              <i class="fas fa-share-alt"></i>
+                          </Text>
+                          </TouchableOpacity> */}
                       </View>
                       <View
                           style={{
@@ -543,17 +793,22 @@ class GoogleDeck extends Component {
                           }}
                       >
                           <TouchableOpacity
-                            //onPress={this.props.shareButtonPressed}
-                            onPress={this.shareButtonPressed}
+                            //onPress={this.props.commentButtonPressed}
+                            onPress={this.commentButtonPressed}
                           >
+                          
                           <Text
-                              style ={styles.icon}
                               className='icon'
+                              style ={styles.icon}
                           >
-                              <i class="fas fa-share-alt"></i>
+                              {/* {props.stars} <i class="fas fa-star"></i>  */}
+                              {/* Flip */}
+                              {/* <i class="fas fa-edit"></i> */}
+                              <i class="fas fa-server"></i>
                           </Text>
                           </TouchableOpacity>
                       </View>
+                      
                   </View>
                 
                   </View>
@@ -565,6 +820,7 @@ class GoogleDeck extends Component {
           
               
         );
+      } 
     }
 
 

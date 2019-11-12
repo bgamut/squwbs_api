@@ -789,7 +789,8 @@ const Home = () => {
                   top:50,
                   right:15,
                   //backgroundColor:'white',
-                  zIndex:100
+                  zIndex:100,
+                  padding:0
               }}
               >
                 {/* <Disqus.CommentCount shortname={'squwbs'} config={disqusConfig}>
@@ -815,7 +816,8 @@ const Home = () => {
                         backgroundColor:'rgb(0,0,0,0.99)',
                         margin:0,
                         flexDirection:'row',
-                        padding:15,
+                        paddingLeft:15,
+                        paddingRight:15,
                         zIndex:100,
                         // paddingBottom:15,
                         // paddingRight:15,

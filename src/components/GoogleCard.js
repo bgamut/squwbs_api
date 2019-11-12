@@ -7,7 +7,8 @@ import XLSX from 'xlsx'
 import stringifyObject from 'stringify-object'
 import './css/iconHover.css'
 //import YouTube from 'react-youtube';
-
+//const isMobile = require('react-device-detect').isMobile
+const isMobile=false
 const _ = require('lodash')
 
 const withQuery = require('with-query').default;
@@ -18,18 +19,49 @@ const GoogleCard = (props)=> {
     const [iframeHeight,setIframeHeight]=useState(0)
     const [iframeWidth,setIframeWidth]=useState(0)
     const updateDimensions=()=>{
-        setHeight(Math.floor(Dimensions.get('window').height))
-        setWidth(Math.floor(Dimensions.get('window').width))
-        if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
-            //base on width
-            setIframeWidth(Math.floor(Dimensions.get('window').width-60))
-            setIframeHeight(Math.floor((Dimensions.get('window').width-60)*315/560))
+        // setHeight(Math.floor(Dimensions.get('window').height))
+        // setWidth(Math.floor(Dimensions.get('window').width))
+        // if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
+        //     //base on width
+        //     setIframeWidth(Math.floor(Dimensions.get('window').width-60))
+        //     setIframeHeight(Math.floor((Dimensions.get('window').width-60)*315/560))
 
+        // }
+        // else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
+        //     //base on height
+        //     setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
+        //     setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+        // }
+
+        if(isMobile){
+            setHeight(Math.floor(Dimensions.get('window').height))
+            setWidth(Math.floor(Dimensions.get('window').width))
+            if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
+                //base on width
+                setIframeWidth(Math.floor(Dimensions.get('window').width-60))
+                setIframeHeight(Math.floor((Dimensions.get('window').width-60)*315/560))
+
+            }
+            else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
+                //base on height
+                setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
+                setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+            }
         }
-        else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
-            //base on height
-            setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
-            setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+        else{
+            setHeight(Math.floor(Dimensions.get('window').height))
+            setWidth(Math.floor(Dimensions.get('window').width))
+            if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
+                //base on width
+                setIframeWidth(Math.floor(Dimensions.get('window').width-60))
+                setIframeHeight(Math.floor((Dimensions.get('window').width-60)*315/560))
+
+            }
+            else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
+                //base on height
+                setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
+                setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+            }
         }
     }
     useEffect(()=>{
@@ -102,7 +134,7 @@ const GoogleCard = (props)=> {
             activeOpacity={1}
         >
          <View style={{ 
-                height:height-80,
+                //height:height,
                 width:width-18,
                 //backgroundColor:'rgb(175,175,175)',
                 //backgroundColor:'rgba(0,0,0,0.3)',
@@ -242,7 +274,8 @@ const GoogleCard = (props)=> {
                                 //width:width-210,
                                 //width:width-92,
                                 width:iframeWidth,
-                                marginTop: 15,
+                                marginTop:15,
+                                marginBottom:35,
                                 // marginLeft:15,
                                 // marginBottom:0
                             }
@@ -285,9 +318,9 @@ const GoogleCard = (props)=> {
             </View> 
             <View
                 style={{
-                    height:height-185,
+                    height:height-165,
                     backgroundColor:'transparent',
-                    paddingTop:15
+                    //paddingTop:15
                 }}
             >  
             <ScrollView
@@ -296,7 +329,7 @@ const GoogleCard = (props)=> {
                     width:width-18,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
-                    padding:15
+                    //padding:15
                 }}
                 // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
                 onScroll={(e)=>{
@@ -335,7 +368,8 @@ const GoogleCard = (props)=> {
                     height:{iframeHeight},
                     //justifyContent:'center',
                     alignItems:'center',
-                    backgroundColor:'transparent'
+                    backgroundColor:'transparent',
+                    paddingTop:15
                 }}
                 >
         
@@ -383,7 +417,7 @@ const GoogleCard = (props)=> {
                         //background:'rgb(175,175,175)',
                         backgroundColor:'transparent',
                         //backgroundColor:'rgba(0,0,0,0.8)',
-                        paddingBottom:15,
+                        //paddingBottom:15,
                         //width:width-60
                         width:iframeWidth,
                         margin:0
@@ -412,7 +446,8 @@ const GoogleCard = (props)=> {
                     // justifyContent:'center',
                     // alignItems:'center',
                     backgroundColor:'transparent',
-                    width:iframeWidth
+                    width:iframeWidth,
+                    padding:15,
                 }}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
@@ -488,7 +523,7 @@ const GoogleCard = (props)=> {
             activeOpacity={1}
         >
          <View style={{ 
-                height:height-82,
+                height:height,
                 width:width-18,
                 zIndex:98,
                 //backgroundColor:'rgb(175,175,175)',
@@ -627,8 +662,10 @@ const GoogleCard = (props)=> {
                                 //width:width-92,
                                 width:iframeWidth,
                                 marginTop: 15,
+                                marginBottom: 35,
                                 // marginLeft:15,
                                 // marginBottom:0
+                                //paddingTop:15
                             }
                         ]
                     }
@@ -669,9 +706,9 @@ const GoogleCard = (props)=> {
             </View> 
             <View
                 style={{
-                    height:height-185,
+                    height:height-165,
                     backgroundColor:'transparent',
-                    paddingTop:15,
+                    //paddingTop:15,
                 }}
             >  
             <ScrollView
@@ -680,7 +717,7 @@ const GoogleCard = (props)=> {
                     width:width-18,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
-                    padding:15
+                    //padding:15
                 }}
                 // style={{backgroundColor:'transparent',height:height-50,zIndex:98}}
                 onScroll={(e)=>{
@@ -749,7 +786,7 @@ const GoogleCard = (props)=> {
             </View>  */}
             <View
                 style={{
-                    //paddingTop:30,
+                    paddingTop:15,
                     //background:'rgb(175,175,175)',
                     background:'transparent',
                     //paddingBottom:15,
@@ -767,10 +804,11 @@ const GoogleCard = (props)=> {
                         //background:'rgb(175,175,175)',
                         backgroundColor:'transparent',
                         //background:'rgba(0,0,0,0.8)',
-                        paddingBottom:15,
+                        //paddingBottom:15,
                         //width:width-60
                         width:iframeWidth,
-                        margin:0
+                        //margin:0
+
                     }}
                 >
                     <Text
@@ -791,7 +829,7 @@ const GoogleCard = (props)=> {
             <ScrollView
                 style={{
                     margin:0,
-                    padding:0,
+                    padding:15,
                     flexDirection:'column',
                     // justifyContent:'center',
                     // alignItems:'center',

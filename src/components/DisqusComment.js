@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {View,Text,Dimensions} from 'react-native';
-
+import Fade from 'react-reveal/Fade'
 //import helper from './DisqusHelper'
 // function waitForGlobal(name, interval = 300) {
 //     return new Promise((resolve, reject) => {
@@ -109,7 +109,7 @@ import {View,Text,Dimensions} from 'react-native';
 // }
 // testPromise().then(function(){console.log('resolve')}).catch(function(e){console.log(e)})
   
-const waitForGlobal = (name,interval=15000)=>{
+const waitForGlobal = (name,interval=5000)=>{
     var waited = 0  
     return new Promise(function(resolve,reject){
         const waiting = function(){
@@ -142,7 +142,7 @@ class DisqusComment extends Component {
         this.state={
             height:Dimensions.get('window').height,
             width:Dimensions.get('window').width,
-            loading:false
+            loading:true
         }
     }
     codeStringOne = 
@@ -479,21 +479,24 @@ class DisqusComment extends Component {
                                     backgroundColor:'transparent',
                                     alignItems:'center',
                                     justifyContent:'center',
+                                    flexDirection:'column',
                                     transform:[{
                                         translateX:0,
                                       },
                                       {
                                        // translateY:-55,
-                                        translateY:-30
+                                        //translateY:-30
+                                        translateY:-3
                                       }
                                     ]
                                 }}
                             >
+                            <Fade>
                                 <Text
                                     style ={{
                                         textDecorationLine:'none',
                                         color:'rgb(196,196,196)',
-                                        fontSize: 60,
+                                        fontSize: 55,
                                         fontWeight:'700',
                                         textAlign:'center',
                                         alignItems:'center',
@@ -501,8 +504,23 @@ class DisqusComment extends Component {
                                         flexDirection:'row',
                                     }}
                                 >
-                                    <i class="fas fa-cog fa-spin"></i>
+                                    <i class="fas fa-spinner fa-pulse"></i>
                                 </Text>
+                            </Fade>
+                                {/* <Text
+                                    style ={{
+                                        textDecorationLine:'none',
+                                        color:'rgb(196,196,196)',
+                                        fontSize: 12,
+                                        fontWeight:'700',
+                                        textAlign:'center',
+                                        alignItems:'center',
+                                        justifyContent:'center',
+                                        flexDirection:'row',
+                                    }}
+                                >
+                                    Loading ...
+                                </Text> */}
                             </View>
                         </View>
                         
@@ -519,7 +537,8 @@ class DisqusComment extends Component {
                 // width:'100%',
                 height:this.props.height,
                 width:this.props.width,
-                backgroundColor:'transparent'
+                backgroundColor:'transparent',
+                padding:0,
             }}
         >
             <div 
@@ -529,7 +548,8 @@ class DisqusComment extends Component {
                     //width:'100%',
                     height:this.props.height,
                     width:this.props.width,
-                    backgroundColor:'transparent'
+                    backgroundColor:'transparent',
+                    padding:0,
                 }}
             >
                 <div id="disqus_thread"
@@ -538,7 +558,8 @@ class DisqusComment extends Component {
                         // width:this.props.width,
                         height:this.props.height,
                         width:this.props.width,
-                        backgroundColor:'transparent'
+                        backgroundColor:'transparent',
+                        padding:0
                     }}
                 >
                    
@@ -556,7 +577,8 @@ class DisqusComment extends Component {
                 // width:'100%',
                 height:this.props.height,
                 width:this.props.width,
-                backgroundColor:'transparent'
+                backgroundColor:'transparent',
+                padding:0,
             }}
         >
             <div 
@@ -566,7 +588,8 @@ class DisqusComment extends Component {
                     //width:'100%',
                     height:this.props.height,
                     width:this.props.width,
-                    backgroundColor:'transparent'
+                    backgroundColor:'transparent',
+                    padding:0
                 }}
             >
                 <div id="disqus_thread"
@@ -575,7 +598,8 @@ class DisqusComment extends Component {
                         // width:this.props.width,
                         height:this.props.height,
                         width:this.props.width,
-                        backgroundColor:'transparent'
+                        backgroundColor:'transparent',
+                        padding:0
                     }}
                 >
                    

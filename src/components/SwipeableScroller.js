@@ -982,8 +982,9 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   ref={heightRef}
                   style={{
-                    height:"100vh",
+                    //height:"100vh",
                     //height:partHeight,
+                    height:height,
                     width:"100%",
                     padding:15,
                     
@@ -997,10 +998,13 @@ const SwipeableScroller = (props) => {
                 >
                   <View 
                     style={{
-                      height:"100%",
+                      //height:"100%",
+
+                      /////// yoooo
+                      height:height-30,
                       width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
+                      //justifyContent:'center',
+                      //alignItems:'center',
                       zIndex:0,
                       //backgroundColor:'rgb(135,135,135)',
                       backgroundColor:'transparent',
@@ -1028,6 +1032,7 @@ const SwipeableScroller = (props) => {
                   >
                     
                     <GoogleDeck 
+                      
                       shareButtonPressed={props.shareOverlayToggle}
                       slackHashButtonPressed={props.slackHashOverlayToggle}
                       commentButtonPressed={props.commentOverlayToggle}
