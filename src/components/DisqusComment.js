@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {View,Text,Dimensions} from 'react-native';
 import Fade from 'react-reveal/Fade'
+import RaisedButton from 'material-ui/RaisedButton'
 //import helper from './DisqusHelper'
 // function waitForGlobal(name, interval = 300) {
 //     return new Promise((resolve, reject) => {

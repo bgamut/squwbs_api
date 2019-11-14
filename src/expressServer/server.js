@@ -21,7 +21,7 @@ var admin = require('firebase-admin')
 const functions = require('firebase-functions');
 const stringifyObject= require('stringify-object')
 const uuidv4 = require('uuid/v4')
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 var favicon = require('serve-favicon')
 //const line = require('@line/bot-sdk')
 //const linemiddleware = require('@line/bot-sdk').middleware
@@ -34,7 +34,7 @@ const mongourlStringExpress='https://squwbs-252702.appspot.com/mongouri'
 const mongoURLAddWord='https://squwbs-252702.appspot.com/addwordtomongo'
 const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+//const MongoStore = require('connect-mongo')(session);
 const webpush=require('web-push')
 const vapidKeys = webpush.generateVAPIDKeys()
 webpush.setGCMAPIKey(NODE_ENV.FIREBASE_API_KEY)
@@ -310,28 +310,28 @@ app.use((err, req, res, next) => {
 app.use(cookieParser('keyboard cat'))
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('body-parser').json());
-app.use(session({ 
-    secret: 'keyboard cat',
-    resave:true,
-    saveUninitialized:true,
-    store: new MongoStore(
-      {
-        url:NODE_ENV.MONGO_URI, 
-        ttl:900, 
-        secret:'squirrel',
-        autoRemove:'interval', 
-        autoRemoveInterval:60
-      }
-    ),
-    cookie:
-      {
-        httpOnly: true,
-        secure:true,
-        sameSite:false
-      },
+// app.use(session({ 
+//     secret: 'keyboard cat',
+//     resave:true,
+//     saveUninitialized:true,
+//     store: new MongoStore(
+//       {
+//         url:NODE_ENV.MONGO_URI, 
+//         ttl:900, 
+//         secret:'squirrel',
+//         autoRemove:'interval', 
+//         autoRemoveInterval:60
+//       }
+//     ),
+//     cookie:
+//       {
+//         httpOnly: true,
+//         secure:true,
+//         sameSite:false
+//       },
     
 
-}));
+// }));
 app.use(flash())
 app.use(express.static(path.join(__dirname, '/../../build')));
 app.use(express.static(path.join(__dirname, '/html/*/*')));
@@ -1804,80 +1804,80 @@ app.get('/user',cors(),(req,res)=>{
 // res.send(deleteUser(obj.userEmail))
 // })
 
-app.get('/addwordtomongo',cors(),(req,res)=>{
-  var obj = req.query
-  function addWordToMongo({word,meaning,example,pronunciation},callback){
-    fetch(mongourlStringExpress, {
-        credentials: "include"
-      })
-    .then(function(result){
-      return result.json()
-    })
-    .then(function(json){      
-      //mongouri=jsongmongouri
-      var mongouri=json.mongouri
-      console.log(mongouri)
-      mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true})
-      .catch((err)=>{
-        console.log(err)
-      })
-      var db = mongoose.connection
+// app.get('/addwordtomongo',cors(),(req,res)=>{
+//   var obj = req.query
+//   function addWordToMongo({word,meaning,example,pronunciation},callback){
+//     fetch(mongourlStringExpress, {
+//         credentials: "include"
+//       })
+//     .then(function(result){
+//       return result.json()
+//     })
+//     .then(function(json){      
+//       //mongouri=jsongmongouri
+//       var mongouri=json.mongouri
+//       console.log(mongouri)
+//       mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true})
+//       .catch((err)=>{
+//         console.log(err)
+//       })
+//       var db = mongoose.connection
       
-      db.once('open',function(){
-        const CardSchema = new mongoose.Schema({
-          word:{type:String,default:undefined},
-          meaning:{type:String,default:undefined},
-          example:{type:String,default:undefined},
-          pronunciation:{type:String,default:undefined},
-          thumbnail:{type:String,default:undefined},
-          header:{type:String,default:undefined},
-          subhead:{type:String,default:undefined},
-          picture:{type:String,default:undefined},
-          youtubeLink:{type:String,default:undefined},
-          supportingText:{type:String,default:undefined},
-          timeStamp:{type:String,default:Date()}
-        })
-        const Card = mongoose.model('Cards',CardSchema)
-        Card.findOne({word:word},function(err,obj){
-          console.log(obj)
-          const newCard = new Card({
-            word:word,
-            meaning:meaning,
-            example:example,
-            pronunciation:pronunciation,
-          })
-          if(obj!==null){
-            Card.findOneAndRemove(
-              {"word":word },{useFindAndModify:false},function(){
-                console.log('findOneAndRemove() function fired')
-              }
-            );
+//       db.once('open',function(){
+//         const CardSchema = new mongoose.Schema({
+//           word:{type:String,default:undefined},
+//           meaning:{type:String,default:undefined},
+//           example:{type:String,default:undefined},
+//           pronunciation:{type:String,default:undefined},
+//           thumbnail:{type:String,default:undefined},
+//           header:{type:String,default:undefined},
+//           subhead:{type:String,default:undefined},
+//           picture:{type:String,default:undefined},
+//           youtubeLink:{type:String,default:undefined},
+//           supportingText:{type:String,default:undefined},
+//           timeStamp:{type:String,default:Date()}
+//         })
+//         const Card = mongoose.model('Cards',CardSchema)
+//         Card.findOne({word:word},function(err,obj){
+//           console.log(obj)
+//           const newCard = new Card({
+//             word:word,
+//             meaning:meaning,
+//             example:example,
+//             pronunciation:pronunciation,
+//           })
+//           if(obj!==null){
+//             Card.findOneAndRemove(
+//               {"word":word },{useFindAndModify:false},function(){
+//                 console.log('findOneAndRemove() function fired')
+//               }
+//             );
             
-          }
-          newCard.save()
-          Card.updateOne(
-            { omitUndefined: true },
-            newCard
-          );
-          callback('successfully added '+word)
+//           }
+//           newCard.save()
+//           Card.updateOne(
+//             { omitUndefined: true },
+//             newCard
+//           );
+//           callback('successfully added '+word)
 
-        })
+//         })
         
 
         
-      })
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
+//       })
+//     })
+//     .catch((err)=>{
+//       console.log(err)
+//     })
+//   }
 
-  function sendSuccess(message){
-    res.json({message:message})
-  }
-  addWordToMongo(obj,sendSuccess)
+//   function sendSuccess(message){
+//     res.json({message:message})
+//   }
+//   addWordToMongo(obj,sendSuccess)
   
-})
+// })
 // app.get('/addlist',cors(),(req,res)=>{
 //   var wordList = req.query.list
 //   //var wordList = req.body.list
@@ -2022,69 +2022,69 @@ app.get('/addwordtomongo',cors(),(req,res)=>{
 //   })
   
 // })   
-app.get('/getwordlistfrommongo',cors(),(req,res)=>{
-  var wordList = req.query.list
+// app.get('/getwordlistfrommongo',cors(),(req,res)=>{
+//   var wordList = req.query.list
   
-  const getWordList =(wordList,mongouri,callback)=>{
-    //const ObjectId=uuidv4()
-    callbackList=[]
-    mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true })
-      .catch((err)=>{
-        console.log(err)
-        callbackList.push({message:err})
-        callback(callbackList)
-      })
-      var db = mongoose.connection
+//   const getWordList =(wordList,mongouri,callback)=>{
+//     //const ObjectId=uuidv4()
+//     callbackList=[]
+//     mongoose.connect(mongouri,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true })
+//       .catch((err)=>{
+//         console.log(err)
+//         callbackList.push({message:err})
+//         callback(callbackList)
+//       })
+//       var db = mongoose.connection
       
-      db.once('open',function(){
-        const CardSchema = new mongoose.Schema({
-          word:{type:String,default:undefined},
-          meaning:{type:String,default:undefined},
-          example:{type:String,default:undefined},
-          pronunciation:{type:String,default:undefined},
-          thumbnail:{type:String,default:undefined},
-          header:{type:String,default:undefined},
-          subhead:{type:String,default:undefined},
-          picture:{type:String,default:undefined},
-          youtubeLink:{type:String,default:undefined},
-          supportingText:{type:String,default:undefined},
-          timeStamp:{type:String,default:Date()}
-        })
-        var Card = mongoose.model('Cards',CardSchema)
-        // for (var i=0; i<wordList.length; i++){
-        Card.find({})
-        .then(function(result){
-          var list=[]
-          for (var i =0; i<result.length; i++){
-            list.push(result[i]._doc)
-          }
-          callback({data:list})
-        })
-        .then(function(){
-          db.close()
-        })
-        //return Card.find({})
+//       db.once('open',function(){
+//         const CardSchema = new mongoose.Schema({
+//           word:{type:String,default:undefined},
+//           meaning:{type:String,default:undefined},
+//           example:{type:String,default:undefined},
+//           pronunciation:{type:String,default:undefined},
+//           thumbnail:{type:String,default:undefined},
+//           header:{type:String,default:undefined},
+//           subhead:{type:String,default:undefined},
+//           picture:{type:String,default:undefined},
+//           youtubeLink:{type:String,default:undefined},
+//           supportingText:{type:String,default:undefined},
+//           timeStamp:{type:String,default:Date()}
+//         })
+//         var Card = mongoose.model('Cards',CardSchema)
+//         // for (var i=0; i<wordList.length; i++){
+//         Card.find({})
+//         .then(function(result){
+//           var list=[]
+//           for (var i =0; i<result.length; i++){
+//             list.push(result[i]._doc)
+//           }
+//           callback({data:list})
+//         })
+//         .then(function(){
+//           db.close()
+//         })
+//         //return Card.find({})
   
-      })
-  }
+//       })
+//   }
   
   
-  function sendObj(obj){
-    res.json(obj)
-  }
+//   function sendObj(obj){
+//     res.json(obj)
+//   }
 
-  fetch(mongourlStringExpress, {credentials: "include"})
-  .then(function(result){
-    return result.json()
-  })
-  .then(function(json){
-    getWordList(wordList,json.mongouri,sendObj)
-  })
-  .catch(function(err){
-    sendObj({error:err})
-  })
+//   fetch(mongourlStringExpress, {credentials: "include"})
+//   .then(function(result){
+//     return result.json()
+//   })
+//   .then(function(json){
+//     getWordList(wordList,json.mongouri,sendObj)
+//   })
+//   .catch(function(err){
+//     sendObj({error:err})
+//   })
   
-})
+// })
 app.get('/saysomething',cors(),(req,res)=>{
   var obj = req.query
   var cookies= req.signedCookies

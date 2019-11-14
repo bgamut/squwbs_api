@@ -1,13 +1,13 @@
 steps:
 # Build the container image
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/squwbs-252702/quickstart-image', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'gcr.io/squwbs-252702/quickstart-image', '.']
 # Push the image to Container Registry
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/squwbs-252702/quickstart-image']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'gcr.io/squwbs-252702/quickstart-image']
 # Deploy an image from Container Registry to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['beta', 'run', 'deploy', 'squwbs-252702', '--image', 'gcr.io/squwbs-252702/quickstart-image', '--region', asia-northeast1, '--platform', 'managed', '--allow-unauthenticated']
-images:
-- gcr.io/squwbs-252702/quickstart-image
+# images:
+# - gcr.io/squwbs-252702/quickstart-image
 
