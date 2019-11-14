@@ -219,7 +219,7 @@ const SwipeableScroller = (props) => {
   
   const onMouseEnter=(e)=>{
     
-    XAlign()
+    //XAlign()
 
   }
   const onScroll=(e)=>{
@@ -1778,6 +1778,7 @@ const SwipeableScroller = (props) => {
                   alignContent:'center',
                   justifyContent:'center',
                   overflow:'hidden',
+                  backgroundColor:'white'
                   }}
                 >
                   
@@ -1883,79 +1884,7 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >  */}
-              <section id="follow">
-                {/* <a style={{
-                  textDecorationLine:'none',
-                  margin:0,
-                  padding:0,
-                  backgroundColor:'transparent',
-                  fontSize: 17,
-                  fontWeight:'700',
-                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                  textShadowOffset: {width: 0, height: 0},
-                  textShadowRadius: 2,
-                  height:45,
-                  alignItems:'center',
-                  justifyContent:'center',
-                  flexDirection:'row',
-                  textAlign:'center',
-                  height:"100%",
-                  width:'100%'
-                }} href="/#follow"> */}
-                <Animated.View
-                  ref={heightRef}
-                  style={{
-                    height:"100vh",
-                    //height:partHeight,
-                    width:"100%",
-                    padding:15,
-                    
-                    backgroundColor:'rgb(135,135,135)',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
-                  }}
-                >
-                  <View 
-                    style={{
-                      height:"100%",
-                      width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
-                      zIndex:0,
-                      backgroundColor:'white',
-                      borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
-                      borderColor:'#aaa',
-                      borderStyle:'solid',
-                      overflow:'hidden',
-                      boxSizing:"border-box",
-                      shadowColor:'#000',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2,
-                      //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                    }}
-                  >
-                    <Instagram/>
-                  </View>
-                </Animated.View>
-                {/* </a> */}
-              </section>
-            {/* </TouchableOpacity>  */}
-            {/* <TouchableOpacity
-              onPress={()=>{
-                //console.log('carousel pressed')
-                XAlign()
-              }}
-              activeOpacity={1}
-            >  */}
+             
               <section id="contact">
                 {/* <a style={{
                   textDecorationLine:'none',

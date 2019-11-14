@@ -788,6 +788,7 @@ borderColor:'orange',
                 // },{
                 //     translateY:-50+state.yscroll
                 // }]
+                
             }}>
                 {/* {overlaySwitch && 
                     <View
@@ -860,6 +861,7 @@ borderColor:'orange',
                     height:maxHeight,
                     justifyContent:'center',
                     marginBottom :0,
+                    
                     //opacity:state.opacity
                     // backgroundColor:'orange'
                     backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',

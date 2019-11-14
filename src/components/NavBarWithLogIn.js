@@ -306,7 +306,65 @@ const NavBarWithLogIn = (props) => {
               props.loginAndCloseDrawer
             }
           >
-    
+          {/* <View
+            style={{
+              flexDirection:'row',
+              height:45,
+              width:250,
+              backgroundColor:'transparent',
+              //justifyContent:'center',
+              alignItems:'center'
+            }}
+          >
+          <View
+            style={{
+              marginLeft:0,
+              height:45,
+              width:105,
+              justifyContent:'center',
+              alignItems:'center',
+              backgrondColor:'transparent',
+              transform:[{
+                translateX:18
+            },{
+                translateY:0
+            }]
+            }}
+          > */}
+            <Text
+              style={{
+                // color:'black', 
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                // flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}
+            >
+              <i class="fa fa-user"></i>
+            </Text>
+          {/* </View>
+          <View
+            style={{
+              height:45,
+              width:100,
+              backgroundColor:'transparent',
+              alignItems:'center',
+              justifyContent:'center',
+              transform:[{
+                translateX:-6
+            },{
+                translateY:0
+            }]
+            }}
+          >
           <Text id="loginPop" 
           style={{
             // color:'black', 
@@ -324,6 +382,8 @@ const NavBarWithLogIn = (props) => {
             flexDirection:'row',
           }}
           >Login</Text>
+          </View>
+          </View>  */}
           </TouchableOpacity>
 
         </View> 
@@ -509,6 +569,7 @@ const NavBarWithLogIn = (props) => {
           //onPress={props.ShowSlidingDrawer}
           //onPress={toHash('sound') }
         >
+          
        <a style={{
         textDecorationLine:'none',
     margin:0,
@@ -525,6 +586,65 @@ const NavBarWithLogIn = (props) => {
     flexDirection:'row',
     textAlign:'center'
       }} href="/#download">
+        {/* <View
+            style={{
+              flexDirection:'row',
+              height:45,
+              width:250,
+              backgroundColor:'transparent',
+              //justifyContent:'center',
+              alignItems:'center'
+            }}
+          > */}
+          {/* <View
+            style={{
+              marginLeft:0,
+              height:45,
+              width:105,
+              //justifyContent:'center',
+              alignItems:'center',
+              backgrondColor:'transparent',
+              transform:[{
+                translateX:18
+            },{
+                translateY:0
+            }]
+            }}
+          > */}
+            <Text
+              style={{
+                // color:'black', 
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                // flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}
+            >
+              <i class="fa fa-credit-card"></i>
+            </Text>
+          {/* </View> */}
+          {/* <View
+            style={{
+              height:45,
+              width:100,
+              backgroundColor:'transparent',
+              alignItems:'center',
+              //justifyContent:'center'
+              transform:[{
+                translateX:-6
+            },{
+                translateY:0
+            }]
+            }}
+          >
         <Text id="download" 
         style={{
 
@@ -542,11 +662,16 @@ const NavBarWithLogIn = (props) => {
           flexDirection:'row',
         }}
         >Download</Text>
+        </View>
+        </View> */}
         </a>
         </TouchableOpacity>
       
       </View>
-      <View style={styles.box}>
+
+
+       
+        <View style={styles.box}>
         
         <TouchableOpacity 
           style={styles.touch}
@@ -569,6 +694,65 @@ const NavBarWithLogIn = (props) => {
     flexDirection:'row',
     textAlign:'center'
       }} href="/#blog">
+        {/* <View
+            style={{
+              flexDirection:'row',
+              height:45,
+              width:250,
+              backgroundColor:'transparent',
+              //justifyContent:'center',
+              alignItems:'center'
+            }}
+          >
+          <View
+            style={{
+              marginLeft:0,
+              height:45,
+              width:105,
+              //justifyContent:'center',
+              alignItems:'center',
+              backgrondColor:'transparent',
+              transform:[{
+                translateX:18
+            },{
+                translateY:0
+            }]
+            }}
+          > */}
+            <Text
+              style={{
+                // color:'black', 
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                // flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}
+            >
+              <i class="fa fa-window-maximize"></i>
+            </Text>
+          {/* </View>
+          <View
+            style={{
+              height:45,
+              width:100,
+              backgroundColor:'transparent',
+              alignItems:'center',
+              //justifyContent:'center'
+              transform:[{
+                translateX:-6
+            },{
+                translateY:0
+            }]
+            }}
+          >
         <Text id="blog" 
         style={{
 
@@ -586,6 +770,8 @@ const NavBarWithLogIn = (props) => {
           flexDirection:'row',
         }}
         >Blog</Text>
+        </View>
+        </View> */}
         </a>
         </TouchableOpacity>
       
@@ -613,6 +799,65 @@ const NavBarWithLogIn = (props) => {
       flexDirection:'row',
       textAlign:'center'
         }} href="/#sound">
+          {/* <View
+            style={{
+              flexDirection:'row',
+              height:45,
+              width:250,
+              backgroundColor:'transparent',
+              //justifyContent:'center',
+              alignItems:'center'
+            }}
+          >
+          <View
+            style={{
+              marginLeft:0,
+              height:45,
+              width:105,
+              //justifyContent:'center',
+              alignItems:'center',
+              backgrondColor:'transparent',
+              transform:[{
+                translateX:18
+            },{
+                translateY:0
+            }]
+            }}
+          > */}
+            <Text
+              style={{
+                // color:'black', 
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                // flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}
+            >
+              <i class="fa fa-music"></i>
+            </Text>
+          {/* </View>
+          <View
+            style={{
+              height:45,
+              width:100,
+              backgroundColor:'transparent',
+              alignItems:'center',
+              //justifyContent:'center'
+              transform:[{
+                    translateX:-6
+                },{
+                    translateY:0
+                }]
+            }}
+          >
           <Text id="Sound" 
           style={{
 
@@ -630,13 +875,126 @@ const NavBarWithLogIn = (props) => {
             flexDirection:'row',
           }}
           >Sound</Text>
+          </View>
+          </View> */}
           </a>
           </TouchableOpacity>
         
         </View>
-        
         <View style={styles.box}>
-        <a style={{
+        
+        <TouchableOpacity 
+          style={styles.touch}
+          //onPress={props.ShowSlidingDrawer}
+          //onPress={toHash('sound') }
+        >
+       <a style={{
+        textDecorationLine:'none',
+    margin:0,
+    padding:0,
+    backgroundColor:'transparent',
+    fontSize: 17,
+    fontWeight:'700',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowOffset: {width: 0, height: 0},
+    textShadowRadius: 2,
+    height:45,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection:'row',
+    textAlign:'center'
+      }} href="/#follow">
+        {/* <View
+            style={{
+              flexDirection:'row',
+              height:45,
+              width:250,
+              backgroundColor:'transparent',
+              //justifyContent:'center',
+              alignItems:'center'
+            }}
+          >
+          <View
+            style={{
+              marginLeft:0,
+              height:45,
+              width:105,
+              //justifyContent:'center',
+              alignItems:'center',
+              backgrondColor:'transparent',
+              transform:[{
+                translateX:18
+            },{
+                translateY:0
+            }]
+            }}
+          > */}
+            <Text
+              style={{
+                // color:'black', 
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                // flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}
+            >
+              {/* <i class="fa fa-users"></i> */}
+              <i className="fab fa-instagram"></i>
+            </Text>
+          {/* </View>
+          <View
+            style={{
+              height:45,
+              width:100,
+              backgroundColor:'transparent',
+              alignItems:'center',
+              //justifyContent:'center'
+              transform:[{
+                translateX:-6
+            },{
+                translateY:0
+            }]
+            }}
+          >
+        <Text id="Follow" 
+        style={{
+
+          textDecorationLine:'none',
+          color:'white',
+          fontWeight:'700',
+          fontSize: 17,
+          textShadowColor: 'rgba(0, 0, 0, 0.5)',
+          textShadowOffset: {width: 0, height: 0},
+          textShadowRadius: 2,
+
+          textAlign:'center',
+          alignItems:'center',
+          justifyContent:'center',
+          flexDirection:'row',
+        }}
+        >Follow</Text>
+        </View>
+        </View> */}
+        </a>
+        </TouchableOpacity>
+      
+      </View>
+        <View style={styles.box}>
+        
+          <TouchableOpacity 
+            style={styles.touch}
+            //onPress={props.ShowSlidingDrawer}
+            //onPress={toHash('sound') }
+          >
+         <a style={{
           textDecorationLine:'none',
       margin:0,
       padding:0,
@@ -651,57 +1009,67 @@ const NavBarWithLogIn = (props) => {
       justifyContent:'center',
       flexDirection:'row',
       textAlign:'center'
-        }} href="/#follow">
-          <TouchableOpacity 
-            //onPress={props.ShowSlidingDrawer}
-            style={styles.touch}
-          >
-         
-          <Text id="instagram" 
-          style={{
-
-            textDecorationLine:'none',
-            color:'white',
-            fontWeight:'700',
-            fontSize: 17,
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}
-          >Follow</Text>
-          </TouchableOpacity>
-        </a>
-        </View>
-          
-        
-        <View style={styles.box}>
-        <a style={{ 
-          textDecorationLine:'none',
-          margin:0,
-          padding:0,
-          backgroundColor:'transparent',
-          fontSize: 17,
-          fontWeight:'700',
-          textShadowColor: 'rgba(0, 0, 0, 0.5)',
-          textShadowOffset: {width: 0, height: 0},
-          textShadowRadius: 2,
-          height:45,
-          alignItems:'center',
-          justifyContent:'center',
-          flexDirection:'row',
-          textAlign:'center'
         }} href="/#contact">
-          <TouchableOpacity 
-            //onPress={props.ShowSlidingDrawer}
-            style={styles.touch}
+          {/* <View
+            style={{
+              flexDirection:'row',
+              height:45,
+              width:250,
+              backgroundColor:'transparent',
+              //justifyContent:'center',
+              alignItems:'center'
+            }}
           >
-      
-          <Text id="Contact" 
+          <View
+            style={{
+              marginLeft:0,
+              height:45,
+              width:105,
+              //justifyContent:'center',
+              alignItems:'center',
+              backgrondColor:'transparent',
+              transform:[{
+                translateX:18
+            },{
+                translateY:0
+            }]
+            }}
+          > */}
+            <Text
+              style={{
+                // color:'black', 
+                textDecorationLine:'none',
+                color:'white',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                // flex:1,
+                textAlign:'center',
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+              }}
+            >
+              <i class="fa fa-id-card"></i>
+            </Text>
+          {/* </View>
+          <View
+            style={{
+              height:45,
+              width:100,
+              backgroundColor:'transparent',
+              alignItems:'center',
+              //justifyContent:'center'
+              transform:[{
+                    translateX:-6
+                },{
+                    translateY:0
+                }]
+            }}
+          >
+          <Text id="contact" 
           style={{
 
             textDecorationLine:'none',
@@ -711,17 +1079,20 @@ const NavBarWithLogIn = (props) => {
             textShadowColor: 'rgba(0, 0, 0, 0.5)',
             textShadowOffset: {width: 0, height: 0},
             textShadowRadius: 2,
+
             textAlign:'center',
             alignItems:'center',
             justifyContent:'center',
             flexDirection:'row',
           }}
           >Contact</Text>
-          
+          </View>
+          </View> */}
+          </a>
           </TouchableOpacity>
-        </a>
+        
         </View>
-      
+          
       </View>
 
   //   </KeyboardAvoidingView>

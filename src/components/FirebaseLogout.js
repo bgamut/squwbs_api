@@ -105,7 +105,9 @@ const FirebaseLogout=() =>{
         flexDirection:'row',
     }}
   >
-    Log Out
+    {/* Log Out */}
+    {/* <i class="fas fa-door-open"></i> */}
+    <i class="fas fa-sign-out-alt"></i>
   </Text>
   </TouchableOpacity>
 
