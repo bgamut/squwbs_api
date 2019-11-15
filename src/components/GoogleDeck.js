@@ -2,7 +2,8 @@ import React,{Component,useContext} from 'react';
 import {Animated,PanResponder,Dimensions,View,Text,Image,TouchableHighlight,TouchableOpacity,StyleSheet,FlatList,ScrollView} from 'react-native'
 import { Context } from "../context";
 import ReactDOM from 'react-dom'
-import GoogleCard from './GoogleCard'
+//import GoogleCard from './GoogleCard'
+import GoogleCard from './GoogleCardV3'
 //import WordCardV2 from './WordCardV2'
 import stringifyObject from 'stringify-object'
 //const MongoClient = require('mongodb').MongoClient;
@@ -18,6 +19,9 @@ import pointer from './icons/pointer.svg'
 //import './css/Zoom.css'
 
 import './css/Pointer.css'
+
+const OAuth = require('oauth').OAuth
+const tumblr = require('tumblr')
 
 const isMobile = require('react-device-detect').isMobile
 //const isMobile=false
@@ -44,29 +48,7 @@ class GoogleDeck extends Component {
             ],
             hashs:['first','post','sample'],
           },
-          {
-            title:'second',
-            date:'2001/2/4',
-            picture:null,
-            writer:'json',
-            youtubeID:null,
-            post:'2',
-            stars:4.5,
-            comments:[
-                {
-                    title:'random 3',
-                    date:'2001/2/6',
-                    picture:null,
-                    writer:'commentor',
-                    youtubeID:null,
-                    post:'comment one',
-                    stars:2.5,
-                    comments:[],
-                    hashs:['third'],
-                  },
-            ],
-            hashs:['second','mirror','more','examples'],
-          },
+          
           {
             title:'third',
             date:'2001/2/6',
@@ -95,7 +77,9 @@ class GoogleDeck extends Component {
       currentIndex:0,
       endIndex:1,
       next:true,
-      indicatorState:true
+      indicatorState:true,
+      iframeWidth:0,
+      iframeWeight:0
     };
     this.myRef=React.createRef();
   
@@ -122,79 +106,103 @@ class GoogleDeck extends Component {
     }
     let parent = []
     //var length=this.state.posts.length
-    this.state.posts.map((post,i,arr)=>{
-      //console.log(arr)
-      //if(i==length){
-        parent.push(
-          <View
-              id='lastPost'
-              style={{
-                  height:this.state.height-80,
-                  //width:this.state.width-30,
-                  //height:this.state.height-30,
-                  //height:'100%',
-                  width:this.state.width-30,
-                  // backgroundColor:'transparent',
-                  // borderColor:'transparent',
-                  // borderWidth:'2',
-                  // borderStyle:'solid',
-                  //justifyContent:'center',
-                  alignItems:'center'
+    if(this.state.posts!==undefined){
+    
+      this.state.posts.map((post,i,arr)=>{
+        //console.log(arr)
+        //if(i==length){
+          const date =new Date(post.time*1000)
+          const time = String(date)
+          if(post.type=='video'){
+          parent.push(
+            <View
+                key={post.id}
+                id='lastPost'
+                style={{
+                    //height:this.state.height-80,
+                    //width:this.state.width-30,
+                    //height:this.state.height-30,
+                    //height:'100%',
+                    width:this.state.width-30,
+                    //height:this.state.iframeHeight+105,
+                    height:this.state.iframeHeight+15,
+                    //width:this.state.iframeWidth,
+                    // backgroundColor:'transparent',
+                    // borderColor:'transparent',
+                    // borderWidth:'2',
+                    // borderStyle:'solid',
+                    //justifyContent:'center',
+                    alignItems:'center',
+                    backgroundColor:'yellow'
+                    // marginLeft:15,
+                    // mariginRight:15
+                }}
+            >
+                {/* <GoogleCard
+                    title={post.title}
+                    date={post.date}
+                    picture={post.picture}
+                    writer={post.writer}
+                    youtubeID={post.youtubeID}
+                    post={post.post}
+                    stars={post.stars}
+                    comments={post.comments}
+                    hashs={post.hashs}
+                    touchedPost={touchedPost}
+                    // commentButtonPressed={post.commentButtonPressed}
+                    // slackButtonPressed={post.slackButtonPressed}
+                    // starButtonPressed={post.startButtonPressed}
+                /> */}
+                <GoogleCard
+                    type={post.type}
+                    url={post.url}
+                    id={post.id}
+                    time={time}
+                    video={post.video}
+                    photo={post.photo}
+                    quote={post.quote}
+                    chat={post.chat}
+                    audio={post.audio}
+                    link={post.link}
+                    text={post.text}
+                />
+            </View>
+        )
+        }
+        // }
+        // else{
+        //   parent.push(
+        //       <View
+        //           style={{
+        //               height:this.state.height-80,
+        //               width:this.state.width-30,
+        //               backgroundColor:'black',
+        //               borderColor:'purple',
+        //               borderWidth:'2',
+        //               borderStyle:'solid',
+        //               justifyContent:'center',
+        //               alignItems:'center'
 
-                  // marginLeft:15,
-                  // mariginRight:15
-              }}
-          >
-              <GoogleCard
-                  title={post.title}
-                  date={post.date}
-                  picture={post.picture}
-                  writer={post.writer}
-                  youtubeID={post.youtubeID}
-                  post={post.post}
-                  stars={post.stars}
-                  comments={post.comments}
-                  hashs={post.hashs}
-                  touchedPost={touchedPost}
-                  // commentButtonPressed={post.commentButtonPressed}
-                  // slackButtonPressed={post.slackButtonPressed}
-                  // starButtonPressed={post.startButtonPressed}
-              />
-          </View>
-      )
-      // }
-      // else{
-      //   parent.push(
-      //       <View
-      //           style={{
-      //               height:this.state.height-80,
-      //               width:this.state.width-30,
-      //               backgroundColor:'white',
-      //               borderColor:'purple',
-      //               borderWidth:'2',
-      //               borderStyle:'solid',
-      //               justifyContent:'center',
-      //               alignItems:'center'
-
-      //               // marginLeft:15,
-      //               // mariginRight:15
-      //           }}
-      //       >
-      //           <GoogleCard
-      //               title={post.title}
-      //               date={post.date}
-      //               picture={post.picture}
-      //               writer={post.writer}
-      //               youtubeID={post.youtubeID}
-      //               post={post.post}
-      //               stars={post.stars}
-      //               comments={post.comments}
-      //               hashs={post.hashs}
-      //           />
-      //       </View>
-      //   )
-      // }
-    })
+        //               // marginLeft:15,
+        //               // mariginRight:15
+        //           }}
+        //       >
+        //           <GoogleCard
+        //               title={post.title}
+        //               date={post.date}
+        //               picture={post.picture}
+        //               writer={post.writer}
+        //               youtubeID={post.youtubeID}
+        //               post={post.post}
+        //               stars={post.stars}
+        //               comments={post.comments}
+        //               hashs={post.hashs}
+        //           />
+        //       </View>
+        //   )
+        // }
+      })
+    }
     return parent;
 }
   addCard=()=>{
@@ -274,31 +282,600 @@ class GoogleDeck extends Component {
       //   })
       // }
       // else{
-        this.setState({
-          height:Math.floor(Dimensions.get('window').height),
-          width:Math.floor(Dimensions.get('window').width)
-        })
-      // }
         
+      // }
+      if(isMobile){
+
+        if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
+            //base on width
+            var iframeWidth=Math.floor(Dimensions.get('window').width-60)
+            var iframeHeight=Math.floor((Dimensions.get('window').width-60)*315/560)
+
+        }
+        else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
+            //base on height
+            var iframeWidth=Math.floor(Dimensions.get('window').height-230)*560/315
+            var iframeHeight=Math.floor(Dimensions.get('window').height-230)
+        }
     }
-    
-    Dimensions.addEventListener('change',(e)=>{
-        updateDimensions()
+    else{
+        
+        if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
+            //base on width
+            var iframeWidth=Math.floor(Dimensions.get('window').width-60)
+            var iframeHeight=Math.floor((Dimensions.get('window').width-60)*315/560)
+
+        }
+        else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
+            //base on height
+            // var iframeWidth=Math.floor(Dimensions.get('window').height-230)*560/315
+            // var iframeHeight=Math.floor(Dimensions.get('window').height-230)
+            var iframeWidth=Math.floor(Dimensions.get('window').width)
+            var iframeHeight=Math.floor(Dimensions.get('window').height-100)
+        }
+    }
+    this.setState({
+      height:Math.floor(Dimensions.get('window').height),
+      width:Math.floor(Dimensions.get('window').width),
+      iframeWidth:iframeWidth,
+      iframeHeight:iframeHeight
     })
-    updateDimensions()
-      
-    // this.requestWords()
-    console.log(this.state)
-    var observerOptions ={
-      root: document.querySelector('#scrollArea'),
-      rootMargin: '0px',
-      threshold: 0.5
-    }
-    var observerCallback = function (entreis,observer){
-      console.log('GoogleDeck.js 206 : observer callback fired')
-    }
-    var observer = new IntersectionObserver(observerCallback,observerOptions)
+        
+  }
     
+  Dimensions.addEventListener('change',(e)=>{
+      updateDimensions()
+  })
+  updateDimensions()
+  const updatePosts=(posts)=>{
+    this.setState({
+      posts:posts
+    })
+  }
+
+    // this.requestWords()
+    // console.log(this.state)
+    // var observerOptions ={
+    //   root: document.querySelector('#scrollArea'),
+    //   rootMargin: '0px',
+    //   threshold: 0.5
+    // }
+    // var observerCallback = function (entreis,observer){
+    //   console.log('GoogleDeck.js 206 : observer callback fired')
+    // }
+    // var observer = new IntersectionObserver(observerCallback,observerOptions)
+  //   var temp=[]
+  //   const appConsumerKey = 'ZcMcl1wmyAyF3xr1TnkjIlgU8G7xJK1wmoGfG1sULTL1wpWE9t'
+  //   const appConsumerSecret='3LIzxmGOfmrjIgT1cHDyECMNrHtxZ3TomNOTCY7sKoOQC3cxjq'
+  //   const authorizeUrl = 'https://www.tumblr.com/oauth/authorize';
+  //   const requestTokenUrl = 'https://www.tumblr.com/oauth/request_token';
+  //   const accessTokenUrl = 'https://www.tumblr.com/oauth/access_token';
+  //   const oa = new OAuth(
+  //       requestTokenUrl,
+  //       accessTokenUrl,
+  //       appConsumerKey,
+  //       appConsumerSecret,
+  //       '1.0A',
+  //       'https://squwbs.com',
+  //       'HMAC-SHA1'
+  //     );
+
+  // oa.getOAuthRequestToken(function (err, token, secret) {
+  //   if (err) {
+  //     console.error('\tFailed with error', err);
+  //   }
+  //   console.log('\ttoken %s | secret %s', token, secret);
+  //   var oauth={
+  //       consumer_key:appConsumerKey,
+  //       consumer_secret:appConsumerSecret,
+  //       token:token,
+  //       token_secret:secret,
+  //   }
+  //   var blog = new tumblr.Blog('gamutperiod.tumblr.com',oauth)
+  //   blog.posts({limit:50,offset:0},function(err,response){
+  //       if(err){
+  //           console.log(err)
+  //       }
+  //       for (var i =0; i<response.posts.length; i++){
+  //           if(response.posts[i].type=='video'){
+  //               if(response.posts[i].video!==undefined){
+  //                   if(response.posts[i].video.youtube!==undefined){
+  //                       // console.log(i+' '+response.posts[i].type)
+  //                       // console.log(response.posts[i].short_url)
+  //                       // console.log('postID:',response.posts[i].id)
+  //                       // console.log('postTimeStamp:',response.posts[i].timestamp)
+  //                       // console.log(response.posts[i].video.youtube.video_id)
+  //                       // console.log(response.posts[i].permalink_url)
+  //                       // console.log(response.posts[i].trail.post)
+  //                       temp.push(
+  //                         {
+  //                           type:'video',
+  //                           url:response.posts[i].short_url,
+  //                           id:response.posts[i].id,
+  //                           time:response.posts[i].timestamp,
+  //                           video:response.posts[i].video.youtube.video_id
+  //                         }
+  //                       )
+  //                   }
+  //               }
+                
+  //           }
+            
+  //           if(response.posts[i].type=='photo'){
+  //               // console.log(i+' '+response.posts[i].type)
+  //               // console.log(response.posts[i].short_url)
+  //               // console.log('postID:',response.posts[i].id)
+  //               // console.log('postTimeStamp:',response.posts[i].timestamp)
+  //               var photoList=[]
+  //               if(response.posts[i].image_permalink==undefined){
+                    
+  //                   for(var j = 0; j<response.posts[i].photos.length; j++){
+  //                       //console.log(response.posts[i].photos[j].original_size.url)
+  //                       //console.log(response.posts[i].photos[j].original_size.width+' X '+response.posts[i].photos[j].original_size.height)
+  //                       photoList.push(response.posts[i].photos[j].original_size.url)
+  //                   }
+  //               }
+  //               else{
+  //                   //console.log(response.posts[i].image_permalink)
+  //                   photoList.push(response.posts[i].image_permalink)
+  //               }
+  //               temp.push(
+  //                 {
+  //                   type:'photo',
+  //                   url:response.posts[i].short_url,
+  //                   id:response.posts[i].id,
+  //                   time:response.posts[i].timestamp,
+  //                   photo:photoList
+  //                 }
+  //               )
+  //           }
+  //           if(response.posts[i].type=='quote'){
+  //               // console.log(i+' '+response.posts[i].type)
+  //               // console.log(response.posts[i].short_url)
+  //               // console.log('postID:',response.posts[i].id)
+  //               // console.log('postTimeStamp:',response.posts[i].timestamp)
+  //               // console.log(response.posts[i].text)
+  //               temp.push(
+  //                 {
+  //                   type:'quote',
+  //                   url:response.posts[i].short_url,
+  //                   id:response.posts[i].id,
+  //                   time:response.posts[i].timestamp,
+  //                   quote:response.posts[i].text
+  //                 }
+  //               )
+  //           }
+  //           if(response.posts[i].type=='audio'){
+  //               // console.log(i+' '+response.posts[i].type)
+  //               // console.log(response.posts[i].short_url)
+  //               // console.log('postID:',response.posts[i].id)
+  //               // console.log('postTimeStamp:',response.posts[i].timestamp)
+  //               // console.log(response.posts[i].audio_url)
+  //               temp.push(
+  //                 {
+  //                   type:'audio',
+  //                   url:response.posts[i].short_url,
+  //                   id:response.posts[i].id,
+  //                   time:response.posts[i].timestamp,
+  //                   audio:response.posts[i].audio_url
+  //                 }
+  //               )
+  //           }
+
+  //           if(response.posts[i].type=='text'){
+  //               // console.log(i+' '+response.posts[i].type)
+  //               // console.log(response.posts[i].short_url)
+  //               // console.log('postID:',response.posts[i].id)
+  //               // console.log('postTimeStamp:',response.posts[i].timestamp)
+  //               // console.log(response.posts[i].body)
+  //               temp.push(
+  //                 {
+  //                   type:'text',
+  //                   url:response.posts[i].short_url,
+  //                   id:response.posts[i].id,
+  //                   time:response.posts[i].timestamp,
+  //                   text:response.posts[i].body
+  //                 }
+  //               )
+  //           }
+  //           if(response.posts[i].type=='link'){
+  //               console.log(i+' '+response.posts[i].type)
+  //               console.log(response.posts[i].short_url)
+  //               console.log('postID:',response.posts[i].id)
+  //               console.log('postTimeStamp:',response.posts[i].timestamp)
+  //               console.log(response.posts[i].title)
+  //               console.log(response.posts[i].url)
+  //               if(response.posts[i].link_image!==undefined){
+  //                   console.log(response.posts[i].link_image)
+  //                   temp.push(
+  //                     {
+  //                       type:'link',
+  //                       url:response.posts[i].short_url,
+  //                       id:response.posts[i].id,
+  //                       time:response.posts[i].timestamp,
+  //                       link:response.posts[i].url,
+  //                       image:response.posts[i].link_image
+  //                     }
+  //                   )
+  //               }
+  //               else{
+  //                 temp.push(
+  //                   {
+  //                     type:'link',
+  //                     url:response.posts[i].short_url,
+  //                     id:response.posts[i].id,
+  //                     time:response.posts[i].timestamp,
+  //                     link:response.posts[i].url,
+  //                     image:undefined
+  //                   }
+  //                 )
+  //               }
+  //           }
+  //           if(response.posts[i].type=='chat'){
+  //               console.log(i+' '+response.posts[i].type)
+  //               console.log(response.posts[i].short_url)
+  //               console.log('postID:',response.posts[i].id)
+  //               console.log('postTimeStamp:',response.posts[i].timestamp)
+  //               console.log(response.posts[i].title)
+  //               var chatList=[]
+  //               for (var j = 0; j<response.posts[i].dialogue.length;j++){
+  //                   console.log(response.posts[i].dialogue[j].name+':'+response.posts[i].dialogue[j].phrase)
+  //                   chatList.push(String(response.posts[i].dialogue[j].name)+' : '+String(response.posts[i].dialogue[j].phrase))
+  //               }
+  //               temp.push(
+  //                 {
+  //                   type:'chat',
+  //                   url:response.posts[i].short_url,
+  //                   id:response.posts[i].id,
+  //                   time:response.posts[i].timestamp,
+  //                   url:response.posts[i].url,
+  //                   chat:chatList
+  //                 }
+  //               )
+  //           }
+            
+  //       }
+  //       console.log('temppostlist'+stringifyObject(temp))  
+  //       //this.setState({posts:temp})
+  //       //updatePosts(temp)
+  //   })
+  // })
+  // const getTumblrPostsClient=()=>{
+  //       var temp=[]
+  //       const appConsumerKey = 'ZcMcl1wmyAyF3xr1TnkjIlgU8G7xJK1wmoGfG1sULTL1wpWE9t'
+  //       const appConsumerSecret='3LIzxmGOfmrjIgT1cHDyECMNrHtxZ3TomNOTCY7sKoOQC3cxjq'
+  //       const authorizeUrl = 'https://www.tumblr.com/oauth/authorize';
+  //       const requestTokenUrl = 'https://www.tumblr.com/oauth/request_token';
+  //       const accessTokenUrl = 'https://www.tumblr.com/oauth/access_token';
+  //       const oa = new OAuth(
+  //           requestTokenUrl,
+  //           accessTokenUrl,
+  //           appConsumerKey,
+  //           appConsumerSecret,
+  //           '1.0A',
+  //           'https://squwbs.com',
+  //           'HMAC-SHA1'
+  //       );
+
+  //       oa.getOAuthRequestToken(function (err, token, secret) {
+  //           if (err) {
+  //           console.error('\tFailed with error getTumblrPosts', err);
+  //           }
+  //           console.log('\ttoken %s | secret %s', token, secret);
+  //           var oauth={
+  //               consumer_key:appConsumerKey,
+  //               consumer_secret:appConsumerSecret,
+  //               token:token,
+  //               token_secret:secret,
+  //           }
+        
+    
+  //         var blog = new tumblr.Blog('gamutperiod.tumblr.com',oauth)
+  //         blog.posts({limit:50,offset:0},function(err,response){
+  //             if(err){
+  //                 console.log(err)
+  //             }
+  //             for (var i =0; i<response.posts.length; i++){
+  //                 if(response.posts[i].type=='video'){
+  //                     if(response.posts[i].video!==undefined){
+  //                         if(response.posts[i].video.youtube!==undefined){
+  //                             temp.push(
+  //                               {
+  //                                   type:'video',
+  //                                   url:response.posts[i].short_url,
+  //                                   id:response.posts[i].id,
+  //                                   time:response.posts[i].timestamp,
+  //                                   video:response.posts[i].video.youtube.video_id
+  //                               }
+  //                             )
+  //                         }
+  //                     }
+                      
+  //                 }
+                  
+  //                 if(response.posts[i].type=='photo'){
+  //                     var photoList=[]
+  //                     if(response.posts[i].image_permalink==undefined){
+  //                         for(var j = 0; j<response.posts[i].photos.length; j++){
+  //                             photoList.push(response.posts[i].photos[j].original_size.url)
+  //                         }
+  //                     }
+  //                     else{
+  //                         photoList.push(response.posts[i].image_permalink)
+  //                     }
+  //                     temp.push(
+  //                     {
+  //                         type:'photo',
+  //                         url:response.posts[i].short_url,
+  //                         id:response.posts[i].id,
+  //                         time:response.posts[i].timestamp,
+  //                         photo:photoList
+  //                     }
+  //                     )
+  //                 }
+  //                 if(response.posts[i].type=='quote'){
+  //                     temp.push(
+  //                     {
+  //                         type:'quote',
+  //                         url:response.posts[i].short_url,
+  //                         id:response.posts[i].id,
+  //                         time:response.posts[i].timestamp,
+  //                         quote:response.posts[i].text
+  //                     }
+  //                     )
+  //                 }
+  //                 if(response.posts[i].type=='audio'){
+  //                     temp.push(
+  //                     {
+  //                         type:'audio',
+  //                         url:response.posts[i].short_url,
+  //                         id:response.posts[i].id,
+  //                         time:response.posts[i].timestamp,
+  //                         audio:response.posts[i].audio_url
+  //                     }
+  //                     )
+  //                 }
+
+  //                 if(response.posts[i].type=='text'){
+  //                     temp.push(
+  //                     {
+  //                         type:'text',
+  //                         url:response.posts[i].short_url,
+  //                         id:response.posts[i].id,
+  //                         time:response.posts[i].timestamp,
+  //                         text:response.posts[i].body
+  //                     }
+  //                     )
+  //                 }
+  //                 if(response.posts[i].type=='link'){
+  //                     if(response.posts[i].link_image!==undefined){
+  //                         temp.push(
+  //                         {
+  //                             type:'link',
+  //                             url:response.posts[i].short_url,
+  //                             id:response.posts[i].id,
+  //                             time:response.posts[i].timestamp,
+  //                             link:response.posts[i].url,
+  //                             image:response.posts[i].link_image
+  //                         }
+  //                         )
+  //                     }
+  //                     else{
+  //                     temp.push(
+  //                         {
+  //                         type:'link',
+  //                         url:response.posts[i].short_url,
+  //                         id:response.posts[i].id,
+  //                         time:response.posts[i].timestamp,
+  //                         link:response.posts[i].url,
+  //                         image:undefined
+  //                         }
+  //                     )
+  //                     }
+  //                 }
+  //                 if(response.posts[i].type=='chat'){
+  //                     var chatList=[]
+  //                     for (var j = 0; j<response.posts[i].dialogue.length;j++){
+  //                         console.log(response.posts[i].dialogue[j].name+':'+response.posts[i].dialogue[j].phrase)
+  //                         chatList.push(String(response.posts[i].dialogue[j].name)+' : '+String(response.posts[i].dialogue[j].phrase))
+  //                     }
+  //                     temp.push(
+  //                     {
+  //                         type:'chat',
+  //                         url:response.posts[i].short_url,
+  //                         id:response.posts[i].id,
+  //                         time:response.posts[i].timestamp,
+  //                         url:response.posts[i].url,
+  //                         chat:chatList
+  //                     }
+  //                     )
+  //                 }
+                  
+  //             }
+  //             console.log('this is the posts returned : ',stringifyObject(posts,{
+  //               indent: ' ',
+  //               singleQuotes:false
+  //             }))
+  //             return temp
+  //         })
+   
+  //   }
+  // }
+
+    // const getTumblrPosts=()=>{
+    //   var temp=[]
+      
+    //   fetch('https://squwbs-252702.appspot.com/tumblrAuth', { 
+    //       mode:'cors'
+    //   })
+    //   .then(result=>{
+    //     return result.json()
+    //   })
+    //   .then((json)=>{
+    //     console.log('tumblrAuth returns : ',json)
+    //     var oauth=json
+    //     var blog = new tumblr.Blog('gamutperiod.tumblr.com',oauth)
+    //     blog.posts({limit:50,offset:0},function(err,response){
+    //         if(err){
+    //             console.log(err)
+    //         }
+    //         for (var i =0; i<response.posts.length; i++){
+    //             if(response.posts[i].type=='video'){
+    //                 if(response.posts[i].video!==undefined){
+    //                     if(response.posts[i].video.youtube!==undefined){
+    //                         temp.push(
+    //                         {
+    //                             type:'video',
+    //                             url:response.posts[i].short_url,
+    //                             id:response.posts[i].id,
+    //                             time:response.posts[i].timestamp,
+    //                             video:response.posts[i].video.youtube.video_id
+    //                         }
+    //                         )
+    //                     }
+    //                 }
+                    
+    //             }
+                
+    //             if(response.posts[i].type=='photo'){
+    //                 var photoList=[]
+    //                 if(response.posts[i].image_permalink==undefined){
+                        
+    //                     for(var j = 0; j<response.posts[i].photos.length; j++){
+    //                         photoList.push(response.posts[i].photos[j].original_size.url)
+    //                     }
+    //                 }
+    //                 else{
+    //                     photoList.push(response.posts[i].image_permalink)
+    //                 }
+    //                 temp.push(
+    //                 {
+    //                     type:'photo',
+    //                     url:response.posts[i].short_url,
+    //                     id:response.posts[i].id,
+    //                     time:response.posts[i].timestamp,
+    //                     photo:photoList
+    //                 }
+    //                 )
+    //             }
+    //             if(response.posts[i].type=='quote'){
+    //                 temp.push(
+    //                 {
+    //                     type:'quote',
+    //                     url:response.posts[i].short_url,
+    //                     id:response.posts[i].id,
+    //                     time:response.posts[i].timestamp,
+    //                     quote:response.posts[i].text
+    //                 }
+    //                 )
+    //             }
+    //             if(response.posts[i].type=='audio'){
+    //                 temp.push(
+    //                 {
+    //                     type:'audio',
+    //                     url:response.posts[i].short_url,
+    //                     id:response.posts[i].id,
+    //                     time:response.posts[i].timestamp,
+    //                     audio:response.posts[i].audio_url
+    //                 }
+    //                 )
+    //             }
+
+    //             if(response.posts[i].type=='text'){
+    //                 temp.push(
+    //                 {
+    //                     type:'text',
+    //                     url:response.posts[i].short_url,
+    //                     id:response.posts[i].id,
+    //                     time:response.posts[i].timestamp,
+    //                     text:response.posts[i].body
+    //                 }
+    //                 )
+    //             }
+    //             if(response.posts[i].type=='link'){
+    //                 if(response.posts[i].link_image!==undefined){
+    //                     temp.push(
+    //                     {
+    //                         type:'link',
+    //                         url:response.posts[i].short_url,
+    //                         id:response.posts[i].id,
+    //                         time:response.posts[i].timestamp,
+    //                         link:response.posts[i].url,
+    //                         image:response.posts[i].link_image
+    //                     }
+    //                     )
+    //                 }
+    //                 else{
+    //                 temp.push(
+    //                     {
+    //                     type:'link',
+    //                     url:response.posts[i].short_url,
+    //                     id:response.posts[i].id,
+    //                     time:response.posts[i].timestamp,
+    //                     link:response.posts[i].url,
+    //                     image:undefined
+    //                     }
+    //                 )
+    //                 }
+    //             }
+    //             if(response.posts[i].type=='chat'){
+    //                 var chatList=[]
+    //                 for (var j = 0; j<response.posts[i].dialogue.length;j++){
+    //                     console.log(response.posts[i].dialogue[j].name+':'+response.posts[i].dialogue[j].phrase)
+    //                     chatList.push(String(response.posts[i].dialogue[j].name)+' : '+String(response.posts[i].dialogue[j].phrase))
+    //                 }
+    //                 temp.push(
+    //                 {
+    //                     type:'chat',
+    //                     url:response.posts[i].short_url,
+    //                     id:response.posts[i].id,
+    //                     time:response.posts[i].timestamp,
+    //                     url:response.posts[i].url,
+    //                     chat:chatList
+    //                 }
+    //                 )
+    //             }
+                
+    //         }
+    //         //console.log(temp)
+    //         //window.posts=temp
+    //         console.log('this is the getTumblrPosts returned : ',stringifyObject(temp,{
+    //           indent: ' ',
+    //           singleQuotes:false
+    //         }))
+    //         return temp
+    //     })
+    //   })
+    //   .catch((err)=>{
+    //     console.log(err)
+    //   })
+      
+      
+      
+    // }
+
+      
+      fetch('https://squwbs-252702.appspot.com/tumblr', { 
+          mode:'cors'
+      })
+      .then(result=>{
+        return result.json()
+      })
+      .then((json)=>{
+        console.log('/tumblr returns : ',json)
+        this.setState({posts:json.posts})
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+      //var posts = getTumblrPosts()
+      //var posts = getTumblrPosts()
+      // console.log('posts : ',stringifyObject(posts,{
+      //     indent: ' ',
+      //     singleQuotes:false
+      // }))
+      // console.log('posts : ',posts)
+      //this.setState({posts:posts})
   }
   componentDidUpdate(){
     
@@ -343,6 +920,9 @@ class GoogleDeck extends Component {
  
   render(){
       
+    
+
+
       if(isMobile){
       //if(true){
         return (
@@ -390,7 +970,10 @@ class GoogleDeck extends Component {
                   //     translateY:0,
                   //   }
                   // ],
-                    height:this.state.height-74,
+                    //height:this.state.height-70,
+                    //height:this.state.height-74,
+                    //height:this.state.iframeHeight+105,
+                    height:this.state.iframeHeight+85,
                     //height:'100%',
                     width:this.state.width-18,
                     //width:this.state.width-30,
@@ -416,7 +999,7 @@ class GoogleDeck extends Component {
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}
+                showsHorizontalScrollIndicator={true}
                 //showsHorizontalScrollIndicator={this.state.indicatorState}
                 snapeToAlignment='end'
                 decelerationRate="fast"
@@ -439,22 +1022,22 @@ class GoogleDeck extends Component {
                 
                   <View
                     style={{
-                      // transform:[{
-                      //     translateX:0,
-                      //   },
-                      //   {
-                      //     translateY:-4,
-                      //   }
-                      // ],
+                      transform:[{
+                          translateX:0,
+                        },
+                        {
+                          translateY:-67,
+                        }
+                      ],
                       justifyContent:'center',
                       alignItems:'center',
-                      backgroundColor:'white',
+                      backgroundColor:'black',
                       width:this.state.width-18,
                       height:50,
-                      zIndex:99,
                       //borderWidth:4,
                       //borderRadius:4,
                       //borderColor:'transparent',
+                      zIndex:99,
 
                     }}
                   >
@@ -472,6 +1055,7 @@ class GoogleDeck extends Component {
                           overflow:'hidden'
                       }}
                   >
+                      
                       <View
                           style={{
                               flexDirection:'row',
@@ -482,42 +1066,20 @@ class GoogleDeck extends Component {
                           }}
                       >
                           {/* <TouchableOpacity
-                            //onPress={this.props.commentButtonPressed}
-                            onPress={this.commentButtonPressed}
+                            //onPress={this.props.slackHashButtonPressed}
+                            onPress={this.slackHashButtonPressed}
                           >
+                          <Text
+                              className='icon'
+                              style ={styles.icon}
+                          >   
                           
-                          <Text
-                              className='icon'
-                              style ={styles.icon}
-                          >
+                              <i class="fab fa-slack-hash"></i>
+                          
                               
-                              <i class="fas fa-server"></i>
                           </Text>
                           </TouchableOpacity> */}
                       </View>
-                      
-                      <View
-                          style={{
-                              flexDirection:'row',
-                              width:(this.state.width-30)/4,
-                              backgroundColor:'transparent',
-                              alignItems:'center',
-                              justifyContent:'center'
-                          }}
-                      >
-                          {/* <TouchableOpacity
-                            //onPress={this.props.shareButtonPressed}
-                            onPress={this.shareButtonPressed}
-                          >
-                          <Text
-                              style ={styles.icon}
-                              className='icon'
-                          >
-                              <i class="fas fa-share-alt"></i>
-                          </Text>
-                          </TouchableOpacity> */}
-                      </View>
-                      
                       <View
                           style={{
                               flexDirection:'row',
@@ -554,6 +1116,27 @@ class GoogleDeck extends Component {
                               justifyContent:'center'
                           }}
                       >
+                          {/* <TouchableOpacity
+                            //onPress={this.props.shareButtonPressed}
+                            onPress={this.shareButtonPressed}
+                          >
+                          <Text
+                              style ={styles.icon}
+                              className='icon'
+                          >
+                              <i class="fas fa-share-alt"></i>
+                          </Text>
+                          </TouchableOpacity> */}
+                      </View>
+                      <View
+                          style={{
+                              flexDirection:'row',
+                              width:(this.state.width-30)/4,
+                              backgroundColor:'transparent',
+                              alignItems:'center',
+                              justifyContent:'center'
+                          }}
+                      >
                           <TouchableOpacity
                             //onPress={this.props.slackHashButtonPressed}
                             onPress={this.slackHashButtonPressed}
@@ -569,6 +1152,7 @@ class GoogleDeck extends Component {
                           </Text>
                           </TouchableOpacity>
                       </View>
+                      
                   </View>
                 
                   </View>
@@ -577,8 +1161,8 @@ class GoogleDeck extends Component {
         </View>    
         </Fade>  
               
+         
           
-              
         );
       }
       else{
@@ -628,7 +1212,9 @@ class GoogleDeck extends Component {
                   //   }
                   // ],
                     //height:this.state.height-70,
-                    height:this.state.height-74,
+                    //height:this.state.height-74,
+                    //height:this.state.iframeHeight+105,
+                    height:this.state.iframeHeight+85,
                     //height:'100%',
                     width:this.state.width-18,
                     //width:this.state.width-30,
@@ -654,7 +1240,7 @@ class GoogleDeck extends Component {
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}
+                showsHorizontalScrollIndicator={true}
                 //showsHorizontalScrollIndicator={this.state.indicatorState}
                 snapeToAlignment='end'
                 decelerationRate="fast"
@@ -677,16 +1263,16 @@ class GoogleDeck extends Component {
                 
                   <View
                     style={{
-                      // transform:[{
-                      //     translateX:0,
-                      //   },
-                      //   {
-                      //     translateY:-4,
-                      //   }
-                      // ],
+                      transform:[{
+                          translateX:0,
+                        },
+                        {
+                          translateY:-67,
+                        }
+                      ],
                       justifyContent:'center',
                       alignItems:'center',
-                      backgroundColor:'white',
+                      backgroundColor:'black',
                       width:this.state.width-18,
                       height:50,
                       //borderWidth:4,
@@ -832,7 +1418,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       fontWeight:'700',
       textDecorationLine:'none',
-      color:'white',
+      color:'black',
       
       textShadowColor: 'rgba(0, 0, 0, 0.85)',
       textShadowOffset: {width: 0, height: 0},

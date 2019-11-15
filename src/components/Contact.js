@@ -30,30 +30,32 @@ const Contact = (props)=> {
     
     
       return (
-        <Fade>
+        // <Fade>
             
               <View class="container"
                 style={{
                     width:"100%",
                     height:"100%",
                     backgroundColor:"transparent",
-                    justifyContent:'center',
-                    alignItems:'center',
-                    flexDirection:'column'
+                    //justifyContent:'center',
+                    //alignItems:'left',
+                    flexDirection:'row'
                 }}
             >
                 <View 
                 style={{ 
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
-                width:500,
-                height:250,
+                //width:500,
+                //height:250,
+                width:'100%',
+                height:'100%',
                 flexDirection:'column',
                 padding:15,
                 backgroundColor:'transparent',
                 
-                justifyContent:'center',
-                alignItems:'center',
+                //justifyContent:'center',
+                //alignItems:'left',
                 // marginRight:8,
                 // marginLeft:8,
                 // marginBottom:2,
@@ -76,7 +78,12 @@ const Contact = (props)=> {
 
       
                     {/* <div href="https://www.Contac.com/squwbs/?hl=ko" ref={imgRef}/> */}
-                    
+                    <View
+                        style={{
+                            backgroundColor:'transparent',
+                            width:'100%'
+                        }}
+                    >
                     <a style={{           
                             textDecorationLine:'none',
                             textDecorationStyle:'none',
@@ -89,8 +96,8 @@ const Contact = (props)=> {
                     <View 
                         style={{
 
-                            justifyContent:"center",
-                            alignItems:"center",
+                            //justifyContent:"center",
+                            //alignItems:"center",
                             //backgroundColor:'transparent',
                             backgroundColor:'transparent',
                         }}
@@ -116,8 +123,8 @@ const Contact = (props)=> {
                         style={{
                             height:'100%',
                             width:'100%',
-                            justifyContent:'center',
-                            alignItems:'center',
+                            //justifyContent:'center',
+                            //alignItems:'center',
                             backgroundColor:'transparent'
                         }}>
                     {/* <StyleRoot> */}
@@ -192,10 +199,10 @@ const Contact = (props)=> {
                       /> */}
                     <View
                      style={{
-                         flexDirection:'column',
+                         flexDirection:'row',
                          backgroundColor:'transparent',
-                         alignItems:'center',
-                         justifyContent:'center'
+                         //alignItems:'center',
+                         //justifyContent:'center'
                      }}
                     >
                     <Text
@@ -212,8 +219,8 @@ const Contact = (props)=> {
                     > 
                         <View
                             style={{
-                                justifyContent:'center',
-                                alignItems:'center',
+                                //justifyContent:'center',
+                                //alignItems:'center',
                                 backgroundColor:'transparent'
                             }}
                         >
@@ -225,8 +232,8 @@ const Contact = (props)=> {
                         style={{
                             height:'100%',
                             weight:330,
-                            justifyContent:'center',
-                            alignItems:'center',
+                            //justifyContent:'center',
+                            //alignItems:'center',
                             backgroundColor:'transparent'
                         }}
                     >
@@ -253,6 +260,13 @@ const Contact = (props)=> {
                     
 
                     </a>
+                    </View>
+                    <View
+                        style={{
+                            backgroundColor:'transparent',
+                            width:'100%'
+                        }}
+                    >
                     <a
                         style={{
                             textDecorationLine:'none',
@@ -263,10 +277,10 @@ const Contact = (props)=> {
                     href="tel:821055981367">
                     <View
                      style={{
-                        flexDirection:'column',
+                        flexDirection:'row',
                         backgroundColor:'transparent',
-                        alignItems:'center',
-                        justifyContent:'center'
+                        //alignItems:'center',
+                        //justifyContent:'center'
                      }}
                     >
                     <Text
@@ -283,8 +297,8 @@ const Contact = (props)=> {
                     > 
                         <View
                             style={{
-                                justifyContent:'center',
-                                alignItems:'center',
+                                //justifyContent:'center',
+                                //alignItems:'center',
                                 backgroundColor:'transparent'
                             }}
                         >
@@ -309,6 +323,13 @@ const Contact = (props)=> {
                     </Text> 
                 </View>
                 </a>
+                    </View>
+                    <View
+                        style={{
+                            backgroundColor:'transparent',
+                            width:'100%'
+                        }}
+                    >
                 <a style={{           
                             textDecorationLine:'none',
                             textDecorationStyle:'none',
@@ -320,8 +341,8 @@ const Contact = (props)=> {
                     <View 
                         style={{
 
-                            justifyContent:"center",
-                            alignItems:"center",
+                            //justifyContent:"center",
+                            //alignItems:"center",
                             backgroundColor:'transparent'
                         }}
                     >
@@ -332,17 +353,17 @@ const Contact = (props)=> {
                         style={{
                             height:'100%',
                             width:'100%',
-                            justifyContent:'center',
-                            alignItems:'center',
+                            //justifyContent:'center',
+                            //alignItems:'center',
                             backgroundColor:'transparent'
                         }}>
                    
                     <View
                      style={{
-                         flexDirection:'column',
+                         flexDirection:'row',
                          backgroundColor:'transparent',
-                         alignItems:'center',
-                         justifyContent:'center'
+                         //alignItems:'center',
+                         //justifyContent:'center'
                      }}
                     >
                     <Text
@@ -359,8 +380,8 @@ const Contact = (props)=> {
                     > 
                         <View
                             style={{
-                                justifyContent:'center',
-                                alignItems:'center',
+                                //justifyContent:'center',
+                                //alignItems:'center',
                                 backgroundColor:'transparent'
                             }}
                         >
@@ -368,6 +389,11 @@ const Contact = (props)=> {
                         </View>
                         
                     </Text>
+                <View
+                    style={{
+                        flexDirection:'column'
+                    }}
+                >
                     <Text
                         style={{
                            
@@ -398,47 +424,49 @@ const Contact = (props)=> {
                     >
                         Jeongjail-ro Bundang-gu
                         </Text>
-                        <Text
-                            style={{
-                            
-                                fontWeight:700,
-                                textDecorationLine:'none',
-                                color:'white',
-                                fontSize: 13,
-                                marginLeft:5,
-                                // textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                                // textShadowOffset: {width: 0, height: 0},
-                                // textShadowRadius: 3,
-                            }}
-                        >
-                        Seongnam-si Gyeonggi-do
-                        </Text>
-                        <Text
-                            style={{
-                            
-                                fontWeight:700,
-                                textDecorationLine:'none',
-                                color:'white',
-                                fontSize: 13,
-                                marginLeft:5,
-                                // textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                                // textShadowOffset: {width: 0, height: 0},
-                                // textShadowRadius: 3,
-                            }}
-                        >
-                         R.O.K 13556
-                    </Text> 
+                    <Text
+                        style={{
+                        
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                    Seongnam-si Gyeonggi-do
+                    </Text>
+                    <Text
+                        style={{
+                        
+                            fontWeight:700,
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontSize: 13,
+                            marginLeft:5,
+                            // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                            // textShadowOffset: {width: 0, height: 0},
+                            // textShadowRadius: 3,
+                        }}
+                    >
+                        R.O.K 13556
+                </Text> 
+                </View>
                 </View>
                 </View>
                     </View>
                     
 
                     </a>
+                    </View>
                 </View>
               </View>
             
            
-        </Fade>
+        // </Fade>
       )
 }
 export default Contact

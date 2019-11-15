@@ -36,6 +36,8 @@ const mongoURLAddWordList='https://squwbs-252702.appspot.com/addwordlisttomongo'
 const session = require('express-session');
 //const MongoStore = require('connect-mongo')(session);
 const webpush=require('web-push')
+const OAuth = require('oauth').OAuth
+const tumblr = require('tumblr')
 const vapidKeys = webpush.generateVAPIDKeys()
 webpush.setGCMAPIKey(NODE_ENV.FIREBASE_API_KEY)
 webpush.setVapidDetails(
@@ -102,6 +104,8 @@ admin.initializeApp({
   databaseURL:firebaseConfig.databaseURL
 })
 global.chatHistory=[]
+
+
 // var ref = admin.database().ref('chat')
 // ref.once('value',function(snapshot){
 //   if (snapshot!=undefiend){
@@ -396,6 +400,348 @@ app.get('/disqus',function(req,res){
       console.error(err)
     })
 })
+app.get('/tumblrAuth',cors(),function(req,res){
+  //const getTumblrPosts=(page)=>{
+  // const getTumblrOAuth=(page)=>{
+    var temp=[]
+    // const appConsumerKey = 'ZcMcl1wmyAyF3xr1TnkjIlgU8G7xJK1wmoGfG1sULTL1wpWE9t'
+    // const appConsumerSecret='3LIzxmGOfmrjIgT1cHDyECMNrHtxZ3TomNOTCY7sKoOQC3cxjq'
+    const appConsumerKey = NODE_ENV.TUMBLR_OAUTH_CONSUMER_KEY
+    const appConsumerSecret=NODE_ENV.TUMBLR_SECRET_KEY
+    const authorizeUrl = 'https://www.tumblr.com/oauth/authorize';
+    const requestTokenUrl = 'https://www.tumblr.com/oauth/request_token';
+    const accessTokenUrl = 'https://www.tumblr.com/oauth/access_token';
+    const oa = new OAuth(
+        requestTokenUrl,
+        accessTokenUrl,
+        appConsumerKey,
+        appConsumerSecret,
+        '1.0A',
+        'https://squwbs.com',
+        'HMAC-SHA1'
+    );
+  
+    oa.getOAuthRequestToken(function (err, token, secret) {
+        if (err) {
+        console.error('\tFailed with error getTumblrPosts', err);
+        }
+        console.log('\ttoken %s | secret %s', token, secret);
+        var oauth={
+            consumer_key:appConsumerKey,
+            consumer_secret:appConsumerSecret,
+            token:token,
+            token_secret:secret,
+        }
+        res.json(oauth)
+        // return oauth
+        // var blog = new tumblr.Blog('gamutperiod.tumblr.com',oauth)
+        // blog.posts({limit:50,offset:(page)*50},function(err,response){
+        //     if(err){
+        //         console.log(err)
+        //     }
+        //     for (var i =0; i<response.posts.length; i++){
+        //         if(response.posts[i].type=='video'){
+        //             if(response.posts[i].video!==undefined){
+        //                 if(response.posts[i].video.youtube!==undefined){
+        //                     temp.push(
+        //                     {
+        //                         type:'video',
+        //                         url:response.posts[i].short_url,
+        //                         id:response.posts[i].id,
+        //                         time:response.posts[i].timestamp,
+        //                         video:response.posts[i].video.youtube.video_id
+        //                     }
+        //                     )
+        //                 }
+        //             }
+                    
+        //         }
+                
+        //         if(response.posts[i].type=='photo'){
+        //             var photoList=[]
+        //             if(response.posts[i].image_permalink==undefined){
+                        
+        //                 for(var j = 0; j<response.posts[i].photos.length; j++){
+        //                     photoList.push(response.posts[i].photos[j].original_size.url)
+        //                 }
+        //             }
+        //             else{
+        //                 photoList.push(response.posts[i].image_permalink)
+        //             }
+        //             temp.push(
+        //             {
+        //                 type:'photo',
+        //                 url:response.posts[i].short_url,
+        //                 id:response.posts[i].id,
+        //                 time:response.posts[i].timestamp,
+        //                 photo:photoList
+        //             }
+        //             )
+        //         }
+        //         if(response.posts[i].type=='quote'){
+        //             temp.push(
+        //             {
+        //                 type:'quote',
+        //                 url:response.posts[i].short_url,
+        //                 id:response.posts[i].id,
+        //                 time:response.posts[i].timestamp,
+        //                 quote:response.posts[i].text
+        //             }
+        //             )
+        //         }
+        //         if(response.posts[i].type=='audio'){
+        //             temp.push(
+        //             {
+        //                 type:'audio',
+        //                 url:response.posts[i].short_url,
+        //                 id:response.posts[i].id,
+        //                 time:response.posts[i].timestamp,
+        //                 audio:response.posts[i].audio_url
+        //             }
+        //             )
+        //         }
+  
+        //         if(response.posts[i].type=='text'){
+        //             temp.push(
+        //             {
+        //                 type:'text',
+        //                 url:response.posts[i].short_url,
+        //                 id:response.posts[i].id,
+        //                 time:response.posts[i].timestamp,
+        //                 text:response.posts[i].body
+        //             }
+        //             )
+        //         }
+        //         if(response.posts[i].type=='link'){
+        //             if(response.posts[i].link_image!==undefined){
+        //                 temp.push(
+        //                 {
+        //                     type:'link',
+        //                     url:response.posts[i].short_url,
+        //                     id:response.posts[i].id,
+        //                     time:response.posts[i].timestamp,
+        //                     link:response.posts[i].url,
+        //                     image:response.posts[i].link_image
+        //                 }
+        //                 )
+        //             }
+        //             else{
+        //             temp.push(
+        //                 {
+        //                 type:'link',
+        //                 url:response.posts[i].short_url,
+        //                 id:response.posts[i].id,
+        //                 time:response.posts[i].timestamp,
+        //                 link:response.posts[i].url,
+        //                 image:undefined
+        //                 }
+        //             )
+        //             }
+        //         }
+        //         if(response.posts[i].type=='chat'){
+        //             var chatList=[]
+        //             for (var j = 0; j<response.posts[i].dialogue.length;j++){
+        //                 console.log(response.posts[i].dialogue[j].name+':'+response.posts[i].dialogue[j].phrase)
+        //                 chatList.push(String(response.posts[i].dialogue[j].name)+' : '+String(response.posts[i].dialogue[j].phrase))
+        //             }
+        //             temp.push(
+        //             {
+        //                 type:'chat',
+        //                 url:response.posts[i].short_url,
+        //                 id:response.posts[i].id,
+        //                 time:response.posts[i].timestamp,
+        //                 url:response.posts[i].url,
+        //                 chat:chatList
+        //             }
+        //             )
+        //         }
+                
+        //     }
+            
+        //     console.log('this is the posts returned : ',stringifyObject(posts,{
+        //       indent: ' ',
+        //       singleQuotes:false
+        //     }))
+        //     return temp
+        // })
+    })
+    
+  // }
+  // if(req.query.page!==undefined){
+  //   //var posts=getTumblrPosts(req.query.page)
+  // }
+  // else{
+  //   var posts=getTumblrPosts(0)
+  // }
+  //res.json({data:posts})
+  //var auth = getTumblrOAuth()
+  //console.log("tumblr authorization returned : ",auth)
+  //res.json({auth:auth})
+})
+
+app.get('/tumblr',function(req,res){
+  // const getTumblrPostsClient=()=>{
+          var array=[]
+          const appConsumerKey = NODE_ENV.TUMBLR_OAUTH_CONSUMER_KEY
+          const appConsumerSecret=NODE_ENV.TUMBLR_SECRET_KEY
+          const authorizeUrl = 'https://www.tumblr.com/oauth/authorize';
+          const requestTokenUrl = 'https://www.tumblr.com/oauth/request_token';
+          const accessTokenUrl = 'https://www.tumblr.com/oauth/access_token';
+          const oa = new OAuth(
+              requestTokenUrl,
+              accessTokenUrl,
+              appConsumerKey,
+              appConsumerSecret,
+              '1.0A',
+              'https://squwbs.com',
+              'HMAC-SHA1'
+          );
+          oa.getOAuthRequestToken(function (err, token, secret) {
+              if (err) {
+              console.error('\tFailed with error getTumblrPosts', err);
+              }
+              console.log('\ttoken %s | secret %s', token, secret);
+              var oauth={
+                  consumer_key:appConsumerKey,
+                  consumer_secret:appConsumerSecret,
+                  token:token,
+                  token_secret:secret,
+              }
+          
+      
+            var blog = new tumblr.Blog('gamutperiod.tumblr.com',oauth)
+            blog.posts({limit:10,offset:0},function(err,response){
+                if(err){
+                    console.log(err)
+                }
+                for (var i =0; i<response.posts.length; i++){
+                    if(response.posts[i].type=='video'){
+                        if(response.posts[i].video!==undefined){
+                            if(response.posts[i].video.youtube!==undefined){
+                                array.push(
+                                  {
+                                      type:'video',
+                                      url:response.posts[i].short_url,
+                                      id:response.posts[i].id,
+                                      time:response.posts[i].timestamp,
+                                      video:response.posts[i].video.youtube.video_id
+                                  }
+                                )
+                            }
+                        }
+                        
+                    }                
+                    if(response.posts[i].type=='photo'){
+                        var photoList=[]
+                        if(response.posts[i].image_permalink==undefined){
+                            for(var j = 0; j<response.posts[i].photos.length; j++){
+                                photoList.push(response.posts[i].photos[j].original_size.url)
+                            }
+                        }
+                        else{
+                            photoList.push(response.posts[i].image_permalink)
+                        }
+                        array.push(
+                        {
+                            type:'photo',
+                            url:response.posts[i].short_url,
+                            id:response.posts[i].id,
+                            time:response.posts[i].timestamp,
+                            photo:photoList
+                        }
+                        )
+                    }
+                    if(response.posts[i].type=='quote'){
+                        array.push(
+                        {
+                            type:'quote',
+                            url:response.posts[i].short_url,
+                            id:response.posts[i].id,
+                            time:response.posts[i].timestamp,
+                            quote:response.posts[i].text
+                        }
+                        )
+                    }
+                    if(response.posts[i].type=='audio'){
+                        array.push(
+                        {
+                            type:'audio',
+                            url:response.posts[i].short_url,
+                            id:response.posts[i].id,
+                            time:response.posts[i].timestamp,
+                            audio:response.posts[i].audio_url
+                        }
+                        )
+                    }
+                    if(response.posts[i].type=='text'){
+                        array.push(
+                        {
+                            type:'text',
+                            url:response.posts[i].short_url,
+                            id:response.posts[i].id,
+                            time:response.posts[i].timestamp,
+                            text:response.posts[i].body
+                        }
+                        )
+                    }
+                    if(response.posts[i].type=='link'){
+                        if(response.posts[i].link_image!==undefined){
+                            array.push(
+                            {
+                                type:'link',
+                                url:response.posts[i].short_url,
+                                id:response.posts[i].id,
+                                time:response.posts[i].timestamp,
+                                link:response.posts[i].url,
+                                image:response.posts[i].link_image
+                            }
+                            )
+                        }
+                        else{
+                        array.push(
+                            {
+                            type:'link',
+                            url:response.posts[i].short_url,
+                            id:response.posts[i].id,
+                            time:response.posts[i].timestamp,
+                            link:response.posts[i].url,
+                            image:undefined
+                            }
+                        )
+                        }
+                    }
+                    if(response.posts[i].type=='chat'){
+                        var chatList=[]
+                        for (var j = 0; j<response.posts[i].dialogue.length;j++){
+                            console.log(response.posts[i].dialogue[j].name+':'+response.posts[i].dialogue[j].phrase)
+                            chatList.push(String(response.posts[i].dialogue[j].name)+' : '+String(response.posts[i].dialogue[j].phrase))
+                        }
+                        array.push(
+                        {
+                            type:'chat',
+                            url:response.posts[i].short_url,
+                            id:response.posts[i].id,
+                            time:response.posts[i].timestamp,
+                            url:response.posts[i].url,
+                            chat:chatList
+                        }
+                        )
+                    }  
+                }
+                console.log('this is the posts returned : ',stringifyObject(array,{
+                  indent: ' ',
+                  singleQuotes:false
+                }))
+                //return array
+                res.json({posts:array})
+            })
+     
+      })
+  // }
+  // const array = getTumblrPostsClient()
+  // res.json({posts:array})
+})
+
 app.get('/readCookies',function(req, res){
   //res.send(req.signedCookies);
   res.json(req.signedCookies)

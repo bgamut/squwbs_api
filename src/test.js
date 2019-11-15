@@ -27,7 +27,7 @@ const oa = new OAuth(
         token_secret:secret,
     }
     var blog = new tumblr.Blog('gamutperiod.tumblr.com',oauth)
-    blog.posts({limit:50,offset:50},function(err,response){
+    blog.posts({limit:1,offset:0},function(err,response){
         if(err){
             console.log(err)
         }
@@ -36,17 +36,41 @@ const oa = new OAuth(
         for (var i =0; i<response.posts.length; i++){
             // console.log(response.posts[i])
             // console.log(response.posts[i].post_url)
-            console.log(i+' '+response.posts[i].type)
-            console.log(response.posts[i].short_url)
-            // console.log(response.posts[i].body)
-            
+            // console.log(i+' '+response.posts[i].type)
+            // console.log(response.posts[i].short_url)
+            // // console.log(response.posts[i].body)
+            // console.log('postID:',response.posts[i].id)
+            // console.log('postTimeStamp:',response.posts[i].timestamp)
             if(response.posts[i].type=='video'){
-                if(response.posts[i].player[0].embed_code!=false){
-                    console.log(response.posts[i].player[0].embed_code)
+                // console.log(response.posts[i].permalink_url)
+                // if(response.posts[i].player[0].embed_code!=false){
+                //     console.log(response.posts[i].player[0].embed_code)
+                // }
+                
+                if(response.posts[i].video!==undefined){
+                    if(response.posts[i].video.youtube!==undefined){
+                        console.log(i+' '+response.posts[i].type)
+                        console.log(response.posts[i].short_url)
+                        // console.log(response.posts[i].body)
+                        console.log('postID:',response.posts[i].id)
+                        console.log('postTimeStamp:',response.posts[i].timestamp)
+                        console.log(response.posts[i].video.youtube.video_id)
+                        console.log(response.posts[i].permalink_url)
+                        
+                    }
                 }
+                // else{
+                //     console.log('skip')
+                // }
+                
             }
             
             if(response.posts[i].type=='photo'){
+                console.log(i+' '+response.posts[i].type)
+                console.log(response.posts[i].short_url)
+                // console.log(response.posts[i].body)
+                console.log('postID:',response.posts[i].id)
+                console.log('postTimeStamp:',response.posts[i].timestamp)
                 if(response.posts[i].image_permalink==undefined){
                     
                     for(var j = 0; j<response.posts[i].photos.length; j++){
@@ -59,25 +83,59 @@ const oa = new OAuth(
                 }
             }
             if(response.posts[i].type=='quote'){
+                console.log(i+' '+response.posts[i].type)
+                console.log(response.posts[i].short_url)
+                // console.log(response.posts[i].body)
+                console.log('postID:',response.posts[i].id)
+                console.log('postTimeStamp:',response.posts[i].timestamp)
                 console.log(response.posts[i].text)
             }
             if(response.posts[i].type=='audio'){
                 //console.log(response.posts[i])
-                console.log(response.posts[i].embed)
-                console.log(response.posts[i].player)
+                console.log(i+' '+response.posts[i].type)
+                console.log(response.posts[i].short_url)
+                // console.log(response.posts[i].body)
+                console.log('postID:',response.posts[i].id)
+                console.log('postTimeStamp:',response.posts[i].timestamp)
+                //console.log(response.posts[i].embed)
+                //console.log(response.posts[i].player)
+                console.log(response.posts[i].audio_url)
             }
 
             if(response.posts[i].type=='text'){
+                console.log(i+' '+response.posts[i].type)
+                console.log(response.posts[i].short_url)
+                // console.log(response.posts[i].body)
+                console.log('postID:',response.posts[i].id)
+                console.log('postTimeStamp:',response.posts[i].timestamp)
                 console.log(response.posts[i].body)
             }
             if(response.posts[i].type=='link'){
+                console.log(i+' '+response.posts[i].type)
+                console.log(response.posts[i].short_url)
+                // console.log(response.posts[i].body)
+                console.log('postID:',response.posts[i].id)
+                console.log('postTimeStamp:',response.posts[i].timestamp)
                 console.log(response.posts[i].title)
                 console.log(response.posts[i].url)
                 if(response.posts[i].link_image!==undefined){
                     console.log(response.posts[i].link_image)
                 }
             }
-            console.log('')
+            if(response.posts[i].type=='chat'){
+                console.log(i+' '+response.posts[i].type)
+                console.log(response.posts[i].short_url)
+                // console.log(response.posts[i].body)
+                console.log('postID:',response.posts[i].id)
+                console.log('postTimeStamp:',response.posts[i].timestamp)
+                //console.log(response.posts[i])
+                console.log(response.posts[i].title)
+                //console.log(response.posts[i].dialogue)
+                for (var j = 0; j<response.posts[i].dialogue.length;j++){
+                    console.log(response.posts[i].dialogue[j].name+':'+response.posts[i].dialogue[j].phrase)
+                }
+            }
+            //console.log('')
             
         }
     })

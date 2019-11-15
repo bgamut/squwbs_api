@@ -21,6 +21,7 @@ import Fade from 'react-reveal/Fade'
 import {PayPalButton} from 'react-paypal-button'
 import GoogleCardV2 from './GoogleCardV2'
 import GoogleDeck from './GoogleDeck'
+//import GoogleDeck from './GoogleDeckV2'
 import Message from './MessageV2'
 import Kakao from './Kakao'
 import './css/ClickOpacity.css'
@@ -57,6 +58,8 @@ const SwipeableScroller = (props) => {
   const [state, setState] = useContext(Context);
   const [user,setUser]=useState(undefined)
   const [height,setHeight]=useState(0)
+  const [iframeHeight,setIframeHeight]=useState(0)
+  const [iframeWidth,setIframeWidth]=useState(0)
   const [paypalID,setpaypalID] = useState("AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd")
   const paypalRef = useRef('')
   const heightRef = useRef('')
@@ -121,7 +124,11 @@ const SwipeableScroller = (props) => {
     // .catch((err)=>{
     //   console.error(err)
     // })
-
+    
+          setHeight(Math.floor(Dimensions.get('window').height))
+         
+          
+      
   },[])
   useEffect(()=>{
     //console.log('height changed!')
@@ -214,7 +221,22 @@ const SwipeableScroller = (props) => {
     setHeight(Math.floor(Dimensions.get('window').height))
     //style.height=Math.floor(Dimensions.get('window').height)
     //console.log('dimensions update')
-    
+    if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
+      //base on width
+      setIframeWidth(Math.floor(Dimensions.get('window').width-60))
+      setIframeHeight(Math.floor((Dimensions.get('window').width-60)*315/560))
+      // setIframeWidth(Math.floor(Dimensions.get('window').width))
+      // setIframeHeight(Math.floor(Dimensions.get('window').height))
+      
+
+  }
+  else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
+      //base on height
+      // setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
+      //setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+      setIframeWidth(Math.floor(Dimensions.get('window').width))
+      setIframeHeight(Math.floor(Dimensions.get('window').height-100))
+  }
   }
   
   const onMouseEnter=(e)=>{
@@ -957,7 +979,43 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >   */}
 
-
+            <section id="sound">
+              {/* <a style={{
+                textDecorationLine:'none',
+                margin:0,
+                padding:0,
+                backgroundColor:'transparent',
+                fontSize: 17,
+                fontWeight:'700',
+                textShadowColor: 'rgba(0, 0, 0, 0.5)',
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 2,
+                height:45,
+                alignItems:'center',
+                justifyContent:'center',
+                flexDirection:'row',
+                textAlign:'center',
+                height:"100%",
+                width:'100%'
+              }} href="/#sound"> */}
+                <Animated.View 
+                ref={heightRef}
+                style={{
+                  height:'100vh',
+                  //height:partHeight,
+                  zIndex:0,
+                  alignContent:'center',
+                  justifyContent:'center',
+                  overflow:'hidden',
+                  //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
+                  backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                  }}
+                >
+                  
+                  <Sound/>
+                </Animated.View>
+                {/* </a> */}
+              </section>
 
               <section id="blog">
               
@@ -984,7 +1042,8 @@ const SwipeableScroller = (props) => {
                   style={{
                     //height:"100vh",
                     //height:partHeight,
-                    height:height,
+                    //height:height,
+                    height:iframeHeight+105,
                     width:"100%",
                     padding:15,
                     
@@ -1001,7 +1060,8 @@ const SwipeableScroller = (props) => {
                       //height:"100%",
 
                       /////// yoooo
-                      height:height-30,
+                      //height:height-30,
+                      height:iframeHeight+75,
                       width:"100%",
                       //justifyContent:'center',
                       //alignItems:'center',
@@ -1107,43 +1167,7 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >   */}
-              <section id="sound">
-              {/* <a style={{
-                textDecorationLine:'none',
-                margin:0,
-                padding:0,
-                backgroundColor:'transparent',
-                fontSize: 17,
-                fontWeight:'700',
-                textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                textShadowOffset: {width: 0, height: 0},
-                textShadowRadius: 2,
-                height:45,
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row',
-                textAlign:'center',
-                height:"100%",
-                width:'100%'
-              }} href="/#sound"> */}
-                <Animated.View 
-                ref={heightRef}
-                style={{
-                  height:'100vh',
-                  //height:partHeight,
-                  zIndex:0,
-                  alignContent:'center',
-                  justifyContent:'center',
-                  overflow:'hidden',
-                  //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
-                  backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
-                  }}
-                >
-                  
-                  <Sound/>
-                </Animated.View>
-                {/* </a> */}
-              </section>
+              
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
               onPress={()=>{
@@ -1174,7 +1198,8 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   ref={heightRef}
                   style={{
-                    height:"100vh",
+                    //height:"100vh",
+                    height:iframeHeight+105,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -1247,41 +1272,45 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   ref={heightRef}
                   style={{
-                    height:"100vh",
+                    //height:"100vh",
+                    height:220,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
                     
                     backgroundColor:'transparent',
+                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     justifyContent:'center',
-                    alignItems:'center',
+                    //alignItems:'center',
                   }}
                 >
                   <View 
                     style={{
-                      height:"100%",
+                      //height:"100%",
+                      height:165,
                       width:"100%",
                       justifyContent:'center',
-                      alignItems:'center',
+                      // alignItems:'center',
                       zIndex:0,
-                      backgroundColor:'rgb(135,135,135)',
+                      //backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'transparent',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
                       borderStyle:'solid',
-                      overflow:'hidden',
-                      boxSizing:"border-box",
-                      shadowColor:'black',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2,
+                      // overflow:'hidden',
+                      // boxSizing:"border-box",
+                      // shadowColor:'black',
+                      // shadowOpacity:0.25,
+                      // shadowRadius:2,
+                      // shadowOffset:{
+                      //   width:0,
+                      //   height:0
+                      // },
+                      // elevation:2,
                       //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                      // backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     }}
                   >
                     <Contact/>
@@ -1907,7 +1936,8 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   ref={heightRef}
                   style={{
-                    height:"100vh",
+                    //height:"100vh",
+                    height:220,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -1919,7 +1949,8 @@ const SwipeableScroller = (props) => {
                 >
                   <View 
                     style={{
-                      height:"100%",
+                      //height:"100%",
+                      height:165,
                       width:"100%",
                       justifyContent:'center',
                       alignItems:'center',

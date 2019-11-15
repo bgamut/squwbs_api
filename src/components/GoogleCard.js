@@ -44,8 +44,10 @@ const GoogleCard = (props)=> {
             }
             else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
                 //base on height
-                setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
-                setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+                // setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
+                // setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+                setIframeWidth(Math.floor(Dimensions.get('window').width))
+                setIframeHeight(Math.floor(Dimensions.get('window').height-100))
             }
         }
         else{
@@ -59,8 +61,10 @@ const GoogleCard = (props)=> {
             }
             else if(Math.floor((Dimensions.get('window').width)-60)*315/560>(Dimensions.get('window').height-230)){
                 //base on height
-                setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
-                setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+                // setIframeWidth(Math.floor(Dimensions.get('window').height-230)*560/315)
+                // setIframeHeight(Math.floor(Dimensions.get('window').height-230))
+                setIframeWidth(Math.floor(Dimensions.get('window').width))
+                setIframeHeight(Math.floor(Dimensions.get('window').height-100))
             }
         }
     }

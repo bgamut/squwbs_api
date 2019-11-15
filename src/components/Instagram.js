@@ -46,6 +46,8 @@ const Instagram = (props)=> {
     const [width,setWidth]=useState(0)
     const [uri,setUri]=useState('')
     const [uriList,setUriList]=useState([])
+    const [link,setLink]=useState('')
+    const [linkList,setLinkList]=useState([])
     const [show,setShow]=useState('Show')
     const [index,setIndex]=useState(0)
     const [dummy,setDummy]=useState(0)
@@ -90,8 +92,24 @@ const Instagram = (props)=> {
     
     
     const updateDimensions=()=>{
-        setHeight(Dimensions.get('window').height)
-        setWidth(Dimensions.get('window').width)
+        // setHeight(Dimensions.get('window').height)
+        // setWidth(Dimensions.get('window').width)
+        if(Math.floor((Dimensions.get('window').height))*560/315>(Dimensions.get('window').width)){
+            //base on width
+            setWidth(Math.floor(Dimensions.get('window').width))
+            setHeight(Math.floor((Dimensions.get('window').width)*315/560))
+            // setIframeWidth(Math.floor(Dimensions.get('window').width))
+            // setIframeHeight(Math.floor(Dimensions.get('window').height))
+            
+      
+        }
+        else if(Math.floor((Dimensions.get('window').width))*315/560>(Dimensions.get('window').height)){
+            //base on height
+            setWidth(Math.floor(Dimensions.get('window').height)*560/315)
+            setHeight(Math.floor(Dimensions.get('window').height))
+            //setWidth(Math.floor(Dimensions.get('window').width))
+            //setHeight(Math.floor(Dimensions.get('window').height-100))
+        }
     }
         
     useEffect(()=>{
@@ -136,16 +154,22 @@ const Instagram = (props)=> {
                 //console.log(json)
                 var imageurl=json.data[0].images.standard_resolution.url;
                 //console.log(imageurl)
+                //var imageLink =json.data[0]
+                //console.log(imageLink)
                 setUri(imageurl)
+                //setLink(imageLink)
                 if(imgRef1.current!=null){
                     imgRef1.current.src=imageurl
+                    //imgRef2.current.href=imageLink
                 }
-                var temp = []
+                var temp1 = []
+                var temp2 = []
                 for (var i =0; i<20; i++){
-                    temp[i]=json.data[i].images.standard_resolution.url
+                    temp1[i]=json.data[i].images.standard_resolution.url
+                    //temp2[i]=json.data[i].images.link
                 }
-                setUriList(temp)
-                
+                setUriList(temp1)
+                //setLinkList(temp2)
                 // imgRef1.setNativeProps({
                 //     source:[{uri:imageurl}]
                 // })
@@ -222,6 +246,7 @@ const Instagram = (props)=> {
             opacityAnimationToZero()
             if(imgRef1.current!=null){
                 imgRef1.current.src=uriList[index%20]
+                //imgRef2.current.href=linkList[index%20]
             }
             
         }
@@ -241,7 +266,7 @@ const Instagram = (props)=> {
             
               <View class="container"
                 style={{
-                    width:width-50,
+                    width:width,
                     height:height,
                     backgroundColor:"transparent",
                     justifyContent:'center',
@@ -254,7 +279,7 @@ const Instagram = (props)=> {
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
                 width:width,
-                height:height-50,
+                height:height,
                 flexDirection:'column',
                 padding:0,
                 //backgroundColor:'white',
@@ -294,8 +319,8 @@ const Instagram = (props)=> {
                                 justifyContent:"center",
                                 alignItems:"center",
                                 backgroundColor:'transparent',
-                                height:height-150,
-                                width:width-150,
+                                height:height-39,
+                                width:width-60,
                                 //opacity:opacity
                                 //maxWidth:width-600
                                 //paddingTop:0,
@@ -311,15 +336,20 @@ const Instagram = (props)=> {
                                     //paddingTop:0,
                                 }}
                             > */}
-                            
+                            <a 
+                                //ref={imgRef2}
+                                href="https://www.instagram.com/p/B4g7G0DFelM"
+                            >
                                 <img ref={imgRef1}
                                     className="Unselectable"
                                     //src={uri}
                                     style={{
                                         //top:0,
                                         //display:"inline-block",
-                                        maxHeight:height-200,
-                                        maxWidth:width-100,
+                                        // maxHeight:height-200,
+                                        // maxWidth:width-100,
+                                        maxHeight:height-99,
+                                        maxWidth:width-60,
                                         width:'auto',
                                         height:'auto',
                                         margin: 5,
@@ -335,13 +365,17 @@ const Instagram = (props)=> {
                                     }}
                                     unselectable="on"
                                 src="" alt=""/>
-                                <img ref={imgRef2}
+                            </a>
+                                <img 
+                                    // ref={imgRef2}
                                     unselectable="on"
                                     style={{
                                         //top:0,
                                         //display:"inline-block",
-                                        maxHeight:height-200,
-                                        maxWidth:width-100,
+                                        // maxHeight:height-200,
+                                        // maxWidth:width-100,
+                                        maxHeight:height-99,
+                                        maxWidth:width-60,
                                         //width:'auto',
                                         //height:'auto',
                                         margin: 5,
@@ -373,7 +407,8 @@ const Instagram = (props)=> {
                                     height:39,
                                     justifyContent:'center',
                                     alignItems:'center',
-                                    backgroundColor:'transparent'
+                                    backgroundColor:'transparent',
+                                    bottom:0,
                                 }}>
                                  <a 
                                     style={{  
@@ -423,11 +458,11 @@ const Instagram = (props)=> {
                                         }}
                                         /> */}
                                         <Text
-                                            className='icon'
+                                            //className='icon'
                                             style ={{
                                                 textDecorationLine:'none',
                                                 color:'rgb(196,196,196)',
-                                                fontSize: 45,
+                                                fontSize: 25,
                                                 fontWeight:'700',
                                                 textAlign:'center',
                                                 alignItems:'center',
