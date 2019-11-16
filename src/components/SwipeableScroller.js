@@ -64,6 +64,7 @@ const SwipeableScroller = (props) => {
   const paypalRef = useRef('')
   const heightRef = useRef('')
   const scrollerRef = useRef('')
+  const bottomRef=useRef('')
   const [partHeight,setPartHeight] = useState(Dimensions.get('window').height)
   const [currentEntry,setCurrentEntry] = useState(0)
   //const [mouseEnterFunction,setMouseEnterFunction]=useState(false)
@@ -150,6 +151,20 @@ const SwipeableScroller = (props) => {
       //setState({...state,alignmentFunction:false})
     }
   }
+  const toggleBottom = ()=>{
+    setTimeout(
+      ()=>{
+        console.log('this is the bottom ref : ',bottomRef.current.props.style.height)
+        // if(bottomRef.current.props.style.height==50){
+        //   bottomRef.current.props.style.height=0
+        // }
+        // else if(bottomRef.current.props.style.height==0){
+        //   bottomRef.current.props.style.height=50
+        // }
+
+      },720
+    )
+  }
   useEffect(()=>{
     if(state.headerOpen==true)
         {
@@ -168,7 +183,7 @@ const SwipeableScroller = (props) => {
                 //console.log("Animated header Open has been toggled to ", interpolatedHeader)
                 console.log("header Open has been toggled to ", state.headerOpen)
                 //interpolatedHeader
-                
+                toggleBottom()
             })
         }
     else
@@ -184,7 +199,7 @@ const SwipeableScroller = (props) => {
             {
                 
                 console.log("header Open has been toggled to ", state.headerOpen)
-                
+                toggleBottom()
             })
         }
       if(state.userData!==undefined){
@@ -270,6 +285,7 @@ const SwipeableScroller = (props) => {
         const average = (arr)=>arr.reduce((a,b)=>a+b,0)/arr.length
         if(isNaN(average(buffer))==false){
           //console.log(average(buffer))
+          if(currentY>1){}
           if(average(buffer)<=0){
             //console.log('close')
             props.headerOpen(false)
@@ -1292,8 +1308,9 @@ const SwipeableScroller = (props) => {
                     width:"100%",
                     padding:15,
                     
-                    backgroundColor:'transparent',
-                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                    backgroundColor:'white',
+                    //backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+
                     justifyContent:'center',
                     //alignItems:'center',
                   }}
@@ -1333,8 +1350,9 @@ const SwipeableScroller = (props) => {
                 {/* </a> */}
               </section>
               {/* </TouchableOpacity>  */}
-              {state.headerOpen&&
+              {/* {state.headerOpen&& */}
                 <View
+                  ref={bottomRef}
                   style={{
                     height:50,
                     width:'100vw',
@@ -1347,7 +1365,7 @@ const SwipeableScroller = (props) => {
                     }}
                   > bars</Text>
                 </View>
-              }
+               {/* } */}
               
             </View>
           
@@ -1980,7 +1998,8 @@ const SwipeableScroller = (props) => {
                     //backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                    //backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                    backgroundColor:'white'
                   }}
                 >
                   <View 
@@ -2204,8 +2223,9 @@ const SwipeableScroller = (props) => {
                 </Animated.View>
               </section> */}
               
-              {state.headerOpen&&
+              {/* {state.headerOpen&& */}
                 <View
+                  ref={bottomRef}
                   style={{
                     height:50,
                     width:'100vw',
@@ -2218,7 +2238,7 @@ const SwipeableScroller = (props) => {
                     }}
                   > bars</Text>
                 </View>
-              }
+              {/* } */}
               
             </View>
           

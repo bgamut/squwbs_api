@@ -110,7 +110,7 @@ const Contact = (props)=> {
                             fontWeight:700,
                             textDecorationLine:'none',
                             color:'white',
-                            fontSize: 13,
+                            fontSize: 10,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
                             // textShadowRadius: 3,
@@ -154,7 +154,7 @@ const Contact = (props)=> {
                             fontWeight:700,
                             textDecorationLine:'none',
                             color:'white',
-                            fontSize: 13,
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
@@ -210,8 +210,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 8,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
                             // textShadowRadius: 3,
@@ -221,7 +222,14 @@ const Contact = (props)=> {
                             style={{
                                 //justifyContent:'center',
                                 //alignItems:'center',
-                                backgroundColor:'transparent'
+                                backgroundColor:'transparent',
+                                transform:[{
+                                    //translateX:45,
+                                    translateX:0,
+                                },
+                                {
+                                    translateY:2,
+                                }]
                             }}
                         >
                             <i class="fas fa-envelope"></i>
@@ -243,8 +251,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
@@ -288,8 +297,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 8,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
                             // textShadowRadius: 3,
@@ -299,7 +309,14 @@ const Contact = (props)=> {
                             style={{
                                 //justifyContent:'center',
                                 //alignItems:'center',
-                                backgroundColor:'transparent'
+                                backgroundColor:'transparent',
+                                transform:[{
+                                    //translateX:45,
+                                    translateX:0,
+                                },
+                                {
+                                    translateY:2,
+                                }]
                             }}
                         >
                             <i class="fas fa-phone"></i>
@@ -311,8 +328,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                           // color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
@@ -371,8 +389,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 8,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
                             // textShadowRadius: 3,
@@ -382,7 +401,14 @@ const Contact = (props)=> {
                             style={{
                                 //justifyContent:'center',
                                 //alignItems:'center',
-                                backgroundColor:'transparent'
+                                backgroundColor:'transparent',
+                                transform:[{
+                                    //translateX:45,
+                                    translateX:0,
+                                },
+                                {
+                                    translateY:2,
+                                }]
                             }}
                         >
                             <i class="fas fa-home"></i>
@@ -399,8 +425,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
@@ -414,8 +441,9 @@ const Contact = (props)=> {
                            
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
@@ -429,8 +457,9 @@ const Contact = (props)=> {
                         
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
@@ -444,8 +473,9 @@ const Contact = (props)=> {
                         
                             fontWeight:700,
                             textDecorationLine:'none',
-                            color:'white',
-                            fontSize: 13,
+                            //color:'white',
+                            color:'rgb(195,195,195)',
+                            fontSize: 10,
                             marginLeft:5,
                             // textShadowColor: 'rgba(0, 0, 0, 0.5)',
                             // textShadowOffset: {width: 0, height: 0},
