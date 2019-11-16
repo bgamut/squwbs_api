@@ -711,12 +711,12 @@ const SwipeableScroller = (props) => {
                     width:"100%",
                     padding:15,
                     
-                    backgroundColor:'rgb(135,135,135)',
+                    backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
                     //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
-                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
+                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -727,8 +727,8 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       backgroundColor:'white',
-                      //backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
-                      backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
+                      backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
+                      //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -1040,19 +1040,19 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   ref={heightRef}
                   style={{
-                    //height:"100vh",
+                    height:"100vh",
                     //height:partHeight,
                     //height:height,
-                    height:iframeHeight+105,
+                    //height:iframeHeight+105,
                     width:"100%",
                     padding:15,
                     
-                    backgroundColor:'white',
+                    backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
-                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
+                   // backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1061,10 +1061,10 @@ const SwipeableScroller = (props) => {
 
                       /////// yoooo
                       //height:height-30,
-                      height:iframeHeight+75,
+                      height:"100%",
                       width:"100%",
-                      //justifyContent:'center',
-                      //alignItems:'center',
+                      justifyContent:'center',
+                      alignItems:'center',
                       zIndex:0,
                       //backgroundColor:'rgb(135,135,135)',
                       backgroundColor:'transparent',
@@ -1080,17 +1080,30 @@ const SwipeableScroller = (props) => {
                       borderStyle:'solid',
                       overflow:'hidden',
                       boxSizing:"border-box",
-                      shadowColor:'black',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2
+                      // shadowColor:'black',
+                      // shadowOpacity:0.25,
+                      // shadowRadius:2,
+                      // shadowOffset:{
+                      //   width:0,
+                      //   height:0
+                      // },
+                      // elevation:2
+                      transform:[{
+                        //translateX:45,
+                        translateX:0,
+                    },
+                    {
+                        translateY:30,
+                    }]
                     }}
                   >
-                    
+                    {/* <View
+                      style={{
+                        //backgroundColor:'red',
+                        width:'100%',
+                        height:'50%',
+                      }}
+                    > */}
                     <GoogleDeck 
                       
                       shareButtonPressed={props.shareOverlayToggle}
@@ -1099,6 +1112,7 @@ const SwipeableScroller = (props) => {
                       starButtonPressed={props.starOverlayToggle}
                       XAlign={XAlign}
                     />
+                    {/* </View> */}
                     {/* <GoogleCardV2
                       title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
                       date={String(date)}
@@ -1198,8 +1212,8 @@ const SwipeableScroller = (props) => {
                 <Animated.View
                   ref={heightRef}
                   style={{
-                    //height:"100vh",
-                    height:iframeHeight+105,
+                    height:"100vh",
+                    //height:iframeHeight+105,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -1324,10 +1338,14 @@ const SwipeableScroller = (props) => {
                   style={{
                     height:50,
                     width:'100vw',
-                    backgroundColor:'black'
+                    backgroundColor:'transparent'
                   }}
                   >
-                  <Text> bars</Text>
+                  <Text
+                    style={{
+                      color:'transparent'
+                    }}
+                  > bars</Text>
                 </View>
               }
               
@@ -1862,11 +1880,12 @@ const SwipeableScroller = (props) => {
                     width:"100%",
                     padding:15,
                     
-                    backgroundColor:'white',
+                    //backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(229,154,198),rgb(180,166,255))'
+                    
                   }}
                 >
                   <View 
@@ -1876,8 +1895,10 @@ const SwipeableScroller = (props) => {
                       justifyContent:'center',
                       alignItems:'center',
                       zIndex:0,
+
                       //backgroundColor:'rgb(135,135,135)',
-                      backgroundColor:'white',
+                      backgroundColor:'transparent',
+                     // backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -1895,12 +1916,14 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
-                    <GoogleDeck 
-                      shareButtonPressed={props.shareOverlayToggle}
-                      slackHashButtonPressed={props.slackHashOverlayToggle}
-                      commentButtonPressed={props.commentOverlayToggle}
-                      starButtonPressed={props.starOverlayToggle}
-                    />
+                    
+                      <GoogleDeck 
+                        shareButtonPressed={props.shareOverlayToggle}
+                        slackHashButtonPressed={props.slackHashOverlayToggle}
+                        commentButtonPressed={props.commentOverlayToggle}
+                        starButtonPressed={props.starOverlayToggle}
+                      />
+                    
                     {/* <GoogleCardV2
                       title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
                       date={String(date)}
@@ -1952,11 +1975,12 @@ const SwipeableScroller = (props) => {
                     height:165,
                     //height:partHeight,
                     width:"100%",
-                    padding:15,
+                    //padding:15,
                     
-                    backgroundColor:'transparent',
+                    //backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
+                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -1967,7 +1991,7 @@ const SwipeableScroller = (props) => {
                       justifyContent:'center',
                       alignItems:'center',
                       zIndex:0,
-                      backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'transparent',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -1984,7 +2008,7 @@ const SwipeableScroller = (props) => {
                       },
                       elevation:2,
                       //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                      // backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     }}
                   >
                     <Contact/>
@@ -2185,10 +2209,14 @@ const SwipeableScroller = (props) => {
                   style={{
                     height:50,
                     width:'100vw',
-                    backgroundColor:'black'
+                    backgroundColor:'transparent'
                   }}
                   >
-                  <Text> bars</Text>
+                  <Text
+                    style={{
+                      color:'transparent'
+                    }}
+                  > bars</Text>
                 </View>
               }
               

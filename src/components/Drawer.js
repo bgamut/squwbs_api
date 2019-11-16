@@ -416,7 +416,8 @@ const Drawer =(props)=>{
             }}>
                 
                 <View style={{
-                    backgroundColor:'#ffffff',
+                    //backgroundColor:'#ffffff',
+                    backgroundColor:'transparent',
                     //borderColor:'#cfcfcf',
                     borderColor:'transparent',
                     borderRadius:2,
@@ -436,7 +437,7 @@ const Drawer =(props)=>{
                         // flex:1,
                         justifyContent:'center',
                         zIndex:99,
-                        
+                        backgroundColor:'transparent',
                     }}>
                         <TouchableOpacity 
                             className='icon'
@@ -470,8 +471,8 @@ const Drawer =(props)=>{
                         top:8,
                         alignItems:'center',
                         zIndex:0,
-                        userSelect:'none'
-
+                        userSelect:'none',
+                        backgroundColor:'transparent'
                     }}
                     //pointerEvents='none'
                     
@@ -540,7 +541,8 @@ const Drawer =(props)=>{
                     height:height-48,
                     width:SLIDING_DRAWER_WIDTH-2,
                     //backgroundColor:'white',
-                    backgroundColor:'rgb(196,166,230)',
+                    //backgroundColor:'rgb(196,166,230)',
+                    backgroundColor:'transparent',
                     //borderColor:'rgb(196,196,196)',
 //borderColor:'white',
                     justifyContent:'center',
@@ -564,7 +566,7 @@ const Drawer =(props)=>{
                             //marginRight:2,
                             //marginLeft:2,
                             //backgroundColor:'rgb(196,196,196)',
-backgroundColor:'rgb(180,166,255)',
+//backgroundColor:'rgb(180,166,255)',
                             //backgroundColor:'purple',
                             //borderColor:"rgb(196,196,196)",
                             //borderColor:'rgb(196,196,196)',
@@ -573,19 +575,28 @@ backgroundColor:'rgb(180,166,255)',
                             //borderRadius:2,
                             //borderWidth:1,
                             width:SLIDING_DRAWER_WIDTH-2,
-                            backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                            //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                            backgroundColor:'transparent'
                         }]
                     }>
                             <View style={{
                                 flexDirection:'row',
                                 alignItems:'center',
                                 justifyContent:'center',
+                                width:250,
+                                height:50,
+                                transform:[{
+                                    translateX:0
+                                },{
+                                    translateY:-3
+                                }],
                                 //marginBottom:6,
                                 paddingTop:8,
                                 paddingBottom:8,
                                 paddingRight:25,
                                 paddingLeft:25,
-                                backgroundColor:'transparent',
+                                //backgroundColor:'transparent',
+                                backgroundColor:'rgba(255,255,255,0.8)',
                                 zIndex:0,
                                 marginBottom:0
                                 
@@ -605,22 +616,33 @@ backgroundColor:'rgb(180,166,255)',
                                 <a  style ={{textDecorationLine:'none'}}
                                 
                                 href = "/#slider" >
+                                    <View
+                                        style={{
+                                            transform:[{
+                                                translateX:0
+                                            },{
+                                                translateY:5
+                                            }]
+                                        }}
+                                    >
                                     <Text selectable={false} style ={styles.textStyle}>
                                         {/* Welcome to  */}
                                         <Text style={{fontFamily:'alienEncounters', fontSize:15}}> {userName}</Text>
                                     </Text>
+                                    </View>
                                 </a>
                             </View>
                         <View
                             style={{
-                                backgroundColor:'rgb(196,166,230)',
-                                width:'100%',
+                                //backgroundColor:'rgb(196,166,230)',
+                                backgroundColor:'transparent',
+                                width:250,
                                 //height:height-450,
                                 borderColor:'transparent',
                                 //borderRadius:2,
                                 //borderWidth:1,
                                 transform:([{
-                                    translateY:-9
+                                    translateY:-5
                                 }]),
                                 // height:height,
                                 marginTop:0,
@@ -635,7 +657,8 @@ backgroundColor:'rgb(180,166,255)',
                                 style={{
                                     //backgroundColor:'rgb(196,166,230)',
                                     //backgroundColor:'white',
-                                    backgroundColor:'rgb(180,166,255)',
+                                    //backgroundColor:'rgb(180,166,255)',
+                                    backgroundColor:'rgba(0,0,0,0.8)',
                                     zIndex:98,
                                     height:height-148,
                                     paddingTop:10,
@@ -664,7 +687,7 @@ backgroundColor:'rgb(180,166,255)',
                         backgroundColor:'transparent',
                         //backgroundColor:'purple',
                         width:SLIDING_DRAWER_WIDTH-2,
-                        height:100,
+                        height:104,
                         marginTop:0,
                         marginBottom:0,
                         marginLeft:0,
@@ -676,16 +699,24 @@ backgroundColor:'rgb(180,166,255)',
                         //backgroundColor:'purple',
                         //borderColor:"rgb(196,196,196)",
                         //borderColor:'rgb(196,196,196)',
-borderColor:'orange',
+                        borderColor:'orange',
+                        width:250,
                         //borderColor:'transparent',
                         
                         //borderRadius:2,
                         //borderWidth:1,
                         paddingBottom:0,
-                        height:maxHeight,
+                        height:50,
                         justifyContent:'center',
                         alignItems:'center',
-                        backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                        //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                        backgroundColor:'rgba(256,256,256,0.8)',
+                        transform:[{
+                            translateX:0
+                        },{
+                            translateY:0
+                        }]
+
                     }}
                     >
                        {/* <Text
@@ -743,7 +774,7 @@ borderColor:'orange',
                         
                         <TouchableOpacity 
                             onPress={removeme}
-                            style={styles.touch}
+                            //style={styles.touch}
                         >
                         
                         <Text id="Contact" 
@@ -863,8 +894,8 @@ borderColor:'orange',
                     marginBottom :0,
                     
                     //opacity:state.opacity
-                    // backgroundColor:'orange'
-                    backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
+                    backgroundColor:'white'
+                    //backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
                 }}>  
                     <Animated.View style={{
                         alignItems:'center',
@@ -966,8 +997,8 @@ borderColor:'orange',
                     // height:300,
                     height:height-48,
                     width:SLIDING_DRAWER_WIDTH-2,
-                    //backgroundColor:'white',
-                    backgroundColor:'rgb(196,166,230)',
+                    backgroundColor:'transparent',
+                    //backgroundColor:'rgb(196,166,230)',
                     //borderColor:'rgb(196,196,196)',
 //borderColor:'white',
                     justifyContent:'center',
@@ -991,7 +1022,7 @@ borderColor:'orange',
                             //marginRight:2,
                             //marginLeft:2,
                             //backgroundColor:'rgb(196,196,196)',
-backgroundColor:'rgb(180,166,255)',
+//backgroundColor:'rgb(180,166,255)',
                             //backgroundColor:'purple',
                             //borderColor:"rgb(196,196,196)",
                             //borderColor:'rgb(196,196,196)',
@@ -1000,7 +1031,8 @@ backgroundColor:'rgb(180,166,255)',
                             //borderRadius:2,
                             //borderWidth:1,
                             width:SLIDING_DRAWER_WIDTH-2,
-                            backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                            //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                            backgroundColor:'transparent'
                         }]
                     }>
                             <View style={{
@@ -1012,10 +1044,16 @@ backgroundColor:'rgb(180,166,255)',
                                 paddingBottom:8,
                                 paddingRight:25,
                                 paddingLeft:25,
-                                backgroundColor:'transparent',
+                                backgroundColor:'rgba(256,256,256,0.8)',
                                 zIndex:0,
-                                marginBottom:0
-                                
+                                marginBottom:0,
+                                width:250,
+                                height:50,
+                                transform:[{
+                                    translateX:0
+                                },{
+                                    translateY:-3
+                                }]
                             }}>
                                 {/* <Image source={require('./icons/96x96.png')} style={{
                                         // Top:(maxHeight-imageLength)/2,
@@ -1032,22 +1070,36 @@ backgroundColor:'rgb(180,166,255)',
                                 <a  style ={{textDecorationLine:'none'}}
                                 
                                 href = "/#slider" >
+                                    <View
+                                        style={{
+                                            transform:[{
+                                                translateX:0
+                                            },{
+                                                translateY:5
+                                            }],
+                                            alignItems:'center',
+                                            justifyContent:'center'
+                                        }}
+                                    >
                                     <Text selectable={false} style ={styles.textStyle}>
                                         {/* Welcome to  */}
                                         <Text style={{fontFamily:'alienEncounters', fontSize:15}}> Squwbs</Text>
                                     </Text>
+                                    </View>
                                 </a>
                             </View>
                         <View
                             style={{
-                                backgroundColor:'rgb(196,166,230)',
-                                width:'100%',
+                                //backgroundColor:'rgb(196,166,230)',
+                                backgroundColor:'transparent',
+                                //width:'100%',
+                                width:250,
                                 //height:height-450,
                                 borderColor:'transparent',
                                 //borderRadius:2,
                                 //borderWidth:1,
                                 transform:([{
-                                    translateY:-9
+                                    translateY:-4
                                 }]),
                                 // height:height,
                                 marginTop:0,
@@ -1062,9 +1114,10 @@ backgroundColor:'rgb(180,166,255)',
                                 style={{
                                     //backgroundColor:'rgb(196,166,230)',
                                     //backgroundColor:'white',
-                                    backgroundColor:'rgb(180,166,255)',
+                                    //backgroundColor:'rgb(180,166,255)',
+                                    backgroundColor:'rgba(0,0,0,0.8)',
                                     zIndex:98,
-                                    height:height-148,
+                                    height:height-150,
                                     paddingTop:10,
                                     paddingBottom:10,
                                     
@@ -1089,11 +1142,11 @@ backgroundColor:'rgb(180,166,255)',
                     className='icon'
                     style={{
                         position:'absolute',
-                        top:height-maxHeight-50,
+                        top:height-maxHeight-51,
                         //backgroundColor:'rgb(196,196,196)',
-                        backgroundColor:'transparent',
+                       // backgroundColor:'transparent',
                         //backgroundColor:'purple',
-                        width:SLIDING_DRAWER_WIDTH-2,
+                        width:250,
                         height:100,
                         marginTop:0,
                         marginBottom:0,
@@ -1106,7 +1159,7 @@ backgroundColor:'rgb(180,166,255)',
                         //backgroundColor:'purple',
                         //borderColor:"rgb(196,196,196)",
                         //borderColor:'rgb(196,196,196)',
-borderColor:'orange',
+                        //borderColor:'orange',
                         //borderColor:'transparent',
                         
                         //borderRadius:2,
@@ -1115,7 +1168,8 @@ borderColor:'orange',
                         height:maxHeight,
                         justifyContent:'center',
                         alignItems:'center',
-                        backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                        //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                        backgroundColor:'rgba(256,256,256,0.8)'
                     }}
                     >
                        {/* <Text

@@ -140,7 +140,7 @@ const FirebaseLoginGoogle=() =>{
   }}
   ><i class="fab fa-google"></i>
   </Text>
-  <Text
+  {/* <Text
     selectable={false} 
     style ={{
         fontSize: 25,
@@ -160,7 +160,7 @@ const FirebaseLoginGoogle=() =>{
     }}
   >
     Google
-  </Text>
+  </Text> */}
   </TouchableOpacity>
 <br/>
 </View>

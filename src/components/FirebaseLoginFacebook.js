@@ -135,7 +135,7 @@ const FirebaseLoginFacebook=() =>{
   }}
   ><i class="fab fa-facebook"></i>
   </Text>
-  <Text
+  {/* <Text
     selectable={false} 
     style ={{
         fontSize: 25,
@@ -155,7 +155,7 @@ const FirebaseLoginFacebook=() =>{
     }}
   >
     Facebook
-  </Text>
+  </Text> */}
   </TouchableOpacity>
 <br/>
 </View>
