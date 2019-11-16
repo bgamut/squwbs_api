@@ -14,16 +14,31 @@ const _ = require('lodash')
 const withQuery = require('with-query').default;
 
 const GoogleCard = (props)=> {
+    var portrait=false
     const [height,setHeight]=useState(0)
     const [width,setWidth]=useState(0)
     const [iframeHeight,setIframeHeight]=useState(0)
     const [iframeWidth,setIframeWidth]=useState(0)
+    var googlecardPortrait=false
     const updateDimensions=()=>{
         
 
         if(isMobile){
+            if(Math.floor(Dimensions.get('window').width>Math.floor(Dimensions.get('window').height))){
+                portrait=false
+              }
+              else if(Math.floor(Dimensions.get('window').width<=Math.floor(Dimensions.get('window').height))){
+                portrait=true
+              }
             setHeight(Math.floor(Dimensions.get('window').height))
             setWidth(Math.floor(Dimensions.get('window').width))
+            if(Math.floor(Dimensions.get('window').height<Math.floor(Dimensions.get('window').width))){
+                googlecardPortrait=false
+            }
+            else if(Math.floor(Dimensions.get('window').height>=Math.floor(Dimensions.get('window').width)))
+            {
+                googlecardPortrait=true
+            }            
             if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
                 //base on width
                 setIframeWidth(Math.floor(Dimensions.get('window').width-60))
@@ -104,298 +119,300 @@ const GoogleCard = (props)=> {
         return parent;
     }
     if(props.type=='video'){
-        return (
-        
-        <TouchableOpacity
-            onPress={
-                props.touchedPost
-            }
-            activeOpacity={1}
-        >
-         <View style={{ 
-                width:width-18,
-                backgroundColor:'transparent',
-                zIndex:98,
-                flexDirection:'column',
-                borderRadius:4,
-                borderColor:'transparent',
-                borderStyle:'solid',
-                overflow:'hidden',
-                boxSizing:"border-box",
-            }} 
-            >
-            {/* <View
-                style={{
-                    flexDirection:'row',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    backgroundColor:'transparent'
-                }}
-            >
+        if(portrait==false){
+            return (
             
-                <ScrollView
-                    style={{
-                        height:90,
-                        width:"100%",
-                        backgroundColor:'black',
-                        margin:0,
-                        
-                        
-                    }}
-                    onScroll={(e)=>{
-                        }
-                    }
-                    scrollEnabled={true}
-                    scrollEventThrottle={16}
-                    showsVerticalScrollIndicator={false}
-                    snapeToAlignment='end'
-                    decelerationRate="fast"
-                >
-                               
-                <View
-                    style ={[{
-                        backgroundColor:'transparent',
-                        width:width-18,
-                        alignItems:'center',
-                        justifyContent:'center'
-                    }]}
-                >
-                    <View
-                        style ={
-                        [
-                            {
-                                backgroundColor:'transparent',
-                                width:iframeWidth,
-                                marginTop:15,
-                                marginBottom:35,
-                            }
-                        ]
-                         }
-                    >
-                        <Text
-                            selectable={false} 
-                            style ={[styles.text]}
-                        >
-                            {props.title}
-                        </Text>
-                    
-                        <Text
-                            selectable={false} 
-                            style ={styles.text}
-                        >
-                            {props.writer}
-                        </Text>
-                        <br></br>
-                        <Text
-                            selectable={true} 
-                            style ={{
-                                fontSize: 12,
-                                fontWeight:'700',
-                                textDecorationLine:'none',
-                                color:'rgb(196,196,196)',
-                                textAlign:'center',
-                                alignItems:'center',
-                                justifyContent:'center',
-                                flexDirection:'row',
-                                margin:5,
-                            }}
-                        >
-                            {props.date}
-                        </Text>
-                    </View>
-                </View>
-                </ScrollView>
-            </View>  */}
-            <View
-                style={{
-                    //height:height-165,
-                    //height:height-75,
-                    height:iframeHeight+105,
-                    backgroundColor:'transparent',
-                }}
-            >  
-            {/* <ScrollView
-                style={{
-                    width:width-18,
-                    backgroundColor:'red',
-                    height:iframeHeight+105
-                }}
-                onScroll={(e)=>{
-
-                    }
+            <TouchableOpacity
+                onPress={
+                    props.touchedPost
                 }
-                scrollEnabled={true}
-                scrollEventThrottle={16}
-                showsVerticalScrollIndicator={true}
-                snapeToAlignment='end'
-                decelerationRate="fast"
-
-            >  */}
-            <View
-                style={{
-                    width:{iframeWidth},
-                    height:iframeHeight+15,
-                    alignItems:'center',
+                activeOpacity={1}
+            >
+            <View style={{ 
+                    width:width-23,
                     backgroundColor:'black',
-                    padding:0,
-                }}
-            >
-    
-                <View
-                style={{
-                    width:{iframeWidth},
                     height:iframeHeight+15,
-                    alignItems:'center',
-                    justifyContent:'center',
-                    backgroundColor:'black',
-                    paddingTop:15
-                }}
-                >
-        
-                    <iframe    
-                        style={{
-                           
-                        }}
-                        width={iframeWidth-60}
-                        height={iframeHeight-60}
-                        src= { "https://www.youtube.com/embed/" + props.video} 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen="allowfullscreen"
-                        mozallowfullscreen="mozallowfullscreen" 
-                        msallowfullscreen="msallowfullscreen" 
-                        oallowfullscreen="oallowfullscreen" 
-                        webkitallowfullscreen="webkitallowfullscreen"
-                        >
+                    zIndex:98,
+                    flexDirection:'column',
+                    paddingTop:7,
+                    borderRadius:4,
+                    borderColor:'transparent',
+                    borderStyle:'solid',
+                    overflow:'hidden',
+                    boxSizing:"border-box",
+                    alignItems:'center'
 
-                    </iframe>
-                </View>
-            </View> 
-            <View
-                style={{
-                    background:'transparent',
-                    alignItems:'center',
-                    margin:0,
-                    backgroundColor:'transparent'
-                }}
-            >
-                <View
-                style={{
-                    flexDirection:'row',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    backgroundColor:'transparent'
-                }}
-            >
-            
-                {/* <ScrollView
-                    style={{
-                        height:90,
-                        width:"100%",
-                        backgroundColor:'black',
-                        margin:0,
-                        
-                        
-                    }}
-                    onScroll={(e)=>{
-                        }
-                    }
-                    scrollEnabled={true}
-                    scrollEventThrottle={16}
-                    showsVerticalScrollIndicator={false}
-                    snapeToAlignment='end'
-                    decelerationRate="fast"
+                }} 
                 >
-                               
-                <View
-                    style ={[{
-                        backgroundColor:'transparent',
-                        width:width-18,
-                        alignItems:'center',
-                        justifyContent:'center'
-                    }]}
-                >
-                    <View
-                        style ={
-                        [
-                            {
-                                backgroundColor:'transparent',
-                                width:iframeWidth,
-                                marginTop:15,
-                                marginBottom:35,
-                            }
-                        ]
-                         }
-                    >
-                       
-                        <Text
-                            selectable={true} 
-                            style ={{
-                                fontSize: 12,
-                                fontWeight:'700',
-                                textDecorationLine:'none',
-                                color:'rgb(196,196,196)',
-                                textAlign:'center',
-                                alignItems:'center',
-                                justifyContent:'center',
-                                flexDirection:'row',
-                                margin:5,
-                            }}
-                        >
-                            {props.time}
-                        </Text>
-                    </View>
-                </View>
-                </ScrollView> */}
-            </View> 
                 {/* <View
                     style={{
-                        backgroundColor:'transparent',
-                        width:iframeWidth,
-                        margin:0
-                    }}
-                >
-                    <Text
-                        selectable={true} 
-                        style ={[styles.text]}
-                    >
-                        {props.post}
-                    </Text>
-
-                </View>   */}
-            </View>          
-            <br></br>
-            <ScrollView
-                style={{
-                    margin:0,
-                    padding:0,
-                    flexDirection:'column',
-                    backgroundColor:'transparent',
-                    width:iframeWidth,
-                    padding:15,
-                }}
-                horizontal={true}
-                showsHorizontalScrollIndicator={true}
-            >
-                <View
-                    style={{
-                        margin:0,
-                        padding:0,
-                        backgroundColor:'transparent',
                         flexDirection:'row',
                         alignItems:'center',
-                        width:"100%",
+                        justifyContent:'center',
+                        backgroundColor:'transparent'
                     }}
                 >
+                
+                    <ScrollView
+                        style={{
+                            height:90,
+                            width:"100%",
+                            backgroundColor:'black',
+                            margin:0,
+                            
+                            
+                        }}
+                        onScroll={(e)=>{
+                            }
+                        }
+                        scrollEnabled={true}
+                        scrollEventThrottle={16}
+                        showsVerticalScrollIndicator={false}
+                        snapeToAlignment='end'
+                        decelerationRate="fast"
+                    >
+                                
+                    <View
+                        style ={[{
+                            backgroundColor:'transparent',
+                            width:width-18,
+                            alignItems:'center',
+                            justifyContent:'center'
+                        }]}
+                    >
+                        <View
+                            style ={
+                            [
+                                {
+                                    backgroundColor:'transparent',
+                                    width:iframeWidth,
+                                    marginTop:15,
+                                    marginBottom:35,
+                                }
+                            ]
+                            }
+                        >
+                            <Text
+                                selectable={false} 
+                                style ={[styles.text]}
+                            >
+                                {props.title}
+                            </Text>
+                        
+                            <Text
+                                selectable={false} 
+                                style ={styles.text}
+                            >
+                                {props.writer}
+                            </Text>
+                            <br></br>
+                            <Text
+                                selectable={true} 
+                                style ={{
+                                    fontSize: 12,
+                                    fontWeight:'700',
+                                    textDecorationLine:'none',
+                                    color:'rgb(196,196,196)',
+                                    textAlign:'center',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    flexDirection:'row',
+                                    margin:5,
+                                }}
+                            >
+                                {props.date}
+                            </Text>
+                        </View>
+                    </View>
+                    </ScrollView>
+                </View>  */}
                 <View
+                    style={{
+                        //height:height-165,
+                        //height:height-75,
+                        height:iframeHeight+50,
+                        backgroundColor:'transparent',
+                    }}
+                >  
+                {/* <ScrollView
+                    style={{
+                        width:width-18,
+                        backgroundColor:'black',
+                        height:iframeHeight+105
+                    }}
+                    onScroll={(e)=>{
+
+                        }
+                    }
+                    scrollEnabled={true}
+                    scrollEventThrottle={16}
+                    showsVerticalScrollIndicator={true}
+                    snapeToAlignment='end'
+                    decelerationRate="fast"
+
+                >  */}
+                <View
+                    style={{
+                        width:iframeWidth,
+                        height:iframeHeight-5,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        backgroundColor:'black',
+                        //paddingTop:15,
+                    }}
+                >
+        
+                    <View
+                    style={{
+                        width:iframeWidth-2,
+                        height:iframeHeight-2,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:'transparent',
+                        margin:2,
+                        transform:[{
+                            //translateX:45,
+                            translateX:0,
+                        },
+                        {
+                            translateY:0,
+                        }],
+                        //paddingTop:8
+                    }}
+                    >
+            
+                        <iframe    
+                            style={{
+                                transform:[{
+                                    translateX:0,
+                                },
+                                {
+                                    translateY:0,
+                                }],
+                                zIndex:100
+                            }}
+                            //width={(iframeWidth-30)}
+                            //height={(iframeWidth-30)*315/560}
+                            width={((iframeHeight-45)*560/315)}
+                            height={(iframeHeight-45)}
+                            src= { "https://www.youtube.com/embed/" + props.video} 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen="allowfullscreen"
+                            mozallowfullscreen="mozallowfullscreen" 
+                            msallowfullscreen="msallowfullscreen" 
+                            oallowfullscreen="oallowfullscreen" 
+                            webkitallowfullscreen="webkitallowfullscreen"
+                            >
+
+                        </iframe>
+                    </View>
+                </View> 
+                <View
+                    style={{
+                        background:'transparent',
+                        alignItems:'center',
+                        margin:0,
+                        backgroundColor:'transparent'
+                    }}
+                >
+                    <View
+                    style={{
+                        flexDirection:'row',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:'transparent'
+                    }}
+                >
+                
+                    {/* <ScrollView
+                        style={{
+                            height:90,
+                            width:"100%",
+                            backgroundColor:'black',
+                            margin:0,
+                            
+                            
+                        }}
+                        onScroll={(e)=>{
+                            }
+                        }
+                        scrollEnabled={true}
+                        scrollEventThrottle={16}
+                        showsVerticalScrollIndicator={false}
+                        snapeToAlignment='end'
+                        decelerationRate="fast"
+                    >
+                                
+                    <View
+                        style ={[{
+                            backgroundColor:'transparent',
+                            width:width-18,
+                            alignItems:'center',
+                            justifyContent:'center'
+                        }]}
+                    >
+                        <View
+                            style ={
+                            [
+                                {
+                                    backgroundColor:'transparent',
+                                    width:iframeWidth,
+                                    marginTop:15,
+                                    marginBottom:35,
+                                }
+                            ]
+                            }
+                        >
+                        
+                            <Text
+                                selectable={true} 
+                                style ={{
+                                    fontSize: 12,
+                                    fontWeight:'700',
+                                    textDecorationLine:'none',
+                                    color:'rgb(196,196,196)',
+                                    textAlign:'center',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    flexDirection:'row',
+                                    margin:5,
+                                }}
+                            >
+                                {props.time}
+                            </Text>
+                        </View>
+                    </View>
+                    </ScrollView> */}
+                </View> 
+                    {/* <View
+                        style={{
+                            backgroundColor:'transparent',
+                            width:iframeWidth,
+                            margin:0
+                        }}
+                    >
+                        <Text
+                            selectable={true} 
+                            style ={[styles.text]}
+                        >
+                            {props.post}
+                        </Text>
+
+                    </View>   */}
+                </View>          
+                <br></br>
+                <ScrollView
                     style={{
                         margin:0,
                         padding:0,
+                        flexDirection:'column',
                         backgroundColor:'transparent',
-                        flexDirection:'row',
-                        justifyContent:'center',
-                        
+                        width:iframeWidth,
+                        padding:15,
                     }}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={true}
                 >
                     <View
                         style={{
@@ -403,20 +420,365 @@ const GoogleCard = (props)=> {
                             padding:0,
                             backgroundColor:'transparent',
                             flexDirection:'row',
-                            justifyContent:'center',
-                            alignSelf:'flex-end'
+                            alignItems:'center',
+                            width:"100%",
                         }}
                     >
+                    <View
+                        style={{
+                            margin:0,
+                            padding:0,
+                            backgroundColor:'transparent',
+                            flexDirection:'row',
+                            justifyContent:'center',
+                            
+                        }}
+                    >
+                        <View
+                            style={{
+                                margin:0,
+                                padding:0,
+                                backgroundColor:'transparent',
+                                flexDirection:'row',
+                                justifyContent:'center',
+                                alignSelf:'flex-end'
+                            }}
+                        >
+                        </View>
                     </View>
+                    </View>
+                </ScrollView>      
+            {/* </ScrollView>  */}
+            </View>           
                 </View>
+            </TouchableOpacity>
+            )
+        }  
+        if(portrait==true){
+            return (
+            
+            <TouchableOpacity
+                onPress={
+                    props.touchedPost
+                }
+                activeOpacity={1}
+            >
+            <View style={{ 
+                    width:width-23,
+                    backgroundColor:'black',
+                    zIndex:98,
+                    flexDirection:'column',
+                    paddingTop:7,
+                    borderRadius:4,
+                    borderColor:'transparent',
+                    borderStyle:'solid',
+                    overflow:'hidden',
+                    boxSizing:"border-box",
+                    alignItems:'center'
+                }} 
+                >
+                {/* <View
+                    style={{
+                        flexDirection:'row',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:'transparent'
+                    }}
+                >
+                
+                    <ScrollView
+                        style={{
+                            height:90,
+                            width:"100%",
+                            backgroundColor:'black',
+                            margin:0,
+                            
+                            
+                        }}
+                        onScroll={(e)=>{
+                            }
+                        }
+                        scrollEnabled={true}
+                        scrollEventThrottle={16}
+                        showsVerticalScrollIndicator={false}
+                        snapeToAlignment='end'
+                        decelerationRate="fast"
+                    >
+                                
+                    <View
+                        style ={[{
+                            backgroundColor:'transparent',
+                            width:width-18,
+                            alignItems:'center',
+                            justifyContent:'center'
+                        }]}
+                    >
+                        <View
+                            style ={
+                            [
+                                {
+                                    backgroundColor:'transparent',
+                                    width:iframeWidth,
+                                    marginTop:15,
+                                    marginBottom:35,
+                                }
+                            ]
+                            }
+                        >
+                            <Text
+                                selectable={false} 
+                                style ={[styles.text]}
+                            >
+                                {props.title}
+                            </Text>
+                        
+                            <Text
+                                selectable={false} 
+                                style ={styles.text}
+                            >
+                                {props.writer}
+                            </Text>
+                            <br></br>
+                            <Text
+                                selectable={true} 
+                                style ={{
+                                    fontSize: 12,
+                                    fontWeight:'700',
+                                    textDecorationLine:'none',
+                                    color:'rgb(196,196,196)',
+                                    textAlign:'center',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    flexDirection:'row',
+                                    margin:5,
+                                }}
+                            >
+                                {props.date}
+                            </Text>
+                        </View>
+                    </View>
+                    </ScrollView>
+                </View>  */}
+                <View
+                    style={{
+                        //height:height-165,
+                        //height:height-75,
+                        height:iframeHeight+53,
+                        backgroundColor:'transparent',
+                    }}
+                >  
+                {/* <ScrollView
+                    style={{
+                        width:width-18,
+                        backgroundColor:'black',
+                        height:iframeHeight+105
+                    }}
+                    onScroll={(e)=>{
+
+                        }
+                    }
+                    scrollEnabled={true}
+                    scrollEventThrottle={16}
+                    showsVerticalScrollIndicator={true}
+                    snapeToAlignment='end'
+                    decelerationRate="fast"
+
+                >  */}
+                <View
+                    style={{
+                        width:iframeWidth-30,
+                        height:iframeHeight,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        backgroundColor:'black',
+                        //padding:15,
+                    }}
+                >
+        
+                    <View
+                    style={{
+                        width:iframeWidth-30,
+                        height:iframeHeight,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:'black',
+                        margin:2,
+                        //paddingTop:8
+                    }}
+                    >
+            
+                        <iframe    
+                            style={{
+                                transform:[{
+                                    translateX:0,
+                                },
+                                {
+                                    translateY:0,
+                                }],
+                                zIndex:100
+                            }}
+                            width={(iframeWidth-30)}
+                            height={((iframeWidth-30)*315/560)}
+                            src= { "https://www.youtube.com/embed/" + props.video} 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen="allowfullscreen"
+                            mozallowfullscreen="mozallowfullscreen" 
+                            msallowfullscreen="msallowfullscreen" 
+                            oallowfullscreen="oallowfullscreen" 
+                            webkitallowfullscreen="webkitallowfullscreen"
+                            >
+
+                        </iframe>
+                    </View>
+                </View> 
+                <View
+                    style={{
+                        background:'transparent',
+                        alignItems:'center',
+                        margin:0,
+                        backgroundColor:'transparent'
+                    }}
+                >
+                    <View
+                    style={{
+                        flexDirection:'row',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:'transparent'
+                    }}
+                >
+                
+                    {/* <ScrollView
+                        style={{
+                            height:90,
+                            width:"100%",
+                            backgroundColor:'black',
+                            margin:0,
+                            
+                            
+                        }}
+                        onScroll={(e)=>{
+                            }
+                        }
+                        scrollEnabled={true}
+                        scrollEventThrottle={16}
+                        showsVerticalScrollIndicator={false}
+                        snapeToAlignment='end'
+                        decelerationRate="fast"
+                    >
+                                
+                    <View
+                        style ={[{
+                            backgroundColor:'transparent',
+                            width:width-18,
+                            alignItems:'center',
+                            justifyContent:'center'
+                        }]}
+                    >
+                        <View
+                            style ={
+                            [
+                                {
+                                    backgroundColor:'transparent',
+                                    width:iframeWidth,
+                                    marginTop:15,
+                                    marginBottom:35,
+                                }
+                            ]
+                            }
+                        >
+                        
+                            <Text
+                                selectable={true} 
+                                style ={{
+                                    fontSize: 12,
+                                    fontWeight:'700',
+                                    textDecorationLine:'none',
+                                    color:'rgb(196,196,196)',
+                                    textAlign:'center',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    flexDirection:'row',
+                                    margin:5,
+                                }}
+                            >
+                                {props.time}
+                            </Text>
+                        </View>
+                    </View>
+                    </ScrollView> */}
+                </View> 
+                    {/* <View
+                        style={{
+                            backgroundColor:'transparent',
+                            width:iframeWidth,
+                            margin:0
+                        }}
+                    >
+                        <Text
+                            selectable={true} 
+                            style ={[styles.text]}
+                        >
+                            {props.post}
+                        </Text>
+
+                    </View>   */}
+                </View>          
+                <br></br>
+                <ScrollView
+                    style={{
+                        margin:0,
+                        padding:0,
+                        flexDirection:'column',
+                        backgroundColor:'transparent',
+                        width:iframeWidth,
+                        padding:15,
+                    }}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={true}
+                >
+                    <View
+                        style={{
+                            margin:0,
+                            padding:0,
+                            backgroundColor:'transparent',
+                            flexDirection:'row',
+                            alignItems:'center',
+                            width:"100%",
+                        }}
+                    >
+                    <View
+                        style={{
+                            margin:0,
+                            padding:0,
+                            backgroundColor:'transparent',
+                            flexDirection:'row',
+                            justifyContent:'center',
+                            
+                        }}
+                    >
+                        <View
+                            style={{
+                                margin:0,
+                                padding:0,
+                                backgroundColor:'transparent',
+                                flexDirection:'row',
+                                justifyContent:'center',
+                                alignSelf:'flex-end'
+                            }}
+                        >
+                        </View>
+                    </View>
+                    </View>
+                </ScrollView>      
+            {/* </ScrollView>  */}
+            </View>           
                 </View>
-            </ScrollView>      
-        {/* </ScrollView>  */}
-        </View>           
-            </View>
-        </TouchableOpacity>
-        )
-    }     
+            </TouchableOpacity>
+            )
+        } 
+    }   
     else{
         return(
             null

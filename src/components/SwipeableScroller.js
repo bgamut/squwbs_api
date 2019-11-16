@@ -1273,7 +1273,7 @@ const SwipeableScroller = (props) => {
                   ref={heightRef}
                   style={{
                     //height:"100vh",
-                    height:220,
+                    height:165,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -1319,11 +1319,23 @@ const SwipeableScroller = (props) => {
                 {/* </a> */}
               </section>
               {/* </TouchableOpacity>  */}
+              {state.headerOpen&&
+                <View
+                  style={{
+                    height:50,
+                    width:'100vw',
+                    backgroundColor:'black'
+                  }}
+                  >
+                  <Text> bars</Text>
+                </View>
+              }
               
             </View>
           
         </View>
       </Animated.ScrollView>
+      
     </View>
     )
   }
@@ -1937,7 +1949,7 @@ const SwipeableScroller = (props) => {
                   ref={heightRef}
                   style={{
                     //height:"100vh",
-                    height:220,
+                    height:165,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -2167,6 +2179,19 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section> */}
+              
+              {state.headerOpen&&
+                <View
+                  style={{
+                    height:50,
+                    width:'100vw',
+                    backgroundColor:'black'
+                  }}
+                  >
+                  <Text> bars</Text>
+                </View>
+              }
+              
             </View>
           
         </View>

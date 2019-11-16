@@ -26,7 +26,7 @@ const tumblr = require('tumblr')
 const isMobile = require('react-device-detect').isMobile
 //const isMobile=false
 const uuidv4 = require('uuid/v4');
-
+var portrait=true
 class GoogleDeck extends Component {
   constructor(props){
     super(props)
@@ -113,6 +113,24 @@ class GoogleDeck extends Component {
         //if(i==length){
           const date =new Date(post.time*1000)
           const time = String(date)
+         
+            parent.push(
+              <View
+                style={{
+                  height:'100%',
+                  width:10,
+                  backgroundColor:'transparent'
+                }}
+              >
+                <Text
+                  style={{
+           
+                    color:'transparent'
+                  }}
+                >bar</Text>
+              </View>
+            )
+          
           if(post.type=='video'){
           parent.push(
             <View
@@ -123,7 +141,8 @@ class GoogleDeck extends Component {
                     //width:this.state.width-30,
                     //height:this.state.height-30,
                     //height:'100%',
-                    width:this.state.width-30,
+                    //width:this.state.width-18,
+                    width:this.state.width-45,
                     //height:this.state.iframeHeight+105,
                     height:this.state.iframeHeight+15,
                     //width:this.state.iframeWidth,
@@ -133,9 +152,15 @@ class GoogleDeck extends Component {
                     // borderStyle:'solid',
                     //justifyContent:'center',
                     alignItems:'center',
-                    backgroundColor:'yellow'
+                    backgroundColor:'transparent',
                     // marginLeft:15,
                     // mariginRight:15
+                    // transform:[{
+                    //   translateX:12,
+                    // },
+                    // {
+                    //   translateY:0,
+                    // }]
                 }}
             >
                 {/* <GoogleCard
@@ -176,7 +201,7 @@ class GoogleDeck extends Component {
         //           style={{
         //               height:this.state.height-80,
         //               width:this.state.width-30,
-        //               backgroundColor:'black',
+        //               backgroundColor:'white',
         //               borderColor:'purple',
         //               borderWidth:'2',
         //               borderStyle:'solid',
@@ -203,6 +228,24 @@ class GoogleDeck extends Component {
         // }
       })
     }
+    //if(portrait==false){
+    parent.push(
+      <View
+        style={{
+          height:'100%',
+          width:10,
+          backgroundColor:'transparent'
+        }}
+      >
+        <Text
+          style={{
+           
+            color:'transparent'
+          }}
+        >bar</Text>
+      </View>
+    )
+  //}
     return parent;
 }
   addCard=()=>{
@@ -284,6 +327,13 @@ class GoogleDeck extends Component {
       // else{
         
       // }
+
+      if(Math.floor(Dimensions.get('window').width>Math.floor(Dimensions.get('window').height))){
+        portrait=false
+      }
+      else if(Math.floor(Dimensions.get('window').width<=Math.floor(Dimensions.get('window').height))){
+        portrait=true
+      }
       if(isMobile){
 
         if(Math.floor((Dimensions.get('window').height)-230)*560/315>(Dimensions.get('window').width-60)){
@@ -924,7 +974,7 @@ class GoogleDeck extends Component {
 
 
       if(isMobile){
-      //if(true){
+        if(portrait==false){
         return (
           <Fade
                     duration={270}
@@ -943,7 +993,7 @@ class GoogleDeck extends Component {
               width:this.state.width-18,
               zIndex:99,
               transform:[{
-                translateX:-8,
+                translateX:-7,
               },
               {
                 translateY:-10,
@@ -973,9 +1023,9 @@ class GoogleDeck extends Component {
                     //height:this.state.height-70,
                     //height:this.state.height-74,
                     //height:this.state.iframeHeight+105,
-                    height:this.state.iframeHeight+85,
+                    height:this.state.iframeHeight+207,
                     //height:'100%',
-                    width:this.state.width-18,
+                    width:this.state.width-24,
                     //width:this.state.width-30,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
@@ -1015,23 +1065,26 @@ class GoogleDeck extends Component {
             renderItem={() => this.createPostsList()}
             keyExtractor={() => uuidv4()}
         /> */}
+          
       
             {this.createPostsList()}
+          
         
           </ScrollView> 
                 
                   <View
                     style={{
                       transform:[{
-                          translateX:0,
+                          translateX:-7,
                         },
                         {
-                          translateY:-67,
+                          translateY:-69,
                         }
                       ],
                       justifyContent:'center',
                       alignItems:'center',
-                      backgroundColor:'black',
+                      backgroundColor:'white',
+                      //backgroundColor:'rgba(256,256,256,0.9)',
                       width:this.state.width-18,
                       height:50,
                       //borderWidth:4,
@@ -1164,6 +1217,250 @@ class GoogleDeck extends Component {
          
           
         );
+        }
+        else if(portrait==true){
+          return (
+            <Fade
+                      duration={270}
+                      timeout={270}
+                  >
+            <View
+              style={{
+                borderWidth:4,
+                borderColor:'transparent',
+                backgroundColor:'transparent',
+                paddingTop:0,
+                paddingLeft:0,
+                paddingRight:0,
+                margin:0,
+                //width:this.state.width-30,
+                width:this.state.width-18,
+                zIndex:99,
+                transform:[{
+                  translateX:-8,
+                },
+                {
+                  translateY:-10,
+                }]
+              }
+              }
+            >
+           
+              <TouchableOpacity
+                onPress={this.touchedPost}
+                activeOpacity={1}
+              >
+              <ScrollView
+                  ref={ref=>this.myRef=ref}
+                  //ref={this.myRef}
+                  style={{
+                      // display:'absolute',
+                      // left:0,
+                      
+                    //   transform:[{
+                    //     translateX:4,
+                    //   },
+                    //   {
+                    //     translateY:0,
+                    //   }
+                    // ],
+                      //height:this.state.height-70,
+                      //height:this.state.height-74,
+                      //height:this.state.iframeHeight+105,
+                      height:this.state.iframeHeight+82,
+                      //height:'100%',
+                      width:this.state.width-18,
+                      //width:this.state.width-30,
+                      backgroundColor:'transparent',
+                      //backgroundColor:'rgb(175,175,175)',
+                      margin:0,
+                      flexDirection:'row',
+                      paddingTop:0,
+                      paddingLeft:0,
+                      paddingRight:0,
+                      paddingBottom:0,
+                      // paddingBottom:15,
+                      // paddingRight:15,
+                      //backgroundColor:'transparent',
+                      borderColor:'transparent',
+                      borderWidth:4,
+                      borderStyle:'solid',
+                      padding:0,
+                      zIndex:98
+                  }}
+                  onScroll={this.onScroll}
+                  scrollEventThrottle={16}
+                  onMouseEnter={this.onMouseEnter}
+                  onMouseLeave={this.onMouseLeave}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={true}
+                  //showsHorizontalScrollIndicator={this.state.indicatorState}
+                  snapeToAlignment='end'
+                  decelerationRate="fast"
+                  scrollIndicatorInsets={1000,240,500,24}
+              >
+          {/* <FlatList 
+              horizontal ={true}
+              scrollEnabled={true}
+              pagingEnabled={true}
+              showsHorizontalScrollIndicator={true}
+              legacyImplementation={false}
+              data={this.state.posts}
+              renderItem={() => this.createPostsList()}
+              keyExtractor={() => uuidv4()}
+          /> */}
+        
+              {this.createPostsList()}
+          
+            </ScrollView> 
+                  
+                    <View
+                      style={{
+                        transform:[{
+                            translateX:0,
+                          },
+                          {
+                            translateY:-65,
+                          }
+                        ],
+                        justifyContent:'center',
+                        alignItems:'center',
+                        backgroundColor:'white',
+                        //backgroundColor:'rgba(128,128,128,0.8)',
+                        width:this.state.width-18,
+                        height:50,
+                        //borderWidth:4,
+                        //borderRadius:4,
+                        //borderColor:'transparent',
+                        zIndex:99,
+  
+                      }}
+                    >
+                    
+                    <View
+                        style={{
+                            //position:'absolute',
+                            flexDirection:'row',
+                            width:this.state.width-60,
+                            height:45,
+                            backgroundColor:'transparent',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            bottom:0,
+                            overflow:'hidden'
+                        }}
+                    >
+                        
+                        <View
+                            style={{
+                                flexDirection:'row',
+                                width:(this.state.width-30)/4,
+                                backgroundColor:'transparent',
+                                alignItems:'center',
+                                justifyContent:'center'
+                            }}
+                        >
+                            {/* <TouchableOpacity
+                              //onPress={this.props.slackHashButtonPressed}
+                              onPress={this.slackHashButtonPressed}
+                            >
+                            <Text
+                                className='icon'
+                                style ={styles.icon}
+                            >   
+                            
+                                <i class="fab fa-slack-hash"></i>
+                            
+                                
+                            </Text>
+                            </TouchableOpacity> */}
+                        </View>
+                        <View
+                            style={{
+                                flexDirection:'row',
+                                width:(this.state.width-30)/4,
+                                backgroundColor:'transparent',
+                                alignItems:'center',
+                                justifyContent:'center'
+                            }}
+                        >
+                            {/* <TouchableOpacity
+                              //onPress={this.props.starButtonPressed}
+                              onPress={this.starButtonPressed}
+                            >
+                            <Text
+                                className='icon'
+                                style ={[
+                                    styles.icon,
+                                    
+                                ]
+                                    
+                                }
+                            >
+                                
+                                <i class="fas fa-star"></i> 
+                            </Text>
+                            </TouchableOpacity> */}
+                        </View>
+                        <View
+                            style={{
+                                flexDirection:'row',
+                                width:(this.state.width-30)/4,
+                                backgroundColor:'transparent',
+                                alignItems:'center',
+                                justifyContent:'center'
+                            }}
+                        >
+                            {/* <TouchableOpacity
+                              //onPress={this.props.shareButtonPressed}
+                              onPress={this.shareButtonPressed}
+                            >
+                            <Text
+                                style ={styles.icon}
+                                className='icon'
+                            >
+                                <i class="fas fa-share-alt"></i>
+                            </Text>
+                            </TouchableOpacity> */}
+                        </View>
+                        <View
+                            style={{
+                                flexDirection:'row',
+                                width:(this.state.width-30)/4,
+                                backgroundColor:'transparent',
+                                alignItems:'center',
+                                justifyContent:'center',
+                                zIndex:100
+                            }}
+                        >
+                            <TouchableOpacity
+                              //onPress={this.props.slackHashButtonPressed}
+                              onPress={this.slackHashButtonPressed}
+                            >
+                            <Text
+                                className='icon'
+                                style ={styles.icon}
+                            >   
+                            
+                                <i class="fab fa-slack-hash"></i>
+                            
+                                {/* {props.likes} Likes  */}
+                            </Text>
+                            </TouchableOpacity>
+                        </View>
+                        
+                    </View>
+                  
+                    </View>
+                  
+                  </TouchableOpacity>
+          </View>    
+          </Fade>  
+                
+           
+            
+          );
+          }
       }
       else{
         return (
@@ -1272,7 +1569,7 @@ class GoogleDeck extends Component {
                       ],
                       justifyContent:'center',
                       alignItems:'center',
-                      backgroundColor:'black',
+                      backgroundColor:'white',
                       width:this.state.width-18,
                       height:50,
                       //borderWidth:4,
@@ -1418,7 +1715,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       fontWeight:'700',
       textDecorationLine:'none',
-      color:'black',
+      color:'white',
       
       textShadowColor: 'rgba(0, 0, 0, 0.85)',
       textShadowOffset: {width: 0, height: 0},
