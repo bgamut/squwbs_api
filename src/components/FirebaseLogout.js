@@ -68,6 +68,8 @@ const FirebaseLogout=() =>{
     firebase.auth().signOut().then(function() {
         setState({...state,userData:undefined})
         // Sign-out successful.
+        window.location.reload();
+
       }).catch(function(error) {
         // An error happened.
       });

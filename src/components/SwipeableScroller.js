@@ -743,8 +743,8 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       backgroundColor:'white',
-                      backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
-                      //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
+                      //backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
+                      backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
                       borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -1017,18 +1017,54 @@ const SwipeableScroller = (props) => {
                 <Animated.View 
                 ref={heightRef}
                 style={{
-                  height:'100vh',
+                  height:"100vh",
                   //height:partHeight,
+                  width:"100%",
+                  padding:15,
                   zIndex:0,
                   alignContent:'center',
                   justifyContent:'center',
                   overflow:'hidden',
+                  //backgroundColor:'rgb(229,154,198)',
+                  backgroundColor:'white',
                   //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
-                  backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                  //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
                   }}
                 >
-                  
-                  <Sound/>
+                   <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      // marginTop:15,
+                      // marginBottom:15,
+                      // marginLeft:15,
+                      // marginRight:15,
+                      //backgroundColor:'rgb(135,135,135)',
+                      //backgroundColor:'transparent',
+                      //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),rgb(229,154,198))',
+                      backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <Sound/>
+                  </View>
                 </Animated.View>
                 {/* </a> */}
               </section>
@@ -1067,8 +1103,8 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
-                   // backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1238,7 +1274,8 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
-                    backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                    //backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                    backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1849,17 +1886,54 @@ const SwipeableScroller = (props) => {
                 <Animated.View 
                 ref={heightRef}
                 style={{
-                  height:'100vh',
+
+                  height:"100vh",
                   //height:partHeight,
+                  width:"100%",
+                  padding:15,
                   zIndex:0,
                   alignContent:'center',
                   justifyContent:'center',
                   overflow:'hidden',
-                  backgroundColor:'white'
+                  //backgroundColor:'rgb(229,154,198)',
+                  backgroundColor:'white',
+                  padding:15
                   }}
                 >
-                  
-                  <Sound/>
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      // marginTop:15,
+                      // marginBottom:15,
+                      // marginLeft:15,
+                      // marginRight:15,
+                      //backgroundColor:'rgb(135,135,135)',
+                      //backgroundColor:'transparent',
+                      //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),rgb(229,154,198))',
+                      backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
+                      borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2
+                    }}
+                  >
+                    <Sound/>
+                  </View>
                 </Animated.View>
                 {/* </a> */}
               </section>
@@ -1871,7 +1945,7 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >  */}
-              <section id="googleCard">
+              <section id="blog">
                 {/* <a style={{
                   textDecorationLine:'none',
                   margin:0,
@@ -1902,7 +1976,8 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(229,154,198),rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(229,154,198),rgb(180,166,255))',
+                    backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
                     
                   }}
                 >
@@ -1915,23 +1990,24 @@ const SwipeableScroller = (props) => {
                       zIndex:0,
 
                       //backgroundColor:'rgb(135,135,135)',
-                      backgroundColor:'transparent',
-                     // backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
-                      borderRadius:4,
+                      //backgroundColor:'transparent',
                       //borderBottom:2,
                       //borderTop:1,
-                      borderColor:'#aaa',
-                      borderStyle:'solid',
-                      overflow:'hidden',
-                      boxSizing:"border-box",
-                      shadowColor:'black',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2
+
+                      // backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                      // borderRadius:4,
+                      // borderColor:'#aaa',
+                      // borderStyle:'solid',
+                      // overflow:'hidden',
+                      // boxSizing:"border-box",
+                      // shadowColor:'black',
+                      // shadowOpacity:0.25,
+                      // shadowRadius:2,
+                      // shadowOffset:{
+                      //   width:0,
+                      //   height:0
+                      // },
+                      // elevation:2
                     }}
                   >
                     
