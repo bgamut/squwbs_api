@@ -234,7 +234,7 @@ class GoogleDeck extends Component {
         style={{
           height:'100%',
           width:10,
-          backgroundColor:'transparent'
+          backgroundColor:'black'
         }}
       >
         <Text
@@ -1511,9 +1511,15 @@ class GoogleDeck extends Component {
                     //height:this.state.height-70,
                     //height:this.state.height-74,
                     //height:this.state.iframeHeight+105,
-                    height:this.state.iframeHeight+85,
+                    transform:[{
+                      translateX:14,
+                    },
+                    {
+                      translateY:4,
+                    }],
+                    height:this.state.iframeHeight+90,
                     //height:'100%',
-                    width:this.state.width-18,
+                    width:this.state.width-38,
                     //width:this.state.width-30,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
