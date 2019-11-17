@@ -119,8 +119,8 @@ class GoogleDeck extends Component {
               <View
                 style={{
                   height:'100%',
-                  width:10,
-                  backgroundColor:'transparent'
+                  width:30,
+                  backgroundColor:'black'
                 }}
               >
                 <Text
@@ -151,9 +151,9 @@ class GoogleDeck extends Component {
                     // borderColor:'transparent',
                     // borderWidth:'2',
                     // borderStyle:'solid',
-                    //justifyContent:'center',
+                    justifyContent:'center',
                     alignItems:'center',
-                    backgroundColor:'transparent',
+                    backgroundColor:'black',
                     // marginLeft:15,
                     // mariginRight:15
                     // transform:[{
@@ -938,7 +938,7 @@ class GoogleDeck extends Component {
     //this.myRef.showsHorizontalScrollIndicator=true
     this.setState({indicatorState:true})
     //console.log(this.myRef.current.offsetWidth)
-    this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
+   // this.myRef.scrollTo({x:(this.state.width-30)*this.state.currentEntry,y:0})
   }
 
   onMouseLeave=()=>{

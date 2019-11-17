@@ -1516,14 +1516,14 @@ const SwipeableScroller = (props) => {
 
                       overflow:'hidden',
                       boxSizing:"border-box",
-                      shadowColor:'black',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2,
+                      // shadowColor:'black',
+                      // shadowOpacity:0.25,
+                      // shadowRadius:2,
+                      // shadowOffset:{
+                      //   width:0,
+                      //   height:0
+                      // },
+                      // elevation:2,
                   }}
                 >
                   <View 
@@ -2138,103 +2138,7 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >  */}
-              <section id="blog">
-                {/* <a style={{
-                  textDecorationLine:'none',
-                  margin:0,
-                  padding:0,
-                  backgroundColor:'transparent',
-                  fontSize: 17,
-                  fontWeight:'700',
-                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                  textShadowOffset: {width: 0, height: 0},
-                  textShadowRadius: 2,
-                  height:45,
-                  alignItems:'center',
-                  justifyContent:'center',
-                  flexDirection:'row',
-                  textAlign:'center',
-                  height:"100%",
-                  width:'100%'
-                }} href="/#googleCard"> */}
-                <Animated.View
-                  ref={heightRef}
-                  style={{
-                    height:"100vh",
-                    //height:partHeight,
-                    width:"100%",
-                    padding:15,
-                    
-                    //backgroundColor:'white',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(229,154,198),rgb(180,166,255))',
-                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
-                    backgroundColor:'white'
-                  }}
-                >
-                  <View 
-                    style={{
-                      height:"100%",
-                      width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
-                      zIndex:0,
-
-                      //backgroundColor:'rgb(135,135,135)',
-                      //backgroundColor:'transparent',
-                      //borderBottom:2,
-                      //borderTop:1,
-
-                      // backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
-                      // borderRadius:4,
-                      // borderColor:'#aaa',
-                      // borderStyle:'solid',
-                      // overflow:'hidden',
-                      // boxSizing:"border-box",
-                      // shadowColor:'black',
-                      // shadowOpacity:0.25,
-                      // shadowRadius:2,
-                      // shadowOffset:{
-                      //   width:0,
-                      //   height:0
-                      // },
-                      // elevation:2
-                    }}
-                  >
-                    
-                      <GoogleDeck 
-                        shareButtonPressed={props.shareOverlayToggle}
-                        slackHashButtonPressed={props.slackHashOverlayToggle}
-                        commentButtonPressed={props.commentOverlayToggle}
-                        starButtonPressed={props.starOverlayToggle}
-                      />
-                    
-                    {/* <GoogleCardV2
-                      title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
-                      date={String(date)}
-                      //picture={"./icons/256x256.png"}
-                      picture={'http://squwbs-252702.appspot.com/favicon.ico'}
-                      writer={'Sir Francis Dylan the 2nd'}
-                      youtubeID={"SkNB5AsgZOc"}
-                      post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
-                      stars={5}
-                      likes={2000}
-                      hashs={['k-pop','dean']}
-                    /> */}
-                  </View>
-                </Animated.View>
-                {/* </a> */}
-              </section>
-            {/* </TouchableOpacity>  */}
-            {/* <TouchableOpacity
-              onPress={()=>{
-                //console.log('carousel pressed')
-                XAlign()
-              }}
-              activeOpacity={1}
-            >  */}
+             
              
               <section id="contact">
                 {/* <a style={{
@@ -2273,14 +2177,14 @@ const SwipeableScroller = (props) => {
                       borderStyle:'solid',
                       overflow:'hidden',
                       boxSizing:"border-box",
-                      shadowColor:'black',
-                      shadowOpacity:0.25,
-                      shadowRadius:2,
-                      shadowOffset:{
-                        width:0,
-                        height:0
-                      },
-                      elevation:2,
+                      // shadowColor:'black',
+                      // shadowOpacity:0.25,
+                      // shadowRadius:2,
+                      // shadowOffset:{
+                      //   width:0,
+                      //   height:0
+                      // },
+                      // elevation:2,
                   }}
                 >
                   <View 

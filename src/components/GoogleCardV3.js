@@ -268,14 +268,14 @@ const GoogleCard = (props)=> {
                         height:iframeHeight-2,
                         alignItems:'center',
                         justifyContent:'center',
-                        backgroundColor:'transparent',
+                        backgroundColor:'black',
                         margin:2,
                         transform:[{
                             //translateX:45,
                             translateX:0,
                         },
                         {
-                            translateY:0,
+                            translateY:20,
                         }],
                         //paddingTop:8
                     }}
@@ -474,7 +474,8 @@ const GoogleCard = (props)=> {
                     // borderStyle:'solid',
                     overflow:'hidden',
                     boxSizing:"border-box",
-                    alignItems:'center'
+                    alignItems:'center',
+                    justifyContent:'center'
                 }} 
                 >
                 {/* <View
@@ -565,6 +566,8 @@ const GoogleCard = (props)=> {
                         //height:height-75,
                         height:iframeHeight+53,
                         backgroundColor:'transparent',
+                        justifyContent:'center',
+                        alignItems:'center'
                     }}
                 >  
                 {/* <ScrollView
