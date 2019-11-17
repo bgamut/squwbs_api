@@ -155,7 +155,7 @@ const SwipeableScroller = (props) => {
   const toggleBottom = ()=>{
     setTimeout(
       ()=>{
-        console.log('this is the bottom ref : ',bottomRef.current.props.style.height)
+        //console.log('this is the bottom ref : ',bottomRef.current.props.style.height)
         // if(bottomRef.current.props.style.height==50){
         //   bottomRef.current.props.style.height=0
         // }
@@ -466,7 +466,7 @@ const SwipeableScroller = (props) => {
                 useKeyboardArrows={true}
                 //centerSlidePercentage={10}
               >
-                <div 
+                {/* <div 
                 ref={heightRef}
                 style={{
                   //height:"38vh",
@@ -495,7 +495,7 @@ const SwipeableScroller = (props) => {
                         //padding:25,
                       }}
                       
-                    >
+                    > */}
                     {/* <div
                       style={{
                         height:'100%',
@@ -505,7 +505,7 @@ const SwipeableScroller = (props) => {
                     >
                     </div> */}
                     {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
-                    <img 
+                    {/* <img 
                       src={process.env.PUBLIC_URL+"./images/club1.jpg"}
                       style={{
                         width:'100vw',
@@ -515,7 +515,26 @@ const SwipeableScroller = (props) => {
                        // opacity:0.3,
                         zIndex:99
                       }}
-                    />
+                    /> */}
+                    <div
+                      
+                      style={{
+                        width:'100vw',
+                       // height:height+50,
+                       height:'100vh',
+                        //objectFit:'cover',
+                        alignItems:'center',
+                          justifyContent:'center',
+                        
+                        backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                       // opacity:0.3,
+                       //backgroundColor:'magenta',
+                        zIndex:99,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                      }}
+                    >
                     {/* <p className="legend">1</p> */}
                     <Fade
                      
@@ -527,6 +546,20 @@ const SwipeableScroller = (props) => {
                       }}
                       href='#download'
                     >
+                      <View
+                      style={{
+                        width:'100%',
+                        height:height,
+                          transform:[{
+                            translateX:0,
+                        },
+                        {
+                            translateY:height/2,
+                        }],
+                      }}
+                      >
+                        
+                      
                       <Text
                         //className='Unselectable'
                         style={{
@@ -546,23 +579,19 @@ const SwipeableScroller = (props) => {
                           userSelection:'none',
                           zIndex:100,
 
-                            transform:[{
-                              translateX:0,
-                          },
-                          {
-                              translateY:-150,
-                          }],
+                            
                           
                         }}
                       >
                         Get the Sound You Want
                       </Text>
-                      
+                      </View>
                     </a>
                       </Fade>
-                    </Animated.View>
-                </div>
-                <div 
+                      </div>
+                    {/* </Animated.View>
+                </div> */}
+                {/* <div 
                   ref={heightRef}
                   style={{
                     //height:"38vh",
@@ -590,7 +619,7 @@ const SwipeableScroller = (props) => {
                         alignItems:'center',
                         //padding:25,
                       }}
-                    >
+                    > */}
                     {/* <div
                       style={{
                         height:'100%',
@@ -601,7 +630,7 @@ const SwipeableScroller = (props) => {
                     </div> */}
                     {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                     {/* <p className="legend">1</p> */}
-                    <img 
+                    {/* <img 
                       src={process.env.PUBLIC_URL+"./images/computerdesk1.jpg"}
                       style={{
                         width:'100vw',
@@ -611,7 +640,25 @@ const SwipeableScroller = (props) => {
                        // opacity:0.3,
                         zIndex:99
                       }}
-                      />
+                      /> */}
+                      <div
+                      
+                      style={{
+                        width:'100vw',
+                       // height:height+50,
+                       height:'100vh',
+                        //objectFit:'cover',
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundImage:'url('+process.env.PUBLIC_URL+"./images/dj.jpg"+')',
+                       // opacity:0.3,
+                       //backgroundColor:'magenta',
+                        zIndex:99,
+                        alignItems:'center',
+                          justifyContent:'center',
+                        backgroundPosition:'center'
+                      }}
+                    >
                     <Fade
                       
                     >
@@ -621,17 +668,24 @@ const SwipeableScroller = (props) => {
                         }}
                         href='#download'
                       >
+                        <View
+                          style={{
+                            width:'100%',
+                            height:height,
+                              transform:[{
+                                translateX:0,
+                            },
+                            {
+                                translateY:height/2,
+                            }],
+                          }}
+                        >
                         <Text
                           //className='Unselectable'
                           style={{
                             
 
-                              transform:[{
-                                translateX:0,
-                            },
-                            {
-                                translateY:-150,
-                            }],
+                            
                             
                             textDecorationLine:'none',
                             color:'white',
@@ -650,13 +704,15 @@ const SwipeableScroller = (props) => {
                         >
                         Your Idea To A Song In Minutes  
                         </Text>
+                        </View>
                       </a>
                     </Fade>
-                    </Animated.View>
+                    </div>
+                    {/* </Animated.View> */}
                     {/* <img src="assets/2.jpeg" /> */}
                     {/* <p className="legend">2</p> */}
-                </div>
-                <div 
+                {/* </div> */}
+                {/* <div 
                   ref={heightRef}
                   style={{
                     //height:"38vh",
@@ -679,7 +735,7 @@ const SwipeableScroller = (props) => {
                         alignItems:'center',
                         //padding:25,
                       }}
-                    >
+                    > */}
                     {/* <div
                       style={{
                         height:'100%',
@@ -690,7 +746,7 @@ const SwipeableScroller = (props) => {
                     </div> */}
                     {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                     {/* <p className="legend">1</p> */}
-                    <img 
+                    {/* <img 
                       src={process.env.PUBLIC_URL+"./images/dj.jpg"}
                       style={{
                         width:'100vw',
@@ -700,7 +756,25 @@ const SwipeableScroller = (props) => {
                        // opacity:0.3,
                         zIndex:99
                       }}
-                    />
+                    /> */}
+                    <div
+                      
+                      style={{
+                        width:'100vw',
+                       // height:height+50,
+                       height:'100vh',
+                        //objectFit:'cover',
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk1.jpg"+')',
+                       // opacity:0.3,
+                       //backgroundColor:'magenta',
+                        zIndex:99,
+                        alignItems:'center',
+                          justifyContent:'center',
+                        backgroundPosition:'center'
+                      }}
+                    >
                       <Fade
                         
                       >
@@ -710,39 +784,48 @@ const SwipeableScroller = (props) => {
                         }}
                         href='#download'
                       >
-                      <Text
-                        //className='Unselectable'
-                        style={{
-                          transform:[{
-                            translateX:0,
-                        },
-                        {
-                            translateY:-150,
-                        }],
-                          textDecorationLine:'none',
-                          color:'white',
-                          fontWeight:'700',
-                          fontSize: 25,
-                          textShadowColor: 'rgba(0, 0, 0, 1)',
-                          textShadowOffset: {width: 0, height: 0},
-                          textShadowRadius: 2,
-                          zIndex:100,
-                          textAlign:'center',
-                          alignItems:'center',
-                          justifyContent:'center',
-                          flexDirection:'row',
-                          userSelection:'none',
-                        }}
-                      >
-                        
-                        Available in Mac & PC
-                      </Text>
+                        <View
+                          style={{
+                            width:'100%',
+                            height:height,
+                              transform:[{
+                                translateX:0,
+                            },
+                            {
+                                translateY:height/2,
+                            }],
+                          }}
+                          >
+                        <Text
+                          //className='Unselectable'
+                          style={{
+                           
+                            textDecorationLine:'none',
+                            color:'white',
+                            fontWeight:'700',
+                            fontSize: 25,
+                            textShadowColor: 'rgba(0, 0, 0, 1)',
+                            textShadowOffset: {width: 0, height: 0},
+                            textShadowRadius: 2,
+                            zIndex:100,
+                            textAlign:'center',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            flexDirection:'row',
+                            userSelection:'none',
+                          }}
+                        >
+                          
+                          Available in Mac & PC
+                        </Text>
+                      </View>
                       </a>
                       </Fade>
-                    </Animated.View>
+                    </div>
+                    {/* </Animated.View> */}
                     {/* <img src="assets/3.jpeg" /> */}
                     {/* <p className="legend">3</p> */}
-                </div>
+                {/* </div> */}
               </Carousel>
               </Animated.View>
             </section>
@@ -792,6 +875,7 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
+                    backgroundImage:'radial-gradient(farthest-corner at 100% 0%,rgb(255,146,166),rgb(180,166,255))',
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
                     //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(255,146,166),rgb(180,166,255))'
                     //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
@@ -806,8 +890,13 @@ const SwipeableScroller = (props) => {
                       zIndex:0,
                       backgroundColor:'white',
                       //backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
-                      backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
-                      borderRadius:4,
+                      //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
+                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
+                      backgroundRepeat:'no-repeat',
+                      backgroundSize:'cover',
+                      backgroundPosition:'center',
+
+                     // borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
@@ -824,8 +913,10 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
+                    
                     <Text
                         //className='Unselectable'
+                        selectable={false}
                         style={{
 
                           textDecorationLine:'none',
@@ -894,7 +985,7 @@ const SwipeableScroller = (props) => {
                         // marginRight:8,
                         // marginLeft:8,
                         // marginBottom:2,
-                        borderRadius:2,
+                        //borderRadius:2,
                         
                         borderColor:'lightgrey',
                         borderStyle:'solid',
@@ -1089,8 +1180,8 @@ const SwipeableScroller = (props) => {
                   overflow:'hidden',
                   //backgroundColor:'rgb(229,154,198)',
                   backgroundColor:'white',
-                  //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
-                  //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,white,rgb(180,166,255))',
+                  backgroundImage:'radial-gradient(farthest-corner at 0% 50%,rgb(255,146,166),rgb(180,166,255))',
+                  //backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
                   }}
                 >
                    <View 
@@ -1107,8 +1198,14 @@ const SwipeableScroller = (props) => {
                       //backgroundColor:'rgb(135,135,135)',
                       //backgroundColor:'transparent',
                       //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),rgb(229,154,198))',
-                      backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
-                      borderRadius:4,
+                      //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
+
+                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/speaker1.jpg"+')',
+                      backgroundRepeat:'no-repeat',
+                      backgroundSize:'cover',
+                      backgroundPosition:'center',
+
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
@@ -1166,7 +1263,8 @@ const SwipeableScroller = (props) => {
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
                     //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(255,146,166),rgb(180,166,255))'
-                    backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))'
                   }}
                 >
                   <View 
@@ -1183,7 +1281,7 @@ const SwipeableScroller = (props) => {
                       //backgroundColor:'rgb(135,135,135)',
                       backgroundColor:'transparent',
                       //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
-                      borderRadius:4,
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       paddingTop:0,
@@ -1337,7 +1435,8 @@ const SwipeableScroller = (props) => {
                     alignItems:'center',
                     //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
                     //backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
-                    backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),rgb(180,166,255))',
                   }}
                 >
                   <View 
@@ -1348,7 +1447,7 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       backgroundColor:'white',
-                      borderRadius:4,
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
@@ -1412,6 +1511,19 @@ const SwipeableScroller = (props) => {
 
                     justifyContent:'center',
                     //alignItems:'center',
+                    borderColor:'#aaa',
+                      borderStyle:'solid',
+
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      shadowColor:'black',
+                      shadowOpacity:0.25,
+                      shadowRadius:2,
+                      shadowOffset:{
+                        width:0,
+                        height:0
+                      },
+                      elevation:2,
                   }}
                 >
                   <View 
@@ -1424,11 +1536,10 @@ const SwipeableScroller = (props) => {
                       zIndex:0,
                       //backgroundColor:'rgb(135,135,135)',
                       backgroundColor:'transparent',
-                      borderRadius:4,
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
-                      borderColor:'#aaa',
-                      borderStyle:'solid',
+                      
                       // overflow:'hidden',
                       // boxSizing:"border-box",
                       // shadowColor:'black',
@@ -1450,7 +1561,7 @@ const SwipeableScroller = (props) => {
               </section>
               {/* </TouchableOpacity>  */}
               {/* {state.headerOpen&& */}
-                <View
+                {/* <View
                   ref={bottomRef}
                   style={{
                     height:50,
@@ -1463,7 +1574,7 @@ const SwipeableScroller = (props) => {
                       color:'transparent'
                     }}
                   > bars</Text>
-                </View>
+                </View> */}
                {/* } */}
               
             </View>
@@ -1590,11 +1701,12 @@ const SwipeableScroller = (props) => {
                     width:"100%",
                     padding:15,
                     
-                    backgroundColor:'rgb(135,135,135)',
+                    backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-                    backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))'
+                    backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(255,146,166))'
                   }}
                 >
                   <View 
@@ -1604,8 +1716,12 @@ const SwipeableScroller = (props) => {
                       justifyContent:'center',
                       alignItems:'center',
                       zIndex:0,
-                      backgroundColor:'white',
-                      borderRadius:4,
+                      //backgroundColor:'white',
+                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
+                      backgroundRepeat:'no-repeat',
+                      backgroundSize:'cover',
+                      backgroundPosition:'center',
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
@@ -1692,7 +1808,7 @@ const SwipeableScroller = (props) => {
                         // marginRight:8,
                         // marginLeft:8,
                         // marginBottom:2,
-                        borderRadius:2,
+                        //borderRadius:2,
                         
                         borderColor:'lightgrey',
                         borderStyle:'solid',
@@ -1884,6 +2000,9 @@ const SwipeableScroller = (props) => {
                     backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
+
+                    
+                    backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,rgb(180,166,255),rgb(255,146,166))'
                   }}
                 >
                   <View 
@@ -1893,8 +2012,9 @@ const SwipeableScroller = (props) => {
                       justifyContent:'center',
                       alignItems:'center',
                       zIndex:0,
-                      backgroundColor:'rgb(135,135,135)',
-                      borderRadius:4,
+                      //backgroundColor:'rgb(135,135,135)',
+                      backgroundColor:'white',
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
@@ -1910,7 +2030,12 @@ const SwipeableScroller = (props) => {
                       },
                       elevation:2,
                       //backgroundImage:'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)',
-                      backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                      //backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
+                      backgroundRepeat:'no-repeat',
+                      backgroundSize:'cover',
+                      backgroundPosition:'center',
+                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/mic.jpg"+')',
+                      
                     }}
                   >
                     <DLLink/>
@@ -1958,8 +2083,9 @@ const SwipeableScroller = (props) => {
                   justifyContent:'center',
                   overflow:'hidden',
                   //backgroundColor:'rgb(229,154,198)',
-                  backgroundColor:'white',
-                  padding:15
+                  //backgroundColor:'white',
+                  padding:15,
+                  backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,rgb(180,166,255),white)'
                   }}
                 >
                   <View 
@@ -1976,10 +2102,15 @@ const SwipeableScroller = (props) => {
                       //backgroundColor:'rgb(135,135,135)',
                       //backgroundColor:'transparent',
                       //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),rgb(229,154,198))',
-                      backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
-                      borderRadius:4,
+                      //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
+                      //backgroundImage:'radial-gradient(farthest-corner at 0% 100%,rgb(255,146,166),rgb(180,166,255))',
+                      //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
+                      backgroundRepeat:'no-repeat',
+                      backgroundSize:'cover',
+                      backgroundPosition:'center',
+                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club2.jpg"+')',
                       borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',
@@ -2039,8 +2170,8 @@ const SwipeableScroller = (props) => {
                     alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
                     //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(229,154,198),rgb(180,166,255))',
-                    backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
-                    
+                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
+                    backgroundColor:'white'
                   }}
                 >
                   <View 
@@ -2137,22 +2268,8 @@ const SwipeableScroller = (props) => {
                     justifyContent:'center',
                     alignItems:'center',
                     //backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
-                    backgroundColor:'white'
-                  }}
-                >
-                  <View 
-                    style={{
-                      //height:"100%",
-                      height:165,
-                      width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
-                      zIndex:0,
-                      backgroundColor:'transparent',
-                      borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
-                      borderColor:'#aaa',
+                    backgroundColor:'white',
+                    borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',
                       boxSizing:"border-box",
@@ -2164,6 +2281,21 @@ const SwipeableScroller = (props) => {
                         height:0
                       },
                       elevation:2,
+                  }}
+                >
+                  <View 
+                    style={{
+                      //height:"100%",
+                      height:165,
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'transparent',
+                      //borderRadius:4,
+                      //borderBottom:2,
+                      //borderTop:1,
+                      
                       //backgroundImage:'radial-gradient(farthest-corner at -400% 400%,rgb(137,137,137),white)',
                       // backgroundImage:'radial-gradient(farthest-corner at -100% 100%,white,rgb(180,166,255))',
                     }}
@@ -2362,7 +2494,7 @@ const SwipeableScroller = (props) => {
               </section> */}
               
               {/* {state.headerOpen&& */}
-                <View
+                {/* <View
                   ref={bottomRef}
                   style={{
                     height:50,
@@ -2375,7 +2507,7 @@ const SwipeableScroller = (props) => {
                       color:'transparent'
                     }}
                   > bars</Text>
-                </View>
+                </View> */}
               {/* } */}
               
             </View>
@@ -2535,6 +2667,7 @@ export default SwipeableScroller
 //               overflow:'hidden',
               
 //             }}>
+
 //                 {/* <Text style={{           
 //                   textDecorationLine:'none',
 //                   color:'white',

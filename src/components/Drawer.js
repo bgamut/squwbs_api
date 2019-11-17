@@ -413,6 +413,15 @@ const Drawer =(props)=>{
                 // },{
                 //     translateY:-50+state.yscroll
                 // }]
+
+                // shadowColor:'black',
+                // shadowOpacity:0.25,
+                // shadowRadius:2,
+                // shadowOffset:{
+                //   width:0,
+                //   height:0
+                // },
+                // elevation:2,
             }}>
                 
                 <View style={{
@@ -425,6 +434,9 @@ const Drawer =(props)=>{
                     height:maxHeight,
                     justifyContent:'center',
                     marginBottom :0,
+                    
+
+                    
                     //opacity:state.opacity
                     // backgroundColor:'orange'
                 }}>  
@@ -819,6 +831,15 @@ const Drawer =(props)=>{
                 // },{
                 //     translateY:-50+state.yscroll
                 // }]
+
+                    // shadowColor:'black',
+                    // shadowOpacity:0.25,
+                    // shadowRadius:2,
+                    // shadowOffset:{
+                    //   width:0,
+                    //   height:0
+                    // },
+                    // elevation:2,
                 
             }}>
                 {/* {overlaySwitch && 
