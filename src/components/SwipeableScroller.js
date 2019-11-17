@@ -26,6 +26,7 @@ import Message from './MessageV2'
 import Kakao from './Kakao'
 import './css/ClickOpacity.css'
 
+
 //import GooglePay from './GooglePay'
 //import {StripeProvider} from 'react-stripe-elements'
 //import MyStoreCheckout from './MyStoreCheckout'
@@ -451,16 +452,16 @@ const SwipeableScroller = (props) => {
               >
               <Carousel 
                 
-                showArrows={true} 
+                showArrows={false} 
                 showStatus={false} 
-                showIndicators={false}
+                showIndicators={true}
                 showThumbs={false}
                 infiniteLoop={true}
                 autoPlay={true}
                 interval={4500}
                 transitionTime={500}
                 emulateTouch={true}
-                stopOnHover={true}
+                stopOnHover={false}
                 //swipeScrollTolerance={1}
                 useKeyboardArrows={true}
                 //centerSlidePercentage={10}
@@ -491,7 +492,7 @@ const SwipeableScroller = (props) => {
                         justifyContent:'center',
                         alignItems:'center',
                         // backgroundColor:'orange',
-                        padding:25,
+                        //padding:25,
                       }}
                       
                     >
@@ -504,8 +505,21 @@ const SwipeableScroller = (props) => {
                     >
                     </div> */}
                     {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
+                    <img 
+                      src={process.env.PUBLIC_URL+"./images/club1.jpg"}
+                      style={{
+                        width:'100vw',
+                       // height:height+50,
+                       height:height,
+                        objectFit:'cover',
+                       // opacity:0.3,
+                        zIndex:99
+                      }}
+                    />
                     {/* <p className="legend">1</p> */}
-                    <Fade>
+                    <Fade
+                     
+                    >
                     <a 
                       style={{
                         textDecorationLine:'none',
@@ -530,6 +544,15 @@ const SwipeableScroller = (props) => {
                           justifyContent:'center',
                           flexDirection:'row',
                           userSelection:'none',
+                          zIndex:100,
+
+                            transform:[{
+                              translateX:0,
+                          },
+                          {
+                              translateY:-150,
+                          }],
+                          
                         }}
                       >
                         Get the Sound You Want
@@ -565,7 +588,7 @@ const SwipeableScroller = (props) => {
                         backgroundColor:'transparent',
                         justifyContent:'center',
                         alignItems:'center',
-                        padding:25,
+                        //padding:25,
                       }}
                     >
                     {/* <div
@@ -578,7 +601,20 @@ const SwipeableScroller = (props) => {
                     </div> */}
                     {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                     {/* <p className="legend">1</p> */}
-                    <Fade>
+                    <img 
+                      src={process.env.PUBLIC_URL+"./images/computerdesk1.jpg"}
+                      style={{
+                        width:'100vw',
+                       // height:height+50,
+                       height:height,
+                        objectFit:'cover',
+                       // opacity:0.3,
+                        zIndex:99
+                      }}
+                      />
+                    <Fade
+                      
+                    >
                       <a 
                         style={{
                           textDecorationLine:'none'
@@ -588,7 +624,15 @@ const SwipeableScroller = (props) => {
                         <Text
                           //className='Unselectable'
                           style={{
+                            
 
+                              transform:[{
+                                translateX:0,
+                            },
+                            {
+                                translateY:-150,
+                            }],
+                            
                             textDecorationLine:'none',
                             color:'white',
                             fontWeight:'700',
@@ -596,7 +640,7 @@ const SwipeableScroller = (props) => {
                             textShadowColor: 'rgba(0, 0, 0, 1)',
                             textShadowOffset: {width: 0, height: 0},
                             textShadowRadius: 2,
-                
+                            zIndex:100,
                             textAlign:'center',
                             alignItems:'center',
                             justifyContent:'center',
@@ -633,7 +677,7 @@ const SwipeableScroller = (props) => {
                         backgroundColor:'transparent',
                         justifyContent:'center',
                         alignItems:'center',
-                        padding:25,
+                        //padding:25,
                       }}
                     >
                     {/* <div
@@ -646,7 +690,20 @@ const SwipeableScroller = (props) => {
                     </div> */}
                     {/* <img src={process.env.PUBLIC_URL+"./wbgf.gif"} />  */}
                     {/* <p className="legend">1</p> */}
-                      <Fade>
+                    <img 
+                      src={process.env.PUBLIC_URL+"./images/dj.jpg"}
+                      style={{
+                        width:'100vw',
+                       // height:height+50,
+                       height:height,
+                        objectFit:'cover',
+                       // opacity:0.3,
+                        zIndex:99
+                      }}
+                    />
+                      <Fade
+                        
+                      >
                       <a 
                         style={{
                           textDecorationLine:'none'
@@ -656,7 +713,12 @@ const SwipeableScroller = (props) => {
                       <Text
                         //className='Unselectable'
                         style={{
-
+                          transform:[{
+                            translateX:0,
+                        },
+                        {
+                            translateY:-150,
+                        }],
                           textDecorationLine:'none',
                           color:'white',
                           fontWeight:'700',
@@ -664,7 +726,7 @@ const SwipeableScroller = (props) => {
                           textShadowColor: 'rgba(0, 0, 0, 1)',
                           textShadowOffset: {width: 0, height: 0},
                           textShadowRadius: 2,
-              
+                          zIndex:100,
                           textAlign:'center',
                           alignItems:'center',
                           justifyContent:'center',
