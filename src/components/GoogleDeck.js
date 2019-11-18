@@ -115,24 +115,27 @@ class GoogleDeck extends Component {
           const date =new Date(post.time*1000)
           const time = String(date)
          
-            parent.push(
-              <View
-                style={{
-                  height:'100%',
-                  width:30,
-                  backgroundColor:'black'
-                }}
-              >
-                <Text
-                  style={{
            
-                    color:'transparent'
-                  }}
-                >bar</Text>
-              </View>
-            )
           
           if(post.type=='video'){
+            if(isMobile==false){
+              parent.push(
+                <View
+                  style={{
+                    height:this.state.iframeHeight+15,
+                    width:30,
+                    backgroundColor:'black'
+                  }}
+                >
+                  <Text
+                    style={{
+            
+                      color:'transparent'
+                    }}
+                  >bar</Text>
+                </View>
+              )
+            }
           parent.push(
             <View
                 key={post.id}
@@ -153,7 +156,7 @@ class GoogleDeck extends Component {
                     // borderStyle:'solid',
                     justifyContent:'center',
                     alignItems:'center',
-                    backgroundColor:'black',
+                    backgroundColor:'transparent',
                     // marginLeft:15,
                     // mariginRight:15
                     // transform:[{
@@ -230,22 +233,25 @@ class GoogleDeck extends Component {
       })
     }
     //if(portrait==false){
+
+if(isMobile==false){
     parent.push(
       <View
         style={{
-          height:'100%',
-          width:10,
+          height:this.state.iframeHeight+15,
+          width:30,
           backgroundColor:'black'
         }}
       >
         <Text
           style={{
-           
+  
             color:'transparent'
           }}
         >bar</Text>
       </View>
     )
+  }
   //}
     return parent;
 }
@@ -983,21 +989,22 @@ class GoogleDeck extends Component {
                 >
           <View
             style={{
-              borderWidth:4,
-              borderColor:'transparent',
+              //borderWidth:4,
+              //borderColor:'transparent',
               backgroundColor:'transparent',
               paddingTop:0,
               paddingLeft:0,
               paddingRight:0,
               margin:0,
-              //width:this.state.width-30,
-              width:this.state.width-18,
+              width:this.state.width-30,
+              height:this.state.iframeHeight+60,
+              //width:this.state.width-18,
               zIndex:99,
               transform:[{
-                translateX:-7,
+                translateX:0,
               },
               {
-                translateY:-10,
+                translateY:-67,
               }]
             }
             }
@@ -1014,35 +1021,36 @@ class GoogleDeck extends Component {
                     // display:'absolute',
                     // left:0,
                     
-                  //   transform:[{
-                  //     translateX:4,
-                  //   },
-                  //   {
-                  //     translateY:0,
-                  //   }
-                  // ],
+                    transform:[{
+                      translateX:0,
+                    },
+                    {
+                      translateY:0,
+                    }
+                  ],
                     //height:this.state.height-70,
                     //height:this.state.height-74,
                     //height:this.state.iframeHeight+105,
-                    height:this.state.iframeHeight+207,
+                    //height:this.state.iframeHeight+207,
+                    height:this.state.iframeHeight+150,
                     //height:'100%',
-                    width:this.state.width-24,
+                    width:this.state.width-30,
                     //width:this.state.width-30,
                     backgroundColor:'transparent',
                     //backgroundColor:'rgb(175,175,175)',
                     margin:0,
                     flexDirection:'row',
-                    paddingTop:0,
+                    paddingTop:20,
                     paddingLeft:0,
                     paddingRight:0,
                     paddingBottom:0,
                     // paddingBottom:15,
                     // paddingRight:15,
                     //backgroundColor:'transparent',
-                    borderColor:'transparent',
-                    borderWidth:4,
-                    borderStyle:'solid',
-                    padding:0,
+                    //borderColor:'transparent',
+                    //borderWidth:4,
+                    //borderStyle:'solid',
+                    //padding:0,
                     zIndex:98
                 }}
                 onScroll={this.onScroll}
@@ -1067,7 +1075,7 @@ class GoogleDeck extends Component {
             keyExtractor={() => uuidv4()}
         /> */}
           
-      
+          
             {this.createPostsList()}
           
         
@@ -1076,17 +1084,17 @@ class GoogleDeck extends Component {
                   <View
                     style={{
                       transform:[{
-                          translateX:-7,
+                          translateX:0,
                         },
                         {
-                          translateY:-69,
+                          translateY:-55,
                         }
                       ],
                       justifyContent:'center',
                       alignItems:'center',
                       backgroundColor:'white',
                       //backgroundColor:'rgba(256,256,256,0.9)',
-                      width:this.state.width-18,
+                      width:this.state.width-30,
                       height:50,
                       //borderWidth:4,
                       //borderRadius:4,
@@ -1227,21 +1235,22 @@ class GoogleDeck extends Component {
                   >
             <View
               style={{
-                borderWidth:4,
-                borderColor:'transparent',
+                //borderWidth:4,
+                //borderColor:'transparent',
                 backgroundColor:'transparent',
                 paddingTop:0,
                 paddingLeft:0,
                 paddingRight:0,
                 margin:0,
-                //width:this.state.width-30,
-                width:this.state.width-18,
+                width:this.state.width-30,
+                height:this.state.iframeHeight+60,
+                //width:this.state.width-18,
                 zIndex:99,
                 transform:[{
-                  translateX:-8,
+                  translateX:0,
                 },
                 {
-                  translateY:-10,
+                  translateY:-67,
                 }]
               }
               }
@@ -1258,19 +1267,20 @@ class GoogleDeck extends Component {
                       // display:'absolute',
                       // left:0,
                       
-                    //   transform:[{
-                    //     translateX:4,
-                    //   },
-                    //   {
-                    //     translateY:0,
-                    //   }
-                    // ],
+                      transform:[{
+                        translateX:0,
+                      },
+                      {
+                        translateY:0,
+                      }
+                    ],
                       //height:this.state.height-70,
                       //height:this.state.height-74,
                       //height:this.state.iframeHeight+105,
-                      height:this.state.iframeHeight+82,
+                      //height:this.state.iframeHeight+207,
+                      height:this.state.iframeHeight+110,
                       //height:'100%',
-                      width:this.state.width-18,
+                      width:this.state.width-30,
                       //width:this.state.width-30,
                       backgroundColor:'transparent',
                       //backgroundColor:'rgb(175,175,175)',
@@ -1283,10 +1293,10 @@ class GoogleDeck extends Component {
                       // paddingBottom:15,
                       // paddingRight:15,
                       //backgroundColor:'transparent',
-                      borderColor:'transparent',
-                      borderWidth:4,
-                      borderStyle:'solid',
-                      padding:0,
+                      //borderColor:'transparent',
+                      //borderWidth:4,
+                      //borderStyle:'solid',
+                      //padding:0,
                       zIndex:98
                   }}
                   onScroll={this.onScroll}
@@ -1310,30 +1320,57 @@ class GoogleDeck extends Component {
               renderItem={() => this.createPostsList()}
               keyExtractor={() => uuidv4()}
           /> */}
-        
+            
+            
               {this.createPostsList()}
+            
           
             </ScrollView> 
-                  
+              <View
+                style={{
+                  transform:[{
+                      translateX:0,
+                    },
+                    {
+                      translateY:-95,
+                    }
+                  ],
+                  zIndex:99,
+                  justifyContent:'center',
+                  alignItems:'center',
+                  backgroundColor:'black',
+                  width:this.state.width-30,
+                  height:50,
+                }}
+              >
+                <Text
+                  selectable={false}
+                  style={{
+                    color:'transparent'
+                  }}
+                >
+                  bars
+                </Text>
+              </View>    
                     <View
                       style={{
                         transform:[{
                             translateX:0,
                           },
                           {
-                            translateY:-65,
+                            translateY:-105,
                           }
                         ],
                         justifyContent:'center',
                         alignItems:'center',
                         backgroundColor:'white',
-                        //backgroundColor:'rgba(128,128,128,0.8)',
-                        width:this.state.width-18,
+                        //backgroundColor:'rgba(256,256,256,0.9)',
+                        width:this.state.width-30,
                         height:50,
                         //borderWidth:4,
                         //borderRadius:4,
                         //borderColor:'transparent',
-                        zIndex:99,
+                        zIndex:100,
   
                       }}
                     >
@@ -1430,8 +1467,7 @@ class GoogleDeck extends Component {
                                 width:(this.state.width-30)/4,
                                 backgroundColor:'transparent',
                                 alignItems:'center',
-                                justifyContent:'center',
-                                zIndex:100
+                                justifyContent:'center'
                             }}
                         >
                             <TouchableOpacity
@@ -1461,7 +1497,8 @@ class GoogleDeck extends Component {
            
             
           );
-          }
+        }
+
       }
       else{
         if(isWindows()){ 
