@@ -1750,25 +1750,25 @@ if(isMobile==false){
           );
         }
         else{
-          return(
-          <Fade
-            duration={270}
-            timeout={270}
-          >
+          return (
+            <Fade
+                      duration={270}
+                      timeout={270}
+                  >
             <View
               style={{
-                borderWidth:4,
-                borderColor:'transparent',
+                // borderWidth:4,
+                // borderColor:'transparent',
                 backgroundColor:'transparent',
                 paddingTop:0,
                 paddingLeft:0,
                 paddingRight:0,
                 margin:0,
-                //width:this.state.width-30,
-                width:this.state.width-18,
+                width:this.state.width-30,
+                //width:this.state.width-18,
                 zIndex:99,
                 transform:[{
-                  translateX:-8,
+                  translateX:0,
                 },
                 {
                   translateY:-10,
@@ -1776,34 +1776,52 @@ if(isMobile==false){
               }
               }
             >
-
+          
               <TouchableOpacity
                 onPress={this.touchedPost}
                 activeOpacity={1}
               >
               <ScrollView
                   ref={ref=>this.myRef=ref}
+                  //ref={this.myRef}
                   style={{
-
+                      // display:'absolute',
+                      // left:0,
+                      
+                    //   transform:[{
+                    //     translateX:4,
+                    //   },
+                    //   {
+                    //     translateY:0,
+                    //   }
+                    // ],
+                      //height:this.state.height-70,
+                      //height:this.state.height-74,
+                      //height:this.state.iframeHeight+105,
                       transform:[{
-                        translateX:12,
+                        translateX:0,
                       },
                       {
-                        translateY:1,
+                        translateY:0,
                       }],
-                      height:this.state.iframeHeight+87,
-                      
-                      width:this.state.width-36,
+                      height:this.state.iframeHeight+90,
+                      //height:'100%',
+                      width:this.state.width-30,
+                      //width:this.state.width-30,
                       backgroundColor:'transparent',
+                      //backgroundColor:'rgb(175,175,175)',
                       margin:0,
                       flexDirection:'row',
                       paddingTop:0,
                       paddingLeft:0,
                       paddingRight:0,
                       paddingBottom:0,
-                      borderColor:'transparent',
-                      borderWidth:4,
-                      borderStyle:'solid',
+                      // paddingBottom:15,
+                      // paddingRight:15,
+                      //backgroundColor:'transparent',
+                      // borderColor:'transparent',
+                      // borderWidth:4,
+                      // borderStyle:'solid',
                       padding:0,
                       zIndex:98
                   }}
@@ -1813,13 +1831,24 @@ if(isMobile==false){
                   onMouseLeave={this.onMouseLeave}
                   horizontal={true}
                   showsHorizontalScrollIndicator={true}
+                  //showsHorizontalScrollIndicator={this.state.indicatorState}
                   snapeToAlignment='end'
                   decelerationRate="fast"
                   scrollIndicatorInsets={1000,240,500,24}
               >
-
+          {/* <FlatList 
+              horizontal ={true}
+              scrollEnabled={true}
+              pagingEnabled={true}
+              showsHorizontalScrollIndicator={true}
+              legacyImplementation={false}
+              data={this.state.posts}
+              renderItem={() => this.createPostsList()}
+              keyExtractor={() => uuidv4()}
+          /> */}
+        
               {this.createPostsList()}
-
+          
             </ScrollView> 
                   
                     <View
@@ -1828,14 +1857,17 @@ if(isMobile==false){
                             translateX:0,
                           },
                           {
-                            translateY:-67,
+                            translateY:-75,
                           }
                         ],
                         justifyContent:'center',
                         alignItems:'center',
                         backgroundColor:'white',
-                        width:this.state.width-18,
+                        width:this.state.width-30,
                         height:50,
+                        //borderWidth:4,
+                        //borderRadius:4,
+                        //borderColor:'transparent',
                         zIndex:99,
 
                       }}
@@ -1843,6 +1875,7 @@ if(isMobile==false){
                     
                     <View
                         style={{
+                            //position:'absolute',
                             flexDirection:'row',
                             width:this.state.width-60,
                             height:45,
@@ -1863,6 +1896,20 @@ if(isMobile==false){
                                 justifyContent:'center'
                             }}
                         >
+                            {/* <TouchableOpacity
+                              //onPress={this.props.slackHashButtonPressed}
+                              onPress={this.slackHashButtonPressed}
+                            >
+                            <Text
+                                className='icon'
+                                style ={styles.icon}
+                            >   
+                            
+                                <i class="fab fa-slack-hash"></i>
+                            
+                                
+                            </Text>
+                            </TouchableOpacity> */}
                         </View>
                         <View
                             style={{
@@ -1873,7 +1920,23 @@ if(isMobile==false){
                                 justifyContent:'center'
                             }}
                         >
-
+                            {/* <TouchableOpacity
+                              //onPress={this.props.starButtonPressed}
+                              onPress={this.starButtonPressed}
+                            >
+                            <Text
+                                className='icon'
+                                style ={[
+                                    styles.icon,
+                                    
+                                ]
+                                    
+                                }
+                            >
+                                
+                                <i class="fas fa-star"></i> 
+                            </Text>
+                            </TouchableOpacity> */}
                         </View>
                         <View
                             style={{
@@ -1884,7 +1947,17 @@ if(isMobile==false){
                                 justifyContent:'center'
                             }}
                         >
-
+                            {/* <TouchableOpacity
+                              //onPress={this.props.shareButtonPressed}
+                              onPress={this.shareButtonPressed}
+                            >
+                            <Text
+                                style ={styles.icon}
+                                className='icon'
+                            >
+                                <i class="fas fa-share-alt"></i>
+                            </Text>
+                            </TouchableOpacity> */}
                         </View>
                         <View
                             style={{
@@ -1896,6 +1969,7 @@ if(isMobile==false){
                             }}
                         >
                             <TouchableOpacity
+                              //onPress={this.props.commentButtonPressed}
                               onPress={this.commentButtonPressed}
                             >
                             
@@ -1903,6 +1977,9 @@ if(isMobile==false){
                                 className='icon'
                                 style ={styles.icon}
                             >
+                                {/* {props.stars} <i class="fas fa-star"></i>  */}
+                                {/* Flip */}
+                                {/* <i class="fas fa-edit"></i> */}
                                 <i class="fas fa-server"></i>
                             </Text>
                             </TouchableOpacity>
@@ -1913,10 +1990,12 @@ if(isMobile==false){
                     </View>
                   
                   </TouchableOpacity>
-            </View>    
-            </Fade>  
+          </View>    
+          </Fade>  
                 
-          )
+            
+                
+          );
         }
       } 
     }

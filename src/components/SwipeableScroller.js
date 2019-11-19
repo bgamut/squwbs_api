@@ -47,17 +47,19 @@ const getUserData=async()=>{
   const userCookie = await responded.json()
   console.log('userCookie : '+stringifyObject(userCookie))
 }
-
+const extraHeight=200
 let currentY=0
 //const prevY=new Animated.Value(0)
 let prevY=0
 let buffer=[0,0,0,0,0,0,0,0]
 const yScroll = new Animated.Value(0)
+const YParallax = new Animated.Value(0)
 var date = new Date()
 const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
   const [user,setUser]=useState(undefined)
+  //const [user,setUser]=useState('bernard')
   const [height,setHeight]=useState(0)
   const [iframeHeight,setIframeHeight]=useState(0)
   const [iframeWidth,setIframeWidth]=useState(0)
@@ -75,8 +77,8 @@ const SwipeableScroller = (props) => {
   useEffect(()=>{
     yScroll.addListener(({value})=>{
       //console.log(state.yscroll)
-      //console.log(value)
-      setState({...state,yscroll:value})
+      console.log('yval:',value)
+      //setState({...state,yscroll:value})
       //global.header=value
     })
     //window.addEventListener("resize", updateDimensions);
@@ -260,11 +262,38 @@ const SwipeableScroller = (props) => {
     //XAlign()
 
   }
+  const getInterpolate = (YParallaxRaw, imageHeight, extraHeight)=>{
+    const inputRange = [0, imageHeight]
+    const outputRange = [-extraHeight/2,extraHeight/2]
+    return YParallaxRaw.interpolate({
+      inputRange,
+      outputRange
+    })
+  }
   const onScroll=(e)=>{
     
     //console.log(e.nativeEvent.contentOffset.y)
+    
     if(mouseEnterFunction==false){
       currentY=(e.nativeEvent.contentOffset.y)
+      
+      Animated.timing(
+        //this.Animation,
+        YParallax,
+        {
+            duration:1,
+            //toValue:(extraHeight/2-(((currentY%height)*(extraHeight))/height)),
+            //toValue:((((currentY%(height*2))/(height*2))-0.5)*extraHeight)
+            //toValue:(((currentY%(1000))/(2*1000))-0.5*extraHeight)
+            toValue:((((currentY%(height*6))/(height*6))-0.5)*extraHeight)
+        }
+      ).start(()=>
+      {
+          
+          console.log("parallax ", YParallax._value)
+          
+      })
+      //console.log('currenty:',currentY)
       if(state.drawerToggle==true){
       buffer.splice(0,1)
         if(currentY>prevY){
@@ -315,7 +344,7 @@ const SwipeableScroller = (props) => {
   }
   const paypalPressed = ()=>{
     //console.log('paypalPressed triggered')
-    //console.log(paypalRef.current.style)
+    console.log('paypalRef : ',paypalRef.current)
   }
   //if(stringifyObject(user)=='undefined'){
   if(user==undefined){
@@ -517,6 +546,13 @@ const SwipeableScroller = (props) => {
                       }}
                     /> */}
                     <div
+                      style={{
+                        overflow:'hidden',
+                        height:height,
+                        width:'100vw'
+                      }}
+                    >
+                    {/* <div
                       
                       style={{
                         width:'100vw',
@@ -533,8 +569,51 @@ const SwipeableScroller = (props) => {
                         backgroundRepeat:'no-repeat',
                         backgroundSize:'cover',
                         backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          translateY:0
+                      },
+                     
+                    
+                    ],
                       }}
-                    >
+                    > */}
+                    <Animated.Image
+                      source={{
+                        uri: process.env.PUBLIC_URL+"./images/club1.jpg"
+                      }}
+                      style={{
+                        width:'100vw',
+                      //height:height+extraHeight,
+                        height:height,
+                      //height:'100vh',
+                        //objectFit:'cover',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        
+                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                      // opacity:0.3,
+                      //backgroundColor:'magenta',
+                        zIndex:99,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          //translateY:-(((currentY%height)*(150/2))/height)
+                          //translateY:YParallax
+                          //translateY:getInterpolate(YParallax,height,150)
+                          translateY:0
+                      },
+                    
+                    
+                    ],
+                      }}
+                      />
                     {/* <p className="legend">1</p> */}
                     <Fade
                      
@@ -550,13 +629,21 @@ const SwipeableScroller = (props) => {
                       style={{
                         width:'100%',
                         height:height,
-                          transform:[{
+                        transform:[{
                             translateX:0,
                         },
                         {
-                            translateY:height/2,
-                        }],
+                            //translateY:-(height+150)/2,
+                            //translateY:-(height+extraHeight)/2
+                            translateY:-height/2
+                        },
+
+                        
+                    
+                      ],
+                      zIndex:100,
                       }}
+                      
                       >
                         
                       
@@ -588,7 +675,11 @@ const SwipeableScroller = (props) => {
                       </View>
                     </a>
                       </Fade>
+                      {/* </Animated.Image> */}
+                      {/* </div> */}
+                      
                       </div>
+                      
                     {/* </Animated.View>
                 </div> */}
                 {/* <div 
@@ -641,7 +732,7 @@ const SwipeableScroller = (props) => {
                         zIndex:99
                       }}
                       /> */}
-                      <div
+                      {/* <div
                       
                       style={{
                         width:'100vw',
@@ -656,9 +747,52 @@ const SwipeableScroller = (props) => {
                         zIndex:99,
                         alignItems:'center',
                           justifyContent:'center',
-                        backgroundPosition:'center'
+                        backgroundPosition:'center',
+                        overflow:'hidden'
+
+                      }}
+                    > */}
+                    <div
+                      style={{
+                        height:height,
+                        width:'100vw',
+                        overflow:'hidden'
                       }}
                     >
+                      <Animated.Image
+                      source={{
+                        uri: process.env.PUBLIC_URL+"./images/dj.jpg"
+                      }}
+                      style={{
+                        width:'100vw',
+                      //height:height+extraHeight,
+                      //height:'100vh',
+                        //objectFit:'cover',
+                        height:height,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        
+                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                      // opacity:0.3,
+                      //backgroundColor:'magenta',
+                        zIndex:99,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          //translateY:-(((currentY%height)*(150/2))/height)
+                          //translateY:YParallax
+                          //translateY:getInterpolate(YParallax,height,150)
+                          translateY:0
+                      },
+                    
+                    
+                    ],
+                      }}
+                      />
                     <Fade
                       
                     >
@@ -676,8 +810,11 @@ const SwipeableScroller = (props) => {
                                 translateX:0,
                             },
                             {
-                                translateY:height/2,
+                                translateY:-(height)/2,
+                                //translateY:-(height+extraHeight)/2
+                                // translateY:-(height+150)
                             }],
+                            zIndex:100,
                           }}
                         >
                         <Text
@@ -708,6 +845,7 @@ const SwipeableScroller = (props) => {
                       </a>
                     </Fade>
                     </div>
+                    {/* </div> */}
                     {/* </Animated.View> */}
                     {/* <img src="assets/2.jpeg" /> */}
                     {/* <p className="legend">2</p> */}
@@ -757,7 +895,7 @@ const SwipeableScroller = (props) => {
                         zIndex:99
                       }}
                     /> */}
-                    <div
+                    {/* <div
                       
                       style={{
                         width:'100vw',
@@ -772,9 +910,52 @@ const SwipeableScroller = (props) => {
                         zIndex:99,
                         alignItems:'center',
                           justifyContent:'center',
-                        backgroundPosition:'center'
+                        backgroundPosition:'center',
+                        overflow:'hidden'
+                      }}
+                    > */}
+                    <div
+                      style={{
+                        height:height,
+                        width:'100vw',
+                        overflow:'hidden'
                       }}
                     >
+                      <Animated.Image
+                      source={{
+                        uri: process.env.PUBLIC_URL+"./images/computerdesk1.jpg"
+                      }}
+                      style={{
+                        width:'100vw',
+                      //height:height+150,
+                      //height:height+extraHeight,
+                      //height:'100vh',
+                        height:height,
+                        //objectFit:'cover',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        
+                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                      // opacity:0.3,
+                      //backgroundColor:'magenta',
+                        zIndex:99,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          //translateY:-(((currentY%height)*(150/2))/height)
+                          //translateY:YParallax
+                          //translateY:getInterpolate(YParallax,height,150)
+                          translateY:0
+                      },
+                    
+                    
+                    ],
+                      }}
+                      />
                       <Fade
                         
                       >
@@ -792,8 +973,13 @@ const SwipeableScroller = (props) => {
                                 translateX:0,
                             },
                             {
-                                translateY:height/2,
+                              // translateY:-(height+150)/2,
+                                //translateY:-(height+150),
+                                //translateY:-(height+extraHeight)/2
+                                translateY:-(height)/2,
+                                //translateY:-(height+extraHeight+30+15)/2
                             }],
+                            zIndex:100,
                           }}
                           >
                         <Text
@@ -821,13 +1007,15 @@ const SwipeableScroller = (props) => {
                       </View>
                       </a>
                       </Fade>
-                    </div>
+                      </div>
+                    {/* </div> */}
                     {/* </Animated.View> */}
                     {/* <img src="assets/3.jpeg" /> */}
                     {/* <p className="legend">3</p> */}
                 {/* </div> */}
               </Carousel>
               </Animated.View>
+                          
             </section>
           {/* </a> */}
           
@@ -888,15 +1076,14 @@ const SwipeableScroller = (props) => {
                       justifyContent:'center',
                       alignItems:'center',
                       zIndex:0,
-                      backgroundColor:'white',
+                      backgroundColor:'transparent',
                       //backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(255,146,166),rgb(180,166,255))',
                       //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))',
-                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
+                      //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
                       backgroundRepeat:'no-repeat',
                       backgroundSize:'cover',
                       backgroundPosition:'center',
-
-                     // borderRadius:4,
+                      // borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
                       borderColor:'#aaa',
@@ -910,15 +1097,48 @@ const SwipeableScroller = (props) => {
                         width:0,
                         height:0
                       },
-                      elevation:2
+                      elevation:2,
+                      overflow:'hidden'
                     }}
                   >
+                    <Animated.Image
+                      source={{
+                        uri: process.env.PUBLIC_URL+"./images/computerdesk2.jpg"
+                      }}
+                      style={{
+                        width:'100vw',
+                        //height:height+150,
+                        height:height+extraHeight,
+                        //height:'100vh',
+                        //objectFit:'cover',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        
+                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                      // opacity:0.3,
+                      //backgroundColor:'magenta',
+                        zIndex:-1,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          //translateY:-(((currentY%height)*(150/2))/height)
+                          translateY:YParallax
+                          //translateY:getInterpolate(YParallax,height,150)
+                      },
                     
+                    
+                    ],
+                      }}
+                    />
                     <Text
                         //className='Unselectable'
                         selectable={false}
                         style={{
-
+                          zIndex:100,
                           textDecorationLine:'none',
                           color:'white',
                           fontWeight:'700',
@@ -931,10 +1151,21 @@ const SwipeableScroller = (props) => {
                           alignItems:'center',
                           justifyContent:'center',
                           flexDirection:'row',
+                          transform:[{
+                            translateX:0,
+                        },
+                        {
+                            //translateY:-(((currentY%height)*(150/2))/height)
+                            //translateY:-(height+extraHeight)/2
+                            //translateY:getInterpolate(YParallax,height,150)
+                            translateY:-(height+extraHeight+30+15)/2
+                        },
+                      ],
                         }}
                       >
                         SQUWBS VST & AU
                       </Text>
+                      
                       {/* <GooglePay/> */}
                       {/* <div
                         style={{
@@ -962,6 +1193,16 @@ const SwipeableScroller = (props) => {
                         justifyContent:'center',
                         alignItems:'center',
                         backgroundColor:'transparent',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          //translateY:-(((currentY%height)*(150/2))/height)
+                          //translateY:-(height+extraHeight)/2
+                          //translateY:getInterpolate(YParallax,height,150)
+                          translateY:-(height+extraHeight+30+15)/2
+                      },
+                    ],
                         
                     }}>
                         {/* <input {...getInputProps()} /> */}
@@ -1005,14 +1246,14 @@ const SwipeableScroller = (props) => {
                       <View
                         className='ClickOpacity'
                         style={{
-                          backgroundColor:'transparent'
+                          backgroundColor:'white'
                           
                         }}
                       >
                       <View
                           
                           style={{
-                            zIndex:2,
+                            zIndex:100,
                             display:'absolute',
                             top:0,
                             width:150,
@@ -1020,7 +1261,8 @@ const SwipeableScroller = (props) => {
                             backgroundColor:'white',
                             justifyContent:'center',
                             alignItems:'center',
-                            pointerEvents:'none'
+                            pointerEvents:'none',
+                            overflow:'hidden'
                           }}
                         >
                           {/* <TouchableOpacity 
@@ -1039,7 +1281,8 @@ const SwipeableScroller = (props) => {
                               pointerEvents:'none',
                               flexDirection:'row',
                               justifyContest:'center',
-                              alignItems:'center'
+                              alignItems:'center',
+                              zIndex:100
                             }}
                           >
                               <Text 
@@ -1059,7 +1302,8 @@ const SwipeableScroller = (props) => {
                                   justifyContent:'center',
                                   flexDirection:'row',
                                   margin:5,
-                                  pointerEvents:'none'
+                                  pointerEvents:'none',
+                                  zIndex:101
                               }}>
                                   <i class="fab fa-paypal"></i>
                                 
@@ -1095,16 +1339,24 @@ const SwipeableScroller = (props) => {
                           
                           style={{
                             //display:'block',
-                            zIndex:'0',
+                            //zIndex:'0',
+                            zIndex:98,
                             position:'absolute',
                             top:0,
-                            pointerEvents:'auto'
+                            pointerEvents:'auto',
+                            display:'hidden',
+                            //boxShadow: '0 0 0 500px'
+                            shadowOpacity: 0.75,
+                            shadowRadius: 5,
+                            shadowColor: 'red',
+                            shadowOffset: { height: 0, width: 0 }
                           }}
                         >
                       
                         <PayPalButton
-                          // ref={paypalRef}
+                          ref={paypalRef}
                           // id='pb'
+                         
                           paypalOptions={{
                             
                             //clientId:paypalID,
@@ -1174,9 +1426,9 @@ const SwipeableScroller = (props) => {
                   //height:partHeight,
                   width:"100%",
                   padding:15,
-                  zIndex:0,
-                  alignContent:'center',
-                  justifyContent:'center',
+                  zIndex:100,
+                  //alignContent:'center',
+                  //justifyContent:'center',
                   overflow:'hidden',
                   //backgroundColor:'rgb(229,154,198)',
                   backgroundColor:'white',
@@ -1184,26 +1436,36 @@ const SwipeableScroller = (props) => {
                   //backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
                   }}
                 >
+                  
+                  
                    <View 
                     style={{
                       height:"100%",
                       width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
-                      zIndex:0,
+                      //justifyContent:'center',
+                      //alignItems:'center',
+                      zIndex:100,
+                      transform:[{
+                        translateX:0,
+                      },
+                      {
+                          //translateY:-(height+extraHeight+25)/2
+                          translateyY:0
+                      }],
                       // marginTop:15,
                       // marginBottom:15,
                       // marginLeft:15,
                       // marginRight:15,
                       //backgroundColor:'rgb(135,135,135)',
-                      //backgroundColor:'transparent',
+                      
+                      backgroundColor:'transparent',
                       //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),rgb(229,154,198))',
                       //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
 
-                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/speaker1.jpg"+')',
-                      backgroundRepeat:'no-repeat',
-                      backgroundSize:'cover',
-                      backgroundPosition:'center',
+                      // backgroundImage:'url('+process.env.PUBLIC_URL+"./images/speaker1.jpg"+')',
+                      // backgroundRepeat:'no-repeat',
+                      // backgroundSize:'cover',
+                      // backgroundPosition:'center',
 
                       //borderRadius:4,
                       //borderBottom:2,
@@ -1222,7 +1484,73 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
-                    <Sound/>
+                  <View
+                    style={{
+                      height:height,
+                      width:'100vw',
+                      overflow:'hidden',
+                      backgroundColor:'transparent',
+                      zIndex:99
+                    }}
+                  >
+                    <Animated.Image
+                      
+                      source={{
+                        uri: process.env.PUBLIC_URL+"./images/speaker1.jpg"
+                      }}
+                      style={{
+                        width:'100vw',
+                        height:height+extraHeight,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        zIndex:-1,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                          },
+                          {
+                            translateY:YParallax
+                            //translateY:0
+    
+                        },],
+                      }}
+                    />
+                  </View>
+                    <View
+                      style={{
+                        height:height,
+                        width:"100%",
+                        justifyContent:'center',
+                        alignItems:'center',
+                        zIndex:100,
+                        transform:[{
+                          translateX:0,
+                        },
+                        {
+                            translateY:-height
+                            //translateyY:0
+                        }],
+                
+                        backgroundColor:'translate',
+                       
+                        borderColor:'#aaa',
+                        borderStyle:'solid',
+                        overflow:'hidden',
+                        boxSizing:"border-box",
+                        shadowColor:'black',
+                        shadowOpacity:0.25,
+                        shadowRadius:2,
+                        shadowOffset:{
+                          width:0,
+                          height:0
+                        },
+                        elevation:2
+                      }}
+                    >
+                      <Sound/>
+                    </View>
                   </View>
                 </Animated.View>
                 {/* </a> */}
@@ -1700,21 +2028,22 @@ const SwipeableScroller = (props) => {
                     //height:partHeight,
                     width:"100%",
                     padding:15,
-                    
-                    backgroundColor:'white',
-                    justifyContent:'center',
-                    alignItems:'center',
+                    overflow:'hidden',
+                    backgroundColor:'transparent',
+                    //justifyContent:'center',
+                    //alignItems:'center',
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
                     //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))'
-                    backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(255,146,166))'
+                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(255,146,166))'
                   }}
                 >
+                   
                   <View 
                     style={{
                       height:"100%",
                       width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
+                      //justifyContent:'center',
+                      //alignItems:'center',
                       zIndex:0,
                       //backgroundColor:'white',
                       backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
@@ -1738,7 +2067,56 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
-                    <Text
+                    <Animated.Image
+                      source={{
+                        uri: process.env.PUBLIC_URL+"./images/computerdesk2.jpg"
+                      }}
+                      style={{
+                        width:'100vw',
+                        //height:height+150,
+                        height:height+extraHeight,
+                        //height:'100vh',
+                        //objectFit:'cover',
+                        alignItems:'center',
+                        justifyContent:'center',
+                        
+                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                      // opacity:0.3,
+                      //backgroundColor:'magenta',
+                        zIndex:-1,
+                        backgroundRepeat:'no-repeat',
+                        backgroundSize:'cover',
+                        backgroundPosition:'center',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          //translateY:-(((currentY%height)*(150/2))/height)
+                          translateY:YParallax
+                          //translateY:getInterpolate(YParallax,height,150)
+                      },
+                    
+                    
+                    ],
+                      }}
+                    />
+                    <View
+                      style={{
+                        height:height,
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          translateY:-(height)
+                          
+                      },
+                    
+                    
+                    ],
+                      
+                      }}
+                    >
+                      <Text
                         //className='Unselectable'
                         style={{
 
@@ -1835,7 +2213,7 @@ const SwipeableScroller = (props) => {
                       <View
                           
                           style={{
-                            zIndex:2,
+                            zIndex:100,
                             display:'absolute',
                             top:0,
                             width:150,
@@ -1843,7 +2221,8 @@ const SwipeableScroller = (props) => {
                             backgroundColor:'white',
                             justifyContent:'center',
                             alignItems:'center',
-                            pointerEvents:'none'
+                            pointerEvents:'none',
+                            overflow:'hidden'
                           }}
                         >
                           {/* <TouchableOpacity 
@@ -1921,7 +2300,12 @@ const SwipeableScroller = (props) => {
                             zIndex:'0',
                             position:'absolute',
                             top:0,
-                            pointerEvents:'auto'
+                            pointerEvents:'auto',
+                            //boxShadow: '0 0 0 500px',
+                            shadowOpacity: 0.75,
+                            shadowRadius: 5,
+                            shadowColor: 'red',
+                            shadowOffset: { height: 0, width: 0 }
                           }}
                         >
                       
@@ -1958,6 +2342,7 @@ const SwipeableScroller = (props) => {
                     </View>
                 </View>  
                 
+                  </View>
                   </View>
                 </Animated.View>
                 {/* </a> */}
@@ -2009,11 +2394,11 @@ const SwipeableScroller = (props) => {
                     style={{
                       height:"100%",
                       width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
+                      // justifyContent:'center',
+                      // alignItems:'center',
                       zIndex:0,
                       //backgroundColor:'rgb(135,135,135)',
-                      backgroundColor:'white',
+                      backgroundColor:'transparent',
                       //borderRadius:4,
                       //borderBottom:2,
                       //borderTop:1,
@@ -2034,11 +2419,74 @@ const SwipeableScroller = (props) => {
                       backgroundRepeat:'no-repeat',
                       backgroundSize:'cover',
                       backgroundPosition:'center',
-                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/mic.jpg"+')',
-                      
+                      //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/mic.jpg"+')',
+                      overflow:'hidden',
                     }}
                   >
-                    <DLLink/>
+                    <View
+                      style={{
+                        height:height,
+                        width:'100%',
+                        overflow:'hidden'
+                      }}
+                    >
+                      <Animated.Image
+                        source={{
+                          uri: process.env.PUBLIC_URL+"./images/mic.jpg"
+                        }}
+                        style={{
+                          width:'100vw',
+                          //height:height+150,
+                          height:height+extraHeight,
+                          //height:'100vh',
+                          //objectFit:'cover',
+                          alignItems:'center',
+                          justifyContent:'center',
+                          
+                          //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                        // opacity:0.3,
+                        //backgroundColor:'magenta',
+                          zIndex:-1,
+                          backgroundRepeat:'no-repeat',
+                          backgroundSize:'cover',
+                          backgroundPosition:'center',
+                          transform:[{
+                            translateX:-15,
+                        },
+                        {
+                            //translateY:-(((currentY%height)*(150/2))/height)
+                            translateY:YParallax
+                            //translateY:getInterpolate(YParallax,height,150)
+                        },
+                      
+                      
+                      ],
+                        }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        justifyContent:'center',
+                        alignItems:'center',
+                        height:height,
+                        width:"100%",
+                        backgroundColor:'transparent',
+                        transform:[{
+                          translateX:0,
+                      },
+                      {
+                          translateY:-(height)
+                          
+                      },
+                    
+                    
+                    ],
+                      
+                      }}
+                    >
+                      <DLLink/>
+                    </View>
+                    
                   </View>
                 </Animated.View>
                 {/* </a> */}
@@ -2092,8 +2540,8 @@ const SwipeableScroller = (props) => {
                     style={{
                       height:"100%",
                       width:"100%",
-                      justifyContent:'center',
-                      alignItems:'center',
+                      //justifyContent:'center',
+                      //alignItems:'center',
                       zIndex:0,
                       // marginTop:15,
                       // marginBottom:15,
@@ -2110,7 +2558,8 @@ const SwipeableScroller = (props) => {
                       backgroundRepeat:'no-repeat',
                       backgroundSize:'cover',
                       backgroundPosition:'center',
-                      backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club2.jpg"+')',
+                      //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club2.jpg"+')',
+                      backgroundColor:'transparent',
                       borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',
@@ -2125,7 +2574,70 @@ const SwipeableScroller = (props) => {
                       elevation:2
                     }}
                   >
-                    <Sound/>
+                    <View
+                      style={{
+                        height:height,
+                        width:'100%',
+                        overflow:'hidden'
+                      }}
+                    >
+                    <Animated.Image
+                        source={{
+                          uri: process.env.PUBLIC_URL+"./images/club2.jpg"
+                        }}
+                        style={{
+                          width:'100vw',
+                          //height:height+150,
+                          height:height+extraHeight,
+                          //height:'100vh',
+                          //objectFit:'cover',
+                          alignItems:'center',
+                          justifyContent:'center',
+                          
+                          //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
+                        // opacity:0.3,
+                        //backgroundColor:'magenta',
+                          zIndex:-1,
+                          backgroundRepeat:'no-repeat',
+                          backgroundSize:'cover',
+                          backgroundPosition:'center',
+                          transform:[{
+                            translateX:-15,
+                        },
+                        {
+                            //translateY:-(((currentY%height)*(150/2))/height)
+                            translateY:YParallax
+                            //translateY:getInterpolate(YParallax,height,150)
+                        },
+                      
+                      
+                      ],
+                        }}
+                      />
+                      </View>
+                    <View
+                      style={{
+                        height:height,
+                        width:'100%',
+                        alignItems:'center',
+                        justifyContent:'center',
+
+                        transform:[{
+                          translateX:0,
+                        },
+                        {
+                          
+                            translateY:-(height)
+                          
+                        },
+                        
+                      
+                      ],
+                      zIndex:100,
+                      }}
+                    >
+                      <Sound/>
+                    </View>
                   </View>
                 </Animated.View>
                 {/* </a> */}
