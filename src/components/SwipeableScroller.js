@@ -58,8 +58,8 @@ var date = new Date()
 const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
-  const [user,setUser]=useState(undefined)
-  //const [user,setUser]=useState('bernard')
+  //const [user,setUser]=useState(undefined)
+  const [user,setUser]=useState('bernard')
   const [height,setHeight]=useState(0)
   const [iframeHeight,setIframeHeight]=useState(0)
   const [iframeWidth,setIframeWidth]=useState(0)
@@ -2037,6 +2037,7 @@ const SwipeableScroller = (props) => {
                     //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
                     //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(180,166,255))'
                     //backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(255,146,166))'
+                    backgroundImage: 'radial-gradient(farthest-corner at 100% 100%,rgb(255,146,166),white)'
                   }}
                 >
                    
@@ -2109,7 +2110,8 @@ const SwipeableScroller = (props) => {
                           translateX:0,
                       },
                       {
-                          translateY:-(height)
+                          //translateY:-(height)
+                          translateY:-(height+extraHeight+30+15)/2
                           
                       },
                     

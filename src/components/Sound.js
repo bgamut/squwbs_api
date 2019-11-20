@@ -296,7 +296,7 @@ const Sound=()=> {
            
             //backgroundColor:'white',
             //backgroundImage:'radial-gradient(farthest-corner at 0% 0%,rgb(255,146,166),rgb(180,166,255))',
-            backgroundColor:'rgb(255,146,166)',
+            backgroundColor:'rgb(180,166,255)',
             justifyContent:'center',
             alignItems:'center',
             // marginRight:8,
