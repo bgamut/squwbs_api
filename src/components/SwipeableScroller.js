@@ -47,7 +47,7 @@ const getUserData=async()=>{
   const userCookie = await responded.json()
   console.log('userCookie : '+stringifyObject(userCookie))
 }
-const extraHeight=200
+const extraHeight=30
 let currentY=0
 //const prevY=new Animated.Value(0)
 let prevY=0
@@ -1217,9 +1217,9 @@ const SwipeableScroller = (props) => {
                         height:30,
                         //width:(Dimensions.get('window').width-8),
                         width:150,
-                        backgroundColor:'white',
+                        //backgroundColor:'white',
                         
-              
+                        backgroundImage:'radial-gradient(farthest-corner at 100% 0%,rgb(255,146,166),rgb(180,166,255))',
                         flexDirection:'column',
                         justifyContent:'center',
                         alignItems:'center',
@@ -1258,11 +1258,12 @@ const SwipeableScroller = (props) => {
                             top:0,
                             width:150,
                             height:30,
-                            backgroundColor:'white',
+                            //backgroundColor:'white',
                             justifyContent:'center',
                             alignItems:'center',
                             pointerEvents:'none',
-                            overflow:'hidden'
+                            overflow:'hidden',
+                            backgroundImage:'radial-gradient(farthest-corner at 100% 0%,rgb(255,146,166),rgb(180,166,255))',
                           }}
                         >
                           {/* <TouchableOpacity 
@@ -1278,6 +1279,7 @@ const SwipeableScroller = (props) => {
                           <View
                             //ref={paypalRef}
                             style={{
+                              
                               pointerEvents:'none',
                               flexDirection:'row',
                               justifyContest:'center',
@@ -2218,6 +2220,7 @@ const SwipeableScroller = (props) => {
                             top:0,
                             width:150,
                             height:30,
+                            
                             backgroundColor:'white',
                             justifyContent:'center',
                             alignItems:'center',

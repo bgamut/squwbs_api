@@ -15,6 +15,79 @@ const windowing=require('fft-windowing')
 let wav = require('node-wav')
 const WavEncoder = require('wav-encoder')
 
+// function LP(freq,sr){
+//   this.buf0 = 0
+//   this.buf1 = 0
+//   this.buf2 = 0
+//   this.buf3 = 0
+//   this.buf4 = 0
+//   this.buf5 = 0
+//   this.buf6 = 0
+//   this.buf7 = 0
+//   this.cutoff=2*Math.sin(Math.PI*(freq/sr))
+// }
+// LP.prototype.process=function(sample){
+//   this.buf0 += this.cutoff * (sample - this.buf0)
+//   this.buf1 += this.cutoff * (this.buf0 - this.buf1)
+//   this.buf2 += this.cutoff * (this.buf1 - this.buf2)
+//   this.buf3 += this.cutoff * (this.buf2 - this.buf3)
+//   this.buf4 += this.cutoff * (this.buf3 - this.buf4)
+//   this.buf5 += this.cutoff * (this.buf4 - this.buf5)
+//   this.buf6 += this.cutoff * (this.buf5 - this.buf6)
+//   this.buf7 += this.cutoff * (this.buf6 - this.buf7)
+//   return this.buf1
+// }
+// LP.prototype.output=function(mode){
+//   if(mode =="6"){
+//       return this.buf0
+//   }
+//   else if(mode ="12"){
+//       return this.buf1
+//   }
+//   else if(mode ="24"){
+//       return this.buf3
+//   }
+//   else if(mode ="48"){
+//       return this.buf7
+//   }
+// }
+// function HP(freq,sr){
+//   this.buf0 = 0;
+//   this.buf1 = 0;
+//   this.buf2 = 0;
+//   this.buf3 = 0;
+//   this.buf4 = 0;
+//   this.buf5 = 0;
+//   this.buf6 = 0;
+//   this.buf7 = 0;
+//   this.cutoff=2*Math.sin(Math.PI*(freq/sr));
+// }
+// HP.prototype.process=function(sample){
+//   this.buf0 += this.cutoff * (sample - this.buf0)
+//   this.buf1 += this.cutoff * (this.buf0 - this.buf1)
+//   this.buf2 += this.cutoff * (this.buf1 - this.buf2)
+//   this.buf3 += this.cutoff * (this.buf2 - this.buf3)
+//   this.buf4 += this.cutoff * (this.buf3 - this.buf4)
+//   this.buf5 += this.cutoff * (this.buf4 - this.buf5)
+//   this.buf6 += this.cutoff * (this.buf5 - this.buf6)
+//   this.buf7 += this.cutoff * (this.buf6 - this.buf7)
+//   return (sample - this.buf1)
+// }
+// HP.prototype.output=function(mode){
+//   if(mode =="6"){
+//       return (sample - this.buf0)
+//   }
+//   else if(mode ="12"){
+//       return (sample - this.buf1)
+//   }
+//   else if(mode ="24"){
+//       return (sample - this.buf3)
+//   }
+//   else if(mode ="48"){
+//       return (sample - this.buf7)
+//   }
+// }
+
 function decodedDone(decoded){
   
   var left = new Float32Array(decoded.length)
@@ -64,13 +137,14 @@ const pad=(n, width, z)=>{
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 const Sound=()=> {
-  const [current,setCurrent]=useState(0)
+  //const [current,setCurrent]=useState(0)
   const textRef = useRef('')
   // useEffect(()=>{
   //   console.log('current is different')
   //   //console.log(current)
   //   //textRef.current.innerHTML = current+" %"
   // },[current])
+  var current=0
   const onDrop = useCallback(acceptedFiles => {
 
 
@@ -81,26 +155,16 @@ const Sound=()=> {
 
 
           var reader = new FileReader();
-          reader.onload = function(e) {
-
- 
-            //var array = reader.result
-            
-            //var audioContext = new AudioContext()
-            //audioContext.decodeAudioData(array, decodedDone)
-
-            // a.href=
-            // var a = document.createElement('a')
-                      
-            // a.setAttribute('download','master.wav')
-            // a.click()
+          reader.onload = function(e) { 
 
             var buffer = reader.result
             let int16Factor=Math.pow(2,15)-1
             let result = wav.decode(buffer)
             let left = result.channelData[0].slice()
             let right = result.channelData[1].slice()
-            const binSize=1024
+            console.log(left)
+            //const binSize=1024
+            const binSize=8
             let used = pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5)
             let leftSlot=new Array(binSize).fill(0)
             let leftFft=new Array(binSize).fill([0,0])
@@ -109,42 +173,45 @@ const Sound=()=> {
             let masterArray = []
             let max = 1.0
             let amp = 1.0
-            // for (let i=0; i<binSize; i++){
-            //     masterArray.push(1-i/binSize)
-            // }
-            // console.log("memory used : "+ used+" MB");
-            // for(let i=0; i<left.length; i++){ 
-            //     leftSlot=leftSlot.splice(1)
-            //     leftSlot.push(left[i])
-            //     rightSlot=rightSlot.splice(1)
-            //     rightSlot.push(right[i])
+            for (let i=0; i<binSize; i++){
+                masterArray.push(1-i/binSize)
+            }
+            console.log("memory used : "+ used+" MB");
+            for(let i=0; i<left.length; i++){ 
+                leftSlot=leftSlot.splice(1)
+                leftSlot.push(left[i])
+                rightSlot=rightSlot.splice(1)
+                rightSlot.push(right[i])
 
-            //     leftFft=fft(leftSlot)
-            //     rightFft=fft(rightSlot)
+                leftFft=fft(leftSlot)
+                rightFft=fft(rightSlot)
 
-            //     for (let j=0; j<binSize; j++){
-            //         leftFft[j][0]=leftFft[j][0]*masterArray[j]*amp
-            //         rightFft[j][0]=rightFft[j][0]*masterArray[j]*amp
-            //     }
+                for (let j=0; j<binSize; j++){
+                    leftFft[j][0]=leftFft[j][0]*masterArray[j]*amp
+                    rightFft[j][0]=rightFft[j][0]*masterArray[j]*amp
+                }
 
-            //     let leftIfft=ifft(leftFft)
-            //     let rightIfft=ifft(rightFft)
-                  
-            //       //setCurrent((Math.round(i/left.length*1000000)/10000).toFixed(4))
-            //       textRef.current.innerHTML = String((Math.round(i/left.length*1000000)/10000).toFixed(4))+" %"
-            //       console.log((Math.round(i/left.length*1000000)/10000).toFixed(4)+"%")
+                let leftIfft=ifft(leftFft)
+                let rightIfft=ifft(rightFft)
+                current=((Math.round(i/left.length*1000000)/10000).toFixed(4))
+                  //setCurrent((Math.round(i/left.length*1000000)/10000).toFixed(4))
+                  //textRef.current.innerHTML = String((Math.round(i/left.length*1000000)/10000).toFixed(4))+" %"
+                  //console.log((Math.round(i/left.length*1000000)/10000).toFixed(4)+"%")
 
-            //     leftFft=null
-            //     rightFft=null
+                leftFft=null
+                rightFft=null
 
-            //     left[i]=leftIfft[0][0]
-            //     right[i]=rightIfft[0][0]
-            //     leftIfft=null
-            //     rightIfft=null
-            // }
+                left[i]=leftIfft[0][0]
+                right[i]=rightIfft[0][0]
+                leftIfft=null
+                rightIfft=null
+            }
 
             //below is uint8 array
             var encoded=wav.encode([left,right],{sampleRate:result.sampleRate, float:true, bitDepth:32}).slice()
+            
+            
+            
             //below changes it to 64string
             var blob = new Blob([encoded],{
               type:'audio/wav'
@@ -161,11 +228,7 @@ const Sound=()=> {
               window.URL.revokeObjectURL(url)
             },1000)
            
-            //var a = document.createElement('a')
-            // a.setAttribute('href',btoa(encoded))     
-            // a.setAttribute('download','master.wav')
-            // a.click()
-            //console.log(encoded)
+
           };
 
 
@@ -199,16 +262,16 @@ const Sound=()=> {
           }}
         >
         
-          {/* <View 
+          <View 
             style={{
               alignItems:'center',
               justifyContent:'space-between',
-              flexDirection:'row'
+              flexDirection:'column'
             }}
           >
             
-            <CPB current = {current} end= {100} />
-            <View
+            {/* <CPB current = {current} end= {100} /> */}
+            {/* <View
               style={{
                 alignItems:'center',
                 justifyContent:'left',
@@ -224,16 +287,16 @@ const Sound=()=> {
                   textAlign:'center'
               }}
               >0 %</a>
-            </View>
-          </View> */}
+            </View> */}
+          </View>
         <View style={{ 
             // height:100,
             width:150,
             height:33,
            
-            backgroundColor:'white',
-            
-           
+            //backgroundColor:'white',
+            //backgroundImage:'radial-gradient(farthest-corner at 0% 0%,rgb(255,146,166),rgb(180,166,255))',
+            backgroundColor:'rgb(255,146,166)',
             justifyContent:'center',
             alignItems:'center',
             // marginRight:8,

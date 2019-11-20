@@ -106,7 +106,7 @@ const DLLink = (props)=> {
                 // height:100,
                 //width:(Dimensions.get('window').width-8),
                 width:150,
-                backgroundColor:'white',
+                //backgroundColor:'white',
                 
                 flex:1,
                 flexDirection:'column',
