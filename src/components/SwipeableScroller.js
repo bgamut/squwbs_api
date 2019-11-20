@@ -58,8 +58,8 @@ var date = new Date()
 const SwipeableScroller = (props) => {
   
   const [state, setState] = useContext(Context);
-  //const [user,setUser]=useState(undefined)
-  const [user,setUser]=useState('bernard')
+  const [user,setUser]=useState(undefined)
+  //const [user,setUser]=useState('bernard')
   const [height,setHeight]=useState(0)
   const [iframeHeight,setIframeHeight]=useState(0)
   const [iframeWidth,setIframeWidth]=useState(0)
@@ -2106,12 +2106,15 @@ const SwipeableScroller = (props) => {
                     <View
                       style={{
                         height:height,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:'tranparent',
                         transform:[{
                           translateX:0,
                       },
                       {
                           //translateY:-(height)
-                          translateY:-(height+extraHeight+30+15)/2
+                          translateY:-(height+extraHeight)
                           
                       },
                     
@@ -2120,6 +2123,7 @@ const SwipeableScroller = (props) => {
                       
                       }}
                     >
+                    <View>
                       <Text
                         //className='Unselectable'
                         style={{
@@ -2346,7 +2350,7 @@ const SwipeableScroller = (props) => {
                     </View>
                     </View>
                 </View>  
-                
+                  </View>
                   </View>
                   </View>
                 </Animated.View>
