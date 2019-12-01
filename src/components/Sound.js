@@ -6,6 +6,14 @@ import Fade from 'react-reveal/Fade'
 //import fs from 'fs'
 import pcm from 'pcm'
 import CPB from './CPB'
+//import sketch from './sketch'
+
+//import Sketch from 'react-p5'
+import { createParameter } from 'typescript'
+import {scaleOrdinal} from 'd3-scale'
+import {arc as d3Arc, pie as d3Pie} from 'd3-shape'
+import {csvParse} from 'd3-dsv'
+var P5Wrapper = require('react-p5-wrapper')
 const fft = require('fft-js').fft
 const ifft = require('fft-js').ifft
 const fftUtil = require('fft-js').util
@@ -14,7 +22,39 @@ const fftInPlace = require('fft-js').fftInPlace
 const windowing=require('fft-windowing')
 let wav = require('node-wav')
 const WavEncoder = require('wav-encoder')
+//console.log(sketch)
 
+
+
+var sketch = 
+`
+
+  let rotation = 0;
+
+  p.setup = function () {
+    p.createCanvas(600, 400, p.WEBGL);
+  };
+
+  p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    if (props.rotation){
+      rotation = props.rotation * Math.PI / 180;
+    }
+  };
+
+  p.draw = function () {
+    p.background(100);
+    p.normalMaterial();
+    p.noStroke();
+    p.push();
+    p.rotateY(rotation);
+    p.box(100);
+    p.pop();
+  };
+  
+
+`
+
+  
 function LP(freq,sr){
   this.buf0 = 0
   this.buf1 = 0
@@ -43,6 +83,7 @@ LP.prototype.setMode=function(mode){
       return this.buf0
     }
     else if(this.mode =12){
+        //console.log(this.buf1)
         return this.buf1
     }
     else if(this.mode =24){
@@ -84,7 +125,10 @@ HP.prototype.process=function(sample){
     return (sample - this.buf0)
   }
   else if(this.mode =12){
-      return (sample - this.buf1)
+      var returnVal=sample - this.buf1
+      //console.log('hp:',sample)
+
+      return (returnVal)
   }
   else if(this.mode =24){
       return (sample - this.buf3)
@@ -102,11 +146,13 @@ BAND.prototype.setMode=function(mode){
   this.hp.setMode(mode)
 }
 BAND.prototype.process=function(sample){
-  return (this.lp.process(this.hp.process(sample)))
+  var returnVal=this.lp.process(this.hp.process(sample))
+  //console.log('band :',returnVal)
+  return (returnVal)
 }
 var barkscale = [175,2750,6600]
-function FOURBAND(sr){
-  var barkscale = [175,2750,6600]
+function FOURBAND(sr,barkscale){
+  // var barkscale = [175,2750,6600]
   this.high = new HP(barkscale[barkscale.length-1],sr)
   this.mid = new BAND(barkscale[barkscale.length-2],[barkscale.length-1],sr)
   this.midlow = new BAND(barkscale[barkscale.length-3],[barkscale.length-2],sr)
@@ -121,7 +167,7 @@ FOURBAND.prototype.setMode=function(mode){
   this.mode=mode
 }
 FOURBAND.prototype.process=function(sample){
-  //return (this.high.process(sample)+this.mid.process(sample)+this.midlow.process(sample)+this.low.process(sample))
+  
   return [this.low.process(sample),this.midlow.process(sample),this.mid.process(sample),this.high.process(sample)]
 }
 
@@ -148,15 +194,33 @@ MATCH.prototype.setRefDev=function(RefDev){
 MATCH.prototype.process=function(sample){
   this.buffer.slice(0,1)
   if(sample>0){
-    this.buffer.push(
-      ((sample-this.userMean)*this.refDev/this.userDev)+this.userDev
-    )
+      if(this.userDev==0){
+          this.buffer.push(
+              sample-this.userMean+this.refMean
+          )
+      }
+      else{
+          this.buffer.push(
+              ((sample-this.userMean)*this.refDev/this.userDev)+this.userMean
+            )
+      }
+    
   }
-  else if (sample<0){
-    this.buffer.push(
-      ((sample+this.userMean)*this.refDev/this.userDev)+this.userDev
-    )
+  else if (sample<=0){
+      if(this.userDev==0){
+          this.buffer.push(
+              sample+this.userMean-this.refMean
+          )
+      }
+      else{
+          this.buffer.push(
+              ((sample+this.userMean)*this.refDev/this.userDev)-this.refMean
+          )
+      }
   }
+  // else if(sample==0){
+  //     this.buffer.push(0)
+  // }
   var average = 0;
   for (var i =0; i<this.buffer.length; i++){
     average+=this.buffer[i]/this.buffer.length
@@ -225,13 +289,14 @@ ANALYZER.prototype.process=function(array){
   for(var i = 0; i< array.length; i++){
     var val = Math.abs(array[i])
     this.dev+=Math.abs(val-this.mean)/array.length
-    console.log('pushing to analyzer buffer : ', i/array.length)
+    //console.log('pushing to analyzer buffer : ', pad(i/array.length,6,0))
+    //document.getElementById('console').innerHTML='pushing to analyzer buffer : ', pad(i/array.length,6,0)
   }
   return({mean:this.mean,dev:this.dev})
 }
 function STATS(SR){
-  this.mfb= new FOURBAND(SR)
-  this.sfb= new FOURBAND(SR)
+  this.mfb= new FOURBAND(SR,[175,2750,6600])
+  this.sfb= new FOURBAND(SR,[175,2750,6600])
   this.mh= new ANALYZER
   this.mm= new ANALYZER
   this.mml= new ANALYZER
@@ -255,19 +320,22 @@ STATS.prototype.process=function(mid,side){
   var smla=[]
   var sla=[]
   for (var i =0; i<mid.length; i++){
-    console.log('pushing to mid/side buffer : ', i/mid.length)
+    //console.log('pushing to mid/side buffer : ', pad(i/mid.length,6,0))
+    //document.getElementById('console').innerHTML='pushing to mid/side buffer : ', pad(i/mid.length,6,0)
+    //console.log(mid[i])
     var midsample=this.mfb.process(mid[i])
+    
     mla.push(midsample[0])
     mmla.push(midsample[1])
     mma.push(midsample[2])
     mha.push(midsample[3])
-
+  
     var sidesample=this.sfb.process(side[i])
     sla.push(sidesample[0])
     smla.push(sidesample[1])
     sma.push(sidesample[2])
     sha.push(sidesample[3])
-    
+    //console.log('mid [low,midlow,mid,high] / side [low,midlow,mid,high]: ',midsample,sidesample)
   }
   var tempObj={
     mh:this.mh.process(mha),
@@ -314,8 +382,10 @@ STATS.prototype.process=function(mid,side){
 }
 function SQUWBS(SR){
   var barkscale = [175,2750,6600]
-  this.SEQ=new FOURBAND(barkscale,SR)
-  this.MEQ=new FOURBAND(barkscale,SR)
+  this.SEQ=new FOURBAND(SR,[175,2750,6600])
+  this.MEQ=new FOURBAND(SR,[175,2750,6600])
+  console.log(this.SEQ)
+  console.log(this.MEQ)
   this.MM=new MATCHER()
   this.SM=new MATCHER()
   var refStats={
@@ -323,6 +393,12 @@ function SQUWBS(SR){
     monoDevArray:[0.05534535221208015, 0.3960832520494717, 0.14692152044358975, 0],
     sideMeanArray:[0.0024129038023947683, 0.029907691106377872, 0.011327437907067852, 0.0008545722599771934],
     sideDevArray:[0.0031832037448466218, 0.039556932569829624, 0.015011548049436968, 0]
+   
+    // monoMeanArray:[],
+    // monoDevArray:[],
+    // sideMeanArray:[],
+    // sideDevArray:[]
+
   }
   var monoRef = {
     meanArray:refStats.monoMeanArray,
@@ -362,14 +438,21 @@ SQUWBS.prototype.setUser=function(userObj){
 SQUWBS.prototype.process=function(left,right){
   var mono = (left+right)/2
   var leftOnly = left-mono
-  var mid=this.MM.process(this.MEQ.process(mono))
-  var side=this.SM.process(this.SEQ.process(leftOnly))
-  return(
-    {
-      left:mid+side,
-      right:mid-side
-    }
-  )
+ // console.log(this.MEQ.process(mono))
+ //console.log(this.SEQ.process(leftOnly))
+ //console.log(this.SM.process(this.SEQ.process(leftOnly)))
+  var midArray=this.MM.process(this.MEQ.process(mono))
+  var sideArray=this.SM.process(this.SEQ.process(leftOnly))
+  var mid=0
+  var side=0
+  for (var i =0; i<barkscale.length+1; i++){
+      mid+= midArray[i]
+      side+= sideArray[i]
+  }
+  //console.log(mid)
+  var value = {left:mid+side,right:mid-side}
+  //console.log(value)
+   return(value)
 }
 
 
@@ -423,13 +506,204 @@ const pad=(n, width, z)=>{
 }
 const Sound=()=> {
   //const [current,setCurrent]=useState(0)
+  let binSize=1024
+  var initialSoundArray = new Array(binSize).fill([0,0])
+  //console.log(initialSoundArray)
+  var portrait=false
+  var googlecardPortrait=false
+  const isMobile=false
+  const [count,setCount]=useState(0)
+  const [rotation,setRotation]=useState(0)
+  const [height,setHeight]=useState(0)
+  const [width,setWidth]=useState(0)
+  const [iframeHeight,setIframeHeight]=useState(0)
+  const [iframeWidth,setIframeWidth]=useState(0)
+  const [originalArray,setOriginalArray]=useState([[0,0]])
+  const [soundArray,setSoundArray]=useState(initialSoundArray)
+  // const previousTimeRef=useRef()
+  // const requestRef=useRef()
+  const [prevTimeRef,setPrevTimeRef]=useState(0)
+  const [fileLoaded,setFileLoaded]=useState(false)
+  const [arrayIndex,setArrayIndex]=useState(0)
+  const [componentLoaded,setComponentLoaded]=useState(false)
+  //const [updateStatus,setUpdateStatus]=useState(false)
+  //const [maxArrayLength,setMaxArrayLength]=useState(undefined) 
+  var updateStatus = false
+
   const textRef = useRef('')
   // useEffect(()=>{
   //   console.log('current is different')
   //   //console.log(current)
   //   //textRef.current.innerHTML = current+" %"
   // },[current])
+  
+  let leftSlot=new Array(binSize).fill(0)
+  let leftFft=new Array(binSize).fill([0,0])
+  let rightSlot=new Array(binSize).fill(0)
+  let rightFft=new Array(binSize).fill([0,0])
   var current=0
+  var array = new Array(binSize).fill(0)
+  // const animate = (time)=>{
+  //   if(previousTimeRef.current !=undefined){
+  //     const deltaTime=time-previousTimeRef.current;
+  //     setCount(prevCount=>(prevCount+deltaTime*0.01))
+  //     //setRotation(prevCount=>(prevCount))
+  //   }
+  //   previousTimeRef.currrent= time
+  //   requestRef.current = requestAnimationFrame(animate)
+  // }
+  // useEffect(()=>{
+  //   requestRef.current = requestAnimationFrame(animate)
+  //   return ()=> cancelAnimationFrame(requestRef.current)
+  // },[])
+  const animate = ()=>{
+    
+  }
+  const updateDimensions=()=>{
+        
+
+
+        setHeight(Math.floor(Dimensions.get('window').height))
+        setWidth(Math.floor(Dimensions.get('window').width))
+       
+}
+useEffect(()=>{
+    Dimensions.addEventListener('change',(e)=>{
+      updateDimensions()
+    })
+    updateDimensions()
+    setComponentLoaded(true)
+  },[])
+
+
+useEffect(()=>{
+  if(componentLoaded == true){
+    //setArrayIndex(0)
+    setFileLoaded(true)
+    console.log('original Array chaged')
+  }
+},[originalArray])
+useEffect(()=>{
+  if(componentLoaded == true){
+    console.log('file loaded = ', fileLoaded)
+    setArrayIndex(0)
+  }
+  
+},[fileLoaded])
+  useEffect(()=>{
+    if(fileLoaded==true){
+      console.log('array index changed to ',arrayIndex)
+      console.log(originalArray)
+      console.log(soundArray)
+      var newArray = soundArray
+      newArray.splice(0,1)
+      newArray.push([originalArray[arrayIndex][0],originalArray[arrayIndex][1]])
+      console.log(newArray)
+      setSoundArray(newArray)
+    }
+    
+  },[arrayIndex])
+
+  useEffect(()=>{
+    // console.log(arrayIndex)
+    // console.log(soundArray)
+    // console.log('soundArray updated ', soundArray[0])
+    // window.requestAnimationFrame(animationFrameRequestCallBack)
+    // if(arrayIndex<originalArray[0].length){
+    //   setSoundArray(originalArray[arrayIndex+1])
+    // }
+  },[soundArray])
+
+  useEffect(()=>{
+    //setUpdateStatus(false)
+    updateStatus=false
+  },[current])
+
+  useEffect(()=>{
+    var today = new Date()
+    var deltaTime = today-prevTimeRef
+    //console.log(deltaTime)
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    //console.log(array[0])
+    //console.log(dateTime)
+    //current+=1
+    //console.log(current)
+    //console.log(count)
+    setTimeout(()=>{
+      setCount(count+1)
+      setPrevTimeRef(today)
+    },1500)
+  },[count])
+
+  const setup = (p5, canvasParentRef)=>{
+   // p5.createCanvas(500, 500, p5.WEBGL).parent(canvasParentRef)
+      //p5.frameRate(15)
+      p5.createCanvas(Math.floor(Dimensions.get('screen').width),Math.floor(Dimensions.get('screen').height)).parent(canvasParentRef)
+  }
+  const animationFrameRequestCallBack =()=>{
+    //console.log('animation frame requested!')
+  }
+  
+  
+  const draw = (p5)=>{
+    
+    
+    
+    p5.translate(Math.floor(Dimensions.get('screen').width/2),Math.floor(Dimensions.get('screen').height/2))
+    p5.background('white');
+    //p5.background(224,150,202)
+    //p5.fill(185,167,244)
+    p5.fill(185,167,244)
+    p5.rect(-(width-50)/2,-(height-50)/2,width-50,height-50)
+   //p5.colorMode('RGB',100)
+    
+   p5.fill('white')
+    var binSize = 1024
+    
+    for (var i =0; i<binSize; i++){
+
+      var barWidth = Math.ceil((width)/binSize)
+      
+       //var barHeight= -1*Math.floor(Math.random()*(height-50))
+       //var barHeight= -1*Math.floor(leftFft[i][0]*(height-50))
+       //var barHeight= -1*Math.floor((leftSlot[i]+0.01)*(height-50))
+       
+       //var tempSample=soundArray[i]
+       //console.log(tempSample)
+       // var barHeight= -1*Math.floor((soundArray[i][0]+0.01)*(height-50))
+       //console.log((leftSlot[i]+0.01)*(height-50))
+       //console.log(leftFft[i][0])
+       //console.log(soundArray[i][0])
+       //console.log(array[0])
+       var barHeight= -1*Math.floor((array[i][0]+0.01)*(height-50))
+       
+       var barCoordX = Math.floor(-(width)/2+i*barWidth)
+       var barCoordY = Math.floor(((height-50)/2))
+     
+      //console.log(array[0])
+      //p5.noStroke()
+      p5.rect(barCoordX,barCoordY,barWidth,barHeight)
+    }
+    p5.noStroke()
+    //p5.fill(224,150,202)
+    p5.fill('white')
+   
+    p5.rotate((count* Math.PI / 180));
+    p5.rect(-75,-75,150,150)
+    p5.rotate((-count* Math.PI / 180));
+    
+    //p5.textSize(14);
+    //p5.textAlign('CENTER', 'CENTER');
+    //p5.fill(185,167,244)
+    //p5.text(current,0,-7)
+    //p5.textFont('');
+    
+
+    // NOTE: Do not use setState in draw function or in functions that is executed in draw function... pls use normal variables or class properties for this purposes
+    //this.x++
+  }
   const onDrop = useCallback(acceptedFiles => {
 
 
@@ -441,57 +715,113 @@ const Sound=()=> {
 
           var reader = new FileReader();
           reader.onload = function(e) { 
-
+            
+            
             var buffer = reader.result
-            let int16Factor=Math.pow(2,15)-1
+            let int32Factor=Math.pow(2,31)
             let result = wav.decode(buffer)
+            
             let left = result.channelData[0].slice()
             let right = result.channelData[1].slice()
             //console.log('sound:',left)
+            var max = 0
+            for (var i = 0; i<left.length; i++){
+              if(max<Math.abs(left[i])){
+                max=Math.abs(left[i])
+              }
+              if(max<Math.abs(right[i])){
+                max=Math.abs(right[i])
+              }
+            }
+            for (var i = 0; i<left.length; i++){
+              left[i]=((left[i]/max))
+              right[i]=((right[i]/max))
+              //console.log(left[i])
+            }
             
-            // //const binSize=1024
-            // const binSize=8
-            // let used = pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5)
+            const binSize=1024
+            //const binSize=8
+            let used = pad(parseFloat(Math.round(window.performance.memory.usedJSHeapSize/ window.performance.memory.jsHeapSizeLimit*10000)/100).toFixed(2),5)
             // let leftSlot=new Array(binSize).fill(0)
             // let leftFft=new Array(binSize).fill([0,0])
             // let rightSlot=new Array(binSize).fill(0)
             // let rightFft=new Array(binSize).fill([0,0])
+
+            // leftSlot=new Array(binSize).fill(0)
+            // leftFft=new Array(binSize).fill([0,0])
+            // rightSlot=new Array(binSize).fill(0)
+            // rightFft=new Array(binSize).fill([0,0])
+            // var tempOriginalArray=[]
+            // for (var i = 0; i<left.length; i++){
+            //   tempOriginalArray.push([left[i],right[i]])
+            //   array.push(Math.abs(left[i]))
+            //   array.splice(0,1)
+            //   // console.log(array[0])
+            //   setTimeout(()=>{
+            //     window.requestAnimationFrame(animationFrameRequestCallBack)
+            //   },750)
+              
+              
+            // }
+            //setOriginalArray(tempOriginalArray)
+            
+            //console.log(array)
+           // global.array=array
             // let masterArray = []
             // let max = 1.0
             // let amp = 1.0
             // for (let i=0; i<binSize; i++){
             //     masterArray.push(1-i/binSize)
-            // }
-            // console.log("memory used : "+ used+" MB");
-            // for(let i=0; i<left.length; i++){ 
-            //     leftSlot=leftSlot.splice(1)
-            //     leftSlot.push(left[i])
-            //     rightSlot=rightSlot.splice(1)
-            //     rightSlot.push(right[i])
-
-            //     leftFft=fft(leftSlot)
-            //     rightFft=fft(rightSlot)
-
-            //     for (let j=0; j<binSize; j++){
-            //         leftFft[j][0]=leftFft[j][0]*masterArray[j]*amp
-            //         rightFft[j][0]=rightFft[j][0]*masterArray[j]*amp
+            //     //current=i/binSize
+            //     var a = Math.random()*100
+            //     //console.log(a)
+            //     if(updateStatus==false){
+            //       //setUpdateStatus(true)
+            //       updateStatus=true
+            //       current=a
+            //       console.log(a)
+            //       //setCurrent(a)
+            //       updateStatus=false
             //     }
-
-            //     let leftIfft=ifft(leftFft)
-            //     let rightIfft=ifft(rightFft)
-            //     current=((Math.round(i/left.length*1000000)/10000).toFixed(4))
-            //       //setCurrent((Math.round(i/left.length*1000000)/10000).toFixed(4))
-            //       //textRef.current.innerHTML = String((Math.round(i/left.length*1000000)/10000).toFixed(4))+" %"
-            //       //console.log((Math.round(i/left.length*1000000)/10000).toFixed(4)+"%")
-
-            //     leftFft=null
-            //     rightFft=null
-
-            //     left[i]=leftIfft[0][0]
-            //     right[i]=rightIfft[0][0]
-            //     leftIfft=null
-            //     rightIfft=null
+                
             // }
+            console.log("memory used : "+ used+" MB");
+           // for(let i=0; i<left.length; i++){ 
+                //console.log(left[i])
+                
+                
+                //leftSlot.push(left[i])
+                //leftSlot=leftSlot.splice(0,1)
+                
+                //rightSlot.push(right[i])
+                //rightSlot=rightSlot.splice(0,1)
+                //console.log(leftSlot)
+                //leftFft=fft(leftSlot)
+                //rightFft=fft(rightSlot)
+                // console.log(leftFft)
+                // for (let j=0; j<binSize; j++){
+                //     leftFft[j][0]=leftFft[j][0]*masterArray[j]*amp
+                //     rightFft[j][0]=rightFft[j][0]*masterArray[j]*amp
+                // }
+
+                // let leftIfft=ifft(leftFft)
+                // let rightIfft=ifft(rightFft)
+                
+                //current=((Math.round(i/left.length*1000000)/10000).toFixed(4))
+                  //setCurrent((Math.round(i/left.length*1000000)/10000).toFixed(4))
+                  //textRef.current.innerHTML = String((Math.round(i/left.length*1000000)/10000).toFixed(4))+" %"
+                  //console.log((Math.round(i/left.length*1000000)/10000).toFixed(4)+"%")
+                //window.requestAnimationFrame(animationFrameRequestCallBack)
+                
+
+                // leftFft=null
+                // rightFft=null
+
+                // left[i]=leftIfft[0][0]
+                // right[i]=rightIfft[0][0]
+                // leftIfft=null
+                // rightIfft=null
+            //}
 
             // //below is uint8 array
             // var encoded=wav.encode([left,right],{sampleRate:result.sampleRate, float:true, bitDepth:32}).slice()
@@ -520,18 +850,61 @@ const Sound=()=> {
               mono.push((left[i]+right[i]/2))
               leftOnly.push(left[i]-mono[i])
             }
+            
+            
             var analyzer= new STATS(result.sampleRate)
             var stats = analyzer.process(mono,leftOnly)
             console.log(stats)
             var squwbs = new SQUWBS(result.sampleRate)
             squwbs.setUser(stats)
-            //squwbs.process(mono,leftOnly)
+            global.squwbs=squwbs
+            var meanLeft=0
+            var meanRight=0
+            var maxLeft=0
+            var maxRight=0
+            var lastLeftSample=0
+            var lastRightSample=0
             for(var i =0; i<left.length; i++){
               var temp=squwbs.process(left[i],right[i])
-              left[i]=temp.left
-              right[i]=temp.right
+        
+              //left[i]=Math.floor(((temp.left))*max)
+              
+              //right[i]=Math.floor(((temp.right))*max)
+              left[i]=(temp.left)
+              //console.log(temp.left-left[i])
+              right[i]=(temp.right)
+              //mean+=(left[i]+right[i])/(2*left.length)
+              //meanLeft+=left[i]/left.length
+              //meanRight+=right[i]/left.length
+              // if(Math.abs(left[i])>newMax){
+              //   newMax=Math.abs(left[i])
+              // }
+              // if(Math.abs(right[i])>newMax){
+              //   newMax=Math.abs(right[i])
+              // }
+              if(i==left.length-1){
+                lastLeftSample=left[i]
+                lastRightSample=right[i]
+              }
             }
-            var encoded=wav.encode([left,right],{sampleRate:result.sampleRate, float:true, bitDepth:32}).slice()
+            console.log(lastLeftSample)
+            console.log(lastRightSample)
+            for(var i =0; i<left.length; i++){
+              left[i]=left[i]-lastLeftSample
+              right[i]=right[i]-lastRightSample
+              if(Math.abs(left[i])>maxLeft){
+                maxLeft=Math.abs(left[i])
+              }
+              if(Math.abs(right[i])>maxRight){
+                maxRight=Math.abs(right[i])
+              }
+            }
+
+            for(var i =0; i<left.length; i++){
+              left[i]=(left[i]/maxLeft)
+              right[i]=(right[i]/maxRight)
+            }
+            var encoded=wav.encode([left,right],{sampleRate:result.sampleRate, float:true, bitDepth:16}).slice()
             
             //below changes it to 64string
             var blob = new Blob([encoded],{
@@ -548,6 +921,7 @@ const Sound=()=> {
             setTimeout(function(){
               window.URL.revokeObjectURL(url)
             },1000)
+
           };
 
 
@@ -607,12 +981,22 @@ const Sound=()=> {
               }}
               >0 %</a>
             </View> */}
+            {/* <P5Wrapper sketch={sketch}/> */}
+            {/* { fileLoaded && */}
+              <View>
+                {/* <h1>IS THIS SHOWING?</h1> */}
+                {/* <Sketch setup={setup} draw={draw} /> */}
+               
+              </View>
+            {/* } */}
+
+            
           </View>
         <View style={{ 
             // height:100,
             width:150,
             height:33,
-           
+
             //backgroundColor:'white',
             //backgroundImage:'radial-gradient(farthest-corner at 0% 0%,rgb(255,146,166),rgb(180,166,255))',
             backgroundColor:'rgb(180,166,255)',
@@ -634,8 +1018,14 @@ const Sound=()=> {
             width:0,
             height:0
             },
-            elevation:2
-                
+            elevation:2,
+            transform:[{
+              translateX:0
+            },{
+                //translateY:-height/2-(150+33)/2
+                translateY:0
+            }]
+              
             
             
           }} 

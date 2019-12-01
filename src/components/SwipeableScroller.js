@@ -362,8 +362,8 @@ const SwipeableScroller = (props) => {
             zIndex:98
         }}
           onMouseEnter={(e)=>{
-            console.log('current entry is ', currentEntry)
-            console.log(scrollerRef.current)
+            //console.log('current entry is ', currentEntry)
+            //console.log(scrollerRef.current)
             onMouseEnter()
             //scrollerRef.scrollTo({x:0,y:currentEntry*height})
           }}
@@ -1403,36 +1403,15 @@ const SwipeableScroller = (props) => {
             >   */}
 
             <section id="sound">
-              {/* <a style={{
-                textDecorationLine:'none',
-                margin:0,
-                padding:0,
-                backgroundColor:'transparent',
-                fontSize: 17,
-                fontWeight:'700',
-                textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                textShadowOffset: {width: 0, height: 0},
-                textShadowRadius: 2,
-                height:45,
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row',
-                textAlign:'center',
-                height:"100%",
-                width:'100%'
-              }} href="/#sound"> */}
+             
                 <Animated.View 
                 ref={heightRef}
                 style={{
                   height:"100vh",
-                  //height:partHeight,
                   width:"100%",
                   padding:15,
                   zIndex:100,
-                  //alignContent:'center',
-                  //justifyContent:'center',
                   overflow:'hidden',
-                  //backgroundColor:'rgb(229,154,198)',
                   backgroundColor:'white',
                   backgroundImage:'radial-gradient(farthest-corner at 0% 50%,rgb(255,146,166),rgb(180,166,255))',
                   //backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
@@ -1451,27 +1430,12 @@ const SwipeableScroller = (props) => {
                         translateX:0,
                       },
                       {
-                          //translateY:-(height+extraHeight+25)/2
+
                           translateyY:0
                       }],
-                      // marginTop:15,
-                      // marginBottom:15,
-                      // marginLeft:15,
-                      // marginRight:15,
-                      //backgroundColor:'rgb(135,135,135)',
-                      
+
                       backgroundColor:'transparent',
-                      //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),rgb(229,154,198))',
-                      //backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(180,166,255),white)',
 
-                      // backgroundImage:'url('+process.env.PUBLIC_URL+"./images/speaker1.jpg"+')',
-                      // backgroundRepeat:'no-repeat',
-                      // backgroundSize:'cover',
-                      // backgroundPosition:'center',
-
-                      //borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
                       borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',
@@ -1555,7 +1519,7 @@ const SwipeableScroller = (props) => {
                     </View>
                   </View>
                 </Animated.View>
-                {/* </a> */}
+               
               </section>
 
               <section id="blog">
