@@ -110,39 +110,39 @@ const firebaseTokenReceived =(message)=> {
         },
         
     }
-    fetch(url,{
-        method:"POST",
-        headers:headers,
-        body:JSON.stringify(body)
-      }).then((res)=>{
-        console.log(res)
-        // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
-        // var newBody ={
+    // fetch(url,{
+    //     method:"POST",
+    //     headers:headers,
+    //     body:JSON.stringify(body)
+    //   }).then((res)=>{
+    //     console.log(res)
+    //     // var newUrl ="https://squwbs-252702.appspot.com/sendfcmall"
+    //     // var newBody ={
           
-        //   "collapse_key":"do_not_collapse",
-        //   "notification": {
-        //       "title":"Welcome",
-        //       "body":"this is fired via sendfcmall",
-        //       // "click_action": "http://localhost:3000/",
-        //       // "icon":"https://squwbs.com/favicon.ico"
-        //   },
+    //     //   "collapse_key":"do_not_collapse",
+    //     //   "notification": {
+    //     //       "title":"Welcome",
+    //     //       "body":"this is fired via sendfcmall",
+    //     //       // "click_action": "http://localhost:3000/",
+    //     //       // "icon":"https://squwbs.com/favicon.ico"
+    //     //   },
           
-        // }
-        // fetch(newUrl,{
-        //   method:"POST",
-        //   headers:headers,
-        //   body:JSON.stringify(newBody)
-        // }).then((res)=>{
-        //   console.log(res)
-        // }).catch((err)=>{
-        //   console.log(err)
-        // })
+    //     // }
+    //     // fetch(newUrl,{
+    //     //   method:"POST",
+    //     //   headers:headers,
+    //     //   body:JSON.stringify(newBody)
+    //     // }).then((res)=>{
+    //     //   console.log(res)
+    //     // }).catch((err)=>{
+    //     //   console.log(err)
+    //     // })
 
 
 
-      }).catch((err)=>{
-          console.log(err)
-      })
+    //   }).catch((err)=>{
+    //       console.log(err)
+    //   })
   window.firebaseToken=message
   //document.getElementById("messager").setAttribute('firebaseToken',message)
   return(
