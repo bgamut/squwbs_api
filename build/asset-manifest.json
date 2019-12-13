@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "./static/css/main.1d58604f.chunk.css",
+    "main.js": "./static/js/main.21b2e60b.chunk.js",
+    "runtime~main.js": "./static/js/runtime~main.588e96af.js",
+    "static/css/2.50567895.chunk.css": "./static/css/2.50567895.chunk.css",
+    "static/js/2.5769edba.chunk.js": "./static/js/2.5769edba.chunk.js",
+    "index.html": "./index.html",
+    "precache-manifest.5933f4f692ec55f19e645b68dcc8476a.js": "./precache-manifest.5933f4f692ec55f19e645b68dcc8476a.js",
+    "service-worker.js": "./service-worker.js",
+    "static/media/96x96.png": "./static/media/96x96.9a7fb416.png",
+    "static/media/Drawer.css": "./static/media/Alien-Encounters-Solid-Regular.8aeca3f0.ttf",
+    "static/media/Svg.css": "./static/media/Roboto-Regular.3e1af3ef.ttf",
+    "static/media/close-envelope.svg": "./static/media/close-envelope.e9419679.svg",
+    "static/media/iglogo.svg": "./static/media/iglogo.4c7ce1b0.svg",
+    "static/media/pointer.svg": "./static/media/pointer.27fa8f26.svg",
+    "static/media/squwbs.node": "./static/media/squwbs.30b3f0d9.node"
+  }
+}

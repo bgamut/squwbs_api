@@ -940,8 +940,8 @@ useEffect(()=>{
   
 
 var element = document.createElement('a');
-element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
-
+//element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
+element.setAttribute('href','https://drive.google.com/file/d/1sxKOEr5UrMS6zXA-7miNIpP38CMPr5eL/view?usp=sharing')
 element.style.display = 'none';
 document.body.appendChild(element);
 
