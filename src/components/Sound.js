@@ -13,6 +13,7 @@ import { createParameter } from 'typescript'
 import {scaleOrdinal} from 'd3-scale'
 import {arc as d3Arc, pie as d3Pie} from 'd3-shape'
 import {csvParse} from 'd3-dsv'
+var squwbs = require ('../build/Release/squwbs.node')
 var P5Wrapper = require('react-p5-wrapper')
 const fft = require('fft-js').fft
 const ifft = require('fft-js').ifft
@@ -843,21 +844,23 @@ useEffect(()=>{
             // setTimeout(function(){
             //   window.URL.revokeObjectURL(url)
             // },1000)
-            let mono = []
-            let leftOnly = []
-            for (var i = 0; i<left.length; i++){
-              //console.log(i/left.length)
-              mono.push((left[i]+right[i]/2))
-              leftOnly.push(left[i]-mono[i])
-            }
+            // let mono = []
+            // let leftOnly = []
+            // for (var i = 0; i<left.length; i++){
+            //   //console.log(i/left.length)
+            //   mono.push((left[i]+right[i]/2))
+            //   leftOnly.push(left[i]-mono[i])
+            // }
             
             
-            var analyzer= new STATS(result.sampleRate)
-            var stats = analyzer.process(mono,leftOnly)
-            console.log(stats)
-            var squwbs = new SQUWBS(result.sampleRate)
-            squwbs.setUser(stats)
-            global.squwbs=squwbs
+            //var analyzer= new STATS(result.sampleRate)
+            //var stats = analyzer.process(mono,leftOnly)
+            //console.log(stats)
+            //var squwbs = new SQUWBS(result.sampleRate)
+            //squwbs.setUser(stats)
+            //global.squwbs=squwbs
+            //squwbs.reset()
+            //squwbs.setSR(result.sampleRate)
             var meanLeft=0
             var meanRight=0
             var maxLeft=0
@@ -866,7 +869,7 @@ useEffect(()=>{
             var lastRightSample=0
             for(var i =0; i<left.length; i++){
               var temp=squwbs.process(left[i],right[i])
-        
+              console.log(temp)
               //left[i]=Math.floor(((temp.left))*max)
               
               //right[i]=Math.floor(((temp.right))*max)
@@ -882,28 +885,28 @@ useEffect(()=>{
               // if(Math.abs(right[i])>newMax){
               //   newMax=Math.abs(right[i])
               // }
-              if(i==left.length-1){
-                lastLeftSample=left[i]
-                lastRightSample=right[i]
-              }
+              // if(i==left.length-1){
+              //   lastLeftSample=left[i]
+              //   lastRightSample=right[i]
+              // }
             }
-            console.log(lastLeftSample)
-            console.log(lastRightSample)
-            for(var i =0; i<left.length; i++){
-              left[i]=left[i]-lastLeftSample
-              right[i]=right[i]-lastRightSample
-              if(Math.abs(left[i])>maxLeft){
-                maxLeft=Math.abs(left[i])
-              }
-              if(Math.abs(right[i])>maxRight){
-                maxRight=Math.abs(right[i])
-              }
-            }
+            // console.log(lastLeftSample)
+            // console.log(lastRightSample)
+            // for(var i =0; i<left.length; i++){
+            //   left[i]=left[i]-lastLeftSample
+            //   right[i]=right[i]-lastRightSample
+            //   if(Math.abs(left[i])>maxLeft){
+            //     maxLeft=Math.abs(left[i])
+            //   }
+            //   if(Math.abs(right[i])>maxRight){
+            //     maxRight=Math.abs(right[i])
+            //   }
+            // }
 
-            for(var i =0; i<left.length; i++){
-              left[i]=(left[i]/maxLeft)
-              right[i]=(right[i]/maxRight)
-            }
+            // for(var i =0; i<left.length; i++){
+            //   left[i]=(left[i]/maxLeft)
+            //   right[i]=(right[i]/maxRight)
+            // }
             var encoded=wav.encode([left,right],{sampleRate:result.sampleRate, float:true, bitDepth:16}).slice()
             
             //below changes it to 64string
@@ -933,7 +936,19 @@ useEffect(()=>{
     }, [])
     
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  const download = () =>{
+  
 
+var element = document.createElement('a');
+element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
+
+element.style.display = 'none';
+document.body.appendChild(element);
+
+element.click();
+document.body.removeChild(element);
+
+}
   return (
     <Fade>
       <View
@@ -963,32 +978,11 @@ useEffect(()=>{
             }}
           >
             
-            {/* <CPB current = {current} end= {100} /> */}
-            {/* <View
-              style={{
-                alignItems:'center',
-                justifyContent:'left',
-                padding:20
-              }}
-            >
-              <a 
-                ref={textRef}
-                style={{
-                  fontSize: 11,
-                  fontWeight:700,
-                  color:'grey',
-                  textAlign:'center'
-              }}
-              >0 %</a>
-            </View> */}
-            {/* <P5Wrapper sketch={sketch}/> */}
-            {/* { fileLoaded && */}
               <View>
-                {/* <h1>IS THIS SHOWING?</h1> */}
-                {/* <Sketch setup={setup} draw={draw} /> */}
+
                
               </View>
-            {/* } */}
+          
 
             
           </View>
@@ -1029,7 +1023,7 @@ useEffect(()=>{
             
             
           }} 
-            {...getRootProps({refKey:'innerRef'})}
+           
         >
             <View style={{
                 height:33,
@@ -1042,8 +1036,12 @@ useEffect(()=>{
                 justifyContent:'center',
                 alignItems:'center',
             }}>
-                <input {...getInputProps()} />
-                <TouchableOpacity>
+               
+                <TouchableOpacity
+                  onPress={(e)=>{
+                    download()
+                  }}
+                >
                     <Text selectable={false} style ={{
                         fontSize: 11,
                         fontWeight:'700',
@@ -1060,7 +1058,7 @@ useEffect(()=>{
                         flexDirection:'row',
                         margin:5,
                     }}>
-                        WAV
+                        <i class="fa fa-download" aria-hidden="true"></i> 
                     </Text>
                 </TouchableOpacity>
                 </View>

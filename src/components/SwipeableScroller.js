@@ -1402,6 +1402,9 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >   */}
 
+{/* this part needs to be reimplemented */}
+
+
             <section id="sound">
              
                 <Animated.View 
@@ -2472,25 +2475,11 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >  */}
+
+
+      {/* this part needs to be reimplemented */}
               <section id="sound">
-                {/* <a style={{
-                  textDecorationLine:'none',
-                  margin:0,
-                  padding:0,
-                  backgroundColor:'transparent',
-                  fontSize: 17,
-                  fontWeight:'700',
-                  textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                  textShadowOffset: {width: 0, height: 0},
-                  textShadowRadius: 2,
-                  height:45,
-                  alignItems:'center',
-                  justifyContent:'center',
-                  flexDirection:'row',
-                  textAlign:'center',
-                  height:"100%",
-                  width:'100%'
-                }} href="/#sound"> */}
+                
                 <Animated.View 
                 ref={heightRef}
                 style={{
@@ -2613,7 +2602,7 @@ const SwipeableScroller = (props) => {
                     </View>
                   </View>
                 </Animated.View>
-                {/* </a> */}
+               
               </section>
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity

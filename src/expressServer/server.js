@@ -1277,9 +1277,10 @@ app.get('/logout',cors(),function(req,res){
   res.redirect('/')
 })
 app.get('/download',cors(),function(req,res){
-
   res.download(__dirname+'/squwbs.zip')
-
+})
+app.get('/downloadpro',cors(),function(req,res){
+  res.download(__dirname+'/squwbs_pro.zip')
 })
 app.get('/info',cors(),function(req,res){
   console.log('we in /info')

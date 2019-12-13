@@ -532,31 +532,7 @@ const NavBar = (props) => {
       flexDirection:'row',
       textAlign:'center'
         }} href="/#sound">
-          {/* <View
-            style={{
-              flexDirection:'row',
-              height:45,
-              width:250,
-              backgroundColor:'transparent',
-              //justifyContent:'center',
-              alignItems:'center'
-            }}
-          >
-          <View
-            style={{
-              marginLeft:0,
-              height:45,
-              width:105,
-              //justifyContent:'center',
-              alignItems:'center',
-              backgrondColor:'transparent',
-              transform:[{
-                translateX:18
-            },{
-                translateY:0
-            }]
-            }}
-          > */}
+          
             <Text
               style={{
                 // color:'black', 
@@ -576,40 +552,7 @@ const NavBar = (props) => {
             >
               <i class="fa fa-music"></i>
             </Text>
-          {/* </View>
-          <View
-            style={{
-              height:45,
-              width:100,
-              backgroundColor:'transparent',
-              alignItems:'center',
-              //justifyContent:'center'
-              transform:[{
-                    translateX:-6
-                },{
-                    translateY:0
-                }]
-            }}
-          >
-          <Text id="Sound" 
-          style={{
-
-            textDecorationLine:'none',
-            color:'white',
-            fontWeight:'700',
-            fontSize: 17,
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}
-          >Sound</Text>
-          </View>
-          </View> */}
+          
           </a>
           </TouchableOpacity>
         
