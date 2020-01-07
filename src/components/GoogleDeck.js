@@ -1199,8 +1199,8 @@ if(isMobile==false){
                               justifyContent:'center'
                           }}
                       >
-                          <TouchableOpacity
-                            //onPress={this.props.slackHashButtonPressed}
+                          {/* <TouchableOpacity
+                           
                             onPress={this.slackHashButtonPressed}
                           >
                           <Text
@@ -1210,9 +1210,9 @@ if(isMobile==false){
                           
                               <i class="fab fa-slack-hash"></i>
                           
-                              {/* {props.likes} Likes  */}
+                             
                           </Text>
-                          </TouchableOpacity>
+                          </TouchableOpacity> */}
                       </View>
                       
                   </View>
@@ -1470,8 +1470,8 @@ if(isMobile==false){
                                 justifyContent:'center'
                             }}
                         >
-                            <TouchableOpacity
-                              //onPress={this.props.slackHashButtonPressed}
+                            {/* <TouchableOpacity
+                              
                               onPress={this.slackHashButtonPressed}
                             >
                             <Text
@@ -1481,9 +1481,8 @@ if(isMobile==false){
                             
                                 <i class="fab fa-slack-hash"></i>
                             
-                                {/* {props.likes} Likes  */}
                             </Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                         
                     </View>
