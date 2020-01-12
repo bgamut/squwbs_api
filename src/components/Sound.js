@@ -941,7 +941,8 @@ useEffect(()=>{
 
 var element = document.createElement('a');
 //element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
-element.setAttribute('href','https://drive.google.com/file/d/1sxKOEr5UrMS6zXA-7miNIpP38CMPr5eL/view?usp=sharing')
+//element.setAttribute('href','https://drive.google.com/file/d/1sxKOEr5UrMS6zXA-7miNIpP38CMPr5eL/view?usp=sharing')
+element.setAttribute('href','https://drive.google.com/file/d/1f9xerUvfpwWrcBzIgZSiBthRmoY9hUc1/view?usp=sharing')
 element.style.display = 'none';
 document.body.appendChild(element);
 
@@ -993,7 +994,7 @@ document.body.removeChild(element);
 
             //backgroundColor:'white',
             //backgroundImage:'radial-gradient(farthest-corner at 0% 0%,rgb(255,146,166),rgb(180,166,255))',
-            backgroundColor:'rgb(180,166,255)',
+            backgroundColor:'rgb(186,214,227)',
             justifyContent:'center',
             alignItems:'center',
             // marginRight:8,
