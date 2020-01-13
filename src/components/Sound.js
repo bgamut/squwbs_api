@@ -942,7 +942,7 @@ useEffect(()=>{
 var element = document.createElement('a');
 //element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
 //element.setAttribute('href','https://drive.google.com/file/d/1sxKOEr5UrMS6zXA-7miNIpP38CMPr5eL/view?usp=sharing')
-element.setAttribute('href','https://drive.google.com/file/d/1f9xerUvfpwWrcBzIgZSiBthRmoY9hUc1/view?usp=sharing')
+element.setAttribute('href','https://drive.google.com/file/d/1trdN4cKoSRgXzO1QsKx3F2v3ThmYsB9o/view?usp=sharing')
 element.style.display = 'none';
 document.body.appendChild(element);
 
