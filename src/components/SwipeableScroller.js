@@ -148,7 +148,7 @@ const SwipeableScroller = (props) => {
       setTimeout(
         ()=>{
           mouseEnterFunction=false
-          props.headerOpen(false)
+          // props.headerOpen(false)
         },720
       )
       //setState({...state,alignmentFunction:false})
@@ -169,42 +169,42 @@ const SwipeableScroller = (props) => {
     )
   }
   useEffect(()=>{
-    if(state.headerOpen==true)
-        {
-          //setPartHeight(height-50)
-          //setPartHeight(height)
-            Animated.timing(
-                //this.Animation,
-                animatedHeaderHeight,
-                {
-                    duration:7,
-                    toValue:height-50,
-                }
-            ).start(()=>
-            {
+    // if(state.headerOpen==true)
+    //     {
+    //       //setPartHeight(height-50)
+    //       //setPartHeight(height)
+    //         Animated.timing(
+    //             //this.Animation,
+    //             animatedHeaderHeight,
+    //             {
+    //                 duration:7,
+    //                 toValue:height-50,
+    //             }
+    //         ).start(()=>
+    //         {
                 
-                //console.log("Animated header Open has been toggled to ", interpolatedHeader)
-                console.log("header Open has been toggled to ", state.headerOpen)
-                //interpolatedHeader
-                toggleBottom()
-            })
-        }
-    else
-        {
-          //setPartHeight(height)
-            Animated.timing(
-                animatedHeaderHeight,
-                {
-                    duration:7,
-                    toValue:height, 
-                }
-            ).start(()=>
-            {
+    //             //console.log("Animated header Open has been toggled to ", interpolatedHeader)
+    //             console.log("header Open has been toggled to ", state.headerOpen)
+    //             //interpolatedHeader
+    //             toggleBottom()
+    //         })
+    //     }
+    // else
+    //     {
+    //       //setPartHeight(height)
+    //         Animated.timing(
+    //             animatedHeaderHeight,
+    //             {
+    //                 duration:7,
+    //                 toValue:height, 
+    //             }
+    //         ).start(()=>
+    //         {
                 
-                console.log("header Open has been toggled to ", state.headerOpen)
-                toggleBottom()
-            })
-        }
+    //             console.log("header Open has been toggled to ", state.headerOpen)
+    //             toggleBottom()
+    //         })
+    //     }
       if(state.userData!==undefined){
         props.overlayOff()
         //props.headerOpen()
@@ -316,14 +316,15 @@ const SwipeableScroller = (props) => {
         if(isNaN(average(buffer))==false){
           //console.log(average(buffer))
           if(currentY>1){}
-          if(average(buffer)<=0){
-            //console.log('close')
-            props.headerOpen(false)
-          }
-          else{
-            //console.log('open')
-            props.headerOpen(true)
-          }
+            // if(average(buffer)<=0){
+            //   //console.log('close')
+            //   props.headerOpen(false)
+            // }
+            // else{
+            //   //console.log('open')
+            //   props.headerOpen(true)
+            // }
+            
         }
         
       prevY=currentY
@@ -1798,7 +1799,7 @@ const SwipeableScroller = (props) => {
                   ref={heightRef}
                   style={{
                     //height:"100vh",
-                    height:165,
+                    height:180,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -1826,7 +1827,7 @@ const SwipeableScroller = (props) => {
                   <View 
                     style={{
                       //height:"100%",
-                      height:165,
+                      height:180,
                       width:"100%",
                       justifyContent:'center',
                       // alignItems:'center',

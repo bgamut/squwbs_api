@@ -579,35 +579,35 @@ const Home = () => {
   }
   useEffect(()=>{
     //console.log("header Open has been toggled to ", headerOpenState)
-    if(headerOpenState==true)
-        {
+    // if(headerOpenState==true)
+    //     {
           
-            Animated.timing(
-                //this.Animation,
-                animatedHeader,
-                {
-                    duration:7,
-                    toValue:0,
-                }
-            ).start(()=>
-            {
-                setState({...state,headerOpen:true})
+    //         Animated.timing(
+    //             //this.Animation,
+    //             animatedHeader,
+    //             {
+    //                 duration:7,
+    //                 toValue:0,
+    //             }
+    //         ).start(()=>
+    //         {
+    //             setState({...state,headerOpen:true})
                 
-            })
-        }
-        else
-        {
-            Animated.timing(
-                animatedHeader,
-                {
-                    duration:7,
-                    toValue:-50, 
-                }
-            ).start(()=>
-            {
-                setState({...state,headerOpen:false})
-            })
-        }
+    //         })
+    //     }
+    //     else
+    //     {
+    //         Animated.timing(
+    //             animatedHeader,
+    //             {
+    //                 duration:7,
+    //                 toValue:-50, 
+    //             }
+    //         ).start(()=>
+    //         {
+    //             setState({...state,headerOpen:false})
+    //         })
+    //     }
   },[headerOpenState])
   // useEffect(()=>{
   //   if(state.userData!==undefined){
@@ -1772,10 +1772,12 @@ const Home = () => {
           <Drawer 
             popLogin={loginOverlayToggle}
             popTerms={termsOverlayToggle}
-            headerOpen={headerOpen}
+            // headerOpen={headerOpen}
+            headerOpen={true}
           >
             <SwipeableScroller 
-              headerOpen={headerOpen}
+              // headerOpen={headerOpen}
+              headerOpen={true}
               shareOverlayToggle={shareOverlayToggle}
               slackHashOverlayToggle={slackHashOverlayToggle}
               starOverlayToggle={starOverlayToggle}
