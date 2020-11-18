@@ -1526,62 +1526,28 @@ const SwipeableScroller = (props) => {
                
               </section>
 
-              <section id="blog">
-              
-              {/* <a style={{
-                textDecorationLine:'none',
-                margin:0,
-                padding:0,
-                backgroundColor:'transparent',
-                fontSize: 17,
-                fontWeight:'700',
-                textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                textShadowOffset: {width: 0, height: 0},
-                textShadowRadius: 2,
-                height:45,
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row',
-                textAlign:'center',
-                height:"100%",
-                width:'100%'
-              }} href="/#googleCard"> */}
+              {/* <section id="blog">
                 <Animated.View
                   ref={heightRef}
                   style={{
                     height:"100vh",
-                    //height:partHeight,
-                    //height:height,
-                    //height:iframeHeight+105,
                     width:"100%",
                     padding:15,
                     
                     backgroundColor:'transparent',
                     justifyContent:'center',
                     alignItems:'center',
-                    //backgroundImage: 'radial-gradient(farthest-corner at -300% 400%,rgb(137,137,137),white)'
-                    //backgroundImage: 'radial-gradient(farthest-corner at -100% 100%,rgb(242,235,242),rgb(186,214,227))'
-                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(186,214,227))'
                     backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(242,235,242),rgb(186,214,227))'
                   }}
                 >
                   <View 
                     style={{
-                      //height:"100%",
-
-                      /////// yoooo
-                      //height:height-30,
                       height:"100%",
                       width:"100%",
                       justifyContent:'center',
                       alignItems:'center',
                       zIndex:0,
-                      //backgroundColor:'rgb(135,135,135)',
                       backgroundColor:'transparent',
-                      //backgroundImage:'radial-gradient(farthest-corner at 100% 100%,rgb(242,235,242),rgb(186,214,227))',
-                      //borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
                       paddingTop:0,
                       paddingLeft:0,
                       paddingRight:0,
@@ -1590,16 +1556,7 @@ const SwipeableScroller = (props) => {
                       borderStyle:'solid',
                       overflow:'hidden',
                       boxSizing:"border-box",
-                      // shadowColor:'black',
-                      // shadowOpacity:0.25,
-                      // shadowRadius:2,
-                      // shadowOffset:{
-                      //   width:0,
-                      //   height:0
-                      // },
-                      // elevation:2
                       transform:[{
-                        //translateX:45,
                         translateX:0,
                     },
                     {
@@ -1607,13 +1564,6 @@ const SwipeableScroller = (props) => {
                     }]
                     }}
                   >
-                    {/* <View
-                      style={{
-                        //backgroundColor:'red',
-                        width:'100%',
-                        height:'50%',
-                      }}
-                    > */}
                     <GoogleDeck 
                       
                       shareButtonPressed={props.shareOverlayToggle}
@@ -1622,23 +1572,10 @@ const SwipeableScroller = (props) => {
                       starButtonPressed={props.starOverlayToggle}
                       XAlign={XAlign}
                     />
-                    {/* </View> */}
-                    {/* <GoogleCardV2
-                      title={'What if the title is unreasonably long. longer than most people tweeting while drunk?'}
-                      date={String(date)}
-                      //picture={"./icons/256x256.png"}
-                      picture={'http://squwbs-252702.appspot.com/favicon.ico'}
-                      writer={'Sir Francis Dylan the 2nd'}
-                      youtubeID={"SkNB5AsgZOc"}
-                      post={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
-                      stars={5}
-                      likes={2000}
-                      hashs={['k-pop','dean']}
-                    /> */}
                   </View>
                 </Animated.View>
-                {/* </a> */}
-              </section>
+              </section> */}
+              
             {/* </TouchableOpacity>  */}
               {/* <section id="testDownloadLink">
                 <Animated.View
@@ -1693,7 +1630,7 @@ const SwipeableScroller = (props) => {
             >   */}
               
 
-              <section id="follow">
+              {/* <section id="follow">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1731,7 +1668,7 @@ const SwipeableScroller = (props) => {
                     <Instagram/>
                   </View>
                 </Animated.View>
-              </section>
+              </section> */}
 
               <section id="contact">
                 {/* <a style={{

@@ -291,7 +291,7 @@ const NavBarWithLogIn = (props) => {
 {/* LOGIN ERROR NEED TO BE FIGURED OUT ON SERVER*/}
 
 
-        <View style={[styles.box,{
+        {/* <View style={[styles.box,{
           // justifyContent:'top',
           alignItems:'top'
         }]}>
@@ -306,31 +306,7 @@ const NavBarWithLogIn = (props) => {
               props.loginAndCloseDrawer
             }
           >
-          {/* <View
-            style={{
-              flexDirection:'row',
-              height:45,
-              width:250,
-              backgroundColor:'transparent',
-              //justifyContent:'center',
-              alignItems:'center'
-            }}
-          >
-          <View
-            style={{
-              marginLeft:0,
-              height:45,
-              width:105,
-              justifyContent:'center',
-              alignItems:'center',
-              backgrondColor:'transparent',
-              transform:[{
-                translateX:18
-            },{
-                translateY:0
-            }]
-            }}
-          > */}
+          
             <Text
               style={{
                 // color:'black', 
@@ -350,43 +326,10 @@ const NavBarWithLogIn = (props) => {
             >
               <i class="fa fa-user"></i>
             </Text>
-          {/* </View>
-          <View
-            style={{
-              height:45,
-              width:100,
-              backgroundColor:'transparent',
-              alignItems:'center',
-              justifyContent:'center',
-              transform:[{
-                translateX:-6
-            },{
-                translateY:0
-            }]
-            }}
-          >
-          <Text id="loginPop" 
-          style={{
-            // color:'black', 
-            textDecorationLine:'none',
-            color:'white',
-            fontSize: 17,
-            fontWeight:'700',
-            textShadowColor: 'rgba(0, 0, 0, 0.5)',
-            textShadowOffset: {width: 0, height: 0},
-            textShadowRadius: 2,
-            // flex:1,
-            textAlign:'center',
-            alignItems:'center',
-            justifyContent:'center',
-            flexDirection:'row',
-          }}
-          >Login</Text>
-          </View>
-          </View>  */}
+          
           </TouchableOpacity>
 
-        </View> 
+        </View>  */}
 
 
         {/* <View style={styles.box}>
@@ -719,7 +662,7 @@ const NavBarWithLogIn = (props) => {
       
       </View>
        
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
         
         <TouchableOpacity 
           style={styles.touch}
@@ -742,31 +685,7 @@ const NavBarWithLogIn = (props) => {
     flexDirection:'row',
     textAlign:'center'
       }} href="/#blog">
-        {/* <View
-            style={{
-              flexDirection:'row',
-              height:45,
-              width:250,
-              backgroundColor:'transparent',
-              //justifyContent:'center',
-              alignItems:'center'
-            }}
-          >
-          <View
-            style={{
-              marginLeft:0,
-              height:45,
-              width:105,
-              //justifyContent:'center',
-              alignItems:'center',
-              backgrondColor:'transparent',
-              transform:[{
-                translateX:18
-            },{
-                translateY:0
-            }]
-            }}
-          > */}
+        
             <Text
               style={{
                 // color:'black', 
@@ -786,46 +705,13 @@ const NavBarWithLogIn = (props) => {
             >
               <i class="fa fa-window-maximize"></i>
             </Text>
-          {/* </View>
-          <View
-            style={{
-              height:45,
-              width:100,
-              backgroundColor:'transparent',
-              alignItems:'center',
-              //justifyContent:'center'
-              transform:[{
-                translateX:-6
-            },{
-                translateY:0
-            }]
-            }}
-          >
-        <Text id="blog" 
-        style={{
-
-          textDecorationLine:'none',
-          color:'white',
-          fontWeight:'700',
-          fontSize: 17,
-          textShadowColor: 'rgba(0, 0, 0, 0.5)',
-          textShadowOffset: {width: 0, height: 0},
-          textShadowRadius: 2,
-
-          textAlign:'center',
-          alignItems:'center',
-          justifyContent:'center',
-          flexDirection:'row',
-        }}
-        >Blog</Text>
-        </View>
-        </View> */}
+        
         </a>
         </TouchableOpacity>
       
-      </View>
+      </View> */}
         
-        <View style={styles.box}>
+        {/* <View style={styles.box}>
         
         <TouchableOpacity 
           style={styles.touch}
@@ -848,34 +734,9 @@ const NavBarWithLogIn = (props) => {
     flexDirection:'row',
     textAlign:'center'
       }} href="/#follow">
-        {/* <View
-            style={{
-              flexDirection:'row',
-              height:45,
-              width:250,
-              backgroundColor:'transparent',
-              //justifyContent:'center',
-              alignItems:'center'
-            }}
-          >
-          <View
-            style={{
-              marginLeft:0,
-              height:45,
-              width:105,
-              //justifyContent:'center',
-              alignItems:'center',
-              backgrondColor:'transparent',
-              transform:[{
-                translateX:18
-            },{
-                translateY:0
-            }]
-            }}
-          > */}
+        
             <Text
               style={{
-                // color:'black', 
                 textDecorationLine:'none',
                 color:'white',
                 fontSize: 17,
@@ -883,54 +744,19 @@ const NavBarWithLogIn = (props) => {
                 textShadowColor: 'rgba(0, 0, 0, 0.5)',
                 textShadowOffset: {width: 0, height: 0},
                 textShadowRadius: 2,
-                // flex:1,
                 textAlign:'center',
                 alignItems:'center',
                 justifyContent:'center',
                 flexDirection:'row',
               }}
             >
-              {/* <i class="fa fa-users"></i> */}
               <i className="fab fa-instagram"></i>
             </Text>
-          {/* </View>
-          <View
-            style={{
-              height:45,
-              width:100,
-              backgroundColor:'transparent',
-              alignItems:'center',
-              //justifyContent:'center'
-              transform:[{
-                translateX:-6
-            },{
-                translateY:0
-            }]
-            }}
-          >
-        <Text id="Follow" 
-        style={{
-
-          textDecorationLine:'none',
-          color:'white',
-          fontWeight:'700',
-          fontSize: 17,
-          textShadowColor: 'rgba(0, 0, 0, 0.5)',
-          textShadowOffset: {width: 0, height: 0},
-          textShadowRadius: 2,
-
-          textAlign:'center',
-          alignItems:'center',
-          justifyContent:'center',
-          flexDirection:'row',
-        }}
-        >Follow</Text>
-        </View>
-        </View> */}
+          
         </a>
         </TouchableOpacity>
       
-      </View>
+      </View> */}
         {/* <View style={styles.box}>
         
           <TouchableOpacity 
