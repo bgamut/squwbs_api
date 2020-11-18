@@ -404,24 +404,9 @@ const Drawer =(props)=>{
         return(
             <Animated.View style={{            
                 height:150,
-                // width:Dimensions.get('window').width,
                 width:"100vw",
                 backgroundColor:'transparent',
                 zIndex:99,
-                // transform:[{
-                //     translateX:0
-                // },{
-                //     translateY:-50+state.yscroll
-                // }]
-
-                // shadowColor:'black',
-                // shadowOpacity:0.25,
-                // shadowRadius:2,
-                // shadowOffset:{
-                //   width:0,
-                //   height:0
-                // },
-                // elevation:2,
             }}>
                 
                 <View style={{
@@ -434,11 +419,7 @@ const Drawer =(props)=>{
                     height:maxHeight,
                     justifyContent:'center',
                     marginBottom :0,
-                    
 
-                    
-                    //opacity:state.opacity
-                    // backgroundColor:'orange'
                 }}>  
                     <Animated.View style={{
                         alignItems:'center',
@@ -457,17 +438,6 @@ const Drawer =(props)=>{
                             style={{
                                 backgroundColor:'transparent',
                             }}>
-                            {/* <Image source={require('./icons/96x96.png')} style={{
-                                Top:(maxHeight-imageLength)/2,
-                                position:'absolue',
-                                height:imageLength,
-                                resizeMode:'contain',
-                                width:imageLength,
-                                //Right:0
-                            }}/> */}
-                            {/* <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
-                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
-                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div> */}
                             <Text
                                 className='icon'
                                 style={{
@@ -918,7 +888,7 @@ const Drawer =(props)=>{
                     backgroundColor:'white'
                     //backgroundImage:'radial-gradient(farthest-corner at 0% 100%,white,rgb(180,166,255))',
                 }}>  
-                    <Animated.View style={{
+                    {/* <Animated.View style={{
                         alignItems:'center',
                         padding:0,
                         height:maxHeight,
@@ -936,17 +906,6 @@ const Drawer =(props)=>{
                                 
                                 backgroundColor:'transparent',
                             }}>
-                            {/* <Image source={require('./icons/96x96.png')} style={{
-                                Top:(maxHeight-imageLength)/2,
-                                position:'absolue',
-                                height:imageLength,
-                                resizeMode:'contain',
-                                width:imageLength,
-                                //Right:0
-                            }}/> */}
-                            {/* <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
-                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div>
-                            <div className='icon' style={{height:imageLength/3-4,width:imageLength,margin:2,backgroundColor: 'rgb(196,196,196)',}}></div> */}
                             <Text
                                 className='icon'
                                 style={{
@@ -957,7 +916,7 @@ const Drawer =(props)=>{
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                             </Text>
                         </TouchableOpacity>
-                    </Animated.View>
+                    </Animated.View> */}
                     <View style={{
                         alignItems:'center',
                         zIndex:0,
