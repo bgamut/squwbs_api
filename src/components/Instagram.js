@@ -134,7 +134,7 @@ const Instagram = (props)=> {
         
     },[height,width])
     useEffect(()=>{
-        fetch('https://squwbs-252702.appspot.com/instagramuri'
+        fetch('https://squwbs.du.r.appspot.com/instagramuri'
             // , {
             //     credentials: "include"
             // }
