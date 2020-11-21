@@ -1033,41 +1033,18 @@ const SwipeableScroller = (props) => {
               activeOpacity={1}
             >  */}
 
-              <section id="download">
-              
-              {/* <a style={{
-                textDecorationLine:'none',
-                margin:0,
-                padding:0,
-                backgroundColor:'transparent',
-                fontSize: 17,
-                fontWeight:'700',
-                textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                textShadowOffset: {width: 0, height: 0},
-                textShadowRadius: 2,
-                height:45,
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row',
-                textAlign:'center',
-                height:"100%",
-                width:'100%'
-              }} href="/#download"> */}
+              {/* <section id="download">
+             
                 <Animated.View
                   ref={heightRef}
                   style={{
                     height:"100vh",
-                    //height:partHeight,
                     width:"100%",
                     padding:15,
-                    
                     backgroundColor:'white',
                     justifyContent:'center',
                     alignItems:'center',
                     backgroundImage:'radial-gradient(farthest-corner at 100% 0%,rgb(242,235,242),rgb(186,214,227))',
-                    //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,rgb(242,235,242),rgb(186,214,227))'
-                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(186,214,227))',
                   }}
                 >
                   <View 
@@ -1078,15 +1055,9 @@ const SwipeableScroller = (props) => {
                       alignItems:'center',
                       zIndex:0,
                       backgroundColor:'transparent',
-                      //backgroundImage:'radial-gradient(farthest-corner at 50% 50%,rgb(242,235,242),rgb(186,214,227))',
-                      //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(186,214,227))',
-                      //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
                       backgroundRepeat:'no-repeat',
                       backgroundSize:'cover',
                       backgroundPosition:'center',
-                      // borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
                       borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',
@@ -1108,16 +1079,9 @@ const SwipeableScroller = (props) => {
                       }}
                       style={{
                         width:'100vw',
-                        //height:height+150,
                         height:height+extraHeight,
-                        //height:'100vh',
-                        //objectFit:'cover',
                         alignItems:'center',
                         justifyContent:'center',
-                        
-                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
-                      // opacity:0.3,
-                      //backgroundColor:'magenta',
                         zIndex:-1,
                         backgroundRepeat:'no-repeat',
                         backgroundSize:'cover',
@@ -1126,9 +1090,7 @@ const SwipeableScroller = (props) => {
                           translateX:0,
                       },
                       {
-                          //translateY:-(((currentY%height)*(150/2))/height)
                           translateY:YParallax
-                          //translateY:getInterpolate(YParallax,height,150)
                       },
                     
                     
@@ -1136,7 +1098,6 @@ const SwipeableScroller = (props) => {
                       }}
                     />
                     <Text
-                        //className='Unselectable'
                         selectable={false}
                         style={{
                           zIndex:100,
@@ -1156,39 +1117,13 @@ const SwipeableScroller = (props) => {
                             translateX:0,
                         },
                         {
-                            //translateY:-(((currentY%height)*(150/2))/height)
-                            //translateY:-(height+extraHeight)/2
-                            //translateY:getInterpolate(YParallax,height,150)
                             translateY:-(height+extraHeight+30+15)/2
                         },
                       ],
                         }}
                       >
                         SQUWBS VST & AU
-                      </Text>
-                      
-                      {/* <GooglePay/> */}
-                      {/* <div
-                        style={{
-                          marginBottom:13
-                        }}
-                        /> */}
-                    {/* <PayPalButton
-                      amount="9.99"
-                      options={{clientId: ''}}
-                      onSuccess={(details, data) => {
-                        alert("Transaction completed by " + details.payer.name.given_name);
-              
-                        // OPTIONAL: Call your server to save the transaction
-                        // return fetch("/paypal-transaction-complete", {
-                        //   method: "post",
-                        //   body: JSON.stringify({
-                        //     orderID: data.orderID
-                        //   })
-                        // });
-                      }}
-                    /> */}
-                    
+                      </Text>                    
                     <View style={{
                         height:33,
                         justifyContent:'center',
@@ -1198,37 +1133,19 @@ const SwipeableScroller = (props) => {
                           translateX:0,
                       },
                       {
-                          //translateY:-(((currentY%height)*(150/2))/height)
-                          //translateY:-(height+extraHeight)/2
-                          //translateY:getInterpolate(YParallax,height,150)
                           translateY:-(height+extraHeight+30+15)/2
                       },
                     ],
                         
                     }}>
-                        {/* <input {...getInputProps()} /> */}
-                        
-                    {/* <StripeProvider apiKey="">
-                      <MyStoreCheckout/>
-                    </StripeProvider> */}
-                      {/* <MyStoreCheckout/> */}
                       <View 
-                      
                       style={{ 
                         height:30,
-                        //width:(Dimensions.get('window').width-8),
                         width:150,
-                        //backgroundColor:'white',
-                        
                         backgroundImage:'radial-gradient(farthest-corner at 100% 0%,rgb(242,235,242),rgb(186,214,227))',
                         flexDirection:'column',
                         justifyContent:'center',
                         alignItems:'center',
-                        // marginRight:8,
-                        // marginLeft:8,
-                        // marginBottom:2,
-                        //borderRadius:2,
-                        
                         borderColor:'lightgrey',
                         borderStyle:'solid',
                         overflow:'hidden',
@@ -1242,24 +1159,20 @@ const SwipeableScroller = (props) => {
                         },
                         elevation:2
                     }} 
-                        // {...getRootProps({refKey:'innerRef'})}
                     >
                       <View
                         className='ClickOpacity'
                         style={{
                           backgroundColor:'white'
-                          
                         }}
                       >
                       <View
-                          
                           style={{
                             zIndex:100,
                             display:'absolute',
                             top:0,
                             width:150,
                             height:30,
-                            //backgroundColor:'white',
                             justifyContent:'center',
                             alignItems:'center',
                             pointerEvents:'none',
@@ -1267,20 +1180,9 @@ const SwipeableScroller = (props) => {
                             backgroundImage:'radial-gradient(farthest-corner at 100% 0%,rgb(242,235,242),rgb(186,214,227))',
                           }}
                         >
-                          {/* <TouchableOpacity 
-                              style={{
-                                pointerEvents:'auto'
-                              }}
-                              onPress={(e)=>{
-                              //console.log(e)
-                              
-                              console.log(document.getElementById('pb'))
-                              console.log(paypalRef)
-                          }}> */}
+
                           <View
-                            //ref={paypalRef}
                             style={{
-                              
                               pointerEvents:'none',
                               flexDirection:'row',
                               justifyContest:'center',
@@ -1289,14 +1191,12 @@ const SwipeableScroller = (props) => {
                             }}
                           >
                               <Text 
-                                
                               selectable={false} 
                               style ={{
                                   fontSize: 20,
                                   fontWeight:'700',
                                   textDecorationLine:'none',
                                   color:'rgb(196,196,196)',
-                                  
                                   textShadowColor: 'rgba(0, 0, 0, 0.85)',
                                   textShadowOffset: {width: 0, height: 0},
                                   textShadowRadius: 2,
@@ -1309,10 +1209,6 @@ const SwipeableScroller = (props) => {
                                   zIndex:101
                               }}>
                                   <i class="fab fa-paypal"></i>
-                                
-                                
-                                  {/* <i class="fas fa-credit-card"></i> */}
-                                  
                               </Text>
                               <Text
                                 selectable={false} 
@@ -1321,7 +1217,6 @@ const SwipeableScroller = (props) => {
                                     fontWeight:'700',
                                     textDecorationLine:'none',
                                     color:'white',
-                                    
                                     textShadowColor: 'rgba(0, 0, 0, 0.85)',
                                     textShadowOffset: {width: 0, height: 0},
                                     textShadowRadius: 2,
@@ -1336,19 +1231,15 @@ const SwipeableScroller = (props) => {
                                 Paypal
                               </Text>
                             </View>
-                          {/* </TouchableOpacity> */}
                         </View>
                         <View
                           
                           style={{
-                            //display:'block',
-                            //zIndex:'0',
                             zIndex:98,
                             position:'absolute',
                             top:0,
                             pointerEvents:'auto',
                             display:'hidden',
-                            //boxShadow: '0 0 0 500px'
                             shadowOpacity: 0.75,
                             shadowRadius: 5,
                             shadowColor: 'red',
@@ -1358,18 +1249,12 @@ const SwipeableScroller = (props) => {
                       
                         <PayPalButton
                           ref={paypalRef}
-                          // id='pb'
-                         
                           paypalOptions={{
-                            
-                            //clientId:paypalID,
-                            //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
                             clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
                             intent:'capture'
                           }}
                           buttonStyles={{
                             layout:'horizontal',
-                            // layout:'vertical',
                             shape:'rect',
                             color:'white',
                             tagline:true,
@@ -1389,11 +1274,9 @@ const SwipeableScroller = (props) => {
                     </View>
                     </View>
                 </View>  
-                
                   </View>
                 </Animated.View>
-                {/* </a> */}
-              </section>
+              </section> */}
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
               onPress={()=>{
@@ -1575,7 +1458,7 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section> */}
-              
+
             {/* </TouchableOpacity>  */}
               {/* <section id="testDownloadLink">
                 <Animated.View
@@ -1866,25 +1749,7 @@ const SwipeableScroller = (props) => {
               }}
               activeOpacity={1}
             >    */}
-              <section id="download">
-              {/* <a style={{
-                textDecorationLine:'none',
-                margin:0,
-                padding:0,
-                backgroundColor:'transparent',
-                fontSize: 17,
-                fontWeight:'700',
-                textShadowColor: 'rgba(0, 0, 0, 0.5)',
-                textShadowOffset: {width: 0, height: 0},
-                textShadowRadius: 2,
-                height:45,
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row',
-                textAlign:'center',
-                height:"100%",
-                width:'100%'
-              }} href="/#download"> */}
+              {/* <section id="download">
                 <Animated.View
                   ref={heightRef}
                   style={{
@@ -1894,11 +1759,6 @@ const SwipeableScroller = (props) => {
                     padding:15,
                     overflow:'hidden',
                     backgroundColor:'transparent',
-                    //justifyContent:'center',
-                    //alignItems:'center',
-                    //backgroundImage: 'radial-gradient(farthest-corner at 400% -300%,rgb(137,137,137),white)'
-                    //backgroundImage: 'radial-gradient(farthest-corner at 100% -100%,white,rgb(186,214,227))'
-                    //backgroundImage: 'radial-gradient(farthest-corner at 0% 0%,white,rgb(242,235,242))'
                     backgroundImage: 'radial-gradient(farthest-corner at 100% 100%,rgb(242,235,242),white)'
                   }}
                 >
@@ -1907,17 +1767,11 @@ const SwipeableScroller = (props) => {
                     style={{
                       height:"100%",
                       width:"100%",
-                      //justifyContent:'center',
-                      //alignItems:'center',
                       zIndex:0,
-                      //backgroundColor:'white',
                       backgroundImage:'url('+process.env.PUBLIC_URL+"./images/computerdesk2.jpg"+')',
                       backgroundRepeat:'no-repeat',
                       backgroundSize:'cover',
                       backgroundPosition:'center',
-                      //borderRadius:4,
-                      //borderBottom:2,
-                      //borderTop:1,
                       borderColor:'#aaa',
                       borderStyle:'solid',
                       overflow:'hidden',
@@ -1938,16 +1792,9 @@ const SwipeableScroller = (props) => {
                       }}
                       style={{
                         width:'100vw',
-                        //height:height+150,
                         height:height+extraHeight,
-                        //height:'100vh',
-                        //objectFit:'cover',
                         alignItems:'center',
                         justifyContent:'center',
-                        
-                        //backgroundImage:'url('+process.env.PUBLIC_URL+"./images/club1.jpg"+')',
-                      // opacity:0.3,
-                      //backgroundColor:'magenta',
                         zIndex:-1,
                         backgroundRepeat:'no-repeat',
                         backgroundSize:'cover',
@@ -1956,12 +1803,8 @@ const SwipeableScroller = (props) => {
                           translateX:0,
                       },
                       {
-                          //translateY:-(((currentY%height)*(150/2))/height)
                           translateY:YParallax
-                          //translateY:getInterpolate(YParallax,height,150)
                       },
-                    
-                    
                     ],
                       }}
                     />
@@ -1975,21 +1818,14 @@ const SwipeableScroller = (props) => {
                           translateX:0,
                       },
                       {
-                          //translateY:-(height)
                           translateY:-(height+extraHeight)
-                          
                       },
-                    
-                    
-                    ],
-                      
+                    ], 
                       }}
                     >
                     <View>
                       <Text
-                        //className='Unselectable'
                         style={{
-
                           textDecorationLine:'none',
                           color:'white',
                           fontWeight:'700',
@@ -2006,27 +1842,7 @@ const SwipeableScroller = (props) => {
                       >
                         SQUWBS VST & AU
                       </Text>
-                      {/* <GooglePay/> */}
-                      {/* <div
-                        style={{
-                          marginBottom:13
-                        }}
-                        /> */}
-                    {/* <PayPalButton
-                      amount="9.99"
-                      options={{clientId: ''}}
-                      onSuccess={(details, data) => {
-                        alert("Transaction completed by " + details.payer.name.given_name);
-              
-                        // OPTIONAL: Call your server to save the transaction
-                        // return fetch("/paypal-transaction-complete", {
-                        //   method: "post",
-                        //   body: JSON.stringify({
-                        //     orderID: data.orderID
-                        //   })
-                        // });
-                      }}
-                    /> */}
+
                     
                     <View style={{
                         height:33,
@@ -2035,29 +1851,16 @@ const SwipeableScroller = (props) => {
                         backgroundColor:'transparent',
                         
                     }}>
-                        {/* <input {...getInputProps()} /> */}
-                        
-                    {/* <StripeProvider apiKey="">
-                      <MyStoreCheckout/>
-                    </StripeProvider> */}
-                      {/* <MyStoreCheckout/> */}
+
                       <View 
                       
                       style={{ 
                         height:30,
-                        //width:(Dimensions.get('window').width-8),
                         width:150,
                         backgroundColor:'white',
-                        
-              
                         flexDirection:'column',
                         justifyContent:'center',
                         alignItems:'center',
-                        // marginRight:8,
-                        // marginLeft:8,
-                        // marginBottom:2,
-                        //borderRadius:2,
-                        
                         borderColor:'lightgrey',
                         borderStyle:'solid',
                         overflow:'hidden',
@@ -2071,7 +1874,6 @@ const SwipeableScroller = (props) => {
                         },
                         elevation:2
                     }} 
-                        // {...getRootProps({refKey:'innerRef'})}
                     >
                       <View
                         className='ClickOpacity'
@@ -2096,18 +1898,7 @@ const SwipeableScroller = (props) => {
                             overflow:'hidden'
                           }}
                         >
-                          {/* <TouchableOpacity 
-                              style={{
-                                pointerEvents:'auto'
-                              }}
-                              onPress={(e)=>{
-                              //console.log(e)
-                              
-                              console.log(document.getElementById('pb'))
-                              console.log(paypalRef)
-                          }}> */}
                           <View
-                            //ref={paypalRef}
                             style={{
                               pointerEvents:'none',
                               flexDirection:'row',
@@ -2135,10 +1926,6 @@ const SwipeableScroller = (props) => {
                                   pointerEvents:'none'
                               }}>
                                   <i class="fab fa-paypal"></i>
-                                
-                                
-                                  {/* <i class="fas fa-credit-card"></i> */}
-                                  
                               </Text>
                               <Text
                                 selectable={false} 
@@ -2162,17 +1949,14 @@ const SwipeableScroller = (props) => {
                                 Paypal
                               </Text>
                             </View>
-                          {/* </TouchableOpacity> */}
                         </View>
                         <View
                           
                           style={{
-                            //display:'block',
                             zIndex:'0',
                             position:'absolute',
                             top:0,
                             pointerEvents:'auto',
-                            //boxShadow: '0 0 0 500px',
                             shadowOpacity: 0.75,
                             shadowRadius: 5,
                             shadowColor: 'red',
@@ -2181,18 +1965,12 @@ const SwipeableScroller = (props) => {
                         >
                       
                         <PayPalButton
-                          // ref={paypalRef}
-                          // id='pb'
                           paypalOptions={{
-                            
-                            //clientId:paypalID,
-                            //clientId:NODE_ENV.PAYPAL_LIVE_CLIENT_ID,
                             clientId:"AX-RoA6udFnBXtye_ygrvAlQD6EOWSEzu4v8j7ijKmNT7GWTonG_HF93Z_YOJILjl0NGE4v12YxJ0Lkd",
                             intent:'capture'
                           }}
                           buttonStyles={{
                             layout:'horizontal',
-                            // layout:'vertical',
                             shape:'rect',
                             color:'white',
                             tagline:true,
@@ -2206,9 +1984,7 @@ const SwipeableScroller = (props) => {
                             console.log('onPaymentSuccess')
                           }}
                           />
-                        
                         </View>
-
                     </View>
                     </View>
                 </View>  
@@ -2216,8 +1992,7 @@ const SwipeableScroller = (props) => {
                   </View>
                   </View>
                 </Animated.View>
-                {/* </a> */}
-              </section>
+              </section> */}
             {/* </TouchableOpacity>  */}
             {/* <TouchableOpacity
               onPress={()=>{
