@@ -1003,7 +1003,7 @@ const SwipeableScroller = (props) => {
                           }}
                         >
                           
-                          Available in Mac & PC
+                          Available for MacOS
                         </Text>
                       </View>
                       </a>
