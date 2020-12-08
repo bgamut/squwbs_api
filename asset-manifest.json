@@ -1,14 +1,13 @@
 {
   "files": {
     "main.css": "./static/css/main.1d58604f.chunk.css",
-    "main.js": "./static/js/main.863a4fd7.chunk.js",
+    "main.js": "./static/js/main.cd31e1e1.chunk.js",
     "runtime~main.js": "./static/js/runtime~main.588e96af.js",
     "static/css/2.50567895.chunk.css": "./static/css/2.50567895.chunk.css",
     "static/js/2.0ad9cdf0.chunk.js": "./static/js/2.0ad9cdf0.chunk.js",
     "index.html": "./index.html",
-    "precache-manifest.dcf9d833793d7f9e90e04ea29d073dc0.js": "./precache-manifest.dcf9d833793d7f9e90e04ea29d073dc0.js",
+    "precache-manifest.c1c5058b75accb8b44eb547882286150.js": "./precache-manifest.c1c5058b75accb8b44eb547882286150.js",
     "service-worker.js": "./service-worker.js",
-    "static/media/96x96.png": "./static/media/96x96.9a7fb416.png",
     "static/media/Drawer.css": "./static/media/Alien-Encounters-Solid-Regular.8aeca3f0.ttf",
     "static/media/Svg.css": "./static/media/Roboto-Regular.3e1af3ef.ttf",
     "static/media/close-envelope.svg": "./static/media/close-envelope.e9419679.svg",
