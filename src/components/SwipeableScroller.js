@@ -1576,7 +1576,7 @@ const SwipeableScroller = (props) => {
                   ref={heightRef}
                   style={{
                     //height:"100vh",
-                    height:180,
+                    height:350,
                     //height:partHeight,
                     width:"100%",
                     padding:15,
@@ -1603,8 +1603,8 @@ const SwipeableScroller = (props) => {
                 >
                   <View 
                     style={{
-                      //height:"100%",
-                      height:180,
+                      height:"100%",
+                      //height:180,
                       width:"100%",
                       justifyContent:'center',
                       // alignItems:'center',
