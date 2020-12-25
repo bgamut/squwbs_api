@@ -89,7 +89,7 @@ const DLLink = (props)=> {
         
         var element = document.createElement('a');
         //element.setAttribute('href', 'https://squwbs-252702.appspot.com/download');
-        element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
+        element.setAttribute('href', 'https://drive.google.com/file/d/1dWkE6cBt36IBCMWTkHtRtFdZHb7CvH5g/view?usp=sharing');
         // element.setAttribute('download', filename);
         //element.setAttribute('href', 'https://squwbs.herokuapp.com/download');
         element.style.display = 'none';

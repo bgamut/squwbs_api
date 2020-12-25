@@ -12,6 +12,7 @@ import Instagram from './Instagram'
 import Contact from './Contact'
 import UploadWords from './UploadWords'
 import DLLink from './DLLink'
+import Tutorial from './Tutorial'
 //import {Slider,Slide,Caption,Card} from 'react-materialize'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
@@ -1458,6 +1459,58 @@ const SwipeableScroller = (props) => {
                   </View>
                 </Animated.View>
               </section> */}
+               <section id="tutorial">
+                <Animated.View
+                  ref={heightRef}
+                  style={{
+                    height:"100vh",
+                    width:"100%",
+                    padding:15,
+                    
+                    backgroundColor:'transparent',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    backgroundImage: 'radial-gradient(farthest-corner at 50% 50%,rgb(242,235,242),rgb(186,214,227))'
+                  }}
+                >
+                  <View 
+                    style={{
+                      height:"100%",
+                      width:"100%",
+                      justifyContent:'center',
+                      alignItems:'center',
+                      zIndex:0,
+                      backgroundColor:'transparent',
+                      paddingTop:0,
+                      paddingLeft:0,
+                      paddingRight:0,
+                      paddingBottom:0,
+                      borderColor:'#aaa',
+                      borderStyle:'solid',
+                      overflow:'hidden',
+                      boxSizing:"border-box",
+                      transform:[{
+                        translateX:0,
+                    },
+                    {
+                        translateY:30,
+                    }]
+                    }}
+                  >
+                    {/* <GoogleDeck 
+                      
+                      shareButtonPressed={props.shareOverlayToggle}
+                      slackHashButtonPressed={props.slackHashOverlayToggle}
+                      commentButtonPressed={props.commentOverlayToggle}
+                      starButtonPressed={props.starOverlayToggle}
+                      XAlign={XAlign}
+                    /> */}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/FJDnzobxXVA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                      
+                    </iframe>
+                  </View>
+                </Animated.View>
+              </section>
 
             {/* </TouchableOpacity>  */}
               {/* <section id="testDownloadLink">
