@@ -941,8 +941,8 @@ useEffect(()=>{
 
 var element = document.createElement('a');
 //element.setAttribute('href', 'https://squwbs-252702.appspot.com/downloadpro');
-element.setAttribute('href','https://drive.google.com/file/d/1dWkE6cBt36IBCMWTkHtRtFdZHb7CvH5g/view?usp=sharing')
-//element.setAttribute('href','https://drive.google.com/file/d/1trdN4cKoSRgXzO1QsKx3F2v3ThmYsB9o/view?usp=sharing')
+//element.setAttribute('href','https://drive.google.com/file/d/1dWkE6cBt36IBCMWTkHtRtFdZHb7CvH5g/view?usp=sharing')
+element.setAttribute('href','https://drive.google.com/file/d/1LxbBH-I8OyQUAdNioa4dBDpk4BAUS5mL/view?usp=sharing')
 element.style.display = 'none';
 document.body.appendChild(element);
 
