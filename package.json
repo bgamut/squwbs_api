@@ -160,7 +160,7 @@
     "web-push": "^3.4.0",
     "webpack": "^4.35.3",
     "with-query": "^1.1.2",
-    "xlsx": "^0.14.4"
+    "xlsx": "^0.17.0"
   },
   "scripts": {
     "first": "npm install && sleep 50 && npm run electron-packager && open ./template-darwin-x64/template.app",
